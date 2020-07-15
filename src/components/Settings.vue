@@ -61,7 +61,7 @@ export default {
                 })
             this.getno()
         },
-        /*
+        
         getno() {
             const url = generateUrl('/apps/github/notifications')
             axios.get(url)
@@ -76,7 +76,7 @@ export default {
                 .then(function () {
                 })
         },
-        */
+        
     }
 }
 </script>

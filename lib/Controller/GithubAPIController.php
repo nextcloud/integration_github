@@ -27,9 +27,10 @@ use OCP\AppFramework\Http\ContentSecurityPolicy;
 
 use OCP\ILogger;
 use OCP\IRequest;
-use OCP\IDBConnection;
 use OCP\AppFramework\Http\DataResponse;
 use OCP\AppFramework\Controller;
+
+use OCA\Github\Service\GithubAPIService;
 
 class GithubAPIController extends Controller {
 
@@ -47,7 +48,7 @@ class GithubAPIController extends Controller {
                                 IAppManager $appManager,
                                 IAppData $appData,
                                 ILogger $logger,
-                                IDBConnection $dbconnection,
+                                GithubAPIService $githubAPIService,
                                 $userId) {
         parent::__construct($AppName, $request);
         $this->userId = $userId;
@@ -56,7 +57,7 @@ class GithubAPIController extends Controller {
         $this->serverContainer = $serverContainer;
         $this->config = $config;
         $this->logger = $logger;
-        $this->dbconnection = $dbconnection;
+        $this->githubAPIService = $githubAPIService;
         $this->accessToken = $this->config->getUserValue($this->userId, 'github', 'token', '');
     }
 
@@ -65,33 +66,13 @@ class GithubAPIController extends Controller {
      * @NoAdminRequired
      */
     public function getNotifications($since = null) {
-        try {
-            $url = 'https://api.github.com/notifications?participating=true';
-            if ($since !== null) {
-                $url .= '&since=' . $since;
-            }
-
-            $options = array(
-                'http' => array(
-                    'header'  => 'Authorization: Basic ' . base64_encode('USERID_NOT_NEEDED:'.$this->accessToken).
-                        "\r\nUser-Agent: Nextcloud Github integration",
-                    'method'  => 'GET',
-                )
-            );
-            $context  = stream_context_create($options);
-            $result = file_get_contents($url, false, $context);
-            if (!$result) {
-                $response = new DataResponse($this->l10n->t('Bad credentials'), 401);
-            } else {
-                $jsonResult = json_decode($result, true);
-                $response = new DataResponse($jsonResult);
-            }
-            return $response;
-        } catch (\Exception $e) {
-            $this->logger->warning('Github API error : '.$e, array('app' => $this->appName));
-            $response = new DataResponse($e, 400);
-            return $response;
+        $result = $this->githubAPIService->getNotifications($this->accessToken, $since, true);
+        if (is_array($result)) {
+            $response = new DataResponse($result);
+        } else {
+            $response = new DataResponse($result, 401);
         }
+        return $response;
     }
 
 }
