@@ -2,8 +2,6 @@
     <div id="github_prefs" class="section">
             <h2>{{ t('github', 'Github access') }}</h2>
             <div class="grid-form">
-                <label for="github-userid">{{ t('github', 'Github user ID') }}</label>
-                <input id="github-userid" type="text" v-model="state.githubUserid" @input="onInput"/>
                 <label for="github-token">{{ t('github', 'Github access token') }}</label>
                 <input id="github-token" type="text" v-model="state.token" @input="onInput"/>
             </div>
@@ -46,8 +44,7 @@ export default {
         saveOptions() {
             const req = {
                 values: {
-                    token: this.state.token,
-                    githubUserid: this.state.githubUserid
+                    token: this.state.token
                 }
             }
             const url = generateUrl('/apps/github/config')

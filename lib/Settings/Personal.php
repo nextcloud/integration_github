@@ -40,11 +40,9 @@ class Personal implements ISettings {
      */
     public function getForm() {
         $token = $this->config->getUserValue($this->userId, 'github', 'token', '');
-        $githubUserId = $this->config->getUserValue($this->userId, 'github', 'githubUserid', '');
 
         $userConfig = [
-            'token' => $token,
-            'githubUserid' => $githubUserId
+            'token' => $token
         ];
         $this->initialStateService->provideInitialState($this->appName, 'user-config', $userConfig);
         return new TemplateResponse('github', 'personalSettings');

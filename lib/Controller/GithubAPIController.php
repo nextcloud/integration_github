@@ -18,6 +18,7 @@ use OCP\AppFramework\Http\DataDisplayResponse;
 use OCP\IURLGenerator;
 use OCP\IConfig;
 use OCP\IServerContainer;
+use OCP\IL10N;
 
 use OCP\AppFramework\Http;
 use OCP\AppFramework\Http\RedirectResponse;
@@ -42,6 +43,7 @@ class GithubAPIController extends Controller {
                                 IRequest $request,
                                 IServerContainer $serverContainer,
                                 IConfig $config,
+                                IL10N $l10n,
                                 IAppManager $appManager,
                                 IAppData $appData,
                                 ILogger $logger,
@@ -49,13 +51,13 @@ class GithubAPIController extends Controller {
                                 $userId) {
         parent::__construct($AppName, $request);
         $this->userId = $userId;
+        $this->l10n = $l10n;
         $this->appData = $appData;
         $this->serverContainer = $serverContainer;
         $this->config = $config;
         $this->logger = $logger;
         $this->dbconnection = $dbconnection;
         $this->accessToken = $this->config->getUserValue($this->userId, 'github', 'token', '');
-        $this->githubUserid = $this->config->getUserValue($this->userId, 'github', 'githubUserid', '');
     }
 
     /**
@@ -71,20 +73,25 @@ class GithubAPIController extends Controller {
 
             $options = array(
                 'http' => array(
-                    'header'  => 'Authorization: Basic ' . base64_encode($this->githubUserid.':'.$this->accessToken).
-                        "\r\nUser-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:80.0) Gecko/20100101 Firefox/80.0",
+                    'header'  => 'Authorization: Basic ' . base64_encode('USERID_NOT_NEEDED:'.$this->accessToken).
+                        "\r\nUser-Agent: Nextcloud Github integration",
                     'method'  => 'GET',
                 )
             );
             $context  = stream_context_create($options);
             $result = file_get_contents($url, false, $context);
-            $jsonResult = json_decode($result, true);
-        }
-        catch (\Exception $e) {
+            if (!$result) {
+                $response = new DataResponse($this->l10n->t('Bad credentials'), 401);
+            } else {
+                $jsonResult = json_decode($result, true);
+                $response = new DataResponse($jsonResult);
+            }
+            return $response;
+        } catch (\Exception $e) {
             $this->logger->warning('Github API error : '.$e, array('app' => $this->appName));
+            $response = new DataResponse($e, 400);
+            return $response;
         }
-        $response = new DataResponse($jsonResult);
-        return $response;
     }
 
 }
