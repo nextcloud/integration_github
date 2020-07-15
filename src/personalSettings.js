@@ -11,13 +11,13 @@
  * @copyright Julien Veyssier 2020
  */
 
-import Vue from 'vue';
-import './bootstrap';
-import Settings from './components/Settings';
+import Vue from 'vue'
+import './bootstrap'
+import Settings from './components/Settings'
 
-'use strict';
+'use strict'
 
 new Vue({
     el: "#github_prefs",
     render: h => h(Settings),
-});
+})
