@@ -20,5 +20,6 @@
 return [
     'routes' => [
         ['name' => 'config#setConfig', 'url' => '/config', 'verb' => 'PUT'],
+        ['name' => 'githubAPI#getNotifications', 'url' => '/notifications', 'verb' => 'GET'],
     ]
 ];

@@ -1,7 +1,12 @@
 <template>
     <div id="github_prefs" class="section">
-            <h2>{{ t('github', 'Github access token') }}</h2>
-            <input type="text" v-model="state.token" @input="onTokenInput"/>
+            <h2>{{ t('github', 'Github access') }}</h2>
+            <div class="grid-form">
+                <label for="github-userid">{{ t('github', 'Github user ID') }}</label>
+                <input id="github-userid" type="text" v-model="state.githubUserid" @input="onInput"/>
+                <label for="github-token">{{ t('github', 'Github access token') }}</label>
+                <input id="github-token" type="text" v-model="state.token" @input="onInput"/>
+            </div>
     </div>
 </template>
 
@@ -32,29 +37,63 @@ export default {
     },
 
     methods: {
-        onTokenInput() {
+        onInput() {
             const that = this
             delay(function() {
-                that.saveToken()
+                that.saveOptions()
             }, 2000)()
         },
-        saveToken() {
+        saveOptions() {
             const req = {
-                values: { token: this.state.token }
+                values: {
+                    token: this.state.token,
+                    githubUserid: this.state.githubUserid
+                }
             }
             const url = generateUrl('/apps/github/config')
             axios.put(url, req)
                 .then(function (response) {
-                    showSuccess(t('github', 'Acces token saved.'))
+                    showSuccess(t('github', 'Github options saved.'))
                 })
                 .catch(function (error) {
-                    showError(t('github', 'Failed to save option values') +
+                    showError(t('github', 'Failed to save Github options') +
                         ': ' + error.response.request.responseText
                     )
                 })
                 .then(function () {
                 })
-        }
+            this.getno()
+        },
+        /*
+        getno() {
+            const url = generateUrl('/apps/github/notifications')
+            axios.get(url)
+                .then(function (response) {
+                    console.log(response.data)
+                })
+                .catch(function (error) {
+                    showError(t('github', 'Failed to get Github notifications') +
+                        ': ' + error.response.request.responseText
+                    )
+                })
+                .then(function () {
+                })
+        },
+        */
     }
 }
 </script>
+
+<style scoped lang="scss">
+.grid-form label {
+    line-height: 38px;
+}
+.grid-form input {
+    width: 100%;
+}
+.grid-form {
+    width: 400px;
+    display: grid;
+    grid-template: 1fr / 1fr 1fr;
+}
+</style>

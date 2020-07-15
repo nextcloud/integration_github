@@ -24,12 +24,13 @@ use OCP\AppFramework\Http\RedirectResponse;
 
 use OCP\AppFramework\Http\ContentSecurityPolicy;
 
+use OCP\ILogger;
 use OCP\IRequest;
 use OCP\IDBConnection;
 use OCP\AppFramework\Http\DataResponse;
 use OCP\AppFramework\Controller;
 
-class ConfigController extends Controller {
+class GithubAPIController extends Controller {
 
 
     private $userId;
@@ -43,6 +44,7 @@ class ConfigController extends Controller {
                                 IConfig $config,
                                 IAppManager $appManager,
                                 IAppData $appData,
+                                ILogger $logger,
                                 IDBConnection $dbconnection,
                                 $userId) {
         parent::__construct($AppName, $request);
@@ -50,18 +52,38 @@ class ConfigController extends Controller {
         $this->appData = $appData;
         $this->serverContainer = $serverContainer;
         $this->config = $config;
+        $this->logger = $logger;
         $this->dbconnection = $dbconnection;
+        $this->accessToken = $this->config->getUserValue($this->userId, 'github', 'token', '');
+        $this->githubUserid = $this->config->getUserValue($this->userId, 'github', 'githubUserid', '');
     }
 
     /**
-     * set config values
+     * get notification list
      * @NoAdminRequired
      */
-    public function setConfig($values) {
-        foreach ($values as $key => $value) {
-            $this->config->setUserValue($this->userId, 'github', $key, $value);
+    public function getNotifications($since = null) {
+        try {
+            $url = 'https://api.github.com/notifications?participating=true';
+            if ($since !== null) {
+                $url .= '&since=' . $since;
+            }
+
+            $options = array(
+                'http' => array(
+                    'header'  => 'Authorization: Basic ' . base64_encode($this->githubUserid.':'.$this->accessToken).
+                        "\r\nUser-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:80.0) Gecko/20100101 Firefox/80.0",
+                    'method'  => 'GET',
+                )
+            );
+            $context  = stream_context_create($options);
+            $result = file_get_contents($url, false, $context);
+            $jsonResult = json_decode($result, true);
         }
-        $response = new DataResponse(1);
+        catch (\Exception $e) {
+            $this->logger->warning('Github API error : '.$e, array('app' => $this->appName));
+        }
+        $response = new DataResponse($jsonResult);
         return $response;
     }
 
