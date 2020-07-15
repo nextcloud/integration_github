@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<info>
+    <id>github</id>
+    <name>Github</name>
+    <summary> </summary><description> </description>
+    <version>0.0.1</version>
+    <licence>agpl</licence>
+    <author>Julien Veyssier</author>
+    <namespace>Github</namespace>
+    <documentation>
+        <developer>https://nowhere.org/wikis/devdoc</developer>
+    </documentation>
+    <category>integration</category>
+    <website>https://github.com/nextcloud/github</website>
+    <bugs>https://github.com/nextcloud/github/issues</bugs>
+    <dependencies>
+        <database min-version="9.4">pgsql</database>
+        <database>sqlite</database>
+        <database min-version="5.5">mysql</database>
+        <nextcloud min-version="19" max-version="20"/>
+    </dependencies>
+    <settings>
+        <personal>OCA\Github\Settings\Personal</personal>
+        <personal-section>OCA\Github\Settings\PersonalSection</personal-section>
+    </settings>
+</info>
