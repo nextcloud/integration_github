@@ -1,8 +1,9 @@
 <template>
     <div>
-        <ul v-if="state === 'ok'">
-            <li v-for="notification in notifications" :key="notification.id">
-                {{ notification.subject.title }} - {{ notification.updated_at }}
+        <ul v-if="state === 'ok'" class="notification-list">
+            <li v-for="notification in notifications" :key="notification.id" :title="notification.reason">
+                <a :href="getNotificationTarget(notification)" target="_blank">{{ notification.subject.title }}</a>
+                - {{ notification.updated_at }}
             </li>
         </ul>
         <div v-else-if="state === 'no-token'">
@@ -106,9 +107,18 @@ export default {
                 return (n.unread && ['assign', 'mention', 'review_requested'].includes(n.reason))
             })
         },
+        getNotificationTarget(n) {
+            return n.subject.url
+                .replace('api.github.com', 'github.com')
+                .replace('/repos/', '/')
+                .replace('/pulls/', '/pull/')
+        }
     },
 }
 </script>
 
 <style scoped lang="scss">
+.notification-list {
+    list-style-type: disc;
+}
 </style>
