@@ -13,15 +13,19 @@ use OCP\IContainer;
 
 use OCP\AppFramework\App;
 use OCP\AppFramework\IAppContainer;
+use OCP\AppFramework\Bootstrap\IRegistrationContext;
+use OCP\AppFramework\Bootstrap\IBootContext;
+use OCP\AppFramework\Bootstrap\IBootstrap;
 
 use OCA\Github\Controller\PageController;
+use OCA\Github\Dashboard\GithubPanel;
 
 /**
  * Class Application
  *
  * @package OCA\Github\AppInfo
  */
-class Application extends App {
+class Application extends App implements IBootstrap {
 
     /**
      * Constructor
@@ -34,5 +38,11 @@ class Application extends App {
         $container = $this->getContainer();
     }
 
+    public function register(IRegistrationContext $context): void {
+        $context->registerDashboardPanel(GithubPanel::class);
+    }
+
+    public function boot(IBootContext $context): void {
+    }
 }
 

@@ -62,24 +62,7 @@ export default {
                 })
                 .then(function () {
                 })
-            this.getno()
         },
-        /*
-        getno() {
-            const url = generateUrl('/apps/github/notifications')
-            axios.get(url)
-                .then(function (response) {
-                    console.log(response.data)
-                })
-                .catch(function (error) {
-                    showError(t('github', 'Failed to get Github notifications') +
-                        ': ' + error.response.request.responseText
-                    )
-                })
-                .then(function () {
-                })
-        },
-        */
     }
 }
 </script>
