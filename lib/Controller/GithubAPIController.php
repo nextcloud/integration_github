@@ -66,6 +66,9 @@ class GithubAPIController extends Controller {
      * @NoAdminRequired
      */
     public function getNotifications($since = null) {
+        if ($this->accessToken === '') {
+            return new DataResponse($result, 400);
+        }
         $result = $this->githubAPIService->getNotifications($this->accessToken, $since, true);
         if (is_array($result)) {
             $response = new DataResponse($result);

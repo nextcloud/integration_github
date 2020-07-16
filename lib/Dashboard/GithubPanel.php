@@ -47,7 +47,7 @@ class GithubPanel implements \OCP\Dashboard\IPanel {
 	 * @inheritDoc
 	 */
 	public function getTitle(): string {
-        return $this->l10n->t('Github notifications');
+        return $this->l10n->t('Github');
         }
 
 	/**
@@ -61,7 +61,7 @@ class GithubPanel implements \OCP\Dashboard\IPanel {
 	 * @inheritDoc
 	 */
 	public function getIconClass(): string {
-		return 'icon-github';
+		return 'icon-category-monitoring';
 	}
 
 	/**

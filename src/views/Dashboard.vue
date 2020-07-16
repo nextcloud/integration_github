@@ -1,10 +1,22 @@
 <template>
     <div>
-        <ul>
+        <ul v-if="state === 'ok'">
             <li v-for="notification in notifications" :key="notification.id">
                 {{ notification.subject.title }} - {{ notification.updated_at }}
             </li>
         </ul>
+        <div v-else-if="state === 'no-token'">
+            <a :href="settingsUrl">
+                {{ t('github', 'Click here to configure the access to your Github account.')}}
+            </a>
+        </div>
+        <div v-else-if="state === 'error'">
+            <a :href="settingsUrl">
+                {{ t('github', 'Incorrect access token.') }}
+                {{ t('github', 'Click here to configure the access to your Github account.')}}
+            </a>
+        </div>
+        <div v-else-if="state === 'loading'" class="icon-loading-small"></div>
     </div>
 </template>
 
@@ -32,7 +44,9 @@ export default {
     data() {
         return {
             notifications: [],
-            loop: null
+            loop: null,
+            state: 'loading',
+            settingsUrl: generateUrl('/settings/user/linked-accounts')
         }
     },
 
@@ -56,11 +70,15 @@ export default {
             }
 			axios.get(generateUrl('/apps/github/notifications'), req).then((response) => {
                 this.processNotifications(response.data)
+                this.state = 'ok'
 			}).catch((error) => {
-                showError(
-                    t('github', 'Failed to get Github notifications.')
-                )
                 clearInterval(this.loop)
+                if (error.response.status === 400) {
+                    this.state = 'no-token'
+                } else if (error.response.status === 401) {
+                    showError(t('github', 'Failed to get Github notifications.'))
+                    this.state = 'error'
+                }
             })
         },
         processNotifications(notifications) {
