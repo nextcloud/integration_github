@@ -33,7 +33,7 @@ export default {
     components: {
     },
 
-	beforeMount() {
+    beforeMount() {
         this.fetchNotifications()
         this.loop = setInterval(() => this.fetchNotifications(), 5000)
     },
@@ -68,34 +68,43 @@ export default {
                     since: this.lastDate
                 }
             }
-			axios.get(generateUrl('/apps/github/notifications'), req).then((response) => {
+            axios.get(generateUrl('/apps/github/notifications'), req).then((response) => {
                 this.processNotifications(response.data)
                 this.state = 'ok'
-			}).catch((error) => {
+            }).catch((error) => {
                 clearInterval(this.loop)
-                if (error.response.status === 400) {
+                if (error.response && error.response.status === 400) {
                     this.state = 'no-token'
-                } else if (error.response.status === 401) {
+                } else if (error.response && error.response.status === 401) {
                     showError(t('github', 'Failed to get Github notifications.'))
                     this.state = 'error'
+                } else {
+                    // there was an error in notif processing
+                    console.log(error)
                 }
             })
         },
-        processNotifications(notifications) {
+        processNotifications(newNotifications) {
             if (this.lastDate) {
-                // just store those which are more recent than our most recent one
+                // just add those which are more recent than our most recent one
                 let i = 0;
-                while (i < notifications.length && this.lastMoment.isBefore(notifications[i].updated_at)) {
+                while (i < newNotifications.length && this.lastMoment.isBefore(newNotifications[i].updated_at)) {
                     i++
                 }
                 if (i > 0) {
-                    const toAdd = notifications.slice(0, i+1)
+                    const toAdd = this.filter(newNotifications.slice(0, i+1))
                     this.notifications = toAdd.concat(this.notifications)
                 }
             } else {
-                // first time we get them
-                this.notifications = notifications
+                // first time we don't check the date
+                this.notifications = this.filter(newNotifications)
             }
+        },
+        filter(notifications) {
+            // only keep the unread ones with specific reasons
+            return notifications.filter((n) => {
+                return (n.unread && ['assign', 'mention', 'review_requested'].includes(n.reason))
+            })
         },
     },
 }
