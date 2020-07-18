@@ -1,6 +1,9 @@
 <template>
     <div id="github_prefs" class="section">
-            <h2>{{ t('github', 'Github access') }}</h2>
+            <h2>
+                <a class="icon icon-github" :style="{'background-image': 'url(' + iconUrl + ')'}"></a>
+                {{ t('github', 'Github access') }}
+            </h2>
             <div class="grid-form">
                 <label for="github-token">
                     <a class="icon icon-category-auth"></a>
@@ -13,7 +16,7 @@
 
 <script>
 import { loadState } from '@nextcloud/initial-state'
-import { generateUrl } from '@nextcloud/router'
+import { generateUrl, imagePath } from '@nextcloud/router'
 import axios from '@nextcloud/axios'
 import { delay } from '../utils'
 import { showSuccess, showError } from '@nextcloud/dialogs'
@@ -30,7 +33,8 @@ export default {
 
     data() {
         return {
-            state: loadState('github', 'user-config')
+            state: loadState('github', 'user-config'),
+            iconUrl: imagePath('github', 'app.svg')
         }
     },
 
@@ -82,5 +86,10 @@ export default {
 #github_prefs .icon {
     display: inline-block;
     width: 32px;
+}
+.icon-github {
+    mix-blend-mode: difference;
+    background-size: 23px 23px;
+    height: 23px;
 }
 </style>
