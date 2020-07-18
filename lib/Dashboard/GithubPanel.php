@@ -61,7 +61,7 @@ class GithubPanel implements \OCP\Dashboard\IPanel {
 	 * @inheritDoc
 	 */
 	public function getIconClass(): string {
-		return 'icon-category-monitoring';
+		return 'icon-github';
 	}
 
 	/**
@@ -76,5 +76,6 @@ class GithubPanel implements \OCP\Dashboard\IPanel {
 	 */
 	public function load(): void {
         \OC_Util::addScript('github', 'dashboard');
+        \OC_Util::addStyle('github', 'dashboard');
     }
 }
