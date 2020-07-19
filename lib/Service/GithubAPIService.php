@@ -34,7 +34,11 @@ class GithubAPIService {
 
     public function getNotifications($accessToken, $since = null, $participating = null) {
         $params = [];
-        if (!is_null($since)) {
+        if (is_null($since)) {
+            $twoWeeksEarlier = new \DateTime();
+            $twoWeeksEarlier->sub(new \DateInterval('P14D'));
+            $params['since'] = $twoWeeksEarlier->format('Y-m-d\TH:i:s\Z');
+        } else {
             $params['since'] = $since;
         }
         if (!is_null($participating)) {
