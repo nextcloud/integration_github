@@ -52,7 +52,7 @@ class GithubAPIService {
         try {
             $options = [
                 'http' => [
-                    'header'  => 'Authorization: Basic ' . base64_encode('USERID_NOT_NEEDED:' . $accessToken) .
+                    'header'  => 'Authorization: token ' . $accessToken .
                         "\r\nUser-Agent: Nextcloud Github integration",
                     'method' => $method,
                 ]

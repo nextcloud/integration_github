@@ -2,7 +2,7 @@
     <div id="github_prefs" class="section">
             <h2>
                 <a class="icon icon-github" :style="{'background-image': 'url(' + iconUrl + ')'}"></a>
-                {{ t('github', 'Github access') }}
+                {{ t('github', 'Github') }}
             </h2>
             <div class="grid-form">
                 <label for="github-token">
@@ -79,9 +79,10 @@ export default {
     width: 100%;
 }
 .grid-form {
-    width: 400px;
+    width: 500px;
     display: grid;
     grid-template: 1fr / 1fr 1fr;
+    margin-left: 30px;
 }
 #github_prefs .icon {
     display: inline-block;
