@@ -87,9 +87,13 @@ export default {
     display: inline-block;
     width: 32px;
 }
+#github_prefs .grid-form .icon {
+    margin-bottom: -3px;
+}
 .icon-github {
     mix-blend-mode: difference;
     background-size: 23px 23px;
     height: 23px;
+    margin-bottom: -4px;
 }
 </style>

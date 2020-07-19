@@ -54,7 +54,7 @@ class GithubAPIService {
                 ]
             ];
 
-            $url = 'https://api.github.com/notifications';
+            $url = 'https://api.github.com/' . $endPoint;
             if (count($params) > 0) {
                 $paramsContent = http_build_query($params);
                 if ($method === 'GET') {
