@@ -9,7 +9,7 @@
                     <a class="icon icon-category-auth"></a>
                     {{ t('github', 'Github access token') }}
                 </label>
-                <input id="github-token" type="text" v-model="state.token" @input="onInput"/>
+                <input id="github-token" type="password" v-model="state.token" @input="onInput"/>
             </div>
     </div>
 </template>

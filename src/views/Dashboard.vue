@@ -1,14 +1,30 @@
 <template>
     <div>
         <ul v-if="state === 'ok'" class="notification-list">
-            <li v-for="n in notifications" :key="n.id" :title="getNotificationTitle(n)">
-                <a :href="getNotificationTarget(n)" target="_blank" class="notification">
+            <li v-for="n in notifications" :key="n.id">
+                <div class="popover-container">
+                    <Popover :open="hovered[n.id]" placement="top" class="content-popover" offset="18">
+                        <template>
+                            <h3>{{ n.repository.full_name }}</h3>
+                            {{ getIdentifier(n) }} {{ n.subject.title }}<br/><br/>
+                            {{ getNotificationContent(n) }}
+                        </template>
+                    </Popover>
+                </div>
+                <a :href="getNotificationTarget(n)" target="_blank" class="notification"
+                    @mouseover="$set(hovered, n.id, true)" @mouseleave="$set(hovered, n.id, false)">
+                    <Popover :open="hovered[n.id]" placement="left" class="date-popover" offset="10">
+                        <template>
+                            {{ getFormattedDate(n) }}
+                        </template>
+                    </Popover>
                     <Avatar
                         class="project-avatar"
                         :user="n.repository.name"
                         :tooltipMessage="n.repository.full_name"
                         />
-                    <div class="notification__details">
+                    <div class="notification__details"
+                        >
                         <h3>
                             <img class="notification-icon" :src="getNotificationTypeImage(n)"/>
                             {{ n.subject.title }}
@@ -39,8 +55,9 @@
 <script>
 import axios from '@nextcloud/axios'
 import { generateUrl } from '@nextcloud/router'
-import { Avatar } from '@nextcloud/vue'
+import { Avatar, Popover } from '@nextcloud/vue'
 import { showSuccess, showError } from '@nextcloud/dialogs'
+import { getLocale } from '@nextcloud/l10n'
 import moment from '@nextcloud/moment'
 
 export default {
@@ -48,7 +65,7 @@ export default {
 
     props: [],
     components: {
-        Avatar
+        Avatar, Popover
     },
 
     beforeMount() {
@@ -62,10 +79,12 @@ export default {
     data() {
         return {
             notifications: [],
+            locale: getLocale(),
             loop: null,
             state: 'loading',
             settingsUrl: generateUrl('/settings/user/linked-accounts'),
-            themingColor: OCA.Theming ? OCA.Theming.color.replace('#', '') : '0082C9'
+            themingColor: OCA.Theming ? OCA.Theming.color.replace('#', '') : '0082C9',
+            hovered: {},
         }
     },
 
@@ -76,7 +95,7 @@ export default {
         },
         lastMoment() {
             return moment(this.lastDate)
-        }
+        },
     },
 
     methods: {
@@ -161,18 +180,6 @@ export default {
             return generateUrl('/svg/core/actions/sound?color=' + this.themingColor)
         },
         getNotificationActionClass(n) {
-            if (n.target_type === 'Note') {
-                return 'icon-comment'
-            } else if (['Issue', 'MergeRequest'].includes(n.target_type)) {
-                if (n.action_name === 'closed') {
-                    return 'icon-close'
-                } else if (n.action_name === 'opened') {
-                    return 'icon-add'
-                } else if (n.action_name === 'accepted') {
-                    return 'icon-checkmark-color'
-                }
-            }
-
             if (n.reason === 'mention') {
                 return 'icon-comment'
             } else if (n.reason === 'comment') {
@@ -184,8 +191,15 @@ export default {
             }
             return ''
         },
-        getNotificationTitle(n) {
-            return '[' + n.repository.full_name + ']\n\n' + n.subject.title + '\n\n' + this.getNotificationContent(n);
+        getIdentifier(n) {
+            if (['PullRequest', 'Issue'].includes(n.subject.type)) {
+                const parts = n.subject.url.split('/')
+                return '[#' + parts[parts.length - 1] + ']'
+            }
+            return ''
+        },
+        getFormattedDate(n) {
+            return moment(n.updated_at).locale(this.locale).format('LLL')
         },
     },
 }
@@ -240,5 +254,19 @@ li .notification {
         padding: 21px;
         margin: 0;
     }
+}
+.date-popover {
+    position: relative;
+    top: 7px;
+}
+.content-popover {
+    height: 0px;
+    width: 0px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.popover-container {
+    width: 100%;
+    height: 0px;
 }
 </style>
