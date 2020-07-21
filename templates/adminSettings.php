@@ -2,7 +2,7 @@
 /** @var $l \OCP\IL10N */
 /** @var $_ array */
 
-script('github', 'personalSettings');
+script('github', 'adminSettings');
 ?>
 
 <div id="github_prefs"></div>

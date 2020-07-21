@@ -9,17 +9,11 @@
  * @copyright Julien Veyssier 2020
  */
 
-/**
- * Create your routes in here. The name is the lowercase name of the controller
- * without the controller part, the stuff after the hash is the method.
- * e.g. page#index -> OCA\GpxMotion\Controller\PageController->index()
- *
- * The controller class has to be registered in the application.php file since
- * it's instantiated in there
- */
 return [
     'routes' => [
+        ['name' => 'config#oauthRedirect', 'url' => '/oauth-redirect', 'verb' => 'GET'],
         ['name' => 'config#setConfig', 'url' => '/config', 'verb' => 'PUT'],
+        ['name' => 'config#setAdminConfig', 'url' => '/admin-config', 'verb' => 'PUT'],
         ['name' => 'githubAPI#getNotifications', 'url' => '/notifications', 'verb' => 'GET'],
     ]
 ];

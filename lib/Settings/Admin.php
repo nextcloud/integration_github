@@ -10,7 +10,7 @@ use OCP\Util;
 use OCP\IURLGenerator;
 use OCP\IInitialStateService;
 
-class Personal implements ISettings {
+class Admin implements ISettings {
 
     private $request;
     private $config;
@@ -39,20 +39,15 @@ class Personal implements ISettings {
      * @return TemplateResponse
      */
     public function getForm() {
-        $token = $this->config->getUserValue($this->userId, 'github', 'token', '');
-
-        // for OAuth
         $clientID = $this->config->getAppValue('github', 'client_id', '');
         $clientSecret = $this->config->getAppValue('github', 'client_secret', '');
 
-        $userConfig = [
-            'token' => $token,
+        $adminConfig = [
             'client_id' => $clientID,
-            'client_secret' => $clientSecret,
+            'client_secret' => $clientSecret
         ];
-        $this->initialStateService->provideInitialState($this->appName, 'user-config', $userConfig);
-        $response = new TemplateResponse('github', 'personalSettings');
-        return $response;
+        $this->initialStateService->provideInitialState($this->appName, 'admin-config', $adminConfig);
+        return new TemplateResponse('github', 'adminSettings');
     }
 
     public function getSection() {

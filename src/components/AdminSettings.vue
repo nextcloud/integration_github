@@ -5,11 +5,22 @@
                 {{ t('github', 'Github') }}
             </h2>
             <div class="grid-form">
-                <label for="github-token">
+                <label for="github-client-id">
                     <a class="icon icon-category-auth"></a>
-                    {{ t('github', 'Github access token') }}
+                    {{ t('github', 'Github client ID') }}
                 </label>
-                <input id="github-token" type="password" v-model="state.token" @input="onInput"/>
+                <input id="github-client-id" type="password" v-model="state.client_id" @input="onInput"
+                    :readonly="readonly"
+                    @focus="readonly = false"
+                    :placeholder="t('github', 'Client ID or your Github application')" />
+                <label for="github-client-secret">
+                    <a class="icon icon-category-auth"></a>
+                    {{ t('github', 'Github client secret') }}
+                </label>
+                <input id="github-client-secret" type="password" v-model="state.client_secret" @input="onInput"
+                    :readonly="readonly"
+                    @focus="readonly = false"
+                    :placeholder="t('github', 'Client secret or your Github application')" />
             </div>
     </div>
 </template>
@@ -22,7 +33,7 @@ import { delay } from '../utils'
 import { showSuccess, showError } from '@nextcloud/dialogs'
 
 export default {
-    name: 'Settings',
+    name: 'AdminSettings',
 
     props: [],
     components: {
@@ -33,8 +44,10 @@ export default {
 
     data() {
         return {
-            state: loadState('github', 'user-config'),
-            iconUrl: imagePath('github', 'app.svg')
+            state: loadState('github', 'admin-config'),
+            iconUrl: imagePath('github', 'app.svg'),
+            // to prevent some browsers to fill fields with remembered passwords
+            readonly: true,
         }
     },
 
@@ -51,16 +64,17 @@ export default {
         saveOptions() {
             const req = {
                 values: {
-                    token: this.state.token
+                    client_id: this.state.client_id,
+                    client_secret: this.state.client_secret,
                 }
             }
-            const url = generateUrl('/apps/github/config')
+            const url = generateUrl('/apps/github/admin-config')
             axios.put(url, req)
                 .then(function (response) {
-                    showSuccess(t('github', 'Github options saved.'))
+                    showSuccess(t('github', 'Github admin options saved.'))
                 })
                 .catch(function (error) {
-                    showError(t('github', 'Failed to save Github options') +
+                    showError(t('github', 'Failed to save Github admin options') +
                         ': ' + error.response.request.responseText
                     )
                 })

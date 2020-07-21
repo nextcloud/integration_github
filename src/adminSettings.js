@@ -13,11 +13,11 @@
 
 import Vue from 'vue'
 import './bootstrap'
-import PersonalSettings from './components/PersonalSettings'
+import AdminSettings from './components/AdminSettings'
 
 'use strict'
 
 new Vue({
     el: "#github_prefs",
-    render: h => h(PersonalSettings),
+    render: h => h(AdminSettings),
 })
