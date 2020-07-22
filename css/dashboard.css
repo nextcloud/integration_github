@@ -1,8 +1,7 @@
 .icon-github {
-    /* only way i found to make it work with dark theme
-       path problems with scss
-    */
-    background-image: url(app.svg);
-    mix-blend-mode: difference;
-    color: white;
+	background-image: url(./../img/app-dark.svg);
+}
+
+body.dark .icon-github {
+	background-image: url(./../img/app.svg);
 }
