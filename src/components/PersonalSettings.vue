@@ -39,12 +39,12 @@ export default {
         const urlParams = new URLSearchParams(paramString)
         const ghToken = urlParams.get('githubToken')
         if (ghToken === 'success') {
-            OC.dialogs.alert(
+            OC.dialogs.info(
                 t('github', 'Github OAuth access token successfully retieved!'),
                 t('github', 'Success')
             )
         } else if (ghToken === 'error') {
-            OC.dialogs.alert(
+            OC.dialogs.info(
                 t('github', 'Github OAuth access token could not be obtained:') + ' ' + urlParams.get('message'),
                 t('github', 'Error')
             )
@@ -150,5 +150,8 @@ export default {
     background-size: 23px 23px;
     height: 23px;
     margin-bottom: -4px;
+}
+#github-oauth {
+    border-radius: unset;
 }
 </style>
