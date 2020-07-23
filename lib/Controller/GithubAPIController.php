@@ -78,4 +78,13 @@ class GithubAPIController extends Controller {
         return $response;
     }
 
+    /**
+     * get repository avatar
+     * @NoAdminRequired
+     * @NoCSRFRequired
+     */
+    public function getAvatar($url) {
+        return new DataDisplayResponse($this->githubAPIService->getAvatar($url));
+    }
+
 }

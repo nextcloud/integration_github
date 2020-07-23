@@ -20,7 +20,7 @@
                     </Popover>
                     <Avatar
                         class="project-avatar"
-                        :user="n.repository.name"
+                        :url="getRepositoryAvatarUrl(n)"
                         :tooltipMessage="n.repository.full_name"
                         />
                     <div class="notification__details"
@@ -143,6 +143,11 @@ export default {
             return notifications.filter((n) => {
                 return (n.unread && ['assign', 'mention', 'review_requested'].includes(n.reason))
             })
+        },
+        getRepositoryAvatarUrl(n) {
+            return (n.repository && n.repository.owner && n.repository.owner.avatar_url) ?
+                    generateUrl('/apps/github/avatar?') + encodeURIComponent('url') + '=' + encodeURIComponent(n.repository.owner.avatar_url) :
+                    ''
         },
         getNotificationTarget(n) {
             return n.subject.url
