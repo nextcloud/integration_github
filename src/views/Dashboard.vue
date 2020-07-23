@@ -14,7 +14,7 @@
                 <a :href="getNotificationTarget(n)" target="_blank" class="notification-list__entry">
                     <Avatar
                         class="project-avatar"
-                        :user="n.repository.name"
+                        :url="getRepositoryAvatarUrl(n)"
                         />
                     <div class="notification__details"
                         >
@@ -123,7 +123,7 @@ export default {
                     i++
                 }
                 if (i > 0) {
-                    const toAdd = this.filter(newNotifications.slice(0, i+1))
+                    const toAdd = this.filter(newNotifications.slice(0, i))
                     this.notifications = toAdd.concat(this.notifications)
                 }
             } else {
@@ -136,6 +136,11 @@ export default {
             return notifications.filter((n) => {
                 return (n.unread && ['assign', 'mention', 'review_requested'].includes(n.reason))
             }).slice(0, 7)
+        },
+        getRepositoryAvatarUrl(n) {
+            return (n.repository && n.repository.owner && n.repository.owner.avatar_url) ?
+                    generateUrl('/apps/github/avatar?') + encodeURIComponent('url') + '=' + encodeURIComponent(n.repository.owner.avatar_url) :
+                    ''
         },
         getNotificationTarget(n) {
             return n.subject.url

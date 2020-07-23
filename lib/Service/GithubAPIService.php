@@ -32,6 +32,10 @@ class GithubAPIService {
         $this->logger = $logger;
     }
 
+    public function getAvatar($url) {
+        return file_get_contents($url);
+    }
+
     public function getNotifications($accessToken, $since = null, $participating = null) {
         $params = [];
         if (is_null($since)) {
