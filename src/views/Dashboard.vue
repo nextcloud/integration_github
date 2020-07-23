@@ -161,6 +161,8 @@ export default {
                 } else if (n.subject.type === 'Issue') {
                     return t('github', 'Issue state changed')
                 }
+            } else if (n.reason === 'assign') {
+                return t('github', 'You are assigned')
             }
             return ''
         },
@@ -181,6 +183,8 @@ export default {
                 return 'icon-toggle'
             } else if (n.reason === 'state_change') {
                 return 'icon-rename'
+            } else if (n.reason === 'assign') {
+                return 'icon-user'
             }
             return ''
         },
