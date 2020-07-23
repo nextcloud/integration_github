@@ -11,7 +11,7 @@
                         </template>
                     </Popover>
                 </div>
-                <a :href="getNotificationTarget(n)" target="_blank" class="notification"
+                <a :href="getNotificationTarget(n)" target="_blank" class="notification-list__entry"
                     @mouseover="$set(hovered, n.id, true)" @mouseleave="$set(hovered, n.id, false)">
                     <Popover :open="hovered[n.id]" placement="left" class="date-popover" offset="10">
                         <template>
@@ -26,14 +26,14 @@
                     <div class="notification__details"
                         >
                         <h3>
-                            <img class="notification-icon" :src="getNotificationTypeImage(n)"/>
                             {{ n.subject.title }}
                         </h3>
                         <p class="message">
-                            <span :class="'icon ' + getNotificationActionClass(n)"/>
+                            <span :class="'notification-icon ' + getNotificationActionClass(n)"/>
                             {{ getNotificationContent(n) }}
                         </p>
                     </div>
+                    <img class="notification-icon" :src="getNotificationTypeImage(n)"/>
                 </a>
             </li>
         </ul>
@@ -142,7 +142,7 @@ export default {
             // only keep the unread ones with specific reasons
             return notifications.filter((n) => {
                 return (n.unread && ['assign', 'mention', 'review_requested'].includes(n.reason))
-            })
+            }).slice(0, 7)
         },
         getNotificationTarget(n) {
             return n.subject.url
@@ -206,11 +206,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.notification-icon {
-    width: 16px;
-    height: 12px;
-}
-li .notification {
+li .notification-list__entry {
     display: flex;
     align-items: flex-start;
     padding: 8px;
@@ -230,6 +226,9 @@ li .notification {
         max-height: 44px;
         flex-grow: 1;
         overflow: hidden;
+        display: flex;
+        flex-direction: column;
+
         h3,
         .message {
             white-space: nowrap;
@@ -250,6 +249,14 @@ li .notification {
             color: var(--color-text-maxcontrast);
         }
     }
+
+    img.notification-icon {
+        float: right;
+        width: 16px;
+        height: 16px;
+        margin: 10px 0 10px 10px;
+    }
+
     button.primary {
         padding: 21px;
         margin: 0;
