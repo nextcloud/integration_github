@@ -130,7 +130,7 @@ export default {
                     i++
                 }
                 if (i > 0) {
-                    const toAdd = this.filter(newNotifications.slice(0, i+1))
+                    const toAdd = this.filter(newNotifications.slice(0, i))
                     this.notifications = toAdd.concat(this.notifications)
                 }
             } else {
