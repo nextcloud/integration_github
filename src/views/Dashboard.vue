@@ -6,7 +6,8 @@
                     <Popover :open="hovered[n.id]" placement="top" class="content-popover" offset="40">
                         <template>
                             <h3>{{ n.repository.full_name }}</h3>
-                            {{ getIdentifier(n) }} {{ n.subject.title }}<br/><br/>
+                            {{ getIdentifier(n) }} {{ n.subject.title }}<br/>
+                            {{ getFormattedDate(n) }}<br/><br/>
                             {{ getNotificationContent(n) }}
                         </template>
                     </Popover>
@@ -16,17 +17,17 @@
                         class="project-avatar"
                         :url="getRepositoryAvatarUrl(n)"
                         />
+                    <img class="notification-icon" :src="getNotificationTypeImage(n)"/>
                     <div class="notification__details"
                         >
                         <h3>
                             {{ n.subject.title }}
                         </h3>
                         <p class="message">
-                            <span :class="'notification-icon ' + getNotificationActionClass(n)"/>
+                            <!--span :class="'notification-icon ' + getNotificationActionClass(n)"/-->
                             {{ getNotificationContent(n) }}
                         </p>
                     </div>
-                    <img class="notification-icon" :src="getNotificationTypeImage(n)"/>
                 </a>
             </li>
         </ul>
@@ -253,10 +254,10 @@ li .notification-list__entry {
     }
 
     img.notification-icon {
-        float: right;
-        width: 16px;
-        height: 16px;
-        margin: 10px 0 10px 10px;
+        position: absolute;
+        width: 14px;
+        height: 14px;
+        margin: 27px 0 10px 24px;
     }
 
     button.primary {
