@@ -40,7 +40,7 @@ export default {
         const ghToken = urlParams.get('githubToken')
         if (ghToken === 'success') {
             OC.dialogs.info(
-                t('github', 'Github OAuth access token successfully retieved!'),
+                t('github', 'Github OAuth access token successfully retrieved!'),
                 t('github', 'Success')
             )
         } else if (ghToken === 'error') {
