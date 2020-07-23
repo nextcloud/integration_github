@@ -4,10 +4,16 @@
                 <a class="icon icon-github" :style="{'background-image': 'url(' + iconUrl + ')'}"></a>
                 {{ t('github', 'Github') }}
             </h2>
+            <label>
+                {{ t('github', 'If you want to allow your Nextcloud users to use OAuth to authenticate to https://github.com, create a Github application in your Github settings and set the ID and secret here.') }}
+                <br/>
+                {{ t('github', 'Make sure you set the "redirect_uri" to') }}
+                <br/><b> {{ redirect_uri }} </b>
+            </label><br/><br/>
             <div class="grid-form">
                 <label for="github-client-id">
                     <a class="icon icon-category-auth"></a>
-                    {{ t('github', 'Github client ID') }}
+                    {{ t('github', 'Github application client ID') }}
                 </label>
                 <input id="github-client-id" type="password" v-model="state.client_id" @input="onInput"
                     :readonly="readonly"
@@ -15,7 +21,7 @@
                     :placeholder="t('github', 'Client ID or your Github application')" />
                 <label for="github-client-secret">
                     <a class="icon icon-category-auth"></a>
-                    {{ t('github', 'Github client secret') }}
+                    {{ t('github', 'Github application client secret') }}
                 </label>
                 <input id="github-client-secret" type="password" v-model="state.client_secret" @input="onInput"
                     :readonly="readonly"
@@ -48,6 +54,7 @@ export default {
             iconUrl: imagePath('github', 'app.svg'),
             // to prevent some browsers to fill fields with remembered passwords
             readonly: true,
+            redirect_uri: OC.getProtocol() + '://' + OC.getHostName()
         }
     },
 
