@@ -1,9 +1,9 @@
 <template>
     <div>
         <ul v-if="state === 'ok'" class="notification-list">
-            <li v-for="n in notifications" :key="n.id">
+            <li v-for="n in notifications" :key="n.id" @mouseover="$set(hovered, n.id, true)" @mouseleave="$set(hovered, n.id, false)">
                 <div class="popover-container">
-                    <Popover :open="hovered[n.id]" placement="top" class="content-popover" offset="18">
+                    <Popover :open="hovered[n.id]" placement="top" class="content-popover" offset="40">
                         <template>
                             <h3>{{ n.repository.full_name }}</h3>
                             {{ getIdentifier(n) }} {{ n.subject.title }}<br/><br/>
@@ -11,29 +11,22 @@
                         </template>
                     </Popover>
                 </div>
-                <a :href="getNotificationTarget(n)" target="_blank" class="notification"
-                    @mouseover="$set(hovered, n.id, true)" @mouseleave="$set(hovered, n.id, false)">
-                    <Popover :open="hovered[n.id]" placement="left" class="date-popover" offset="10">
-                        <template>
-                            {{ getFormattedDate(n) }}
-                        </template>
-                    </Popover>
+                <a :href="getNotificationTarget(n)" target="_blank" class="notification-list__entry">
                     <Avatar
                         class="project-avatar"
                         :user="n.repository.name"
-                        :tooltipMessage="n.repository.full_name"
                         />
                     <div class="notification__details"
                         >
                         <h3>
-                            <img class="notification-icon" :src="getNotificationTypeImage(n)"/>
                             {{ n.subject.title }}
                         </h3>
                         <p class="message">
-                            <span :class="'icon ' + getNotificationActionClass(n)"/>
+                            <span :class="'notification-icon ' + getNotificationActionClass(n)"/>
                             {{ getNotificationContent(n) }}
                         </p>
                     </div>
+                    <img class="notification-icon" :src="getNotificationTypeImage(n)"/>
                 </a>
             </li>
         </ul>
@@ -142,7 +135,7 @@ export default {
             // only keep the unread ones with specific reasons
             return notifications.filter((n) => {
                 return (n.unread && ['assign', 'mention', 'review_requested'].includes(n.reason))
-            })
+            }).slice(0, 7)
         },
         getNotificationTarget(n) {
             return n.subject.url
@@ -168,6 +161,8 @@ export default {
                 } else if (n.subject.type === 'Issue') {
                     return t('github', 'Issue state changed')
                 }
+            } else if (n.reason === 'assign') {
+                return t('github', 'You are assigned')
             }
             return ''
         },
@@ -188,6 +183,8 @@ export default {
                 return 'icon-toggle'
             } else if (n.reason === 'state_change') {
                 return 'icon-rename'
+            } else if (n.reason === 'assign') {
+                return 'icon-user'
             }
             return ''
         },
@@ -206,11 +203,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.notification-icon {
-    width: 16px;
-    height: 12px;
-}
-li .notification {
+li .notification-list__entry {
     display: flex;
     align-items: flex-start;
     padding: 8px;
@@ -230,6 +223,9 @@ li .notification {
         max-height: 44px;
         flex-grow: 1;
         overflow: hidden;
+        display: flex;
+        flex-direction: column;
+
         h3,
         .message {
             white-space: nowrap;
@@ -250,6 +246,14 @@ li .notification {
             color: var(--color-text-maxcontrast);
         }
     }
+
+    img.notification-icon {
+        float: right;
+        width: 16px;
+        height: 16px;
+        margin: 10px 0 10px 10px;
+    }
+
     button.primary {
         padding: 21px;
         margin: 0;
