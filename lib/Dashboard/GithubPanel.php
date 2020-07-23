@@ -68,7 +68,7 @@ class GithubPanel implements \OCP\Dashboard\IPanel {
 	 * @inheritDoc
 	 */
 	public function getUrl(): ?string {
-		return \OC::$server->getURLGenerator()->getAbsoluteURL('/settings/user/linked-accounts');
+		return \OC::$server->getURLGenerator()->linkToRoute('settings.PersonalSettings.index', ['section' => 'linked-accounts']);
 	}
 
 	/**
