@@ -1,9 +1,9 @@
 <template>
     <div>
         <ul v-if="state === 'ok'" class="notification-list">
-            <li v-for="n in notifications" :key="n.id">
+            <li v-for="n in notifications" :key="n.id" @mouseover="$set(hovered, n.id, true)" @mouseleave="$set(hovered, n.id, false)">
                 <div class="popover-container">
-                    <Popover :open="hovered[n.id]" placement="top" class="content-popover" offset="18">
+                    <Popover :open="hovered[n.id]" placement="top" class="content-popover" offset="40">
                         <template>
                             <h3>{{ n.repository.full_name }}</h3>
                             {{ getIdentifier(n) }} {{ n.subject.title }}<br/><br/>
@@ -11,17 +11,10 @@
                         </template>
                     </Popover>
                 </div>
-                <a :href="getNotificationTarget(n)" target="_blank" class="notification-list__entry"
-                    @mouseover="$set(hovered, n.id, true)" @mouseleave="$set(hovered, n.id, false)">
-                    <Popover :open="hovered[n.id]" placement="left" class="date-popover" offset="10">
-                        <template>
-                            {{ getFormattedDate(n) }}
-                        </template>
-                    </Popover>
+                <a :href="getNotificationTarget(n)" target="_blank" class="notification-list__entry">
                     <Avatar
                         class="project-avatar"
                         :user="n.repository.name"
-                        :tooltipMessage="n.repository.full_name"
                         />
                     <div class="notification__details"
                         >
