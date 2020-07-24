@@ -125,18 +125,18 @@ export default {
                 }
                 if (i > 0) {
                     const toAdd = this.filter(newNotifications.slice(0, i))
-                    this.notifications = toAdd.concat(this.notifications)
+                    this.notifications = toAdd.concat(this.notifications).slice(0, 7)
                 }
             } else {
                 // first time we don't check the date
-                this.notifications = this.filter(newNotifications)
+                this.notifications = this.filter(newNotifications).slice(0, 7)
             }
         },
         filter(notifications) {
             // only keep the unread ones with specific reasons
             return notifications.filter((n) => {
                 return (n.unread && ['assign', 'mention', 'review_requested'].includes(n.reason))
-            }).slice(0, 7)
+            })
         },
         getRepositoryAvatarUrl(n) {
             return (n.repository && n.repository.owner && n.repository.owner.avatar_url) ?
