@@ -39,15 +39,9 @@ export default {
         const urlParams = new URLSearchParams(paramString)
         const ghToken = urlParams.get('githubToken')
         if (ghToken === 'success') {
-            OC.dialogs.info(
-                t('github', 'Github OAuth access token successfully retrieved!'),
-                t('github', 'Success')
-            )
+            showSuccess(t('github', 'Github OAuth access token successfully retrieved!'))
         } else if (ghToken === 'error') {
-            OC.dialogs.info(
-                t('github', 'Github OAuth access token could not be obtained:') + ' ' + urlParams.get('message'),
-                t('github', 'Error')
-            )
+            showError(t('github', 'Github OAuth error:') + ' ' + urlParams.get('message'))
         }
     },
 
