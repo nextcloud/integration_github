@@ -51,7 +51,6 @@ export default {
     data() {
         return {
             state: loadState('github', 'admin-config'),
-            iconUrl: imagePath('github', 'app.svg'),
             // to prevent some browsers to fill fields with remembered passwords
             readonly: true,
             redirect_uri: OC.getProtocol() + '://' + OC.getHostName()

@@ -48,7 +48,6 @@ export default {
     data() {
         return {
             state: loadState('github', 'user-config'),
-            iconUrl: imagePath('github', 'app.svg'),
             readonly: true,
         }
     },
