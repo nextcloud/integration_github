@@ -1,7 +1,7 @@
 <template>
     <div id="github_prefs" class="section">
             <h2>
-                <a class="icon icon-github" :style="{'background-image': 'url(' + iconUrl + ')'}"></a>
+                <a class="icon icon-github"></a>
                 {{ t('github', 'Github') }}
             </h2>
             <label>
@@ -113,9 +113,12 @@ export default {
     margin-bottom: -3px;
 }
 .icon-github {
-    mix-blend-mode: difference;
+    background-image: url(./../../img/app-dark.svg);
     background-size: 23px 23px;
     height: 23px;
     margin-bottom: -4px;
+}
+body.dark .icon-github {
+    background-image: url(./../../img/app.svg);
 }
 </style>
