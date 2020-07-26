@@ -4,7 +4,7 @@
                 <a class="icon icon-github"></a>
                 {{ t('github', 'Github') }}
             </h2>
-            <div class="grid-form">
+            <div class="github-grid-form">
                 <label for="github-token">
                     <a class="icon icon-category-auth"></a>
                     {{ t('github', 'Github access token') }}
@@ -14,7 +14,8 @@
                     @focus="readonly = false"
                     :placeholder="t('github', 'Get a token in Github settings')" />
                 <button id="github-oauth" v-if="showOAuth" @click="onOAuthClick">
-                    {{ t('github', 'Get access token with OAuth') }}
+                    <span class="icon icon-external"/>
+                    {{ t('github', 'Get access with OAuth') }}
                 </button>
             </div>
     </div>
@@ -119,17 +120,20 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.grid-form label {
+.github-grid-form label {
     line-height: 38px;
 }
-.grid-form input {
+.github-grid-form input {
     width: 100%;
 }
-.grid-form {
+.github-grid-form {
     width: 700px;
     display: grid;
-    grid-template: 1fr / 1fr 1fr 1fr;
+    grid-template: 1fr / 233px 233px 300px;
     margin-left: 30px;
+    button .icon {
+        margin-bottom: -1px;
+    }
 }
 #github_prefs .icon {
     display: inline-block;
