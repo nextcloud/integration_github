@@ -3,14 +3,14 @@
         <ul v-if="state === 'ok'" class="notification-list">
             <li v-for="n in notifications" :key="n.id" @mouseover="$set(hovered, n.id, true)" @mouseleave="$set(hovered, n.id, false)">
                 <div class="popover-container">
-                    <Popover :open="hovered[n.id]" placement="top" class="content-popover" offset="40">
+                    <!--Popover :open="hovered[n.id]" placement="top" class="content-popover" offset="40">
                         <template>
                             <h3>{{ n.repository.full_name }}</h3>
-                            {{ getIdentifier(n) }} {{ n.subject.title }}<br/>
+                            {{ getTargetIdentifier(n) }} {{ n.subject.title }}<br/>
                             {{ getFormattedDate(n) }}<br/><br/>
                             {{ getNotificationContent(n) }}
                         </template>
-                    </Popover>
+                    </Popover-->
                 </div>
                 <a :href="getNotificationTarget(n)" target="_blank" class="notification-list__entry">
                     <Avatar
@@ -23,9 +23,8 @@
                         <h3>
                             {{ n.subject.title }}
                         </h3>
-                        <p class="message">
-                            <!--span :class="'notification-icon ' + getNotificationActionClass(n)"/-->
-                            {{ getNotificationContent(n) }}
+                        <p class="message" :title="getSubline(n)">
+                            {{ getSubline(n) }}
                         </p>
                     </div>
                 </a>
@@ -172,32 +171,29 @@ export default {
             }
             return ''
         },
+        getNotificationActionChar(n) {
+            if (['review_requested', 'assign'].includes(n.reason)) {
+                return '👁 '
+            } else if (['comment', 'mention'].includes(n.reason)) {
+                return '🗨 '
+            }
+            return ''
+        },
+        getSubline(n) {
+            return n.repository.full_name + ' ' + this.getNotificationActionChar(n) + ' ' + this.getTargetIdentifier(n)
+        },
         getNotificationTypeImage(n) {
             if (n.subject.type === 'PullRequest') {
                 return generateUrl('/svg/github/pull_request?color=' + this.themingColor)
             } else if (n.subject.type === 'Issue') {
-                return generateUrl('/svg/github/issues?color=' + this.themingColor)
+                return generateUrl('/svg/github/issue?color=' + this.themingColor)
             }
             return generateUrl('/svg/core/actions/sound?color=' + this.themingColor)
         },
-        getNotificationActionClass(n) {
-            if (n.reason === 'mention') {
-                return 'icon-comment'
-            } else if (n.reason === 'comment') {
-                return 'icon-comment'
-            } else if (n.reason === 'review_requested') {
-                return 'icon-toggle'
-            } else if (n.reason === 'state_change') {
-                return 'icon-rename'
-            } else if (n.reason === 'assign') {
-                return 'icon-user'
-            }
-            return ''
-        },
-        getIdentifier(n) {
+        getTargetIdentifier(n) {
             if (['PullRequest', 'Issue'].includes(n.subject.type)) {
                 const parts = n.subject.url.split('/')
-                return '[#' + parts[parts.length - 1] + ']'
+                return '#' + parts[parts.length - 1]
             }
             return ''
         },
