@@ -43,7 +43,7 @@ class Personal implements ISettings {
 
         // for OAuth
         $clientID = $this->config->getAppValue('github', 'client_id', '');
-        $clientSecret = $this->config->getAppValue('github', 'client_secret', '');
+        $clientSecret = $this->config->getAppValue('github', 'client_secret', '') !== '';
 
         $userConfig = [
             'token' => $token,
