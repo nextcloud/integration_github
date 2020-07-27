@@ -25,23 +25,36 @@
                     {{ item.subText }}
                 </p>
             </div>
+            <Actions v-if="gotMenu" :forceMenu="true">
+                <ActionText v-for="(m, id) in itemMenu"
+                    :key="id"
+                    :title="m.text"
+                    :icon="m.icon"
+                    :closeAfterClick="true"
+                    @click.prevent.stop="$emit(id, item)"
+                />
+            </Actions>
         </a>
     </li>
 </template>
 
 <script>
-import { Avatar, Popover } from '@nextcloud/vue'
+import { Avatar, Popover, Actions, ActionText } from '@nextcloud/vue'
 export default {
     name: 'DashboardPanelItem',
+    components: {
+        Avatar, Popover, Actions, ActionText
+    },
 
     props: {
         item: {
             type: Object,
             required: true,
+        },
+        itemMenu: {
+            type: Object,
+            default: () => { return {} }
         }
-    },
-    components: {
-        Avatar, Popover
     },
 
     mounted() {
@@ -57,6 +70,9 @@ export default {
     },
 
     computed: {
+        gotMenu() {
+            return Object.keys(this.itemMenu).length !== 0
+        },
     },
 
     methods: {

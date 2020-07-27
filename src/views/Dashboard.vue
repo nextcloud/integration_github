@@ -4,7 +4,10 @@
         :showMoreLess="true"
         @moreClicked="onMoreClick"
         @lessClicked="onLessClick"
-        :loading="state === 'loading'">
+        @hide="onHide"
+        @markDone="onMarkDone"
+        :loading="state === 'loading'"
+        :itemMenu="itemMenu">
         <template slot="empty-content">
             <div v-if="state === 'no-token'">
                 <a :href="settingsUrl">
@@ -52,13 +55,25 @@ export default {
     data() {
         return {
             notifications: [],
+            // lastDate could be computed but we want to keep the value when first notification is removed
+            // to avoid getting it again on next request
+            lastDate: null,
             maxItemNumber: 7,
             locale: getLocale(),
             loop: null,
             state: 'loading',
             settingsUrl: generateUrl('/settings/user/linked-accounts'),
             themingColor: OCA.Theming ? OCA.Theming.color.replace('#', '') : '0082C9',
-            hovered: {},
+            itemMenu: {
+                'markDone': {
+                    text: t('github', 'Mark as done'),
+                    icon: 'icon-checkmark',
+                },
+                'hide': {
+                    text: t('github', 'Hide'),
+                    icon: 'icon-toggle',
+                }
+            },
         }
     },
 
@@ -75,10 +90,6 @@ export default {
                     subText: this.getSubline(n),
                 }
             })
-        },
-        lastDate() {
-            const nbNotif = this.notifications.length
-            return (nbNotif > 0) ? this.notifications[0].updated_at : null
         },
         lastMoment() {
             return moment(this.lastDate)
@@ -124,6 +135,9 @@ export default {
                 // first time we don't check the date
                 this.notifications = this.filter(newNotifications)
             }
+            // update lastDate manually (explained in data)
+            const nbNotif = this.notifications.length
+            this.lastDate = (nbNotif > 0) ? this.notifications[0].updated_at : null
         },
         filter(notifications) {
             // only keep the unread ones with specific reasons
@@ -136,6 +150,16 @@ export default {
         },
         onLessClick() {
             this.maxItemNumber = 7
+        },
+        onHide(item) {
+            const i = this.notifications.findIndex((n) => n.id === item.id)
+            if (i !== -1) {
+                this.notifications.splice(i, 1)
+            }
+        },
+        onMarkDone(item) {
+            console.log('mark done')
+            console.log(item)
         },
         getRepositoryAvatarUrl(n) {
             return (n.repository && n.repository.owner && n.repository.owner.avatar_url) ?

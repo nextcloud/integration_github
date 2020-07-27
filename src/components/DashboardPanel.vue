@@ -6,13 +6,15 @@
                 v-for="item in items"
                 :key="item.id"
                 :item="item"
+                :itemMenu="itemMenu"
+                v-on="handlers"
                 />
         </ul>
         <div v-if="loading" class="icon-loading-small"></div>
         <slot name="empty-content" v-else-if="items.length === 0"/>
         <p v-else-if="showMoreLess" class="moreOrLess">
             <span @click="$emit('moreClicked')">{{ t('core', 'More items...') }}</span>
-            <span @click="$emit('lessClicked')" class="icon icon-close"/>
+            <span v-show="items.length > 7" @click="$emit('lessClicked')" class="icon icon-close"/>
         </p>
         <slot name="footer" />
     </div>
@@ -36,12 +38,16 @@ export default {
             type: Boolean,
             default: false
         },
+        itemMenu: {
+            type: Object,
+            default: () => { return {} }
+        }
     },
     components: {
         DashboardPanelItem
     },
 
-    mounted() {
+    created() {
     },
 
     data() {
@@ -53,6 +59,16 @@ export default {
     },
 
     computed: {
+        // forward menu events to my parent
+        handlers() {
+            const h = {}
+            for (const evName in this.itemMenu) {
+                h[evName] = (it) => {
+                    this.$emit(evName, it)
+                }
+            }
+            return h
+        },
     },
 
     methods: {
