@@ -27,6 +27,7 @@ use OCP\AppFramework\Http\RedirectResponse;
 use OCP\AppFramework\Http\DataResponse;
 use OCP\AppFramework\Http\ContentSecurityPolicy;
 use OCP\AppFramework\Controller;
+use OCP\Http\Client\IClientService;
 
 class ConfigController extends Controller {
 
@@ -46,6 +47,7 @@ class ConfigController extends Controller {
                                 IURLGenerator $urlGenerator,
                                 IL10N $l,
                                 ILogger $logger,
+                                IClientService $clientService,
                                 $userId) {
         parent::__construct($AppName, $request);
         $this->l = $l;
@@ -57,6 +59,7 @@ class ConfigController extends Controller {
         $this->dbconnection = $dbconnection;
         $this->urlGenerator = $urlGenerator;
         $this->logger = $logger;
+        $this->clientService = $clientService;
     }
 
     /**
@@ -121,30 +124,40 @@ class ConfigController extends Controller {
     }
 
     private function requestOAuthAccessToken($params = [], $method = 'GET') {
+        $client = $this->clientService->newClient();
         try {
+            $url = 'https://github.com/login/oauth/access_token';
             $options = [
-                'http' => [
-                    'header'  => 'User-Agent: Nextcloud Github integration',
-                    'method' => $method,
-                ]
+                'headers' => [
+                    'User-Agent' => 'Nextcloud Github integration'
+                ],
             ];
 
-            $url = 'https://github.com/login/oauth/access_token';
             if (count($params) > 0) {
-                $paramsContent = http_build_query($params);
                 if ($method === 'GET') {
+                    $paramsContent = http_build_query($params);
                     $url .= '?' . $paramsContent;
                 } else {
-                    $options['http']['content'] = $paramsContent;
+                    $options['body'] = $params;
                 }
             }
 
-            $context = stream_context_create($options);
-            $result = file_get_contents($url, false, $context);
-            if (!$result) {
+            if ($method === 'GET') {
+                $response = $client->get($url, $options);
+            } else if ($method === 'POST') {
+                $response = $client->post($url, $options);
+            } else if ($method === 'PUT') {
+                $response = $client->put($url, $options);
+            } else if ($method === 'DELETE') {
+                $response = $client->delete($url, $options);
+            }
+            $body = $response->getBody();
+            $respCode = $response->getStatusCode();
+
+            if ($respCode >= 400) {
                 return $this->l->t('OAuth access token refused');
             } else {
-                parse_str($result, $resultArray);
+                parse_str($body, $resultArray);
                 return $resultArray;
             }
         } catch (\Exception $e) {
