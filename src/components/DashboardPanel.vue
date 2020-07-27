@@ -8,7 +8,8 @@
                 :item="item"
                 />
         </ul>
-        <slot name="empty-content" v-if="items.length === 0"/>
+        <div v-if="loading" class="icon-loading-small"></div>
+        <slot name="empty-content" v-else-if="items.length === 0"/>
         <p v-else-if="showMoreLess" class="moreOrLess">
             <span @click="$emit('moreClicked')">{{ t('core', 'More items...') }}</span>
             <span @click="$emit('lessClicked')" class="icon icon-close"/>
@@ -30,7 +31,11 @@ export default {
         showMoreLess: {
             type: Boolean,
             default: false
-        }
+        },
+        loading: {
+            type: Boolean,
+            default: false
+        },
     },
     components: {
         DashboardPanelItem

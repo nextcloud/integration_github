@@ -1,6 +1,10 @@
 <template>
     <div>
-    <DashboardPanel :items="items" :showMoreLess="true" @moreClicked="onMoreClick" @lessClicked="onLessClick">
+    <DashboardPanel :items="items"
+        :showMoreLess="true"
+        @moreClicked="onMoreClick"
+        @lessClicked="onLessClick"
+        :loading="state === 'loading'">
         <template slot="empty-content">
             <div v-if="state === 'no-token'">
                 <a :href="settingsUrl">
@@ -13,7 +17,6 @@
                     {{ t('github', 'Click here to configure the access to your Github account.')}}
                 </a>
             </div>
-            <div v-else-if="state === 'loading'" class="icon-loading-small"></div>
             <div v-else-if="state === 'ok'">
                 {{ t('github', 'Nothing to show') }}
             </div>
