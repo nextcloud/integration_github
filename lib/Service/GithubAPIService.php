@@ -37,7 +37,7 @@ class GithubAPIService {
     }
 
     public function getAvatar($url) {
-        return file_get_contents($url);
+        return $this->client->get($url)->getBody();
     }
 
     public function getNotifications($accessToken, $since = null, $participating = null) {
