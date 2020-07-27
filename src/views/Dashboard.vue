@@ -1,6 +1,6 @@
 <template>
     <div>
-    <DashboardPanel :items="items">
+    <DashboardPanel :items="items" :showMoreLess="true" @moreClicked="onMoreClick" @lessClicked="onLessClick">
         <template slot="empty-content">
             <div v-if="state === 'no-token'">
                 <a :href="settingsUrl">
@@ -49,6 +49,7 @@ export default {
     data() {
         return {
             notifications: [],
+            maxItemNumber: 7,
             locale: getLocale(),
             loop: null,
             state: 'loading',
@@ -60,7 +61,7 @@ export default {
 
     computed: {
         items() {
-            return this.notifications.map((n) => {
+            return this.notifications.slice(0, this.maxItemNumber).map((n) => {
                 return {
                     id: n.id,
                     targetUrl: this.getNotificationTarget(n),
@@ -114,11 +115,11 @@ export default {
                 }
                 if (i > 0) {
                     const toAdd = this.filter(newNotifications.slice(0, i))
-                    this.notifications = toAdd.concat(this.notifications).slice(0, 7)
+                    this.notifications = toAdd.concat(this.notifications)
                 }
             } else {
                 // first time we don't check the date
-                this.notifications = this.filter(newNotifications).slice(0, 7)
+                this.notifications = this.filter(newNotifications)
             }
         },
         filter(notifications) {
@@ -126,6 +127,12 @@ export default {
             return notifications.filter((n) => {
                 return (n.unread && ['assign', 'mention', 'review_requested'].includes(n.reason))
             })
+        },
+        onMoreClick() {
+            this.maxItemNumber += 5
+        },
+        onLessClick() {
+            this.maxItemNumber = 7
         },
         getRepositoryAvatarUrl(n) {
             return (n.repository && n.repository.owner && n.repository.owner.avatar_url) ?

@@ -9,6 +9,10 @@
                 />
         </ul>
         <slot name="empty-content" v-if="items.length === 0"/>
+        <p v-else-if="showMoreLess" class="moreOrLess">
+            <span @click="$emit('moreClicked')">{{ t('core', 'More items...') }}</span>
+            <span @click="$emit('lessClicked')" class="icon icon-close"/>
+        </p>
         <slot name="footer" />
     </div>
 </template>
@@ -22,6 +26,10 @@ export default {
         items: {
             type: Array,
             default: () => { return [] }
+        },
+        showMoreLess: {
+            type: Boolean,
+            default: false
         }
     },
     components: {
@@ -48,4 +56,15 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.moreOrLess * {
+    cursor: pointer;
+}
+.moreOrLess {
+    text-align: center;
+}
+.icon-close {
+    float: right;
+    position: relative;
+    bottom: -3px;
+}
 </style>
