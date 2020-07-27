@@ -1,64 +1,41 @@
 <template>
     <div>
-        <ul v-if="state === 'ok'" class="notification-list">
-            <li v-for="n in notifications" :key="n.id" @mouseover="$set(hovered, n.id, true)" @mouseleave="$set(hovered, n.id, false)">
-                <div class="popover-container">
-                    <!--Popover :open="hovered[n.id]" placement="top" class="content-popover" offset="40">
-                        <template>
-                            <h3>{{ n.repository.full_name }}</h3>
-                            {{ getTargetIdentifier(n) }} {{ n.subject.title }}<br/>
-                            {{ getFormattedDate(n) }}<br/><br/>
-                            {{ getNotificationContent(n) }}
-                        </template>
-                    </Popover-->
-                </div>
-                <a :href="getNotificationTarget(n)" target="_blank" class="notification-list__entry">
-                    <Avatar
-                        class="project-avatar"
-                        :url="getRepositoryAvatarUrl(n)"
-                        />
-                    <img class="notification-icon" :src="getNotificationTypeImage(n)"/>
-                    <div class="notification__details"
-                        >
-                        <h3>
-                            {{ n.subject.title }}
-                        </h3>
-                        <p class="message" :title="getSubline(n)">
-                            {{ getSubline(n) }}
-                        </p>
-                    </div>
+    <DashboardPanel :items="items">
+        <template slot="empty-content">
+            <div v-if="state === 'no-token'">
+                <a :href="settingsUrl">
+                    {{ t('github', 'Click here to configure the access to your Github account.')}}
                 </a>
-            </li>
-        </ul>
-        <div v-else-if="state === 'no-token'">
-            <a :href="settingsUrl">
-                {{ t('github', 'Click here to configure the access to your Github account.')}}
-            </a>
-        </div>
-        <div v-else-if="state === 'error'">
-            <a :href="settingsUrl">
-                {{ t('github', 'Incorrect access token.') }}
-                {{ t('github', 'Click here to configure the access to your Github account.')}}
-            </a>
-        </div>
-        <div v-else-if="state === 'loading'" class="icon-loading-small"></div>
+            </div>
+            <div v-else-if="state === 'error'">
+                <a :href="settingsUrl">
+                    {{ t('github', 'Incorrect access token.') }}
+                    {{ t('github', 'Click here to configure the access to your Github account.')}}
+                </a>
+            </div>
+            <div v-else-if="state === 'loading'" class="icon-loading-small"></div>
+            <div v-else-if="state === 'ok'">
+                {{ t('github', 'Nothing to show') }}
+            </div>
+        </template>
+    </DashboardPanel>
     </div>
 </template>
 
 <script>
 import axios from '@nextcloud/axios'
 import { generateUrl } from '@nextcloud/router'
-import { Avatar, Popover } from '@nextcloud/vue'
 import { showSuccess, showError } from '@nextcloud/dialogs'
 import { getLocale } from '@nextcloud/l10n'
 import moment from '@nextcloud/moment'
+import DashboardPanel from '../components/DashboardPanel'
 
 export default {
     name: 'Dashboard',
 
     props: [],
     components: {
-        Avatar, Popover
+        DashboardPanel,
     },
 
     beforeMount() {
@@ -82,6 +59,19 @@ export default {
     },
 
     computed: {
+        items() {
+            return this.notifications.map((n) => {
+                return {
+                    id: n.id,
+                    targetUrl: this.getNotificationTarget(n),
+                    avatarUrl: this.getRepositoryAvatarUrl(n),
+                    //avatarUsername: '',
+                    overlayIconUrl: this.getNotificationTypeImage(n),
+                    mainText: n.subject.title,
+                    subText: this.getSubline(n),
+                }
+            })
+        },
         lastDate() {
             const nbNotif = this.notifications.length
             return (nbNotif > 0) ? this.notifications[0].updated_at : null
@@ -205,74 +195,4 @@ export default {
 </script>
 
 <style scoped lang="scss">
-li .notification-list__entry {
-    display: flex;
-    align-items: flex-start;
-    padding: 8px;
-
-    &:hover,
-    &:focus {
-        background-color: var(--color-background-hover);
-        border-radius: var(--border-radius-large);
-    }
-    .project-avatar {
-        position: relative;
-        margin-top: auto;
-        margin-bottom: auto;
-    }
-    .notification__details {
-        padding-left: 8px;
-        max-height: 44px;
-        flex-grow: 1;
-        overflow: hidden;
-        display: flex;
-        flex-direction: column;
-
-        h3,
-        .message {
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-        .message span {
-            width: 10px;
-            display: inline-block;
-            margin-bottom: -3px;
-        }
-        h3 {
-            font-size: 100%;
-            margin: 0;
-        }
-        .message {
-            width: 100%;
-            color: var(--color-text-maxcontrast);
-        }
-    }
-
-    img.notification-icon {
-        position: absolute;
-        width: 14px;
-        height: 14px;
-        margin: 27px 0 10px 24px;
-    }
-
-    button.primary {
-        padding: 21px;
-        margin: 0;
-    }
-}
-.date-popover {
-    position: relative;
-    top: 7px;
-}
-.content-popover {
-    height: 0px;
-    width: 0px;
-    margin-left: auto;
-    margin-right: auto;
-}
-.popover-container {
-    width: 100%;
-    height: 0px;
-}
 </style>
