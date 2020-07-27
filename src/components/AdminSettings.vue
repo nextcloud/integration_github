@@ -4,12 +4,12 @@
                 <a class="icon icon-github"></a>
                 {{ t('github', 'Github') }}
             </h2>
-            <label>
+            <p class="settings-hint">
                 {{ t('github', 'If you want to allow your Nextcloud users to use OAuth to authenticate to https://github.com, create a Github application in your Github settings and set the ID and secret here.') }}
                 <br/>
                 {{ t('github', 'Make sure you set the "redirect_uri" to') }}
                 <br/><b> {{ redirect_uri }} </b>
-            </label><br/><br/>
+            </p>
             <div class="grid-form">
                 <label for="github-client-id">
                     <a class="icon icon-category-auth"></a>

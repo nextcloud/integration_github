@@ -4,6 +4,9 @@
                 <a class="icon icon-github"></a>
                 {{ t('github', 'Github') }}
             </h2>
+            <p class="settings-hint">
+                {{ t('github', 'When you create a personal access token yourself, give it at least "read:user", "user:email" and "notifications" permissions.') }}
+            </p>
             <div class="github-grid-form">
                 <label for="github-token">
                     <a class="icon icon-category-auth"></a>
