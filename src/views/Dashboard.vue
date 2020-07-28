@@ -1,9 +1,8 @@
 <template>
     <div>
     <DashboardPanel :items="items"
-        :showMoreLess="true"
+        :showMore="true"
         @moreClicked="onMoreClick"
-        @lessClicked="onLessClick"
         @hide="onHide"
         @markDone="onMarkDone"
         :loading="state === 'loading'"
@@ -146,10 +145,8 @@ export default {
             })
         },
         onMoreClick() {
-            this.maxItemNumber += 5
-        },
-        onLessClick() {
-            this.maxItemNumber = 7
+            const win = window.open('https://github.com/notifications', '_blank')
+            win.focus()
         },
         onHide(item) {
             const i = this.notifications.findIndex((n) => n.id === item.id)

@@ -12,9 +12,8 @@
         </ul>
         <div v-if="loading" class="icon-loading-small"></div>
         <slot name="empty-content" v-else-if="items.length === 0"/>
-        <p v-else-if="showMoreLess" class="moreOrLess">
-            <span @click="$emit('moreClicked')">{{ t('core', 'More items...') }}</span>
-            <span v-show="items.length > 7" @click="$emit('lessClicked')" class="icon icon-close"/>
+        <p v-else-if="showMore" class="more">
+            <span @click="$emit('moreClicked')">{{ t('core', 'Show more items...') }}</span>
         </p>
         <slot name="footer" />
     </div>
@@ -30,7 +29,7 @@ export default {
             type: Array,
             default: () => { return [] }
         },
-        showMoreLess: {
+        showMore: {
             type: Boolean,
             default: false
         },
@@ -77,15 +76,11 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.moreOrLess * {
+.more * {
     cursor: pointer;
 }
-.moreOrLess {
+.more {
     text-align: center;
-}
-.icon-close {
-    float: right;
-    position: relative;
-    bottom: -3px;
+    color: var(--color-text-lighter)
 }
 </style>
