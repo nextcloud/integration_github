@@ -1,5 +1,4 @@
 <template>
-    <div>
     <DashboardPanel :items="items"
         :showMore="true"
         @moreClicked="onMoreClick"
@@ -27,7 +26,6 @@
             </div>
         </template>
     </DashboardPanel>
-    </div>
 </template>
 
 <script>
