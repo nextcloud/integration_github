@@ -2,16 +2,17 @@
     <div>
         <slot name="header" />
         <ul>
-            <DashboardPanelItem
-                v-for="item in items"
-                :key="item.id"
-                :item="item"
-                :itemMenu="itemMenu"
-                v-on="handlers"
-                />
+            <li v-for="item in items" :key="item.id">
+                <slot name="default" :item="item">
+                    <DashboardPanelItem
+                        :item="item"
+                        :itemMenu="itemMenu"
+                        v-on="handlers" />
+                </slot>
+            </li>
         </ul>
         <div v-if="loading" class="icon-loading-small"></div>
-        <slot name="empty-content" v-else-if="items.length === 0"/>
+        <slot v-else-if="items.length === 0" name="empty-content" />
         <p v-else-if="showMore" class="more">
             <span @click="$emit('moreClicked')">{{ t('core', 'Show more items...') }}</span>
         </p>

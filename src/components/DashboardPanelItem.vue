@@ -1,5 +1,5 @@
 <template>
-    <li @mouseover="hovered = true" @mouseleave="hovered = false" >
+    <div @mouseover="hovered = true" @mouseleave="hovered = false" >
         <div class="popover-container">
             <!--Popover :open="hovered" placement="top" class="content-popover" offset="40">
                 <template>
@@ -35,7 +35,7 @@
                 />
             </Actions>
         </a>
-    </li>
+    </div>
 </template>
 
 <script>
@@ -82,7 +82,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-li .item-list__entry {
+div .item-list__entry {
     display: flex;
     align-items: flex-start;
     padding: 8px;

@@ -7,7 +7,10 @@
         @markDone="onMarkDone"
         :loading="state === 'loading'"
         :itemMenu="itemMenu">
-        <template slot="empty-content">
+        <!--template v-slot:default="{ item }">
+            {{ item.mainText }}
+        </template-->
+        <template v-slot:empty-content>
             <div v-if="state === 'no-token'">
                 <a :href="settingsUrl">
                     {{ t('github', 'Click here to configure the access to your Github account.')}}
