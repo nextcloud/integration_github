@@ -127,10 +127,10 @@ li .item-list__entry {
     }
 
     img.item-icon {
-        position: absolute;
+        position: relative;
         width: 14px;
         height: 14px;
-        margin: 27px 0 10px 24px;
+        margin: 27px -3px 0px -7px;
     }
 
     button.primary {
