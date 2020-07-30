@@ -1,14 +1,13 @@
 <template>
     <div @mouseover="hovered = true" @mouseleave="hovered = false" >
         <div class="popover-container">
-            <!--Popover :open="hovered" placement="top" class="content-popover" offset="40">
+            <Popover :open="popoverEnabled && hovered" placement="top" class="content-popover" offset="40">
                 <template>
-                    <h3>{{ n.repository.full_name }}</h3>
-                    {{ getTargetIdentifier(n) }} {{ n.subject.title }}<br/>
-                    {{ getFormattedDate(n) }}<br/><br/>
-                    {{ getNotificationContent(n) }}
+                    <slot name="popover" :item="item">
+                        {{ t('core', 'Undefined popover content') }}
+                    </slot>
                 </template>
-            </Popover-->
+            </Popover>
         </div>
         <a :href="item.targetUrl" target="_blank" class="item-list__entry">
             <Avatar
@@ -54,7 +53,11 @@ export default {
         itemMenu: {
             type: Object,
             default: () => { return {} }
-        }
+        },
+        popoverEnabled: {
+            type: Boolean,
+            default: false,
+        },
     },
 
     mounted() {

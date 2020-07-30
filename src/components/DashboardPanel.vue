@@ -215,7 +215,13 @@ export default {
                     <DashboardPanelItem
                         :item="item"
                         :itemMenu="itemMenu"
-                        v-on="handlers" />
+                        :popoverEnabled="popoverEnabled"
+                        v-on="handlers">
+                        <!-- here we forward the popover slot to the item component -->
+                        <template v-slot:popover="{ item }">
+                            <slot name="popover" :item="item" />
+                        </template>
+                    </DashboardPanelItem>
                 </slot>
             </li>
         </ul>
@@ -249,7 +255,11 @@ export default {
         itemMenu: {
             type: Object,
             default: () => { return {} }
-        }
+        },
+        popoverEnabled: {
+            type: Boolean,
+            default: false,
+        },
     },
     components: {
         DashboardPanelItem

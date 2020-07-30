@@ -5,9 +5,19 @@
         @hide="onHide"
         @markDone="onMarkDone"
         :loading="state === 'loading'"
-        :itemMenu="itemMenu">
+        :itemMenu="itemMenu"
+        :popoverEnabled="false">
+        <!-- if we want to override the item component -->
         <!--template v-slot:default="{ item }">
             {{ item.mainText }}
+        </template-->
+
+        <!-- if we want to define the item popover (works with DashboardPanelItem component only) -->
+        <!--template v-slot:popover="{ item }">
+            <h3>{{ item.subText }}</h3>
+            {{ item.mainText }}<br/>
+            {{ item.popFormattedDate }}<br/><br/>
+            {{ item.popContent }}
         </template-->
         <template v-slot:empty-content>
             <div v-if="state === 'no-token'">
@@ -88,6 +98,9 @@ export default {
                     overlayIconUrl: this.getNotificationTypeImage(n),
                     mainText: n.subject.title,
                     subText: this.getSubline(n),
+                    // for popover
+                    popFormattedDate: this.getFormattedDate(n),
+                    popContent: this.getNotificationContent(n),
                 }
             })
         },
