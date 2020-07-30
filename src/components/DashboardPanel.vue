@@ -28,6 +28,9 @@ You can set this component in loading mode.
 
 The default item rendering can be overridden with the default slot.
 
+If you keep the default item rendering (using DashboardPanelItem component), you can use the "popover"
+slot to define what should be displayed when hovering items. This slot is forwarded in DashboardPanelItem.
+
 Items can have a context menu.
 
 ## Usage
@@ -70,22 +73,25 @@ menu for each items. Each entry of this object must define "text" and "icon" pro
 When clicking the menu item, an event (named like the itemMenu key) will be emitted to the panel's parent.
 ```js static
 const itemMenu = {
+    // triggers an event named "markDone" when clicked
     'markDone': {
         text: t('app', 'Mark as done'),
         icon: 'icon-checkmark',
     },
+    // triggers an event named "hide" when clicked
     'hide': {
         text: t('app', 'Hide'),
         icon: 'icon-toggle',
     }
-},
+}
 ```
 
 ### All props
 * showMore: A boolean to show a "show more" text on the panel's bottom
 * loading: A boolean to put the panel in a loading state
-* itemMenu: context menu entries for each items
-* items: the items themselves
+* itemMenu: An object containing context menu entries that will be displayed for each items
+* items: An object containing the items themselves (specific structure must be respected except if you override item rendering with the default slot)
+* popoverEnabled: A boolean to enable popover display when hovering items
 
 ### Events
 * moreClicked: The "show more" text was clicked
@@ -96,8 +102,18 @@ const itemMenu = {
 * header (optional): Something to display on top of the panel
 * empty-content (optional): What to display when the item list is empty
 * footer (optional): Something to display
+* popover (optional): Popover content of items (if you didn't override the item with the default slot)
 
-### Simplest example
+Here is an example of popover definition:
+```vue
+<template v-slot:popover="{ item }">
+    <h3>{{ item.subText }}</h3>
+    {{ item.mainText }}<br/>
+    {{ item.targetUrl }}
+</template>
+```
+
+## Simplest example
 ```vue
 <template>
     <DashboardPanel :items="items">
@@ -121,7 +137,7 @@ const myItems = [
 ]
 
 export default {
-    name: 'Dashboard',
+    name: 'MyDashboardPanel',
     props: [],
     components: {
         DashboardPanel,
@@ -135,17 +151,25 @@ export default {
 </script>
 ```
 
-### Complete example
+## Complete example
 ```vue
 <template>
     <DashboardPanel :items="items"
         :showMore="true"
         @moreClicked="onMoreClick"
+        :itemMenu="itemMenu"
         @hide="onHide"
         @markDone="onMarkDone"
         :loading="state === 'loading'"
+        :popoverEnabled="true"
         >
 
+        <template v-slot:popover="{ item }">
+            <h3>{{ item.subText }}</h3>
+            {{ item.mainText }}<br/>
+            {{ item.popFormattedDate }}<br/><br/>
+            {{ item.popContent }}
+        </template>
         <template v-slot:empty-content>
             Nothing to display
         </template>
@@ -163,6 +187,9 @@ const myItems = [
         overlayIconUrl: generateUrl('/svg/core/actions/sound?color=' + this.themingColor),
         mainText: 'First item text',
         subText: 'First item subtext',
+        // for popover
+        popFormattedDate: 'yesterday 4am',
+        popContent: 'the main popup content',
     },
     {
         id: '2',
@@ -171,11 +198,27 @@ const myItems = [
         overlayIconUrl: generateUrl('/svg/core/actions/add?color=' + this.themingColor),
         mainText: 'Second item text',
         subText: 'Second item subtext',
+        // for popover
+        popFormattedDate: 'today 2pm',
+        popContent: 'another popup content',
     },
 ]
 
+const myItemMenu = {
+    // triggers an event named "markDone" when clicked
+    'markDone': {
+        text: t('app', 'Mark as done'),
+        icon: 'icon-checkmark',
+    },
+    // triggers an event named "hide" when clicked
+    'hide': {
+        text: t('app', 'Hide'),
+        icon: 'icon-toggle',
+    }
+}
+
 export default {
-    name: 'Dashboard',
+    name: 'MyDashboardPanel',
     props: [],
     components: {
         DashboardPanel,
@@ -183,6 +226,7 @@ export default {
     data() {
         return {
             items: myItems,
+            itemMenu: myItemMenu,
             loading: true,
         }
     },
