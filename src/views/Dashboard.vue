@@ -73,7 +73,7 @@ export default {
             loop: null,
             state: 'loading',
             settingsUrl: generateUrl('/settings/user/linked-accounts'),
-            themingColor: OCA.Theming ? OCA.Theming.color.replace('#', '') : '0082C9',
+            darkThemeColor: OCA.Accessibility.theme === 'dark' ? '181818' : 'ffffff',
             itemMenu: {
                 'markDone': {
                     text: t('github', 'Mark as done'),
@@ -219,11 +219,11 @@ export default {
         },
         getNotificationTypeImage(n) {
             if (n.subject.type === 'PullRequest') {
-                return generateUrl('/svg/github/pull_request?color=' + this.themingColor)
+                return generateUrl('/svg/github/pull_request?color=' + this.darkThemeColor)
             } else if (n.subject.type === 'Issue') {
-                return generateUrl('/svg/github/issue?color=' + this.themingColor)
+                return generateUrl('/svg/github/issue?color=' + this.darkThemeColor)
             }
-            return generateUrl('/svg/core/actions/sound?color=' + this.themingColor)
+            return ''
         },
         getTargetIdentifier(n) {
             if (['PullRequest', 'Issue'].includes(n.subject.type)) {
