@@ -44,7 +44,7 @@ import { generateUrl } from '@nextcloud/router'
 import { showSuccess, showError } from '@nextcloud/dialogs'
 import { getLocale } from '@nextcloud/l10n'
 import moment from '@nextcloud/moment'
-import DashboardWidget from '../components/DashboardWidget'
+import { DashboardWidget } from '@nextcloud/vue-dashboard'
 
 export default {
     name: 'Dashboard',
