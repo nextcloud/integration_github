@@ -69,7 +69,6 @@ export default {
             // lastDate could be computed but we want to keep the value when first notification is removed
             // to avoid getting it again on next request
             lastDate: null,
-            maxItemNumber: 7,
             locale: getLocale(),
             loop: null,
             state: 'loading',
@@ -90,7 +89,7 @@ export default {
 
     computed: {
         items() {
-            return this.notifications.slice(0, this.maxItemNumber).map((n) => {
+            return this.notifications.map((n) => {
                 return {
                     id: n.id,
                     targetUrl: this.getNotificationTarget(n),
