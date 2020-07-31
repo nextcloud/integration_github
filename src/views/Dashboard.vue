@@ -215,7 +215,7 @@ export default {
             return ''
         },
         getSubline(n) {
-            return n.repository.name + ' ' + this.getNotificationActionChar(n) + ' ' + this.getTargetIdentifier(n)
+            return this.getNotificationActionChar(n) + ' ' + n.repository.name + this.getTargetIdentifier(n)
         },
         getNotificationTypeImage(n) {
             if (n.subject.type === 'PullRequest') {
