@@ -110,7 +110,9 @@ class GithubAPIController extends Controller {
      * @NoCSRFRequired
      */
     public function getAvatar($url) {
-        return new DataDisplayResponse($this->githubAPIService->getAvatar($url));
+        $response = new DataDisplayResponse($this->githubAPIService->getAvatar($url));
+        $response->cacheFor(60*60*24);
+        return $response;
     }
 
 }
