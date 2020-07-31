@@ -20,7 +20,7 @@
  -
  -->
 <docs>
-This component displays a dashboard panel item. It is used by default by the DashboardPanel component.
+This component displays a dashboard widget item. It is used by default by the DashboardWidget component.
 You can also use it wherever you want.
 
 It displays the item given as a prop with optional:
@@ -46,7 +46,7 @@ const item = {
 You can optionally pass an object in the "itemMenu" prop to define a context
 menu for each items. Each entry of this object must define "text" and "icon" properties.
 
-When clicking the menu item, an event (named like the itemMenu key) will be emitted to the panel's parent.
+When clicking the menu item, an event (named like the itemMenu key) will be emitted to the widget's parent.
 ```js static
 const itemMenu = {
     // triggers an event named "markDone" when clicked
@@ -91,11 +91,11 @@ you can define something like that to enable the popover display:
 ## Simplest example
 ```vue
 <template>
-    <DashboardPanelItem :item="item" />
+    <DashboardWidgetItem :item="item" />
 </template>
 
 <script>
-import DashboardPanelItem from '../components/DashboardPanelItem'
+import DashboardWidgetItem from '../components/DashboardWidgetItem'
 const myItem = {
     targetUrl: 'https://target.org',
     avatarUrl: 'https://avatar.url/img.png',
@@ -108,7 +108,7 @@ export default {
     name: 'MyRootComponentOrWhatever',
     props: [],
     components: {
-        DashboardPanelItem,
+        DashboardWidgetItem,
     },
     data() {
         return {
@@ -123,7 +123,7 @@ export default {
 
 ```vue
 <template>
-    <DashboardPanelItem :item="item"
+    <DashboardWidgetItem :item="item"
         :itemMenu="itemMenu"
         @hide="onHide"
         @markDone="onMarkDone"
@@ -134,11 +134,11 @@ export default {
             {{ item.mainText }}<br/>
             The target URL is actually {{ item.targetUrl }} you know
         </template>
-    </DashboardPanelItem>
+    </DashboardWidgetItem>
 </template>
 
 <script>
-import DashboardPanelItem from '../components/DashboardPanelItem'
+import DashboardWidgetItem from '../components/DashboardWidgetItem'
 const myItem = {
     targetUrl: 'https://target.org',
     avatarUrl: 'https://avatar.url/img.png',
@@ -164,7 +164,7 @@ export default {
     name: 'MyRootComponentOrWhatever',
     props: [],
     components: {
-        DashboardPanelItem,
+        DashboardWidgetItem,
     },
     data() {
         return {
@@ -220,7 +220,7 @@ export default {
 <script>
 import { Avatar, Popover, Actions, ActionText } from '@nextcloud/vue'
 export default {
-    name: 'DashboardPanelItem',
+    name: 'DashboardWidgetItem',
     components: {
         Avatar, Popover, Actions, ActionText
     },

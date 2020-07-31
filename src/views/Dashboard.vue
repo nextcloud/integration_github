@@ -1,5 +1,5 @@
 <template>
-    <DashboardPanel :items="items"
+    <DashboardWidget :items="items"
         :showMore="true"
         @moreClicked="onMoreClick"
         @hide="onHide"
@@ -12,7 +12,7 @@
             {{ item.mainText }}
         </template-->
 
-        <!-- if we want to define the item popover (works with DashboardPanelItem component only) -->
+        <!-- if we want to define the item popover (works with DashboardWidgetItem component only) -->
         <!--template v-slot:popover="{ item }">
             <h3>{{ item.subText }}</h3>
             {{ item.mainText }}<br/>
@@ -35,7 +35,7 @@
                 {{ t('github', 'Nothing to show') }}
             </div>
         </template>
-    </DashboardPanel>
+    </DashboardWidget>
 </template>
 
 <script>
@@ -44,14 +44,14 @@ import { generateUrl } from '@nextcloud/router'
 import { showSuccess, showError } from '@nextcloud/dialogs'
 import { getLocale } from '@nextcloud/l10n'
 import moment from '@nextcloud/moment'
-import DashboardPanel from '../components/DashboardPanel'
+import DashboardWidget from '../components/DashboardWidget'
 
 export default {
     name: 'Dashboard',
 
     props: [],
     components: {
-        DashboardPanel,
+        DashboardWidget,
     },
 
     beforeMount() {

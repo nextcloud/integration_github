@@ -20,7 +20,7 @@
  -
  -->
 <docs>
-This component displays a dashboard panel with an item list as its content.
+This component displays a dashboard widget with an item list as its content.
 
 You can define an optional header, footer and empty-content.
 
@@ -28,8 +28,8 @@ You can set this component in loading mode.
 
 The default item rendering can be overridden with the default slot.
 
-If you keep the default item rendering (using DashboardPanelItem component), you can use the "popover"
-slot to define what should be displayed when hovering items. This slot is forwarded in DashboardPanelItem.
+If you keep the default item rendering (using DashboardWidgetItem component), you can use the "popover"
+slot to define what should be displayed when hovering items. This slot is forwarded in DashboardWidgetItem.
 
 Items can have a context menu.
 
@@ -42,7 +42,7 @@ This component takes a list of items in the "items" prop.
 If the default slot is not overridden, then do whatever you want with the item objects structure.
 You will access them in your custom default item slot.
 
-If the default slot is not overridden, DashboardPanelItem component
+If the default slot is not overridden, DashboardWidgetItem component
 is used so an items must look like:
 ```js static
 const itemList = [
@@ -70,7 +70,7 @@ const itemList = [
 You can optionally pass an object in the "itemMenu" prop to define a context
 menu for each items. Each entry of this object must define "text" and "icon" properties.
 
-When clicking the menu item, an event (named like the itemMenu key) will be emitted to the panel's parent.
+When clicking the menu item, an event (named like the itemMenu key) will be emitted to the widget's parent.
 ```js static
 const itemMenu = {
     // triggers an event named "markDone" when clicked
@@ -87,8 +87,8 @@ const itemMenu = {
 ```
 
 ### All props
-* showMore: A boolean to show a "show more" text on the panel's bottom
-* loading: A boolean to put the panel in a loading state
+* showMore: A boolean to show a "show more" text on the widget's bottom
+* loading: A boolean to put the widget in a loading state
 * itemMenu: An object containing context menu entries that will be displayed for each items
 * items: An object containing the items themselves (specific structure must be respected except if you override item rendering with the default slot)
 * popoverEnabled: A boolean to enable popover display when hovering items
@@ -98,8 +98,8 @@ const itemMenu = {
 * for each menu item, an event named like its key is emitted with the item as a parameter
 
 ### Slots
-* default (optional, default=DashboardPanelItem): The default slot can be optionnally overridden. It contains the template of one item.
-* header (optional): Something to display on top of the panel
+* default (optional, default=DashboardWidgetItem): The default slot can be optionnally overridden. It contains the template of one item.
+* header (optional): Something to display on top of the widget
 * empty-content (optional): What to display when the item list is empty
 * footer (optional): Something to display
 * popover (optional): Popover content of items (if you didn't override the item with the default slot)
@@ -116,15 +116,15 @@ Here is an example of popover definition:
 ## Simplest example
 ```vue
 <template>
-    <DashboardPanel :items="items">
+    <DashboardWidget :items="items">
         <template v-slot:default="{ item }">
             {{ item.title }}
         </template>
-    </DashboardPanel>
+    </DashboardWidget>
 </template>
 
 <script>
-import DashboardPanel from '../components/DashboardPanel'
+import DashboardWidget from '../components/DashboardWidget'
 const myItems = [
     {
         title: 'first',
@@ -137,10 +137,10 @@ const myItems = [
 ]
 
 export default {
-    name: 'MyDashboardPanel',
+    name: 'MyDashboardWidget',
     props: [],
     components: {
-        DashboardPanel,
+        DashboardWidget,
     },
     data() {
         return {
@@ -154,7 +154,7 @@ export default {
 ## Complete example
 ```vue
 <template>
-    <DashboardPanel :items="items"
+    <DashboardWidget :items="items"
         :showMore="true"
         @moreClicked="onMoreClick"
         :itemMenu="itemMenu"
@@ -173,11 +173,11 @@ export default {
         <template v-slot:empty-content>
             Nothing to display
         </template>
-    </DashboardPanel>
+    </DashboardWidget>
 </template>
 
 <script>
-import DashboardPanel from '../components/DashboardPanel'
+import DashboardWidget from '../components/DashboardWidget'
 const myItems = [
     {
         id: '1',
@@ -218,10 +218,10 @@ const myItemMenu = {
 }
 
 export default {
-    name: 'MyDashboardPanel',
+    name: 'MyDashboardWidget',
     props: [],
     components: {
-        DashboardPanel,
+        DashboardWidget,
     },
     data() {
         return {
@@ -256,7 +256,7 @@ export default {
         <ul>
             <li v-for="item in items" :key="item.id">
                 <slot name="default" :item="item">
-                    <DashboardPanelItem
+                    <DashboardWidgetItem
                         :item="item"
                         :itemMenu="itemMenu"
                         :popoverEnabled="popoverEnabled"
@@ -265,7 +265,7 @@ export default {
                         <template v-slot:popover="{ item }">
                             <slot name="popover" :item="item" />
                         </template>
-                    </DashboardPanelItem>
+                    </DashboardWidgetItem>
                 </slot>
             </li>
         </ul>
@@ -279,9 +279,9 @@ export default {
 </template>
 
 <script>
-import DashboardPanelItem from './DashboardPanelItem'
+import DashboardWidgetItem from './DashboardWidgetItem'
 export default {
-    name: 'DashboardPanel',
+    name: 'DashboardWidget',
 
     props: {
         items: {
@@ -306,7 +306,7 @@ export default {
         },
     },
     components: {
-        DashboardPanelItem
+        DashboardWidgetItem
     },
 
     created() {
