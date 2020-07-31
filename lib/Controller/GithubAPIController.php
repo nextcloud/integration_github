@@ -69,8 +69,34 @@ class GithubAPIController extends Controller {
         if ($this->accessToken === '') {
             return new DataResponse($result, 400);
         }
-        $result = $this->githubAPIService->getNotifications($this->accessToken, $since, true);
+        $result = $this->githubAPIService->getNotifications($this->accessToken, $since, false);
         if (is_array($result)) {
+            $response = new DataResponse($result);
+        } else {
+            $response = new DataResponse($result, 401);
+        }
+        return $response;
+    }
+
+    /**
+     * @NoAdminRequired
+     */
+    public function unsubscribeNotification($id) {
+        $result = $this->githubAPIService->unsubscribeNotification($this->accessToken, $id);
+        if (is_null($result) or is_array($result)) {
+            $response = new DataResponse($result);
+        } else {
+            $response = new DataResponse($result, 401);
+        }
+        return $response;
+    }
+
+    /**
+     * @NoAdminRequired
+     */
+    public function markNotificationAsRead($id) {
+        $result = $this->githubAPIService->markNotificationAsRead($this->accessToken, $id);
+        if (is_null($result) or is_array($result)) {
             $response = new DataResponse($result);
         } else {
             $response = new DataResponse($result, 401);

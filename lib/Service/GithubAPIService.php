@@ -56,6 +56,19 @@ class GithubAPIService {
         return $result;
     }
 
+    public function unsubscribeNotification($accessToken, $id) {
+        $params = [
+            'ignored' => true
+        ];
+        $result = $this->request($accessToken, 'notifications/threads/' . $id . '/subscription', $params, 'PUT');
+        return $result;
+    }
+
+    public function markNotificationAsRead($accessToken, $id) {
+        $result = $this->request($accessToken, 'notifications/threads/' . $id, [], 'POST');
+        return $result;
+    }
+
     public function request($accessToken, $endPoint, $params = [], $method = 'GET') {
         try {
             $url = 'https://api.github.com/' . $endPoint;
@@ -71,7 +84,7 @@ class GithubAPIService {
                     $paramsContent = http_build_query($params);
                     $url .= '?' . $paramsContent;
                 } else {
-                    $options['body'] = $params;
+                    $options['body'] = json_encode($params);
                 }
             }
 

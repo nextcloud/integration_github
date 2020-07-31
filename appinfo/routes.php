@@ -15,6 +15,8 @@ return [
         ['name' => 'config#setConfig', 'url' => '/config', 'verb' => 'PUT'],
         ['name' => 'config#setAdminConfig', 'url' => '/admin-config', 'verb' => 'PUT'],
         ['name' => 'githubAPI#getNotifications', 'url' => '/notifications', 'verb' => 'GET'],
+        ['name' => 'githubAPI#unsubscribeNotification', 'url' => '/notifications/{id}/unsubscribe', 'verb' => 'PUT'],
+        ['name' => 'githubAPI#markNotificationAsRead', 'url' => '/notifications/{id}/mark-read', 'verb' => 'PUT'],
         ['name' => 'githubAPI#getAvatar', 'url' => '/avatar', 'verb' => 'GET'],
     ]
 ];

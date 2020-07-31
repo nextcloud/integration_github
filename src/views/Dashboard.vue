@@ -2,8 +2,8 @@
     <DashboardWidget :items="items"
         :showMore="true"
         @moreClicked="onMoreClick"
-        @hide="onHide"
-        @markDone="onMarkDone"
+        @unsubscribe="onUnsubscribe"
+        @markRead="onMarkRead"
         :loading="state === 'loading'"
         :itemMenu="itemMenu"
         :popoverEnabled="false">
@@ -44,7 +44,6 @@ import { generateUrl } from '@nextcloud/router'
 import { showSuccess, showError } from '@nextcloud/dialogs'
 import { getLocale } from '@nextcloud/l10n'
 import moment from '@nextcloud/moment'
-//import DashboardWidget from '../components/DashboardWidget'
 import { DashboardWidget } from '@nextcloud/vue-dashboard'
 
 export default {
@@ -75,13 +74,13 @@ export default {
             settingsUrl: generateUrl('/settings/user/linked-accounts'),
             darkThemeColor: OCA.Accessibility.theme === 'dark' ? '181818' : 'ffffff',
             itemMenu: {
-                'markDone': {
-                    text: t('github', 'Mark as done'),
+                'markRead': {
+                    text: t('github', 'Mark as read'),
                     icon: 'icon-checkmark',
                 },
-                'hide': {
-                    text: t('github', 'Hide'),
-                    icon: 'icon-toggle',
+                'unsubscribe': {
+                    text: t('github', 'Unsubscribe'),
+                    icon: 'icon-unsubscribe',
                 }
             },
         }
@@ -162,15 +161,25 @@ export default {
             const win = window.open('https://github.com/notifications', '_blank')
             win.focus()
         },
-        onHide(item) {
+        onUnsubscribe(item) {
             const i = this.notifications.findIndex((n) => n.id === item.id)
             if (i !== -1) {
                 this.notifications.splice(i, 1)
             }
+            this.editNotification(item, 'unsubscribe')
         },
-        onMarkDone(item) {
-            console.log('mark done')
-            console.log(item)
+        onMarkRead(item) {
+            const i = this.notifications.findIndex((n) => n.id === item.id)
+            if (i !== -1) {
+                this.notifications.splice(i, 1)
+            }
+            this.editNotification(item, 'mark-read')
+        },
+        editNotification(item, action) {
+            axios.put(generateUrl('/apps/github/notifications/' + item.id + '/' + action)).then((response) => {
+            }).catch((error) => {
+                showError(t('github', 'Failed to edit Github notification.'))
+            })
         },
         getRepositoryAvatarUrl(n) {
             return (n.repository && n.repository.owner && n.repository.owner.avatar_url) ?
