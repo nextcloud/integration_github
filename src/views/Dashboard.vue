@@ -5,8 +5,7 @@
         @unsubscribe="onUnsubscribe"
         @markRead="onMarkRead"
         :loading="state === 'loading'"
-        :itemMenu="itemMenu"
-        :popoverEnabled="false">
+        :itemMenu="itemMenu">
         <!-- if we want to override the item component -->
         <!--template v-slot:default="{ item }">
             {{ item.mainText }}
@@ -97,9 +96,6 @@ export default {
                     overlayIconUrl: this.getNotificationTypeImage(n),
                     mainText: n.subject.title,
                     subText: this.getSubline(n),
-                    // for popover
-                    popFormattedDate: this.getFormattedDate(n),
-                    popContent: this.getNotificationContent(n),
                 }
             })
         },
