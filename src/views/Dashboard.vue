@@ -224,9 +224,9 @@ export default {
         },
         getNotificationTypeImage(n) {
             if (n.subject.type === 'PullRequest') {
-                return generateUrl('/svg/github/pull_request?color=' + this.darkThemeColor)
+                return generateUrl('/svg/github/pull_request?color=ffffff')
             } else if (n.subject.type === 'Issue') {
-                return generateUrl('/svg/github/issue?color=' + this.darkThemeColor)
+                return generateUrl('/svg/github/issue?color=ffffff')
             }
             return ''
         },
