@@ -79,7 +79,7 @@ export default {
                 },
                 'unsubscribe': {
                     text: t('github', 'Unsubscribe'),
-                    icon: 'icon-unsubscribe',
+                    icon: 'icon-github-unsubscribe',
                 }
             },
         }
@@ -245,4 +245,16 @@ export default {
 </script>
 
 <style scoped lang="scss">
+::v-deep .icon-github-unsubscribe {
+    background-color: var(--color-main-text);
+    padding: 0 !important;
+    mask: url(./../../img/unsub.svg) no-repeat;
+    mask-size: 18px 18px;
+    mask-position: center;
+    -webkit-mask: url(./../../img/unsub.svg) no-repeat;
+    -webkit-mask-size: 18px 18px;
+    -webkit-mask-position: center;
+    min-width: 44px !important;
+    min-height: 44px !important;
+}
 </style>
