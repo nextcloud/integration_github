@@ -1,7 +1,6 @@
 <template>
     <DashboardWidget :items="items"
-        :showMore="true"
-        @moreClicked="onMoreClick"
+        :showMoreUrl="showMoreUrl"
         @unsubscribe="onUnsubscribe"
         @markRead="onMarkRead"
         :loading="state === 'loading'"
@@ -64,6 +63,7 @@ export default {
     data() {
         return {
             notifications: [],
+            showMoreUrl: 'https://github.com/notifications',
             // lastDate could be computed but we want to keep the value when first notification is removed
             // to avoid getting it again on next request
             lastDate: null,
@@ -152,10 +152,6 @@ export default {
             return notifications.filter((n) => {
                 return (n.unread && ['assign', 'mention', 'review_requested'].includes(n.reason))
             })
-        },
-        onMoreClick() {
-            const win = window.open('https://github.com/notifications', '_blank')
-            win.focus()
         },
         onUnsubscribe(item) {
             const i = this.notifications.findIndex((n) => n.id === item.id)
