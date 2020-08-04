@@ -18,7 +18,7 @@ use OCP\AppFramework\Bootstrap\IBootContext;
 use OCP\AppFramework\Bootstrap\IBootstrap;
 
 use OCA\Github\Controller\PageController;
-use OCA\Github\Dashboard\GithubPanel;
+use OCA\Github\Dashboard\GithubWidget;
 
 /**
  * Class Application
@@ -39,7 +39,7 @@ class Application extends App implements IBootstrap {
     }
 
     public function register(IRegistrationContext $context): void {
-        $context->registerDashboardPanel(GithubPanel::class);
+        $context->registerDashboardWidget(GithubWidget::class);
     }
 
     public function boot(IBootContext $context): void {

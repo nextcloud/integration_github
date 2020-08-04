@@ -23,9 +23,11 @@
 
 namespace OCA\Github\Dashboard;
 
+use OCP\Dashboard\IWidget;
+
 use OCP\IL10N;
 
-class GithubPanel implements \OCP\Dashboard\IPanel {
+class GithubWidget implements IWidget {
 
 	/** @var IL10N */
 	private $l10n;
