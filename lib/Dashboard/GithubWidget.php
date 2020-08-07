@@ -77,7 +77,7 @@ class GithubWidget implements IWidget {
 	 * @inheritDoc
 	 */
 	public function load(): void {
-        \OC_Util::addScript('github', 'dashboard');
+        \OC_Util::addScript('github', 'github-dashboard');
         \OC_Util::addStyle('github', 'dashboard');
     }
 }
