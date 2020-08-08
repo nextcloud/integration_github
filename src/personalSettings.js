@@ -1,4 +1,4 @@
-/*jshint esversion: 6 */
+/* jshint esversion: 6 */
 
 /**
  * Nextcloud - github
@@ -18,6 +18,6 @@ import PersonalSettings from './components/PersonalSettings'
 'use strict'
 
 new Vue({
-    el: "#github_prefs",
-    render: h => h(PersonalSettings),
+	el: '#github_prefs',
+	render: h => h(PersonalSettings),
 })
