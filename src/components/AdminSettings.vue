@@ -99,7 +99,7 @@ export default {
     width: 100%;
 }
 .grid-form {
-    width: 500px;
+    max-width: 500px;
     display: grid;
     grid-template: 1fr / 1fr 1fr;
     margin-left: 30px;

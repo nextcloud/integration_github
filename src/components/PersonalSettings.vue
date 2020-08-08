@@ -130,9 +130,9 @@ export default {
     width: 100%;
 }
 .github-grid-form {
-    width: 700px;
+    max-width: 700px;
     display: grid;
-    grid-template: 1fr / 233px 233px 300px;
+    grid-template: 1fr / 1fr 1fr 1fr;
     margin-left: 30px;
     button .icon {
         margin-bottom: -1px;
