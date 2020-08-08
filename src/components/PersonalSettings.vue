@@ -130,7 +130,7 @@ export default {
     width: 100%;
 }
 .github-grid-form {
-    max-width: 700px;
+    max-width: 900px;
     display: grid;
     grid-template: 1fr / 1fr 1fr 1fr;
     margin-left: 30px;
