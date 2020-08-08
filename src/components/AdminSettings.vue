@@ -1,7 +1,7 @@
 <template>
 	<div id="github_prefs" class="section">
 		<h2>
-			<a class="icon icon-github"></a>
+			<a class="icon icon-github" />
 			{{ t('github', 'Github') }}
 		</h2>
 		<p class="settings-hint">
