@@ -40,7 +40,6 @@
 import axios from '@nextcloud/axios'
 import { generateUrl } from '@nextcloud/router'
 import { showError } from '@nextcloud/dialogs'
-import { getLocale } from '@nextcloud/l10n'
 import moment from '@nextcloud/moment'
 import { DashboardWidget } from '@nextcloud/vue-dashboard'
 
@@ -60,7 +59,6 @@ export default {
 			// lastDate could be computed but we want to keep the value when first notification is removed
 			// to avoid getting it again on next request
 			lastDate: null,
-			locale: getLocale(),
 			loop: null,
 			state: 'loading',
 			settingsUrl: generateUrl('/settings/user/linked-accounts'),
@@ -236,7 +234,7 @@ export default {
 			return ''
 		},
 		getFormattedDate(n) {
-			return moment(n.updated_at).locale(this.locale).format('LLL')
+			return moment(n.updated_at).format('LLL')
 		},
 	},
 }
