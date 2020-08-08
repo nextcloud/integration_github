@@ -27,7 +27,8 @@ use OCP\AppFramework\Http\RedirectResponse;
 use OCP\AppFramework\Http\DataResponse;
 use OCP\AppFramework\Http\ContentSecurityPolicy;
 use OCP\AppFramework\Controller;
-use OCP\Http\Client\IClientService;
+
+use OCA\Github\Service\GithubAPIService;
 
 class ConfigController extends Controller {
 
@@ -47,7 +48,7 @@ class ConfigController extends Controller {
                                 IURLGenerator $urlGenerator,
                                 IL10N $l,
                                 ILogger $logger,
-                                IClientService $clientService,
+                                GithubAPIService $githubAPIService,
                                 $userId) {
         parent::__construct($AppName, $request);
         $this->l = $l;
@@ -59,7 +60,7 @@ class ConfigController extends Controller {
         $this->dbconnection = $dbconnection;
         $this->urlGenerator = $urlGenerator;
         $this->logger = $logger;
-        $this->clientService = $clientService;
+        $this->githubAPIService = $githubAPIService;
     }
 
     /**
@@ -99,7 +100,7 @@ class ConfigController extends Controller {
         $this->config->setUserValue($this->userId, 'github', 'oauth_state', '');
 
         if ($clientID and $clientSecret and $configState !== '' and $configState === $state) {
-            $result = $this->requestOAuthAccessToken([
+            $result = $this->githubAPIService->requestOAuthAccessToken([
                 'client_id' => $clientID,
                 'client_secret' => $clientSecret,
                 'code' => $code,
@@ -121,48 +122,5 @@ class ConfigController extends Controller {
             $this->urlGenerator->linkToRoute('settings.PersonalSettings.index', ['section' => 'linked-accounts']) .
             '?githubToken=error&message=' . urlencode($result)
         );
-    }
-
-    private function requestOAuthAccessToken($params = [], $method = 'GET') {
-        $client = $this->clientService->newClient();
-        try {
-            $url = 'https://github.com/login/oauth/access_token';
-            $options = [
-                'headers' => [
-                    'User-Agent' => 'Nextcloud Github integration'
-                ],
-            ];
-
-            if (count($params) > 0) {
-                if ($method === 'GET') {
-                    $paramsContent = http_build_query($params);
-                    $url .= '?' . $paramsContent;
-                } else {
-                    $options['body'] = $params;
-                }
-            }
-
-            if ($method === 'GET') {
-                $response = $client->get($url, $options);
-            } else if ($method === 'POST') {
-                $response = $client->post($url, $options);
-            } else if ($method === 'PUT') {
-                $response = $client->put($url, $options);
-            } else if ($method === 'DELETE') {
-                $response = $client->delete($url, $options);
-            }
-            $body = $response->getBody();
-            $respCode = $response->getStatusCode();
-
-            if ($respCode >= 400) {
-                return $this->l->t('OAuth access token refused');
-            } else {
-                parse_str($body, $resultArray);
-                return $resultArray;
-            }
-        } catch (\Exception $e) {
-            $this->logger->warning('Github OAuth error : '.$e, array('app' => $this->appName));
-            return $e;
-        }
     }
 }
