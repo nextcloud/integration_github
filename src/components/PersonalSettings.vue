@@ -98,7 +98,7 @@ export default {
 		},
 		onOAuthClick() {
 			const redirectEndpoint = generateUrl('/apps/github/oauth-redirect')
-			const redirectUri = OC.getProtocol() + '://' + OC.getHostName() + redirectEndpoint
+			const redirectUri = window.location.protocol + '//' + window.location.host + redirectEndpoint
 			const oauthState = Math.random().toString(36).substring(3)
 			const requestUrl = 'https://github.com/login/oauth/authorize?client_id='
 				+ encodeURIComponent(this.state.client_id)

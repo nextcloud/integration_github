@@ -57,7 +57,7 @@ export default {
 			state: loadState('github', 'admin-config'),
 			// to prevent some browsers to fill fields with remembered passwords
 			readonly: true,
-			redirect_uri: OC.getProtocol() + '://' + OC.getHostName(),
+			redirect_uri: window.location.protocol + '//' + window.location.host,
 		}
 	},
 
