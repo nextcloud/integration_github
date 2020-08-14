@@ -1,7 +1,7 @@
 <template>
 	<DashboardWidget :items="items"
 		:showMoreUrl="showMoreUrl"
-		:showMoreText="showMoreText"
+		:showMoreText="title"
 		:loading="state === 'loading'"
 		:itemMenu="itemMenu"
 		@unsubscribe="onUnsubscribe"
@@ -51,7 +51,12 @@ export default {
 		DashboardWidget,
 	},
 
-	props: [],
+	props: {
+		title: {
+			type: String,
+			required: true,
+		},
+	},
 
 	data() {
 		return {

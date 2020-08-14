@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	OCA.Dashboard.register('github', (el) => {
 		const View = Vue.extend(Dashboard)
 		new View({
-			propsData: {},
+			propsData: { title: t('github', 'Github notifications') },
 		}).$mount(el)
 	})
 
