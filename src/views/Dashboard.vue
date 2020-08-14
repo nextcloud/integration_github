@@ -1,6 +1,7 @@
 <template>
 	<DashboardWidget :items="items"
 		:showMoreUrl="showMoreUrl"
+		:showMoreText="showMoreText"
 		:loading="state === 'loading'"
 		:itemMenu="itemMenu"
 		@unsubscribe="onUnsubscribe"
@@ -56,6 +57,7 @@ export default {
 		return {
 			notifications: [],
 			showMoreUrl: 'https://github.com/notifications',
+			showMoreText: t('github', 'Github notifications'),
 			// lastDate could be computed but we want to keep the value when first notification is removed
 			// to avoid getting it again on next request
 			lastDate: null,

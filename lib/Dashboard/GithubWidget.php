@@ -49,8 +49,8 @@ class GithubWidget implements IWidget {
 	 * @inheritDoc
 	 */
 	public function getTitle(): string {
-        return $this->l10n->t('Github');
-        }
+		return $this->l10n->t('Github notifications');
+	}
 
 	/**
 	 * @inheritDoc
@@ -77,7 +77,7 @@ class GithubWidget implements IWidget {
 	 * @inheritDoc
 	 */
 	public function load(): void {
-        \OC_Util::addScript('github', 'github-dashboard');
-        \OC_Util::addStyle('github', 'dashboard');
-    }
+		\OC_Util::addScript('github', 'github-dashboard');
+		\OC_Util::addStyle('github', 'dashboard');
+	}
 }
