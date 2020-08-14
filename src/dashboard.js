@@ -17,10 +17,10 @@ import Dashboard from './views/Dashboard'
 
 document.addEventListener('DOMContentLoaded', function() {
 
-	OCA.Dashboard.register('github', (el) => {
+	OCA.Dashboard.register('github', (el, { widget }) => {
 		const View = Vue.extend(Dashboard)
 		new View({
-			propsData: { title: t('github', 'Github notifications') },
+			propsData: { title: widget.title },
 		}).$mount(el)
 	})
 
