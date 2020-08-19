@@ -2,6 +2,6 @@
 	background-image: url(./../img/app-dark.svg);
 }
 
-body.dark .icon-github {
+body.theme--dark .icon-github {
 	background-image: url(./../img/app.svg);
 }
