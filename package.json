@@ -36,7 +36,7 @@
     "@nextcloud/auth": "^1.3.0",
     "@nextcloud/vue": "^2.2.1",
     "@nextcloud/webpack-vue-config": "^1.1.0",
-    "@nextcloud/vue-dashboard": "^0.1.3",
+    "@nextcloud/vue-dashboard": "^0.1.6",
     "@nextcloud/axios": "^1.3.3",
     "@nextcloud/dialogs": "^1.4.0",
     "@nextcloud/moment": "^1.1.1",
