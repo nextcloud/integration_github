@@ -33,7 +33,6 @@ use OCA\Github\AppInfo\Application;
 
 class ConfigController extends Controller {
 
-
     private $userId;
     private $config;
     private $dbconnection;
@@ -65,34 +64,43 @@ class ConfigController extends Controller {
     }
 
     /**
-     * set config values
      * @NoAdminRequired
+     * Set config values
+     *
+     * @param array $values key/value pairs to store in user preferences
+     * @return DataResponse
      */
-    public function setConfig($values) {
+    public function setConfig(array $values): DataResponse {
         foreach ($values as $key => $value) {
             $this->config->setUserValue($this->userId, Application::APP_ID, $key, $value);
         }
-        $response = new DataResponse(1);
-        return $response;
+        return new DataResponse(1);
     }
 
     /**
-     * set admin config values
+     * Set admin config values
+     *
+     * @param array $values key/value pairs to store in app config
+     * @return DataResponse
      */
-    public function setAdminConfig($values) {
+    public function setAdminConfig(array $values): DataResponse {
         foreach ($values as $key => $value) {
             $this->config->setAppValue(Application::APP_ID, $key, $value);
         }
-        $response = new DataResponse(1);
-        return $response;
+        return new DataResponse(1);
     }
 
     /**
-     * receive oauth code and get oauth access token
      * @NoAdminRequired
      * @NoCSRFRequired
+     *
+     * Receive oauth code and get oauth access token
+     *
+     * @param string $code request code to use when requesting oauth token
+     * @param string $state value that was sent with original GET request. Used to check auth redirection is valid
+     * @return RedirectResponse to user settings
      */
-    public function oauthRedirect($code, $state) {
+    public function oauthRedirect(string $code, string $state): RedirectResponse {
         $configState = $this->config->getUserValue($this->userId, Application::APP_ID, 'oauth_state', '');
         $clientID = $this->config->getAppValue(Application::APP_ID, 'client_id', '');
         $clientSecret = $this->config->getAppValue(Application::APP_ID, 'client_secret', '');
@@ -107,7 +115,7 @@ class ConfigController extends Controller {
                 'code' => $code,
                 'state' => $state
             ], 'POST');
-            if (is_array($result) and isset($result['access_token'])) {
+            if (isset($result['access_token'])) {
                 $accessToken = $result['access_token'];
                 $this->config->setUserValue($this->userId, Application::APP_ID, 'token', $accessToken);
                 return new RedirectResponse(

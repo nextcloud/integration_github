@@ -36,11 +36,22 @@ class GithubAPIService {
         $this->client = $clientService->newClient();
     }
 
-    public function getAvatar($url) {
+    /**
+     * Request an avatar image
+     * @param string $url The avatar URL
+     * @return string Avatar image data
+     */
+    public function getAvatar(string $url): string {
         return $this->client->get($url)->getBody();
     }
 
-    public function getNotifications($accessToken, $since = null, $participating = null) {
+    /**
+     * Actually get notifications
+     * @param string $accessToken
+     * @param ?string $since optional date to filter notifications
+     * @param ?bool $participating optional param to only show notifications the user is participating to
+     */
+    public function getNotifications(string $accessToken, ?string $since, ?bool $participating): array {
         $params = [];
         if (is_null($since)) {
             $twoWeeksEarlier = new \DateTime();
@@ -56,7 +67,13 @@ class GithubAPIService {
         return $result;
     }
 
-    public function unsubscribeNotification($accessToken, $id) {
+    /**
+     * Unsubscribe a notification, does the same as in Github notifications page
+     * @param string $accessToken
+     * @param int $id Notification id
+     * @return array request result
+     */
+    public function unsubscribeNotification(string $accessToken, int $id): array {
         $params = [
             'ignored' => true
         ];
@@ -64,12 +81,25 @@ class GithubAPIService {
         return $result;
     }
 
-    public function markNotificationAsRead($accessToken, $id) {
+    /**
+     * Mark a notification as read
+     * @param string $accessToken
+     * @param int $id Notification id
+     * @return array request result
+     */
+    public function markNotificationAsRead(string $accessToken, int $id): array {
         $result = $this->request($accessToken, 'notifications/threads/' . $id, [], 'POST');
         return $result;
     }
 
-    public function request($accessToken, $endPoint, $params = [], $method = 'GET') {
+    /**
+     * Make the HTTP request
+     * @param string $accessToken
+     * @param string $endPoint The path to reach in api.github.com
+     * @param array $params Query parameters (key/val pairs)
+     * @param string $method HTTP query method
+     */
+    public function request(string $accessToken, string $endPoint, array $params = [], string $method = 'GET'): array {
         try {
             $url = 'https://api.github.com/' . $endPoint;
             $options = [
@@ -101,17 +131,22 @@ class GithubAPIService {
             $respCode = $response->getStatusCode();
 
             if ($respCode >= 400) {
-                return $this->l10n->t('Bad credentials');
+                return ['error', $this->l10n->t('Bad credentials')];
             } else {
                 return json_decode($body, true);
             }
         } catch (\Exception $e) {
             $this->logger->warning('Github API error : '.$e, array('app' => $this->appName));
-            return $e;
+            return ['error', $e];
         }
     }
 
-    public function requestOAuthAccessToken($params = [], $method = 'GET') {
+    /**
+     * Make the request to get an OAuth token
+     * @param array $params Query parameters (key/val pairs)
+     * @param string $method HTTP query method
+     */
+    public function requestOAuthAccessToken($params = [], $method = 'GET'): array {
         try {
             $url = 'https://github.com/login/oauth/access_token';
             $options = [
@@ -142,14 +177,14 @@ class GithubAPIService {
             $respCode = $response->getStatusCode();
 
             if ($respCode >= 400) {
-                return $this->l10n->t('OAuth access token refused');
+                return ['error' => $this->l10n->t('OAuth access token refused')];
             } else {
                 parse_str($body, $resultArray);
                 return $resultArray;
             }
         } catch (\Exception $e) {
             $this->logger->warning('Github OAuth error : '.$e, array('app' => $this->appName));
-            return $e;
+            return ['error' => $e];
         }
     }
 }
