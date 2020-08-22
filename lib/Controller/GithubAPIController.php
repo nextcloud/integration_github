@@ -31,6 +31,7 @@ use OCP\AppFramework\Http\DataResponse;
 use OCP\AppFramework\Controller;
 
 use OCA\Github\Service\GithubAPIService;
+use OCA\Github\AppInfo\Application;
 
 class GithubAPIController extends Controller {
 
@@ -52,13 +53,14 @@ class GithubAPIController extends Controller {
                                 $userId) {
         parent::__construct($AppName, $request);
         $this->userId = $userId;
+        $this->AppName = $AppName;
         $this->l10n = $l10n;
         $this->appData = $appData;
         $this->serverContainer = $serverContainer;
         $this->config = $config;
         $this->logger = $logger;
         $this->githubAPIService = $githubAPIService;
-        $this->accessToken = $this->config->getUserValue($this->userId, 'github', 'token', '');
+        $this->accessToken = $this->config->getUserValue($this->userId, Application::APP_ID, 'token', '');
     }
 
     /**

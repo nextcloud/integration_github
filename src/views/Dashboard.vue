@@ -21,17 +21,17 @@
 		<template v-slot:empty-content>
 			<div v-if="state === 'no-token'">
 				<a :href="settingsUrl">
-					{{ t('github', 'Click here to configure the access to your Github account.') }}
+					{{ t('integration_github', 'Click here to configure the access to your Github account.') }}
 				</a>
 			</div>
 			<div v-else-if="state === 'error'">
 				<a :href="settingsUrl">
-					{{ t('github', 'Incorrect access token.') }}
-					{{ t('github', 'Click here to configure the access to your Github account.') }}
+					{{ t('integration_github', 'Incorrect access token.') }}
+					{{ t('integration_github', 'Click here to configure the access to your Github account.') }}
 				</a>
 			</div>
 			<div v-else-if="state === 'ok'">
-				{{ t('github', 'Nothing to show') }}
+				{{ t('integration_github', 'Nothing to show') }}
 			</div>
 		</template>
 	</DashboardWidget>
@@ -62,7 +62,7 @@ export default {
 		return {
 			notifications: [],
 			showMoreUrl: 'https://github.com/notifications',
-			showMoreText: t('github', 'Github notifications'),
+			showMoreText: t('integration_github', 'Github notifications'),
 			// lastDate could be computed but we want to keep the value when first notification is removed
 			// to avoid getting it again on next request
 			lastDate: null,
@@ -72,11 +72,11 @@ export default {
 			darkThemeColor: OCA.Accessibility.theme === 'dark' ? '181818' : 'ffffff',
 			itemMenu: {
 				markRead: {
-					text: t('github', 'Mark as read'),
+					text: t('integration_github', 'Mark as read'),
 					icon: 'icon-checkmark',
 				},
 				unsubscribe: {
-					text: t('github', 'Unsubscribe'),
+					text: t('integration_github', 'Unsubscribe'),
 					icon: 'icon-github-unsubscribe',
 				},
 			},
@@ -118,7 +118,7 @@ export default {
 					since: this.lastDate,
 				}
 			}
-			axios.get(generateUrl('/apps/github/notifications'), req).then((response) => {
+			axios.get(generateUrl('/apps/integration_github/notifications'), req).then((response) => {
 				this.processNotifications(response.data)
 				this.state = 'ok'
 			}).catch((error) => {
@@ -126,7 +126,7 @@ export default {
 				if (error.response && error.response.status === 400) {
 					this.state = 'no-token'
 				} else if (error.response && error.response.status === 401) {
-					showError(t('github', 'Failed to get Github notifications.'))
+					showError(t('integration_github', 'Failed to get Github notifications.'))
 					this.state = 'error'
 				} else {
 					// there was an error in notif processing
@@ -174,15 +174,15 @@ export default {
 			this.editNotification(item, 'mark-read')
 		},
 		editNotification(item, action) {
-			axios.put(generateUrl('/apps/github/notifications/' + item.id + '/' + action)).then((response) => {
+			axios.put(generateUrl('/apps/integration_github/notifications/' + item.id + '/' + action)).then((response) => {
 			}).catch((error) => {
-				showError(t('github', 'Failed to edit Github notification.'))
+				showError(t('integration_github', 'Failed to edit Github notification.'))
 				console.debug(error)
 			})
 		},
 		getRepositoryAvatarUrl(n) {
 			return (n.repository && n.repository.owner && n.repository.owner.avatar_url)
-				? generateUrl('/apps/github/avatar?') + encodeURIComponent('url') + '=' + encodeURIComponent(n.repository.owner.avatar_url)
+				? generateUrl('/apps/integration_github/avatar?') + encodeURIComponent('url') + '=' + encodeURIComponent(n.repository.owner.avatar_url)
 				: ''
 		},
 		getNotificationTarget(n) {
@@ -195,22 +195,22 @@ export default {
 			// reason : mention, comment, review_requested, state_change
 			if (n.reason === 'mention') {
 				if (n.subject.type === 'PullRequest') {
-					return t('github', 'You were mentioned in a pull request')
+					return t('integration_github', 'You were mentioned in a pull request')
 				} else if (n.subject.type === 'Issue') {
-					return t('github', 'You were mentioned in an issue')
+					return t('integration_github', 'You were mentioned in an issue')
 				}
 			} else if (n.reason === 'comment') {
-				return t('github', 'Comment')
+				return t('integration_github', 'Comment')
 			} else if (n.reason === 'review_requested') {
-				return t('github', 'Your review was requested')
+				return t('integration_github', 'Your review was requested')
 			} else if (n.reason === 'state_change') {
 				if (n.subject.type === 'PullRequest') {
-					return t('github', 'Pull request state changed')
+					return t('integration_github', 'Pull request state changed')
 				} else if (n.subject.type === 'Issue') {
-					return t('github', 'Issue state changed')
+					return t('integration_github', 'Issue state changed')
 				}
 			} else if (n.reason === 'assign') {
-				return t('github', 'You are assigned')
+				return t('integration_github', 'You are assigned')
 			}
 			return ''
 		},
@@ -227,9 +227,9 @@ export default {
 		},
 		getNotificationTypeImage(n) {
 			if (n.subject.type === 'PullRequest') {
-				return generateUrl('/svg/github/pull_request?color=ffffff')
+				return generateUrl('/svg/integration_github/pull_request?color=ffffff')
 			} else if (n.subject.type === 'Issue') {
-				return generateUrl('/svg/github/issue?color=ffffff')
+				return generateUrl('/svg/integration_github/issue?color=ffffff')
 			}
 			return ''
 		},

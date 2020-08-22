@@ -2,35 +2,39 @@
 	<div id="github_prefs" class="section">
 		<h2>
 			<a class="icon icon-github" />
-			{{ t('github', 'Github') }}
+			{{ t('integration_github', 'Github integration') }}
 		</h2>
 		<p class="settings-hint">
-			{{ t('github', 'If you want to allow your Nextcloud users to use OAuth to authenticate to https://github.com, create a Github application in your Github settings and set the ID and secret here.') }}
+			{{ t('integration_github', 'If you want to allow your Nextcloud users to use OAuth to authenticate to https://github.com, create an OAuth application in your Github settings.') }}
+			(<a href="https://github.com/settings/developers" class="mylink">{{ t('integration_github', 'direct link to Github OAuth settings') }}</a>)
 			<br>
-			{{ t('github', 'Make sure you set the "redirect_uri" to') }}
-			<br><b> {{ redirect_uri }} </b>
+			{{ t('integration_github', 'Make sure you set the "redirect_uri" to') }}
+			<br>
+			<b> {{ redirect_uri }} </b>
+			<br>
+			{{ t('integration_github', 'Then set the ID and secret below.') }}
 		</p>
 		<div class="grid-form">
 			<label for="github-client-id">
 				<a class="icon icon-category-auth" />
-				{{ t('github', 'Github application client ID') }}
+				{{ t('integration_github', 'Github application client ID') }}
 			</label>
 			<input id="github-client-id"
 				v-model="state.client_id"
 				type="password"
 				:readonly="readonly"
-				:placeholder="t('github', 'Client ID or your Github application')"
+				:placeholder="t('integration_github', 'Client ID or your Github application')"
 				@focus="readonly = false"
 				@input="onInput">
 			<label for="github-client-secret">
 				<a class="icon icon-category-auth" />
-				{{ t('github', 'Github application client secret') }}
+				{{ t('integration_github', 'Github application client secret') }}
 			</label>
 			<input id="github-client-secret"
 				v-model="state.client_secret"
 				type="password"
 				:readonly="readonly"
-				:placeholder="t('github', 'Client secret or your Github application')"
+				:placeholder="t('integration_github', 'Client secret or your Github application')"
 				@input="onInput"
 				@focus="readonly = false">
 		</div>
@@ -54,7 +58,7 @@ export default {
 
 	data() {
 		return {
-			state: loadState('github', 'admin-config'),
+			state: loadState('integration_github', 'admin-config'),
 			// to prevent some browsers to fill fields with remembered passwords
 			readonly: true,
 			redirect_uri: OC.getProtocol() + '://' + OC.getHostName(),
@@ -81,14 +85,14 @@ export default {
 					client_secret: this.state.client_secret,
 				},
 			}
-			const url = generateUrl('/apps/github/admin-config')
+			const url = generateUrl('/apps/integration_github/admin-config')
 			axios.put(url, req)
 				.then((response) => {
-					showSuccess(t('github', 'Github admin options saved.'))
+					showSuccess(t('integration_github', 'Github admin options saved.'))
 				})
 				.catch((error) => {
 					showError(
-						t('github', 'Failed to save Github admin options')
+						t('integration_github', 'Failed to save Github admin options')
 						+ ': ' + error.response.request.responseText
 					)
 				})
@@ -127,5 +131,13 @@ export default {
 }
 body.dark .icon-github {
 	background-image: url(./../../img/app.svg);
+}
+.mylink {
+	color: var(--color-main-text);
+
+	&:hover,
+	&:focus {
+		border-bottom: 2px solid var(--color-text-maxcontrast);
+	}
 }
 </style>

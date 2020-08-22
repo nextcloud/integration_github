@@ -1,7 +1,7 @@
 {
-  "name": "github",
+  "name": "integration_github",
   "version": "0.0.1",
-  "description": "Github app",
+  "description": "Github integration",
   "main": "index.js",
   "directories": {
     "test": "tests"

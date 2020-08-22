@@ -24,8 +24,8 @@
 namespace OCA\Github\Dashboard;
 
 use OCP\Dashboard\IWidget;
-
 use OCP\IL10N;
+use OCA\Github\AppInfo\Application;
 
 class GithubWidget implements IWidget {
 
@@ -42,7 +42,7 @@ class GithubWidget implements IWidget {
 	 * @inheritDoc
 	 */
 	public function getId(): string {
-		return 'github';
+		return 'github_notifications';
 	}
 
 	/**
@@ -77,7 +77,7 @@ class GithubWidget implements IWidget {
 	 * @inheritDoc
 	 */
 	public function load(): void {
-		\OC_Util::addScript('github', 'github-dashboard');
-		\OC_Util::addStyle('github', 'dashboard');
+		\OC_Util::addScript(Application::APP_ID, 'integration_github-dashboard');
+		\OC_Util::addStyle(Application::APP_ID, 'dashboard');
 	}
 }

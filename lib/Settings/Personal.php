@@ -9,6 +9,7 @@ use OCP\Settings\ISettings;
 use OCP\Util;
 use OCP\IURLGenerator;
 use OCP\IInitialStateService;
+use OCA\Github\AppInfo\Application;
 
 class Personal implements ISettings {
 
@@ -39,11 +40,11 @@ class Personal implements ISettings {
      * @return TemplateResponse
      */
     public function getForm() {
-        $token = $this->config->getUserValue($this->userId, 'github', 'token', '');
+        $token = $this->config->getUserValue($this->userId, Application::APP_ID, 'token', '');
 
         // for OAuth
-        $clientID = $this->config->getAppValue('github', 'client_id', '');
-        $clientSecret = $this->config->getAppValue('github', 'client_secret', '') !== '';
+        $clientID = $this->config->getAppValue(Application::APP_ID, 'client_id', '');
+        $clientSecret = $this->config->getAppValue(Application::APP_ID, 'client_secret', '') !== '';
 
         $userConfig = [
             'token' => $token,
@@ -51,7 +52,7 @@ class Personal implements ISettings {
             'client_secret' => $clientSecret,
         ];
         $this->initialStateService->provideInitialState($this->appName, 'user-config', $userConfig);
-        $response = new TemplateResponse('github', 'personalSettings');
+        $response = new TemplateResponse(Application::APP_ID, 'personalSettings');
         return $response;
     }
 

@@ -2,26 +2,26 @@
 	<div id="github_prefs" class="section">
 		<h2>
 			<a class="icon icon-github" />
-			{{ t('github', 'Github') }}
+			{{ t('integration_github', 'Github integration') }}
 		</h2>
 		<p class="settings-hint">
-			{{ t('github', 'When you create a personal access token yourself, give it at least "read:user", "user:email" and "notifications" permissions.') }}
+			{{ t('integration_github', 'When you create a personal access token yourself, give it at least "read:user", "user:email" and "notifications" permissions.') }}
 		</p>
 		<div class="github-grid-form">
 			<label for="github-token">
 				<a class="icon icon-category-auth" />
-				{{ t('github', 'Github access token') }}
+				{{ t('integration_github', 'Github access token') }}
 			</label>
 			<input id="github-token"
 				v-model="state.token"
 				type="password"
 				:readonly="readonly"
-				:placeholder="t('github', 'Get a token in Github settings')"
+				:placeholder="t('integration_github', 'Get a token in Github settings')"
 				@input="onInput"
 				@focus="readonly = false">
 			<button v-if="showOAuth" id="github-oauth" @click="onOAuthClick">
 				<span class="icon icon-external" />
-				{{ t('github', 'Get access with OAuth') }}
+				{{ t('integration_github', 'Get access with OAuth') }}
 			</button>
 		</div>
 	</div>
@@ -44,7 +44,7 @@ export default {
 
 	data() {
 		return {
-			state: loadState('github', 'user-config'),
+			state: loadState('integration_github', 'user-config'),
 			readonly: true,
 		}
 	},
@@ -60,12 +60,13 @@ export default {
 
 	mounted() {
 		const paramString = window.location.search.substr(1)
+		// eslint-disable-next-line
 		const urlParams = new URLSearchParams(paramString)
 		const ghToken = urlParams.get('githubToken')
 		if (ghToken === 'success') {
-			showSuccess(t('github', 'Github OAuth access token successfully retrieved!'))
+			showSuccess(t('integration_github', 'Github OAuth access token successfully retrieved!'))
 		} else if (ghToken === 'error') {
-			showError(t('github', 'Github OAuth error:') + ' ' + urlParams.get('message'))
+			showError(t('integration_github', 'Github OAuth error:') + ' ' + urlParams.get('message'))
 		}
 	},
 
@@ -82,14 +83,14 @@ export default {
 					token: this.state.token,
 				},
 			}
-			const url = generateUrl('/apps/github/config')
+			const url = generateUrl('/apps/integration_github/config')
 			axios.put(url, req)
 				.then((response) => {
-					showSuccess(t('github', 'Github options saved.'))
+					showSuccess(t('integration_github', 'Github options saved.'))
 				})
 				.catch((error) => {
 					showError(
-						t('github', 'Failed to save Github options')
+						t('integration_github', 'Failed to save Github options')
 						+ ': ' + error.response.request.responseText
 					)
 				})
@@ -97,7 +98,7 @@ export default {
 				})
 		},
 		onOAuthClick() {
-			const redirectEndpoint = generateUrl('/apps/github/oauth-redirect')
+			const redirectEndpoint = generateUrl('/apps/integration_github/oauth-redirect')
 			const redirectUri = OC.getProtocol() + '://' + OC.getHostName() + redirectEndpoint
 			const oauthState = Math.random().toString(36).substring(3)
 			const requestUrl = 'https://github.com/login/oauth/authorize?client_id='
@@ -111,14 +112,14 @@ export default {
 					oauth_state: oauthState,
 				},
 			}
-			const url = generateUrl('/apps/github/config')
+			const url = generateUrl('/apps/integration_github/config')
 			axios.put(url, req)
 				.then((response) => {
 					window.location.replace(requestUrl)
 				})
 				.catch((error) => {
 					showError(
-						t('github', 'Failed to save Github OAuth state')
+						t('integration_github', 'Failed to save Github OAuth state')
 						+ ': ' + error.response.request.responseText
 					)
 				})

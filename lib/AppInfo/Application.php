@@ -27,13 +27,15 @@ use OCA\Github\Dashboard\GithubWidget;
  */
 class Application extends App implements IBootstrap {
 
+    public const APP_ID = 'integration_github';
+
     /**
      * Constructor
      *
      * @param array $urlParams
      */
     public function __construct(array $urlParams = []) {
-        parent::__construct('github', $urlParams);
+        parent::__construct(self::APP_ID, $urlParams);
 
         $container = $this->getContainer();
     }

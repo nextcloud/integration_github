@@ -9,6 +9,7 @@ use OCP\Settings\ISettings;
 use OCP\Util;
 use OCP\IURLGenerator;
 use OCP\IInitialStateService;
+use OCA\Github\AppInfo\Application;
 
 class Admin implements ISettings {
 
@@ -39,15 +40,15 @@ class Admin implements ISettings {
      * @return TemplateResponse
      */
     public function getForm() {
-        $clientID = $this->config->getAppValue('github', 'client_id', '');
-        $clientSecret = $this->config->getAppValue('github', 'client_secret', '');
+        $clientID = $this->config->getAppValue(Application::APP_ID, 'client_id', '');
+        $clientSecret = $this->config->getAppValue(Application::APP_ID, 'client_secret', '');
 
         $adminConfig = [
             'client_id' => $clientID,
             'client_secret' => $clientSecret
         ];
         $this->initialStateService->provideInitialState($this->appName, 'admin-config', $adminConfig);
-        return new TemplateResponse('github', 'adminSettings');
+        return new TemplateResponse(Application::APP_ID, 'adminSettings');
     }
 
     public function getSection() {

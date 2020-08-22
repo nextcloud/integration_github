@@ -1,8 +1,9 @@
 <?xml version="1.0"?>
 <info>
-    <id>github</id>
-    <name>Github</name>
-    <summary> </summary><description> </description>
+    <id>integration_github</id>
+    <name>Github integration</name>
+    <summary>Integration of Github software development management service</summary>
+    <description><![CDATA[Github integration provides a dashboard widget displaying your important notifications.]]></description>
     <version>0.0.1</version>
     <licence>agpl</licence>
     <author>Julien Veyssier</author>
@@ -13,6 +14,7 @@
     <category>integration</category>
     <website>https://github.com/nextcloud/github</website>
     <bugs>https://github.com/nextcloud/github/issues</bugs>
+    <screenshot>https://github.com/eneiluj/github/blob/master/img/screenshot1.jpg</screenshot>
     <dependencies>
         <database min-version="9.4">pgsql</database>
         <database>sqlite</database>
