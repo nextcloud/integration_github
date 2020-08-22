@@ -17,7 +17,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/nextcloud/github"
+    "url": "https://github.com/nextcloud/integration_github"
   },
   "keywords": [
     "github"
@@ -25,9 +25,9 @@
   "author": "Julien Veyssier",
   "license": "AGPL-3.0",
   "bugs": {
-    "url": "https://github.com/nextcloud/github/issues"
+    "url": "https://github.com/nextcloud/integration_github/issues"
   },
-  "homepage": "https://github.com/nextcloud/github",
+  "homepage": "https://github.com/nextcloud/integration_github",
   "browserslist": [
     "extends @nextcloud/browserslist-config"
   ],
