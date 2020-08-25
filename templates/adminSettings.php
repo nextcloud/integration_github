@@ -1,5 +1,5 @@
 <?php
-script('integration_github', 'integration_github-adminSettings');
+script(OCA\Github\AppInfo\Application::APP_ID, 'integration_github-adminSettings');
 ?>
 
 <div id="github_prefs"></div>
