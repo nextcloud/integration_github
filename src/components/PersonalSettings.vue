@@ -24,6 +24,16 @@
 				{{ t('integration_github', 'Get access with OAuth') }}
 			</button>
 		</div>
+		<br>
+		<div id="github-search-block">
+			<input
+				id="search-github"
+				type="checkbox"
+				class="checkbox"
+				:checked="this.state.search_enabled"
+				@input="onSearchChange">
+			<label for="search-github">{{ t('integration_github', 'Enable searching for repositories, issues and pull requests.') }}</label>
+		</div>
 	</div>
 </template>
 
@@ -71,16 +81,20 @@ export default {
 	},
 
 	methods: {
+		onSearchChange(e) {
+			this.state.search_enabled = e.target.checked
+			this.saveOptions()
+		},
 		onInput() {
-			const that = this
-			delay(function() {
-				that.saveOptions()
+			delay(() => {
+				this.saveOptions()
 			}, 2000)()
 		},
 		saveOptions() {
 			const req = {
 				values: {
 					token: this.state.token,
+					search_enabled: this.state.search_enabled ? '1' : '0',
 				},
 			}
 			const url = generateUrl('/apps/integration_github/config')
@@ -131,6 +145,9 @@ export default {
 </script>
 
 <style scoped lang="scss">
+#github-search-block {
+	margin-left: 30px;
+}
 .github-grid-form label {
 	line-height: 38px;
 }

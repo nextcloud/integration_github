@@ -10,6 +10,7 @@
 namespace OCA\Github\AppInfo;
 
 use OCP\IContainer;
+use OCP\IUser;
 
 use OCP\AppFramework\App;
 use OCP\AppFramework\IAppContainer;
@@ -17,8 +18,8 @@ use OCP\AppFramework\Bootstrap\IRegistrationContext;
 use OCP\AppFramework\Bootstrap\IBootContext;
 use OCP\AppFramework\Bootstrap\IBootstrap;
 
-use OCA\Github\Controller\PageController;
 use OCA\Github\Dashboard\GithubWidget;
+use OCA\Github\Search\GithubSearchProvider;
 
 /**
  * Class Application
@@ -42,6 +43,9 @@ class Application extends App implements IBootstrap {
 
     public function register(IRegistrationContext $context): void {
         $context->registerDashboardWidget(GithubWidget::class);
+
+        $config = $this->getContainer()->query(\OCP\IConfig::class);
+        $context->registerSearchProvider(GithubSearchProvider::class);
     }
 
     public function boot(IBootContext $context): void {
