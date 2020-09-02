@@ -3,6 +3,10 @@ const path = require('path')
 const webpack = require('webpack')
 const webpackConfig = require('@nextcloud/webpack-vue-config')
 
+if (webpackConfig.entry && webpackConfig.entry.main) {
+    delete webpackConfig.entry.main
+}
+
 const config = {
     entry: {
 		personalSettings: path.join(__dirname, 'src', 'personalSettings.js'),
