@@ -77,7 +77,7 @@ class GithubSearchProvider implements IProvider {
 	 * @inheritDoc
 	 */
 	public function getName(): string {
-		return $this->l10n->t('Github');
+		return $this->l10n->t('GitHub');
 	}
 
 	/**

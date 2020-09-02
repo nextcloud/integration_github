@@ -1,8 +1,8 @@
 <template>
 	<div id="github_prefs" class="section">
 		<h2>
-			<a class="icon icon-github" />
-			{{ t('integration_github', 'Github integration') }}
+			<a class="icon icon-github-settings" />
+			{{ t('integration_github', 'GitHub integration') }}
 		</h2>
 		<p class="settings-hint">
 			{{ t('integration_github', 'When you create a personal access token yourself, give it at least "read:user", "user:email" and "notifications" permissions.') }}
@@ -10,13 +10,13 @@
 		<div class="github-grid-form">
 			<label for="github-token">
 				<a class="icon icon-category-auth" />
-				{{ t('integration_github', 'Github access token') }}
+				{{ t('integration_github', 'GitHub access token') }}
 			</label>
 			<input id="github-token"
 				v-model="state.token"
 				type="password"
 				:readonly="readonly"
-				:placeholder="t('integration_github', 'Get a token in Github settings')"
+				:placeholder="t('integration_github', 'Get a token in GitHub settings')"
 				@input="onInput"
 				@focus="readonly = false">
 			<button v-if="showOAuth" id="github-oauth" @click="onOAuthClick">
@@ -74,9 +74,9 @@ export default {
 		const urlParams = new URLSearchParams(paramString)
 		const ghToken = urlParams.get('githubToken')
 		if (ghToken === 'success') {
-			showSuccess(t('integration_github', 'Github OAuth access token successfully retrieved!'))
+			showSuccess(t('integration_github', 'GitHub OAuth access token successfully retrieved!'))
 		} else if (ghToken === 'error') {
-			showError(t('integration_github', 'Github OAuth error:') + ' ' + urlParams.get('message'))
+			showError(t('integration_github', 'GitHub OAuth error:') + ' ' + urlParams.get('message'))
 		}
 	},
 
@@ -100,11 +100,11 @@ export default {
 			const url = generateUrl('/apps/integration_github/config')
 			axios.put(url, req)
 				.then((response) => {
-					showSuccess(t('integration_github', 'Github options saved.'))
+					showSuccess(t('integration_github', 'GitHub options saved.'))
 				})
 				.catch((error) => {
 					showError(
-						t('integration_github', 'Failed to save Github options')
+						t('integration_github', 'Failed to save GitHub options')
 						+ ': ' + error.response.request.responseText
 					)
 				})
@@ -133,7 +133,7 @@ export default {
 				})
 				.catch((error) => {
 					showError(
-						t('integration_github', 'Failed to save Github OAuth state')
+						t('integration_github', 'Failed to save GitHub OAuth state')
 						+ ': ' + error.response.request.responseText
 					)
 				})
@@ -170,14 +170,14 @@ export default {
 #github_prefs .grid-form .icon {
 	margin-bottom: -3px;
 }
-.icon-github {
-	background-image: url(./../../img/app-dark.svg);
+.icon-github-settings {
+	background-image: url('./../../img/app-dark.svg');
 	background-size: 23px 23px;
 	height: 23px;
 	margin-bottom: -4px;
 }
 
-body.dark .icon-github {
-	background-image: url(./../../img/app.svg);
+body.theme--dark .icon-github-settings {
+	background-image: url('./../../img/app.svg');
 }
 </style>

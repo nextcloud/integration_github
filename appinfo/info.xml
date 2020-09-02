@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <info>
     <id>integration_github</id>
-    <name>Github integration</name>
+    <name>GitHub integration</name>
     <summary>Integration of Github software development management service</summary>
     <description><![CDATA[Github integration provides a dashboard widget displaying your important notifications and a unified search provider to search for repositories, issues and pull requests.]]></description>
     <version>0.0.1</version>

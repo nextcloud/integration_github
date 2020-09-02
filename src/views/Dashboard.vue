@@ -21,13 +21,13 @@
 		<template v-slot:empty-content>
 			<div v-if="state === 'no-token'">
 				<a :href="settingsUrl">
-					{{ t('integration_github', 'Click here to configure the access to your Github account.') }}
+					{{ t('integration_github', 'Click here to configure the access to your GitHub account.') }}
 				</a>
 			</div>
 			<div v-else-if="state === 'error'">
 				<a :href="settingsUrl">
 					{{ t('integration_github', 'Incorrect access token.') }}
-					{{ t('integration_github', 'Click here to configure the access to your Github account.') }}
+					{{ t('integration_github', 'Click here to configure the access to your GitHub account.') }}
 				</a>
 			</div>
 			<div v-else-if="state === 'ok'">
@@ -62,7 +62,7 @@ export default {
 		return {
 			notifications: [],
 			showMoreUrl: 'https://github.com/notifications',
-			showMoreText: t('integration_github', 'Github notifications'),
+			showMoreText: t('integration_github', 'GitHub notifications'),
 			// lastDate could be computed but we want to keep the value when first notification is removed
 			// to avoid getting it again on next request
 			lastDate: null,
@@ -126,7 +126,7 @@ export default {
 				if (error.response && error.response.status === 400) {
 					this.state = 'no-token'
 				} else if (error.response && error.response.status === 401) {
-					showError(t('integration_github', 'Failed to get Github notifications.'))
+					showError(t('integration_github', 'Failed to get GitHub notifications.'))
 					this.state = 'error'
 				} else {
 					// there was an error in notif processing
@@ -176,7 +176,7 @@ export default {
 		editNotification(item, action) {
 			axios.put(generateUrl('/apps/integration_github/notifications/' + item.id + '/' + action)).then((response) => {
 			}).catch((error) => {
-				showError(t('integration_github', 'Failed to edit Github notification.'))
+				showError(t('integration_github', 'Failed to edit GitHub notification.'))
 				console.debug(error)
 			})
 		},
