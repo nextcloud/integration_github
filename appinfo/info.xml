@@ -12,9 +12,10 @@
         <developer>https://github.com/eneiluj/integration_github/wikis/devdoc</developer>
     </documentation>
     <category>integration</category>
+    <category>dashboard</category>
     <website>https://github.com/eneiluj/integration_github</website>
     <bugs>https://github.com/eneiluj/integration_github/issues</bugs>
-    <screenshot>https://github.com/eneiluj/integration_github/blob/master/img/screenshot1.jpg</screenshot>
+    <screenshot>https://github.com/eneiluj/integration_github/raw/master/img/screenshot1.jpg</screenshot>
     <dependencies>
         <database min-version="9.4">pgsql</database>
         <database>sqlite</database>
