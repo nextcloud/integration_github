@@ -5,7 +5,7 @@ build_dir=/tmp/build
 sign_dir=/tmp/sign
 cert_dir=$(HOME)/.nextcloud/certificates
 webserveruser ?= www-data
-occ_dir ?= /var/www/html/n19
+occ_dir ?= /var/www/html/dev/server
 
 build_tools_directory=$(CURDIR)/build/tools
 npm=$(shell which npm 2> /dev/null)
@@ -98,8 +98,6 @@ appstore: clean
 	--exclude=ci \
 	--exclude=vendor/bin \
 	$(project_dir) $(sign_dir)/$(app_name)
-	# generate info.xml with translations
-	cd $(sign_dir)/$(app_name)/l10n/descriptions && ./gen_info.xml.sh && mv info.xml ../../appinfo/
 	@if [ -f $(cert_dir)/$(app_name).key ]; then \
 		sudo chown $(webserveruser) $(sign_dir)/$(app_name)/appinfo ;\
 		sudo -u $(webserveruser) php $(occ_dir)/occ integrity:sign-app --privateKey=$(cert_dir)/$(app_name).key --certificate=$(cert_dir)/$(app_name).crt --path=$(sign_dir)/$(app_name)/ ;\

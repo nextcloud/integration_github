@@ -30,7 +30,7 @@
 				id="search-github"
 				type="checkbox"
 				class="checkbox"
-				:checked="this.state.search_enabled"
+				:checked="state.search_enabled"
 				@input="onSearchChange">
 			<label for="search-github">{{ t('integration_github', 'Enable searching for repositories, issues and pull requests.') }}</label>
 		</div>

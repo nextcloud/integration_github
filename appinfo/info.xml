@@ -3,18 +3,18 @@
     <id>integration_github</id>
     <name>Github integration</name>
     <summary>Integration of Github software development management service</summary>
-    <description><![CDATA[Github integration provides a dashboard widget displaying your important notifications.]]></description>
+    <description><![CDATA[Github integration provides a dashboard widget displaying your important notifications and a unified search provider to search for repositories, issues and pull requests.]]></description>
     <version>0.0.1</version>
     <licence>agpl</licence>
     <author>Julien Veyssier</author>
     <namespace>Github</namespace>
     <documentation>
-        <developer>https://github.com/nextcloud/integration_github/wikis/devdoc</developer>
+        <developer>https://github.com/eneiluj/integration_github/wikis/devdoc</developer>
     </documentation>
     <category>integration</category>
-    <website>https://github.com/nextcloud/integration_github</website>
-    <bugs>https://github.com/nextcloud/integration_github/issues</bugs>
-    <screenshot>https://github.com/nextcloud/integration_github/blob/master/img/screenshot1.jpg</screenshot>
+    <website>https://github.com/eneiluj/integration_github</website>
+    <bugs>https://github.com/eneiluj/integration_github/issues</bugs>
+    <screenshot>https://github.com/eneiluj/integration_github/blob/master/img/screenshot1.jpg</screenshot>
     <dependencies>
         <database min-version="9.4">pgsql</database>
         <database>sqlite</database>

@@ -1,9 +1,9 @@
 <template>
 	<DashboardWidget :items="items"
-		:showMoreUrl="showMoreUrl"
-		:showMoreText="title"
+		:show-more-url="showMoreUrl"
+		:show-more-text="title"
 		:loading="state === 'loading'"
-		:itemMenu="itemMenu"
+		:item-menu="itemMenu"
 		@unsubscribe="onUnsubscribe"
 		@markRead="onMarkRead">
 		<!-- if we want to override the item component -->
