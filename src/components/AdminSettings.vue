@@ -2,11 +2,11 @@
 	<div id="github_prefs" class="section">
 		<h2>
 			<a class="icon icon-github" />
-			{{ t('integration_github', 'Github integration') }}
+			{{ t('integration_github', 'GitHub integration') }}
 		</h2>
 		<p class="settings-hint">
-			{{ t('integration_github', 'If you want to allow your Nextcloud users to use OAuth to authenticate to https://github.com, create an OAuth application in your Github settings.') }}
-			(<a href="https://github.com/settings/developers" class="mylink">{{ t('integration_github', 'direct link to Github OAuth settings') }}</a>)
+			{{ t('integration_github', 'If you want to allow your Nextcloud users to use OAuth to authenticate to https://github.com, create an OAuth application in your GitHub settings.') }}
+			(<a href="https://github.com/settings/developers" class="mylink">{{ t('integration_github', 'direct link to GitHub OAuth settings') }}</a>)
 			<br>
 			{{ t('integration_github', 'Make sure you set the "redirect_uri" to') }}
 			<br>
@@ -17,18 +17,18 @@
 		<div class="grid-form">
 			<label for="github-client-id">
 				<a class="icon icon-category-auth" />
-				{{ t('integration_github', 'Github application client ID') }}
+				{{ t('integration_github', 'GitHub application client ID') }}
 			</label>
 			<input id="github-client-id"
 				v-model="state.client_id"
 				type="password"
 				:readonly="readonly"
-				:placeholder="t('integration_github', 'Client ID or your Github application')"
+				:placeholder="t('integration_github', 'Client ID or your GitHub application')"
 				@focus="readonly = false"
 				@input="onInput">
 			<label for="github-client-secret">
 				<a class="icon icon-category-auth" />
-				{{ t('integration_github', 'Github application client secret') }}
+				{{ t('integration_github', 'GitHub application client secret') }}
 			</label>
 			<input id="github-client-secret"
 				v-model="state.client_secret"

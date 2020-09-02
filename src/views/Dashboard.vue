@@ -21,13 +21,13 @@
 		<template v-slot:empty-content>
 			<div v-if="state === 'no-token'">
 				<a :href="settingsUrl">
-					{{ t('integration_github', 'Click here to configure the access to your Github account.') }}
+					{{ t('integration_github', 'Click here to configure the access to your GitHub account.') }}
 				</a>
 			</div>
 			<div v-else-if="state === 'error'">
 				<a :href="settingsUrl">
 					{{ t('integration_github', 'Incorrect access token.') }}
-					{{ t('integration_github', 'Click here to configure the access to your Github account.') }}
+					{{ t('integration_github', 'Click here to configure the access to your GitHub account.') }}
 				</a>
 			</div>
 			<div v-else-if="state === 'ok'">
