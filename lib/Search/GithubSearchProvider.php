@@ -119,7 +119,7 @@ class GithubSearchProvider implements IProvider {
 
 		$searchResults = $this->service->search($accessToken, $term);
 
-		$formattedResults = \array_map(function (array $entry) use ($thumbnailUrl):GithubSearchResultEntry {
+		$formattedResults = \array_map(function (array $entry) use ($thumbnailUrl): GithubSearchResultEntry {
 			return new GithubSearchResultEntry(
 				$thumbnailUrl,
 				$this->getMainText($entry),

@@ -21,7 +21,7 @@ class GithubAPIService {
 	private $logger;
 
 	/**
-	 * Service to make requests to Github v3 (JSON) API
+	 * Service to make requests to GitHub v3 (JSON) API
 	 */
 	public function __construct (
 		string $appName,
@@ -68,7 +68,7 @@ class GithubAPIService {
 	}
 
 	/**
-	 * Unsubscribe a notification, does the same as in Github notifications page
+	 * Unsubscribe a notification, does the same as in GitHub notifications page
 	 * @param string $accessToken
 	 * @param int $id Notification id
 	 * @return array request result
@@ -93,7 +93,7 @@ class GithubAPIService {
 	}
 
 	/**
-	 * Search Github
+	 * Search GitHub
 	 * @param string $accessToken
 	 * @param string $query What to search for
 	 * @return array request result
@@ -171,7 +171,7 @@ class GithubAPIService {
 			$options = [
 				'headers' => [
 					'Authorization' => 'token ' . $accessToken,
-					'User-Agent' => 'Nextcloud Github integration'
+					'User-Agent' => 'Nextcloud GitHub integration'
 				],
 			];
 
@@ -202,7 +202,7 @@ class GithubAPIService {
 				return json_decode($body, true);
 			}
 		} catch (\Exception $e) {
-			$this->logger->warning('Github API error : '.$e, array('app' => $this->appName));
+			$this->logger->warning('GitHub API error : '.$e, array('app' => $this->appName));
 			return ['error', $e];
 		}
 	}
@@ -217,7 +217,7 @@ class GithubAPIService {
 			$url = 'https://github.com/login/oauth/access_token';
 			$options = [
 				'headers' => [
-					'User-Agent' => 'Nextcloud Github integration'
+					'User-Agent' => 'Nextcloud GitHub integration'
 				],
 			];
 
@@ -249,7 +249,7 @@ class GithubAPIService {
 				return $resultArray;
 			}
 		} catch (\Exception $e) {
-			$this->logger->warning('Github OAuth error : '.$e, array('app' => $this->appName));
+			$this->logger->warning('GitHub OAuth error : '.$e, array('app' => $this->appName));
 			return ['error' => $e];
 		}
 	}
