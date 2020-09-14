@@ -68,7 +68,7 @@ export default {
 			lastDate: null,
 			loop: null,
 			state: 'loading',
-			settingsUrl: generateUrl('/settings/user/linked-accounts'),
+			settingsUrl: generateUrl('/settings/user/connected-accounts'),
 			darkThemeColor: OCA.Accessibility.theme === 'dark' ? '181818' : 'ffffff',
 			itemMenu: {
 				markRead: {
