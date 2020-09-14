@@ -17,15 +17,14 @@
 					v-model="state.token"
 					type="password"
 					:disabled="connected === true"
-					:placeholder="t('integration_github', 'Get a token in GitHub settings')"
+					:placeholder="t('integration_github', 'GitHub personal token')"
 					@input="onInput"
 					@focus="readonly = false">
-				<button v-if="showOAuth" id="github-oauth" @click="onOAuthClick">
-					<span class="icon icon-external" />
-					{{ t('integration_github', 'Get access with OAuth') }}
-				</button>
-				<span v-else />
 			</div>
+			<button v-if="showOAuth" id="github-oauth" @click="onOAuthClick">
+				<span class="icon icon-external" />
+				{{ t('integration_github', 'Connect to GitHub') }}
+			</button>
 			<div v-if="connected" class="github-grid-form">
 				<label class="github-connected">
 					<a class="icon icon-checkmark-color" />
@@ -38,7 +37,7 @@
 				<span />
 			</div>
 			<br>
-			<div id="github-search-block">
+			<div v-if="connected" id="github-search-block">
 				<input
 					id="search-github"
 					type="checkbox"
@@ -179,9 +178,9 @@ export default {
 	width: 100%;
 }
 .github-grid-form {
-	max-width: 900px;
+	max-width: 600px;
 	display: grid;
-	grid-template: 1fr / 1fr 1fr 1fr;
+	grid-template: 1fr / 1fr 1fr;
 	button .icon {
 		margin-bottom: -1px;
 	}
