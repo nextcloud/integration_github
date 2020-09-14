@@ -208,7 +208,4 @@ body.theme--dark .icon-github-settings {
 .github-connected {
 	margin-left: 35px;
 }
-#github-rm-cred {
-	margin-left: 10px;
-}
 </style>
