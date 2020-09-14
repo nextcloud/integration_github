@@ -74,7 +74,19 @@ class ConfigController extends Controller {
         foreach ($values as $key => $value) {
             $this->config->setUserValue($this->userId, Application::APP_ID, $key, $value);
         }
-        return new DataResponse(1);
+        $result = [];
+
+        if (isset($values['token'])) {
+            if ($values['token'] && $values['token'] !== '') {
+                $userName = $this->storeUserInfo($values['token']);
+                $result['user_name'] = $userName;
+            } else {
+                $this->config->setUserValue($this->userId, Application::APP_ID, 'user_id', '');
+                $this->config->setUserValue($this->userId, Application::APP_ID, 'user_name', '');
+                $result['user_name'] = '';
+            }
+        }
+        return new DataResponse($result);
     }
 
     /**
@@ -118,6 +130,7 @@ class ConfigController extends Controller {
             if (isset($result['access_token'])) {
                 $accessToken = $result['access_token'];
                 $this->config->setUserValue($this->userId, Application::APP_ID, 'token', $accessToken);
+                $this->storeUserInfo($accessToken);
                 return new RedirectResponse(
                     $this->urlGenerator->linkToRoute('settings.PersonalSettings.index', ['section' => 'connected-accounts']) .
                     '?githubToken=success'
@@ -131,5 +144,18 @@ class ConfigController extends Controller {
             $this->urlGenerator->linkToRoute('settings.PersonalSettings.index', ['section' => 'connected-accounts']) .
             '?githubToken=error&message=' . urlencode($result)
         );
+    }
+
+    private function storeUserInfo(string $accessToken): string {
+        $info = $this->githubAPIService->request($accessToken, 'user');
+        if (isset($info['login']) && isset($info['id'])) {
+            $this->config->setUserValue($this->userId, Application::APP_ID, 'user_id', $info['id']);
+            $this->config->setUserValue($this->userId, Application::APP_ID, 'user_name', $info['login']);
+            return $info['login'];
+        } else {
+            $this->config->setUserValue($this->userId, Application::APP_ID, 'user_id', '');
+            $this->config->setUserValue($this->userId, Application::APP_ID, 'user_name', '');
+            return '';
+        }
     }
 }

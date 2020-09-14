@@ -165,7 +165,7 @@ class GithubAPIService {
 	 * @param array $params Query parameters (key/val pairs)
 	 * @param string $method HTTP query method
 	 */
-	public function request(string $accessToken, string $endPoint, array $params = [], string $method = 'GET'): array {
+	public function request(string $accessToken, string $endPoint, ?array $params = [], ?string $method = 'GET'): array {
 		try {
 			$url = 'https://api.github.com/' . $endPoint;
 			$options = [
@@ -202,8 +202,8 @@ class GithubAPIService {
 				return json_decode($body, true);
 			}
 		} catch (\Exception $e) {
-			$this->logger->warning('GitHub API error : '.$e, array('app' => $this->appName));
-			return ['error', $e];
+			$this->logger->warning('GitHub API error : '.$e->getMessage(), array('app' => $this->appName));
+			return ['error', $e->getMessage()];
 		}
 	}
 
@@ -212,7 +212,7 @@ class GithubAPIService {
 	 * @param array $params Query parameters (key/val pairs)
 	 * @param string $method HTTP query method
 	 */
-	public function requestOAuthAccessToken($params = [], $method = 'GET'): array {
+	public function requestOAuthAccessToken(?array $params = [], ?string $method = 'GET'): array {
 		try {
 			$url = 'https://github.com/login/oauth/access_token';
 			$options = [
@@ -249,8 +249,8 @@ class GithubAPIService {
 				return $resultArray;
 			}
 		} catch (\Exception $e) {
-			$this->logger->warning('GitHub OAuth error : '.$e, array('app' => $this->appName));
-			return ['error' => $e];
+			$this->logger->warning('GitHub OAuth error : '.$e->getMessage(), array('app' => $this->appName));
+			return ['error' => $e->getMessage()];
 		}
 	}
 }

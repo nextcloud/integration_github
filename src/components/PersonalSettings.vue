@@ -7,32 +7,45 @@
 		<p class="settings-hint">
 			{{ t('integration_github', 'When you create a personal access token yourself, give it at least "read:user", "user:email" and "notifications" permissions.') }}
 		</p>
-		<div class="github-grid-form">
-			<label for="github-token">
-				<a class="icon icon-category-auth" />
-				{{ t('integration_github', 'GitHub access token') }}
-			</label>
-			<input id="github-token"
-				v-model="state.token"
-				type="password"
-				:readonly="readonly"
-				:placeholder="t('integration_github', 'Get a token in GitHub settings')"
-				@input="onInput"
-				@focus="readonly = false">
-			<button v-if="showOAuth" id="github-oauth" @click="onOAuthClick">
-				<span class="icon icon-external" />
-				{{ t('integration_github', 'Get access with OAuth') }}
-			</button>
-		</div>
-		<br>
-		<div id="github-search-block">
-			<input
-				id="search-github"
-				type="checkbox"
-				class="checkbox"
-				:checked="state.search_enabled"
-				@input="onSearchChange">
-			<label for="search-github">{{ t('integration_github', 'Enable searching for repositories, issues and pull requests.') }}</label>
+		<div id="github-content">
+			<div class="github-grid-form">
+				<label for="github-token">
+					<a class="icon icon-category-auth" />
+					{{ t('integration_github', 'GitHub access token') }}
+				</label>
+				<input id="github-token"
+					v-model="state.token"
+					type="password"
+					:disabled="connected === true"
+					:placeholder="t('integration_github', 'Get a token in GitHub settings')"
+					@input="onInput"
+					@focus="readonly = false">
+				<button v-if="showOAuth" id="github-oauth" @click="onOAuthClick">
+					<span class="icon icon-external" />
+					{{ t('integration_github', 'Get access with OAuth') }}
+				</button>
+				<span v-else />
+			</div>
+			<div v-if="connected" class="github-grid-form">
+				<label class="github-connected">
+					{{ t('integration_github', 'Connected as {user}', { user: state.user_name }) }}
+				</label>
+				<button id="github-rm-cred" @click="onLogoutClick">
+					<span class="icon icon-close" />
+					{{ t('integration_github', 'Disconnect from Github') }}
+				</button>
+				<span />
+			</div>
+			<br>
+			<div id="github-search-block">
+				<input
+					id="search-github"
+					type="checkbox"
+					class="checkbox"
+					:checked="state.search_enabled"
+					@input="onSearchChange">
+				<label for="search-github">{{ t('integration_github', 'Enable searching for repositories, issues and pull requests.') }}</label>
+			</div>
 		</div>
 	</div>
 </template>
@@ -61,7 +74,10 @@ export default {
 
 	computed: {
 		showOAuth() {
-			return this.state.client_id && this.state.client_secret
+			return this.state.client_id && this.state.client_secret && !this.connected
+		},
+		connected() {
+			return this.state.token && this.state.token !== '' && this.state.user_name && this.state.user_name !== ''
 		},
 	},
 
@@ -81,6 +97,10 @@ export default {
 	},
 
 	methods: {
+		onLogoutClick() {
+			this.state.token = ''
+			this.saveOptions()
+		},
 		onSearchChange(e) {
 			this.state.search_enabled = e.target.checked
 			this.saveOptions()
@@ -101,6 +121,12 @@ export default {
 			axios.put(url, req)
 				.then((response) => {
 					showSuccess(t('integration_github', 'GitHub options saved.'))
+					if (response.data.user_name !== undefined) {
+						this.state.user_name = response.data.user_name
+						if (response.data.user_name === '') {
+							showError(t('integration_github', 'Incorrect access token'))
+						}
+					}
 				})
 				.catch((error) => {
 					showError(
@@ -145,9 +171,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-#github-search-block {
-	margin-left: 30px;
-}
 .github-grid-form label {
 	line-height: 38px;
 }
@@ -158,7 +181,6 @@ export default {
 	max-width: 900px;
 	display: grid;
 	grid-template: 1fr / 1fr 1fr 1fr;
-	margin-left: 30px;
 	button .icon {
 		margin-bottom: -1px;
 	}
@@ -179,5 +201,14 @@ export default {
 
 body.theme--dark .icon-github-settings {
 	background-image: url('./../../img/app.svg');
+}
+#github-content {
+	margin-left: 40px;
+}
+.github-connected {
+	margin-left: 35px;
+}
+#github-rm-cred {
+	margin-left: 10px;
 }
 </style>
