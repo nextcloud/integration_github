@@ -28,6 +28,7 @@
 			</div>
 			<div v-if="connected" class="github-grid-form">
 				<label class="github-connected">
+					<a class="icon icon-checkmark-color" />
 					{{ t('integration_github', 'Connected as {user}', { user: state.user_name }) }}
 				</label>
 				<button id="github-rm-cred" @click="onLogoutClick">
@@ -204,8 +205,5 @@ body.theme--dark .icon-github-settings {
 }
 #github-content {
 	margin-left: 40px;
-}
-.github-connected {
-	margin-left: 35px;
 }
 </style>
