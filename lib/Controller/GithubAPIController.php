@@ -71,7 +71,7 @@ class GithubAPIController extends Controller {
 	 * @param ?string $since optional date to filter notifications
 	 * @return DataResponse the notifications
 	 */
-	public function getNotifications(?string $since) {
+	public function getNotifications(?string $since): DataResponse {
 		if ($this->accessToken === '') {
 			return new DataResponse($result, 400);
 		}
