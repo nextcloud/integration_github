@@ -111,7 +111,7 @@ class GithubSearchProvider implements IProvider {
 
 		$resultBills = [];
 
-        $accessToken = $this->config->getUserValue($user->getUID(), Application::APP_ID, 'token', '');
+		$accessToken = $this->config->getUserValue($user->getUID(), Application::APP_ID, 'token', '');
 		$searchEnabled = $this->config->getUserValue($user->getUID(), Application::APP_ID, 'search_enabled', '0') === '1';
 		if ($accessToken === '' || !$searchEnabled) {
 			return SearchResult::paginated($this->getName(), [], 0);
