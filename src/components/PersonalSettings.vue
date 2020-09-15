@@ -32,7 +32,7 @@
 				</label>
 				<button id="github-rm-cred" @click="onLogoutClick">
 					<span class="icon icon-close" />
-					{{ t('integration_github', 'Disconnect from Github') }}
+					{{ t('integration_github', 'Disconnect from GitHub') }}
 				</button>
 				<span />
 			</div>
