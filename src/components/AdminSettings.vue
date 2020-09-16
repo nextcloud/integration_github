@@ -20,7 +20,7 @@
 		<div class="grid-form">
 			<label for="github-client-id">
 				<a class="icon icon-category-auth" />
-				{{ t('integration_github', 'GitHub application client ID') }}
+				{{ t('integration_github', 'Client ID') }}
 			</label>
 			<input id="github-client-id"
 				v-model="state.client_id"
@@ -31,7 +31,7 @@
 				@input="onInput">
 			<label for="github-client-secret">
 				<a class="icon icon-category-auth" />
-				{{ t('integration_github', 'GitHub application client secret') }}
+				{{ t('integration_github', 'Client secret') }}
 			</label>
 			<input id="github-client-secret"
 				v-model="state.client_secret"
