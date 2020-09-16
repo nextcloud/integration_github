@@ -6,13 +6,16 @@
 		</h2>
 		<p class="settings-hint">
 			{{ t('integration_github', 'If you want to allow your Nextcloud users to use OAuth to authenticate to https://github.com, create an OAuth application in your GitHub settings.') }}
-			(<a href="https://github.com/settings/developers" class="mylink">{{ t('integration_github', 'direct link to GitHub OAuth settings') }}</a>)
+			(<a href="https://github.com/settings/developers" class="external">{{ t('integration_github', 'Direct link to GitHub OAuth settings') }}</a>)
 			<br>
-			{{ t('integration_github', 'Make sure you set the "redirect_uri" to') }}
-			<br>
+			{{ t('integration_github', 'Set "Application name", "Homepage URL" and "Application description" to values that will make sense to your Nextcloud users as they will see them when connecting to GitHub using your OAuth app.') }}
+			<br><br>
+			<span class="icon icon-details" />
+			{{ t('integration_github', 'Make sure you set the "Authorization callback URL" to') }}
 			<b> {{ redirect_uri }} </b>
-			<br>
-			{{ t('integration_github', 'Then set the ID and secret below.') }}
+			<br><br>
+			{{ t('integration_github', 'Put the OAuth app "Client ID" and "Client secret" below.') }}
+			{{ t('integration_github', 'Your Nextcloud users will then see a "Connect to GitHub" button in their personal settings.') }}
 		</p>
 		<div class="grid-form">
 			<label for="github-client-id">
@@ -131,13 +134,5 @@ export default {
 }
 body.dark .icon-github {
 	background-image: url(./../../img/app.svg);
-}
-.mylink {
-	color: var(--color-main-text);
-
-	&:hover,
-	&:focus {
-		border-bottom: 2px solid var(--color-text-maxcontrast);
-	}
 }
 </style>

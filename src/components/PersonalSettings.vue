@@ -123,7 +123,7 @@ export default {
 					showSuccess(t('integration_github', 'GitHub options saved.'))
 					if (response.data.user_name !== undefined) {
 						this.state.user_name = response.data.user_name
-						if (response.data.user_name === '') {
+						if (this.state.token && response.data.user_name === '') {
 							showError(t('integration_github', 'Incorrect access token'))
 						}
 					}
