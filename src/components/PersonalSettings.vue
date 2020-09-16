@@ -4,24 +4,26 @@
 			<a class="icon icon-github-settings" />
 			{{ t('integration_github', 'GitHub integration') }}
 		</h2>
-		<p class="settings-hint">
+		<p v-if="!showOAuth && !connected" class="settings-hint">
 			{{ t('integration_github', 'When you create a personal access token yourself, give it at least "read:user", "user:email" and "notifications" permissions.') }}
 		</p>
 		<div id="github-content">
 			<div class="github-grid-form">
-				<label for="github-token">
+				<label v-show="!showOAuth"
+					for="github-token">
 					<a class="icon icon-category-auth" />
-					{{ t('integration_github', 'GitHub access token') }}
+					{{ t('integration_github', 'Personal access token') }}
 				</label>
-				<input id="github-token"
+				<input v-show="!showOAuth"
+					id="github-token"
 					v-model="state.token"
 					type="password"
 					:disabled="connected === true"
-					:placeholder="t('integration_github', 'GitHub personal token')"
+					:placeholder="t('integration_github', 'GitHub personal access token')"
 					@input="onInput"
 					@focus="readonly = false">
 			</div>
-			<button v-if="showOAuth" id="github-oauth" @click="onOAuthClick">
+			<button v-if="showOAuth && !connected" id="github-oauth" @click="onOAuthClick">
 				<span class="icon icon-external" />
 				{{ t('integration_github', 'Connect to GitHub') }}
 			</button>
@@ -74,7 +76,7 @@ export default {
 
 	computed: {
 		showOAuth() {
-			return this.state.client_id && this.state.client_secret && !this.connected
+			return this.state.client_id && this.state.client_secret
 		},
 		connected() {
 			return this.state.token && this.state.token !== '' && this.state.user_name && this.state.user_name !== ''
