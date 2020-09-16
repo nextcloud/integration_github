@@ -100,7 +100,7 @@ class GithubAPIService {
 	 */
 	public function search(string $accessToken, string $query): array {
 		$entries = [];
-		// 5 repositories
+		// repositories
 		$result = $this->searchRepositories($accessToken, $query);
 		if (isset($result['items'])) {
 			$result['items'] = array_slice($result['items'], 0, 5);
@@ -109,10 +109,10 @@ class GithubAPIService {
 				array_push($entries, $entry);
 			}
 		}
-		// 10 issues
+		// issues
 		$result = $this->searchIssues($accessToken, $query);
 		if (isset($result['items'])) {
-			$result['items'] = array_slice($result['items'], 0, 10);
+			$result['items'] = array_slice($result['items'], 0, 5);
 			foreach($result['items'] as $k => $entry) {
 				$entry['entry_type'] = 'issue';
 				array_push($entries, $entry);
