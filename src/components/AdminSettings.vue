@@ -6,7 +6,7 @@
 		</h2>
 		<p class="settings-hint">
 			{{ t('integration_github', 'If you want to allow your Nextcloud users to use OAuth to authenticate to https://github.com, create an OAuth application in your GitHub settings.') }}
-			(<a href="https://github.com/settings/developers" class="external">{{ t('integration_github', 'Direct link to GitHub OAuth settings') }}</a>)
+			<a href="https://github.com/settings/developers" class="external">{{ t('integration_github', 'GitHub OAuth settings') }}</a>
 			<br>
 			{{ t('integration_github', 'Set "Application name", "Homepage URL" and "Application description" to values that will make sense to your Nextcloud users as they will see them when connecting to GitHub using your OAuth app.') }}
 			<br><br>
