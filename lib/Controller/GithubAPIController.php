@@ -73,7 +73,7 @@ class GithubAPIController extends Controller {
 	 */
 	public function getNotifications(?string $since): DataResponse {
 		if ($this->accessToken === '') {
-			return new DataResponse($result, 400);
+			return new DataResponse(null, 400);
 		}
 		$result = $this->githubAPIService->getNotifications($this->accessToken, $since, false);
 		if (isset($result['error'])) {
@@ -93,7 +93,7 @@ class GithubAPIController extends Controller {
 	 */
 	public function unsubscribeNotification(int $id): DataResponse {
 		$result = $this->githubAPIService->unsubscribeNotification($this->accessToken, $id);
-		if (is_null($result) or is_array($result)) {
+		if (!isset($result['error'])) {
 			$response = new DataResponse($result);
 		} else {
 			$response = new DataResponse($result, 401);
@@ -110,7 +110,7 @@ class GithubAPIController extends Controller {
 	 */
 	public function markNotificationAsRead(int $id): DataResponse {
 		$result = $this->githubAPIService->markNotificationAsRead($this->accessToken, $id);
-		if (is_null($result) or is_array($result)) {
+		if (!isset($result['error'])) {
 			$response = new DataResponse($result);
 		} else {
 			$response = new DataResponse($result, 401);
