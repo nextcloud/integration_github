@@ -1,0 +1,7 @@
+{ "translations": {
+    "GitHub" : "GitHub",
+    "Client ID" : "ID πελάτη",
+    "Client secret" : "Μυστικό πελάτη",
+    "Comment" : "Σχόλιο"
+},"pluralForm" :"nplurals=2; plural=(n != 1);"
+}

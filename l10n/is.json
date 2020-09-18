@@ -1,0 +1,7 @@
+{ "translations": {
+    "GitHub" : "GitHub",
+    "Client ID" : "Biðlaraauðkenni",
+    "Client secret" : "Leynilykill biðlara",
+    "Comment" : "Athugasemd"
+},"pluralForm" :"nplurals=2; plural=(n % 10 != 1 || n % 100 == 11);"
+}

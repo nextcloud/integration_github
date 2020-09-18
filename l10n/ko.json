@@ -1,0 +1,6 @@
+{ "translations": {
+    "Client ID" : "클라이언트 ID",
+    "Client secret" : "클라이언트 비밀 값",
+    "Comment" : "설명"
+},"pluralForm" :"nplurals=1; plural=0;"
+}

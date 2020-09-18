@@ -1,0 +1,7 @@
+{ "translations": {
+    "GitHub" : "GitHub",
+    "Client ID" : "İstemci Kodu",
+    "Client secret" : "İstemci parolası",
+    "Comment" : "Yorum"
+},"pluralForm" :"nplurals=2; plural=(n > 1);"
+}

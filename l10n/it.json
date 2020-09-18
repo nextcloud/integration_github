@@ -1,0 +1,7 @@
+{ "translations": {
+    "GitHub" : "GitHub",
+    "Client ID" : "ID client",
+    "Client secret" : "Segreto del client",
+    "Comment" : "Commento"
+},"pluralForm" :"nplurals=2; plural=(n != 1);"
+}
