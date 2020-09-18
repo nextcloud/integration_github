@@ -1,38 +1,53 @@
 <template>
 	<div id="github_prefs" class="section">
 		<h2>
-			<a class="icon icon-github" />
+			<a class="icon icon-github-settings" />
 			{{ t('integration_github', 'GitHub integration') }}
 		</h2>
-		<p class="settings-hint">
+		<p v-if="!showOAuth && !connected" class="settings-hint">
 			{{ t('integration_github', 'When you create a personal access token yourself, give it at least "read:user", "user:email" and "notifications" permissions.') }}
 		</p>
-		<div class="github-grid-form">
-			<label for="github-token">
-				<a class="icon icon-category-auth" />
-				{{ t('integration_github', 'GitHub access token') }}
-			</label>
-			<input id="github-token"
-				v-model="state.token"
-				type="password"
-				:readonly="readonly"
-				:placeholder="t('integration_github', 'Get a token in Github settings')"
-				@input="onInput"
-				@focus="readonly = false">
-			<button v-if="showOAuth" id="github-oauth" @click="onOAuthClick">
+		<div id="github-content">
+			<div class="github-grid-form">
+				<label v-show="!showOAuth"
+					for="github-token">
+					<a class="icon icon-category-auth" />
+					{{ t('integration_github', 'Personal access token') }}
+				</label>
+				<input v-show="!showOAuth"
+					id="github-token"
+					v-model="state.token"
+					type="password"
+					:disabled="connected === true"
+					:placeholder="t('integration_github', 'GitHub personal access token')"
+					@input="onInput"
+					@focus="readonly = false">
+			</div>
+			<button v-if="showOAuth && !connected" id="github-oauth" @click="onOAuthClick">
 				<span class="icon icon-external" />
-				{{ t('integration_github', 'Get access with OAuth') }}
+				{{ t('integration_github', 'Connect to GitHub') }}
 			</button>
-		</div>
-		<br>
-		<div id="github-search-block">
-			<input
-				id="search-github"
-				type="checkbox"
-				class="checkbox"
-				:checked="state.search_enabled"
-				@input="onSearchChange">
-			<label for="search-github">{{ t('integration_github', 'Enable searching for repositories, issues and pull requests.') }}</label>
+			<div v-if="connected" class="github-grid-form">
+				<label class="github-connected">
+					<a class="icon icon-checkmark-color" />
+					{{ t('integration_github', 'Connected as {user}', { user: state.user_name }) }}
+				</label>
+				<button id="github-rm-cred" @click="onLogoutClick">
+					<span class="icon icon-close" />
+					{{ t('integration_github', 'Disconnect from GitHub') }}
+				</button>
+				<span />
+			</div>
+			<br>
+			<div v-if="connected" id="github-search-block">
+				<input
+					id="search-github"
+					type="checkbox"
+					class="checkbox"
+					:checked="state.search_enabled"
+					@input="onSearchChange">
+				<label for="search-github">{{ t('integration_github', 'Enable searching for repositories, issues and pull requests.') }}</label>
+			</div>
 		</div>
 	</div>
 </template>
@@ -63,6 +78,9 @@ export default {
 		showOAuth() {
 			return this.state.client_id && this.state.client_secret
 		},
+		connected() {
+			return this.state.token && this.state.token !== '' && this.state.user_name && this.state.user_name !== ''
+		},
 	},
 
 	watch: {
@@ -74,13 +92,17 @@ export default {
 		const urlParams = new URLSearchParams(paramString)
 		const ghToken = urlParams.get('githubToken')
 		if (ghToken === 'success') {
-			showSuccess(t('integration_github', 'Github OAuth access token successfully retrieved!'))
+			showSuccess(t('integration_github', 'GitHub OAuth access token successfully retrieved!'))
 		} else if (ghToken === 'error') {
-			showError(t('integration_github', 'Github OAuth error:') + ' ' + urlParams.get('message'))
+			showError(t('integration_github', 'GitHub OAuth error:') + ' ' + urlParams.get('message'))
 		}
 	},
 
 	methods: {
+		onLogoutClick() {
+			this.state.token = ''
+			this.saveOptions()
+		},
 		onSearchChange(e) {
 			this.state.search_enabled = e.target.checked
 			this.saveOptions()
@@ -100,11 +122,17 @@ export default {
 			const url = generateUrl('/apps/integration_github/config')
 			axios.put(url, req)
 				.then((response) => {
-					showSuccess(t('integration_github', 'Github options saved.'))
+					showSuccess(t('integration_github', 'GitHub options saved.'))
+					if (response.data.user_name !== undefined) {
+						this.state.user_name = response.data.user_name
+						if (this.state.token && response.data.user_name === '') {
+							showError(t('integration_github', 'Incorrect access token'))
+						}
+					}
 				})
 				.catch((error) => {
 					showError(
-						t('integration_github', 'Failed to save Github options')
+						t('integration_github', 'Failed to save GitHub options')
 						+ ': ' + error.response.request.responseText
 					)
 				})
@@ -133,7 +161,7 @@ export default {
 				})
 				.catch((error) => {
 					showError(
-						t('integration_github', 'Failed to save Github OAuth state')
+						t('integration_github', 'Failed to save GitHub OAuth state')
 						+ ': ' + error.response.request.responseText
 					)
 				})
@@ -145,9 +173,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-#github-search-block {
-	margin-left: 30px;
-}
 .github-grid-form label {
 	line-height: 38px;
 }
@@ -155,10 +180,9 @@ export default {
 	width: 100%;
 }
 .github-grid-form {
-	max-width: 900px;
+	max-width: 600px;
 	display: grid;
-	grid-template: 1fr / 1fr 1fr 1fr;
-	margin-left: 30px;
+	grid-template: 1fr / 1fr 1fr;
 	button .icon {
 		margin-bottom: -1px;
 	}
@@ -170,14 +194,17 @@ export default {
 #github_prefs .grid-form .icon {
 	margin-bottom: -3px;
 }
-.icon-github {
-	background-image: url(./../../img/app-dark.svg);
+.icon-github-settings {
+	background-image: url('./../../img/app-dark.svg');
 	background-size: 23px 23px;
 	height: 23px;
 	margin-bottom: -4px;
 }
 
-body.dark .icon-github {
-	background-image: url(./../../img/app.svg);
+body.theme--dark .icon-github-settings {
+	background-image: url('./../../img/app.svg');
+}
+#github-content {
+	margin-left: 40px;
 }
 </style>

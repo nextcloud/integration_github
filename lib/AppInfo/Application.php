@@ -28,27 +28,27 @@ use OCA\Github\Search\GithubSearchProvider;
  */
 class Application extends App implements IBootstrap {
 
-    public const APP_ID = 'integration_github';
+	public const APP_ID = 'integration_github';
 
-    /**
-     * Constructor
-     *
-     * @param array $urlParams
-     */
-    public function __construct(array $urlParams = []) {
-        parent::__construct(self::APP_ID, $urlParams);
+	/**
+	 * Constructor
+	 *
+	 * @param array $urlParams
+	 */
+	public function __construct(array $urlParams = []) {
+		parent::__construct(self::APP_ID, $urlParams);
 
-        $container = $this->getContainer();
-    }
+		$container = $this->getContainer();
+	}
 
-    public function register(IRegistrationContext $context): void {
-        $context->registerDashboardWidget(GithubWidget::class);
+	public function register(IRegistrationContext $context): void {
+		$context->registerDashboardWidget(GithubWidget::class);
 
-        $config = $this->getContainer()->query(\OCP\IConfig::class);
-        $context->registerSearchProvider(GithubSearchProvider::class);
-    }
+		$config = $this->getContainer()->query(\OCP\IConfig::class);
+		$context->registerSearchProvider(GithubSearchProvider::class);
+	}
 
-    public function boot(IBootContext $context): void {
-    }
+	public function boot(IBootContext $context): void {
+	}
 }
 

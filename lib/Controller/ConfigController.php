@@ -33,103 +33,129 @@ use OCA\Github\AppInfo\Application;
 
 class ConfigController extends Controller {
 
-    private $userId;
-    private $config;
-    private $dbconnection;
-    private $dbtype;
+	private $userId;
+	private $config;
+	private $dbconnection;
+	private $dbtype;
 
-    public function __construct($AppName,
-                                IRequest $request,
-                                IServerContainer $serverContainer,
-                                IConfig $config,
-                                IAppManager $appManager,
-                                IAppData $appData,
-                                IDBConnection $dbconnection,
-                                IURLGenerator $urlGenerator,
-                                IL10N $l,
-                                ILogger $logger,
-                                GithubAPIService $githubAPIService,
-                                $userId) {
-        parent::__construct($AppName, $request);
-        $this->l = $l;
-        $this->appName = $AppName;
-        $this->userId = $userId;
-        $this->appData = $appData;
-        $this->serverContainer = $serverContainer;
-        $this->config = $config;
-        $this->dbconnection = $dbconnection;
-        $this->urlGenerator = $urlGenerator;
-        $this->logger = $logger;
-        $this->githubAPIService = $githubAPIService;
-    }
+	public function __construct($AppName,
+								IRequest $request,
+								IServerContainer $serverContainer,
+								IConfig $config,
+								IAppManager $appManager,
+								IAppData $appData,
+								IDBConnection $dbconnection,
+								IURLGenerator $urlGenerator,
+								IL10N $l,
+								ILogger $logger,
+								GithubAPIService $githubAPIService,
+								$userId) {
+		parent::__construct($AppName, $request);
+		$this->l = $l;
+		$this->appName = $AppName;
+		$this->userId = $userId;
+		$this->appData = $appData;
+		$this->serverContainer = $serverContainer;
+		$this->config = $config;
+		$this->dbconnection = $dbconnection;
+		$this->urlGenerator = $urlGenerator;
+		$this->logger = $logger;
+		$this->githubAPIService = $githubAPIService;
+	}
 
-    /**
-     * @NoAdminRequired
-     * Set config values
-     *
-     * @param array $values key/value pairs to store in user preferences
-     * @return DataResponse
-     */
-    public function setConfig(array $values): DataResponse {
-        foreach ($values as $key => $value) {
-            $this->config->setUserValue($this->userId, Application::APP_ID, $key, $value);
-        }
-        return new DataResponse(1);
-    }
+	/**
+	 * @NoAdminRequired
+	 * Set config values
+	 *
+	 * @param array $values key/value pairs to store in user preferences
+	 * @return DataResponse
+	 */
+	public function setConfig(array $values): DataResponse {
+		foreach ($values as $key => $value) {
+			$this->config->setUserValue($this->userId, Application::APP_ID, $key, $value);
+		}
+		$result = [];
 
-    /**
-     * Set admin config values
-     *
-     * @param array $values key/value pairs to store in app config
-     * @return DataResponse
-     */
-    public function setAdminConfig(array $values): DataResponse {
-        foreach ($values as $key => $value) {
-            $this->config->setAppValue(Application::APP_ID, $key, $value);
-        }
-        return new DataResponse(1);
-    }
+		if (isset($values['token'])) {
+			if ($values['token'] && $values['token'] !== '') {
+				$userName = $this->storeUserInfo($values['token']);
+				$result['user_name'] = $userName;
+			} else {
+				$this->config->setUserValue($this->userId, Application::APP_ID, 'user_id', '');
+				$this->config->setUserValue($this->userId, Application::APP_ID, 'user_name', '');
+				$result['user_name'] = '';
+			}
+		}
+		return new DataResponse($result);
+	}
 
-    /**
-     * @NoAdminRequired
-     * @NoCSRFRequired
-     *
-     * Receive oauth code and get oauth access token
-     *
-     * @param string $code request code to use when requesting oauth token
-     * @param string $state value that was sent with original GET request. Used to check auth redirection is valid
-     * @return RedirectResponse to user settings
-     */
-    public function oauthRedirect(string $code, string $state): RedirectResponse {
-        $configState = $this->config->getUserValue($this->userId, Application::APP_ID, 'oauth_state', '');
-        $clientID = $this->config->getAppValue(Application::APP_ID, 'client_id', '');
-        $clientSecret = $this->config->getAppValue(Application::APP_ID, 'client_secret', '');
+	/**
+	 * Set admin config values
+	 *
+	 * @param array $values key/value pairs to store in app config
+	 * @return DataResponse
+	 */
+	public function setAdminConfig(array $values): DataResponse {
+		foreach ($values as $key => $value) {
+			$this->config->setAppValue(Application::APP_ID, $key, $value);
+		}
+		return new DataResponse(1);
+	}
 
-        // anyway, reset state
-        $this->config->setUserValue($this->userId, Application::APP_ID, 'oauth_state', '');
+	/**
+	 * @NoAdminRequired
+	 * @NoCSRFRequired
+	 *
+	 * Receive oauth code and get oauth access token
+	 *
+	 * @param string $code request code to use when requesting oauth token
+	 * @param string $state value that was sent with original GET request. Used to check auth redirection is valid
+	 * @return RedirectResponse to user settings
+	 */
+	public function oauthRedirect(string $code, string $state): RedirectResponse {
+		$configState = $this->config->getUserValue($this->userId, Application::APP_ID, 'oauth_state', '');
+		$clientID = $this->config->getAppValue(Application::APP_ID, 'client_id', '');
+		$clientSecret = $this->config->getAppValue(Application::APP_ID, 'client_secret', '');
 
-        if ($clientID and $clientSecret and $configState !== '' and $configState === $state) {
-            $result = $this->githubAPIService->requestOAuthAccessToken([
-                'client_id' => $clientID,
-                'client_secret' => $clientSecret,
-                'code' => $code,
-                'state' => $state
-            ], 'POST');
-            if (isset($result['access_token'])) {
-                $accessToken = $result['access_token'];
-                $this->config->setUserValue($this->userId, Application::APP_ID, 'token', $accessToken);
-                return new RedirectResponse(
-                    $this->urlGenerator->linkToRoute('settings.PersonalSettings.index', ['section' => 'linked-accounts']) .
-                    '?githubToken=success'
-                );
-            }
-            $result = $this->l->t('Error getting OAuth access token');
-        } else {
-            $result = $this->l->t('Error during OAuth exchanges');
-        }
-        return new RedirectResponse(
-            $this->urlGenerator->linkToRoute('settings.PersonalSettings.index', ['section' => 'linked-accounts']) .
-            '?githubToken=error&message=' . urlencode($result)
-        );
-    }
+		// anyway, reset state
+		$this->config->setUserValue($this->userId, Application::APP_ID, 'oauth_state', '');
+
+		if ($clientID && $clientSecret && $configState !== '' && $configState === $state) {
+			$result = $this->githubAPIService->requestOAuthAccessToken([
+				'client_id' => $clientID,
+				'client_secret' => $clientSecret,
+				'code' => $code,
+				'state' => $state
+			], 'POST');
+			if (isset($result['access_token'])) {
+				$accessToken = $result['access_token'];
+				$this->config->setUserValue($this->userId, Application::APP_ID, 'token', $accessToken);
+				$this->storeUserInfo($accessToken);
+				return new RedirectResponse(
+					$this->urlGenerator->linkToRoute('settings.PersonalSettings.index', ['section' => 'connected-accounts']) .
+					'?githubToken=success'
+				);
+			}
+			$result = $this->l->t('Error getting OAuth access token');
+		} else {
+			$result = $this->l->t('Error during OAuth exchanges');
+		}
+		return new RedirectResponse(
+			$this->urlGenerator->linkToRoute('settings.PersonalSettings.index', ['section' => 'connected-accounts']) .
+			'?githubToken=error&message=' . urlencode($result)
+		);
+	}
+
+	private function storeUserInfo(string $accessToken): string {
+		$info = $this->githubAPIService->request($accessToken, 'user');
+		if (isset($info['login']) && isset($info['id'])) {
+			$this->config->setUserValue($this->userId, Application::APP_ID, 'user_id', $info['id']);
+			$this->config->setUserValue($this->userId, Application::APP_ID, 'user_name', $info['login']);
+			return $info['login'];
+		} else {
+			$this->config->setUserValue($this->userId, Application::APP_ID, 'user_id', '');
+			$this->config->setUserValue($this->userId, Application::APP_ID, 'user_name', '');
+			return '';
+		}
+	}
 }

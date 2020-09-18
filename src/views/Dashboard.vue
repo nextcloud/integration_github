@@ -62,13 +62,13 @@ export default {
 		return {
 			notifications: [],
 			showMoreUrl: 'https://github.com/notifications',
-			showMoreText: t('integration_github', 'Github notifications'),
+			showMoreText: t('integration_github', 'GitHub notifications'),
 			// lastDate could be computed but we want to keep the value when first notification is removed
 			// to avoid getting it again on next request
 			lastDate: null,
 			loop: null,
 			state: 'loading',
-			settingsUrl: generateUrl('/settings/user/linked-accounts'),
+			settingsUrl: generateUrl('/settings/user/connected-accounts'),
 			darkThemeColor: OCA.Accessibility.theme === 'dark' ? '181818' : 'ffffff',
 			itemMenu: {
 				markRead: {
@@ -126,7 +126,7 @@ export default {
 				if (error.response && error.response.status === 400) {
 					this.state = 'no-token'
 				} else if (error.response && error.response.status === 401) {
-					showError(t('integration_github', 'Failed to get Github notifications.'))
+					showError(t('integration_github', 'Failed to get GitHub notifications.'))
 					this.state = 'error'
 				} else {
 					// there was an error in notif processing
@@ -176,7 +176,7 @@ export default {
 		editNotification(item, action) {
 			axios.put(generateUrl('/apps/integration_github/notifications/' + item.id + '/' + action)).then((response) => {
 			}).catch((error) => {
-				showError(t('integration_github', 'Failed to edit Github notification.'))
+				showError(t('integration_github', 'Failed to edit GitHub notification.'))
 				console.debug(error)
 			})
 		},
@@ -248,16 +248,4 @@ export default {
 </script>
 
 <style scoped lang="scss">
-::v-deep .icon-github-unsubscribe {
-	background-color: var(--color-main-text);
-	padding: 0 !important;
-	mask: url(./../../img/unsub.svg) no-repeat;
-	mask-size: 18px 18px;
-	mask-position: center;
-	-webkit-mask: url(./../../img/unsub.svg) no-repeat;
-	-webkit-mask-size: 18px 18px;
-	-webkit-mask-position: center;
-	min-width: 44px !important;
-	min-height: 44px !important;
-}
 </style>

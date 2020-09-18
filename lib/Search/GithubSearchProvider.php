@@ -77,7 +77,7 @@ class GithubSearchProvider implements IProvider {
 	 * @inheritDoc
 	 */
 	public function getName(): string {
-		return $this->l10n->t('Github');
+		return $this->l10n->t('GitHub');
 	}
 
 	/**
@@ -111,7 +111,7 @@ class GithubSearchProvider implements IProvider {
 
 		$resultBills = [];
 
-        $accessToken = $this->config->getUserValue($user->getUID(), Application::APP_ID, 'token', '');
+		$accessToken = $this->config->getUserValue($user->getUID(), Application::APP_ID, 'token', '');
 		$searchEnabled = $this->config->getUserValue($user->getUID(), Application::APP_ID, 'search_enabled', '0') === '1';
 		if ($accessToken === '' || !$searchEnabled) {
 			return SearchResult::paginated($this->getName(), [], 0);
@@ -119,7 +119,7 @@ class GithubSearchProvider implements IProvider {
 
 		$searchResults = $this->service->search($accessToken, $term);
 
-		$formattedResults = \array_map(function (array $entry) use ($thumbnailUrl):GithubSearchResultEntry {
+		$formattedResults = \array_map(function (array $entry) use ($thumbnailUrl): GithubSearchResultEntry {
 			return new GithubSearchResultEntry(
 				$thumbnailUrl,
 				$this->getMainText($entry),

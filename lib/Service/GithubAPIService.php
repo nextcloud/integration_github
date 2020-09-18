@@ -21,7 +21,7 @@ class GithubAPIService {
 	private $logger;
 
 	/**
-	 * Service to make requests to Github v3 (JSON) API
+	 * Service to make requests to GitHub v3 (JSON) API
 	 */
 	public function __construct (
 		string $appName,
@@ -68,7 +68,7 @@ class GithubAPIService {
 	}
 
 	/**
-	 * Unsubscribe a notification, does the same as in Github notifications page
+	 * Unsubscribe a notification, does the same as in GitHub notifications page
 	 * @param string $accessToken
 	 * @param int $id Notification id
 	 * @return array request result
@@ -93,14 +93,14 @@ class GithubAPIService {
 	}
 
 	/**
-	 * Search Github
+	 * Search GitHub
 	 * @param string $accessToken
 	 * @param string $query What to search for
 	 * @return array request result
 	 */
 	public function search(string $accessToken, string $query): array {
 		$entries = [];
-		// 5 repositories
+		// repositories
 		$result = $this->searchRepositories($accessToken, $query);
 		if (isset($result['items'])) {
 			$result['items'] = array_slice($result['items'], 0, 5);
@@ -109,10 +109,10 @@ class GithubAPIService {
 				array_push($entries, $entry);
 			}
 		}
-		// 10 issues
+		// issues
 		$result = $this->searchIssues($accessToken, $query);
 		if (isset($result['items'])) {
-			$result['items'] = array_slice($result['items'], 0, 10);
+			$result['items'] = array_slice($result['items'], 0, 5);
 			foreach($result['items'] as $k => $entry) {
 				$entry['entry_type'] = 'issue';
 				array_push($entries, $entry);
@@ -165,13 +165,13 @@ class GithubAPIService {
 	 * @param array $params Query parameters (key/val pairs)
 	 * @param string $method HTTP query method
 	 */
-	public function request(string $accessToken, string $endPoint, array $params = [], string $method = 'GET'): array {
+	public function request(string $accessToken, string $endPoint, ?array $params = [], ?string $method = 'GET'): array {
 		try {
 			$url = 'https://api.github.com/' . $endPoint;
 			$options = [
 				'headers' => [
 					'Authorization' => 'token ' . $accessToken,
-					'User-Agent' => 'Nextcloud Github integration'
+					'User-Agent' => 'Nextcloud GitHub integration'
 				],
 			];
 
@@ -202,8 +202,8 @@ class GithubAPIService {
 				return json_decode($body, true);
 			}
 		} catch (\Exception $e) {
-			$this->logger->warning('Github API error : '.$e, array('app' => $this->appName));
-			return ['error', $e];
+			$this->logger->warning('GitHub API error : '.$e->getMessage(), array('app' => $this->appName));
+			return ['error', $e->getMessage()];
 		}
 	}
 
@@ -212,12 +212,12 @@ class GithubAPIService {
 	 * @param array $params Query parameters (key/val pairs)
 	 * @param string $method HTTP query method
 	 */
-	public function requestOAuthAccessToken($params = [], $method = 'GET'): array {
+	public function requestOAuthAccessToken(?array $params = [], ?string $method = 'GET'): array {
 		try {
 			$url = 'https://github.com/login/oauth/access_token';
 			$options = [
 				'headers' => [
-					'User-Agent' => 'Nextcloud Github integration'
+					'User-Agent' => 'Nextcloud GitHub integration'
 				],
 			];
 
@@ -249,8 +249,8 @@ class GithubAPIService {
 				return $resultArray;
 			}
 		} catch (\Exception $e) {
-			$this->logger->warning('Github OAuth error : '.$e, array('app' => $this->appName));
-			return ['error' => $e];
+			$this->logger->warning('GitHub OAuth error : '.$e->getMessage(), array('app' => $this->appName));
+			return ['error' => $e->getMessage()];
 		}
 	}
 }
