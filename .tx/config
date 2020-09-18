@@ -1,0 +1,9 @@
+[main]
+host = https://www.transifex.com
+lang_map = bg_BG: bg, cs_CZ: cs, fi_FI: fi, hu_HU: hu, nb_NO: nb, sk_SK: sk, th_TH: th, ja_JP: ja
+
+[nextcloud.integration_github]
+file_filter = translationfiles/<lang>/integration_github.po
+source_file = translationfiles/templates/integration_github.pot
+source_lang = en
+type = PO
