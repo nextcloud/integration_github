@@ -132,7 +132,7 @@ export default {
 	height: 23px;
 	margin-bottom: -4px;
 }
-body.dark .icon-github {
+body.theme--dark .icon-github {
 	background-image: url(./../../img/app.svg);
 }
 </style>
