@@ -9,13 +9,13 @@
     <author>Julien Veyssier</author>
     <namespace>Github</namespace>
     <documentation>
-        <developer>https://github.com/eneiluj/integration_github/wikis</developer>
+        <developer>https://github.com/nextcloud/integration_github</developer>
     </documentation>
     <category>integration</category>
     <category>dashboard</category>
-    <website>https://github.com/eneiluj/integration_github</website>
-    <bugs>https://github.com/eneiluj/integration_github/issues</bugs>
-    <screenshot>https://github.com/eneiluj/integration_github/raw/master/img/screenshot1.jpg</screenshot>
+    <website>https://github.com/nextcloud/integration_github</website>
+    <bugs>https://github.com/nextcloud/integration_github/issues</bugs>
+    <screenshot>https://github.com/nextcloud/integration_github/raw/master/img/screenshot1.jpg</screenshot>
     <dependencies>
         <database min-version="9.4">pgsql</database>
         <database>sqlite</database>
