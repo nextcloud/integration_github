@@ -35,7 +35,7 @@ use OCP\Search\IProvider;
 use OCP\Search\ISearchQuery;
 use OCP\Search\SearchResult;
 
-class GithubSearchProvider implements IProvider {
+class GithubSearchReposProvider implements IProvider {
 
 	/** @var IAppManager */
 	private $appManager;
@@ -70,14 +70,14 @@ class GithubSearchProvider implements IProvider {
 	 * @inheritDoc
 	 */
 	public function getId(): string {
-		return 'github-search';
+		return 'github-search-repos';
 	}
 
 	/**
 	 * @inheritDoc
 	 */
 	public function getName(): string {
-		return $this->l10n->t('GitHub');
+		return $this->l10n->t('GitHub repositories');
 	}
 
 	/**
@@ -116,17 +116,13 @@ class GithubSearchProvider implements IProvider {
 			return SearchResult::paginated($this->getName(), [], 0);
 		}
 
-		$searchResults = $this->service->search($accessToken, $term);
-
-		$limitRepos = intval($limit / 2);
-		$limitIssues = $limitRepos + ($limit % 2);
-		$pageNumber = intval(floor($offset / $limit));
-		$offsetRepos = $pageNumber * $limitRepos;
-		$offsetIssues = $pageNumber * $limitIssues;
-		$repos = array_slice($searchResults['repos'], $offsetRepos, $limitRepos);
-		$issues = array_slice($searchResults['issues'], $offsetIssues, $limitIssues);
-
-		$limitedResults = array_merge($repos, $issues);
+		$searchResult = $this->service->searchRepositories($accessToken, $term);
+		if (isset($searchResult['error'])) {
+			$repos = [];
+		} else {
+			$repos = $searchResult['items'];
+		}
+		$repos = array_slice($repos, $offset, $limit);
 
 		$formattedResults = \array_map(function (array $entry) use ($thumbnailUrl): GithubSearchResultEntry {
 			return new GithubSearchResultEntry(
@@ -137,7 +133,7 @@ class GithubSearchProvider implements IProvider {
 				'',
 				true
 			);
-		}, $limitedResults);
+		}, $repos);
 
 		return SearchResult::paginated(
 			$this->getName(),
@@ -150,34 +146,21 @@ class GithubSearchProvider implements IProvider {
 	 * @return string
 	 */
 	protected function getMainText(array $entry): string {
-		if ($entry['entry_type'] === 'repository') {
-			return $entry['full_name'] . ' [' . $entry['stargazers_count'] . '⭐]';
-		} else if ($entry['entry_type'] === 'issue') {
-			return $entry['title'];
-		}
+		return $entry['full_name'] . ' [' . $entry['stargazers_count'] . '⭐]';
 	}
 
 	/**
 	 * @return string
 	 */
 	protected function getSubline(array $entry): string {
-		if ($entry['entry_type'] === 'repository') {
-			return $this->l10n->t('Repository');
-		} else if ($entry['entry_type'] === 'issue') {
-			$repoName = str_replace('https://api.github.com/repos/', '', $entry['repository_url']);
-			return $this->l10n->t('Issue in %1$s', [$repoName]);
-		}
+		return $this->l10n->t('Repository');
 	}
 
 	/**
 	 * @return string
 	 */
 	protected function getLinkToGithub(array $entry): string {
-		if ($entry['entry_type'] === 'repository') {
-			return $entry['html_url'];
-		} else if ($entry['entry_type'] === 'issue') {
-			return $entry['html_url'];
-		}
+		return $entry['html_url'];
 	}
 
 }

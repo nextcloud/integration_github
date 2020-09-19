@@ -19,7 +19,8 @@ use OCP\AppFramework\Bootstrap\IBootContext;
 use OCP\AppFramework\Bootstrap\IBootstrap;
 
 use OCA\Github\Dashboard\GithubWidget;
-use OCA\Github\Search\GithubSearchProvider;
+use OCA\Github\Search\GithubSearchReposProvider;
+use OCA\Github\Search\GithubSearchIssuesProvider;
 
 /**
  * Class Application
@@ -45,7 +46,8 @@ class Application extends App implements IBootstrap {
 		$context->registerDashboardWidget(GithubWidget::class);
 
 		$config = $this->getContainer()->query(\OCP\IConfig::class);
-		$context->registerSearchProvider(GithubSearchProvider::class);
+		$context->registerSearchProvider(GithubSearchIssuesProvider::class);
+		$context->registerSearchProvider(GithubSearchReposProvider::class);
 	}
 
 	public function boot(IBootContext $context): void {

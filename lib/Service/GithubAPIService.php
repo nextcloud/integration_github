@@ -93,51 +93,12 @@ class GithubAPIService {
 	}
 
 	/**
-	 * Search GitHub
-	 * @param string $accessToken
-	 * @param string $query What to search for
-	 * @return array request result
-	 */
-	public function search(string $accessToken, string $query): array {
-		$entries = [];
-		// repositories
-		$repos = $this->searchRepositories($accessToken, $query);
-		if (isset($repos['items'])) {
-			//$result['items'] = array_slice($result['items'], 0, 5);
-			foreach($repos['items'] as $k => $entry) {
-				$repos['items'][$k]['entry_type'] = 'repository';
-				//array_push($entries, $entry);
-			}
-		}
-		// issues
-		$issues = $this->searchIssues($accessToken, $query);
-		if (isset($issues['items'])) {
-			//$result['items'] = array_slice($result['items'], 0, 5);
-			foreach($issues['items'] as $k => $entry) {
-				$issues['items'][$k]['entry_type'] = 'issue';
-				//array_push($entries, $entry);
-			}
-		}
-
-		//// sort by score
-		//$a = usort($entries, function($a, $b) {
-		//	$sa = floatval($a['score']);
-		//	$sb = floatval($b['score']);
-		//	return ($sa > $sb) ? -1 : 1;
-		//});
-		return [
-			'repos' => $repos['items'] ?? [],
-			'issues' => $issues['items'] ?? [],
-		];
-	}
-
-	/**
 	 * Search repositories
 	 * @param string $accessToken
 	 * @param string $query What to search for
 	 * @return array request result
 	 */
-	private function searchRepositories(string $accessToken, string $query): array {
+	public function searchRepositories(string $accessToken, string $query): array {
 		$params = [
 			'q' => $query,
 			'order' => 'desc'
@@ -152,7 +113,7 @@ class GithubAPIService {
 	 * @param string $query What to search for
 	 * @return array request result
 	 */
-	private function searchIssues(string $accessToken, string $query): array {
+	public function searchIssues(string $accessToken, string $query): array {
 		$params = [
 			'q' => $query,
 			'order' => 'desc'
