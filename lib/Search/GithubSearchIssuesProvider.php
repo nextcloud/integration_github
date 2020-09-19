@@ -77,7 +77,7 @@ class GithubSearchIssuesProvider implements IProvider {
 	 * @inheritDoc
 	 */
 	public function getName(): string {
-		return $this->l10n->t('GitHub issues');
+		return $this->l10n->t('GitHub issues and pull requests');
 	}
 
 	/**
@@ -106,9 +106,12 @@ class GithubSearchIssuesProvider implements IProvider {
 		$offset = $offset ? intval($offset) : 0;
 
 		$theme = $this->config->getUserValue($user->getUID(), 'accessibility', 'theme', '');
-		$thumbnailUrl = ($theme === 'dark') ?
+		$issueThumbnailUrl = ($theme === 'dark') ?
 			$this->urlGenerator->imagePath(Application::APP_ID, 'issue-white.svg') :
 			$this->urlGenerator->imagePath(Application::APP_ID, 'issue-dark.svg');
+		$prThumbnailUrl = ($theme === 'dark') ?
+			$this->urlGenerator->imagePath(Application::APP_ID, 'pull_request-white.svg') :
+			$this->urlGenerator->imagePath(Application::APP_ID, 'pull_request-dark.svg');
 
 		$accessToken = $this->config->getUserValue($user->getUID(), Application::APP_ID, 'token', '');
 		$searchEnabled = $this->config->getUserValue($user->getUID(), Application::APP_ID, 'search_enabled', '0') === '1';
@@ -125,9 +128,9 @@ class GithubSearchIssuesProvider implements IProvider {
 		$issues = array_slice($issues, $offset, $limit);
 
 
-		$formattedResults = \array_map(function (array $entry) use ($thumbnailUrl): GithubSearchResultEntry {
+		$formattedResults = \array_map(function (array $entry) use ($prThumbnailUrl, $issueThumbnailUrl): GithubSearchResultEntry {
 			return new GithubSearchResultEntry(
-				$thumbnailUrl,
+				isset($entry['pull_request']) ? $prThumbnailUrl : $issueThumbnailUrl,
 				$this->getMainText($entry),
 				$this->getSubline($entry),
 				$this->getLinkToGithub($entry),
@@ -155,7 +158,9 @@ class GithubSearchIssuesProvider implements IProvider {
 	 */
 	protected function getSubline(array $entry): string {
 		$repoName = str_replace('https://api.github.com/repos/', '', $entry['repository_url']);
-		return $this->l10n->t('Issue in %1$s', [$repoName]);
+		return isset($entry['pull_request'])
+			? $this->l10n->t('PR in %1$s', [$repoName])
+			: $this->l10n->t('Issue in %1$s', [$repoName]);
 	}
 
 	/**
