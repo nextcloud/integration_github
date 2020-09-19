@@ -107,8 +107,8 @@ class GithubSearchReposProvider implements IProvider {
 
 		$theme = $this->config->getUserValue($user->getUID(), 'accessibility', 'theme', '');
 		$thumbnailUrl = ($theme === 'dark') ?
-			$this->urlGenerator->imagePath(Application::APP_ID, 'app.svg') :
-			$this->urlGenerator->imagePath(Application::APP_ID, 'app-dark.svg');
+			$this->urlGenerator->imagePath(Application::APP_ID, 'repo-white.svg') :
+			$this->urlGenerator->imagePath(Application::APP_ID, 'repo-dark.svg');
 
 		$accessToken = $this->config->getUserValue($user->getUID(), Application::APP_ID, 'token', '');
 		$searchEnabled = $this->config->getUserValue($user->getUID(), Application::APP_ID, 'search_enabled', '0') === '1';
