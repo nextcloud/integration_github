@@ -153,7 +153,7 @@ class GithubSearchReposProvider implements IProvider {
 	 * @return string
 	 */
 	protected function getSubline(array $entry): string {
-		return $this->l10n->t('Repository');
+		return $entry['description'];
 	}
 
 	/**
