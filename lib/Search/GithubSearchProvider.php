@@ -103,13 +103,12 @@ class GithubSearchProvider implements IProvider {
 		$limit = $query->getLimit();
 		$term = $query->getTerm();
 		$offset = $query->getCursor();
+		$offset = $offset ? intval($offset) : 0;
 
 		$theme = $this->config->getUserValue($user->getUID(), 'accessibility', 'theme', '');
 		$thumbnailUrl = ($theme === 'dark') ?
 			$this->urlGenerator->imagePath(Application::APP_ID, 'app.svg') :
 			$this->urlGenerator->imagePath(Application::APP_ID, 'app-dark.svg');
-
-		$resultBills = [];
 
 		$accessToken = $this->config->getUserValue($user->getUID(), Application::APP_ID, 'token', '');
 		$searchEnabled = $this->config->getUserValue($user->getUID(), Application::APP_ID, 'search_enabled', '0') === '1';
@@ -118,6 +117,16 @@ class GithubSearchProvider implements IProvider {
 		}
 
 		$searchResults = $this->service->search($accessToken, $term);
+
+		$limitRepos = intval($limit / 2);
+		$limitIssues = $limitRepos + ($limit % 2);
+		$pageNumber = intval(floor($offset / $limit));
+		$offsetRepos = $pageNumber * $limitRepos;
+		$offsetIssues = $pageNumber * $limitIssues;
+		$repos = array_slice($searchResults['repos'], $offsetRepos, $limitRepos);
+		$issues = array_slice($searchResults['issues'], $offsetIssues, $limitIssues);
+
+		$limitedResults = array_merge($repos, $issues);
 
 		$formattedResults = \array_map(function (array $entry) use ($thumbnailUrl): GithubSearchResultEntry {
 			return new GithubSearchResultEntry(
@@ -128,12 +137,12 @@ class GithubSearchProvider implements IProvider {
 				'',
 				true
 			);
-		}, $searchResults);
+		}, $limitedResults);
 
 		return SearchResult::paginated(
 			$this->getName(),
 			$formattedResults,
-			$query->getCursor() + count($formattedResults)
+			$offset + $limit
 		);
 	}
 
