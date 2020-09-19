@@ -47,6 +47,11 @@
 					:checked="state.search_enabled"
 					@input="onSearchChange">
 				<label for="search-github">{{ t('integration_github', 'Enable searching for repositories, issues and pull requests.') }}</label>
+				<br><br>
+				<p class="settings-hint">
+					<span class="icon icon-details" />
+					{{ t('integration_github', 'Warning, everything you type in the search bar will be sent to GitHub.') }}
+				</p>
 			</div>
 		</div>
 	</div>
@@ -206,5 +211,8 @@ body.theme--dark .icon-github-settings {
 }
 #github-content {
 	margin-left: 40px;
+}
+#github-search-block .icon {
+	width: 22px;
 }
 </style>
