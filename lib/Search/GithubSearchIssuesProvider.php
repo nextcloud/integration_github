@@ -106,12 +106,21 @@ class GithubSearchIssuesProvider implements IProvider {
 		$offset = $offset ? intval($offset) : 0;
 
 		$theme = $this->config->getUserValue($user->getUID(), 'accessibility', 'theme', '');
-		$issueThumbnailUrl = ($theme === 'dark') ?
-			$this->urlGenerator->imagePath(Application::APP_ID, 'issue-white.svg') :
-			$this->urlGenerator->imagePath(Application::APP_ID, 'issue-dark.svg');
-		$prThumbnailUrl = ($theme === 'dark') ?
-			$this->urlGenerator->imagePath(Application::APP_ID, 'pull_request-white.svg') :
-			$this->urlGenerator->imagePath(Application::APP_ID, 'pull_request-dark.svg');
+		$thumbnailUrls = ($theme === 'dark')
+			? [
+				'issueOpen' => $this->urlGenerator->imagePath(Application::APP_ID, 'issue_open-white.svg'),
+				'issueClosed' => $this->urlGenerator->imagePath(Application::APP_ID, 'issue_closed-white.svg'),
+				'prOpen' => $this->urlGenerator->imagePath(Application::APP_ID, 'pull_request_open-white.svg'),
+				'prClosed' => $this->urlGenerator->imagePath(Application::APP_ID, 'pull_request_closed-white.svg'),
+				'prMerged' => $this->urlGenerator->imagePath(Application::APP_ID, 'pull_request_merged-white.svg'),
+			]
+			: [
+				'issueOpen' => $this->urlGenerator->imagePath(Application::APP_ID, 'issue_open-dark.svg'),
+				'issueClosed' => $this->urlGenerator->imagePath(Application::APP_ID, 'issue_closed-dark.svg'),
+				'prOpen' => $this->urlGenerator->imagePath(Application::APP_ID, 'pull_request_open-dark.svg'),
+				'prClosed' => $this->urlGenerator->imagePath(Application::APP_ID, 'pull_request_closed-dark.svg'),
+				'prMerged' => $this->urlGenerator->imagePath(Application::APP_ID, 'pull_request_merged-dark.svg'),
+			];
 
 		$accessToken = $this->config->getUserValue($user->getUID(), Application::APP_ID, 'token', '');
 		$searchEnabled = $this->config->getUserValue($user->getUID(), Application::APP_ID, 'search_enabled', '0') === '1';
@@ -119,18 +128,16 @@ class GithubSearchIssuesProvider implements IProvider {
 			return SearchResult::paginated($this->getName(), [], 0);
 		}
 
-		$searchResult = $this->service->searchIssues($accessToken, $term);
+		$searchResult = $this->service->searchIssues($accessToken, $term, $offset, $limit);
 		if (isset($searchResult['error'])) {
 			$issues = [];
 		} else {
 			$issues = $searchResult['items'];
 		}
-		$issues = array_slice($issues, $offset, $limit);
 
-
-		$formattedResults = \array_map(function (array $entry) use ($prThumbnailUrl, $issueThumbnailUrl): GithubSearchResultEntry {
+		$formattedResults = \array_map(function (array $entry) use ($thumbnailUrls): GithubSearchResultEntry {
 			return new GithubSearchResultEntry(
-				isset($entry['pull_request']) ? $prThumbnailUrl : $issueThumbnailUrl,
+				$this->getThumbnailUrl($entry, $thumbnailUrls),
 				$this->getMainText($entry),
 				$this->getSubline($entry),
 				$this->getLinkToGithub($entry),
@@ -150,17 +157,29 @@ class GithubSearchIssuesProvider implements IProvider {
 	 * @return string
 	 */
 	protected function getMainText(array $entry): string {
-		return $entry['title'];
+		$stateChar = isset($entry['pull_request'])
+			? ($entry['merged']
+				? '✅'
+				: ($entry['state'] === 'closed'
+					? '❌'
+					: '⋯'))
+			: ($entry['state'] === 'closed'
+				? '❌'
+				: '⋯');
+		return $stateChar . ' ' . $entry['title'];
 	}
 
 	/**
 	 * @return string
 	 */
 	protected function getSubline(array $entry): string {
-		$repoName = str_replace('https://api.github.com/repos/', '', $entry['repository_url']);
-		return isset($entry['pull_request'])
-			? $this->l10n->t('PR in %1$s', [$repoName])
-			: $this->l10n->t('Issue in %1$s', [$repoName]);
+		$repoFullName = str_replace('https://api.github.com/repos/', '', $entry['repository_url']);
+		$spl = explode('/', $repoFullName);
+		$owner = $spl[0];
+		$repo = $spl[1];
+		$number = $entry['number'];
+		$typeChar = isset($entry['pull_request']) ? '⑃' : '🛈';
+		return $typeChar . ' ' . $repo . '#' . $number;
 	}
 
 	/**
@@ -168,5 +187,13 @@ class GithubSearchIssuesProvider implements IProvider {
 	 */
 	protected function getLinkToGithub(array $entry): string {
 		return $entry['html_url'];
+	}
+
+	/**
+	 * @return string
+	 */
+	protected function getThumbnailUrl(array $entry, array $thumbnailUrls): string {
+		$url = $entry['project_avatar_url'];
+		return $this->urlGenerator->linkToRoute('integration_github.githubAPI.getAvatar', []) . '?url=' . urlencode($url);
 	}
 }

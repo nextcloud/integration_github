@@ -113,12 +113,48 @@ class GithubAPIService {
 	 * @param string $query What to search for
 	 * @return array request result
 	 */
-	public function searchIssues(string $accessToken, string $query): array {
+	public function searchIssues(string $accessToken, string $query, int $offset = 0, int $length = 5): array {
 		$params = [
 			'q' => $query,
 			'order' => 'desc'
 		];
 		$result = $this->request($accessToken, 'search/issues', $params, 'GET');
+		if (!isset($result['error'])) {
+			$result['items'] = array_slice($result['items'], $offset, $length);
+			$reposToGet = [];
+			foreach ($result['items'] as $k => $entry) {
+				$repoFullName = str_replace('https://api.github.com/repos/', '', $entry['repository_url']);
+				$spl = explode('/', $repoFullName);
+				$owner = $spl[0];
+				$repo = $spl[1];
+				$number = $entry['number'];
+				if (isset($entry['pull_request'])) {
+					$info = $this->request($accessToken, 'repos/' . $owner . '/' . $repo . '/' . 'pulls/' . $number);
+					if (!isset($info['error'])) {
+						$result['items'][$k]['merged'] = $info['merged'];
+						if ($info['head'] && $info['head']['repo'] && $info['head']['repo']['owner'] && $info['head']['repo']['owner'] && $info['head']['repo']['owner']['avatar_url']) {
+							$result['items'][$k]['project_avatar_url'] = $info['head']['repo']['owner']['avatar_url'];
+						}
+					}
+				} else {
+					array_push($reposToGet, ['key' => $repoFullName, 'owner' => $owner, 'repo' => $repo]);
+				}
+			}
+			// get repos info (for issues only)
+			$repoAvatarUrls = [];
+			foreach ($reposToGet as $repo) {
+				$info = $this->request($accessToken, 'repos/' . $repo['owner'] . '/' . $repo['repo']);
+				if (!isset($info['error']) && $info['owner'] && $info['owner']['avatar_url']) {
+					$repoAvatarUrls[$repo['key']] = $info['owner']['avatar_url'];
+				}
+			}
+			foreach ($result['items'] as $k => $entry) {
+				$repoFullName = str_replace('https://api.github.com/repos/', '', $entry['repository_url']);
+				if (!isset($entry['pull_request']) && array_key_exists($repoFullName, $repoAvatarUrls)) {
+					$result['items'][$k]['project_avatar_url'] = $repoAvatarUrls[$repoFullName];
+				}
+			}
+		}
 		return $result;
 	}
 

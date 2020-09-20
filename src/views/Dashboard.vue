@@ -188,6 +188,7 @@ export default {
 			})
 		},
 		getRepositoryAvatarUrl(n) {
+			console.debug(n.repository.owner.avatar_url)
 			return (n.repository && n.repository.owner && n.repository.owner.avatar_url)
 				? generateUrl('/apps/integration_github/avatar?') + encodeURIComponent('url') + '=' + encodeURIComponent(n.repository.owner.avatar_url)
 				: ''
