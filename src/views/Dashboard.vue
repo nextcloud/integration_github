@@ -89,9 +89,9 @@ export default {
 		},
 		emptyContentMessage() {
 			if (this.state === 'no-token') {
-				return t('integration_github', 'No GitHub account connected')
+				return t('integration_github', 'No GitHub account connected.')
 			} else if (this.state === 'error') {
-				return t('integration_github', 'Error connecting to GitHub')
+				return t('integration_github', 'Error connecting to GitHub.')
 			} else if (this.state === 'ok') {
 				return t('integration_github', 'No GitHub notifications!')
 			}
