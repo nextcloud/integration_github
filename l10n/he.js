@@ -1,7 +1,9 @@
 OC.L10N.register(
     "integration_github",
     {
-    "GitHub" : "GitHub",
+    "Error getting OAuth access token" : "שגיאה בקבלת אסימון גישה עם OAuth",
+    "Error during OAuth exchanges" : "שגיאה במהלך החלפות OAuth",
+    "Bad credentials" : "פרטי גישה שגויים",
     "Client ID" : "מזהה לקו",
     "Client secret" : "סוד לקוח",
     "Comment" : "הערה"

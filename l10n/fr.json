@@ -1,7 +1,9 @@
 { "translations": {
-    "GitHub" : "GitHub",
+    "Connected accounts" : "Comptes connectés",
     "Client ID" : "ID Client",
     "Client secret" : "Secret client",
+    "Connected as {user}" : "Connecté en tant que {user}",
+    "Mark as read" : "Marquer comme lu",
     "Comment" : "Commenter"
 },"pluralForm" :"nplurals=2; plural=(n > 1);"
 }

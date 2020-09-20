@@ -1,7 +1,6 @@
 OC.L10N.register(
     "integration_github",
     {
-    "GitHub" : "GitHub",
     "Client ID" : "Kliento ID",
     "Client secret" : "Trečiųjų šalių programinės įrangos kliento identifikacijos raktas",
     "Comment" : "Komentaras"
