@@ -98,12 +98,15 @@ class GithubAPIService {
 	 * @param string $query What to search for
 	 * @return array request result
 	 */
-	public function searchRepositories(string $accessToken, string $query): array {
+	public function searchRepositories(string $accessToken, string $query, int $offset = 0, int $length = 5): array {
 		$params = [
 			'q' => $query,
 			'order' => 'desc'
 		];
 		$result = $this->request($accessToken, 'search/repositories', $params, 'GET');
+		if (!isset($result['error'])) {
+			$result['items'] = array_slice($result['items'], $offset, $length);
+		}
 		return $result;
 	}
 

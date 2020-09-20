@@ -106,21 +106,6 @@ class GithubSearchIssuesProvider implements IProvider {
 		$offset = $offset ? intval($offset) : 0;
 
 		$theme = $this->config->getUserValue($user->getUID(), 'accessibility', 'theme', '');
-		$thumbnailUrls = ($theme === 'dark')
-			? [
-				'issueOpen' => $this->urlGenerator->imagePath(Application::APP_ID, 'issue_open-white.svg'),
-				'issueClosed' => $this->urlGenerator->imagePath(Application::APP_ID, 'issue_closed-white.svg'),
-				'prOpen' => $this->urlGenerator->imagePath(Application::APP_ID, 'pull_request_open-white.svg'),
-				'prClosed' => $this->urlGenerator->imagePath(Application::APP_ID, 'pull_request_closed-white.svg'),
-				'prMerged' => $this->urlGenerator->imagePath(Application::APP_ID, 'pull_request_merged-white.svg'),
-			]
-			: [
-				'issueOpen' => $this->urlGenerator->imagePath(Application::APP_ID, 'issue_open-dark.svg'),
-				'issueClosed' => $this->urlGenerator->imagePath(Application::APP_ID, 'issue_closed-dark.svg'),
-				'prOpen' => $this->urlGenerator->imagePath(Application::APP_ID, 'pull_request_open-dark.svg'),
-				'prClosed' => $this->urlGenerator->imagePath(Application::APP_ID, 'pull_request_closed-dark.svg'),
-				'prMerged' => $this->urlGenerator->imagePath(Application::APP_ID, 'pull_request_merged-dark.svg'),
-			];
 
 		$accessToken = $this->config->getUserValue($user->getUID(), Application::APP_ID, 'token', '');
 		$searchEnabled = $this->config->getUserValue($user->getUID(), Application::APP_ID, 'search_enabled', '0') === '1';
@@ -135,9 +120,9 @@ class GithubSearchIssuesProvider implements IProvider {
 			$issues = $searchResult['items'];
 		}
 
-		$formattedResults = \array_map(function (array $entry) use ($thumbnailUrls): GithubSearchResultEntry {
+		$formattedResults = \array_map(function (array $entry): GithubSearchResultEntry {
 			return new GithubSearchResultEntry(
-				$this->getThumbnailUrl($entry, $thumbnailUrls),
+				$this->getThumbnailUrl($entry),
 				$this->getMainText($entry),
 				$this->getSubline($entry),
 				$this->getLinkToGithub($entry),
@@ -192,7 +177,7 @@ class GithubSearchIssuesProvider implements IProvider {
 	/**
 	 * @return string
 	 */
-	protected function getThumbnailUrl(array $entry, array $thumbnailUrls): string {
+	protected function getThumbnailUrl(array $entry): string {
 		$url = $entry['project_avatar_url'];
 		return $this->urlGenerator->linkToRoute('integration_github.githubAPI.getAvatar', []) . '?url=' . urlencode($url);
 	}

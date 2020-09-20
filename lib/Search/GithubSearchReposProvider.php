@@ -106,9 +106,6 @@ class GithubSearchReposProvider implements IProvider {
 		$offset = $offset ? intval($offset) : 0;
 
 		$theme = $this->config->getUserValue($user->getUID(), 'accessibility', 'theme', '');
-		$thumbnailUrl = ($theme === 'dark') ?
-			$this->urlGenerator->imagePath(Application::APP_ID, 'repo-white.svg') :
-			$this->urlGenerator->imagePath(Application::APP_ID, 'repo-dark.svg');
 
 		$accessToken = $this->config->getUserValue($user->getUID(), Application::APP_ID, 'token', '');
 		$searchEnabled = $this->config->getUserValue($user->getUID(), Application::APP_ID, 'search_enabled', '0') === '1';
@@ -116,17 +113,16 @@ class GithubSearchReposProvider implements IProvider {
 			return SearchResult::paginated($this->getName(), [], 0);
 		}
 
-		$searchResult = $this->service->searchRepositories($accessToken, $term);
+		$searchResult = $this->service->searchRepositories($accessToken, $term, $offset, $limit);
 		if (isset($searchResult['error'])) {
 			$repos = [];
 		} else {
 			$repos = $searchResult['items'];
 		}
-		$repos = array_slice($repos, $offset, $limit);
 
-		$formattedResults = \array_map(function (array $entry) use ($thumbnailUrl): GithubSearchResultEntry {
+		$formattedResults = \array_map(function (array $entry): GithubSearchResultEntry {
 			return new GithubSearchResultEntry(
-				$thumbnailUrl,
+				$this->getThumbnailUrl($entry),
 				$this->getMainText($entry),
 				$this->getSubline($entry),
 				$this->getLinkToGithub($entry),
@@ -163,4 +159,11 @@ class GithubSearchReposProvider implements IProvider {
 		return $entry['html_url'];
 	}
 
+	/**
+	 * @return string
+	 */
+	protected function getThumbnailUrl(array $entry): string {
+		$url = $entry['owner']['avatar_url'];
+		return $this->urlGenerator->linkToRoute('integration_github.githubAPI.getAvatar', []) . '?url=' . urlencode($url);
+	}
 }
