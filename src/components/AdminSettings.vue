@@ -95,7 +95,7 @@ export default {
 				})
 				.catch((error) => {
 					showError(
-						t('integration_github', 'Failed to save GitHub admin options')
+						t('integration_github', 'Failed to save GitHub admin options.')
 						+ ': ' + error.response.request.responseText
 					)
 				})
