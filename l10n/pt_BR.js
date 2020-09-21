@@ -13,7 +13,6 @@ OC.L10N.register(
     "Connected as {user}" : "Conectado como {user}",
     "Disconnect from GitHub" : "Desconectar do GitHub",
     "GitHub options saved." : "Opções do GitHub salvas.",
-    "Failed to save GitHub options" : "Erro ao salvar as opções do GitHub",
     "Comment" : "Comentário"
 },
 "nplurals=2; plural=(n > 1);");
