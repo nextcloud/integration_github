@@ -3,8 +3,9 @@
     <id>integration_github</id>
     <name>GitHub integration</name>
     <summary>Integration of GitHub software development management service</summary>
-    <description><![CDATA[GitHub integration provides a dashboard widget displaying your important notifications and a unified search provider to search for repositories, issues and pull requests.]]></description>
-    <version>0.0.2</version>
+    <description><![CDATA[GitHub integration provides a dashboard widget displaying your most important notifications
+    and a unified search provider for repositories, issues and pull requests.]]></description>
+    <version>0.0.3</version>
     <licence>agpl</licence>
     <author>Julien Veyssier</author>
     <namespace>Github</namespace>

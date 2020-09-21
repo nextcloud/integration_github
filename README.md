@@ -1,7 +1,6 @@
 # GitHub integration in Nextcloud
 
-This app adds a dashboard item to see your main GitHub notifications.
+🐙 Put an octopus in your engine!
 
-## Releases
-
-...
+This app adds a dashboard item to see your most important GitHub notifications.
+It also adds a search provider for repositories, issues and pull requests.

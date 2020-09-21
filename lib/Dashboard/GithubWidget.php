@@ -49,7 +49,7 @@ class GithubWidget implements IWidget {
 	 * @inheritDoc
 	 */
 	public function getTitle(): string {
-		return $this->l10n->t('Github notifications');
+		return $this->l10n->t('GitHub notifications');
 	}
 
 	/**
