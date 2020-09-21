@@ -111,7 +111,7 @@ export default {
 
 	beforeMount() {
 		this.fetchNotifications()
-		this.loop = setInterval(() => this.fetchNotifications(), 15000)
+		this.loop = setInterval(() => this.fetchNotifications(), 60000)
 	},
 
 	mounted() {
