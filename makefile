@@ -85,6 +85,8 @@ appstore: clean
 	--exclude=crowdin.yml \
 	--exclude=tools \
 	--exclude=l10n/.tx \
+	--exclude=.tx \
+	--exclude=.l10nignore \
 	--exclude=l10n/l10n.pl \
 	--exclude=l10n/templates \
 	--exclude=l10n/*.sh \
