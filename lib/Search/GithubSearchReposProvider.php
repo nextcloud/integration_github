@@ -108,8 +108,8 @@ class GithubSearchReposProvider implements IProvider {
 		$theme = $this->config->getUserValue($user->getUID(), 'accessibility', 'theme', '');
 
 		$accessToken = $this->config->getUserValue($user->getUID(), Application::APP_ID, 'token', '');
-		$searchEnabled = $this->config->getUserValue($user->getUID(), Application::APP_ID, 'search_enabled', '0') === '1';
-		if ($accessToken === '' || !$searchEnabled) {
+		$searchReposEnabled = $this->config->getUserValue($user->getUID(), Application::APP_ID, 'search_repos_enabled', '0') === '1';
+		if ($accessToken === '' || !$searchReposEnabled) {
 			return SearchResult::paginated($this->getName(), [], 0);
 		}
 

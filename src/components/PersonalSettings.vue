@@ -41,12 +41,20 @@
 			<br>
 			<div v-if="connected" id="github-search-block">
 				<input
-					id="search-github"
+					id="search-github-repos"
 					type="checkbox"
 					class="checkbox"
-					:checked="state.search_enabled"
-					@input="onSearchChange">
-				<label for="search-github">{{ t('integration_github', 'Enable searching for repositories, issues and pull requests.') }}</label>
+					:checked="state.search_repos_enabled"
+					@input="onSearchReposChange">
+				<label for="search-github-repos">{{ t('integration_github', 'Enable searching for repositories') }}</label>
+				<br><br>
+				<input
+					id="search-github-issues"
+					type="checkbox"
+					class="checkbox"
+					:checked="state.search_issues_enabled"
+					@input="onSearchIssuesChange">
+				<label for="search-github-issues">{{ t('integration_github', 'Enable searching for issues and pull requests') }}</label>
 				<br><br>
 				<p v-if="state.search_enabled" class="settings-hint">
 					<span class="icon icon-details" />
@@ -108,8 +116,12 @@ export default {
 			this.state.token = ''
 			this.saveOptions()
 		},
-		onSearchChange(e) {
-			this.state.search_enabled = e.target.checked
+		onSearchIssuesChange(e) {
+			this.state.search_issues_enabled = e.target.checked
+			this.saveOptions()
+		},
+		onSearchReposChange(e) {
+			this.state.search_repos_enabled = e.target.checked
 			this.saveOptions()
 		},
 		onInput() {
@@ -121,7 +133,8 @@ export default {
 			const req = {
 				values: {
 					token: this.state.token,
-					search_enabled: this.state.search_enabled ? '1' : '0',
+					search_repos_enabled: this.state.search_repos_enabled ? '1' : '0',
+					search_issues_enabled: this.state.search_issues_enabled ? '1' : '0',
 				},
 			}
 			const url = generateUrl('/apps/integration_github/config')

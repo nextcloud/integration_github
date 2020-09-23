@@ -108,8 +108,8 @@ class GithubSearchIssuesProvider implements IProvider {
 		$theme = $this->config->getUserValue($user->getUID(), 'accessibility', 'theme', '');
 
 		$accessToken = $this->config->getUserValue($user->getUID(), Application::APP_ID, 'token', '');
-		$searchEnabled = $this->config->getUserValue($user->getUID(), Application::APP_ID, 'search_enabled', '0') === '1';
-		if ($accessToken === '' || !$searchEnabled) {
+		$searchIssuesEnabled = $this->config->getUserValue($user->getUID(), Application::APP_ID, 'search_issues_enabled', '0') === '1';
+		if ($accessToken === '' || !$searchIssuesEnabled) {
 			return SearchResult::paginated($this->getName(), [], 0);
 		}
 
