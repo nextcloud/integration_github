@@ -146,9 +146,15 @@ class ConfigController extends Controller {
 		);
 	}
 
+	/**
+	 * get and store connected user info
+	 *
+	 * @param string $accessToken
+	 * @return string the login/username
+	 */
 	private function storeUserInfo(string $accessToken): string {
 		$info = $this->githubAPIService->request($accessToken, 'user');
-		if (isset($info['login']) && isset($info['id'])) {
+		if (isset($info['login'], $info['id'])) {
 			$this->config->setUserValue($this->userId, Application::APP_ID, 'user_id', $info['id']);
 			$this->config->setUserValue($this->userId, Application::APP_ID, 'user_name', $info['login']);
 			return $info['login'];

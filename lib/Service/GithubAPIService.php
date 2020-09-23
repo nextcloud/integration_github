@@ -50,8 +50,9 @@ class GithubAPIService {
 	 * @param string $accessToken
 	 * @param ?string $since optional date to filter notifications
 	 * @param ?bool $participating optional param to only show notifications the user is participating to
+	 * @return array notification list or error
 	 */
-	public function getNotifications(string $accessToken, ?string $since, ?bool $participating): array {
+	public function getNotifications(string $accessToken, ?string $since = null, ?bool $participating = null): array {
 		$params = [];
 		if (is_null($since)) {
 			$twoWeeksEarlier = new \DateTime();
@@ -96,6 +97,8 @@ class GithubAPIService {
 	 * Search repositories
 	 * @param string $accessToken
 	 * @param string $query What to search for
+	 * @param int $offset
+	 * @param int $limit
 	 * @return array request result
 	 */
 	public function searchRepositories(string $accessToken, string $query, int $offset = 0, int $length = 5): array {
@@ -114,6 +117,8 @@ class GithubAPIService {
 	 * Search issues and PRs
 	 * @param string $accessToken
 	 * @param string $query What to search for
+	 * @param int $offset
+	 * @param int $limit
 	 * @return array request result
 	 */
 	public function searchIssues(string $accessToken, string $query, int $offset = 0, int $length = 5): array {
@@ -140,7 +145,11 @@ class GithubAPIService {
 						}
 					}
 				} else {
-					array_push($reposToGet, ['key' => $repoFullName, 'owner' => $owner, 'repo' => $repo]);
+					$reposToGet[] = [
+						'key' => $repoFullName,
+						'owner' => $owner,
+						'repo' => $repo,
+					];
 				}
 			}
 			// get repos info (for issues only)
@@ -167,8 +176,9 @@ class GithubAPIService {
 	 * @param string $endPoint The path to reach in api.github.com
 	 * @param array $params Query parameters (key/val pairs)
 	 * @param string $method HTTP query method
+	 * @return array decoded request result or error
 	 */
-	public function request(string $accessToken, string $endPoint, ?array $params = [], ?string $method = 'GET'): array {
+	public function request(string $accessToken, string $endPoint, array $params = [], string $method = 'GET'): array {
 		try {
 			$url = 'https://api.github.com/' . $endPoint;
 			$options = [
@@ -214,8 +224,9 @@ class GithubAPIService {
 	 * Make the request to get an OAuth token
 	 * @param array $params Query parameters (key/val pairs)
 	 * @param string $method HTTP query method
+	 * @return array parsed result or error
 	 */
-	public function requestOAuthAccessToken(?array $params = [], ?string $method = 'GET'): array {
+	public function requestOAuthAccessToken(array $params = [], string $method = 'GET'): array {
 		try {
 			$url = 'https://github.com/login/oauth/access_token';
 			$options = [

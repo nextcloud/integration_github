@@ -139,6 +139,7 @@ class GithubSearchReposProvider implements IProvider {
 	}
 
 	/**
+	 * @param array $entry
 	 * @return string
 	 */
 	protected function getMainText(array $entry): string {
@@ -146,6 +147,7 @@ class GithubSearchReposProvider implements IProvider {
 	}
 
 	/**
+	 * @param array $entry
 	 * @return string
 	 */
 	protected function getSubline(array $entry): string {
@@ -153,6 +155,7 @@ class GithubSearchReposProvider implements IProvider {
 	}
 
 	/**
+	 * @param array $entry
 	 * @return string
 	 */
 	protected function getLinkToGithub(array $entry): string {
@@ -160,6 +163,7 @@ class GithubSearchReposProvider implements IProvider {
 	}
 
 	/**
+	 * @param array $entry
 	 * @return string
 	 */
 	protected function getThumbnailUrl(array $entry): string {
