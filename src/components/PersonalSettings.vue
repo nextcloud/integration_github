@@ -105,7 +105,7 @@ export default {
 		const urlParams = new URLSearchParams(paramString)
 		const ghToken = urlParams.get('githubToken')
 		if (ghToken === 'success') {
-			showSuccess(t('integration_github', 'GitHub OAuth access token successfully retrieved!'))
+			showSuccess(t('integration_github', 'Connected to GitHub!'))
 		} else if (ghToken === 'error') {
 			showError(t('integration_github', 'GitHub OAuth error:') + ' ' + urlParams.get('message'))
 		}
@@ -140,7 +140,7 @@ export default {
 			const url = generateUrl('/apps/integration_github/config')
 			axios.put(url, req)
 				.then((response) => {
-					showSuccess(t('integration_github', 'GitHub options saved.'))
+					showSuccess(t('integration_github', 'GitHub options saved'))
 					if (response.data.user_name !== undefined) {
 						this.state.user_name = response.data.user_name
 						if (this.state.token && response.data.user_name === '') {

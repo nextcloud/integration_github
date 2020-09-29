@@ -37,7 +37,7 @@
 				v-model="state.client_secret"
 				type="password"
 				:readonly="readonly"
-				:placeholder="t('integration_github', 'Client secret or your GitHub application')"
+				:placeholder="t('integration_github', 'Client secret of your GitHub application')"
 				@input="onInput"
 				@focus="readonly = false">
 		</div>
@@ -91,7 +91,7 @@ export default {
 			const url = generateUrl('/apps/integration_github/admin-config')
 			axios.put(url, req)
 				.then((response) => {
-					showSuccess(t('integration_github', 'GitHub admin options saved.'))
+					showSuccess(t('integration_github', 'GitHub admin options saved'))
 				})
 				.catch((error) => {
 					showError(
