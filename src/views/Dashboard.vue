@@ -26,7 +26,7 @@
 <script>
 import axios from '@nextcloud/axios'
 import { generateUrl } from '@nextcloud/router'
-import { showError } from '@nextcloud/dialogs'
+import { showError, showSuccess } from '@nextcloud/dialogs'
 import moment from '@nextcloud/moment'
 import { DashboardWidget } from '@nextcloud/vue-dashboard'
 import EmptyContent from '@nextcloud/vue/dist/Components/EmptyContent'
@@ -167,21 +167,29 @@ export default {
 			})
 		},
 		onUnsubscribe(item) {
-			const i = this.notifications.findIndex((n) => n.id === item.id)
+			// TODO adapt vue-dashboard to put the ID in returned item
+			// const i = this.notifications.findIndex((n) => n.id === item.id)
+			const i = this.notifications.findIndex((n) => this.getSubline(n) === item.subText)
 			if (i !== -1) {
-				this.notifications.splice(i, 1)
+				const id = this.notifications[i].id
+				this.editNotification(id, 'unsubscribe')
 			}
-			this.editNotification(item, 'unsubscribe')
 		},
 		onMarkRead(item) {
-			const i = this.notifications.findIndex((n) => n.id === item.id)
+			// TODO adapt vue-dashboard to put the ID in returned item
+			// const i = this.notifications.findIndex((n) => n.id === item.id)
+			const i = this.notifications.findIndex((n) => this.getSubline(n) === item.subText)
 			if (i !== -1) {
+				const id = this.notifications[i].id
 				this.notifications.splice(i, 1)
+				this.editNotification(id, 'mark-read')
 			}
-			this.editNotification(item, 'mark-read')
 		},
-		editNotification(item, action) {
-			axios.put(generateUrl('/apps/integration_github/notifications/' + item.id + '/' + action)).then((response) => {
+		editNotification(id, action) {
+			axios.put(generateUrl('/apps/integration_github/notifications/' + id + '/' + action)).then((response) => {
+				if (action === 'unsubscribe') {
+					showSuccess(t('integration_github', 'Successfully unsubscribed'))
+				}
 			}).catch((error) => {
 				showError(t('integration_github', 'Failed to edit GitHub notification'))
 				console.debug(error)
@@ -200,9 +208,9 @@ export default {
 		},
 		getNotificationActionChar(n) {
 			if (['review_requested', 'assign'].includes(n.reason)) {
-				return '👁 '
+				return '👁'
 			} else if (['comment', 'mention'].includes(n.reason)) {
-				return '🗨 '
+				return '🗨'
 			}
 			return ''
 		},

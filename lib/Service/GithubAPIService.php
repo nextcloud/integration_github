@@ -212,7 +212,7 @@ class GithubAPIService {
 			if ($respCode >= 400) {
 				return ['error' => $this->l10n->t('Bad credentials')];
 			} else {
-				return json_decode($body, true);
+				return json_decode($body, true) ?: [];
 			}
 		} catch (\Exception $e) {
 			$this->logger->warning('GitHub API error : '.$e->getMessage(), array('app' => $this->appName));
