@@ -26,7 +26,7 @@
 				v-model="state.client_id"
 				type="password"
 				:readonly="readonly"
-				:placeholder="t('integration_github', 'Client ID or your GitHub application')"
+				:placeholder="t('integration_github', 'Client ID of your GitHub application')"
 				@focus="readonly = false"
 				@input="onInput">
 			<label for="github-client-secret">
