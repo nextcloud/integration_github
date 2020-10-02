@@ -114,28 +114,32 @@ export default {
 	methods: {
 		onLogoutClick() {
 			this.state.token = ''
-			this.saveOptions()
+			this.saveOptions(true)
 		},
 		onSearchIssuesChange(e) {
 			this.state.search_issues_enabled = e.target.checked
-			this.saveOptions()
+			this.saveOptions(false)
 		},
 		onSearchReposChange(e) {
 			this.state.search_repos_enabled = e.target.checked
-			this.saveOptions()
+			this.saveOptions(false)
 		},
 		onInput() {
 			delay(() => {
-				this.saveOptions()
+				this.saveOptions(true)
 			}, 2000)()
 		},
-		saveOptions() {
-			const req = {
-				values: {
+		saveOptions(authOptions) {
+			const req = {}
+			if (authOptions) {
+				req.values = {
 					token: this.state.token,
+				}
+			} else {
+				req.values = {
 					search_repos_enabled: this.state.search_repos_enabled ? '1' : '0',
 					search_issues_enabled: this.state.search_issues_enabled ? '1' : '0',
-				},
+				}
 			}
 			const url = generateUrl('/apps/integration_github/config')
 			axios.put(url, req)
