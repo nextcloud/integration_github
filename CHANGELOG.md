@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## 0.0.5 – 2020-10-02
+### Fixed
+- make menu actions work with latest vue-dashboard
+
 ## 0.0.4 – 2020-10-02
 ### Added
 - lots of translations
