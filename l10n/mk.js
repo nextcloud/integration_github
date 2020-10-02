@@ -1,8 +1,10 @@
 OC.L10N.register(
     "integration_github",
     {
+    "Bad credentials" : "Неточни акредитиви",
+    "Connected accounts" : "Поврзани сметки",
     "Client ID" : "Клиент ИД",
     "Client secret" : "Тајна на клиент",
-    "Comment" : "Коментар"
+    "Connected as {user}" : "Поврзан како {user}"
 },
 "nplurals=2; plural=(n % 10 == 1 && n % 100 != 11) ? 0 : 1;");
