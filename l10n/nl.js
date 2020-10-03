@@ -14,7 +14,6 @@ OC.L10N.register(
     "Set \"Application name\", \"Homepage URL\" and \"Application description\" to values that will make sense to your Nextcloud users as they will see them when connecting to GitHub using your OAuth app." : "Stel \"Applicatienaam\", \"Homepage-URL\" en \"Applicatiebeschrijving\" in op waarden die voor je Nextcloud-gebruikers logisch zijn, omdat ze die zullen zien wanneer ze met je OAuth-app verbinding maken met GitHub.",
     "Make sure you set the \"Authorization callback URL\" to" : "Zorg ervoor dat \"Authorization callback URL\"  is ingesteld op",
     "Client ID" : "Client ID",
-    "Client ID or your GitHub application" : "Client ID of je GitHub applicatie",
     "Client secret" : "Client secret",
     "When you create a personal access token yourself, give it at least \"read:user\", \"user:email\" and \"notifications\" permissions." : "Als je zelf een persoonlijk access token aanmaakt, geef het dan minimaal \"read:user\", \"user:email\" en \"notifications\" permissies.",
     "Personal access token" : "Persoonlijk access token",

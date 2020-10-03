@@ -17,7 +17,6 @@
     "Put the OAuth app \"Client ID\" and \"Client secret\" below." : "Gebe unten die OAuth-App \"Client ID\" und \"Client secret\" ein.",
     "Your Nextcloud users will then see a \"Connect to GitHub\" button in their personal settings." : "Deine Nextcloud-Benutzer sehen dann in ihren persönlichen Einstellungen die Schaltfläche \"Mit GitHub verbinden\".",
     "Client ID" : "Client-ID",
-    "Client ID or your GitHub application" : "Client-ID von Deiner GitHub-Anwendung",
     "Client secret" : "Geheime Zeichenkette des Clients",
     "Client secret of your GitHub application" : "Client-Geheimnis der GitHub-Anwendung",
     "GitHub admin options saved" : "GitHub-Administrator-Einstellungen gespeichert",
