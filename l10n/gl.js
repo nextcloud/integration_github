@@ -19,6 +19,7 @@ OC.L10N.register(
     "Put the OAuth app \"Client ID\" and \"Client secret\" below." : "Poña  o «ID de cliente» e o «Segredo do cliente» da aplicación OAuth a seguir.",
     "Your Nextcloud users will then see a \"Connect to GitHub\" button in their personal settings." : "Os seus usuarios do Nextcloud verán entón un botón «Conectar con GitHub» nos seus axustes persoais.",
     "Client ID" : "ID do cliente",
+    "Client ID of your GitHub application" : "ID do cliente da súa aplicación de GitHub",
     "Client secret" : "Segredo do cliente",
     "Client secret of your GitHub application" : "Segredo do cliente da súa aplicación de GitHub",
     "GitHub admin options saved" : "Gardáronse as opcións de administración de GitHub",
@@ -44,6 +45,7 @@ OC.L10N.register(
     "Error connecting to GitHub" : "Produciuse un erro ao conectar con GitHub",
     "No GitHub notifications!" : "Non hai notificacións de GitHub.",
     "Failed to get GitHub notifications" : "Produciuse un fallo ao obter as notificacións de GitHub",
+    "Successfully unsubscribed" : "Desubscrito satisfactoriamente",
     "Failed to edit GitHub notification" : "Produciuse un fallo ao editar a notificación de GitHub"
 },
 "nplurals=2; plural=(n != 1);");
