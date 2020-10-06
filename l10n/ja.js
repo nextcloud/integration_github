@@ -8,6 +8,7 @@ OC.L10N.register(
     "Connected accounts" : "接続済みアカウント",
     "Client ID" : "クライアントID",
     "Client secret" : "クライアント秘密鍵",
+    "Connected as {user}" : "{user} を接続済み",
     "Mark as read" : "既読にする",
     "Unsubscribe" : "購読解除"
 },
