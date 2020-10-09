@@ -143,7 +143,7 @@ class GithubSearchReposProvider implements IProvider {
 	 * @return string
 	 */
 	protected function getMainText(array $entry): string {
-		return $entry['full_name'] . ' [' . $entry['stargazers_count'] . '⭐]';
+		return $entry['full_name'] . ' [' . ($entry['stargazers_count'] ?? 0) . '⭐]';
 	}
 
 	/**
@@ -151,7 +151,7 @@ class GithubSearchReposProvider implements IProvider {
 	 * @return string
 	 */
 	protected function getSubline(array $entry): string {
-		return $entry['description'];
+		return $entry['description'] ?? '';
 	}
 
 	/**
@@ -159,7 +159,7 @@ class GithubSearchReposProvider implements IProvider {
 	 * @return string
 	 */
 	protected function getLinkToGithub(array $entry): string {
-		return $entry['html_url'];
+		return $entry['html_url'] ?? '';
 	}
 
 	/**
@@ -167,7 +167,7 @@ class GithubSearchReposProvider implements IProvider {
 	 * @return string
 	 */
 	protected function getThumbnailUrl(array $entry): string {
-		$url = $entry['owner']['avatar_url'];
+		$url = $entry['owner']['avatar_url'] ?? '';
 		return $this->urlGenerator->linkToRoute('integration_github.githubAPI.getAvatar', []) . '?url=' . urlencode($url);
 	}
 }

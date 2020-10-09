@@ -174,7 +174,7 @@ class GithubSearchIssuesProvider implements IProvider {
 	 * @return string
 	 */
 	protected function getLinkToGithub(array $entry): string {
-		return $entry['html_url'];
+		return $entry['html_url'] ?? '';
 	}
 
 	/**
@@ -182,7 +182,7 @@ class GithubSearchIssuesProvider implements IProvider {
 	 * @return string
 	 */
 	protected function getThumbnailUrl(array $entry): string {
-		$url = $entry['project_avatar_url'];
+		$url = $entry['project_avatar_url'] ?? '';
 		return $this->urlGenerator->linkToRoute('integration_github.githubAPI.getAvatar', []) . '?url=' . urlencode($url);
 	}
 }
