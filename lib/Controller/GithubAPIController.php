@@ -129,7 +129,7 @@ class GithubAPIController extends Controller {
 	public function getAvatar(string $url): DataDisplayResponse {
 		$avatarContent = $this->githubAPIService->getAvatar($url);
 		if (is_null($avatarContent)) {
-			$response = new DataDisplayResponse($avatarContent, 400);
+			return new DataDisplayResponse('', 400);
 		} else {
 			$response = new DataDisplayResponse($avatarContent);
 			$response->cacheFor(60*60*24);

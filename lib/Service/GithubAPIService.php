@@ -42,7 +42,8 @@ class GithubAPIService {
 	 * @return ?string Avatar image data
 	 */
 	public function getAvatar(string $url): ?string {
-		if (preg_match('/^https:\/\/[^\/]*githubusercontent\.com\/u\//', $url)) {
+		$pUrl = parse_url($url);
+		if ($pUrl && preg_match('/\.githubusercontent\.com$/', $pUrl['host'])) {
 			return $this->client->get($url)->getBody();
 		}
 		return null;
