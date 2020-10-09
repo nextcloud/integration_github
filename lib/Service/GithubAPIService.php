@@ -39,10 +39,13 @@ class GithubAPIService {
 	/**
 	 * Request an avatar image
 	 * @param string $url The avatar URL
-	 * @return string Avatar image data
+	 * @return ?string Avatar image data
 	 */
-	public function getAvatar(string $url): string {
-		return $this->client->get($url)->getBody();
+	public function getAvatar(string $url): ?string {
+		if (preg_match('/^https:\/\/[^\/]*githubusercontent\.com\/u\//', $url)) {
+			return $this->client->get($url)->getBody();
+		}
+		return null;
 	}
 
 	/**

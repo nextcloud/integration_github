@@ -127,9 +127,14 @@ class GithubAPIController extends Controller {
 	 * @return DataDisplayResponse The avatar image content
 	 */
 	public function getAvatar(string $url): DataDisplayResponse {
-		$response = new DataDisplayResponse($this->githubAPIService->getAvatar($url));
-		$response->cacheFor(60*60*24);
-		return $response;
+		$avatarContent = $this->githubAPIService->getAvatar($url);
+		if (is_null($avatarContent)) {
+			$response = new DataDisplayResponse($avatarContent, 400);
+		} else {
+			$response = new DataDisplayResponse($avatarContent);
+			$response->cacheFor(60*60*24);
+			return $response;
+		}
 	}
 
 }
