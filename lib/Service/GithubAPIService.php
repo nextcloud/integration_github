@@ -38,13 +38,14 @@ class GithubAPIService {
 
 	/**
 	 * Request an avatar image
-	 * @param string $url The avatar URL
+	 * @param string $accessToken
+	 * @param string $githubUserName
 	 * @return ?string Avatar image data
 	 */
-	public function getAvatar(string $url): ?string {
-		$pUrl = parse_url($url);
-		if ($pUrl && preg_match('/\.githubusercontent\.com$/', $pUrl['host'])) {
-			return $this->client->get($url)->getBody();
+	public function getAvatar(string $accessToken, string $githubUserName): ?string {
+		$userInfo = $this->request($accessToken, 'users/' . $githubUserName);
+		if (!isset($userInfo['error']) && isset($userInfo['avatar_url'])) {
+			return $this->client->get($userInfo['avatar_url'])->getBody();
 		}
 		return null;
 	}
@@ -144,8 +145,9 @@ class GithubAPIService {
 					$info = $this->request($accessToken, 'repos/' . $owner . '/' . $repo . '/' . 'pulls/' . $number);
 					if (!isset($info['error'])) {
 						$result['items'][$k]['merged'] = $info['merged'];
-						if ($info['head'] && $info['head']['repo'] && $info['head']['repo']['owner'] && $info['head']['repo']['owner'] && $info['head']['repo']['owner']['avatar_url']) {
+						if (isset($info['head'], $info['head']['repo'], $info['head']['repo']['owner'], $info['head']['repo']['owner']['login'], $info['head']['repo']['owner']['avatar_url'])) {
 							$result['items'][$k]['project_avatar_url'] = $info['head']['repo']['owner']['avatar_url'];
+							$result['items'][$k]['project_owner_login'] = $info['head']['repo']['owner']['login'];
 						}
 					}
 				} else {
@@ -158,16 +160,22 @@ class GithubAPIService {
 			}
 			// get repos info (for issues only)
 			$repoAvatarUrls = [];
+			$repoOwnerLogins = [];
 			foreach ($reposToGet as $repo) {
 				$info = $this->request($accessToken, 'repos/' . $repo['owner'] . '/' . $repo['repo']);
-				if (!isset($info['error']) && $info['owner'] && $info['owner']['avatar_url']) {
+				if (!isset($info['error']) && isset($info['owner'], $info['owner']['avatar_url'], $info['owner']['login'])) {
 					$repoAvatarUrls[$repo['key']] = $info['owner']['avatar_url'];
+					$repoOwnerLogins[$repo['key']] = $info['owner']['login'];
 				}
 			}
 			foreach ($result['items'] as $k => $entry) {
 				$repoFullName = str_replace('https://api.github.com/repos/', '', $entry['repository_url']);
-				if (!isset($entry['pull_request']) && array_key_exists($repoFullName, $repoAvatarUrls)) {
+				if (!isset($entry['pull_request'])
+					&& array_key_exists($repoFullName, $repoAvatarUrls)
+					&& array_key_exists($repoFullName, $repoOwnerLogins)
+				) {
 					$result['items'][$k]['project_avatar_url'] = $repoAvatarUrls[$repoFullName];
+					$result['items'][$k]['project_owner_login'] = $repoOwnerLogins[$repoFullName];
 				}
 			}
 		}

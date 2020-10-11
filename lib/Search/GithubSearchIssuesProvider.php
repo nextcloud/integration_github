@@ -182,7 +182,7 @@ class GithubSearchIssuesProvider implements IProvider {
 	 * @return string
 	 */
 	protected function getThumbnailUrl(array $entry): string {
-		$url = $entry['project_avatar_url'] ?? '';
-		return $this->urlGenerator->linkToRoute('integration_github.githubAPI.getAvatar', []) . '?url=' . urlencode($url);
+		$userName = $entry['project_owner_login'] ?? '';
+		return $this->urlGenerator->linkToRoute('integration_github.githubAPI.getAvatar', []) . '?githubUserName=' . urlencode($userName);
 	}
 }

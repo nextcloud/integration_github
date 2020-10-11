@@ -77,7 +77,7 @@ export default {
 					id: n.id,
 					targetUrl: this.getNotificationTarget(n),
 					avatarUrl: this.getRepositoryAvatarUrl(n),
-					// avatarUsername: '',
+					avatarUsername: this.getRepositoryOwnerName(n),
 					overlayIconUrl: this.getNotificationTypeImage(n),
 					mainText: n.subject.title,
 					subText: this.getSubline(n),
@@ -196,8 +196,13 @@ export default {
 			})
 		},
 		getRepositoryAvatarUrl(n) {
-			return (n.repository && n.repository.owner && n.repository.owner.avatar_url)
-				? generateUrl('/apps/integration_github/avatar?') + encodeURIComponent('url') + '=' + encodeURIComponent(n.repository.owner.avatar_url)
+			return (n.repository && n.repository.owner && n.repository.owner.login)
+				? generateUrl('/apps/integration_github/avatar?') + encodeURIComponent('githubUserName') + '=' + encodeURIComponent(n.repository.owner.login)
+				: ''
+		},
+		getRepositoryOwnerName(n) {
+			return (n.repository && n.repository.owner && n.repository.owner.login)
+				? n.repository.owner.login
 				: ''
 		},
 		getNotificationTarget(n) {

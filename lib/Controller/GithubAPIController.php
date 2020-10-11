@@ -123,11 +123,11 @@ class GithubAPIController extends Controller {
 	 * @NoCSRFRequired
 	 *
 	 * Get repository avatar
-	 * @param string $url The avatar URL
+	 * @param string $githubUserName
 	 * @return DataDisplayResponse The avatar image content
 	 */
-	public function getAvatar(string $url): DataDisplayResponse {
-		$avatarContent = $this->githubAPIService->getAvatar($url);
+	public function getAvatar(string $githubUserName): DataDisplayResponse {
+		$avatarContent = $this->githubAPIService->getAvatar($this->accessToken, $githubUserName);
 		if (is_null($avatarContent)) {
 			return new DataDisplayResponse('', 400);
 		} else {
