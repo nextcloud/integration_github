@@ -56,7 +56,7 @@
 					@input="onSearchIssuesChange">
 				<label for="search-github-issues">{{ t('integration_github', 'Enable searching for issues and pull requests') }}</label>
 				<br><br>
-				<p v-if="state.search_enabled" class="settings-hint">
+				<p v-if="state.search_repos_enabled || state.search_issues_enabled" class="settings-hint">
 					<span class="icon icon-details" />
 					{{ t('integration_github', 'Warning, everything you type in the search bar will be sent to GitHub.') }}
 				</p>
