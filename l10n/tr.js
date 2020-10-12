@@ -19,6 +19,7 @@ OC.L10N.register(
     "Put the OAuth app \"Client ID\" and \"Client secret\" below." : "OAuth uygulaması \"İstemci kimliği\" ve \"İstemci sırrı\" bilgilerini aşağıya ekleyin.",
     "Your Nextcloud users will then see a \"Connect to GitHub\" button in their personal settings." : "Bundan sonra Nextcloud kullanıcılarınız kişisel ayarlarında \"GitHub bağlantısı kur\" seçeneğini görecek.",
     "Client ID" : "İstemci kimliği",
+    "Client ID of your GitHub application" : "GitHub uygulamanızın istemci kimliği",
     "Client secret" : "İstemci sırrı",
     "Client secret of your GitHub application" : "GitHub uygulamanızın istemci sırrı",
     "GitHub admin options saved" : "GitHub yönetici ayarları kaydedildi",
@@ -44,6 +45,7 @@ OC.L10N.register(
     "Error connecting to GitHub" : "GitHub bağlantısı kurulurken sorun çıktı",
     "No GitHub notifications!" : "Herhangi bir GitHub bildirimi yok!",
     "Failed to get GitHub notifications" : "GitHub bildirimleri alınamadı",
+    "Successfully unsubscribed" : "Abonelikten ayrılındı",
     "Failed to edit GitHub notification" : "GitHub bildirimi düzenlenemedi"
 },
 "nplurals=2; plural=(n > 1);");
