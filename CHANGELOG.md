@@ -6,6 +6,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## 0.0.6 – 2020-10-12
+### Changed
+- fix avatar proxied requests, just pass user name to controller
+[#12](https://github.com/nextcloud/integration_github/issues/12) @tilosp
+
+### Fixed
+- various small fix
+
 ## 0.0.5 – 2020-10-02
 ### Fixed
 - make menu actions work with latest vue-dashboard
