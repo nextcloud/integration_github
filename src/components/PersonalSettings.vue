@@ -4,6 +4,8 @@
 			<a class="icon icon-github-settings" />
 			{{ t('integration_github', 'GitHub integration') }}
 		</h2>
+		<NcFilePicker
+			nc-url="https://ripley.minifox.fr/nc/n20git" />
 		<p v-if="!showOAuth && !connected" class="settings-hint">
 			{{ t('integration_github', 'When you create a personal access token yourself, give it at least "read:user", "user:email" and "notifications" permissions.') }}
 		</p>
@@ -72,10 +74,13 @@ import axios from '@nextcloud/axios'
 import { delay } from '../utils'
 import { showSuccess, showError } from '@nextcloud/dialogs'
 
+import NcFilePicker from './NcFilePicker'
+
 export default {
 	name: 'PersonalSettings',
 
 	components: {
+		NcFilePicker,
 	},
 
 	props: [],
