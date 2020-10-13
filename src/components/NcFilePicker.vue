@@ -15,7 +15,9 @@
 </template>
 
 <script>
-import '../ext/dbp-file-source'
+// import '../ext/first/dbp-file-source'
+// import '../ext/second/dbp-file-source'
+import 'dbp-toolkit/packages/file-handling/dist/dbp-file-source'
 
 export default {
 	name: 'NcFilePicker',

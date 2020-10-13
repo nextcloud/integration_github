@@ -3,6 +3,10 @@ const path = require('path')
 const webpack = require('webpack')
 const webpackConfig = require('@nextcloud/webpack-vue-config')
 
+const buildMode = process.env.NODE_ENV
+const isDev = buildMode === 'development'
+webpackConfig.devtool = isDev ? 'cheap-source-map' : 'source-map'
+
 if (webpackConfig.entry && webpackConfig.entry.main) {
 	delete webpackConfig.entry.main
 }

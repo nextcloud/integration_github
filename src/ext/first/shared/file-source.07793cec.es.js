@@ -5659,7 +5659,8 @@ const getAssetURL = (pkg, path) => {
     } else {
         fullPath = 'local/' + pkg + '/' + path;
     }
-    return new URL(fullPath, new URL('..', import.meta.url).href).href;
+    return 'lala'
+    // return new URL(fullPath, new URL('..', import.meta.url).href).href;
 };
 
 /**
