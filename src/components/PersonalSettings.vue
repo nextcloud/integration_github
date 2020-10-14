@@ -198,9 +198,11 @@ export default {
 .github-grid-form label {
 	line-height: 38px;
 }
+
 .github-grid-form input {
 	width: 100%;
 }
+
 .github-grid-form {
 	max-width: 600px;
 	display: grid;
@@ -209,13 +211,16 @@ export default {
 		margin-bottom: -1px;
 	}
 }
+
 #github_prefs .icon {
 	display: inline-block;
 	width: 32px;
 }
+
 #github_prefs .grid-form .icon {
 	margin-bottom: -3px;
 }
+
 .icon-github-settings {
 	background-image: url('./../../img/app-dark.svg');
 	background-size: 23px 23px;
@@ -226,10 +231,13 @@ export default {
 body.theme--dark .icon-github-settings {
 	background-image: url('./../../img/app.svg');
 }
+
 #github-content {
 	margin-left: 40px;
 }
+
 #github-search-block .icon {
 	width: 22px;
 }
+
 </style>

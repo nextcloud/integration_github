@@ -246,6 +246,6 @@ export default {
 
 <style scoped lang="scss">
 ::v-deep .connect-button {
-    margin-top: 10px;
+	margin-top: 10px;
 }
 </style>
