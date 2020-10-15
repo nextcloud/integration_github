@@ -27,12 +27,14 @@
     "GitHub OAuth error:" : "Napaka overitve OAuth za GitHub:",
     "GitHub options saved" : "Nastavitve GitHub so shranjene",
     "Incorrect access token" : " Neveljaven žetona za dostop",
+    "Failed to save GitHub options" : "Shranjevanje nastavitev GitHub je spodletelo",
+    "Failed to save GitHub OAuth state" : "Shranjevanje stanja GitHub OAuth je spodletelo",
     "Mark as read" : "Označi kot prebrano",
     "Unsubscribe" : "Prekliči naročnino",
     "No GitHub account connected" : "Ni povezanega računa GitHub",
     "Error connecting to GitHub" : "Napaka povezovanja z GitHub",
     "No GitHub notifications!" : "Ni obvestil GitHub!",
-    "Failed to get GitHub notifications" : "Pridobivanje sporočil GitHub je spodletelo",
+    "Failed to get GitHub notifications" : "Pridobivanje obvestil GitHub je spodletelo",
     "Successfully unsubscribed" : "Naročnina je uspešno preklicana",
     "Failed to edit GitHub notification" : "Urejanje obvestila GitHub je spodletelo"
 },"pluralForm" :"nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);"
