@@ -163,7 +163,13 @@ export default {
 		filter(notifications) {
 			// only keep the unread ones with specific reasons
 			return notifications.filter((n) => {
-				return (n.unread && ['assign', 'mention', 'review_requested'].includes(n.reason))
+				return (
+					n.unread
+					&& (
+						['assign', 'mention', 'review_requested'].includes(n.reason)
+						|| (n.reason === 'subscribed' && n.subject?.type === 'Release')
+					)
+				)
 			})
 		},
 		onUnsubscribe(item) {
@@ -196,12 +202,12 @@ export default {
 			})
 		},
 		getRepositoryAvatarUrl(n) {
-			return (n.repository && n.repository.owner && n.repository.owner.login)
+			return n.repository?.owner?.login
 				? generateUrl('/apps/integration_github/avatar?') + encodeURIComponent('githubUserName') + '=' + encodeURIComponent(n.repository.owner.login)
 				: ''
 		},
 		getRepositoryOwnerName(n) {
-			return (n.repository && n.repository.owner && n.repository.owner.login)
+			return n.repository?.owner?.login
 				? n.repository.owner.login
 				: ''
 		},
@@ -227,6 +233,8 @@ export default {
 				return generateUrl('/svg/integration_github/pull_request?color=ffffff')
 			} else if (n.subject.type === 'Issue') {
 				return generateUrl('/svg/integration_github/issue?color=ffffff')
+			} else if (n.subject.type === 'Release') {
+				return generateUrl('/svg/integration_github/release?color=ffffff')
 			}
 			return ''
 		},
