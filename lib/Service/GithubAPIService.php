@@ -227,7 +227,7 @@ class GithubAPIService {
 				return json_decode($body, true) ?: [];
 			}
 		} catch (\Exception $e) {
-			$this->logger->warning('GitHub API error : '.$e->getMessage(), array('app' => $this->appName));
+			$this->logger->warning('GitHub API error : '.$e->getMessage(), ['app' => $this->appName]);
 			return ['error' => $e->getMessage()];
 		}
 	}
@@ -275,7 +275,7 @@ class GithubAPIService {
 				return $resultArray;
 			}
 		} catch (\Exception $e) {
-			$this->logger->warning('GitHub OAuth error : '.$e->getMessage(), array('app' => $this->appName));
+			$this->logger->warning('GitHub OAuth error : '.$e->getMessage(), ['app' => $this->appName]);
 			return ['error' => $e->getMessage()];
 		}
 	}
