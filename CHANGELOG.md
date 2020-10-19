@@ -6,6 +6,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## 0.0.7 – 2020-10-19
+### Added
+- display new releases in widget
+[#7](https://github.com/nextcloud/integration_github/issues/7) @Proximus888
+
+### Changed
+- use webpack 5 and style lint
+
 ## 0.0.6 – 2020-10-12
 ### Changed
 - fix avatar proxied requests, just pass user name to controller
