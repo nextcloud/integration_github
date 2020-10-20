@@ -12,7 +12,7 @@
 			<br><br>
 			<span class="icon icon-details" />
 			{{ t('integration_github', 'Make sure you set the "Authorization callback URL" to') }}
-			<b> {{ redirect_uri }} </b>
+			<b> {{ state.redirect_uri }} </b>
 			<br><br>
 			{{ t('integration_github', 'Put the OAuth app "Client ID" and "Client secret" below.') }}
 			{{ t('integration_github', 'Your Nextcloud users will then see a "Connect to GitHub" button in their personal settings.') }}
@@ -64,7 +64,6 @@ export default {
 			state: loadState('integration_github', 'admin-config'),
 			// to prevent some browsers to fill fields with remembered passwords
 			readonly: true,
-			redirect_uri: window.location.protocol + '//' + window.location.host,
 		}
 	},
 

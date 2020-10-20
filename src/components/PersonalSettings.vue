@@ -162,12 +162,10 @@ export default {
 				})
 		},
 		onOAuthClick() {
-			const redirectEndpoint = generateUrl('/apps/integration_github/oauth-redirect')
-			const redirectUri = window.location.protocol + '//' + window.location.host + redirectEndpoint
 			const oauthState = Math.random().toString(36).substring(3)
-			const requestUrl = 'https://github.com/login/oauth/authorize?client_id='
-				+ encodeURIComponent(this.state.client_id)
-				+ '&redirect_uri=' + encodeURIComponent(redirectUri)
+			const requestUrl = 'https://github.com/login/oauth/authorize'
+				+ '?client_id=' + encodeURIComponent(this.state.client_id)
+				+ '&redirect_uri=' + encodeURIComponent(this.state.redirect_uri)
 				+ '&state=' + encodeURIComponent(oauthState)
 				+ '&scope=' + encodeURIComponent('user repo notifications')
 
