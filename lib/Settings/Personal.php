@@ -43,7 +43,6 @@ class Personal implements ISettings {
 		$searchIssuesEnabled = $this->config->getUserValue($this->userId, Application::APP_ID, 'search_issues_enabled', '0');
 		$searchReposEnabled = $this->config->getUserValue($this->userId, Application::APP_ID, 'search_repos_enabled', '0');
 		$userName = $this->config->getUserValue($this->userId, Application::APP_ID, 'user_name', '');
-		$redirectUri = $this->urlGenerator->linkToRouteAbsolute('integration_github.config.oauthRedirect');
 
 		// for OAuth
 		$clientID = $this->config->getAppValue(Application::APP_ID, 'client_id', '');
@@ -56,7 +55,6 @@ class Personal implements ISettings {
 			'search_issues_enabled' => ($searchIssuesEnabled === '1'),
 			'search_repos_enabled' => ($searchReposEnabled === '1'),
 			'user_name' => $userName,
-			'redirect_uri' => $redirectUri,
 		];
 		$this->initialStateService->provideInitialState($this->appName, 'user-config', $userConfig);
 		$response = new TemplateResponse(Application::APP_ID, 'personalSettings');

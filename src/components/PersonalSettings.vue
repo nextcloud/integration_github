@@ -84,6 +84,7 @@ export default {
 		return {
 			state: loadState('integration_github', 'user-config'),
 			readonly: true,
+			redirect_uri: window.location.protocol + '//' + window.location.host + generateUrl('/apps/integration_github/oauth-redirect'),
 		}
 	},
 
@@ -165,13 +166,14 @@ export default {
 			const oauthState = Math.random().toString(36).substring(3)
 			const requestUrl = 'https://github.com/login/oauth/authorize'
 				+ '?client_id=' + encodeURIComponent(this.state.client_id)
-				+ '&redirect_uri=' + encodeURIComponent(this.state.redirect_uri)
+				+ '&redirect_uri=' + encodeURIComponent(this.redirect_uri)
 				+ '&state=' + encodeURIComponent(oauthState)
 				+ '&scope=' + encodeURIComponent('user repo notifications')
 
 			const req = {
 				values: {
 					oauth_state: oauthState,
+					redirect_uri: this.redirect_uri,
 				},
 			}
 			const url = generateUrl('/apps/integration_github/config')
