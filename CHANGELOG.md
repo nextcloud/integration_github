@@ -6,6 +6,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## 0.0.8 – 2020-10-22
+### Added
+- automate releases
+
+### Fixed
+- always use redirect URI generated on browser side
+
 ## 0.0.7 – 2020-10-19
 ### Added
 - display new releases in widget
