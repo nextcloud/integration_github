@@ -40,6 +40,31 @@ class Application extends App implements IBootstrap {
 		parent::__construct(self::APP_ID, $urlParams);
 
 		$container = $this->getContainer();
+
+		$config = $container->query(\OCP\IConfig::class);
+
+		if ($config->getAppValue(self::APP_ID, 'navigation_enabled', '0') === '1') {
+			$container->query(\OCP\INavigationManager::class)->add(function () use ($container) {
+				$urlGenerator = $container->query(\OCP\IURLGenerator::class);
+				$l10n = $container->query(\OCP\IL10N::class);
+				return [
+					'id' => self::APP_ID,
+
+					'order' => 10,
+
+					// the route that will be shown on startup
+					'href' => 'https://github.com',
+
+					// the icon that will be shown in the navigation
+					// this file needs to exist in img/
+					'icon' => $urlGenerator->imagePath(self::APP_ID, 'app.svg'),
+
+					// the title of your application. This will be used in the
+					// navigation or on the settings page of your app
+					'name' => $l10n->t('GitHub'),
+				];
+			});
+		}
 	}
 
 	public function register(IRegistrationContext $context): void {
