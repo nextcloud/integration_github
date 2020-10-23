@@ -41,12 +41,10 @@ class Admin implements ISettings {
 	public function getForm(): TemplateResponse {
 		$clientID = $this->config->getAppValue(Application::APP_ID, 'client_id', '');
 		$clientSecret = $this->config->getAppValue(Application::APP_ID, 'client_secret', '');
-		$navigationEnabled = $this->config->getAppValue(Application::APP_ID, 'navigation_enabled', '0') === '1';
 
 		$adminConfig = [
 			'client_id' => $clientID,
 			'client_secret' => $clientSecret,
-			'navigation_enabled' => $navigationEnabled,
 		];
 		$this->initialStateService->provideInitialState($this->appName, 'admin-config', $adminConfig);
 		return new TemplateResponse(Application::APP_ID, 'adminSettings');

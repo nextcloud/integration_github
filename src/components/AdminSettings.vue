@@ -4,16 +4,6 @@
 			<a class="icon icon-github" />
 			{{ t('integration_github', 'GitHub integration') }}
 		</h2>
-		<div id="toggle-github-navigation-link">
-			<input
-				id="github-link"
-				type="checkbox"
-				class="checkbox"
-				:checked="state.navigation_enabled"
-				@input="onNavigationChange">
-			<label for="github-link">{{ t('integration_github', 'Enable navigation link') }}</label>
-		</div>
-		<br><br>
 		<p class="settings-hint">
 			{{ t('integration_github', 'If you want to allow your Nextcloud users to use OAuth to authenticate to https://github.com, create an OAuth application in your GitHub settings.') }}
 			<a href="https://github.com/settings/developers" class="external">{{ t('integration_github', 'GitHub OAuth settings') }}</a>
@@ -90,10 +80,6 @@ export default {
 				this.saveOptions({ client_id: this.state.client_id, client_secret: this.state.client_secret })
 			}, 2000)()
 		},
-		onNavigationChange(e) {
-			this.state.navigation_enabled = e.target.checked
-			this.saveOptions({ navigation_enabled: this.state.navigation_enabled ? '1' : '0' })
-		},
 		saveOptions(values) {
 			const req = {
 				values,
@@ -150,10 +136,6 @@ export default {
 
 body.theme--dark .icon-github {
 	background-image: url(./../../img/app.svg);
-}
-
-#toggle-github-navigation-link {
-	margin-left: 40px;
 }
 
 </style>

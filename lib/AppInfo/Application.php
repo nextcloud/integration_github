@@ -11,6 +11,7 @@ namespace OCA\Github\AppInfo;
 
 use OCP\IContainer;
 use OCP\IUser;
+use OCP\IUserSession;
 
 use OCP\AppFramework\App;
 use OCP\AppFramework\IAppContainer;
@@ -40,31 +41,8 @@ class Application extends App implements IBootstrap {
 		parent::__construct(self::APP_ID, $urlParams);
 
 		$container = $this->getContainer();
-
-		$config = $container->query(\OCP\IConfig::class);
-
-		if ($config->getAppValue(self::APP_ID, 'navigation_enabled', '0') === '1') {
-			$container->query(\OCP\INavigationManager::class)->add(function () use ($container) {
-				$urlGenerator = $container->query(\OCP\IURLGenerator::class);
-				$l10n = $container->query(\OCP\IL10N::class);
-				return [
-					'id' => self::APP_ID,
-
-					'order' => 10,
-
-					// the route that will be shown on startup
-					'href' => 'https://github.com',
-
-					// the icon that will be shown in the navigation
-					// this file needs to exist in img/
-					'icon' => $urlGenerator->imagePath(self::APP_ID, 'app.svg'),
-
-					// the title of your application. This will be used in the
-					// navigation or on the settings page of your app
-					'name' => $l10n->t('GitHub'),
-				];
-			});
-		}
+		$this->container = $container;
+		$this->config = $container->query(\OCP\IConfig::class);
 	}
 
 	public function register(IRegistrationContext $context): void {
@@ -76,6 +54,38 @@ class Application extends App implements IBootstrap {
 	}
 
 	public function boot(IBootContext $context): void {
+		$context->injectFn(\Closure::fromCallable([$this, 'registerNavigation']));
+	}
+
+	public function registerNavigation(IUserSession $userSession): void {
+		$user = $userSession->getUser();
+		if ($user !== null) {
+			$userId = $user->getUID();
+			$container = $this->container;
+
+			if ($this->config->getUserValue($userId, self::APP_ID, 'navigation_enabled', '0') === '1') {
+				$container->query(\OCP\INavigationManager::class)->add(function () use ($container) {
+					$urlGenerator = $container->query(\OCP\IURLGenerator::class);
+					$l10n = $container->query(\OCP\IL10N::class);
+					return [
+						'id' => self::APP_ID,
+
+						'order' => 10,
+
+						// the route that will be shown on startup
+						'href' => 'https://github.com',
+
+						// the icon that will be shown in the navigation
+						// this file needs to exist in img/
+						'icon' => $urlGenerator->imagePath(self::APP_ID, 'app.svg'),
+
+						// the title of your application. This will be used in the
+						// navigation or on the settings page of your app
+						'name' => $l10n->t('GitHub'),
+					];
+				});
+			}
+		}
 	}
 }
 

@@ -4,6 +4,16 @@
 			<a class="icon icon-github-settings" />
 			{{ t('integration_github', 'GitHub integration') }}
 		</h2>
+		<div id="toggle-github-navigation-link">
+			<input
+				id="github-link"
+				type="checkbox"
+				class="checkbox"
+				:checked="state.navigation_enabled"
+				@input="onNavigationChange">
+			<label for="github-link">{{ t('integration_github', 'Enable navigation link') }}</label>
+		</div>
+		<br><br>
 		<p v-if="!showOAuth && !connected" class="settings-hint">
 			{{ t('integration_github', 'When you create a personal access token yourself, give it at least "read:user", "user:email" and "notifications" permissions.') }}
 		</p>
@@ -125,6 +135,10 @@ export default {
 			this.state.search_repos_enabled = e.target.checked
 			this.saveOptions({ search_repos_enabled: this.state.search_repos_enabled ? '1' : '0' })
 		},
+		onNavigationChange(e) {
+			this.state.navigation_enabled = e.target.checked
+			this.saveOptions({ navigation_enabled: this.state.navigation_enabled ? '1' : '0' })
+		},
 		onInput() {
 			delay(() => {
 				this.saveOptions({ token: this.state.token })
@@ -230,6 +244,10 @@ body.theme--dark .icon-github-settings {
 
 #github-search-block .icon {
 	width: 22px;
+}
+
+#toggle-github-navigation-link {
+	margin-left: 40px;
 }
 
 </style>
