@@ -115,32 +115,24 @@ export default {
 	methods: {
 		onLogoutClick() {
 			this.state.token = ''
-			this.saveOptions(true)
+			this.saveOptions({ token: this.state.token })
 		},
 		onSearchIssuesChange(e) {
 			this.state.search_issues_enabled = e.target.checked
-			this.saveOptions(false)
+			this.saveOptions({ search_issues_enabled: this.state.search_issues_enabled ? '1' : '0' })
 		},
 		onSearchReposChange(e) {
 			this.state.search_repos_enabled = e.target.checked
-			this.saveOptions(false)
+			this.saveOptions({ search_repos_enabled: this.state.search_repos_enabled ? '1' : '0' })
 		},
 		onInput() {
 			delay(() => {
-				this.saveOptions(true)
+				this.saveOptions({ token: this.state.token })
 			}, 2000)()
 		},
-		saveOptions(authOptions) {
-			const req = {}
-			if (authOptions) {
-				req.values = {
-					token: this.state.token,
-				}
-			} else {
-				req.values = {
-					search_repos_enabled: this.state.search_repos_enabled ? '1' : '0',
-					search_issues_enabled: this.state.search_issues_enabled ? '1' : '0',
-				}
+		saveOptions(values) {
+			const req = {
+				values,
 			}
 			const url = generateUrl('/apps/integration_github/config')
 			axios.put(url, req)
@@ -156,7 +148,7 @@ export default {
 				.catch((error) => {
 					showError(
 						t('integration_github', 'Failed to save GitHub options')
-						+ ': ' + error.response.request.responseText
+						+ ': ' + error.response?.request?.responseText
 					)
 				})
 				.then(() => {
@@ -184,7 +176,7 @@ export default {
 				.catch((error) => {
 					showError(
 						t('integration_github', 'Failed to save GitHub OAuth state')
-						+ ': ' + error.response.request.responseText
+						+ ': ' + error.response?.request?.responseText
 					)
 				})
 				.then(() => {
