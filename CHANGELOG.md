@@ -6,6 +6,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## 0.0.9 – 2020-10-24
+### Added
+- optional navigation link
+
+### Changed
+- improve release gh action
+- bump js libs
+
 ## 0.0.8 – 2020-10-22
 ### Added
 - automate releases
