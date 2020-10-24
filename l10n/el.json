@@ -1,4 +1,5 @@
 { "translations": {
+    "GitHub" : "GitHub",
     "Error getting OAuth access token" : "Σφάλμα κατά τη λήψη διακριτικού πρόσβασης OAuth",
     "Error during OAuth exchanges" : "Σφάλμα κατά την ανταλλαγή OAuth",
     "GitHub notifications" : "Ειδοποιήσεις GitHub",

@@ -1,6 +1,7 @@
 OC.L10N.register(
     "integration_github",
     {
+    "GitHub" : "GitHub",
     "Error getting OAuth access token" : "Erreur lors de l'obtention du jeton d'accès OAuth",
     "Error during OAuth exchanges" : "Erreur lors des échanges OAuth",
     "GitHub notifications" : "Notifications GitHub",

@@ -1,6 +1,7 @@
 OC.L10N.register(
     "integration_github",
     {
+    "GitHub" : "GitHub",
     "Error getting OAuth access token" : "OAuthアクセストークン取得時のエラー",
     "Error during OAuth exchanges" : "OAuth通信中のエラー",
     "Bad credentials" : "不正な資格情報",

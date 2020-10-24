@@ -1,6 +1,7 @@
 OC.L10N.register(
     "integration_github",
     {
+    "GitHub" : "GitHub",
     "GitHub notifications" : "GitHub-ilmoitukset",
     "GitHub repositories" : "GitHub-tietovarastot",
     "Bad credentials" : "Virheelliset kirjautumistiedot",

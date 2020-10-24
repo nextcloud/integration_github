@@ -1,6 +1,7 @@
 OC.L10N.register(
     "integration_github",
     {
+    "GitHub" : "GitHub",
     "Bad credentials" : "Неточни акредитиви",
     "Connected accounts" : "Поврзани сметки",
     "Client ID" : "Клиент ИД",

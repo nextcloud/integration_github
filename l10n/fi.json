@@ -1,4 +1,5 @@
 { "translations": {
+    "GitHub" : "GitHub",
     "GitHub notifications" : "GitHub-ilmoitukset",
     "GitHub repositories" : "GitHub-tietovarastot",
     "Bad credentials" : "Virheelliset kirjautumistiedot",
