@@ -136,5 +136,4 @@ class GithubAPIController extends Controller {
 			return $response;
 		}
 	}
-
 }

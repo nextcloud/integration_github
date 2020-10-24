@@ -10,7 +10,6 @@
 namespace OCA\Github\AppInfo;
 
 use OCP\IContainer;
-use OCP\IUser;
 use OCP\IUserSession;
 
 use OCP\AppFramework\App;
