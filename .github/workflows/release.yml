@@ -26,6 +26,7 @@ jobs:
         if: ${{ startsWith( steps.tag.outputs.currenttag , 'v' ) }}
         id: build_release
         run: |
+          echo "##[set-output name=app_id;]$APP_ID"
           echo "###### copy certificate"
           mkdir -p ~/.nextcloud/certificates
           echo "$APP_CRT" > ~/.nextcloud/certificates/${APP_ID}.crt
@@ -76,8 +77,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: /tmp/build/${APP_ID}-${{ steps.build_release.outputs.version }}.tar.gz
-          asset_name: ${APP_ID}-${{ steps.build_release.outputs.version }}.tar.gz
+          asset_path: /tmp/build/${{ steps.build_release.outputs.app_id }}-${{ steps.build_release.outputs.version }}.tar.gz
+          asset_name: ${{ steps.build_release.outputs.app_id }}-${{ steps.build_release.outputs.version }}.tar.gz
           asset_content_type: application/gzip
 
       - name: Publish to appstore
