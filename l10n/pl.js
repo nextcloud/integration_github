@@ -25,6 +25,7 @@ OC.L10N.register(
     "Client secret of your GitHub application" : "Sekret klienta aplikacji GitHub",
     "GitHub admin options saved" : "Opcje administratora GitHuba zostały zapisane",
     "Failed to save GitHub admin options" : "Nie udało się zapisać opcji administratora GitHuba",
+    "Enable navigation link" : "Włącz połączenie nawigacyjne",
     "When you create a personal access token yourself, give it at least \"read:user\", \"user:email\" and \"notifications\" permissions." : "Tworząc osobisty token dostępu, przyznaj mu przynajmniej uprawnienia \"read:user\", \"user:email\" i \"notifications\".",
     "Personal access token" : "Osobisty token dostępu",
     "GitHub personal access token" : "Osobisty token dostępu GitHub",
