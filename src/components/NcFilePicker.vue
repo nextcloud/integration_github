@@ -16,8 +16,10 @@
 
 <script>
 // import '../ext/first/dbp-file-source'
-// import '../ext/second/dbp-file-source'
-import 'dbp-toolkit/packages/file-handling/dist/dbp-file-source'
+// import '../ext/ddd/local/dbp-file-source/tabulator-tables/css/tabulator.min.css'
+import '../ext/ddd/dbp-file-source'
+// import '../ext/dddsrc/dbp-file-source'
+// import 'dbp-toolkit/packages/file-handling/dist/dbp-file-source'
 
 export default {
 	name: 'NcFilePicker',

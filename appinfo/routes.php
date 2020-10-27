@@ -18,5 +18,6 @@ return [
         ['name' => 'githubAPI#unsubscribeNotification', 'url' => '/notifications/{id}/unsubscribe', 'verb' => 'PUT'],
         ['name' => 'githubAPI#markNotificationAsRead', 'url' => '/notifications/{id}/mark-read', 'verb' => 'PUT'],
         ['name' => 'githubAPI#getAvatar', 'url' => '/avatar', 'verb' => 'GET'],
+        ['name' => 'page#index', 'url' => '/', 'verb' => 'GET'],
     ]
 ];
