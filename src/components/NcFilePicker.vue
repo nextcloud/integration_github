@@ -4,22 +4,18 @@
 			@click="onClick">
 			plop
 		</button>
-		<dbp-file-source
-			id="file-source"
-			lang="en"
-			enabled-sources="nextcloud"
-			:dialog-open="dialogOpen"
-			:nextcloud-auth-url="authUrl"
-			:nextcloud-web-dav-url="davUrl" />
 	</div>
 </template>
 
 <script>
 // import '../ext/first/dbp-file-source'
 // import '../ext/ddd/local/dbp-file-source/tabulator-tables/css/tabulator.min.css'
-import '../ext/ddd/dbp-file-source'
+// import '../ext/ddd/dbp-file-source'
 // import '../ext/dddsrc/dbp-file-source'
 // import 'dbp-toolkit/packages/file-handling/dist/dbp-file-source'
+// import createClient from 'webdav'
+// const { createClient } = require("webdav")
+import { createClient } from 'webdav/web'
 
 export default {
 	name: 'NcFilePicker',
@@ -52,7 +48,16 @@ export default {
 	watch: {
 	},
 
-	mounted() {
+	async mounted() {
+		const client = createClient(
+			this.davUrl + '/julien',
+			{
+				username: 'julien',
+				password: '',
+			}
+		)
+		const directoryItems = await client.getDirectoryContents('/')
+		console.debug(directoryItems)
 	},
 
 	methods: {
@@ -62,6 +67,3 @@ export default {
 	},
 }
 </script>
-
-<style scoped lang="scss">
-</style>

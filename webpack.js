@@ -11,4 +11,6 @@ webpackConfig.entry = {
 	dashboard: { import: path.join(__dirname, 'src', 'dashboard.js'), filename: 'integration_github-dashboard.js' },
 }
 
+webpackConfig.resolve.fallback = { "path": require.resolve("path-browserify") }
+
 module.exports = webpackConfig

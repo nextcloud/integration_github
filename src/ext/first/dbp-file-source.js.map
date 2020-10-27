@@ -1,1 +1,0 @@
-{"version":3,"file":"dbp-file-source.js","sources":["../src/dbp-file-source.js"],"sourcesContent":["import * as commonUtils from \"dbp-common/utils\";\nimport {FileSource} from './file-source';\n\ncommonUtils.defineCustomElement('dbp-file-source', FileSource);\n"],"names":["commonUtils.defineCustomElement"],"mappings":";;AAGAA,mBAA+B,CAAC,iBAAiB,EAAE,UAAU,CAAC"}
