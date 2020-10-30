@@ -6,7 +6,7 @@
 		:item-menu="itemMenu"
 		@unsubscribe="onUnsubscribe"
 		@markRead="onMarkRead">
-		<template v-slot:empty-content>
+		<template #empty-content>
 			<EmptyContent
 				v-if="emptyContentMessage"
 				:icon="emptyContentIcon">
