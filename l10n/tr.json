@@ -23,6 +23,7 @@
     "Client secret of your GitHub application" : "GitHub uygulamanızın istemci sırrı",
     "GitHub admin options saved" : "GitHub yönetici ayarları kaydedildi",
     "Failed to save GitHub admin options" : "GitHub yönetici ayarları kaydedilemedi",
+    "Enable navigation link" : "Gezinme bağlantısı kullanılsın",
     "When you create a personal access token yourself, give it at least \"read:user\", \"user:email\" and \"notifications\" permissions." : "Kendiniz için bir kişisel erişim kodu oluştururken en azından \"read:user\", \"user:email\" ve \"notifications\" izinlerini verin.",
     "Personal access token" : "Kişisel erişim kodu",
     "GitHub personal access token" : "GitHub kişisel erişim kodu",
