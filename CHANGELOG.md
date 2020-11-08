@@ -6,6 +6,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## 0.0.11 – 2020-11-08
+### Changed
+- bump js libs
+
+### Fixed
+- links to releases
+- no more eslint warnings
+
 ## 0.0.10 – 2020-10-24
 ### Added
 - optional navigation link
