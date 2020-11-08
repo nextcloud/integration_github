@@ -212,10 +212,17 @@ export default {
 				: ''
 		},
 		getNotificationTarget(n) {
-			return n.subject.url
-				.replace('api.github.com', 'github.com')
-				.replace('/repos/', '/')
-				.replace('/pulls/', '/pull/')
+			if (n.subject?.type === 'Release') {
+				return n.subject.url
+					.replace('api.github.com', 'github.com')
+					.replace('/repos/', '/')
+					.replace(/\/[0-9]+/, '')
+			} else {
+				return n.subject.url
+					.replace('api.github.com', 'github.com')
+					.replace('/repos/', '/')
+					.replace('/pulls/', '/pull/')
+			}
 		},
 		getNotificationActionChar(n) {
 			if (['review_requested', 'assign'].includes(n.reason)) {
