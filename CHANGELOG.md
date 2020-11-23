@@ -6,6 +6,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## 0.0.12 – 2020-11-23
+### Changed
+- add link to personal tokens settings in hint
+[#15](https://github.com/nextcloud/integration_github/issues/15) @JOduMonT
+- bump js libs
+
 ## 0.0.11 – 2020-11-08
 ### Changed
 - bump js libs
