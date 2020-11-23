@@ -16,6 +16,10 @@
 		<br><br>
 		<p v-if="!showOAuth && !connected" class="settings-hint">
 			{{ t('integration_github', 'When you create a personal access token yourself, give it at least "read:user", "user:email" and "notifications" permissions.') }}
+			<a href="https://github.com/settings/tokens" target="_blank" class="external">
+				<span class="icon icon-external" />
+				{{ t('integration_github', 'GitHub personal access tokens') }}
+			</a>
 		</p>
 		<div id="github-content">
 			<div class="github-grid-form">
@@ -201,53 +205,54 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.github-grid-form label {
-	line-height: 38px;
-}
-
-.github-grid-form input {
-	width: 100%;
-}
-
-.github-grid-form {
-	max-width: 600px;
-	display: grid;
-	grid-template: 1fr / 1fr 1fr;
-	button .icon {
-		margin-bottom: -1px;
+#github_prefs {
+	.icon {
+		display: inline-block;
+		width: 32px;
 	}
-}
 
-#github_prefs .icon {
-	display: inline-block;
-	width: 32px;
-}
+	.icon-external {
+		width: 15px;
+		margin-bottom: -3px;
+	}
 
-#github_prefs .grid-form .icon {
-	margin-bottom: -3px;
-}
+	#github-content {
+		margin-left: 40px;
+		#github-search-block .icon {
+			width: 22px;
+		}
+	}
 
-.icon-github-settings {
-	background-image: url('./../../img/app-dark.svg');
-	background-size: 23px 23px;
-	height: 23px;
-	margin-bottom: -4px;
+	#toggle-github-navigation-link {
+		margin-left: 40px;
+	}
+	.github-grid-form {
+		max-width: 600px;
+		display: grid;
+		grid-template: 1fr / 1fr 1fr;
+
+		label {
+			line-height: 38px;
+		}
+		input {
+			width: 100%;
+		}
+		button .icon {
+			margin-bottom: -1px;
+		}
+		.icon {
+			margin-bottom: -3px;
+		}
+		.icon-github-settings {
+			background-image: url('./../../img/app-dark.svg');
+			background-size: 23px 23px;
+			height: 23px;
+			margin-bottom: -4px;
+		}
+	}
 }
 
 body.theme--dark .icon-github-settings {
 	background-image: url('./../../img/app.svg');
 }
-
-#github-content {
-	margin-left: 40px;
-}
-
-#github-search-block .icon {
-	width: 22px;
-}
-
-#toggle-github-navigation-link {
-	margin-left: 40px;
-}
-
 </style>
