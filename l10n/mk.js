@@ -8,6 +8,7 @@ OC.L10N.register(
     "Connected accounts" : "Поврзани сметки",
     "Client ID" : "Клиент ИД",
     "Client secret" : "Тајна на клиент",
+    "Enable navigation link" : "Овозможи линк за навигација",
     "Connected as {user}" : "Поврзан како {user}",
     "Incorrect access token" : "Неточен токен за пристап"
 },

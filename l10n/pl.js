@@ -27,6 +27,7 @@ OC.L10N.register(
     "Failed to save GitHub admin options" : "Nie udało się zapisać opcji administratora GitHuba",
     "Enable navigation link" : "Włącz połączenie nawigacyjne",
     "When you create a personal access token yourself, give it at least \"read:user\", \"user:email\" and \"notifications\" permissions." : "Tworząc osobisty token dostępu, przyznaj mu przynajmniej uprawnienia \"read:user\", \"user:email\" i \"notifications\".",
+    "GitHub personal access tokens" : "Osobiste tokeny dostępu GitHub",
     "Personal access token" : "Osobisty token dostępu",
     "GitHub personal access token" : "Osobisty token dostępu GitHub",
     "Connect to GitHub" : "Połącz się z GitHubem",
