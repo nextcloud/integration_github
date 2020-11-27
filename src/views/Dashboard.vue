@@ -163,13 +163,7 @@ export default {
 		filter(notifications) {
 			// only keep the unread ones with specific reasons
 			return notifications.filter((n) => {
-				return (
-					n.unread
-					&& (
-						['assign', 'mention', 'review_requested'].includes(n.reason)
-						|| (n.reason === 'subscribed' && n.subject?.type === 'Release')
-					)
-				)
+				return (n.unread)
 			})
 		},
 		onUnsubscribe(item) {
