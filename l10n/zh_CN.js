@@ -12,6 +12,7 @@ OC.L10N.register(
     "Connected accounts" : "关联账号",
     "GitHub integration" : "GitHub 集成",
     "Integration of GitHub software development management service" : "集成GitHub软件开发管理服务",
+    "GitHub integration provides a dashboard widget displaying your most important notifications\n    and a unified search provider for repositories, issues and pull requests." : "GitHub 集成提供了一个仪表板小部件，显示您最重要的通知。\n以及一个统一的搜索供应商，用于存储库、问题和拉取请求。",
     "GitHub OAuth settings" : "GitHub OAuth 设置",
     "Put the OAuth app \"Client ID\" and \"Client secret\" below." : "在下面输入OAuth应用“Client ID”和“Client secret”。",
     "Client ID" : "客户端 ID",
