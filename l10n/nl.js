@@ -34,13 +34,18 @@ OC.L10N.register(
     "Connected as {user}" : "Verbonden als {user}",
     "Disconnect from GitHub" : "Verbinding met GitHub verbreken",
     "Warning, everything you type in the search bar will be sent to GitHub." : "Let op: alles wat je intypt in de zoekbalk wordt naar GitHub gestuurd.",
+    "Connected to GitHub!" : "Verbonden met GitHub!",
     "GitHub OAuth error:" : "GitHub OAuth fout:",
+    "GitHub options saved" : "GitHub-opties bewaard",
+    "Incorrect access token" : "Onjuist access token",
     "Failed to save GitHub options" : "Kon GitHub-opties niet opslaan",
-    "Failed to save GitHub OAuth state" : "Kan GitHub OAuth status niet bewaren",
+    "Failed to save GitHub OAuth state" : "Kan GitHub OAuth-status niet bewaren",
     "Mark as read" : "Markeren als gelezen",
     "Unsubscribe" : "Afmelden",
     "No GitHub account connected" : "Geen GitHub-account verbonden",
     "Error connecting to GitHub" : "Fout bij het verbinden met GitHub",
-    "No GitHub notifications!" : "Geen GitHub meldingen!"
+    "No GitHub notifications!" : "Geen GitHub meldingen!",
+    "Failed to get GitHub notifications" : "Kon GitHub-meldingen niet ophalen",
+    "Failed to edit GitHub notification" : "Kon GitHub-melding niet bewerken"
 },
 "nplurals=2; plural=(n != 1);");
