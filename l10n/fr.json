@@ -25,6 +25,7 @@
     "Failed to save GitHub admin options" : "Échec de l'enregistrement des options d'administration GitHub",
     "Enable navigation link" : "Activer le lien de navigation",
     "When you create a personal access token yourself, give it at least \"read:user\", \"user:email\" and \"notifications\" permissions." : "Lorsque vous créez vous-même un jeton d'accès personnel, donnez-lui au moins les autorisations «read:user», «user:email» et «notifications».",
+    "GitHub personal access tokens" : "Jeton d'accès personnel GitHub",
     "Personal access token" : "Jeton d'accès personnel",
     "GitHub personal access token" : "Jeton d'accès personnel GitHub",
     "Connect to GitHub" : "Se connecter à GitHub",
