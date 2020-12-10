@@ -56,7 +56,7 @@ export default {
 			loop: null,
 			state: 'loading',
 			settingsUrl: generateUrl('/settings/user/connected-accounts'),
-			darkThemeColor: OCA.Accessibility.theme === 'dark' ? '181818' : 'ffffff',
+			darkThemeColor: OCA.Accessibility?.theme === 'dark' ? '181818' : 'ffffff',
 			itemMenu: {
 				markRead: {
 					text: t('integration_github', 'Mark as read'),
