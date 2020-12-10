@@ -6,6 +6,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## 0.0.13 – 2020-12-10
+### Changed
+- bump js libs
+
+### Fixed
+- safer use of OCA.Accessibility when this app is disabled
+
 ## 0.0.12 – 2020-11-23
 ### Changed
 - add link to personal tokens settings in hint
