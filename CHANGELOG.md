@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## 0.0.14 – 2020-12-10
+### Fixed
+- missing settings icon
+
 ## 0.0.13 – 2020-12-10
 ### Changed
 - bump js libs

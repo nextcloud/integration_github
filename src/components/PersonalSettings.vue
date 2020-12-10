@@ -243,13 +243,14 @@ export default {
 		.icon {
 			margin-bottom: -3px;
 		}
-		.icon-github-settings {
-			background-image: url('./../../img/app-dark.svg');
-			background-size: 23px 23px;
-			height: 23px;
-			margin-bottom: -4px;
-		}
 	}
+}
+
+.icon-github-settings {
+	background-image: url('./../../img/app-dark.svg');
+	background-size: 23px 23px;
+	height: 23px;
+	margin-bottom: -4px;
 }
 
 body.theme--dark .icon-github-settings {
