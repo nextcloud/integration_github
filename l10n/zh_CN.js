@@ -27,6 +27,8 @@ OC.L10N.register(
     "Disconnect from GitHub" : "与GitHub断开连接",
     "Connected to GitHub!" : "已连接到 GitHub！",
     "GitHub OAuth error:" : "GitHub OAuth 错误：",
-    "Incorrect access token" : "访问令牌不正确"
+    "Incorrect access token" : "访问令牌不正确",
+    "Mark as read" : "标记为已读",
+    "Unsubscribe" : "取消订阅"
 },
 "nplurals=1; plural=0;");
