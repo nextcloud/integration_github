@@ -29,7 +29,7 @@
     "Disconnect from GitHub" : "Prekini povezavo z GitHub",
     "Enable searching for repositories" : "Omogoči iskanje po skladiščih",
     "Enable searching for issues and pull requests" : "Omogoči iskanje med odprtimi nalogami in zahtevami za združitev kode.",
-    "Warning, everything you type in the search bar will be sent to GitHub." : "Opozorilo! Karkoli vpišete v iskalno okno bo poslano na strežnik GitHub.",
+    "Warning, everything you type in the search bar will be sent to GitHub." : "Opozorilo! Karkoli vpišete v iskalno polje bo poslano na strežnik GitHub.",
     "Connected to GitHub!" : "Povezava z GitHub je vzpostavljena!",
     "GitHub OAuth error:" : "Napaka overitve OAuth za GitHub:",
     "GitHub options saved" : "Nastavitve GitHub so shranjene",
