@@ -33,6 +33,8 @@ OC.L10N.register(
     "Connect to GitHub" : "Verbinden met GitHub",
     "Connected as {user}" : "Verbonden als {user}",
     "Disconnect from GitHub" : "Verbinding met GitHub verbreken",
+    "Enable searching for repositories" : "Inschakelen zoeken naar repositories",
+    "Enable searching for issues and pull requests" : "Inschakelen zoeken naar issues en pull requests",
     "Warning, everything you type in the search bar will be sent to GitHub." : "Let op: alles wat je intypt in de zoekbalk wordt naar GitHub gestuurd.",
     "Connected to GitHub!" : "Verbonden met GitHub!",
     "GitHub OAuth error:" : "GitHub OAuth fout:",
