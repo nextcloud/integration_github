@@ -48,6 +48,7 @@ OC.L10N.register(
     "Error connecting to GitHub" : "Fout bij het verbinden met GitHub",
     "No GitHub notifications!" : "Geen GitHub meldingen!",
     "Failed to get GitHub notifications" : "Kon GitHub-meldingen niet ophalen",
+    "Successfully unsubscribed" : "Abonnement succesvol beëindigd",
     "Failed to edit GitHub notification" : "Kon GitHub-melding niet bewerken"
 },
 "nplurals=2; plural=(n != 1);");
