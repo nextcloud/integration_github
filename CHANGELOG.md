@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## 0.0.15 – 2020-12-30
+### Fixed
+- widget crash with 'Discussion' notifications
+
 ## 0.0.14 – 2020-12-10
 ### Fixed
 - missing settings icon
