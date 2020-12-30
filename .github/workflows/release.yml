@@ -34,7 +34,8 @@ jobs:
           echo "###### install dependencies"
           export DEBIAN_FRONTEND=noninteractive
           sudo apt update -y
-          sudo apt install php-mbstring php-sqlite3 node-gyp npm make openssl -y
+          sudo apt full-upgrade -y
+          sudo apt install php-mbstring php-sqlite3 npm make openssl -y
           echo "###### installing nextcloud"
           mkdir ~/html
           git clone https://github.com/nextcloud/server.git --recursive --depth 1 -b master ~/html/nextcloud

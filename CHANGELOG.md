@@ -6,7 +6,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
-## 0.0.15 – 2020-12-30
+## 0.0.16 – 2020-12-30
 ### Fixed
 - widget crash with 'Discussion' notifications
 
