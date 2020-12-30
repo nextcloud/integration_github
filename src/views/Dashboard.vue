@@ -217,11 +217,14 @@ export default {
 					.replace('api.github.com', 'github.com')
 					.replace('/repos/', '/')
 					.replace(/\/[0-9]+/, '')
-			} else {
+			} else if (n.subject?.type !== 'Discussion') {
 				return n.subject.url
 					.replace('api.github.com', 'github.com')
 					.replace('/repos/', '/')
 					.replace('/pulls/', '/pull/')
+			} else {
+				// this is a discussion
+				return 'https://github.com/' + n.repository?.full_name + '/discussions'
 			}
 		},
 		getNotificationActionChar(n) {
@@ -246,7 +249,7 @@ export default {
 			return ''
 		},
 		getTargetIdentifier(n) {
-			if (['PullRequest', 'Issue'].includes(n.subject.type)) {
+			if (['PullRequest', 'Issue'].includes(n.subject?.type) && n.subject?.url) {
 				const parts = n.subject.url.split('/')
 				return '#' + parts[parts.length - 1]
 			}
