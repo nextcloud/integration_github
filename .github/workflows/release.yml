@@ -46,7 +46,7 @@ jobs:
           php ~/html/nextcloud/occ maintenance:mode --off
           cd ~/html/nextcloud/apps/${APP_ID}
           echo "###### npm install"
-          npm install
+          npm ci
           echo "###### npm run build"
           npm run build
           echo "###### make appstore"
