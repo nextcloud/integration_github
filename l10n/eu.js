@@ -12,9 +12,12 @@ OC.L10N.register(
     "GitHub OAuth settings" : "GitHub OAuth ezarpenak",
     "Client ID" : "Bezeroaren IDa",
     "Client secret" : "Bezeroaren sekretua",
+    "Enable navigation link" : "Gaitu nabigazio esteka",
+    "Personal access token" : "Sarbide token pertsonala",
     "Connect to GitHub" : "Konektatu GitHub-era",
     "Connected as {user}" : "{user} gisa konektatuta",
     "Disconnect from GitHub" : "Deskonektatu GitHub-etik",
+    "Enable searching for repositories" : "Gaitu biltegi bilaketa",
     "Incorrect access token" : "Sarbide token okerra",
     "No GitHub notifications!" : "Ez dago GitHub jakinarazpenik!"
 },
