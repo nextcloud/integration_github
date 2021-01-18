@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## 0.0.17 – 2021-01-18
+### Fixed
+- Popover scrolling issue
+
 ## 0.0.16 – 2020-12-30
 ### Fixed
 - widget crash with 'Discussion' notifications
