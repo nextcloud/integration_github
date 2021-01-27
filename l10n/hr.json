@@ -25,6 +25,7 @@
     "Failed to save GitHub admin options" : "Spremanje administratorskih postavki GitHuba nije uspjelo",
     "Enable navigation link" : "Omogući navigacijsku poveznicu",
     "When you create a personal access token yourself, give it at least \"read:user\", \"user:email\" and \"notifications\" permissions." : "Ako sami stvarate osobni token za pristup, minimalno mu dodijelite dopuštenja „read:user“, „user:email“ i „notifications“.",
+    "GitHub personal access tokens" : "GitHub osobni tokeni za pristup",
     "Personal access token" : "Osobni token za pristup",
     "GitHub personal access token" : "GitHub osobni token za pristup",
     "Connect to GitHub" : "Poveži se s GitHubom",
