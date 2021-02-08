@@ -6,6 +6,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## 0.0.18 – 2021-02-08
+### Changed
+- bump max NC version
+
+### Fixed
+- add missing css import for dialogs
+
 ## 0.0.17 – 2021-01-18
 ### Fixed
 - Popover scrolling issue
