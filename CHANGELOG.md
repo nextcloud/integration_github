@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## 0.0.19 – 2021-02-16
+### Changed
+- app certificate
+
 ## 0.0.18 – 2021-02-08
 ### Changed
 - bump max NC version
