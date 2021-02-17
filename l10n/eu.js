@@ -4,6 +4,7 @@ OC.L10N.register(
     "GitHub" : "GitHub",
     "Error getting OAuth access token" : "Errorea OAuth sarbide tokena eskuratzen",
     "Error during OAuth exchanges" : "Errorea QAuth trukeak egitean",
+    "GitHub notifications" : "GitHub jakinarazpenak",
     "GitHub repositories" : "GitHub biltegiak",
     "Bad credentials" : "Kredentzial okerrak",
     "OAuth access token refused" : "QAuth sarbide tokena ukatua izan da",
@@ -18,7 +19,10 @@ OC.L10N.register(
     "Connected as {user}" : "{user} gisa konektatuta",
     "Disconnect from GitHub" : "Deskonektatu GitHub-etik",
     "Enable searching for repositories" : "Gaitu biltegi bilaketa",
+    "GitHub OAuth error:" : "GitHub OAuth errorea:",
     "Incorrect access token" : "Sarbide token okerra",
+    "Mark as read" : "Markatu irakurri gisa",
+    "Unsubscribe" : "Harpidetza kendu",
     "No GitHub notifications!" : "Ez dago GitHub jakinarazpenik!"
 },
 "nplurals=2; plural=(n != 1);");
