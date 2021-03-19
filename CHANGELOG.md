@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## 1.0.0 – 2021-03-19
+### Changed
+- bump js libs (fix widget item menu placement)
+
 ## 0.0.20 – 2021-02-16
 ### Changed
 - app certificate
