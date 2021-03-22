@@ -23,18 +23,21 @@
 
 namespace OCA\Github\Dashboard;
 
-use OCP\Dashboard\IWidget;
+use OCP\Dashboard\IAPIWidget;
 use OCP\IL10N;
 use OCA\Github\AppInfo\Application;
+use OCA\Github\Service\GithubAPIService;
 
-class GithubWidget implements IWidget {
+class GithubWidget implements IAPIWidget {
 
 	/** @var IL10N */
 	private $l10n;
 
 	public function __construct(
+		GithubAPIService $githubAPIService,
 		IL10N $l10n
 	) {
+		$this->githubAPIService = $githubAPIService;
 		$this->l10n = $l10n;
 	}
 
@@ -79,5 +82,12 @@ class GithubWidget implements IWidget {
 	public function load(): void {
 		\OC_Util::addScript(Application::APP_ID, 'integration_github-dashboard');
 		\OC_Util::addStyle(Application::APP_ID, 'dashboard');
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function getItems(string $userId, ?string $since = null, int $limit = 7): array {
+		return $this->githubAPIService->getWidgetItems($userId, $since, $limit);
 	}
 }

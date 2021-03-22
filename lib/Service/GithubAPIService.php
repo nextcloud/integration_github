@@ -12,8 +12,13 @@
 namespace OCA\Github\Service;
 
 use OCP\IL10N;
+use OCP\IConfig;
 use Psr\Log\LoggerInterface;
 use OCP\Http\Client\IClientService;
+
+use OCP\Dashboard\Model\WidgetItem;
+
+use OCA\Github\AppInfo\Application;
 
 class GithubAPIService {
 
@@ -23,17 +28,51 @@ class GithubAPIService {
 	/**
 	 * Service to make requests to GitHub v3 (JSON) API
 	 */
-	public function __construct (
-		string $appName,
-		LoggerInterface $logger,
-		IL10N $l10n,
-		IClientService $clientService
-	) {
+	public function __construct (string $appName,
+								LoggerInterface $logger,
+								IL10N $l10n,
+								IConfig $config,
+								IClientService $clientService) {
 		$this->appName = $appName;
 		$this->l10n = $l10n;
+		$this->config = $config;
 		$this->logger = $logger;
 		$this->clientService = $clientService;
 		$this->client = $clientService->newClient();
+	}
+
+	public function getWidgetItems(string $userId, ?string $since = null, int $limit = 7): ?array {
+		$token = $this->config->getUserValue($userId, Application::APP_ID, 'token', '');
+		$notifications = $this->getNotifications($token, $since, false);
+		if (isset($notifications['error'])) {
+			return [];
+		} else {
+			$notifications = array_slice($notifications, 0, $limit);
+			return array_map(function (array $notification) use ($token) {
+				$title = $notification['subject']['title'] ?? '';
+
+				$subtitle = $notification['repository']['name'] ?? '';
+				if (in_array($notification['subject']['type'] ?? '', ['PullRequest', 'Issue']) && $notification['subject']['url']) {
+					$parts = explode('/', $notification['subject']['url']);
+					$subtitle .= ' #' . $parts[count($parts) - 1];
+				}
+
+				$iconUrl = ($notification['repository']['owner']['login'] ?? false)
+					? $this->getAvatarUrl($token, $notification['repository']['owner']['login'])
+					: '';
+
+				$sinceId = $notification['updated_at'] ?? '';
+				return new WidgetItem($title, $subtitle, $iconUrl, $sinceId);
+			}, $notifications);
+		}
+	}
+
+	private function getAvatarUrl(string $accessToken, string $githubUserName): ?string {
+		$userInfo = $this->request($accessToken, 'users/' . $githubUserName);
+		if (!isset($userInfo['error']) && isset($userInfo['avatar_url'])) {
+			return $userInfo['avatar_url'];
+		}
+		return null;
 	}
 
 	/**
@@ -43,9 +82,9 @@ class GithubAPIService {
 	 * @return ?string Avatar image data
 	 */
 	public function getAvatar(string $accessToken, string $githubUserName): ?string {
-		$userInfo = $this->request($accessToken, 'users/' . $githubUserName);
-		if (!isset($userInfo['error']) && isset($userInfo['avatar_url'])) {
-			return $this->client->get($userInfo['avatar_url'])->getBody();
+		$avatarUrl = $this->getAvatarUrl($accessToken, $githubUserName);
+		if ($avatarUrl) {
+			return $this->client->get($avatarUrl)->getBody();
 		}
 		return null;
 	}
