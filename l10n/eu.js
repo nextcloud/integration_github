@@ -19,10 +19,13 @@ OC.L10N.register(
     "Connected as {user}" : "{user} gisa konektatuta",
     "Disconnect from GitHub" : "Deskonektatu GitHub-etik",
     "Enable searching for repositories" : "Gaitu biltegi bilaketa",
+    "Connected to GitHub!" : "GitHub-era konektatuta!",
     "GitHub OAuth error:" : "GitHub OAuth errorea:",
+    "GitHub options saved" : "GitHub aukerak gordeta",
     "Incorrect access token" : "Sarbide token okerra",
     "Mark as read" : "Markatu irakurri gisa",
     "Unsubscribe" : "Harpidetza kendu",
+    "Error connecting to GitHub" : "Errorea GitHub-era konektatzean",
     "No GitHub notifications!" : "Ez dago GitHub jakinarazpenik!"
 },
 "nplurals=2; plural=(n != 1);");
