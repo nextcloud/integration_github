@@ -16,6 +16,7 @@ OC.L10N.register(
     "Failed to save GitHub admin options" : "GitHub admin aukerak gordetzeak huts egin du",
     "Enable navigation link" : "Gaitu nabigazio esteka",
     "Personal access token" : "Sarbide token pertsonala",
+    "GitHub personal access token" : "GitHub sarbide token pertsonala",
     "Connect to GitHub" : "Konektatu GitHub-era",
     "Connected as {user}" : "{user} gisa konektatuta",
     "Disconnect from GitHub" : "Deskonektatu GitHub-etik",
@@ -27,6 +28,7 @@ OC.L10N.register(
     "Failed to save GitHub options" : "GitHub aukerak gordetzeak huts egin du",
     "Mark as read" : "Markatu irakurri gisa",
     "Unsubscribe" : "Harpidetza kendu",
+    "No GitHub account connected" : "Ez dago GitHub konturik konektatuta",
     "Error connecting to GitHub" : "Errorea GitHub-era konektatzean",
     "No GitHub notifications!" : "Ez dago GitHub jakinarazpenik!"
 },
