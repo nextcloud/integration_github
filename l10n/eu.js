@@ -24,6 +24,7 @@ OC.L10N.register(
     "Connected as {user}" : "{user} gisa konektatuta",
     "Disconnect from GitHub" : "Deskonektatu GitHub-etik",
     "Enable searching for repositories" : "Gaitu biltegi bilaketa",
+    "Enable searching for issues and pull requests" : "Gaitu issue-ak eta pull request-ak bilatzea",
     "Connected to GitHub!" : "GitHub-era konektatuta!",
     "GitHub OAuth error:" : "GitHub OAuth errorea:",
     "GitHub options saved" : "GitHub aukerak gordeta",
@@ -33,6 +34,7 @@ OC.L10N.register(
     "Unsubscribe" : "Harpidetza kendu",
     "No GitHub account connected" : "Ez dago GitHub konturik konektatuta",
     "Error connecting to GitHub" : "Errorea GitHub-era konektatzean",
-    "No GitHub notifications!" : "Ez dago GitHub jakinarazpenik!"
+    "No GitHub notifications!" : "Ez dago GitHub jakinarazpenik!",
+    "Failed to get GitHub notifications" : "Github jakinarazpenak lortzeak huts egin du"
 },
 "nplurals=2; plural=(n != 1);");
