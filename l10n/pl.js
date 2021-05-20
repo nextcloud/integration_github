@@ -20,7 +20,7 @@ OC.L10N.register(
     "Put the OAuth app \"Client ID\" and \"Client secret\" below." : "Umieść poniżej \"ID klienta\" i \"Sekret klienta\" aplikacji OAuth.",
     "Your Nextcloud users will then see a \"Connect to GitHub\" button in their personal settings." : "Użytkownicy Nextcloud zobaczą przycisk \"Połącz się z GitHubem\" w swoich ustawieniach osobistych.",
     "Client ID" : "ID klienta",
-    "Client ID of your GitHub application" : "Identyfikator klienta aplikacji GitHub",
+    "Client ID of your GitHub application" : "ID klienta aplikacji GitHub",
     "Client secret" : "Sekret klienta",
     "Client secret of your GitHub application" : "Sekret klienta aplikacji GitHub",
     "GitHub admin options saved" : "Opcje administratora GitHuba zostały zapisane",
