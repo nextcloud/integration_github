@@ -68,6 +68,7 @@ export default {
 					icon: 'icon-github-unsubscribe',
 				},
 			},
+			windowVisibility: true,
 		}
 	},
 
@@ -110,15 +111,39 @@ export default {
 		},
 	},
 
+	watch: {
+		windowVisibility(newValue) {
+			if (newValue) {
+				this.launchLoop()
+			} else {
+				this.stopLoop()
+			}
+		},
+	},
+
+	beforeDestroy() {
+		document.removeEventListener('visibilitychange', this.changeWindowVisibility)
+	},
+
 	beforeMount() {
-		this.fetchNotifications()
-		this.loop = setInterval(() => this.fetchNotifications(), 60000)
+		this.launchLoop()
+		document.addEventListener('visibilitychange', this.changeWindowVisibility)
 	},
 
 	mounted() {
 	},
 
 	methods: {
+		changeWindowVisibility() {
+			this.windowVisibility = !document.hidden
+		},
+		stopLoop() {
+			clearInterval(this.loop)
+		},
+		launchLoop() {
+			this.fetchNotifications()
+			this.loop = setInterval(this.fetchNotifications, 60000)
+		},
 		fetchNotifications() {
 			const req = {}
 			if (this.lastDate) {
