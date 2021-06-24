@@ -45,12 +45,21 @@ class GithubSearchReposProvider implements IProvider {
 
 	/** @var IURLGenerator */
 	private $urlGenerator;
+	/**
+	 * @var IConfig
+	 */
+	private $config;
+	/**
+	 * @var GithubAPIService
+	 */
+	private $service;
 
 	/**
 	 * CospendSearchProvider constructor.
 	 *
 	 * @param IAppManager $appManager
 	 * @param IL10N $l10n
+	 * @param IConfig $config
 	 * @param IURLGenerator $urlGenerator
 	 * @param GithubAPIService $service
 	 */
@@ -105,9 +114,9 @@ class GithubSearchReposProvider implements IProvider {
 		$offset = $query->getCursor();
 		$offset = $offset ? intval($offset) : 0;
 
-		$theme = $this->config->getUserValue($user->getUID(), 'accessibility', 'theme', '');
+//		$theme = $this->config->getUserValue($user->getUID(), 'accessibility', 'theme', '');
 
-		$accessToken = $this->config->getUserValue($user->getUID(), Application::APP_ID, 'token', '');
+		$accessToken = $this->config->getUserValue($user->getUID(), Application::APP_ID, 'token');
 		$searchReposEnabled = $this->config->getUserValue($user->getUID(), Application::APP_ID, 'search_repos_enabled', '0') === '1';
 		if ($accessToken === '' || !$searchReposEnabled) {
 			return SearchResult::paginated($this->getName(), [], 0);
@@ -120,7 +129,7 @@ class GithubSearchReposProvider implements IProvider {
 			$repos = $searchResult['items'];
 		}
 
-		$formattedResults = \array_map(function (array $entry): GithubSearchResultEntry {
+		$formattedResults = array_map(function (array $entry): GithubSearchResultEntry {
 			return new GithubSearchResultEntry(
 				$this->getThumbnailUrl($entry),
 				$this->getMainText($entry),

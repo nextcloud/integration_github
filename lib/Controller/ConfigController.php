@@ -11,21 +11,12 @@
 
 namespace OCA\Github\Controller;
 
-use OCP\App\IAppManager;
-use OCP\Files\IAppData;
-
 use OCP\IURLGenerator;
 use OCP\IConfig;
-use OCP\IServerContainer;
 use OCP\IL10N;
-use Psr\Log\LoggerInterface;
-
 use OCP\IRequest;
-use OCP\IDBConnection;
-use OCP\AppFramework\Http;
 use OCP\AppFramework\Http\RedirectResponse;
 use OCP\AppFramework\Http\DataResponse;
-use OCP\AppFramework\Http\ContentSecurityPolicy;
 use OCP\AppFramework\Controller;
 
 use OCA\Github\Service\GithubAPIService;
@@ -33,34 +24,40 @@ use OCA\Github\AppInfo\Application;
 
 class ConfigController extends Controller {
 
-	private $userId;
+	/**
+	 * @var IConfig
+	 */
 	private $config;
-	private $dbconnection;
-	private $dbtype;
+	/**
+	 * @var IURLGenerator
+	 */
+	private $urlGenerator;
+	/**
+	 * @var IL10N
+	 */
+	private $l;
+	/**
+	 * @var GithubAPIService
+	 */
+	private $githubAPIService;
+	/**
+	 * @var string|null
+	 */
+	private $userId;
 
-	public function __construct($AppName,
+	public function __construct(string $appName,
 								IRequest $request,
-								IServerContainer $serverContainer,
 								IConfig $config,
-								IAppManager $appManager,
-								IAppData $appData,
-								IDBConnection $dbconnection,
 								IURLGenerator $urlGenerator,
 								IL10N $l,
-								LoggerInterface $logger,
 								GithubAPIService $githubAPIService,
-								$userId) {
-		parent::__construct($AppName, $request);
-		$this->l = $l;
-		$this->appName = $AppName;
-		$this->userId = $userId;
-		$this->appData = $appData;
-		$this->serverContainer = $serverContainer;
+								?string $userId) {
+		parent::__construct($appName, $request);
 		$this->config = $config;
-		$this->dbconnection = $dbconnection;
 		$this->urlGenerator = $urlGenerator;
-		$this->logger = $logger;
+		$this->l = $l;
 		$this->githubAPIService = $githubAPIService;
+		$this->userId = $userId;
 	}
 
 	/**
@@ -113,12 +110,12 @@ class ConfigController extends Controller {
 	 * @return RedirectResponse to user settings
 	 */
 	public function oauthRedirect(string $code, string $state): RedirectResponse {
-		$configState = $this->config->getUserValue($this->userId, Application::APP_ID, 'oauth_state', '');
-		$clientID = $this->config->getAppValue(Application::APP_ID, 'client_id', '');
-		$clientSecret = $this->config->getAppValue(Application::APP_ID, 'client_secret', '');
+		$configState = $this->config->getUserValue($this->userId, Application::APP_ID, 'oauth_state');
+		$clientID = $this->config->getAppValue(Application::APP_ID, 'client_id');
+		$clientSecret = $this->config->getAppValue(Application::APP_ID, 'client_secret');
 
 		// anyway, reset state
-		$this->config->setUserValue($this->userId, Application::APP_ID, 'oauth_state', '');
+		$this->config->deleteUserValue($this->userId, Application::APP_ID, 'oauth_state');
 
 		if ($clientID && $clientSecret && $configState !== '' && $configState === $state) {
 			$result = $this->githubAPIService->requestOAuthAccessToken([

@@ -45,12 +45,21 @@ class GithubSearchIssuesProvider implements IProvider {
 
 	/** @var IURLGenerator */
 	private $urlGenerator;
+	/**
+	 * @var IConfig
+	 */
+	private $config;
+	/**
+	 * @var GithubAPIService
+	 */
+	private $service;
 
 	/**
 	 * CospendSearchProvider constructor.
 	 *
 	 * @param IAppManager $appManager
 	 * @param IL10N $l10n
+	 * @param IConfig $config
 	 * @param IURLGenerator $urlGenerator
 	 * @param GithubAPIService $service
 	 */
@@ -105,9 +114,9 @@ class GithubSearchIssuesProvider implements IProvider {
 		$offset = $query->getCursor();
 		$offset = $offset ? intval($offset) : 0;
 
-		$theme = $this->config->getUserValue($user->getUID(), 'accessibility', 'theme', '');
+//		$theme = $this->config->getUserValue($user->getUID(), 'accessibility', 'theme', '');
 
-		$accessToken = $this->config->getUserValue($user->getUID(), Application::APP_ID, 'token', '');
+		$accessToken = $this->config->getUserValue($user->getUID(), Application::APP_ID, 'token');
 		$searchIssuesEnabled = $this->config->getUserValue($user->getUID(), Application::APP_ID, 'search_issues_enabled', '0') === '1';
 		if ($accessToken === '' || !$searchIssuesEnabled) {
 			return SearchResult::paginated($this->getName(), [], 0);
@@ -120,7 +129,7 @@ class GithubSearchIssuesProvider implements IProvider {
 			$issues = $searchResult['items'];
 		}
 
-		$formattedResults = \array_map(function (array $entry): GithubSearchResultEntry {
+		$formattedResults = array_map(function (array $entry): GithubSearchResultEntry {
 			return new GithubSearchResultEntry(
 				$this->getThumbnailUrl($entry),
 				$this->getMainText($entry),
@@ -162,7 +171,7 @@ class GithubSearchIssuesProvider implements IProvider {
 	protected function getSubline(array $entry): string {
 		$repoFullName = str_replace('https://api.github.com/repos/', '', $entry['repository_url']);
 		$spl = explode('/', $repoFullName);
-		$owner = $spl[0];
+//		$owner = $spl[0];
 		$repo = $spl[1];
 		$number = $entry['number'];
 		$typeChar = isset($entry['pull_request']) ? '⑃' : '🛈';

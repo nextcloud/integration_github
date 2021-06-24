@@ -11,28 +11,41 @@
 
 namespace OCA\Github\Service;
 
+use DateInterval;
+use DateTime;
+use Exception;
 use OCP\IL10N;
 use Psr\Log\LoggerInterface;
 use OCP\Http\Client\IClientService;
 
 class GithubAPIService {
-
-	private $l10n;
+	/**
+	 * @var string
+	 */
+	private $appName;
+	/**
+	 * @var LoggerInterface
+	 */
 	private $logger;
+	/**
+	 * @var IL10N
+	 */
+	private $l10n;
+	/**
+	 * @var \OCP\Http\Client\IClient
+	 */
+	private $client;
 
 	/**
 	 * Service to make requests to GitHub v3 (JSON) API
 	 */
-	public function __construct (
-		string $appName,
-		LoggerInterface $logger,
-		IL10N $l10n,
-		IClientService $clientService
-	) {
+	public function __construct (string $appName,
+								LoggerInterface $logger,
+								IL10N $l10n,
+								IClientService $clientService) {
 		$this->appName = $appName;
-		$this->l10n = $l10n;
 		$this->logger = $logger;
-		$this->clientService = $clientService;
+		$this->l10n = $l10n;
 		$this->client = $clientService->newClient();
 	}
 
@@ -60,8 +73,8 @@ class GithubAPIService {
 	public function getNotifications(string $accessToken, ?string $since = null, ?bool $participating = null): array {
 		$params = [];
 		if (is_null($since)) {
-			$twoWeeksEarlier = new \DateTime();
-			$twoWeeksEarlier->sub(new \DateInterval('P14D'));
+			$twoWeeksEarlier = new DateTime();
+			$twoWeeksEarlier->sub(new DateInterval('P14D'));
 			$params['since'] = $twoWeeksEarlier->format('Y-m-d\TH:i:s\Z');
 		} else {
 			$params['since'] = $since;
@@ -69,8 +82,7 @@ class GithubAPIService {
 		if (!is_null($participating)) {
 			$params['participating'] = $participating ? 'true' : 'false';
 		}
-		$result = $this->request($accessToken, 'notifications', $params);
-		return $result;
+		return $this->request($accessToken, 'notifications', $params);
 	}
 
 	/**
@@ -83,8 +95,7 @@ class GithubAPIService {
 		$params = [
 			'ignored' => true
 		];
-		$result = $this->request($accessToken, 'notifications/threads/' . $id . '/subscription', $params, 'PUT');
-		return $result;
+		return $this->request($accessToken, 'notifications/threads/' . $id . '/subscription', $params, 'PUT');
 	}
 
 	/**
@@ -94,8 +105,7 @@ class GithubAPIService {
 	 * @return array request result
 	 */
 	public function markNotificationAsRead(string $accessToken, int $id): array {
-		$result = $this->request($accessToken, 'notifications/threads/' . $id, [], 'POST');
-		return $result;
+		return $this->request($accessToken, 'notifications/threads/' . $id, [], 'POST');
 	}
 
 	/**
@@ -106,14 +116,14 @@ class GithubAPIService {
 	 * @param int $limit
 	 * @return array request result
 	 */
-	public function searchRepositories(string $accessToken, string $query, int $offset = 0, int $length = 5): array {
+	public function searchRepositories(string $accessToken, string $query, int $offset = 0, int $limit = 5): array {
 		$params = [
 			'q' => $query,
 			'order' => 'desc'
 		];
 		$result = $this->request($accessToken, 'search/repositories', $params, 'GET');
 		if (!isset($result['error'])) {
-			$result['items'] = array_slice($result['items'], $offset, $length);
+			$result['items'] = array_slice($result['items'], $offset, $limit);
 		}
 		return $result;
 	}
@@ -126,14 +136,14 @@ class GithubAPIService {
 	 * @param int $limit
 	 * @return array request result
 	 */
-	public function searchIssues(string $accessToken, string $query, int $offset = 0, int $length = 5): array {
+	public function searchIssues(string $accessToken, string $query, int $offset = 0, int $limit = 5): array {
 		$params = [
 			'q' => $query,
 			'order' => 'desc'
 		];
 		$result = $this->request($accessToken, 'search/issues', $params, 'GET');
 		if (!isset($result['error'])) {
-			$result['items'] = array_slice($result['items'], $offset, $length);
+			$result['items'] = array_slice($result['items'], $offset, $limit);
 			$reposToGet = [];
 			foreach ($result['items'] as $k => $entry) {
 				$repoFullName = str_replace('https://api.github.com/repos/', '', $entry['repository_url']);
@@ -217,6 +227,8 @@ class GithubAPIService {
 				$response = $this->client->put($url, $options);
 			} else if ($method === 'DELETE') {
 				$response = $this->client->delete($url, $options);
+			} else {
+				return ['error' => $this->l10n->t('Bad HTTP method')];
 			}
 			$body = $response->getBody();
 			$respCode = $response->getStatusCode();
@@ -226,7 +238,7 @@ class GithubAPIService {
 			} else {
 				return json_decode($body, true) ?: [];
 			}
-		} catch (\Exception $e) {
+		} catch (Exception $e) {
 			$this->logger->warning('GitHub API error : '.$e->getMessage(), ['app' => $this->appName]);
 			return ['error' => $e->getMessage()];
 		}
@@ -264,6 +276,8 @@ class GithubAPIService {
 				$response = $this->client->put($url, $options);
 			} else if ($method === 'DELETE') {
 				$response = $this->client->delete($url, $options);
+			} else {
+				return ['error' => $this->l10n->t('Bad HTTP method')];
 			}
 			$body = $response->getBody();
 			$respCode = $response->getStatusCode();
@@ -274,7 +288,7 @@ class GithubAPIService {
 				parse_str($body, $resultArray);
 				return $resultArray;
 			}
-		} catch (\Exception $e) {
+		} catch (Exception $e) {
 			$this->logger->warning('GitHub OAuth error : '.$e->getMessage(), ['app' => $this->appName]);
 			return ['error' => $e->getMessage()];
 		}
