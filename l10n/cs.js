@@ -7,6 +7,7 @@ OC.L10N.register(
     "GitHub notifications" : "Upozornění z GitHub",
     "GitHub issues and pull requests" : "Hlášení problémů a požadavky na začlenění z GitHub",
     "GitHub repositories" : "Repozitáře na GitHub",
+    "Bad HTTP method" : "Nesprávná HTTP metoda",
     "Bad credentials" : "Nesprávné přihlašovací údaje",
     "OAuth access token refused" : "OAuth přístupový token odmítnut",
     "Connected accounts" : "Propojené účty",

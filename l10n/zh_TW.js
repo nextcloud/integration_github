@@ -7,6 +7,7 @@ OC.L10N.register(
     "GitHub notifications" : "GitHub 通知",
     "GitHub issues and pull requests" : "GitHub 議題與拉取請求",
     "GitHub repositories" : "GitHub 倉庫",
+    "Bad HTTP method" : "錯誤的 HTTP 方法",
     "Bad credentials" : "錯誤的憑證",
     "OAuth access token refused" : "OAuth 存取權杖被拒絕",
     "Connected accounts" : "已連線的帳號",
