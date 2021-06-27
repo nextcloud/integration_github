@@ -7,6 +7,7 @@ OC.L10N.register(
     "GitHub notifications" : "GitHub bildirimleri",
     "GitHub issues and pull requests" : "GitHub sorunları ve birleştirme istekleri",
     "GitHub repositories" : "GitHub depoları",
+    "Bad HTTP method" : "HTTP yöntemi hatalı",
     "Bad credentials" : "Kimlik doğrulama bilgileri hatalı",
     "OAuth access token refused" : "OAuth erişim kodu reddedildi",
     "Connected accounts" : "Bağlı hesaplar",
