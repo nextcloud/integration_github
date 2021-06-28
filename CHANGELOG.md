@@ -6,6 +6,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## 1.0.1 – 2021-06-28
+### Changed
+- stop polling widget content when document is hidden
+- bump js libs
+- get rid of all deprecated stuff
+- bump min NC version to 22
+- cleanup backend code
+
 ## 1.0.0 – 2021-03-19
 ### Changed
 - bump js libs (fix widget item menu placement)
