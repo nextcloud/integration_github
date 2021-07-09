@@ -1,6 +1,32 @@
 { "translations": {
     "GitHub" : "GitHub",
+    "Error getting OAuth access token" : "Chyba pri získavaní prístupového tokenu OAuth",
+    "Error during OAuth exchanges" : "Chyba počas výmeny OAuth",
+    "GitHub notifications" : "GitHub notifikácie",
+    "GitHub repositories" : "GitHub repozitáre",
+    "Bad HTTP method" : "Zlá metóda HTTP",
+    "Bad credentials" : "Nesprávne prihlasovacie údaje",
+    "OAuth access token refused" : "Prístupový token OAuth bol zamietnutý",
+    "Connected accounts" : "Prepojené účty",
+    "GitHub integration" : "GitHub integrácia",
+    "GitHub OAuth settings" : "Nastavenia OAuth pre GitHub",
     "Client ID" : "Client ID",
-    "Client secret" : "Heslo klienta"
+    "Client ID of your GitHub application" : "ID klienta vašej aplikácie GitHub",
+    "Client secret" : "Heslo klienta",
+    "Client secret of your GitHub application" : "Tajomstvo klienta vašej aplikácie GitHub",
+    "GitHub admin options saved" : "Možnosti administrátora GitHub boli uložené",
+    "Failed to save GitHub admin options" : "Nepodarilo sa uložiť možnosti administrátora GitHub",
+    "GitHub personal access tokens" : "GitHub osobné prístupové tokeny",
+    "Personal access token" : "Osobný prístupový token",
+    "Connect to GitHub" : "Pripojiť ku GitHubu",
+    "Connected as {user}" : "Pripojený ako {user}",
+    "Disconnect from GitHub" : "Odpojiť od GitHubu",
+    "Enable searching for repositories" : "Povoliť vyhľadávanie repozitárov",
+    "Enable searching for issues and pull requests" : "Povoliť vyhľadávanie problémov a pull requestov",
+    "Connected to GitHub!" : "Pripojené k GitHubu!",
+    "GitHub OAuth error:" : "Chyba GitHub OAuth:",
+    "Incorrect access token" : "Nesprávny prístupový token",
+    "Mark as read" : "Označiť ako prečítané",
+    "Unsubscribe" : "Odhlásiť"
 },"pluralForm" :"nplurals=4; plural=(n % 1 == 0 && n == 1 ? 0 : n % 1 == 0 && n >= 2 && n <= 4 ? 1 : n % 1 != 0 ? 2: 3);"
 }
