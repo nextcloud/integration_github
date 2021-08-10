@@ -7,6 +7,7 @@ OC.L10N.register(
     "GitHub notifications" : "GitHub obavijesti",
     "GitHub issues and pull requests" : "GitHub problemi i zahtjevi za dohvaćanje",
     "GitHub repositories" : "GitHub spremišta",
+    "Bad HTTP method" : "Pogrešna metoda HTTP-a",
     "Bad credentials" : "Pogrešne vjerodajnice",
     "OAuth access token refused" : "Odbijen token za pristup OAuth",
     "Connected accounts" : "Povezani računi",
