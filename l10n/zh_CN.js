@@ -14,7 +14,9 @@ OC.L10N.register(
     "Integration of GitHub software development management service" : "集成GitHub软件开发管理服务",
     "GitHub integration provides a dashboard widget displaying your most important notifications\n    and a unified search provider for repositories, issues and pull requests." : "GitHub 集成提供了一个仪表板小部件，显示您最重要的通知。\n以及一个统一的搜索供应商，用于存储库、问题和拉取请求。",
     "GitHub OAuth settings" : "GitHub OAuth 设置",
+    "Make sure you set the \"Authorization callback URL\" to" : "确定您将 \"Authorization callback URL\" 设定为",
     "Put the OAuth app \"Client ID\" and \"Client secret\" below." : "在下面输入OAuth应用“Client ID”和“Client secret”。",
+    "Your Nextcloud users will then see a \"Connect to GitHub\" button in their personal settings." : "您的 Nextcloud 用户将会在他们的个人设置中看到 “连接到Github” 按钮。",
     "Client ID" : "客户端 ID",
     "Client ID of your GitHub application" : "GitHub应用程序的 Client ID",
     "Client secret" : "客户端密钥",
@@ -28,6 +30,7 @@ OC.L10N.register(
     "Connected to GitHub!" : "已连接到 GitHub！",
     "GitHub OAuth error:" : "GitHub OAuth 错误：",
     "Incorrect access token" : "访问令牌不正确",
+    "Failed to save GitHub OAuth state" : "保存 GitHub OAuth 状态失败",
     "Mark as read" : "标记为已读",
     "Unsubscribe" : "取消订阅"
 },
