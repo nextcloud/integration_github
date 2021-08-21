@@ -17,7 +17,7 @@
     "Set \"Application name\", \"Homepage URL\" and \"Application description\" to values that will make sense to your Nextcloud users as they will see them when connecting to GitHub using your OAuth app." : "將「應用程式」、「首頁 URL」與「應用程式描述」設定為對您的 Nextcloud 用戶有意義的值，因為在使用您的 GitHub OAuth 應用程式連線到 GitHub 時，他們會看到這些資訊。",
     "Make sure you set the \"Authorization callback URL\" to" : "確保您將「驗證 callback URL」設定為",
     "Put the OAuth app \"Client ID\" and \"Client secret\" below." : "在下方放置 OAuth 應用程式「客戶端 ID」與「客戶端密碼」。",
-    "Your Nextcloud users will then see a \"Connect to GitHub\" button in their personal settings." : "您的 Nextcloud 用戶將會在他們的個人設定中看到「連線至 GitHub」按鈕。",
+    "Your Nextcloud users will then see a \"Connect to GitHub\" button in their personal settings." : "您的 Nextcloud 用戶將會在他們的個人設定中看到【連線至 GitHub】按鈕。",
     "Client ID" : "客戶端 ID",
     "Client ID of your GitHub application" : "您 GitHub 應用程式的客戶端 ID",
     "Client secret" : "客戶端密碼",
