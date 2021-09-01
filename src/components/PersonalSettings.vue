@@ -179,7 +179,7 @@ export default {
 				+ '?client_id=' + encodeURIComponent(this.state.client_id)
 				+ '&redirect_uri=' + encodeURIComponent(this.redirect_uri)
 				+ '&state=' + encodeURIComponent(oauthState)
-				+ '&scope=' + encodeURIComponent('user repo notifications')
+				+ '&scope=' + encodeURIComponent('read:user user:email repo notifications')
 
 			const req = {
 				values: {
