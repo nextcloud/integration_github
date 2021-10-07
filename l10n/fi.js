@@ -7,6 +7,7 @@ OC.L10N.register(
     "GitHub notifications" : "GitHub-ilmoitukset",
     "GitHub issues and pull requests" : "GitHub-aiheet ja pull-pyynnöt",
     "GitHub repositories" : "GitHub-tietovarastot",
+    "Bad HTTP method" : "Virheellinen HTTP-metodi",
     "Bad credentials" : "Virheelliset valtuudet",
     "OAuth access token refused" : "OAuth-valtuutus hylätty",
     "Connected accounts" : "Yhdistetyt tilit",
