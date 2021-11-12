@@ -5,7 +5,7 @@
     <summary>Integration of GitHub software development management service</summary>
     <description><![CDATA[GitHub integration provides a dashboard widget displaying your most important notifications
     and a unified search provider for repositories, issues and pull requests.]]></description>
-    <version>1.0.1</version>
+    <version>1.0.2</version>
     <licence>agpl</licence>
     <author>Julien Veyssier</author>
     <namespace>Github</namespace>
@@ -18,9 +18,6 @@
     <bugs>https://github.com/nextcloud/integration_github/issues</bugs>
     <screenshot>https://github.com/nextcloud/integration_github/raw/master/img/screenshot1.jpg</screenshot>
     <dependencies>
-        <database min-version="9.4">pgsql</database>
-        <database>sqlite</database>
-        <database min-version="5.5">mysql</database>
         <nextcloud min-version="22" max-version="24"/>
     </dependencies>
     <settings>
