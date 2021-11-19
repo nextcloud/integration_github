@@ -25,7 +25,7 @@
     "GitHub admin options saved" : "GitHub admin-opties opgeslagen",
     "Failed to save GitHub admin options" : "Kon GitHub admin-opties niet opslaan",
     "Enable navigation link" : "Inschakelen navigatielink",
-    "When you create a personal access token yourself, give it at least \"read:user\", \"user:email\" and \"notifications\" permissions." : "Als je zelf een persoonlijk access token aanmaakt, geef het dan minimaal \"read:user\", \"user:email\" en \"notifications\" permissies.",
+    "When you create a personal access token yourself, give it at least \"read:user\", \"user:email\" and \"notifications\" permissions." : "Als je zelf een persoonlijk access token aanmaakt, geef het dan minimaal \"read:user\", \"user:email\" en \"notifications\" machtigingen.",
     "GitHub personal access tokens" : "GitHub persoonlijk access tokens",
     "Personal access token" : "Persoonlijk access token",
     "GitHub personal access token" : "GitHub persoonlijk access token",
