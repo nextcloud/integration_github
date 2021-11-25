@@ -7,6 +7,7 @@ OC.L10N.register(
     "GitHub notifications" : "Notificaciones de GitHub",
     "GitHub issues and pull requests" : "Issues y pull requests de GitHub",
     "GitHub repositories" : "Repositorios de GitHub",
+    "Bad HTTP method" : "Método HTTP incorrecto",
     "Bad credentials" : "Credenciales incorrectas",
     "OAuth access token refused" : "Token de acceso OAuth rechazado",
     "Connected accounts" : "Cuentas conectadas",
