@@ -7,6 +7,7 @@ OC.L10N.register(
     "GitHub notifications" : "GitHub értesítések",
     "GitHub issues and pull requests" : "A GitHub kiadások és egyesíti kérések",
     "GitHub repositories" : "GitHub tárak",
+    "Bad HTTP method" : "Hibás HTTP metódus",
     "Bad credentials" : "Hibás hitelesítő adatok",
     "OAuth access token refused" : "Az OAuth hozzáférési token lekérése visszautasítva",
     "Connected accounts" : "Kapcsolt fiókok",
