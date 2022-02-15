@@ -24,6 +24,8 @@ OC.L10N.register(
     "GitHub admin options saved" : "GitHub 管理员选项已保存",
     "Failed to save GitHub admin options" : "无法保存 GitHub 管理员选项",
     "Enable navigation link" : "启用导航链接",
+    "Personal access token" : "个人访问令牌",
+    "GitHub personal access token" : "GitHub 个人访问令牌",
     "Connect to GitHub" : "连接到GitHub",
     "Connected as {user}" : "作为 {user} 已连接",
     "Disconnect from GitHub" : "与GitHub断开连接",
