@@ -34,6 +34,9 @@ OC.L10N.register(
     "Incorrect access token" : "访问令牌不正确",
     "Failed to save GitHub OAuth state" : "保存 GitHub OAuth 状态失败",
     "Mark as read" : "标记为已读",
-    "Unsubscribe" : "取消订阅"
+    "Unsubscribe" : "取消订阅",
+    "No GitHub account connected" : "没有已连接的GitHub账号",
+    "Error connecting to GitHub" : "连接到GitHub时发生错误",
+    "No GitHub notifications!" : "无 GitHub 通知！"
 },
 "nplurals=1; plural=0;");
