@@ -140,7 +140,7 @@ export default {
 	},
 
 	mounted() {
-		const paramString = window.location.search.substr(1)
+		const paramString = window.location.search.slice(1)
 		// eslint-disable-next-line
 		const urlParams = new URLSearchParams(paramString)
 		const ghToken = urlParams.get('githubToken')
