@@ -1,0 +1,8 @@
+{ "translations": {
+    "GitHub" : "GitHub",
+    "Bad credentials" : "Marrits identificants",
+    "Client ID" : "ID client",
+    "Connected as {user}" : "Connectat coma {user}",
+    "Mark as read" : "Marcar coma legit"
+},"pluralForm" :"nplurals=2; plural=(n > 1);"
+}

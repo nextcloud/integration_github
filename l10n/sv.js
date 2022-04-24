@@ -2,9 +2,11 @@ OC.L10N.register(
     "integration_github",
     {
     "GitHub" : "GitHub",
+    "Error getting OAuth access token" : "Kunde inte hämta OAuth-token",
     "GitHub notifications" : "GitHub-aviseringar",
     "GitHub issues and pull requests" : "Ärenden och pull-förfrågningar på GitHub",
     "GitHub repositories" : "GitHub-arkiv",
+    "Bad HTTP method" : "Felaktig HTTP-metod",
     "Bad credentials" : "Ogiltiga inloggningsuppgifter",
     "Connected accounts" : "Anslutna konton",
     "GitHub integration" : "GitHub-integrering",

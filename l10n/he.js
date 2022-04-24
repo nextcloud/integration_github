@@ -8,6 +8,7 @@ OC.L10N.register(
     "GitHub issues and pull requests" : "דיווחים ובקשות דחיפה ב־GitHub",
     "GitHub repositories" : "מאגרי GitHub",
     "Bad credentials" : "פרטי גישה שגויים",
+    "OAuth access token refused" : "אסימון הגישה ב־OAuth סורב",
     "Connected accounts" : "חשבונות מקושרים",
     "GitHub integration" : "שילוב עם GitHub",
     "GitHub OAuth settings" : "הגדרות OAuth של GitHub",
@@ -22,6 +23,7 @@ OC.L10N.register(
     "GitHub OAuth error:" : "שגיאת OAuth מול GitHub:",
     "GitHub options saved" : "האפשרויות של GitHub נשמרו",
     "Incorrect access token" : "אסימון הגישה שגוי",
+    "Mark as read" : "סימון כנקרא",
     "Error connecting to GitHub" : "שגיאה בהתחברות ל־GitHub",
     "No GitHub notifications!" : "אין התראות של GitHub!"
 },

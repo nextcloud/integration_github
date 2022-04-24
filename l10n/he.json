@@ -6,6 +6,7 @@
     "GitHub issues and pull requests" : "דיווחים ובקשות דחיפה ב־GitHub",
     "GitHub repositories" : "מאגרי GitHub",
     "Bad credentials" : "פרטי גישה שגויים",
+    "OAuth access token refused" : "אסימון הגישה ב־OAuth סורב",
     "Connected accounts" : "חשבונות מקושרים",
     "GitHub integration" : "שילוב עם GitHub",
     "GitHub OAuth settings" : "הגדרות OAuth של GitHub",
@@ -20,6 +21,7 @@
     "GitHub OAuth error:" : "שגיאת OAuth מול GitHub:",
     "GitHub options saved" : "האפשרויות של GitHub נשמרו",
     "Incorrect access token" : "אסימון הגישה שגוי",
+    "Mark as read" : "סימון כנקרא",
     "Error connecting to GitHub" : "שגיאה בהתחברות ל־GitHub",
     "No GitHub notifications!" : "אין התראות של GitHub!"
 },"pluralForm" :"nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n == 2 && n % 1 == 0) ? 1: (n % 10 == 0 && n % 1 == 0 && n > 10) ? 2 : 3;"

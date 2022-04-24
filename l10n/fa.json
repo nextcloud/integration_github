@@ -1,6 +1,7 @@
 { "translations": {
     "Connected accounts" : "حساب‌های متصل",
     "Client ID" : "شناسه مشتری",
-    "Client secret" : "رمز مشتری"
+    "Client secret" : "رمز مشتری",
+    "Mark as read" : "علامت به عنوان خوانده‌شده"
 },"pluralForm" :"nplurals=2; plural=(n > 1);"
 }

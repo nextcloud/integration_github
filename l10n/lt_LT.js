@@ -6,6 +6,7 @@ OC.L10N.register(
     "Error during OAuth exchanges" : "Klaida „OAuth“ apsikeitimo metu",
     "GitHub notifications" : "„GitHub“ pranešimai",
     "GitHub repositories" : "„GitHub“ saugyklos",
+    "Bad HTTP method" : "Blogas HTTP metodas",
     "Bad credentials" : "Blogi prisijungimo duomenys",
     "OAuth access token refused" : "„OAuth“ prieigos raktas atmestas",
     "Connected accounts" : "Prijungtos paskyros",

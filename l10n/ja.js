@@ -12,6 +12,7 @@ OC.L10N.register(
     "GitHub integration" : "GitHub統合",
     "Client ID" : "クライアントID",
     "Client secret" : "クライアント秘密鍵",
+    "Enable navigation link" : "ナビゲーションリンクを有効化",
     "Connect to GitHub" : "GitHubに接続",
     "Connected as {user}" : "{user} を接続済み",
     "Disconnect from GitHub" : "GitHubから接続を解除",
