@@ -5,4 +5,4 @@ OC.L10N.register(
     "Client ID" : "ID del cliente",
     "Client secret" : "Secreto del cliente"
 },
-"nplurals=2; plural=(n != 1);");
+"nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;");

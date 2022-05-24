@@ -52,4 +52,4 @@ OC.L10N.register(
     "Successfully unsubscribed" : "Sottoscrizione annullata con successo",
     "Failed to edit GitHub notification" : "Modifica della notifica GitHub non riuscita"
 },
-"nplurals=2; plural=(n != 1);");
+"nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;");

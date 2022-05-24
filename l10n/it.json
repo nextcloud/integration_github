@@ -49,5 +49,5 @@
     "Failed to get GitHub notifications" : "Impossibile ricevere le notifiche di GitHub",
     "Successfully unsubscribed" : "Sottoscrizione annullata con successo",
     "Failed to edit GitHub notification" : "Modifica della notifica GitHub non riuscita"
-},"pluralForm" :"nplurals=2; plural=(n != 1);"
+},"pluralForm" :"nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;"
 }
