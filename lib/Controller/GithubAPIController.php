@@ -119,12 +119,65 @@ class GithubAPIController extends Controller {
 	 * @NoAdminRequired
 	 * @NoCSRFRequired
 	 *
-	 * Get repository avatar
 	 * @param string $githubUserName
-	 * @return DataDisplayResponse The avatar image content
+	 * @return DataResponse
 	 */
 	public function getUserInfo(string $githubUserName): DataResponse {
 		$result = $this->githubAPIService->getUserInfo($this->accessToken, $githubUserName);
+		if (!isset($result['error'])) {
+			return new DataResponse($result);
+		} else {
+			return new DataResponse($result, 401);
+		}
+	}
+
+	/**
+	 * @NoAdminRequired
+	 * @NoCSRFRequired
+	 *
+	 * @param string $owner
+	 * @param string $repo
+	 * @param int $issueNumber
+	 * @return DataResponse
+	 */
+	public function getIssueInfo(string $owner, string $repo, int $issueNumber): DataResponse {
+		$result = $this->githubAPIService->getIssueInfo($this->accessToken, $owner, $repo, $issueNumber);
+		if (!isset($result['error'])) {
+			return new DataResponse($result);
+		} else {
+			return new DataResponse($result, 401);
+		}
+	}
+
+	/**
+	 * @NoAdminRequired
+	 * @NoCSRFRequired
+	 *
+	 * @param string $owner
+	 * @param string $repo
+	 * @param int $commentId
+	 * @return DataResponse
+	 */
+	public function getIssueCommentInfo(string $owner, string $repo, int $commentId): DataResponse {
+		$result = $this->githubAPIService->getIssueCommentInfo($this->accessToken, $owner, $repo, $commentId);
+		if (!isset($result['error'])) {
+			return new DataResponse($result);
+		} else {
+			return new DataResponse($result, 401);
+		}
+	}
+
+	/**
+	 * @NoAdminRequired
+	 * @NoCSRFRequired
+	 *
+	 * @param string $owner
+	 * @param string $repo
+	 * @param int $prNumber
+	 * @return DataResponse
+	 */
+	public function getPrInfo(string $owner, string $repo, int $prNumber): DataResponse {
+		$result = $this->githubAPIService->getPrInfo($this->accessToken, $owner, $repo, $prNumber);
 		if (!isset($result['error'])) {
 			return new DataResponse($result);
 		} else {

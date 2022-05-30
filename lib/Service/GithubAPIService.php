@@ -196,6 +196,21 @@ class GithubAPIService {
 		return $this->request($accessToken, 'users/' . $githubUserName);
 	}
 
+	public function getIssueInfo(string $accessToken, string $owner, string $repo, int $issueNumber): array {
+		$endpoint = 'repos/' . $owner . '/' . $repo . '/issues/' . $issueNumber;
+		return $this->request($accessToken, $endpoint);
+	}
+
+	public function getIssueCommentInfo(string $accessToken, string $owner, string $repo, int $commentId): array {
+		$endpoint = 'repos/' . $owner . '/' . $repo . '/issues/comments/' . $commentId;
+		return $this->request($accessToken, $endpoint);
+	}
+
+	public function getPrInfo(string $accessToken, string $owner, string $repo, int $prNumber): array {
+		$endpoint = 'repos/' . $owner . '/' . $repo . '/pulls/' . $prNumber;
+		return $this->request($accessToken, $endpoint);
+	}
+
 	/**
 	 * Make the HTTP request
 	 * @param string $accessToken

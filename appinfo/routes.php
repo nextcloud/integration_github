@@ -20,5 +20,8 @@ return [
         ['name' => 'githubAPI#getAvatar', 'url' => '/avatar', 'verb' => 'GET'],
 		// get user/issue/pr information
 		['name' => 'githubAPI#getUserInfo', 'url' => '/users/{githubUserName}', 'verb' => 'GET'],
+		['name' => 'githubAPI#getIssueInfo', 'url' => '/repos/{owner}/{repo}/issues/{issueNumber}', 'verb' => 'GET'],
+		['name' => 'githubAPI#getIssueCommentInfo', 'url' => '/repos/{owner}/{repo}/issues/comments/{commentId}', 'verb' => 'GET'],
+		['name' => 'githubAPI#getPrInfo', 'url' => '/repos/{owner}/{repo}/pulls/{prNumber}', 'verb' => 'GET'],
 	]
 ];
