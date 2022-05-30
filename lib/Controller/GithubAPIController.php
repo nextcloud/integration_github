@@ -114,4 +114,21 @@ class GithubAPIController extends Controller {
 			return $response;
 		}
 	}
+
+	/**
+	 * @NoAdminRequired
+	 * @NoCSRFRequired
+	 *
+	 * Get repository avatar
+	 * @param string $githubUserName
+	 * @return DataDisplayResponse The avatar image content
+	 */
+	public function getUserInfo(string $githubUserName): DataResponse {
+		$result = $this->githubAPIService->getUserInfo($this->accessToken, $githubUserName);
+		if (!isset($result['error'])) {
+			return new DataResponse($result);
+		} else {
+			return new DataResponse($result, 401);
+		}
+	}
 }

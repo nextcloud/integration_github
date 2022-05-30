@@ -192,6 +192,10 @@ class GithubAPIService {
 		return $result;
 	}
 
+	public function getUserInfo(string $accessToken, string $githubUserName): array {
+		return $this->request($accessToken, 'users/' . $githubUserName);
+	}
+
 	/**
 	 * Make the HTTP request
 	 * @param string $accessToken
