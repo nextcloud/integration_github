@@ -24,7 +24,7 @@
 
 <script>
 import axios from '@nextcloud/axios'
-import { generateUrl } from '@nextcloud/router'
+import { generateUrl, imagePath } from '@nextcloud/router'
 import { showError, showSuccess } from '@nextcloud/dialogs'
 import '@nextcloud/dialogs/styles/toast.scss'
 import moment from '@nextcloud/moment'
@@ -265,11 +265,11 @@ export default {
 		},
 		getNotificationTypeImage(n) {
 			if (n.subject.type === 'PullRequest') {
-				return generateUrl('/svg/integration_github/pull_request?color=ffffff')
+				return imagePath('integration_github', 'pull_request.svg')
 			} else if (n.subject.type === 'Issue') {
-				return generateUrl('/svg/integration_github/issue?color=ffffff')
+				return imagePath('integration_github', 'issue.svg')
 			} else if (n.subject.type === 'Release') {
-				return generateUrl('/svg/integration_github/release?color=ffffff')
+				return imagePath('integration_github', 'release.svg')
 			}
 			return ''
 		},
