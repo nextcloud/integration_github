@@ -7,8 +7,7 @@
 		@unsubscribe="onUnsubscribe"
 		@markRead="onMarkRead">
 		<template #empty-content>
-			<EmptyContent
-				v-if="emptyContentMessage"
+			<EmptyContent v-if="emptyContentMessage"
 				:icon="emptyContentIcon">
 				<template #desc>
 					{{ emptyContentMessage }}

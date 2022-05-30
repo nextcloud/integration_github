@@ -5,8 +5,7 @@
 			{{ t('integration_github', 'GitHub integration') }}
 		</h2>
 		<div id="toggle-github-navigation-link">
-			<input
-				id="github-link"
+			<input id="github-link"
 				type="checkbox"
 				class="checkbox"
 				:checked="state.navigation_enabled"
