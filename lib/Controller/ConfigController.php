@@ -128,6 +128,18 @@ class ConfigController extends Controller {
 				$accessToken = $result['access_token'];
 				$this->config->setUserValue($this->userId, Application::APP_ID, 'token', $accessToken);
 				$this->storeUserInfo($accessToken);
+				$oauthOrigin = $this->config->getUserValue($this->userId, Application::APP_ID, 'oauth_origin');
+				$this->config->deleteUserValue($this->userId, Application::APP_ID, 'oauth_origin');
+				if ($oauthOrigin === 'settings') {
+					return new RedirectResponse(
+						$this->urlGenerator->linkToRoute('settings.PersonalSettings.index', ['section' => 'connected-accounts']) .
+						'?gitlabToken=success'
+					);
+				} elseif ($oauthOrigin === 'dashboard') {
+					return new RedirectResponse(
+						$this->urlGenerator->linkToRoute('dashboard.dashboard.index')
+					);
+				}
 				return new RedirectResponse(
 					$this->urlGenerator->linkToRoute('settings.PersonalSettings.index', ['section' => 'connected-accounts']) .
 					'?githubToken=success'
