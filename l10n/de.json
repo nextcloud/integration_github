@@ -37,7 +37,7 @@
     "Warning, everything you type in the search bar will be sent to GitHub." : "Achtung, alles, was Du in die Suchleiste eingibst, wird an GitHub gesendet.",
     "Connected to GitHub!" : "Mit GitHub verbunden!",
     "GitHub OAuth error:" : "GitHub OAuth-Fehler:",
-    "GitHub options saved" : "GitHub Einstellungen gespeichert",
+    "GitHub options saved" : "GitHub-Einstellungen gespeichert",
     "Incorrect access token" : "Zugriffstoken nicht korrekt.",
     "Failed to save GitHub options" : "Fehler beim Speichern der GutHub-Einstellungen",
     "Failed to save GitHub OAuth state" : "Fehler beim Speichern des GitHub OAuth-Status",
