@@ -43,6 +43,7 @@ import CheckIcon from 'vue-material-design-icons/Check.vue'
 import CloseIcon from 'vue-material-design-icons/Close.vue'
 
 import GithubIcon from '../components/icons/GithubIcon.vue'
+import { oauthConnect } from '../utils.js'
 
 import axios from '@nextcloud/axios'
 import { generateUrl, imagePath } from '@nextcloud/router'
@@ -160,30 +161,15 @@ export default {
 
 	methods: {
 		onOAuthClick() {
-			const redirectUri = window.location.protocol + '//' + window.location.host + generateUrl('/apps/integration_github/oauth-redirect')
-			const oauthState = Math.random().toString(36).substring(3)
-			const requestUrl = 'https://github.com/login/oauth/authorize'
-				+ '?client_id=' + encodeURIComponent(this.initialState.client_id)
-				+ '&redirect_uri=' + encodeURIComponent(redirectUri)
-				+ '&state=' + encodeURIComponent(oauthState)
-				+ '&scope=' + encodeURIComponent('read:user user:email repo notifications')
-
-			const req = {
-				values: {
-					oauth_state: oauthState,
-					redirect_uri: redirectUri,
-					oauth_origin: 'dashboard',
-				},
+			if (this.initialState.use_popup) {
+				oauthConnect(this.initialState.client_id, null, true)
+					.then((data) => {
+						this.stopLoop()
+						this.launchLoop()
+					})
+			} else {
+				oauthConnect(this.initialState.client_id, 'dashboard')
 			}
-			const url = generateUrl('/apps/integration_github/config')
-			axios.put(url, req).then((response) => {
-				window.location.replace(requestUrl)
-			}).catch((error) => {
-				showError(
-					t('integration_github', 'Failed to save GitHub OAuth state')
-					+ ': ' + error.response?.request?.responseText
-				)
-			})
 		},
 		changeWindowVisibility() {
 			this.windowVisibility = !document.hidden

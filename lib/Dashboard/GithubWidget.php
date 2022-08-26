@@ -98,10 +98,12 @@ class GithubWidget implements IWidget {
 		$clientID = $this->config->getAppValue(Application::APP_ID, 'client_id');
 		$clientSecret = $this->config->getAppValue(Application::APP_ID, 'client_secret');
 		$oauthPossible = $clientID !== '' && $clientSecret !== '';
+		$usePopup = $this->config->getAppValue(Application::APP_ID, 'use_popup', '0');
 
 		$userConfig = [
 			'oauth_is_possible' => $oauthPossible,
 			'client_id' => $clientID,
+			'use_popup' => ($usePopup === '1'),
 		];
 		$this->initialStateService->provideInitialState('user-config', $userConfig);
 		Util::addScript(Application::APP_ID, 'integration_github-dashboard');

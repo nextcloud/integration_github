@@ -17,23 +17,24 @@
 				@update:checked="onCheckboxChanged($event, 'navigation_enabled')">
 				{{ t('integration_github', 'Enable navigation link') }}
 			</CheckboxRadioSwitch>
-			<div class="line">
-				<label v-show="!showOAuth"
-					for="github-token">
+			<div v-show="!showOAuth"
+				class="line">
+				<label for="github-token">
 					<KeyIcon :size="20" class="icon" />
 					{{ t('integration_github', 'Personal access token') }}
 				</label>
-				<input v-show="!showOAuth"
-					id="github-token"
+				<input id="github-token"
 					v-model="state.token"
 					type="password"
 					:disabled="connected === true"
 					:placeholder="t('integration_github', 'GitHub personal access token')"
-					@input="onInput"
+					@keyup.enter="onConnectClick"
 					@focus="readonly = false">
 			</div>
-			<NcButton v-if="showOAuth && !connected"
-				@click="onOAuthClick">
+			<NcButton v-if="!connected"
+				:disabled="loading === true || (!showOAuth && !state.token)"
+				:class="{ loading }"
+				@click="onConnectClick">
 				<template #icon>
 					<OpenInNewIcon :size="20" />
 				</template>
@@ -86,7 +87,7 @@ import GithubIcon from './icons/GithubIcon.vue'
 import { loadState } from '@nextcloud/initial-state'
 import { generateUrl } from '@nextcloud/router'
 import axios from '@nextcloud/axios'
-import { delay } from '../utils.js'
+import { oauthConnect } from '../utils.js'
 import { showSuccess, showError } from '@nextcloud/dialogs'
 
 import NcButton from '@nextcloud/vue/dist/Components/Button.js'
@@ -112,7 +113,7 @@ export default {
 		return {
 			state: loadState('integration_github', 'user-config'),
 			readonly: true,
-			redirect_uri: window.location.protocol + '//' + window.location.host + generateUrl('/apps/integration_github/oauth-redirect'),
+			loading: false,
 		}
 	},
 
@@ -149,63 +150,51 @@ export default {
 			this.state[key] = newValue
 			this.saveOptions({ [key]: this.state[key] ? '1' : '0' })
 		},
-		onInput() {
-			delay(() => {
-				this.saveOptions({ token: this.state.token })
-			}, 2000)()
-		},
 		saveOptions(values) {
 			const req = {
 				values,
 			}
 			const url = generateUrl('/apps/integration_github/config')
-			axios.put(url, req)
-				.then((response) => {
-					showSuccess(t('integration_github', 'GitHub options saved'))
-					if (response.data.user_name !== undefined) {
-						this.state.user_name = response.data.user_name
-						if (this.state.token && response.data.user_name === '') {
-							showError(t('integration_github', 'Incorrect access token'))
-						}
+			axios.put(url, req).then((response) => {
+				showSuccess(t('integration_github', 'GitHub options saved'))
+				if (response.data.user_name !== undefined) {
+					this.state.user_name = response.data.user_name
+					if (this.state.token && response.data.user_name === '') {
+						showError(t('integration_github', 'Incorrect access token'))
 					}
-				})
-				.catch((error) => {
-					showError(
-						t('integration_github', 'Failed to save GitHub options')
-						+ ': ' + error.response?.request?.responseText
-					)
-				})
-				.then(() => {
-				})
+				}
+			}).catch((error) => {
+				showError(
+					t('integration_github', 'Failed to save GitHub options')
+					+ ': ' + error.response?.request?.responseText
+				)
+			}).then(() => {
+				this.loading = false
+			})
 		},
-		onOAuthClick() {
-			const oauthState = Math.random().toString(36).substring(3)
-			const requestUrl = 'https://github.com/login/oauth/authorize'
-				+ '?client_id=' + encodeURIComponent(this.state.client_id)
-				+ '&redirect_uri=' + encodeURIComponent(this.redirect_uri)
-				+ '&state=' + encodeURIComponent(oauthState)
-				+ '&scope=' + encodeURIComponent('read:user user:email repo notifications')
-
-			const req = {
-				values: {
-					oauth_state: oauthState,
-					redirect_uri: this.redirect_uri,
-					oauth_origin: 'settings',
-				},
+		onConnectClick() {
+			if (this.showOAuth) {
+				this.connectWithOauth()
+			} else {
+				this.connectWithToken()
 			}
-			const url = generateUrl('/apps/integration_github/config')
-			axios.put(url, req)
-				.then((response) => {
-					window.location.replace(requestUrl)
-				})
-				.catch((error) => {
-					showError(
-						t('integration_github', 'Failed to save GitHub OAuth state')
-						+ ': ' + error.response?.request?.responseText
-					)
-				})
-				.then(() => {
-				})
+		},
+		connectWithToken() {
+			this.loading = true
+			this.saveOptions({
+				token: this.state.token,
+			})
+		},
+		connectWithOauth() {
+			if (this.state.use_popup) {
+				oauthConnect(this.state.client_id, null, true)
+					.then((data) => {
+						this.state.token = 'dummyToken'
+						this.state.user_name = data.userName
+					})
+			} else {
+				oauthConnect(this.state.client_id, 'settings')
+			}
 		},
 	},
 }

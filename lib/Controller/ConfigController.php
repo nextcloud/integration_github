@@ -11,6 +11,8 @@
 
 namespace OCA\Github\Controller;
 
+use OCP\AppFramework\Http\TemplateResponse;
+use OCP\AppFramework\Services\IInitialState;
 use OCP\IURLGenerator;
 use OCP\IConfig;
 use OCP\IL10N;
@@ -21,6 +23,7 @@ use OCP\AppFramework\Controller;
 
 use OCA\Github\Service\GithubAPIService;
 use OCA\Github\AppInfo\Application;
+use OCP\PreConditionNotMetException;
 
 class ConfigController extends Controller {
 
@@ -44,12 +47,14 @@ class ConfigController extends Controller {
 	 * @var string|null
 	 */
 	private $userId;
+	private IInitialState $initialStateService;
 
 	public function __construct(string $appName,
 								IRequest $request,
 								IConfig $config,
 								IURLGenerator $urlGenerator,
 								IL10N $l,
+								IInitialState $initialStateService,
 								GithubAPIService $githubAPIService,
 								?string $userId) {
 		parent::__construct($appName, $request);
@@ -58,6 +63,7 @@ class ConfigController extends Controller {
 		$this->l = $l;
 		$this->githubAPIService = $githubAPIService;
 		$this->userId = $userId;
+		$this->initialStateService = $initialStateService;
 	}
 
 	/**
@@ -103,11 +109,25 @@ class ConfigController extends Controller {
 	 * @NoAdminRequired
 	 * @NoCSRFRequired
 	 *
+	 * @param string $user_name
+	 * @param string $user_displayname
+	 * @return TemplateResponse
+	 */
+	public function popupSuccessPage(string $user_name, string $user_displayname): TemplateResponse {
+		$this->initialStateService->provideInitialState('popup-data', ['user_name' => $user_name, 'user_displayname' => $user_displayname]);
+		return new TemplateResponse(Application::APP_ID, 'popupSuccess', [], TemplateResponse::RENDER_AS_GUEST);
+	}
+
+	/**
+	 * @NoAdminRequired
+	 * @NoCSRFRequired
+	 *
 	 * Receive oauth code and get oauth access token
 	 *
 	 * @param string $code request code to use when requesting oauth token
 	 * @param string $state value that was sent with original GET request. Used to check auth redirection is valid
 	 * @return RedirectResponse to user settings
+	 * @throws PreConditionNotMetException
 	 */
 	public function oauthRedirect(string $code, string $state): RedirectResponse {
 		$configState = $this->config->getUserValue($this->userId, Application::APP_ID, 'oauth_state');
@@ -127,23 +147,34 @@ class ConfigController extends Controller {
 			if (isset($result['access_token'])) {
 				$accessToken = $result['access_token'];
 				$this->config->setUserValue($this->userId, Application::APP_ID, 'token', $accessToken);
-				$this->storeUserInfo($accessToken);
-				$oauthOrigin = $this->config->getUserValue($this->userId, Application::APP_ID, 'oauth_origin');
-				$this->config->deleteUserValue($this->userId, Application::APP_ID, 'oauth_origin');
-				if ($oauthOrigin === 'settings') {
+				$userInfo = $this->storeUserInfo($accessToken);
+
+				$usePopup = $this->config->getAppValue(Application::APP_ID, 'use_popup', '0') === '1';
+				if ($usePopup) {
+					return new RedirectResponse(
+						$this->urlGenerator->linkToRoute('integration_github.config.popupSuccessPage', [
+							'user_name' => $userInfo,
+							'user_displayname' => $userInfo,
+						])
+					);
+				} else {
+					$oauthOrigin = $this->config->getUserValue($this->userId, Application::APP_ID, 'oauth_origin');
+					$this->config->deleteUserValue($this->userId, Application::APP_ID, 'oauth_origin');
+					if ($oauthOrigin === 'settings') {
+						return new RedirectResponse(
+							$this->urlGenerator->linkToRoute('settings.PersonalSettings.index', ['section' => 'connected-accounts']) .
+							'?githubToken=success'
+						);
+					} elseif ($oauthOrigin === 'dashboard') {
+						return new RedirectResponse(
+							$this->urlGenerator->linkToRoute('dashboard.dashboard.index')
+						);
+					}
 					return new RedirectResponse(
 						$this->urlGenerator->linkToRoute('settings.PersonalSettings.index', ['section' => 'connected-accounts']) .
 						'?githubToken=success'
 					);
-				} elseif ($oauthOrigin === 'dashboard') {
-					return new RedirectResponse(
-						$this->urlGenerator->linkToRoute('dashboard.dashboard.index')
-					);
 				}
-				return new RedirectResponse(
-					$this->urlGenerator->linkToRoute('settings.PersonalSettings.index', ['section' => 'connected-accounts']) .
-					'?githubToken=success'
-				);
 			}
 			$result = $this->l->t('Error getting OAuth access token');
 		} else {

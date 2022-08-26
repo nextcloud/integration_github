@@ -10,14 +10,16 @@
  */
 
 return [
-    'routes' => [
-        ['name' => 'config#oauthRedirect', 'url' => '/oauth-redirect', 'verb' => 'GET'],
-        ['name' => 'config#setConfig', 'url' => '/config', 'verb' => 'PUT'],
-        ['name' => 'config#setAdminConfig', 'url' => '/admin-config', 'verb' => 'PUT'],
-        ['name' => 'githubAPI#getNotifications', 'url' => '/notifications', 'verb' => 'GET'],
-        ['name' => 'githubAPI#unsubscribeNotification', 'url' => '/notifications/{id}/unsubscribe', 'verb' => 'PUT'],
-        ['name' => 'githubAPI#markNotificationAsRead', 'url' => '/notifications/{id}/mark-read', 'verb' => 'PUT'],
-        ['name' => 'githubAPI#getAvatar', 'url' => '/avatar', 'verb' => 'GET'],
+	'routes' => [
+		['name' => 'config#oauthRedirect', 'url' => '/oauth-redirect', 'verb' => 'GET'],
+		['name' => 'config#setConfig', 'url' => '/config', 'verb' => 'PUT'],
+		['name' => 'config#setAdminConfig', 'url' => '/admin-config', 'verb' => 'PUT'],
+		['name' => 'config#popupSuccessPage', 'url' => '/popup-success', 'verb' => 'GET'],
+
+		['name' => 'githubAPI#getNotifications', 'url' => '/notifications', 'verb' => 'GET'],
+		['name' => 'githubAPI#unsubscribeNotification', 'url' => '/notifications/{id}/unsubscribe', 'verb' => 'PUT'],
+		['name' => 'githubAPI#markNotificationAsRead', 'url' => '/notifications/{id}/mark-read', 'verb' => 'PUT'],
+		['name' => 'githubAPI#getAvatar', 'url' => '/avatar', 'verb' => 'GET'],
 		// get user/issue/pr information
 		['name' => 'githubAPI#getUserInfo', 'url' => '/users/{githubUserName}', 'verb' => 'GET'],
 		['name' => 'githubAPI#getIssueInfo', 'url' => '/repos/{owner}/{repo}/issues/{issueNumber}', 'verb' => 'GET'],

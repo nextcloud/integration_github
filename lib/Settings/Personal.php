@@ -43,11 +43,13 @@ class Personal implements ISettings {
 		// for OAuth
 		$clientID = $this->config->getAppValue(Application::APP_ID, 'client_id');
 		$clientSecret = $this->config->getAppValue(Application::APP_ID, 'client_secret') !== '';
+		$usePopup = $this->config->getAppValue(Application::APP_ID, 'use_popup', '0');
 
 		$userConfig = [
 			'token' => $token,
 			'client_id' => $clientID,
 			'client_secret' => $clientSecret,
+			'use_popup' => ($usePopup === '1'),
 			'search_issues_enabled' => ($searchIssuesEnabled === '1'),
 			'search_repos_enabled' => ($searchReposEnabled === '1'),
 			'navigation_enabled' => ($navigationEnabled === '1'),
