@@ -1,61 +1,87 @@
 <template>
 	<div id="github_prefs" class="section">
 		<h2>
-			<a class="icon icon-github" />
+			<GithubIcon class="icon" />
 			{{ t('integration_github', 'GitHub integration') }}
 		</h2>
 		<p class="settings-hint">
 			{{ t('integration_github', 'If you want to allow your Nextcloud users to use OAuth to authenticate to https://github.com, create an OAuth application in your GitHub settings.') }}
 			<a href="https://github.com/settings/developers" class="external">{{ t('integration_github', 'GitHub OAuth settings') }}</a>
-			<br>
+		</p>
+		<p class="settings-hint">
 			{{ t('integration_github', 'Set "Application name", "Homepage URL" and "Application description" to values that will make sense to your Nextcloud users as they will see them when connecting to GitHub using your OAuth app.') }}
-			<br><br>
-			<span class="icon icon-details" />
+		</p>
+		<br>
+		<p class="settings-hint">
+			<InformationOutlineIcon :size="20" class="icon" />
 			{{ t('integration_github', 'Make sure you set the "Authorization callback URL" to') }}
-			<b> {{ redirect_uri }} </b>
-			<br><br>
+		</p>
+		<strong>{{ redirect_uri }}</strong>
+		<br><br>
+		<p class="settings-hint">
 			{{ t('integration_github', 'Put the OAuth app "Client ID" and "Client secret" below.') }}
+		</p>
+		<p class="settings-hint">
 			{{ t('integration_github', 'Your Nextcloud users will then see a "Connect to GitHub" button in their personal settings.') }}
 		</p>
-		<div class="grid-form">
-			<label for="github-client-id">
-				<a class="icon icon-category-auth" />
-				{{ t('integration_github', 'Client ID') }}
-			</label>
-			<input id="github-client-id"
-				v-model="state.client_id"
-				type="password"
-				:readonly="readonly"
-				:placeholder="t('integration_github', 'Client ID of your GitHub application')"
-				@focus="readonly = false"
-				@input="onInput">
-			<label for="github-client-secret">
-				<a class="icon icon-category-auth" />
-				{{ t('integration_github', 'Client secret') }}
-			</label>
-			<input id="github-client-secret"
-				v-model="state.client_secret"
-				type="password"
-				:readonly="readonly"
-				:placeholder="t('integration_github', 'Client secret of your GitHub application')"
-				@input="onInput"
-				@focus="readonly = false">
+		<div id="github-content">
+			<div class="line">
+				<label for="github-client-id">
+					<KeyIcon :size="20" class="icon" />
+					{{ t('integration_github', 'Client ID') }}
+				</label>
+				<input id="github-client-id"
+					v-model="state.client_id"
+					type="password"
+					:readonly="readonly"
+					:placeholder="t('integration_github', 'Client ID of your GitHub application')"
+					@focus="readonly = false"
+					@input="onInput">
+			</div>
+			<div class="line">
+				<label for="github-client-secret">
+					<KeyIcon :size="20" class="icon" />
+					{{ t('integration_github', 'Client secret') }}
+				</label>
+				<input id="github-client-secret"
+					v-model="state.client_secret"
+					type="password"
+					:readonly="readonly"
+					:placeholder="t('integration_github', 'Client secret of your GitHub application')"
+					@input="onInput"
+					@focus="readonly = false">
+			</div>
+			<CheckboxRadioSwitch
+				:checked="state.use_popup"
+				@update:checked="onCheckboxChanged($event, 'use_popup')">
+				{{ t('integration_github', 'Use a popup to authenticate') }}
+			</CheckboxRadioSwitch>
 		</div>
 	</div>
 </template>
 
 <script>
+import InformationOutlineIcon from 'vue-material-design-icons/InformationOutline.vue'
+import KeyIcon from 'vue-material-design-icons/Key.vue'
+
+import GithubIcon from './icons/GithubIcon.vue'
+
 import { loadState } from '@nextcloud/initial-state'
 import { generateUrl } from '@nextcloud/router'
 import axios from '@nextcloud/axios'
-import { delay } from '../utils'
+import { delay } from '../utils.js'
 import { showSuccess, showError } from '@nextcloud/dialogs'
-import '@nextcloud/dialogs/styles/toast.scss'
+
+import CheckboxRadioSwitch from '@nextcloud/vue/dist/Components/CheckboxRadioSwitch.js'
 
 export default {
 	name: 'AdminSettings',
 
 	components: {
+		GithubIcon,
+		CheckboxRadioSwitch,
+		KeyIcon,
+		InformationOutlineIcon,
 	},
 
 	props: [],
@@ -76,9 +102,16 @@ export default {
 	},
 
 	methods: {
+		onCheckboxChanged(newValue, key) {
+			this.state[key] = newValue
+			this.saveOptions({ [key]: this.state[key] ? '1' : '0' })
+		},
 		onInput() {
 			delay(() => {
-				this.saveOptions({ client_id: this.state.client_id, client_secret: this.state.client_secret })
+				this.saveOptions({
+					client_id: this.state.client_id,
+					client_secret: this.state.client_secret,
+				})
 			}, 2000)()
 		},
 		saveOptions(values) {
@@ -104,41 +137,33 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.grid-form label {
-	line-height: 38px;
-}
+#github_prefs {
+	#github-content {
+		margin-left: 40px;
+	}
+	h2,
+	.line,
+	.settings-hint {
+		display: flex;
+		align-items: center;
+		.icon {
+			margin-right: 4px;
+		}
+	}
 
-.grid-form input {
-	width: 100%;
-}
+	h2 .icon {
+		margin-right: 8px;
+	}
 
-.grid-form {
-	max-width: 500px;
-	display: grid;
-	grid-template: 1fr / 1fr 1fr;
-	margin-left: 30px;
+	.line {
+		> label {
+			width: 300px;
+			display: flex;
+			align-items: center;
+		}
+		> input {
+			width: 250px;
+		}
+	}
 }
-
-#github_prefs .icon {
-	display: inline-block;
-	width: 32px;
-}
-
-#github_prefs .grid-form .icon {
-	margin-bottom: -3px;
-}
-
-.icon-github {
-	background-image: url(./../../img/app-dark.svg);
-	background-size: 23px 23px;
-	height: 23px;
-	margin-bottom: -4px;
-	filter: var(--background-invert-if-dark);
-}
-
-// for NC <= 24
-body.theme--dark .icon-github {
-	background-image: url(./../../img/app.svg);
-}
-
 </style>

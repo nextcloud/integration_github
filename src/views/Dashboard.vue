@@ -7,23 +7,29 @@
 		@unsubscribe="onUnsubscribe"
 		@markRead="onMarkRead">
 		<template #empty-content>
-			<EmptyContent v-if="emptyContentMessage"
-				:icon="emptyContentIcon">
+			<EmptyContent v-if="emptyContentMessage">
+				<template #icon>
+					<component :is="emptyContentIcon" />
+				</template>
 				<template #desc>
 					{{ emptyContentMessage }}
 					<div v-if="state === 'no-token' || state === 'error'" class="connect-button">
 						<a v-if="!initialState.oauth_is_possible"
-							class="button"
 							:href="settingsUrl">
-							{{ t('integration_github', 'Connect to GitHub') }}
+							<NcButton>
+								<template #icon>
+									<LoginVariantIcon />
+								</template>
+								{{ t('integration_github', 'Connect to GitHub') }}
+							</NcButton>
 						</a>
-						<Button v-else
+						<NcButton v-else
 							@click="onOAuthClick">
 							<template #icon>
 								<LoginVariantIcon />
 							</template>
 							{{ t('integration_github', 'Connect to GitHub') }}
-						</Button>
+						</NcButton>
 					</div>
 				</template>
 			</EmptyContent>
@@ -32,15 +38,20 @@
 </template>
 
 <script>
+import LoginVariantIcon from 'vue-material-design-icons/LoginVariant.vue'
+import CheckIcon from 'vue-material-design-icons/Check.vue'
+import CloseIcon from 'vue-material-design-icons/Close.vue'
+
+import GithubIcon from '../components/icons/GithubIcon.vue'
+
 import axios from '@nextcloud/axios'
 import { generateUrl, imagePath } from '@nextcloud/router'
 import { showError, showSuccess } from '@nextcloud/dialogs'
 import { loadState } from '@nextcloud/initial-state'
 import moment from '@nextcloud/moment'
 import { DashboardWidget } from '@nextcloud/vue-dashboard'
-import EmptyContent from '@nextcloud/vue/dist/Components/EmptyContent'
-import LoginVariantIcon from 'vue-material-design-icons/LoginVariant'
-import Button from '@nextcloud/vue/dist/Components/Button'
+import EmptyContent from '@nextcloud/vue/dist/Components/EmptyContent.js'
+import NcButton from '@nextcloud/vue/dist/Components/Button.js'
 
 export default {
 	name: 'Dashboard',
@@ -48,7 +59,7 @@ export default {
 	components: {
 		DashboardWidget,
 		EmptyContent,
-		Button,
+		NcButton,
 		LoginVariantIcon,
 	},
 
@@ -115,13 +126,13 @@ export default {
 		},
 		emptyContentIcon() {
 			if (this.state === 'no-token') {
-				return 'icon-github'
+				return GithubIcon
 			} else if (this.state === 'error') {
-				return 'icon-close'
+				return CloseIcon
 			} else if (this.state === 'ok') {
-				return 'icon-checkmark'
+				return CheckIcon
 			}
-			return 'icon-checkmark'
+			return CheckIcon
 		},
 	},
 

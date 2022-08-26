@@ -1,5 +1,6 @@
 <?php
-script(OCA\Github\AppInfo\Application::APP_ID, 'integration_github-personalSettings');
+$appId = OCA\Github\AppInfo\Application::APP_ID;
+\OCP\Util::addScript($appId, $appId . '-personalSettings');
 ?>
 
 <div id="github_prefs"></div>

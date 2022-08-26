@@ -133,7 +133,7 @@ class ConfigController extends Controller {
 				if ($oauthOrigin === 'settings') {
 					return new RedirectResponse(
 						$this->urlGenerator->linkToRoute('settings.PersonalSettings.index', ['section' => 'connected-accounts']) .
-						'?gitlabToken=success'
+						'?githubToken=success'
 					);
 				} elseif ($oauthOrigin === 'dashboard') {
 					return new RedirectResponse(

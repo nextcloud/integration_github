@@ -1,18 +1,9 @@
 <template>
 	<div id="github_prefs" class="section">
 		<h2>
-			<a class="icon icon-github-settings" />
+			<GithubIcon class="icon" />
 			{{ t('integration_github', 'GitHub integration') }}
 		</h2>
-		<div id="toggle-github-navigation-link">
-			<input id="github-link"
-				type="checkbox"
-				class="checkbox"
-				:checked="state.navigation_enabled"
-				@input="onNavigationChange">
-			<label for="github-link">{{ t('integration_github', 'Enable navigation link') }}</label>
-		</div>
-		<br><br>
 		<p v-if="!showOAuth && !connected" class="settings-hint">
 			{{ t('integration_github', 'When you create a personal access token yourself, give it at least "read:user", "user:email" and "notifications" permissions.') }}
 			<a href="https://github.com/settings/tokens" target="_blank" class="external">
@@ -21,10 +12,15 @@
 			</a>
 		</p>
 		<div id="github-content">
-			<div class="github-grid-form">
+			<CheckboxRadioSwitch
+				:checked="state.navigation_enabled"
+				@update:checked="onCheckboxChanged($event, 'navigation_enabled')">
+				{{ t('integration_github', 'Enable navigation link') }}
+			</CheckboxRadioSwitch>
+			<div class="line">
 				<label v-show="!showOAuth"
 					for="github-token">
-					<a class="icon icon-category-auth" />
+					<KeyIcon :size="20" class="icon" />
 					{{ t('integration_github', 'Personal access token') }}
 				</label>
 				<input v-show="!showOAuth"
@@ -36,41 +32,41 @@
 					@input="onInput"
 					@focus="readonly = false">
 			</div>
-			<button v-if="showOAuth && !connected" id="github-oauth" @click="onOAuthClick">
-				<span class="icon icon-external" />
+			<NcButton v-if="showOAuth && !connected"
+				@click="onOAuthClick">
+				<template #icon>
+					<OpenInNewIcon :size="20" />
+				</template>
 				{{ t('integration_github', 'Connect to GitHub') }}
-			</button>
-			<div v-if="connected" class="github-grid-form">
-				<label class="github-connected">
-					<a class="icon icon-checkmark-color" />
+			</NcButton>
+			<div v-if="connected" class="line">
+				<label>
+					<CheckIcon :size="20" class="icon" />
 					{{ t('integration_github', 'Connected as {user}', { user: state.user_name }) }}
 				</label>
-				<button id="github-rm-cred" @click="onLogoutClick">
-					<span class="icon icon-close" />
+				<NcButton @click="onLogoutClick">
+					<template #icon>
+						<CloseIcon :size="20" />
+					</template>
 					{{ t('integration_github', 'Disconnect from GitHub') }}
-				</button>
+				</NcButton>
 				<span />
 			</div>
 			<br>
 			<div v-if="connected" id="github-search-block">
-				<input
-					id="search-github-repos"
-					type="checkbox"
-					class="checkbox"
+				<CheckboxRadioSwitch
 					:checked="state.search_repos_enabled"
-					@input="onSearchReposChange">
-				<label for="search-github-repos">{{ t('integration_github', 'Enable searching for repositories') }}</label>
-				<br><br>
-				<input
-					id="search-github-issues"
-					type="checkbox"
-					class="checkbox"
+					@update:checked="onCheckboxChanged($event, 'search_repos_enabled')">
+					{{ t('integration_github', 'Enable searching for repositories') }}
+				</CheckboxRadioSwitch>
+				<CheckboxRadioSwitch
 					:checked="state.search_issues_enabled"
-					@input="onSearchIssuesChange">
-				<label for="search-github-issues">{{ t('integration_github', 'Enable searching for issues and pull requests') }}</label>
-				<br><br>
+					@update:checked="onCheckboxChanged($event, 'search_issues_enabled')">
+					{{ t('integration_github', 'Enable searching for issues and pull requests') }}
+				</CheckboxRadioSwitch>
+				<br>
 				<p v-if="state.search_repos_enabled || state.search_issues_enabled" class="settings-hint">
-					<span class="icon icon-details" />
+					<InformationOutlineIcon :size="20" class="icon" />
 					{{ t('integration_github', 'Warning, everything you type in the search bar will be sent to GitHub.') }}
 				</p>
 			</div>
@@ -79,17 +75,35 @@
 </template>
 
 <script>
+import InformationOutlineIcon from 'vue-material-design-icons/InformationOutline.vue'
+import OpenInNewIcon from 'vue-material-design-icons/OpenInNew.vue'
+import KeyIcon from 'vue-material-design-icons/Key.vue'
+import CheckIcon from 'vue-material-design-icons/Check.vue'
+import CloseIcon from 'vue-material-design-icons/Close.vue'
+
+import GithubIcon from './icons/GithubIcon.vue'
+
 import { loadState } from '@nextcloud/initial-state'
 import { generateUrl } from '@nextcloud/router'
 import axios from '@nextcloud/axios'
-import { delay } from '../utils'
+import { delay } from '../utils.js'
 import { showSuccess, showError } from '@nextcloud/dialogs'
-import '@nextcloud/dialogs/styles/toast.scss'
+
+import NcButton from '@nextcloud/vue/dist/Components/Button.js'
+import CheckboxRadioSwitch from '@nextcloud/vue/dist/Components/CheckboxRadioSwitch.js'
 
 export default {
 	name: 'PersonalSettings',
 
 	components: {
+		GithubIcon,
+		CheckboxRadioSwitch,
+		NcButton,
+		KeyIcon,
+		CheckIcon,
+		CloseIcon,
+		InformationOutlineIcon,
+		OpenInNewIcon,
 	},
 
 	props: [],
@@ -131,17 +145,9 @@ export default {
 			this.state.token = ''
 			this.saveOptions({ token: this.state.token })
 		},
-		onSearchIssuesChange(e) {
-			this.state.search_issues_enabled = e.target.checked
-			this.saveOptions({ search_issues_enabled: this.state.search_issues_enabled ? '1' : '0' })
-		},
-		onSearchReposChange(e) {
-			this.state.search_repos_enabled = e.target.checked
-			this.saveOptions({ search_repos_enabled: this.state.search_repos_enabled ? '1' : '0' })
-		},
-		onNavigationChange(e) {
-			this.state.navigation_enabled = e.target.checked
-			this.saveOptions({ navigation_enabled: this.state.navigation_enabled ? '1' : '0' })
+		onCheckboxChanged(newValue, key) {
+			this.state[key] = newValue
+			this.saveOptions({ [key]: this.state[key] ? '1' : '0' })
 		},
 		onInput() {
 			delay(() => {
@@ -207,56 +213,32 @@ export default {
 
 <style scoped lang="scss">
 #github_prefs {
-	.icon {
-		display: inline-block;
-		width: 32px;
-	}
-
-	.icon-external {
-		width: 15px;
-		margin-bottom: -3px;
-	}
-
 	#github-content {
 		margin-left: 40px;
-		#github-search-block .icon {
-			width: 22px;
-		}
 	}
-
-	#toggle-github-navigation-link {
-		margin-left: 40px;
-	}
-	.github-grid-form {
-		max-width: 600px;
-		display: grid;
-		grid-template: 1fr / 1fr 1fr;
-
-		label {
-			line-height: 38px;
-		}
-		input {
-			width: 100%;
-		}
-		button .icon {
-			margin-bottom: -1px;
-		}
+	h2,
+	.line,
+	.settings-hint {
+		display: flex;
+		align-items: center;
 		.icon {
-			margin-bottom: -3px;
+			margin-right: 4px;
 		}
 	}
-}
 
-.icon-github-settings {
-	background-image: url('./../../img/app-dark.svg');
-	background-size: 23px 23px;
-	height: 23px;
-	margin-bottom: -4px;
-	filter: var(--background-invert-if-dark);
-}
+	h2 .icon {
+		margin-right: 8px;
+	}
 
-// for NC <= 24
-body.theme--dark .icon-github-settings {
-	background-image: url('./../../img/app.svg');
+	.line {
+		> label {
+			width: 300px;
+			display: flex;
+			align-items: center;
+		}
+		> input {
+			width: 250px;
+		}
+	}
 }
 </style>
