@@ -74,6 +74,15 @@ class ConfigController extends Controller {
 	 * @return DataResponse
 	 */
 	public function setConfig(array $values): DataResponse {
+		// revoke the oauth token if needed
+		if (isset($values['token']) && $values['token'] === '') {
+			$tokenType = $this->config->getUserValue($this->userId, Application::APP_ID, 'token_type');
+			if ($tokenType === 'oauth') {
+				$this->githubAPIService->revokeOauthToken($this->userId);
+			}
+		}
+
+		// save values
 		foreach ($values as $key => $value) {
 			$this->config->setUserValue($this->userId, Application::APP_ID, $key, $value);
 		}
@@ -84,10 +93,15 @@ class ConfigController extends Controller {
 				$userInfo = $this->storeUserInfo($values['token']);
 				$result['user_name'] = $userInfo['user_name'];
 				$result['user_displayname'] = $userInfo['user_displayname'];
+				// store token type if it's valid (so we have a user name)
+				if ($result['user_name'] !== '') {
+					$this->config->setUserValue($this->userId, Application::APP_ID, 'token_type', 'personal');
+				}
 			} else {
 				$this->config->deleteUserValue($this->userId, Application::APP_ID, 'user_id');
 				$this->config->deleteUserValue($this->userId, Application::APP_ID, 'user_name');
 				$this->config->deleteUserValue($this->userId, Application::APP_ID, 'user_displayname');
+				$this->config->deleteUserValue($this->userId, Application::APP_ID, 'token_type');
 				$result['user_name'] = '';
 			}
 		}
@@ -149,6 +163,7 @@ class ConfigController extends Controller {
 			if (isset($result['access_token'])) {
 				$accessToken = $result['access_token'];
 				$this->config->setUserValue($this->userId, Application::APP_ID, 'token', $accessToken);
+				$this->config->setUserValue($this->userId, Application::APP_ID, 'token_type', 'oauth');
 				$userInfo = $this->storeUserInfo($accessToken);
 
 				$usePopup = $this->config->getAppValue(Application::APP_ID, 'use_popup', '0') === '1';

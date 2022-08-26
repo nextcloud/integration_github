@@ -14,6 +14,8 @@ namespace OCA\Github\Service;
 use DateInterval;
 use DateTime;
 use Exception;
+use OCA\Github\AppInfo\Application;
+use OCP\IConfig;
 use OCP\IL10N;
 use Psr\Log\LoggerInterface;
 use OCP\Http\Client\IClientService;
@@ -35,6 +37,7 @@ class GithubAPIService {
 	 * @var \OCP\Http\Client\IClient
 	 */
 	private $client;
+	private IConfig $config;
 
 	/**
 	 * Service to make requests to GitHub v3 (JSON) API
@@ -42,11 +45,13 @@ class GithubAPIService {
 	public function __construct (string $appName,
 								LoggerInterface $logger,
 								IL10N $l10n,
+								IConfig $config,
 								IClientService $clientService) {
 		$this->appName = $appName;
 		$this->logger = $logger;
 		$this->l10n = $l10n;
 		$this->client = $clientService->newClient();
+		$this->config = $config;
 	}
 
 	/**
@@ -225,7 +230,7 @@ class GithubAPIService {
 			$options = [
 				'headers' => [
 					'Authorization' => 'token ' . $accessToken,
-					'User-Agent' => 'Nextcloud GitHub integration'
+					'User-Agent' => 'Nextcloud GitHub integration',
 				],
 			];
 
@@ -256,6 +261,40 @@ class GithubAPIService {
 				return ['error' => $this->l10n->t('Bad credentials')];
 			} else {
 				return json_decode($body, true) ?: [];
+			}
+		} catch (Exception $e) {
+			$this->logger->warning('GitHub API error : '.$e->getMessage(), ['app' => $this->appName]);
+			return ['error' => $e->getMessage()];
+		}
+	}
+
+	public function revokeOauthToken(string $userId): array {
+		$accessToken = $this->config->getUserValue($userId, Application::APP_ID, 'token');
+		$clientId = $this->config->getAppValue(Application::APP_ID, 'client_id');
+		$clientSecret = $this->config->getAppValue(Application::APP_ID, 'client_secret');
+		$endPoint = 'applications/' . $clientId . '/token';
+		try {
+			$url = 'https://api.github.com/' . $endPoint;
+			$options = [
+				'headers' => [
+					'User-Agent' => 'Nextcloud GitHub integration',
+//					'Content-Type' => 'application/x-www-form-urlencoded',
+					'Authorization' => 'Basic ' . base64_encode($clientId . ':' . $clientSecret),
+				],
+				'body' => json_encode([
+					'access_token' => $accessToken,
+				]),
+			];
+			error_log('TOKEN "'.$accessToken.'"');
+			error_log('AUTH "'.base64_encode($clientId . ':' . $clientSecret).'"');
+
+			$response = $this->client->delete($url, $options);
+			$respCode = $response->getStatusCode();
+
+			if ($respCode >= 400) {
+				return ['error' => $this->l10n->t('Bad credentials')];
+			} else {
+				return [];
 			}
 		} catch (Exception $e) {
 			$this->logger->warning('GitHub API error : '.$e->getMessage(), ['app' => $this->appName]);
