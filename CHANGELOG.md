@@ -6,6 +6,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## 1.0.3 – 2022-08-26
+### Added
+- optionally authenticate with a popup (OAuth only)
+- allow connection directly from the dashboard (with or without a popup)
+
+### Changed
+- use material icons
+- use node 16, bump js libs, adjust to new eslint config
+- get ready for NC 25
+
 ## 1.0.1 – 2021-06-28
 ### Changed
 - stop polling widget content when document is hidden
