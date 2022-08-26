@@ -39,6 +39,7 @@ class Personal implements ISettings {
 		$searchReposEnabled = $this->config->getUserValue($this->userId, Application::APP_ID, 'search_repos_enabled', '0');
 		$navigationEnabled = $this->config->getUserValue($this->userId, Application::APP_ID, 'navigation_enabled', '0');
 		$userName = $this->config->getUserValue($this->userId, Application::APP_ID, 'user_name');
+		$userDisplayName = $this->config->getUserValue($this->userId, Application::APP_ID, 'user_displayname');
 
 		// for OAuth
 		$clientID = $this->config->getAppValue(Application::APP_ID, 'client_id');
@@ -54,6 +55,7 @@ class Personal implements ISettings {
 			'search_repos_enabled' => ($searchReposEnabled === '1'),
 			'navigation_enabled' => ($navigationEnabled === '1'),
 			'user_name' => $userName,
+			'user_displayname' => $userDisplayName,
 		];
 		$this->initialStateService->provideInitialState('user-config', $userConfig);
 		return new TemplateResponse(Application::APP_ID, 'personalSettings');

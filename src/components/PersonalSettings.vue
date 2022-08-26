@@ -43,7 +43,7 @@
 			<div v-if="connected" class="line">
 				<label>
 					<CheckIcon :size="20" class="icon" />
-					{{ t('integration_github', 'Connected as {user}', { user: state.user_name }) }}
+					{{ t('integration_github', 'Connected as {user}', { user: connectedAs }) }}
 				</label>
 				<NcButton @click="onLogoutClick">
 					<template #icon>
@@ -124,6 +124,11 @@ export default {
 		connected() {
 			return this.state.token && this.state.token !== '' && this.state.user_name && this.state.user_name !== ''
 		},
+		connectedAs() {
+			return this.state.user_displayname
+				? this.state.user_displayname + ' (@' + this.state.user_name + ')'
+				: '@' + this.state.user_name
+		},
 	},
 
 	watch: {
@@ -159,8 +164,9 @@ export default {
 				showSuccess(t('integration_github', 'GitHub options saved'))
 				if (response.data.user_name !== undefined) {
 					this.state.user_name = response.data.user_name
+					this.state.user_displayname = response.data.user_displayname
 					if (this.state.token && response.data.user_name === '') {
-						showError(t('integration_github', 'Incorrect access token'))
+						showError(t('integration_github', 'Invalid access token'))
 					}
 				}
 			}).catch((error) => {
@@ -191,6 +197,7 @@ export default {
 					.then((data) => {
 						this.state.token = 'dummyToken'
 						this.state.user_name = data.userName
+						this.state.user_displayname = data.userDisplayName
 					})
 			} else {
 				oauthConnect(this.state.client_id, 'settings')

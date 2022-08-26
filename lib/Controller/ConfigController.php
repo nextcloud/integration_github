@@ -81,11 +81,13 @@ class ConfigController extends Controller {
 
 		if (isset($values['token'])) {
 			if ($values['token'] && $values['token'] !== '') {
-				$userName = $this->storeUserInfo($values['token']);
-				$result['user_name'] = $userName;
+				$userInfo = $this->storeUserInfo($values['token']);
+				$result['user_name'] = $userInfo['user_name'];
+				$result['user_displayname'] = $userInfo['user_displayname'];
 			} else {
-				$this->config->setUserValue($this->userId, Application::APP_ID, 'user_id', '');
-				$this->config->setUserValue($this->userId, Application::APP_ID, 'user_name', '');
+				$this->config->deleteUserValue($this->userId, Application::APP_ID, 'user_id');
+				$this->config->deleteUserValue($this->userId, Application::APP_ID, 'user_name');
+				$this->config->deleteUserValue($this->userId, Application::APP_ID, 'user_displayname');
 				$result['user_name'] = '';
 			}
 		}
@@ -153,8 +155,8 @@ class ConfigController extends Controller {
 				if ($usePopup) {
 					return new RedirectResponse(
 						$this->urlGenerator->linkToRoute('integration_github.config.popupSuccessPage', [
-							'user_name' => $userInfo,
-							'user_displayname' => $userInfo,
+							'user_name' => $userInfo['user_name'],
+							'user_displayname' => $userInfo['user_displayname'],
 						])
 					);
 				} else {
@@ -190,18 +192,29 @@ class ConfigController extends Controller {
 	 * get and store connected user info
 	 *
 	 * @param string $accessToken
-	 * @return string the login/username
+	 * @return array
+	 * @throws PreConditionNotMetException
 	 */
-	private function storeUserInfo(string $accessToken): string {
+	private function storeUserInfo(string $accessToken): array {
 		$info = $this->githubAPIService->request($accessToken, 'user');
 		if (isset($info['login'], $info['id'])) {
 			$this->config->setUserValue($this->userId, Application::APP_ID, 'user_id', $info['id']);
 			$this->config->setUserValue($this->userId, Application::APP_ID, 'user_name', $info['login']);
-			return $info['login'];
+			$this->config->setUserValue($this->userId, Application::APP_ID, 'user_displayname', $info['name']);
+			return [
+				'user_id' => $info['id'],
+				'user_name' => $info['login'],
+				'user_displayname' => $info['name'],
+			];
 		} else {
-			$this->config->setUserValue($this->userId, Application::APP_ID, 'user_id', '');
-			$this->config->setUserValue($this->userId, Application::APP_ID, 'user_name', '');
-			return '';
+			$this->config->deleteUserValue($this->userId, Application::APP_ID, 'user_id');
+			$this->config->deleteUserValue($this->userId, Application::APP_ID, 'user_name');
+			$this->config->deleteUserValue($this->userId, Application::APP_ID, 'user_displayname');
+			return [
+				'user_id' => '',
+				'user_name' => '',
+				'user_displayname' => '',
+			];
 		}
 	}
 }
