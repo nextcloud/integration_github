@@ -162,6 +162,7 @@ export default {
 	methods: {
 		onOAuthClick() {
 			if (this.initialState.use_popup) {
+				this.state = 'loading'
 				oauthConnect(this.initialState.client_id, null, true)
 					.then((data) => {
 						this.stopLoop()
