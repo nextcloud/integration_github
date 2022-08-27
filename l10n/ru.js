@@ -26,9 +26,9 @@ OC.L10N.register(
     "Client secret of your GitHub application" : "Секрет клиента вашего приложения GitHub",
     "GitHub admin options saved" : "Параметры администратора GitHub сохранены",
     "Failed to save GitHub admin options" : "Не удалось сохранить параметры администратора GitHub",
-    "Enable navigation link" : "Включить ссылку для навигации",
     "When you create a personal access token yourself, give it at least \"read:user\", \"user:email\" and \"notifications\" permissions." : "Когда вы создаете личный токен доступа самостоятельно, дайте ему как минимум разрешения «чтение:пользователь», «пользователь:электронная почта» и «уведомления».",
     "GitHub personal access tokens" : "Токены личного доступа GitHub",
+    "Enable navigation link" : "Включить ссылку для навигации",
     "Personal access token" : "Личный токен доступа",
     "GitHub personal access token" : "Токены личного доступа GitHub",
     "Connect to GitHub" : "Подключиться к GitHub",
@@ -40,9 +40,7 @@ OC.L10N.register(
     "Connected to GitHub!" : "Подключено к GitHub!",
     "GitHub OAuth error:" : "Ошибка GitHub OAuth:",
     "GitHub options saved" : "Параметры GitHub сохранены",
-    "Incorrect access token" : "Неверный токен доступа",
     "Failed to save GitHub options" : "Не удалось сохранить параметры GitHub",
-    "Failed to save GitHub OAuth state" : "Не удалось сохранить состояние GitHub OAuth",
     "Mark as read" : "Пометить как прочитанное",
     "Unsubscribe" : "Отписаться",
     "No GitHub account connected" : "Учетная запись GitHub не подключена",
@@ -50,6 +48,7 @@ OC.L10N.register(
     "No GitHub notifications!" : "Нет уведомлений GitHub!",
     "Failed to get GitHub notifications" : "Не удалось получить уведомления GitHub",
     "Successfully unsubscribed" : "Подписка успешно отменена",
-    "Failed to edit GitHub notification" : "Не удалось изменить уведомление GitHub"
+    "Failed to edit GitHub notification" : "Не удалось изменить уведомление GitHub",
+    "Failed to save GitHub OAuth state" : "Не удалось сохранить состояние GitHub OAuth"
 },
 "nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);");

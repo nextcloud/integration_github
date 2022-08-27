@@ -26,9 +26,9 @@ OC.L10N.register(
     "Client secret of your GitHub application" : "GitHub-sovelluksesi asiakassalasana",
     "GitHub admin options saved" : "GitHub-ylläpidon asetukset tallennettu",
     "Failed to save GitHub admin options" : "GitHub-ylläpidon asetuksien tallennus epäonnistui",
-    "Enable navigation link" : "Näytä navigointipalkissa",
     "When you create a personal access token yourself, give it at least \"read:user\", \"user:email\" and \"notifications\" permissions." : "Kun luot henkilökohtaisen käyttöoikeustietueen, anna sille käyttöoikeuksiksi vähintään \"read:user\", \"user:email\" ja \"notifications\".",
     "GitHub personal access tokens" : "GitHubin henkilökohtaiset pääsypoletit",
+    "Enable navigation link" : "Näytä navigointipalkissa",
     "Personal access token" : "Henkilökohtainen valtuutustietue",
     "GitHub personal access token" : "GitHubin henkilökohtainen valtuutustietue",
     "Connect to GitHub" : "Yhdistä GitHubiin",
@@ -40,9 +40,7 @@ OC.L10N.register(
     "Connected to GitHub!" : "Yhdistetty GitHubiin!",
     "GitHub OAuth error:" : "GitHubin OAuth-virhe:",
     "GitHub options saved" : "GitHub-asetukset tallennettu",
-    "Incorrect access token" : "Virheellinen valtuutustietue",
     "Failed to save GitHub options" : "GitHub-asetusten tallennus epäonnistui",
-    "Failed to save GitHub OAuth state" : "GitHubin OAuth-tilan tallennus epäonnistui",
     "Mark as read" : "Merkitse luetuksi",
     "Unsubscribe" : "Peruuta tilaus",
     "No GitHub account connected" : "GitHub-tiliä ei ole yhdistetty",
@@ -50,6 +48,7 @@ OC.L10N.register(
     "No GitHub notifications!" : "Ei GitHub-ilmoituksia!",
     "Failed to get GitHub notifications" : "GitHubin ilmoitusten haku epäonnistui",
     "Successfully unsubscribed" : "Tilauksen peruutus onnistui",
-    "Failed to edit GitHub notification" : "GitHubin ilmoituksen muokkaus epäonnistui"
+    "Failed to edit GitHub notification" : "GitHubin ilmoituksen muokkaus epäonnistui",
+    "Failed to save GitHub OAuth state" : "GitHubin OAuth-tilan tallennus epäonnistui"
 },
 "nplurals=2; plural=(n != 1);");

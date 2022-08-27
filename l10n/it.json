@@ -24,9 +24,9 @@
     "Client secret of your GitHub application" : "Segreto del client della tua applicazione GitHub",
     "GitHub admin options saved" : "Opzioni amministrative di GitHub salvate",
     "Failed to save GitHub admin options" : "Salvataggio delle opzioni amministrative di GitHub non riuscito",
-    "Enable navigation link" : "Abilita collegamento di navigazione",
     "When you create a personal access token yourself, give it at least \"read:user\", \"user:email\" and \"notifications\" permissions." : "Quando crei da solo un token di accesso personale, dagli almeno le i permessi \"read:user\", \"user:email\" e \"notifications\".",
     "GitHub personal access tokens" : "Token di accesso personali di GitHub",
+    "Enable navigation link" : "Abilita collegamento di navigazione",
     "Personal access token" : "Token di accesso personale",
     "GitHub personal access token" : "Token di accesso personale di GitHub",
     "Connect to GitHub" : "Connetti a GitHub",
@@ -38,9 +38,7 @@
     "Connected to GitHub!" : "Connesso a GitHub!",
     "GitHub OAuth error:" : "Errore OAuth di GitHub:",
     "GitHub options saved" : "Opzioni di GitHub salvate",
-    "Incorrect access token" : "Token di accesso non corretto",
     "Failed to save GitHub options" : "Salvataggio delle opzioni di GitHub non riuscito",
-    "Failed to save GitHub OAuth state" : "Salvataggio dello stato OAuth di GitHub non riuscito",
     "Mark as read" : "Marca come letto",
     "Unsubscribe" : "Rimuovi sottoscrizione",
     "No GitHub account connected" : "Nessun account GitHub connesso",
@@ -48,6 +46,7 @@
     "No GitHub notifications!" : "Nessuna notifica GitHub!",
     "Failed to get GitHub notifications" : "Impossibile ricevere le notifiche di GitHub",
     "Successfully unsubscribed" : "Sottoscrizione annullata con successo",
-    "Failed to edit GitHub notification" : "Modifica della notifica GitHub non riuscita"
+    "Failed to edit GitHub notification" : "Modifica della notifica GitHub non riuscita",
+    "Failed to save GitHub OAuth state" : "Salvataggio dello stato OAuth di GitHub non riuscito"
 },"pluralForm" :"nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;"
 }

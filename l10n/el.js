@@ -26,9 +26,9 @@ OC.L10N.register(
     "Client secret of your GitHub application" : "Μυστικό πελάτη της εφαρμογής GitHub",
     "GitHub admin options saved" : "Οι επιλογές διαχειριστή GitHub αποθηκεύτηκαν",
     "Failed to save GitHub admin options" : "Αποτυχία αποθήκευσης των επιλογών διαχειριστή GitHub",
-    "Enable navigation link" : "Ενεργοποίηση συνδέσμου πλοήγησης",
     "When you create a personal access token yourself, give it at least \"read:user\", \"user:email\" and \"notifications\" permissions." : "Όταν δημιουργείτε ένα διακριτικό προσωπικής πρόσβασης, δώστε του τουλάχιστον δικαιώματα «read: user», «user: email» και «notification».",
     "GitHub personal access tokens" : "Διακριτικά προσωπικής πρόσβασης GitHub",
+    "Enable navigation link" : "Ενεργοποίηση συνδέσμου πλοήγησης",
     "Personal access token" : "Διακριτικό προσωπικής πρόσβασης",
     "GitHub personal access token" : "Διακριτικό προσωπικής πρόσβασης GitHub",
     "Connect to GitHub" : "Σύνδεση στο Github",
@@ -40,9 +40,7 @@ OC.L10N.register(
     "Connected to GitHub!" : "Συνδεθήκατε στο GitHub!",
     "GitHub OAuth error:" : "Σφάλμα GitHub OAuth:",
     "GitHub options saved" : "Οι ρυθμίσεις του GitHub αποθηκεύτηκαν",
-    "Incorrect access token" : "Λανθασμένο διακριτικό πρόσβασης",
     "Failed to save GitHub options" : "Αποτυχία αποθήκευσης επιλογών GitHub",
-    "Failed to save GitHub OAuth state" : "Αποτυχία αποθήκευσης της κατάστασης GitHub OAuth",
     "Mark as read" : "Σήμανση ως αναγνωσμένο",
     "Unsubscribe" : "Κατάργηση εγγραφής",
     "No GitHub account connected" : "Δεν έχει συνδεθεί λογαριασμός GitHub",
@@ -50,6 +48,7 @@ OC.L10N.register(
     "No GitHub notifications!" : "Καμία ειδοποίηση από το GitHub!",
     "Failed to get GitHub notifications" : "Αποτυχία λήψης ειδοποιήσεων GitHub",
     "Successfully unsubscribed" : "Καταργήθηκε η εγγραφή με επιτυχία",
-    "Failed to edit GitHub notification" : "Αποτυχία επεξεργασίας της ειδοποίησης GitHub"
+    "Failed to edit GitHub notification" : "Αποτυχία επεξεργασίας της ειδοποίησης GitHub",
+    "Failed to save GitHub OAuth state" : "Αποτυχία αποθήκευσης της κατάστασης GitHub OAuth"
 },
 "nplurals=2; plural=(n != 1);");

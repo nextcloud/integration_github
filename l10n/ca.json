@@ -20,9 +20,9 @@
     "Client secret of your GitHub application" : "Secret del client de l'aplicació de GitHub",
     "GitHub admin options saved" : "S'han desat les opcions d'administració de GitHub",
     "Failed to save GitHub admin options" : "No s'han pogut desar les opcions d'administració de GitHub",
-    "Enable navigation link" : "Habilita l'enllaç de navegació",
     "When you create a personal access token yourself, give it at least \"read:user\", \"user:email\" and \"notifications\" permissions." : "Quan creeu un testimoni d'accés personal, doneu-li com a mínim els permisos «read:user», «user:email» i «notifications».",
     "GitHub personal access tokens" : "Testimonis d'accés personal de GitHub",
+    "Enable navigation link" : "Habilita l'enllaç de navegació",
     "Personal access token" : "Testimoni d'accés personal",
     "GitHub personal access token" : "Testimoni d'accés personal de GitHub",
     "Connect to GitHub" : "Connecta't a GitHub",
@@ -34,9 +34,7 @@
     "Connected to GitHub!" : "S'ha connectat a GitHub!",
     "GitHub OAuth error:" : "Error d'OAuth de GitHub:",
     "GitHub options saved" : "S'han desat les opcions de GitHub",
-    "Incorrect access token" : "Testimoni d'accés incorrecte",
     "Failed to save GitHub options" : "No s'han pogut desar les opcions de GitHub",
-    "Failed to save GitHub OAuth state" : "No s'ha pogut desar l'estat d'OAuth de GitHub",
     "Mark as read" : "Marca com a llegit",
     "Unsubscribe" : "Cancel·la la subscripció",
     "No GitHub account connected" : "No s'ha connectat cap compte de GitHub",
@@ -44,6 +42,7 @@
     "No GitHub notifications!" : "No hi ha cap notificació de GitHub!",
     "Failed to get GitHub notifications" : "No s'han pogut obtenir les notificacions de GitHub",
     "Successfully unsubscribed" : "La subscripció s'ha cancel·lat correctament",
-    "Failed to edit GitHub notification" : "No s'ha pogut editar la notificació de GitHub"
+    "Failed to edit GitHub notification" : "No s'ha pogut editar la notificació de GitHub",
+    "Failed to save GitHub OAuth state" : "No s'ha pogut desar l'estat d'OAuth de GitHub"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

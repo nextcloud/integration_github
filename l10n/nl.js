@@ -26,9 +26,9 @@ OC.L10N.register(
     "Client secret of your GitHub application" : "Client secret van je GitHub applicatie",
     "GitHub admin options saved" : "GitHub admin-opties opgeslagen",
     "Failed to save GitHub admin options" : "Kon GitHub admin-opties niet opslaan",
-    "Enable navigation link" : "Inschakelen navigatielink",
     "When you create a personal access token yourself, give it at least \"read:user\", \"user:email\" and \"notifications\" permissions." : "Als je zelf een persoonlijk access token aanmaakt, geef het dan minimaal \"read:user\", \"user:email\" en \"notifications\" machtigingen.",
     "GitHub personal access tokens" : "GitHub persoonlijk access tokens",
+    "Enable navigation link" : "Inschakelen navigatielink",
     "Personal access token" : "Persoonlijk access token",
     "GitHub personal access token" : "GitHub persoonlijk access token",
     "Connect to GitHub" : "Verbinden met GitHub",
@@ -40,9 +40,7 @@ OC.L10N.register(
     "Connected to GitHub!" : "Verbonden met GitHub!",
     "GitHub OAuth error:" : "GitHub OAuth fout:",
     "GitHub options saved" : "GitHub-opties bewaard",
-    "Incorrect access token" : "Onjuist access token",
     "Failed to save GitHub options" : "Kon GitHub-opties niet opslaan",
-    "Failed to save GitHub OAuth state" : "Kan GitHub OAuth-status niet bewaren",
     "Mark as read" : "Markeren als gelezen",
     "Unsubscribe" : "Afmelden",
     "No GitHub account connected" : "Geen GitHub-account verbonden",
@@ -50,6 +48,7 @@ OC.L10N.register(
     "No GitHub notifications!" : "Geen GitHub meldingen!",
     "Failed to get GitHub notifications" : "Kon GitHub-meldingen niet ophalen",
     "Successfully unsubscribed" : "Abonnement succesvol beëindigd",
-    "Failed to edit GitHub notification" : "Kon GitHub-melding niet bewerken"
+    "Failed to edit GitHub notification" : "Kon GitHub-melding niet bewerken",
+    "Failed to save GitHub OAuth state" : "Kan GitHub OAuth-status niet bewaren"
 },
 "nplurals=2; plural=(n != 1);");

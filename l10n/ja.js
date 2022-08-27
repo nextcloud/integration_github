@@ -17,7 +17,6 @@ OC.L10N.register(
     "Connected as {user}" : "{user} を接続済み",
     "Disconnect from GitHub" : "GitHubから接続を解除",
     "Connected to GitHub!" : "GitHubに接続しました！",
-    "Incorrect access token" : "正しくないアクセストークン",
     "Mark as read" : "既読にする",
     "Unsubscribe" : "購読解除",
     "No GitHub notifications!" : "GitHub通知がありません！",

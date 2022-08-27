@@ -24,11 +24,12 @@ OC.L10N.register(
     "Client ID of your GitHub application" : "您 GitHub 應用程式的客戶端 ID",
     "Client secret" : "客戶端密碼",
     "Client secret of your GitHub application" : "您 GitHub 應用程式的客戶端密碼",
+    "Use a popup to authenticate" : "使用彈出窗口進行身份驗證",
     "GitHub admin options saved" : "已儲存 GitHub 管理員選項",
     "Failed to save GitHub admin options" : "儲存 GitHub 管理員選項失敗",
-    "Enable navigation link" : "啟用導覽連結",
     "When you create a personal access token yourself, give it at least \"read:user\", \"user:email\" and \"notifications\" permissions." : "當您自行建立存取權杖時，至少給予 \"read：user\"， \"user：email\" 與 \"notifications\" 權限。",
     "GitHub personal access tokens" : "GitHub 個人存取權杖",
+    "Enable navigation link" : "啟用導覽連結",
     "Personal access token" : "個人存取權杖",
     "GitHub personal access token" : "GitHub 個人存取權杖",
     "Connect to GitHub" : "連線至 GitHub",
@@ -40,9 +41,7 @@ OC.L10N.register(
     "Connected to GitHub!" : "已連線至 GitHub！",
     "GitHub OAuth error:" : "GitHub OAuth 錯誤：",
     "GitHub options saved" : "已儲存 GitHub 選項",
-    "Incorrect access token" : "不正確的存取權杖",
     "Failed to save GitHub options" : "儲存 GitHub 選項失敗",
-    "Failed to save GitHub OAuth state" : "儲存 GitHub OAuth 狀態失敗",
     "Mark as read" : "標為已讀",
     "Unsubscribe" : "取消訂閱",
     "No GitHub account connected" : "未連線至 GitHub 賬號",
@@ -50,6 +49,7 @@ OC.L10N.register(
     "No GitHub notifications!" : "無 GitHub 通知！",
     "Failed to get GitHub notifications" : "未能獲取 GitHub 通知",
     "Successfully unsubscribed" : "成功取消訂閱",
-    "Failed to edit GitHub notification" : "編輯 GitHub 通知失敗"
+    "Failed to edit GitHub notification" : "編輯 GitHub 通知失敗",
+    "Failed to save GitHub OAuth state" : "儲存 GitHub OAuth 狀態失敗"
 },
 "nplurals=1; plural=0;");

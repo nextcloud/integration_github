@@ -24,11 +24,12 @@ OC.L10N.register(
     "Client ID of your GitHub application" : "Identif. klienta vaší GitHub aplikace",
     "Client secret" : "Klientské tajemství",
     "Client secret of your GitHub application" : "Klientské tajemství vaší GitHub aplikace",
+    "Use a popup to authenticate" : "Ověřte se ve vyskakovacím okně",
     "GitHub admin options saved" : "Předvolby správy GitHub uloženy",
     "Failed to save GitHub admin options" : "Nepodařilo se uložit předvolby správy GitHub",
-    "Enable navigation link" : "Povolit navigační odkaz",
     "When you create a personal access token yourself, give it at least \"read:user\", \"user:email\" and \"notifications\" permissions." : "Když si osobní přístupový token vytváříte sami, udělte mu přinejmenším oprávnění pro „čtení:uživatrel“ a „upozornění“.",
     "GitHub personal access tokens" : "Osobní přístupové tokeny GitHub",
+    "Enable navigation link" : "Povolit navigační odkaz",
     "Personal access token" : "Osobní přístupový token",
     "GitHub personal access token" : "Token pro osobní přístup ke GitHub",
     "Connect to GitHub" : "Připojit ke Github",
@@ -40,9 +41,7 @@ OC.L10N.register(
     "Connected to GitHub!" : "Spojeno s GitHub!",
     "GitHub OAuth error:" : "Chyba GitHub OAuth:",
     "GitHub options saved" : "Předvolby pro GitHub uloženy.",
-    "Incorrect access token" : "Nesprávný přístupový token",
     "Failed to save GitHub options" : "Nepodařilo se uložit předvolby pro GitHub",
-    "Failed to save GitHub OAuth state" : "Nepodařilo se uložit stav GitHub OAuth",
     "Mark as read" : "Označit jako přečtené",
     "Unsubscribe" : "Zrušit přihlášení k odběru",
     "No GitHub account connected" : "Nepřipojen žádný GitHub účet",
@@ -50,6 +49,7 @@ OC.L10N.register(
     "No GitHub notifications!" : "Žádná upozornění z GitHub!",
     "Failed to get GitHub notifications" : "Nepodařilo se získat upozornění z GitHub",
     "Successfully unsubscribed" : "Úspěšně se odhlášeno z odběru",
-    "Failed to edit GitHub notification" : "Nepodařilo se upravit upozornění z GitHub"
+    "Failed to edit GitHub notification" : "Nepodařilo se upravit upozornění z GitHub",
+    "Failed to save GitHub OAuth state" : "Nepodařilo se uložit stav GitHub OAuth"
 },
 "nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n >= 2 && n <= 4 && n % 1 == 0) ? 1: (n % 1 != 0 ) ? 2 : 3;");

@@ -23,9 +23,9 @@
     "Client secret of your GitHub application" : "Koda programa za povezavo z računom GitHub",
     "GitHub admin options saved" : "Skrbniške nastavitve povezave GitHub so shranjene",
     "Failed to save GitHub admin options" : "Shranjevanje skrbniških nastavitev računa GitHub je spodletelo",
-    "Enable navigation link" : "Omogoči povezave za krmarjenje",
     "When you create a personal access token yourself, give it at least \"read:user\", \"user:email\" and \"notifications\" permissions." : "Ko ustvarite osebni žeton za dostop, odobrite vsaj dovoljenja »read:user (dovoljenje za branje)«, »user:email (elektronski naslov)« in »notifications (obvestila)«.",
     "GitHub personal access tokens" : "Osebni žeton GitHub za dostop",
+    "Enable navigation link" : "Omogoči povezave za krmarjenje",
     "Personal access token" : "Osebni žeton za dostop",
     "GitHub personal access token" : "Osebni žeton GitHub za dostop",
     "Connect to GitHub" : "Poveži z računom GitHub",
@@ -37,9 +37,7 @@
     "Connected to GitHub!" : "Povezava z GitHub je vzpostavljena!",
     "GitHub OAuth error:" : "Napaka overitve OAuth za GitHub:",
     "GitHub options saved" : "Nastavitve GitHub so shranjene",
-    "Incorrect access token" : " Neveljaven žetona za dostop",
     "Failed to save GitHub options" : "Shranjevanje nastavitev GitHub je spodletelo",
-    "Failed to save GitHub OAuth state" : "Shranjevanje stanja GitHub OAuth je spodletelo",
     "Mark as read" : "Označi kot prebrano",
     "Unsubscribe" : "Prekliči naročnino",
     "No GitHub account connected" : "Ni še povezanega računa GitHub",
@@ -47,6 +45,7 @@
     "No GitHub notifications!" : "Ni obvestil GitHub!",
     "Failed to get GitHub notifications" : "Pridobivanje obvestil GitHub je spodletelo",
     "Successfully unsubscribed" : "Naročnina je uspešno preklicana",
-    "Failed to edit GitHub notification" : "Urejanje obvestila GitHub je spodletelo"
+    "Failed to edit GitHub notification" : "Urejanje obvestila GitHub je spodletelo",
+    "Failed to save GitHub OAuth state" : "Shranjevanje stanja GitHub OAuth je spodletelo"
 },"pluralForm" :"nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);"
 }

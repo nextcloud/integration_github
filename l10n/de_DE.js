@@ -24,11 +24,12 @@ OC.L10N.register(
     "Client ID of your GitHub application" : "Client-ID von Ihrer GitHub-Anwendung",
     "Client secret" : "Geheime Zeichenkette des Clients",
     "Client secret of your GitHub application" : "Client-Geheimnis der GitHub-Anwendung",
+    "Use a popup to authenticate" : "Popup zur Authentifizierung verwenden",
     "GitHub admin options saved" : "GitHub-Administrator-Einstellungen gespeichert",
     "Failed to save GitHub admin options" : "Fehler beim Speichern der GitHub-Administrator-Einstellungen",
-    "Enable navigation link" : "Nagivations-Link aktivieren",
     "When you create a personal access token yourself, give it at least \"read:user\", \"user:email\" and \"notifications\" permissions." : "Wenn Sie selbst einen persönlichen Zugriffstoken erstellen, geben Sie diesem mindestens die Berechtigungen \"read:user\", \"user:email\" und \"notifications\".",
     "GitHub personal access tokens" : "GitHub persönliche Zugriffstoken",
+    "Enable navigation link" : "Nagivations-Link aktivieren",
     "Personal access token" : "Persönlicher Zugriffstoken",
     "GitHub personal access token" : "GitHub persönlicher Zugriffstoken",
     "Connect to GitHub" : "Mit GitHub verbinden",
@@ -40,9 +41,7 @@ OC.L10N.register(
     "Connected to GitHub!" : "Mit GitHub verbunden!",
     "GitHub OAuth error:" : "GitHub OAuth-Fehler:",
     "GitHub options saved" : "GitHub Einstellungen gespeichert",
-    "Incorrect access token" : "Zugriffstoken nicht korrekt",
     "Failed to save GitHub options" : "Fehler beim Speichern der GutHub-Einstellungen",
-    "Failed to save GitHub OAuth state" : "Fehler beim Speichern des GitHub OAuth-Status",
     "Mark as read" : "Als gelesen markieren",
     "Unsubscribe" : "Abmelden",
     "No GitHub account connected" : "Kein GitHub-Konto verbunden",
@@ -50,6 +49,7 @@ OC.L10N.register(
     "No GitHub notifications!" : "Keine GitHub-Benachrichtigungen!",
     "Failed to get GitHub notifications" : "GitHub-Benachrichtigungen konnten nicht abgerufen werden",
     "Successfully unsubscribed" : "Erfolgreich abbestellt",
-    "Failed to edit GitHub notification" : "Fehler bei der Bearbeitung der GitHub-Benachrichtigung"
+    "Failed to edit GitHub notification" : "Fehler bei der Bearbeitung der GitHub-Benachrichtigung",
+    "Failed to save GitHub OAuth state" : "Fehler beim Speichern des GitHub OAuth-Status"
 },
 "nplurals=2; plural=(n != 1);");

@@ -26,9 +26,9 @@ OC.L10N.register(
     "Client secret of your GitHub application" : "Tajni ključ klijenta vaše aplikacije GitHub",
     "GitHub admin options saved" : "Administratorske postavke GitHuba su spremljene",
     "Failed to save GitHub admin options" : "Spremanje administratorskih postavki GitHuba nije uspjelo",
-    "Enable navigation link" : "Omogući navigacijsku poveznicu",
     "When you create a personal access token yourself, give it at least \"read:user\", \"user:email\" and \"notifications\" permissions." : "Ako sami stvarate osobni token za pristup, minimalno mu dodijelite dopuštenja „read:user“, „user:email“ i „notifications“.",
     "GitHub personal access tokens" : "GitHub osobni tokeni za pristup",
+    "Enable navigation link" : "Omogući navigacijsku poveznicu",
     "Personal access token" : "Osobni token za pristup",
     "GitHub personal access token" : "GitHub osobni token za pristup",
     "Connect to GitHub" : "Poveži se s GitHubom",
@@ -40,9 +40,7 @@ OC.L10N.register(
     "Connected to GitHub!" : "Povezan s GitHubom!",
     "GitHub OAuth error:" : "GitHub OAuth pogreška:",
     "GitHub options saved" : "Postavke GitHuba su spremljene",
-    "Incorrect access token" : "Pogrešan token za pristup",
     "Failed to save GitHub options" : "Spremanje postavki GitHuba nije uspjelo",
-    "Failed to save GitHub OAuth state" : "Spremanje stanja GitHub OAuth nije uspjelo",
     "Mark as read" : "Označi kao pročitano",
     "Unsubscribe" : "Otkaži pretplatu",
     "No GitHub account connected" : "Nema povezanih GitHub računa",
@@ -50,6 +48,7 @@ OC.L10N.register(
     "No GitHub notifications!" : "Nema GitHub obavijesti!",
     "Failed to get GitHub notifications" : "Dohvaćanje GitHub obavijesti nije uspjelo",
     "Successfully unsubscribed" : "Uspješno otkazana pretplata",
-    "Failed to edit GitHub notification" : "Uređivanje GitHub obavijesti nije uspjelo"
+    "Failed to edit GitHub notification" : "Uređivanje GitHub obavijesti nije uspjelo",
+    "Failed to save GitHub OAuth state" : "Spremanje stanja GitHub OAuth nije uspjelo"
 },
 "nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;");

@@ -24,11 +24,12 @@ OC.L10N.register(
     "Client ID of your GitHub application" : "A GitHub alkalmazás kliensazonosítója",
     "Client secret" : "Klienstitok",
     "Client secret of your GitHub application" : "A GitHub alkalmazás klienstitka",
+    "Use a popup to authenticate" : "Felugró ablak használata a hitelesítéshez",
     "GitHub admin options saved" : "A GitHub rendszergazdai beállításai mentve",
     "Failed to save GitHub admin options" : "A GitHub rendszergazdai beállítások mentése sikertelen",
-    "Enable navigation link" : "Navigációs hivatkozás engedélyezése",
     "When you create a personal access token yourself, give it at least \"read:user\", \"user:email\" and \"notifications\" permissions." : "Amikor saját maga hoz létre személyes hozzáférési tokent, adjon meg neki legalább „read:user”, „user:email” és „notifications” engedélyeket.",
     "GitHub personal access tokens" : "GitHub személyes hozzáférési token",
+    "Enable navigation link" : "Navigációs hivatkozás engedélyezése",
     "Personal access token" : "Személyes hozzáférési token",
     "GitHub personal access token" : "GitHub személyes hozzáférési token",
     "Connect to GitHub" : "Csatlakozás a GitHubhoz",
@@ -40,9 +41,7 @@ OC.L10N.register(
     "Connected to GitHub!" : "Csatlakozva a GitHubhoz!",
     "GitHub OAuth error:" : "GitHub OAuth hiba:",
     "GitHub options saved" : "A GitHub beállításai mentve",
-    "Incorrect access token" : "Helytelen hozzáférési token",
     "Failed to save GitHub options" : "A GitHub beállítások mentése sikertelen",
-    "Failed to save GitHub OAuth state" : "A GitHub OAuth állapot mentése sikertelen",
     "Mark as read" : "Megjelölés olvasottként",
     "Unsubscribe" : "Leiratkozás",
     "No GitHub account connected" : "Nincs GitHub fiók csatlakoztatva",
@@ -50,6 +49,7 @@ OC.L10N.register(
     "No GitHub notifications!" : "Nincsenek GitHub értesítések!",
     "Failed to get GitHub notifications" : "A GitHub értesítések elérése sikertelen",
     "Successfully unsubscribed" : "Sikeresen leiratkozva",
-    "Failed to edit GitHub notification" : "A GitHub értesítések szerkesztése sikertelen"
+    "Failed to edit GitHub notification" : "A GitHub értesítések szerkesztése sikertelen",
+    "Failed to save GitHub OAuth state" : "A GitHub OAuth állapot mentése sikertelen"
 },
 "nplurals=2; plural=(n != 1);");

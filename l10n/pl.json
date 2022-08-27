@@ -22,11 +22,12 @@
     "Client ID of your GitHub application" : "ID klienta aplikacji GitHub",
     "Client secret" : "Tajny klucz klienta",
     "Client secret of your GitHub application" : "Tajny klucz klienta aplikacji GitHub",
+    "Use a popup to authenticate" : "Użyj wyskakującego okienka do uwierzytelnienia",
     "GitHub admin options saved" : "Opcje administratora GitHuba zostały zapisane",
     "Failed to save GitHub admin options" : "Nie udało się zapisać opcji administratora GitHuba",
-    "Enable navigation link" : "Włącz połączenie nawigacyjne",
     "When you create a personal access token yourself, give it at least \"read:user\", \"user:email\" and \"notifications\" permissions." : "Tworząc osobisty token dostępu, przyznaj mu przynajmniej uprawnienia \"read:user\", \"user:email\" i \"notifications\".",
     "GitHub personal access tokens" : "Osobiste tokeny dostępu GitHub",
+    "Enable navigation link" : "Włącz połączenie nawigacyjne",
     "Personal access token" : "Osobisty token dostępu",
     "GitHub personal access token" : "Osobisty token dostępu GitHub",
     "Connect to GitHub" : "Połącz z GitHubem",
@@ -38,9 +39,7 @@
     "Connected to GitHub!" : "Połączono z GitHubem!",
     "GitHub OAuth error:" : "Błąd OAuth GitHub:",
     "GitHub options saved" : "Opcje GitHuba zostały zapisane",
-    "Incorrect access token" : "Nieprawidłowy token dostępu",
     "Failed to save GitHub options" : "Nie udało się zapisać opcji GitHuba",
-    "Failed to save GitHub OAuth state" : "Nie udało się zapisać statusu OAuth GitHub",
     "Mark as read" : "Oznacz jako przeczytane",
     "Unsubscribe" : "Wypisz się",
     "No GitHub account connected" : "Brak połączonego konta GitHub",
@@ -48,6 +47,7 @@
     "No GitHub notifications!" : "Brak powiadomień GitHub!",
     "Failed to get GitHub notifications" : "Nie udało się pobrać powiadomień GitHuba",
     "Successfully unsubscribed" : "Anulowano subskrypcję",
-    "Failed to edit GitHub notification" : "Nie udało się edytować powiadomienia GitHuba"
+    "Failed to edit GitHub notification" : "Nie udało się edytować powiadomienia GitHuba",
+    "Failed to save GitHub OAuth state" : "Nie udało się zapisać statusu OAuth GitHub"
 },"pluralForm" :"nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);"
 }

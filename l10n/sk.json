@@ -24,9 +24,9 @@
     "Client secret of your GitHub application" : "Tajomstvo klienta vašej aplikácie GitHub",
     "GitHub admin options saved" : "Možnosti administrátora GitHub boli uložené",
     "Failed to save GitHub admin options" : "Nepodarilo sa uložiť možnosti administrátora GitHub",
-    "Enable navigation link" : "Povoliť navigačný odkaz",
     "When you create a personal access token yourself, give it at least \"read:user\", \"user:email\" and \"notifications\" permissions." : "Keď si sami vytvoríte prístupový token, udeľte mu aspoň práva „read_user“, „user:email“ a „notifications“.",
     "GitHub personal access tokens" : "GitHub osobné prístupové tokeny",
+    "Enable navigation link" : "Povoliť navigačný odkaz",
     "Personal access token" : "Osobný prístupový token",
     "GitHub personal access token" : "GitLab osobný prístupový token",
     "Connect to GitHub" : "Pripojiť ku GitHubu",
@@ -38,9 +38,7 @@
     "Connected to GitHub!" : "Pripojené k GitHubu!",
     "GitHub OAuth error:" : "Chyba GitHub OAuth:",
     "GitHub options saved" : "Nastavenia GitHubu boli uložené",
-    "Incorrect access token" : "Nesprávny prístupový token",
     "Failed to save GitHub options" : "Nepodarilo sa uložiť nastavenia GitHubu",
-    "Failed to save GitHub OAuth state" : "Nepodarilo sa uložiť stav OAuth GitHubu",
     "Mark as read" : "Označiť ako prečítané",
     "Unsubscribe" : "Odhlásiť",
     "No GitHub account connected" : "Nie je pripojený žiadny GitHub účet",
@@ -48,6 +46,7 @@
     "No GitHub notifications!" : "Žiadne upozornenia z GitHubu!",
     "Failed to get GitHub notifications" : "Chyba pri získavaní upozornení z GitHubu",
     "Successfully unsubscribed" : "Úspešne odhlásený",
-    "Failed to edit GitHub notification" : "Nepodarilo sa upraviť notifikáciu GitHubu"
+    "Failed to edit GitHub notification" : "Nepodarilo sa upraviť notifikáciu GitHubu",
+    "Failed to save GitHub OAuth state" : "Nepodarilo sa uložiť stav OAuth GitHubu"
 },"pluralForm" :"nplurals=4; plural=(n % 1 == 0 && n == 1 ? 0 : n % 1 == 0 && n >= 2 && n <= 4 ? 1 : n % 1 != 0 ? 2: 3);"
 }

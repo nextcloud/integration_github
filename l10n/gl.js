@@ -25,9 +25,9 @@ OC.L10N.register(
     "Client secret of your GitHub application" : "Segredo do cliente da súa aplicación de GitHub",
     "GitHub admin options saved" : "Gardáronse as opcións de administración de GitHub",
     "Failed to save GitHub admin options" : "Produciuse un fallo ao gardar as opcións de administración de GitHub.",
-    "Enable navigation link" : "Activar a ligazón de navegación",
     "When you create a personal access token yourself, give it at least \"read:user\", \"user:email\" and \"notifications\" permissions." : "Cando vostede cree un testemuño de acceso, déalle polo menos os permisos «read:user», «user:email» e «notifications».",
     "GitHub personal access tokens" : "Testemuños de acceso persoal ao GitHub",
+    "Enable navigation link" : "Activar a ligazón de navegación",
     "Personal access token" : "Testemuño de acceso persoal",
     "GitHub personal access token" : "Testemuño de acceso persoal ao GitHub",
     "Connect to GitHub" : "Conectar con GitHub",
@@ -39,9 +39,7 @@ OC.L10N.register(
     "Connected to GitHub!" : "Conectado con GitHub",
     "GitHub OAuth error:" : "Erro do OAuth de GitHub:",
     "GitHub options saved" : "Gardáronse as opcións de GitHub",
-    "Incorrect access token" : "Testemuño de acceso incorrecto",
     "Failed to save GitHub options" : "Produciuse un fallo ao gardar as opcións de GitHub.",
-    "Failed to save GitHub OAuth state" : "Produciuse un fallo ao gardar o estado do OAuth de GitHub",
     "Mark as read" : "Marcar como lido",
     "Unsubscribe" : "Desubscribir",
     "No GitHub account connected" : "Non hai ningunha conta de GitHub conectada",
@@ -49,6 +47,7 @@ OC.L10N.register(
     "No GitHub notifications!" : "Non hai notificacións de GitHub.",
     "Failed to get GitHub notifications" : "Produciuse un fallo ao obter as notificacións de GitHub",
     "Successfully unsubscribed" : "Desubscrito satisfactoriamente",
-    "Failed to edit GitHub notification" : "Produciuse un fallo ao editar a notificación de GitHub"
+    "Failed to edit GitHub notification" : "Produciuse un fallo ao editar a notificación de GitHub",
+    "Failed to save GitHub OAuth state" : "Produciuse un fallo ao gardar o estado do OAuth de GitHub"
 },
 "nplurals=2; plural=(n != 1);");

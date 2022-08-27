@@ -22,11 +22,12 @@
     "Client ID of your GitHub application" : "ID client de votre application GitHub",
     "Client secret" : "Secret client",
     "Client secret of your GitHub application" : "Secret client de votre application GitHub",
+    "Use a popup to authenticate" : "Utiliser un pop-up pour s'authentifier",
     "GitHub admin options saved" : "Options d'administration GitHub enregistrées",
     "Failed to save GitHub admin options" : "Échec de l'enregistrement des options d'administration GitHub",
-    "Enable navigation link" : "Activer le lien de navigation",
     "When you create a personal access token yourself, give it at least \"read:user\", \"user:email\" and \"notifications\" permissions." : "Lorsque vous créez vous-même un jeton d'accès personnel, donnez-lui au moins les autorisations «read:user», «user:email» et «notifications».",
     "GitHub personal access tokens" : "Jeton d'accès personnel GitHub",
+    "Enable navigation link" : "Activer le lien de navigation",
     "Personal access token" : "Jeton d'accès personnel",
     "GitHub personal access token" : "Jeton d'accès personnel GitHub",
     "Connect to GitHub" : "Se connecter à GitHub",
@@ -38,9 +39,7 @@
     "Connected to GitHub!" : "Connecté à GitHub !",
     "GitHub OAuth error:" : "Erreur GitHub OAuth :",
     "GitHub options saved" : "Options GitHub enregistrées",
-    "Incorrect access token" : "Jeton d'accès incorrect",
     "Failed to save GitHub options" : "Échec de l'enregistrement des options GitHub",
-    "Failed to save GitHub OAuth state" : "Échec de l'enregistrement de l'état OAuth de GitHub",
     "Mark as read" : "Marquer comme lu",
     "Unsubscribe" : "Se désabonner",
     "No GitHub account connected" : "Aucun compte GitHub connecté",
@@ -48,6 +47,7 @@
     "No GitHub notifications!" : "Pas de notification GitHub !",
     "Failed to get GitHub notifications" : "Échec de l'obtention des notifications GitHub",
     "Successfully unsubscribed" : "Désabonnement réussi",
-    "Failed to edit GitHub notification" : "Échec de la modification de la notification GitHub"
+    "Failed to edit GitHub notification" : "Échec de la modification de la notification GitHub",
+    "Failed to save GitHub OAuth state" : "Échec de l'enregistrement de l'état OAuth de GitHub"
 },"pluralForm" :"nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;"
 }

@@ -20,7 +20,6 @@ OC.L10N.register(
     "Disconnect from GitHub" : "GitHub와 연결 해제",
     "Connected to GitHub!" : "GitHub와 연결되었습니다!",
     "GitHub OAuth error:" : "GitHub OAuth 오류:",
-    "Incorrect access token" : "잘못된 액세스 토큰",
     "Mark as read" : "읽은 것으로 표시",
     "Unsubscribe" : "구독 취소",
     "No GitHub account connected" : "연결된 GitHub 계정 없음",

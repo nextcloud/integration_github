@@ -24,11 +24,12 @@ OC.L10N.register(
     "Client ID of your GitHub application" : "GitHub aplikazioaren bezero IDa",
     "Client secret" : "Bezeroaren sekretua",
     "Client secret of your GitHub application" : "GitHub aplikazioaren bezero-sekretua",
+    "Use a popup to authenticate" : "Erabili laster-menua autentifikatzeko",
     "GitHub admin options saved" : "GitHub administratzaile aukerak ondo gorde dira",
     "Failed to save GitHub admin options" : "GitHub admin aukerak gordetzeak huts egin du",
-    "Enable navigation link" : "Gaitu nabigazio esteka",
     "When you create a personal access token yourself, give it at least \"read:user\", \"user:email\" and \"notifications\" permissions." : "Zuk zeuk sarbide token pertsonal bat sortzen duzunean, eman iezazkiozu gutxienez \"read:user\", \"user:email\" eta \"notifications\" baimenak.",
     "GitHub personal access tokens" : "GitHub sarbide token pertsonalak",
+    "Enable navigation link" : "Gaitu nabigazio esteka",
     "Personal access token" : "Sarbide token pertsonala",
     "GitHub personal access token" : "GitHub sarbide token pertsonala",
     "Connect to GitHub" : "Konektatu GitHub-era",
@@ -40,9 +41,7 @@ OC.L10N.register(
     "Connected to GitHub!" : "GitHub-era konektatuta!",
     "GitHub OAuth error:" : "GitHub OAuth errorea:",
     "GitHub options saved" : "GitHub aukerak gordeta",
-    "Incorrect access token" : "Sarbide token okerra",
     "Failed to save GitHub options" : "GitHub aukerak gordetzeak huts egin du",
-    "Failed to save GitHub OAuth state" : "GitHub OAuth egoera gordetzeak huts egin du",
     "Mark as read" : "Markatu irakurri gisa",
     "Unsubscribe" : "Harpidetza kendu",
     "No GitHub account connected" : "Ez dago GitHub konturik konektatuta",
@@ -50,6 +49,7 @@ OC.L10N.register(
     "No GitHub notifications!" : "Ez dago GitHub jakinarazpenik!",
     "Failed to get GitHub notifications" : "GitHub jakinarazpenak jasotzeak huts egin du",
     "Successfully unsubscribed" : "Ondo kendu da harpidetza",
-    "Failed to edit GitHub notification" : "GitHub jakinarazpena editatzeak huts egin du"
+    "Failed to edit GitHub notification" : "GitHub jakinarazpena editatzeak huts egin du",
+    "Failed to save GitHub OAuth state" : "GitHub OAuth egoera gordetzeak huts egin du"
 },
 "nplurals=2; plural=(n != 1);");

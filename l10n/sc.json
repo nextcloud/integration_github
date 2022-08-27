@@ -24,9 +24,9 @@
     "Client secret of your GitHub application" : "Segretu de cliente de s'aplicatzione de GitHub",
     "GitHub admin options saved" : "Optziones de aministratzione de Github sarvadas",
     "Failed to save GitHub admin options" : "Errore sarvende is sèberos de amministratzione de Github",
-    "Enable navigation link" : "Ativa su ligòngiu de navigatzione",
     "When you create a personal access token yourself, give it at least \"read:user\", \"user:email\" and \"notifications\" permissions." : "Cando as a creare tue etotu unu token de intrada personale, dae·li a su mancu is permisos «read:user», «user:email» y «notifications».",
     "GitHub personal access tokens" : "Tokens de intrada personales de GitHub",
+    "Enable navigation link" : "Ativa su ligòngiu de navigatzione",
     "Personal access token" : "Token de intrada personale",
     "GitHub personal access token" : "Token de intrada personale a GitHub",
     "Connect to GitHub" : "Connète a GitHub",
@@ -38,9 +38,7 @@
     "Connected to GitHub!" : "Connètidu a GitHub!",
     "GitHub OAuth error:" : "Errore OAuth de Github:",
     "GitHub options saved" : "Sèberos de GitHub sarvados",
-    "Incorrect access token" : "Token de intrada non bàlidu",
     "Failed to save GitHub options" : "No at fatu a sarvare is sèberos de GitHub",
-    "Failed to save GitHub OAuth state" : "No at fatu a sarvare s'istadu OAuth de GitHub",
     "Mark as read" : "Marca comente lèghidu",
     "Unsubscribe" : "Disiscrie·ti",
     "No GitHub account connected" : "No b'at contos de GitHub connètidos",
@@ -48,6 +46,7 @@
     "No GitHub notifications!" : "No b'at notìficas de GitHub!",
     "Failed to get GitHub notifications" : "No at fatu a otènnere is notìficas de GitHub",
     "Successfully unsubscribed" : "Disiscritu in manera curreta",
-    "Failed to edit GitHub notification" : "No at fatu a modificare sa notìfica de GitHub"
+    "Failed to edit GitHub notification" : "No at fatu a modificare sa notìfica de GitHub",
+    "Failed to save GitHub OAuth state" : "No at fatu a sarvare s'istadu OAuth de GitHub"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

@@ -24,11 +24,12 @@ OC.L10N.register(
     "Client ID of your GitHub application" : "ID de cliente de tu aplicación de GitHub",
     "Client secret" : "Cliente secreto",
     "Client secret of your GitHub application" : "Secreto de cliente de tu aplicación de GitHub",
+    "Use a popup to authenticate" : "Usa una ventana emergente para autenticar",
     "GitHub admin options saved" : "Opciones de administración de GitHub guardadas",
     "Failed to save GitHub admin options" : "Fallo al guardar las opciones de administración de GitHub",
-    "Enable navigation link" : "Habilita el enlace de navegación",
     "When you create a personal access token yourself, give it at least \"read:user\", \"user:email\" and \"notifications\" permissions." : "Cuando crees tú mismo un token de acceso personal, dale al menos los permisos «read:user», «user:email» y «notifications».",
     "GitHub personal access tokens" : "Tokens de acceso personales de GitHub",
+    "Enable navigation link" : "Habilita el enlace de navegación",
     "Personal access token" : "Token de acceso personal",
     "GitHub personal access token" : "Token de acceso personal a GitHub",
     "Connect to GitHub" : "Conectar con GitHub",
@@ -40,9 +41,7 @@ OC.L10N.register(
     "Connected to GitHub!" : "¡Conectado con GitHub!",
     "GitHub OAuth error:" : "Error OAuth de GitHub:",
     "GitHub options saved" : "Opciones de GitHub guardadas",
-    "Incorrect access token" : "Token de acceso incorrecto",
     "Failed to save GitHub options" : "Fallo al guardar las opciones de GitHub",
-    "Failed to save GitHub OAuth state" : "Fallo al guardar el estado OAuth de GitHub",
     "Mark as read" : "Marcar como leído",
     "Unsubscribe" : "Desuscribirse",
     "No GitHub account connected" : "No hay cuentas de GitHub conectadas",
@@ -50,6 +49,7 @@ OC.L10N.register(
     "No GitHub notifications!" : "¡No hay notificaciones de GitHub!",
     "Failed to get GitHub notifications" : "Fallo al obtener las notificaciones de GitHub",
     "Successfully unsubscribed" : "Desuscrito con éxito",
-    "Failed to edit GitHub notification" : "Fallo al editar la notificación de GitHub"
+    "Failed to edit GitHub notification" : "Fallo al editar la notificación de GitHub",
+    "Failed to save GitHub OAuth state" : "Fallo al guardar el estado OAuth de GitHub"
 },
 "nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;");
