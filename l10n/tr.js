@@ -41,6 +41,7 @@ OC.L10N.register(
     "Connected to GitHub!" : "GitHub ile bağlantı kuruldu!",
     "GitHub OAuth error:" : "GitHub OAuth sorunu:",
     "GitHub options saved" : "GitHub ayarları kaydedildi",
+    "Invalid access token" : "Erişim kodu geçersiz",
     "Failed to save GitHub options" : "GitHub ayarları kaydedilemedi",
     "Mark as read" : "Okunmuş olarak işaretle",
     "Unsubscribe" : "Abonelikten ayrıl",

@@ -39,6 +39,7 @@
     "Connected to GitHub!" : "已連線至 GitHub！",
     "GitHub OAuth error:" : "GitHub OAuth 錯誤：",
     "GitHub options saved" : "已儲存 GitHub 選項",
+    "Invalid access token" : "無效的存取權杖",
     "Failed to save GitHub options" : "儲存 GitHub 選項失敗",
     "Mark as read" : "標為已讀",
     "Unsubscribe" : "取消訂閱",

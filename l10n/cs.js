@@ -41,6 +41,7 @@ OC.L10N.register(
     "Connected to GitHub!" : "Spojeno s GitHub!",
     "GitHub OAuth error:" : "Chyba GitHub OAuth:",
     "GitHub options saved" : "Předvolby pro GitHub uloženy.",
+    "Invalid access token" : "Neplatný přístupový token",
     "Failed to save GitHub options" : "Nepodařilo se uložit předvolby pro GitHub",
     "Mark as read" : "Označit jako přečtené",
     "Unsubscribe" : "Zrušit přihlášení k odběru",
