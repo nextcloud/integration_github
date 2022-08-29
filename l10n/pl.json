@@ -39,6 +39,7 @@
     "Connected to GitHub!" : "Połączono z GitHubem!",
     "GitHub OAuth error:" : "Błąd OAuth GitHub:",
     "GitHub options saved" : "Opcje GitHuba zostały zapisane",
+    "Invalid access token" : "Nieprawidłowy token dostępu",
     "Failed to save GitHub options" : "Nie udało się zapisać opcji GitHuba",
     "Mark as read" : "Oznacz jako przeczytane",
     "Unsubscribe" : "Wypisz się",
