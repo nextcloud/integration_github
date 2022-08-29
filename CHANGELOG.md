@@ -6,7 +6,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
-## 1.0.3 – 2022-08-26
+## 1.0.4 – 2022-08-26
 ### Added
 - optionally authenticate with a popup (OAuth only)
 - allow connection directly from the dashboard (with or without a popup)
