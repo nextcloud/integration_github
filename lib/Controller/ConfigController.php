@@ -47,7 +47,10 @@ class ConfigController extends Controller {
 	 * @var string|null
 	 */
 	private $userId;
-	private IInitialState $initialStateService;
+	/**
+	 * @var IInitialState
+	 */
+	private $initialStateService;
 
 	public function __construct(string $appName,
 								IRequest $request,

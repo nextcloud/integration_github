@@ -40,9 +40,18 @@ class GithubWidget implements IWidget {
 	 * @var IURLGenerator
 	 */
 	private $url;
-	private IConfig $config;
-	private IInitialState $initialStateService;
-	private ?string $userId;
+	/**
+	 * @var IConfig
+	 */
+	private $config;
+	/**
+	 * @var IInitialState
+	 */
+	private $initialStateService;
+	/**
+	 * @var string|null
+	 */
+	private $userId;
 
 	public function __construct(IL10N $l10n,
 								IConfig $config,

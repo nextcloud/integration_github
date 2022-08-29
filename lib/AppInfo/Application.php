@@ -9,11 +9,9 @@
 
 namespace OCA\Github\AppInfo;
 
-use OCP\IContainer;
 use OCP\IUserSession;
 
 use OCP\AppFramework\App;
-use OCP\AppFramework\IAppContainer;
 use OCP\AppFramework\Bootstrap\IRegistrationContext;
 use OCP\AppFramework\Bootstrap\IBootContext;
 use OCP\AppFramework\Bootstrap\IBootstrap;
