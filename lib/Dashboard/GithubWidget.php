@@ -23,8 +23,9 @@
 
 namespace OCA\Github\Dashboard;
 
+use OCA\Github\Service\GithubAPIService;
 use OCP\AppFramework\Services\IInitialState;
-use OCP\Dashboard\IWidget;
+use OCP\Dashboard\IAPIWidget;
 use OCP\IConfig;
 use OCP\IL10N;
 use OCP\IURLGenerator;
@@ -32,14 +33,10 @@ use OCP\Util;
 
 use OCA\Github\AppInfo\Application;
 
-class GithubWidget implements IWidget {
+class GithubWidget implements IAPIWidget {
 
 	/** @var IL10N */
 	private $l10n;
-	/**
-	 * @var IURLGenerator
-	 */
-	private $url;
 	/**
 	 * @var IConfig
 	 */
@@ -52,17 +49,27 @@ class GithubWidget implements IWidget {
 	 * @var string|null
 	 */
 	private $userId;
+	/**
+	 * @var GithubAPIService
+	 */
+	private $githubAPIService;
+	/**
+	 * @var IURLGenerator
+	 */
+	private $urlGenerator;
 
 	public function __construct(IL10N $l10n,
 								IConfig $config,
-								IURLGenerator $url,
+								IURLGenerator $urlGenerator,
 								IInitialState $initialStateService,
+								GithubAPIService $githubAPIService,
 								?string $userId) {
 		$this->l10n = $l10n;
-		$this->url = $url;
 		$this->config = $config;
 		$this->initialStateService = $initialStateService;
 		$this->userId = $userId;
+		$this->githubAPIService = $githubAPIService;
+		$this->urlGenerator = $urlGenerator;
 	}
 
 	/**
@@ -97,7 +104,7 @@ class GithubWidget implements IWidget {
 	 * @inheritDoc
 	 */
 	public function getUrl(): ?string {
-		return $this->url->linkToRoute('settings.PersonalSettings.index', ['section' => 'connected-accounts']);
+		return $this->urlGenerator->linkToRoute('settings.PersonalSettings.index', ['section' => 'connected-accounts']);
 	}
 
 	/**
@@ -117,5 +124,16 @@ class GithubWidget implements IWidget {
 		$this->initialStateService->provideInitialState('user-config', $userConfig);
 		Util::addScript(Application::APP_ID, 'integration_github-dashboard');
 		Util::addStyle(Application::APP_ID, 'dashboard');
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function getItems(string $userId, ?string $since = null, int $limit = 7): array {
+		$notifications = $this->githubAPIService->getNotifications($this->userId, null, $since, $limit);
+		$that = $this;
+		return array_map(static function(array $notification) use ($that) {
+			return $that->githubAPIService->getWidgetFromNotification($notification);
+		}, $notifications);
 	}
 }

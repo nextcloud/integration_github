@@ -11,6 +11,7 @@
 
 namespace OCA\Github\Controller;
 
+use OCP\AppFramework\Http;
 use OCP\AppFramework\Http\DataDisplayResponse;
 use OCP\IRequest;
 use OCP\AppFramework\Http\DataResponse;
@@ -47,7 +48,7 @@ class GithubAPIController extends Controller {
 	 * @return DataResponse the notifications
 	 */
 	public function getNotifications(?string $since = null): DataResponse {
-		$result = $this->githubAPIService->getNotifications($this->userId, $since, false);
+		$result = $this->githubAPIService->getNotifications($this->userId, false, $since);
 		if (isset($result['error'])) {
 			$response = new DataResponse($result['error'], 401);
 		} else {
@@ -100,14 +101,17 @@ class GithubAPIController extends Controller {
 	 * @throws \Exception
 	 */
 	public function getAvatar(string $githubUserName): DataDisplayResponse {
-		$avatarContent = $this->githubAPIService->getAvatar($this->userId, $githubUserName);
-		if (is_null($avatarContent)) {
-			return new DataDisplayResponse('', 400);
-		} else {
-			$response = new DataDisplayResponse($avatarContent);
-			$response->cacheFor(60*60*24);
+		$avatar = $this->githubAPIService->getAvatar($this->userId, $githubUserName);
+		if ($avatar !== null && isset($avatar['body'], $avatar['headers'])) {
+			$response = new DataDisplayResponse(
+				$avatar['body'],
+				Http::STATUS_OK,
+				['Content-Type' => $avatar['headers']['Content-Type'][0] ?? 'image/jpeg']
+			);
+			$response->cacheFor(60 * 60 * 24);
 			return $response;
 		}
+		return new DataDisplayResponse('', 400);
 	}
 
 	/**

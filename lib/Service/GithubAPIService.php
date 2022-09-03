@@ -15,8 +15,10 @@ use DateInterval;
 use DateTime;
 use Exception;
 use OCA\Github\AppInfo\Application;
+use OCP\Dashboard\Model\WidgetItem;
 use OCP\IConfig;
 use OCP\IL10N;
+use OCP\IURLGenerator;
 use Psr\Log\LoggerInterface;
 use OCP\Http\Client\IClientService;
 use Throwable;
@@ -38,6 +40,10 @@ class GithubAPIService {
 	 * @var IConfig
 	 */
 	private $config;
+	/**
+	 * @var IURLGenerator
+	 */
+	private $urlGenerator;
 
 	/**
 	 * Service to make requests to GitHub v3 (JSON) API
@@ -46,24 +52,30 @@ class GithubAPIService {
 								LoggerInterface $logger,
 								IL10N $l10n,
 								IConfig $config,
+								IURLGenerator $urlGenerator,
 								IClientService $clientService) {
 		$this->logger = $logger;
 		$this->l10n = $l10n;
 		$this->client = $clientService->newClient();
 		$this->config = $config;
+		$this->urlGenerator = $urlGenerator;
 	}
 
 	/**
 	 * Request an avatar image
 	 * @param string $userId
 	 * @param string $githubUserName
-	 * @return ?string Avatar image data
+	 * @return array|null Avatar image data
 	 * @throws Exception
 	 */
-	public function getAvatar(string $userId, string $githubUserName): ?string {
+	public function getAvatar(string $userId, string $githubUserName): ?array {
 		$userInfo = $this->request($userId, 'users/' . $githubUserName);
 		if (!isset($userInfo['error']) && isset($userInfo['avatar_url'])) {
-			return $this->client->get($userInfo['avatar_url'])->getBody();
+			$avatarResponse = $this->client->get($userInfo['avatar_url']);
+			return [
+				'body' => $avatarResponse->getBody(),
+				'headers' => $avatarResponse->getHeaders(),
+			];
 		}
 		return null;
 	}
@@ -71,11 +83,12 @@ class GithubAPIService {
 	/**
 	 * Actually get notifications
 	 * @param string $userId
-	 * @param ?string $since optional date to filter notifications
 	 * @param ?bool $participating optional param to only show notifications the user is participating to
+	 * @param ?string $since optional date to filter notifications
+	 * @param int $limit
 	 * @return array notification list or error
 	 */
-	public function getNotifications(string $userId, ?string $since = null, ?bool $participating = null): array {
+	public function getNotifications(string $userId, ?bool $participating = null, ?string $since = null, int $limit = 7): array {
 		$params = [];
 		if (is_null($since)) {
 			$twoWeeksEarlier = new DateTime();
@@ -87,7 +100,72 @@ class GithubAPIService {
 		if (!is_null($participating)) {
 			$params['participating'] = $participating ? 'true' : 'false';
 		}
-		return $this->request($userId, 'notifications', $params);
+		$notifications = $this->request($userId, 'notifications', $params);
+		if (isset($notifications['error'])) {
+			return $notifications;
+		}
+		$interestingNotifications = array_filter($notifications, static function(array $notification) {
+			return $notification['unread']
+				&& (
+					in_array($notification['reason'], ['assign', 'mention', 'review_requested'])
+					|| (
+						$notification['reason'] === 'subscribed' && ($notification['subject']['type'] ?? '') === 'Release'
+					)
+				);
+		});
+		return array_slice($interestingNotifications, 0, $limit);
+	}
+
+	public function getWidgetFromNotification(array $notification): WidgetItem {
+		return new WidgetItem(
+			$notification['subject']['title'] ?? '',
+			($notification['repository']['name'] ?? '') . $this->getTargetIdentifier($notification),
+			$this->getItemLink($notification),
+			$this->getItemIconUrl($notification),
+			$notification['updated_at'] ?? ''
+		);
+	}
+
+	private function getItemIconUrl(array $notification): string {
+		$repoOwnerLogin = $notification['repository']['owner']['login'] ?? '';
+		return $repoOwnerLogin === ''
+			? ''
+			: $this->urlGenerator->getAbsoluteURL(
+				$this->urlGenerator->linkToRoute(Application::APP_ID . '.githubAPI.getAvatar', [
+					'githubUserName' => $repoOwnerLogin,
+				])
+			);
+	}
+
+	private function getTargetIdentifier(array $notification): string {
+		if (in_array($notification['subject']['type'] ?? '', ['PullRequest', 'Issue'])
+			&& isset($notification['subject']['url'])
+			&& $notification['subject']['url']
+		) {
+			$parts = explode('/', $notification['subject']['url']);
+			if (count($parts) > 0) {
+				return '#' . end($parts);
+			}
+		}
+		return '';
+	}
+
+	private function getItemLink(array $notification): string {
+		$subjectType = $notification['subject']['type'] ?? '';
+		if ($subjectType === 'Release') {
+			$url = $notification['subject']['url'] ?? '';
+			$url = str_replace('api.github.com', 'github.com', $url);
+			$url = str_replace('/repos/', '/', $url);
+			return preg_replace('/\/[0-9]+/', '', $url);
+		} elseif ($subjectType !== 'Discussion') {
+			$url = $notification['subject']['url'] ?? '';
+			$url = str_replace('api.github.com', 'github.com', $url);
+			$url = str_replace('/repos/', '/', $url);
+			return str_replace('/pulls/', '/pull/', $url);
+		}
+		// this is a discussion
+		$repoFullName = $notification['repository']['full_name'] ?? '';
+		return 'https://github.com/' . $repoFullName . '/discussions';
 	}
 
 	/**
