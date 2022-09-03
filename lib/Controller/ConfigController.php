@@ -93,7 +93,7 @@ class ConfigController extends Controller {
 
 		if (isset($values['token'])) {
 			if ($values['token'] && $values['token'] !== '') {
-				$userInfo = $this->storeUserInfo($values['token']);
+				$userInfo = $this->storeUserInfo();
 				$result['user_name'] = $userInfo['user_name'];
 				$result['user_displayname'] = $userInfo['user_displayname'];
 				// store token type if it's valid (so we have a user name)
@@ -167,7 +167,7 @@ class ConfigController extends Controller {
 				$accessToken = $result['access_token'];
 				$this->config->setUserValue($this->userId, Application::APP_ID, 'token', $accessToken);
 				$this->config->setUserValue($this->userId, Application::APP_ID, 'token_type', 'oauth');
-				$userInfo = $this->storeUserInfo($accessToken);
+				$userInfo = $this->storeUserInfo();
 
 				$usePopup = $this->config->getAppValue(Application::APP_ID, 'use_popup', '0') === '1';
 				if ($usePopup) {
@@ -209,12 +209,11 @@ class ConfigController extends Controller {
 	/**
 	 * get and store connected user info
 	 *
-	 * @param string $accessToken
 	 * @return array
 	 * @throws PreConditionNotMetException
 	 */
-	private function storeUserInfo(string $accessToken): array {
-		$info = $this->githubAPIService->request($accessToken, 'user');
+	private function storeUserInfo(): array {
+		$info = $this->githubAPIService->request($this->userId, 'user');
 		if (isset($info['login'], $info['id'])) {
 			$this->config->setUserValue($this->userId, Application::APP_ID, 'user_id', $info['id']);
 			$this->config->setUserValue($this->userId, Application::APP_ID, 'user_name', $info['login']);

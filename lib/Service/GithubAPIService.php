@@ -19,12 +19,9 @@ use OCP\IConfig;
 use OCP\IL10N;
 use Psr\Log\LoggerInterface;
 use OCP\Http\Client\IClientService;
+use Throwable;
 
 class GithubAPIService {
-	/**
-	 * @var string
-	 */
-	private $appName;
 	/**
 	 * @var LoggerInterface
 	 */
@@ -50,7 +47,6 @@ class GithubAPIService {
 								IL10N $l10n,
 								IConfig $config,
 								IClientService $clientService) {
-		$this->appName = $appName;
 		$this->logger = $logger;
 		$this->l10n = $l10n;
 		$this->client = $clientService->newClient();
@@ -59,12 +55,13 @@ class GithubAPIService {
 
 	/**
 	 * Request an avatar image
-	 * @param string $accessToken
+	 * @param string $userId
 	 * @param string $githubUserName
 	 * @return ?string Avatar image data
+	 * @throws Exception
 	 */
-	public function getAvatar(string $accessToken, string $githubUserName): ?string {
-		$userInfo = $this->request($accessToken, 'users/' . $githubUserName);
+	public function getAvatar(string $userId, string $githubUserName): ?string {
+		$userInfo = $this->request($userId, 'users/' . $githubUserName);
 		if (!isset($userInfo['error']) && isset($userInfo['avatar_url'])) {
 			return $this->client->get($userInfo['avatar_url'])->getBody();
 		}
@@ -73,12 +70,12 @@ class GithubAPIService {
 
 	/**
 	 * Actually get notifications
-	 * @param string $accessToken
+	 * @param string $userId
 	 * @param ?string $since optional date to filter notifications
 	 * @param ?bool $participating optional param to only show notifications the user is participating to
 	 * @return array notification list or error
 	 */
-	public function getNotifications(string $accessToken, ?string $since = null, ?bool $participating = null): array {
+	public function getNotifications(string $userId, ?string $since = null, ?bool $participating = null): array {
 		$params = [];
 		if (is_null($since)) {
 			$twoWeeksEarlier = new DateTime();
@@ -90,46 +87,46 @@ class GithubAPIService {
 		if (!is_null($participating)) {
 			$params['participating'] = $participating ? 'true' : 'false';
 		}
-		return $this->request($accessToken, 'notifications', $params);
+		return $this->request($userId, 'notifications', $params);
 	}
 
 	/**
 	 * Unsubscribe a notification, does the same as in GitHub notifications page
-	 * @param string $accessToken
+	 * @param string $userId
 	 * @param int $id Notification id
 	 * @return array request result
 	 */
-	public function unsubscribeNotification(string $accessToken, int $id): array {
+	public function unsubscribeNotification(string $userId, int $id): array {
 		$params = [
 			'ignored' => true
 		];
-		return $this->request($accessToken, 'notifications/threads/' . $id . '/subscription', $params, 'PUT');
+		return $this->request($userId, 'notifications/threads/' . $id . '/subscription', $params, 'PUT');
 	}
 
 	/**
 	 * Mark a notification as read
-	 * @param string $accessToken
+	 * @param string $userId
 	 * @param int $id Notification id
 	 * @return array request result
 	 */
-	public function markNotificationAsRead(string $accessToken, int $id): array {
-		return $this->request($accessToken, 'notifications/threads/' . $id, [], 'POST');
+	public function markNotificationAsRead(string $userId, int $id): array {
+		return $this->request($userId, 'notifications/threads/' . $id, [], 'POST');
 	}
 
 	/**
 	 * Search repositories
-	 * @param string $accessToken
+	 * @param string $userId
 	 * @param string $query What to search for
 	 * @param int $offset
 	 * @param int $limit
 	 * @return array request result
 	 */
-	public function searchRepositories(string $accessToken, string $query, int $offset = 0, int $limit = 5): array {
+	public function searchRepositories(string $userId, string $query, int $offset = 0, int $limit = 5): array {
 		$params = [
 			'q' => $query,
 			'order' => 'desc'
 		];
-		$result = $this->request($accessToken, 'search/repositories', $params, 'GET');
+		$result = $this->request($userId, 'search/repositories', $params, 'GET');
 		if (!isset($result['error'])) {
 			$result['items'] = array_slice($result['items'], $offset, $limit);
 		}
@@ -138,18 +135,18 @@ class GithubAPIService {
 
 	/**
 	 * Search issues and PRs
-	 * @param string $accessToken
+	 * @param string $userId
 	 * @param string $query What to search for
 	 * @param int $offset
 	 * @param int $limit
 	 * @return array request result
 	 */
-	public function searchIssues(string $accessToken, string $query, int $offset = 0, int $limit = 5): array {
+	public function searchIssues(string $userId, string $query, int $offset = 0, int $limit = 5): array {
 		$params = [
 			'q' => $query,
 			'order' => 'desc'
 		];
-		$result = $this->request($accessToken, 'search/issues', $params, 'GET');
+		$result = $this->request($userId, 'search/issues', $params, 'GET');
 		if (!isset($result['error'])) {
 			$result['items'] = array_slice($result['items'], $offset, $limit);
 			$reposToGet = [];
@@ -160,7 +157,7 @@ class GithubAPIService {
 				$repo = $spl[1];
 				$number = $entry['number'];
 				if (isset($entry['pull_request'])) {
-					$info = $this->request($accessToken, 'repos/' . $owner . '/' . $repo . '/' . 'pulls/' . $number);
+					$info = $this->request($userId, 'repos/' . $owner . '/' . $repo . '/' . 'pulls/' . $number);
 					if (!isset($info['error'])) {
 						$result['items'][$k]['merged'] = $info['merged'];
 						if (isset($info['head'], $info['head']['repo'], $info['head']['repo']['owner'], $info['head']['repo']['owner']['login'], $info['head']['repo']['owner']['avatar_url'])) {
@@ -180,7 +177,7 @@ class GithubAPIService {
 			$repoAvatarUrls = [];
 			$repoOwnerLogins = [];
 			foreach ($reposToGet as $repo) {
-				$info = $this->request($accessToken, 'repos/' . $repo['owner'] . '/' . $repo['repo']);
+				$info = $this->request($userId, 'repos/' . $repo['owner'] . '/' . $repo['repo']);
 				if (!isset($info['error']) && isset($info['owner'], $info['owner']['avatar_url'], $info['owner']['login'])) {
 					$repoAvatarUrls[$repo['key']] = $info['owner']['avatar_url'];
 					$repoOwnerLogins[$repo['key']] = $info['owner']['login'];
@@ -200,34 +197,61 @@ class GithubAPIService {
 		return $result;
 	}
 
-	public function getUserInfo(string $accessToken, string $githubUserName): array {
-		return $this->request($accessToken, 'users/' . $githubUserName);
-	}
-
-	public function getIssueInfo(string $accessToken, string $owner, string $repo, int $issueNumber): array {
-		$endpoint = 'repos/' . $owner . '/' . $repo . '/issues/' . $issueNumber;
-		return $this->request($accessToken, $endpoint);
-	}
-
-	public function getIssueCommentInfo(string $accessToken, string $owner, string $repo, int $commentId): array {
-		$endpoint = 'repos/' . $owner . '/' . $repo . '/issues/comments/' . $commentId;
-		return $this->request($accessToken, $endpoint);
-	}
-
-	public function getPrInfo(string $accessToken, string $owner, string $repo, int $prNumber): array {
-		$endpoint = 'repos/' . $owner . '/' . $repo . '/pulls/' . $prNumber;
-		return $this->request($accessToken, $endpoint);
+	/**
+	 * @param string $userId
+	 * @param string $githubUserName
+	 * @return array
+	 */
+	public function getUserInfo(string $userId, string $githubUserName): array {
+		return $this->request($userId, 'users/' . $githubUserName);
 	}
 
 	/**
-	 * Make the HTTP request
-	 * @param string $accessToken
+	 * @param string $userId
+	 * @param string $owner
+	 * @param string $repo
+	 * @param int $issueNumber
+	 * @return array
+	 */
+	public function getIssueInfo(string $userId, string $owner, string $repo, int $issueNumber): array {
+		$endpoint = 'repos/' . $owner . '/' . $repo . '/issues/' . $issueNumber;
+		return $this->request($userId, $endpoint);
+	}
+
+	/**
+	 * @param string $userId
+	 * @param string $owner
+	 * @param string $repo
+	 * @param int $commentId
+	 * @return array
+	 */
+	public function getIssueCommentInfo(string $userId, string $owner, string $repo, int $commentId): array {
+		$endpoint = 'repos/' . $owner . '/' . $repo . '/issues/comments/' . $commentId;
+		return $this->request($userId, $endpoint);
+	}
+
+	/**
+	 * @param string $userId
+	 * @param string $owner
+	 * @param string $repo
+	 * @param int $prNumber
+	 * @return array
+	 */
+	public function getPrInfo(string $userId, string $owner, string $repo, int $prNumber): array {
+		$endpoint = 'repos/' . $owner . '/' . $repo . '/pulls/' . $prNumber;
+		return $this->request($userId, $endpoint);
+	}
+
+	/**
+	 * Make an authenticated HTTP request to GitHub API
+	 * @param string $userId
 	 * @param string $endPoint The path to reach in api.github.com
 	 * @param array $params Query parameters (key/val pairs)
 	 * @param string $method HTTP query method
 	 * @return array decoded request result or error
 	 */
-	public function request(string $accessToken, string $endPoint, array $params = [], string $method = 'GET'): array {
+	public function request(string $userId, string $endPoint, array $params = [], string $method = 'GET'): array {
+		$accessToken = $this->config->getUserValue($userId, Application::APP_ID, 'token');
 		try {
 			$url = 'https://api.github.com/' . $endPoint;
 			$options = [
@@ -265,8 +289,8 @@ class GithubAPIService {
 			} else {
 				return json_decode($body, true) ?: [];
 			}
-		} catch (Exception $e) {
-			$this->logger->warning('GitHub API error : '.$e->getMessage(), ['app' => $this->appName]);
+		} catch (Exception | Throwable $e) {
+			$this->logger->warning('GitHub API error : '.$e->getMessage(), ['app' => Application::APP_ID]);
 			return ['error' => $e->getMessage()];
 		}
 	}
@@ -281,15 +305,12 @@ class GithubAPIService {
 			$options = [
 				'headers' => [
 					'User-Agent' => 'Nextcloud GitHub integration',
-//					'Content-Type' => 'application/x-www-form-urlencoded',
 					'Authorization' => 'Basic ' . base64_encode($clientId . ':' . $clientSecret),
 				],
 				'body' => json_encode([
 					'access_token' => $accessToken,
 				]),
 			];
-			error_log('TOKEN "'.$accessToken.'"');
-			error_log('AUTH "'.base64_encode($clientId . ':' . $clientSecret).'"');
 
 			$response = $this->client->delete($url, $options);
 			$respCode = $response->getStatusCode();
@@ -300,7 +321,7 @@ class GithubAPIService {
 				return [];
 			}
 		} catch (Exception $e) {
-			$this->logger->warning('GitHub API error : '.$e->getMessage(), ['app' => $this->appName]);
+			$this->logger->warning('GitHub API error : '.$e->getMessage(), ['app' => Application::APP_ID]);
 			return ['error' => $e->getMessage()];
 		}
 	}
@@ -350,7 +371,7 @@ class GithubAPIService {
 				return $resultArray;
 			}
 		} catch (Exception $e) {
-			$this->logger->warning('GitHub OAuth error : '.$e->getMessage(), ['app' => $this->appName]);
+			$this->logger->warning('GitHub OAuth error : '.$e->getMessage(), ['app' => Application::APP_ID]);
 			return ['error' => $e->getMessage()];
 		}
 	}

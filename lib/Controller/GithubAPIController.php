@@ -12,13 +12,11 @@
 namespace OCA\Github\Controller;
 
 use OCP\AppFramework\Http\DataDisplayResponse;
-use OCP\IConfig;
 use OCP\IRequest;
 use OCP\AppFramework\Http\DataResponse;
 use OCP\AppFramework\Controller;
 
 use OCA\Github\Service\GithubAPIService;
-use OCA\Github\AppInfo\Application;
 
 class GithubAPIController extends Controller {
 
@@ -27,18 +25,17 @@ class GithubAPIController extends Controller {
 	 */
 	private $githubAPIService;
 	/**
-	 * @var string
+	 * @var string|null
 	 */
-	private $accessToken;
+	private $userId;
 
 	public function __construct(string $appName,
 								IRequest $request,
-								IConfig $config,
 								GithubAPIService $githubAPIService,
 								?string $userId) {
 		parent::__construct($appName, $request);
 		$this->githubAPIService = $githubAPIService;
-		$this->accessToken = $config->getUserValue($userId, Application::APP_ID, 'token');
+		$this->userId = $userId;
 	}
 
 	/**
@@ -50,10 +47,7 @@ class GithubAPIController extends Controller {
 	 * @return DataResponse the notifications
 	 */
 	public function getNotifications(?string $since = null): DataResponse {
-		if ($this->accessToken === '') {
-			return new DataResponse(null, 400);
-		}
-		$result = $this->githubAPIService->getNotifications($this->accessToken, $since, false);
+		$result = $this->githubAPIService->getNotifications($this->userId, $since, false);
 		if (isset($result['error'])) {
 			$response = new DataResponse($result['error'], 401);
 		} else {
@@ -70,7 +64,7 @@ class GithubAPIController extends Controller {
 	 * @return DataResponse with request result
 	 */
 	public function unsubscribeNotification(int $id): DataResponse {
-		$result = $this->githubAPIService->unsubscribeNotification($this->accessToken, $id);
+		$result = $this->githubAPIService->unsubscribeNotification($this->userId, $id);
 		if (!isset($result['error'])) {
 			$response = new DataResponse($result);
 		} else {
@@ -87,7 +81,7 @@ class GithubAPIController extends Controller {
 	 * @return DataResponse with request result
 	 */
 	public function markNotificationAsRead(int $id): DataResponse {
-		$result = $this->githubAPIService->markNotificationAsRead($this->accessToken, $id);
+		$result = $this->githubAPIService->markNotificationAsRead($this->userId, $id);
 		if (!isset($result['error'])) {
 			$response = new DataResponse($result);
 		} else {
@@ -103,9 +97,10 @@ class GithubAPIController extends Controller {
 	 * Get repository avatar
 	 * @param string $githubUserName
 	 * @return DataDisplayResponse The avatar image content
+	 * @throws \Exception
 	 */
 	public function getAvatar(string $githubUserName): DataDisplayResponse {
-		$avatarContent = $this->githubAPIService->getAvatar($this->accessToken, $githubUserName);
+		$avatarContent = $this->githubAPIService->getAvatar($this->userId, $githubUserName);
 		if (is_null($avatarContent)) {
 			return new DataDisplayResponse('', 400);
 		} else {
@@ -123,7 +118,7 @@ class GithubAPIController extends Controller {
 	 * @return DataResponse
 	 */
 	public function getUserInfo(string $githubUserName): DataResponse {
-		$result = $this->githubAPIService->getUserInfo($this->accessToken, $githubUserName);
+		$result = $this->githubAPIService->getUserInfo($this->userId, $githubUserName);
 		if (!isset($result['error'])) {
 			return new DataResponse($result);
 		} else {
@@ -141,7 +136,7 @@ class GithubAPIController extends Controller {
 	 * @return DataResponse
 	 */
 	public function getIssueInfo(string $owner, string $repo, int $issueNumber): DataResponse {
-		$result = $this->githubAPIService->getIssueInfo($this->accessToken, $owner, $repo, $issueNumber);
+		$result = $this->githubAPIService->getIssueInfo($this->userId, $owner, $repo, $issueNumber);
 		if (!isset($result['error'])) {
 			return new DataResponse($result);
 		} else {
@@ -159,7 +154,7 @@ class GithubAPIController extends Controller {
 	 * @return DataResponse
 	 */
 	public function getIssueCommentInfo(string $owner, string $repo, int $commentId): DataResponse {
-		$result = $this->githubAPIService->getIssueCommentInfo($this->accessToken, $owner, $repo, $commentId);
+		$result = $this->githubAPIService->getIssueCommentInfo($this->userId, $owner, $repo, $commentId);
 		if (!isset($result['error'])) {
 			return new DataResponse($result);
 		} else {
@@ -177,7 +172,7 @@ class GithubAPIController extends Controller {
 	 * @return DataResponse
 	 */
 	public function getPrInfo(string $owner, string $repo, int $prNumber): DataResponse {
-		$result = $this->githubAPIService->getPrInfo($this->accessToken, $owner, $repo, $prNumber);
+		$result = $this->githubAPIService->getPrInfo($this->userId, $owner, $repo, $prNumber);
 		if (!isset($result['error'])) {
 			return new DataResponse($result);
 		} else {
