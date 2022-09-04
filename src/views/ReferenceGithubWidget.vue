@@ -52,16 +52,18 @@
 				<div class="sub-text">
 					<span>{{ slug }}#{{ githubId }}</span>
 					&nbsp;
+					<!-- eslint-disable-next-line -->
 					<span v-html="subText" />
 				</div>
 			</div>
 			<div class="spacer" />
 			<div class="right-content">
-				<Avatar v-if="richObject.assignees.length > 0"
-					:tooltip-message="assigneeTooltip"
+				<Avatar v-for="assignee in richObject.assignees"
+					:key="assignee.login"
+					:tooltip-message="getAssigneeTooltip(assignee)"
 					:is-no-user="true"
 					:size="20"
-					:url="assigneeAvatarUrl" />
+					:url="getAssigneeAvatarUrl(assignee)" />
 			</div>
 		</div>
 		<div v-if="richObject.github_comment" class="comment">
@@ -277,13 +279,6 @@ export default {
 				creator: this.getUserLink(this.richObject.user?.login),
 			}, null, { escape: false })
 		},
-		assigneeAvatarUrl() {
-			const login = this.richObject.assignees[0].login ?? ''
-			return generateUrl('/apps/integration_github/avatar?githubUserName={login}', { login })
-		},
-		assigneeTooltip() {
-			return t('integration_github', 'Assigned to {login}', { login: this.richObject.assignees[0].login })
-		},
 		commentAuthorAvatarUrl() {
 			const login = this.richObject.github_comment.user?.login ?? ''
 			return generateUrl('/apps/integration_github/avatar?githubUserName={login}', { login })
@@ -300,6 +295,13 @@ export default {
 				return '<a href="https://github.com/' + cleanName + '" class="author-link" target="_blank">' + cleanName + '</a>'
 			}
 			return '??'
+		},
+		getAssigneeAvatarUrl(assignee) {
+			const login = assignee.login ?? ''
+			return generateUrl('/apps/integration_github/avatar?githubUserName={login}', { login })
+		},
+		getAssigneeTooltip(assignee) {
+			return t('integration_github', 'Assigned to {login}', { login: assignee.login })
 		},
 	},
 }
