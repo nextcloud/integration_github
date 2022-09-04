@@ -31,11 +31,13 @@ class Admin implements ISettings {
 		$clientID = $this->config->getAppValue(Application::APP_ID, 'client_id');
 		$clientSecret = $this->config->getAppValue(Application::APP_ID, 'client_secret');
 		$usePopup = $this->config->getAppValue(Application::APP_ID, 'use_popup', '0');
+		$adminLinkPreviewEnabled = $this->config->getAppValue(Application::APP_ID, 'link_preview_enabled', '1') === '1';
 
 		$adminConfig = [
 			'client_id' => $clientID,
 			'client_secret' => $clientSecret,
 			'use_popup' => ($usePopup === '1'),
+			'link_preview_enabled' => $adminLinkPreviewEnabled,
 		];
 		$this->initialStateService->provideInitialState('admin-config', $adminConfig);
 		return new TemplateResponse(Application::APP_ID, 'adminSettings');

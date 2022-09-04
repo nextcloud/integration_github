@@ -56,6 +56,11 @@
 				@update:checked="onCheckboxChanged($event, 'use_popup')">
 				{{ t('integration_github', 'Use a popup to authenticate') }}
 			</CheckboxRadioSwitch>
+			<CheckboxRadioSwitch
+				:checked="state.link_preview_enabled"
+				@update:checked="onCheckboxChanged($event, 'link_preview_enabled')">
+				{{ t('integration_github', 'Enable GitHub link previews in Talk') }}
+			</CheckboxRadioSwitch>
 		</div>
 	</div>
 </template>

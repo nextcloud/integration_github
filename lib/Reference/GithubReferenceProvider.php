@@ -27,24 +27,38 @@ use OCA\Github\AppInfo\Application;
 use OCA\Github\Service\GithubAPIService;
 use OCP\Collaboration\Reference\IReference;
 use OCP\Collaboration\Reference\IReferenceProvider;
+use OCP\IConfig;
 
 class GithubReferenceProvider implements IReferenceProvider {
 	private LinkReferenceProvider $linkReferenceProvider;
 	private GithubAPIService $githubAPIService;
 	private ?string $userId;
+	private IConfig $config;
 
 	public function __construct(LinkReferenceProvider $linkReferenceProvider,
 								GithubAPIService $githubAPIService,
+								IConfig $config,
 								?string $userId) {
 		$this->linkReferenceProvider = $linkReferenceProvider;
 		$this->githubAPIService = $githubAPIService;
 		$this->userId = $userId;
+		$this->config = $config;
 	}
 
 	/**
 	 * @inheritDoc
 	 */
 	public function matchReference(string $referenceText): bool {
+		if ($this->userId !== null) {
+			$linkPreviewEnabled = $this->config->getUserValue($this->userId, Application::APP_ID, 'link_preview_enabled', '1') === '1';
+			if (!$linkPreviewEnabled) {
+				return false;
+			}
+		}
+		$adminLinkPreviewEnabled = $this->config->getAppValue(Application::APP_ID, 'link_preview_enabled', '1') === '1';
+		if (!$adminLinkPreviewEnabled) {
+			return false;
+		}
 		if (preg_match('/^(?:https?:\/\/)?(?:www\.)?github\.com\/[^\/\?]+\/[^\/\?]+\/(issues|pull)\/[0-9]+/', $referenceText) !== false) {
 			return true;
 		}
