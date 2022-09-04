@@ -53,7 +53,9 @@
 					<span>{{ slug }}#{{ githubId }}</span>
 					&nbsp;
 					<!-- eslint-disable-next-line -->
-					<span v-html="subText" />
+					<span
+						v-tooltip.top="{ content: subTextTooltip }"
+						v-html="subText" />
 				</div>
 			</div>
 			<div class="spacer" />
@@ -266,6 +268,32 @@ export default {
 				}
 			}
 			return ''
+		},
+		subTextTooltip() {
+			if (this.isIssue) {
+				if (this.richObject.state === 'open') {
+					return this.createdAtFormatted
+				} else if (this.richObject.state === 'closed') {
+					return this.closedAtFormatted
+				}
+			} else if (this.isPr) {
+				if (this.richObject.state === 'open') {
+					return this.createdAtFormatted
+				} else if (this.richObject.state === 'closed') {
+					if (this.richObject.merged) {
+						return this.closedAtFormatted
+					} else {
+						return this.closedAtFormatted
+					}
+				}
+			}
+			return ''
+		},
+		createdAtFormatted() {
+			return moment(this.richObject.created_at).format('LLL')
+		},
+		closedAtFormatted() {
+			return moment(this.richObject.closed_at).format('LLL')
 		},
 		createdAtSubText() {
 			return t('integration_github', 'opened {relativeDate} by {creator}', {
