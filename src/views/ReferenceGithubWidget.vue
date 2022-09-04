@@ -65,6 +65,10 @@
 					:is-no-user="true"
 					:size="20"
 					:url="getAssigneeAvatarUrl(assignee)" />
+				<div v-if="richObject.comments > 0" class="comments-count">
+					<CommentIcon :size="16" class="icon" />
+					{{ richObject.comments }}
+				</div>
 			</div>
 		</div>
 		<div v-if="richObject.github_comment" class="comment">
@@ -98,6 +102,7 @@ import PrOpenIcon from '../components/icons/PrOpenIcon.vue'
 import PrOpenDraftIcon from '../components/icons/PrOpenDraftIcon.vue'
 import PrMergedIcon from '../components/icons/PrMergedIcon.vue'
 import PrClosedIcon from '../components/icons/PrClosedIcon.vue'
+import CommentIcon from '../components/icons/CommentIcon.vue'
 
 import CommentReactions from '../components/CommentReactions.vue'
 
@@ -116,6 +121,7 @@ export default {
 	components: {
 		CommentReactions,
 		Avatar,
+		CommentIcon,
 		OpenInNewIcon,
 	},
 
@@ -383,6 +389,15 @@ export default {
 			display: flex;
 			align-items: center;
 			margin-top: 4px;
+
+			.comments-count {
+				display: flex;
+				align-items: center;
+				margin-left: 8px;
+				.icon {
+					margin-right: 4px;
+				}
+			}
 		}
 	}
 
