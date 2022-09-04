@@ -50,7 +50,7 @@
 					</a>
 				</div>
 				<div class="sub-text">
-					<span>#{{ githubId }}</span>
+					<span>{{ slug }}#{{ githubId }}</span>
 					&nbsp;
 					<span v-html="subText" />
 				</div>
@@ -136,6 +136,9 @@ export default {
 		},
 		isPr() {
 			return this.richObject.github_type === 'pr'
+		},
+		slug() {
+			return this.richObject.github_repo_owner + '/' + this.richObject.github_repo
 		},
 		githubId() {
 			if (this.isIssue) {
