@@ -354,7 +354,7 @@ export default {
 	.issue-pr-wrapper {
 		width: 100%;
 		display: flex;
-		align-items: center;
+		align-items: start;
 
 		::v-deep .author-link,
 		.issue-pr-link {
@@ -377,6 +377,12 @@ export default {
 			align-items: center;
 			color: var(--color-text-maxcontrast);
 			margin-left: 40px;
+		}
+
+		.right-content {
+			display: flex;
+			align-items: center;
+			margin-top: 4px;
 		}
 	}
 
