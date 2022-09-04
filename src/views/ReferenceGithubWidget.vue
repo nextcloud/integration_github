@@ -28,10 +28,14 @@
 					:size="16"
 					class="icon"
 					:fill-color="iconColor" />
-				<span>{{ richObject.title }}</span>
+				<strong>
+					{{ richObject.title }}
+				</strong>
 			</div>
-			<div class="issue-sub-text">
-				#{{ githubId }} {{ issueSubText }}
+			<div class="sub-text">
+				<span>#{{ githubId }}</span>
+				&nbsp;
+				<span v-html="subText" />
 			</div>
 		</div>
 	</div>
@@ -45,6 +49,9 @@ import PrOpenIcon from '../components/icons/PrOpenIcon.vue'
 import PrOpenDraftIcon from '../components/icons/PrOpenDraftIcon.vue'
 import PrMergedIcon from '../components/icons/PrMergedIcon.vue'
 import PrClosedIcon from '../components/icons/PrClosedIcon.vue'
+
+import moment from '@nextcloud/moment'
+import escapeHtml from 'escape-html'
 
 import Tooltip from '@nextcloud/vue/dist/Directives/Tooltip.js'
 import Vue from 'vue'
@@ -169,8 +176,58 @@ export default {
 			}
 			return t('integration_github', 'Unknown state')
 		},
-		issueSubText() {
-			return 'subtext'
+		subText() {
+			if (this.isPr) {
+				return this.authorAndDateSubText
+					+ (this.richObject.draft ? ' • ' + t('integration_github', 'Draft') : '')
+					+ (this.richObject.requested_reviewers?.length > 0 ? ' • ' + t('integration_github', 'Review requested') : '')
+			}
+			return this.authorAndDateSubText
+		},
+		authorAndDateSubText() {
+			if (this.isIssue) {
+				if (this.richObject.state === 'open') {
+					return this.createdAtSubText
+				} else if (this.richObject.state === 'closed') {
+					return this.closedAtSubText
+				}
+			} else if (this.isPr) {
+				if (this.richObject.state === 'open') {
+					return this.createdAtSubText
+				} else if (this.richObject.state === 'closed') {
+					if (this.richObject.merged) {
+						return t('integration_github', 'by {creator} was merged {relativeDate}', {
+							relativeDate: moment(this.richObject.closed_at).fromNow(),
+							creator: this.getUserLink(this.richObject.user?.login),
+						}, null, { escape: false })
+					} else {
+						return this.closedAtSubText
+					}
+				}
+			}
+			return ''
+		},
+		createdAtSubText() {
+			return t('integration_github', 'opened {relativeDate} by {creator}', {
+				relativeDate: moment(this.richObject.created_at).fromNow(),
+				creator: this.getUserLink(this.richObject.user?.login),
+			}, null, { escape: false })
+		},
+		closedAtSubText() {
+			return t('integration_github', 'by {creator} was closed {relativeDate}', {
+				relativeDate: moment(this.richObject.closed_at).fromNow(),
+				creator: this.getUserLink(this.richObject.user?.login),
+			}, null, { escape: false })
+		},
+	},
+
+	methods: {
+		getUserLink(userName) {
+			if (userName) {
+				const cleanName = escapeHtml(userName)
+				return '<a href="https://github.com/' + cleanName + '" target="_blank">' + cleanName + '</a>'
+			}
+			return '??'
 		},
 	},
 }
@@ -190,7 +247,9 @@ export default {
 		}
 	}
 
-	.issue-sub-text {
+	.sub-text {
+		display: flex;
+		align-items: center;
 		color: var(--color-text-maxcontrast);
 		margin-left: 24px;
 	}
