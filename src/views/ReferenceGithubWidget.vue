@@ -84,6 +84,7 @@
 					:tooltip-message="commentAuthorTooltip"
 					:is-no-user="true"
 					:url="commentAuthorAvatarUrl" />
+				<span class="body-bubble" />
 				<span class="body" :title="richObject.github_comment.body">
 					{{ richObject.github_comment.body }}
 				</span>
@@ -419,6 +420,7 @@ export default {
 				display: flex;
 				align-items: center;
 				margin-left: 8px;
+				color: var(--color-text-maxcontrast);
 				.icon {
 					margin-right: 4px;
 				}
@@ -436,14 +438,44 @@ export default {
 			align-items: center;
 			width: 100%;
 
-			.author-avatar {
-				margin-right: 8px;
-			}
-
 			.body {
 				text-overflow: ellipsis;
 				overflow: hidden;
 				white-space: nowrap;
+				padding: 4px 8px;
+				border: 1px solid var(--color-border-dark);
+			}
+			.body-bubble {
+				margin-left: 15px;
+				position: relative;
+				&:before {
+					content: '';
+					width: 0px;
+					height: 0px;
+					position: absolute;
+					border-left: 8px solid transparent;
+					border-right: 8px solid var(--color-border-dark);
+					border-top: 8px solid transparent;
+					border-bottom: 8px solid transparent;
+					left: -15px;
+					top: -8px;
+				}
+
+				&:after {
+					content: '';
+					width: 0px;
+					height: 0px;
+					position: absolute;
+					border-left: 8px solid transparent;
+					border-right: 8px solid var(--color-main-background);
+					border-top: 8px solid transparent;
+					border-bottom: 8px solid transparent;
+					left: -14px;
+					top: -8px;
+				}
+				.message-body:hover &:after {
+					border-right: 8px solid var(--color-background-hover);
+				}
 			}
 		}
 	}
