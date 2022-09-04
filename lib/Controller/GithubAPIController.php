@@ -94,6 +94,8 @@ class GithubAPIController extends Controller {
 	/**
 	 * @NoAdminRequired
 	 * @NoCSRFRequired
+	 * TODO remove CSRF and make this endpoint public
+	 * but first: understand why it fails for images and not for data requests
 	 *
 	 * Get repository avatar
 	 * @param string $githubUserName
@@ -116,7 +118,6 @@ class GithubAPIController extends Controller {
 
 	/**
 	 * @NoAdminRequired
-	 * @NoCSRFRequired
 	 *
 	 * @param string $githubUserName
 	 * @return DataResponse
@@ -132,7 +133,6 @@ class GithubAPIController extends Controller {
 
 	/**
 	 * @NoAdminRequired
-	 * @NoCSRFRequired
 	 *
 	 * @param string $owner
 	 * @param string $repo
@@ -150,7 +150,6 @@ class GithubAPIController extends Controller {
 
 	/**
 	 * @NoAdminRequired
-	 * @NoCSRFRequired
 	 *
 	 * @param string $owner
 	 * @param string $repo
@@ -168,7 +167,6 @@ class GithubAPIController extends Controller {
 
 	/**
 	 * @NoAdminRequired
-	 * @NoCSRFRequired
 	 *
 	 * @param string $owner
 	 * @param string $repo

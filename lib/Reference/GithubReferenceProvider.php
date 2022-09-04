@@ -45,8 +45,7 @@ class GithubReferenceProvider implements IReferenceProvider {
 	 * @inheritDoc
 	 */
 	public function matchReference(string $referenceText): bool {
-		if (preg_match('/^(?:https?:\/\/)?(?:www\.)?github\.com\/[^\/\?]+\/[^\/\?]+\/(issues|pull)\/[0-9]+/', $referenceText) !== false
-		) {
+		if (preg_match('/^(?:https?:\/\/)?(?:www\.)?github\.com\/[^\/\?]+\/[^\/\?]+\/(issues|pull)\/[0-9]+/', $referenceText) !== false) {
 			return true;
 		}
 		return false;
@@ -60,25 +59,29 @@ class GithubReferenceProvider implements IReferenceProvider {
 			$reference = $this->linkReferenceProvider->resolveReference($referenceText);
 			$issuePath = $this->getIssuePath($referenceText);
 			if ($issuePath !== null) {
-				[$owner, $repo, $id] = $issuePath;
+				[$owner, $repo, $id, $end] = $issuePath;
+				$commentInfo = $this->getCommentInfo($owner, $repo, $end);
 				$issueInfo = $this->githubAPIService->getIssueInfo($this->userId, $owner, $repo, $id);
 				$reference->setRichObject(Application::APP_ID, [
 					'github_type' => 'issue',
 					'github_issue_id' => $id,
 					'github_repo_owner' => $owner,
 					'github_repo' => $repo,
+					'github_comment' => $commentInfo,
 					...$issueInfo,
 				]);
 			} else {
 				$prPath = $this->getPrPath($referenceText);
 				if ($prPath !== null) {
-					[$owner, $repo, $id] = $prPath;
+					[$owner, $repo, $id, $end] = $prPath;
+					$commentInfo = $this->getCommentInfo($owner, $repo, $end);
 					$prInfo = $this->githubAPIService->getPrInfo($this->userId, $owner, $repo, $id);
 					$reference->setRichObject(Application::APP_ID, [
 						'github_type' => 'pr',
 						'github_pr_id' => $id,
 						'github_repo_owner' => $owner,
 						'github_repo' => $repo,
+						'github_comment' => $commentInfo,
 						...$prInfo,
 					]);
 				}
@@ -90,13 +93,18 @@ class GithubReferenceProvider implements IReferenceProvider {
 	}
 
 	private function getIssuePath(string $url): ?array {
-		preg_match('/^(?:https?:\/\/)?(?:www\.)?github\.com\/([^\/\?]+)\/([^\/\?]+)\/issues\/([0-9]+)/', $url, $matches);
-		return count($matches) === 4 ? [$matches[1], $matches[2], $matches[3]] : null;
+		preg_match('/^(?:https?:\/\/)?(?:www\.)?github\.com\/([^\/\?]+)\/([^\/\?]+)\/issues\/([0-9]+)(.*$)/', $url, $matches);
+		return count($matches) > 3 ? [$matches[1], $matches[2], $matches[3], $matches[4]] : null;
 	}
 
 	private function getPrPath(string $url): ?array {
-		preg_match('/^(?:https?:\/\/)?(?:www\.)?github\.com\/([^\/\?]+)\/([^\/\?]+)\/pull\/([0-9]+)/', $url, $matches);
-		return count($matches) === 4 ? [$matches[1], $matches[2], $matches[3]] : null;
+		preg_match('/^(?:https?:\/\/)?(?:www\.)?github\.com\/([^\/\?]+)\/([^\/\?]+)\/pull\/([0-9]+)(.*$)/', $url, $matches);
+		return count($matches) > 3 ? [$matches[1], $matches[2], $matches[3], $matches[4]] : null;
+	}
+
+	private function getCommentInfo(string $owner, string $repo, string $end): ?array {
+		preg_match('/^#issuecomment-([0-9]+)$/', $end, $matches);
+		return $matches ? $this->githubAPIService->getIssueCommentInfo($this->userId, $owner, $repo, $matches[1]) : null;
 	}
 
 	public function getCachePrefix(string $referenceId): string {

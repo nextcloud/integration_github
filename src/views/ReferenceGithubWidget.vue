@@ -22,7 +22,7 @@
 <template>
 	<div class="github-reference">
 		<div v-if="isIssue || isPr" class="issue-pr-wrapper">
-			<div class="main-content">
+			<div class="issue-pr-info">
 				<div class="line">
 					<component :is="iconComponent"
 						v-tooltip.top="{ content: stateTooltip }"
@@ -45,8 +45,18 @@
 					:tooltip-message="assigneeTooltip"
 					:is-no-user="true"
 					:size="20"
-					:url="assigneeUrl" />
+					:url="assigneeAvatarUrl" />
 			</div>
+		</div>
+		<div v-if="richObject.github_comment" class="comment">
+			<Avatar
+				class="author-avatar"
+				:tooltip-message="commentAuthorTooltip"
+				:is-no-user="true"
+				:url="commentAuthorAvatarUrl" />
+			<span class="body" :title="richObject.github_comment.body">
+				{{ richObject.github_comment.body }}
+			</span>
 		</div>
 	</div>
 </template>
@@ -235,12 +245,19 @@ export default {
 				creator: this.getUserLink(this.richObject.user?.login),
 			}, null, { escape: false })
 		},
-		assigneeUrl() {
+		assigneeAvatarUrl() {
 			const login = this.richObject.assignees[0].login ?? ''
 			return generateUrl('/apps/integration_github/avatar?githubUserName={login}', { login })
 		},
 		assigneeTooltip() {
 			return t('integration_github', 'Assigned to {login}', { login: this.richObject.assignees[0].login })
+		},
+		commentAuthorAvatarUrl() {
+			const login = this.richObject.github_comment.user?.login ?? ''
+			return generateUrl('/apps/integration_github/avatar?githubUserName={login}', { login })
+		},
+		commentAuthorTooltip() {
+			return t('integration_github', 'Comment from {login}', { login: this.richObject.github_comment.user?.login ?? '' })
 		},
 	},
 
@@ -281,6 +298,20 @@ export default {
 			align-items: center;
 			color: var(--color-text-maxcontrast);
 			margin-left: 24px;
+		}
+	}
+
+	.comment {
+		margin-top: 8px;
+		display: flex;
+		align-items: center;
+		.author-avatar {
+			margin-right: 8px;
+		}
+		.body {
+			text-overflow: ellipsis;
+			overflow: hidden;
+			white-space: nowrap;
 		}
 	}
 
