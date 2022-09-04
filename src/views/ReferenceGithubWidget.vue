@@ -52,7 +52,6 @@
 				<div class="sub-text">
 					<span>{{ slug }}#{{ githubId }}</span>
 					&nbsp;
-					<!-- eslint-disable-next-line -->
 					<span
 						v-tooltip.top="{ content: subTextTooltip }"
 						v-html="subText" />
@@ -69,15 +68,23 @@
 			</div>
 		</div>
 		<div v-if="richObject.github_comment" class="comment">
-			<Avatar
-				class="author-avatar"
-				:tooltip-message="commentAuthorTooltip"
-				:is-no-user="true"
-				:url="commentAuthorAvatarUrl" />
-			<span class="body" :title="richObject.github_comment.body">
-				{{ richObject.github_comment.body }}
-			</span>
+			<div class="comment--content">
+				<Avatar
+					class="author-avatar"
+					:tooltip-message="commentAuthorTooltip"
+					:is-no-user="true"
+					:url="commentAuthorAvatarUrl" />
+				<span class="body" :title="richObject.github_comment.body">
+					{{ richObject.github_comment.body }}
+				</span>
+			</div>
 		</div>
+		<CommentReactions v-if="richObject.github_comment?.reactions"
+			class="comment--reactions item-reactions"
+			:reactions="richObject.github_comment.reactions" />
+		<CommentReactions v-else-if="richObject.reactions"
+			class="issue-pr--reactions item-reactions"
+			:reactions="richObject.reactions" />
 	</div>
 </template>
 
@@ -92,6 +99,8 @@ import PrOpenDraftIcon from '../components/icons/PrOpenDraftIcon.vue'
 import PrMergedIcon from '../components/icons/PrMergedIcon.vue'
 import PrClosedIcon from '../components/icons/PrClosedIcon.vue'
 
+import CommentReactions from '../components/CommentReactions.vue'
+
 import { generateUrl } from '@nextcloud/router'
 import moment from '@nextcloud/moment'
 import escapeHtml from 'escape-html'
@@ -105,6 +114,7 @@ export default {
 	name: 'ReferenceGithubWidget',
 
 	components: {
+		CommentReactions,
 		Avatar,
 		OpenInNewIcon,
 	},
@@ -358,7 +368,7 @@ export default {
 			align-items: center;
 
 			> .icon {
-				margin: 0 16px 0 10px;
+				margin: 0 15px 0 10px;
 			}
 		}
 
@@ -373,15 +383,27 @@ export default {
 	.comment {
 		margin-top: 8px;
 		display: flex;
-		align-items: center;
-		.author-avatar {
-			margin-right: 8px;
+		flex-direction: column;
+		align-items: start;
+		&--content {
+			display: flex;
+			align-items: center;
+			width: 100%;
+
+			.author-avatar {
+				margin-right: 8px;
+			}
+
+			.body {
+				text-overflow: ellipsis;
+				overflow: hidden;
+				white-space: nowrap;
+			}
 		}
-		.body {
-			text-overflow: ellipsis;
-			overflow: hidden;
-			white-space: nowrap;
-		}
+	}
+
+	.item-reactions {
+		margin: 8px 0 0 40px;
 	}
 
 	.settings-link {
