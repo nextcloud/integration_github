@@ -22,6 +22,10 @@
 <template>
 	<div class="github-reference">
 		<div v-if="isError">
+			<h3>
+				<GithubIcon :size="20" class="icon" />
+				<span>{{ t('integration_github', 'GitHub API error') }}</span>
+			</h3>
 			<p v-if="richObject.body?.message"
 				class="widget-error">
 				{{ richObject.body?.message }}
@@ -32,7 +36,7 @@
 			</p>
 			<a :href="settingsUrl" class="settings-link external" target="_blank">
 				<OpenInNewIcon :size="20" class="icon" />
-				{{ settingsLinkText }}
+				{{ t('integration_github', 'GitHub connected accounts settings') }}
 			</a>
 		</div>
 		<div v-if="isIssue || isPr" class="issue-pr-wrapper">
@@ -50,7 +54,9 @@
 					</a>
 				</div>
 				<div class="sub-text">
-					<span>{{ slug }}#{{ githubId }}</span>
+					<span>
+						<a :href="repoUrl" class="slug-link" target="_blank">{{ slug }}</a>#{{ githubId }}
+					</span>
 					&nbsp;
 					<span
 						v-tooltip.top="{ content: subTextTooltip }"
@@ -95,6 +101,7 @@
 <script>
 import OpenInNewIcon from 'vue-material-design-icons/OpenInNew.vue'
 
+import GithubIcon from '../components/icons/GithubIcon.vue'
 import IssueOpenIcon from '../components/icons/IssueOpenIcon.vue'
 import IssueClosedIcon from '../components/icons/IssueClosedIcon.vue'
 import IssueClosedNotPlannedIcon from '../components/icons/IssueClosedNotPlannedIcon.vue'
@@ -119,6 +126,7 @@ export default {
 	name: 'ReferenceGithubWidget',
 
 	components: {
+		GithubIcon,
 		CommentReactions,
 		Avatar,
 		CommentIcon,
@@ -143,7 +151,6 @@ export default {
 	data() {
 		return {
 			settingsUrl: generateUrl('/settings/user/connected-accounts#github_prefs'),
-			settingsLinkText: t('integration_github', 'GitHub connected accounts settings'),
 		}
 	},
 
@@ -159,6 +166,9 @@ export default {
 		},
 		slug() {
 			return this.richObject.github_repo_owner + '/' + this.richObject.github_repo
+		},
+		repoUrl() {
+			return 'https://github.com/' + this.slug
 		},
 		githubId() {
 			if (this.isIssue) {
@@ -357,12 +367,27 @@ export default {
 	white-space: normal;
 	padding: 8px;
 
+	h3 {
+		display: flex;
+		align-items: center;
+		font-weight: bold;
+		.icon {
+			margin-right: 8px;
+		}
+	}
+
 	.issue-pr-wrapper {
 		width: 100%;
 		display: flex;
 		align-items: start;
 
 		::v-deep .author-link,
+		.slug-link {
+			color: inherit;
+		}
+
+		::v-deep .author-link,
+		.slug-link,
 		.issue-pr-link {
 			&:hover {
 				color: #58a6ff;

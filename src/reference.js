@@ -20,6 +20,7 @@
  */
 
 import { registerWidget } from '@nextcloud/vue-richtext'
+import './bootstrap.js'
 import Vue from 'vue'
 import ReferenceGithubWidget from './views/ReferenceGithubWidget.vue'
 
