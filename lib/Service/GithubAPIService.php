@@ -338,9 +338,12 @@ class GithubAPIService {
 					'User-Agent' => 'Nextcloud GitHub integration',
 				],
 			];
+			// try anonymous request if no user (public page) or user not connected to a github account
 			if ($userId !== null) {
 				$accessToken = $this->config->getUserValue($userId, Application::APP_ID, 'token');
-				$options['headers']['Authorization'] = 'token ' . $accessToken;
+				if ($accessToken !== '') {
+					$options['headers']['Authorization'] = 'token ' . $accessToken;
+				}
 			}
 
 			if (count($params) > 0) {
@@ -372,11 +375,15 @@ class GithubAPIService {
 				return json_decode($body, true) ?: [];
 			}
 		} catch (ClientException | ServerException $e) {
-			error_log($e->getResponse()->getBody());
-			$this->logger->warning('GitHub API error : '.$e->getMessage(), ['app' => Application::APP_ID]);
-			return ['error' => $e->getMessage()];
+			$responseBody = $e->getResponse()->getBody();
+			$parsedResponseBody = json_decode($responseBody, true);
+			$this->logger->warning('GitHub API error : ' . $e->getMessage(), ['response_body' => $responseBody, 'app' => Application::APP_ID]);
+			return [
+				'error' => $e->getMessage(),
+				'body' => $parsedResponseBody,
+			];
 		} catch (Exception | Throwable $e) {
-			$this->logger->warning('GitHub API error : '.$e->getMessage(), ['app' => Application::APP_ID]);
+			$this->logger->warning('GitHub API error : ' . $e->getMessage(), ['app' => Application::APP_ID]);
 			return ['error' => $e->getMessage()];
 		}
 	}

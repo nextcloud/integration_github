@@ -63,7 +63,7 @@ class GithubReferenceProvider implements IReferenceProvider {
 				$commentInfo = $this->getCommentInfo($owner, $repo, $end);
 				$issueInfo = $this->githubAPIService->getIssueInfo($this->userId, $owner, $repo, $id);
 				$reference->setRichObject(Application::APP_ID, [
-					'github_type' => 'issue',
+					'github_type' => isset($issueInfo['error']) ? 'issue-error' : 'issue',
 					'github_issue_id' => $id,
 					'github_repo_owner' => $owner,
 					'github_repo' => $repo,
@@ -77,7 +77,7 @@ class GithubReferenceProvider implements IReferenceProvider {
 					$commentInfo = $this->getCommentInfo($owner, $repo, $end);
 					$prInfo = $this->githubAPIService->getPrInfo($this->userId, $owner, $repo, $id);
 					$reference->setRichObject(Application::APP_ID, [
-						'github_type' => 'pr',
+						'github_type' => isset($prInfo['error']) ? 'pr-error' : 'pr',
 						'github_pr_id' => $id,
 						'github_repo_owner' => $owner,
 						'github_repo' => $repo,

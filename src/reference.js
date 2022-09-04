@@ -23,9 +23,7 @@ import { registerWidget } from '@nextcloud/vue-richtext'
 import Vue from 'vue'
 import ReferenceGithubWidget from './views/ReferenceGithubWidget.vue'
 
-console.debug('aaaaaaaaaaaaaaaaaaaaaaa registerWidget(integration_github)')
 registerWidget('integration_github', (el, { richObjectType, richObject, accessible }) => {
-	console.debug('bbbbbbbbbbbbbbbbbbbb registerWidget(integration_github)')
 	const Widget = Vue.extend(ReferenceGithubWidget)
 	new Widget({
 		propsData: {

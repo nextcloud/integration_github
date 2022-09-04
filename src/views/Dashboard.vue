@@ -201,7 +201,7 @@ export default {
 					this.state = 'error'
 				} else {
 					// there was an error in notif processing
-					console.debug(error)
+					console.error(error)
 				}
 			})
 		},
@@ -262,7 +262,7 @@ export default {
 				}
 			}).catch((error) => {
 				showError(t('integration_github', 'Failed to edit GitHub notification'))
-				console.debug(error)
+				console.error(error)
 			})
 		},
 		getRepositoryAvatarUrl(n) {

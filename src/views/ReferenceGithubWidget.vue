@@ -21,6 +21,20 @@
 
 <template>
 	<div class="github-reference">
+		<div v-if="isError">
+			<p v-if="richObject.body?.message"
+				class="widget-error">
+				{{ richObject.body?.message }}
+			</p>
+			<p v-else
+				class="widget-error">
+				{{ widgetGenericErrorText }}
+			</p>
+			<a :href="settingsUrl" class="settings-link external" target="_blank">
+				<OpenInNewIcon :size="20" class="icon" />
+				{{ settingsLinkText }}
+			</a>
+		</div>
 		<div v-if="isIssue || isPr" class="issue-pr-wrapper">
 			<div class="issue-pr-info">
 				<div class="line">
@@ -29,9 +43,11 @@
 						:size="16"
 						class="icon"
 						:fill-color="iconColor" />
-					<strong>
-						{{ richObject.title }}
-					</strong>
+					<a :href="richObject.html_url" class="issue-pr-link" target="_blank">
+						<strong>
+							{{ richObject.title }}
+						</strong>
+					</a>
 				</div>
 				<div class="sub-text">
 					<span>#{{ githubId }}</span>
@@ -62,6 +78,8 @@
 </template>
 
 <script>
+import OpenInNewIcon from 'vue-material-design-icons/OpenInNew.vue'
+
 import IssueOpenIcon from '../components/icons/IssueOpenIcon.vue'
 import IssueClosedIcon from '../components/icons/IssueClosedIcon.vue'
 import IssueClosedNotPlannedIcon from '../components/icons/IssueClosedNotPlannedIcon.vue'
@@ -84,6 +102,7 @@ export default {
 
 	components: {
 		Avatar,
+		OpenInNewIcon,
 	},
 
 	props: {
@@ -101,7 +120,17 @@ export default {
 		},
 	},
 
+	data() {
+		return {
+			settingsUrl: generateUrl('/settings/user/connected-accounts#github_prefs'),
+			settingsLinkText: t('integration_github', 'GitHub connected accounts settings'),
+		}
+	},
+
 	computed: {
+		isError() {
+			return ['issue-error', 'pr-error'].includes(this.richObject.github_type)
+		},
 		isIssue() {
 			return this.richObject.github_type === 'issue'
 		},
@@ -265,7 +294,7 @@ export default {
 		getUserLink(userName) {
 			if (userName) {
 				const cleanName = escapeHtml(userName)
-				return '<a href="https://github.com/' + cleanName + '" target="_blank">' + cleanName + '</a>'
+				return '<a href="https://github.com/' + cleanName + '" class="author-link" target="_blank">' + cleanName + '</a>'
 			}
 			return '??'
 		},
@@ -284,12 +313,19 @@ export default {
 		display: flex;
 		align-items: center;
 
+		::v-deep .author-link,
+		.issue-pr-link {
+			&:hover {
+				color: #58a6ff;
+			}
+		}
+
 		.line {
 			display: flex;
 			align-items: center;
 
 			> .icon {
-				margin-right: 8px;
+				margin: 0 16px 0 10px;
 			}
 		}
 
@@ -297,7 +333,7 @@ export default {
 			display: flex;
 			align-items: center;
 			color: var(--color-text-maxcontrast);
-			margin-left: 24px;
+			margin-left: 40px;
 		}
 	}
 
@@ -313,6 +349,18 @@ export default {
 			overflow: hidden;
 			white-space: nowrap;
 		}
+	}
+
+	.settings-link {
+		display: flex;
+		align-items: center;
+		.icon {
+			margin-right: 4px;
+		}
+	}
+
+	.widget-error {
+		margin-bottom: 8px;
 	}
 
 	.spacer {
