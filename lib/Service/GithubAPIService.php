@@ -14,6 +14,8 @@ namespace OCA\Github\Service;
 use DateInterval;
 use DateTime;
 use Exception;
+use GuzzleHttp\Exception\ClientException;
+use GuzzleHttp\Exception\ServerException;
 use OCA\Github\AppInfo\Application;
 use OCP\Dashboard\Model\WidgetItem;
 use OCP\IConfig;
@@ -276,68 +278,70 @@ class GithubAPIService {
 	}
 
 	/**
-	 * @param string $userId
+	 * @param string|null $userId
 	 * @param string $githubUserName
 	 * @return array
 	 */
-	public function getUserInfo(string $userId, string $githubUserName): array {
+	public function getUserInfo(?string $userId, string $githubUserName): array {
 		return $this->request($userId, 'users/' . $githubUserName);
 	}
 
 	/**
-	 * @param string $userId
+	 * @param string|null $userId
 	 * @param string $owner
 	 * @param string $repo
 	 * @param int $issueNumber
 	 * @return array
 	 */
-	public function getIssueInfo(string $userId, string $owner, string $repo, int $issueNumber): array {
+	public function getIssueInfo(?string $userId, string $owner, string $repo, int $issueNumber): array {
 		$endpoint = 'repos/' . $owner . '/' . $repo . '/issues/' . $issueNumber;
 		return $this->request($userId, $endpoint);
 	}
 
 	/**
-	 * @param string $userId
+	 * @param string|null $userId
 	 * @param string $owner
 	 * @param string $repo
 	 * @param int $commentId
 	 * @return array
 	 */
-	public function getIssueCommentInfo(string $userId, string $owner, string $repo, int $commentId): array {
+	public function getIssueCommentInfo(?string $userId, string $owner, string $repo, int $commentId): array {
 		$endpoint = 'repos/' . $owner . '/' . $repo . '/issues/comments/' . $commentId;
 		return $this->request($userId, $endpoint);
 	}
 
 	/**
-	 * @param string $userId
+	 * @param string|null $userId
 	 * @param string $owner
 	 * @param string $repo
 	 * @param int $prNumber
 	 * @return array
 	 */
-	public function getPrInfo(string $userId, string $owner, string $repo, int $prNumber): array {
+	public function getPrInfo(?string $userId, string $owner, string $repo, int $prNumber): array {
 		$endpoint = 'repos/' . $owner . '/' . $repo . '/pulls/' . $prNumber;
 		return $this->request($userId, $endpoint);
 	}
 
 	/**
 	 * Make an authenticated HTTP request to GitHub API
-	 * @param string $userId
+	 * @param string|null $userId
 	 * @param string $endPoint The path to reach in api.github.com
 	 * @param array $params Query parameters (key/val pairs)
 	 * @param string $method HTTP query method
 	 * @return array decoded request result or error
 	 */
-	public function request(string $userId, string $endPoint, array $params = [], string $method = 'GET'): array {
-		$accessToken = $this->config->getUserValue($userId, Application::APP_ID, 'token');
+	public function request(?string $userId, string $endPoint, array $params = [], string $method = 'GET'): array {
 		try {
 			$url = 'https://api.github.com/' . $endPoint;
 			$options = [
 				'headers' => [
-					'Authorization' => 'token ' . $accessToken,
 					'User-Agent' => 'Nextcloud GitHub integration',
 				],
 			];
+			if ($userId !== null) {
+				$accessToken = $this->config->getUserValue($userId, Application::APP_ID, 'token');
+				$options['headers']['Authorization'] = 'token ' . $accessToken;
+			}
 
 			if (count($params) > 0) {
 				if ($method === 'GET') {
@@ -367,6 +371,10 @@ class GithubAPIService {
 			} else {
 				return json_decode($body, true) ?: [];
 			}
+		} catch (ClientException | ServerException $e) {
+			error_log($e->getResponse()->getBody());
+			$this->logger->warning('GitHub API error : '.$e->getMessage(), ['app' => Application::APP_ID]);
+			return ['error' => $e->getMessage()];
 		} catch (Exception | Throwable $e) {
 			$this->logger->warning('GitHub API error : '.$e->getMessage(), ['app' => Application::APP_ID]);
 			return ['error' => $e->getMessage()];

@@ -9,6 +9,13 @@
 
 namespace OCA\Github\AppInfo;
 
+use OCA\Github\Listener\GithubReferenceListener;
+use OCA\Github\Reference\GithubReferenceProvider;
+use OCP\Collaboration\Reference\RenderReferenceEvent;
+use OCP\IConfig;
+use OCP\IL10N;
+use OCP\INavigationManager;
+use OCP\IURLGenerator;
 use OCP\IUserSession;
 
 use OCP\AppFramework\App;
@@ -19,6 +26,7 @@ use OCP\AppFramework\Bootstrap\IBootstrap;
 use OCA\Github\Dashboard\GithubWidget;
 use OCA\Github\Search\GithubSearchReposProvider;
 use OCA\Github\Search\GithubSearchIssuesProvider;
+use OCP\Util;
 
 /**
  * Class Application
@@ -29,25 +37,23 @@ class Application extends App implements IBootstrap {
 
 	public const APP_ID = 'integration_github';
 
-	/**
-	 * Constructor
-	 *
-	 * @param array $urlParams
-	 */
 	public function __construct(array $urlParams = []) {
 		parent::__construct(self::APP_ID, $urlParams);
 
 		$container = $this->getContainer();
 		$this->container = $container;
-		$this->config = $container->query(\OCP\IConfig::class);
+		$this->config = $container->query(IConfig::class);
 	}
 
 	public function register(IRegistrationContext $context): void {
 		$context->registerDashboardWidget(GithubWidget::class);
 
-		$config = $this->getContainer()->query(\OCP\IConfig::class);
 		$context->registerSearchProvider(GithubSearchIssuesProvider::class);
 		$context->registerSearchProvider(GithubSearchReposProvider::class);
+
+		$context->registerReferenceProvider(GithubReferenceProvider::class);
+		$context->registerEventListener(RenderReferenceEvent::class, GithubReferenceListener::class);
+		Util::addScript(self::APP_ID, self::APP_ID . '-reference');
 	}
 
 	public function boot(IBootContext $context): void {
@@ -61,9 +67,9 @@ class Application extends App implements IBootstrap {
 			$container = $this->container;
 
 			if ($this->config->getUserValue($userId, self::APP_ID, 'navigation_enabled', '0') === '1') {
-				$container->query(\OCP\INavigationManager::class)->add(function () use ($container) {
-					$urlGenerator = $container->query(\OCP\IURLGenerator::class);
-					$l10n = $container->query(\OCP\IL10N::class);
+				$container->query(INavigationManager::class)->add(static function () use ($container) {
+					$urlGenerator = $container->query(IURLGenerator::class);
+					$l10n = $container->query(IL10N::class);
 					return [
 						'id' => self::APP_ID,
 

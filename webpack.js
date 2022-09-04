@@ -19,6 +19,7 @@ webpackConfig.entry = {
 	adminSettings: { import: path.join(__dirname, 'src', 'adminSettings.js'), filename: appId + '-adminSettings.js' },
 	dashboard: { import: path.join(__dirname, 'src', 'dashboard.js'), filename: appId + '-dashboard.js' },
 	popupSuccess: { import: path.join(__dirname, 'src', 'popupSuccess.js'), filename: appId + '-popupSuccess.js' },
+	reference: { import: path.join(__dirname, 'src', 'reference.js'), filename: appId + '-reference.js' },
 }
 
 webpackConfig.plugins.push(

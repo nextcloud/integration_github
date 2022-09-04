@@ -38,6 +38,7 @@ class Personal implements ISettings {
 		$searchIssuesEnabled = $this->config->getUserValue($this->userId, Application::APP_ID, 'search_issues_enabled', '0');
 		$searchReposEnabled = $this->config->getUserValue($this->userId, Application::APP_ID, 'search_repos_enabled', '0');
 		$navigationEnabled = $this->config->getUserValue($this->userId, Application::APP_ID, 'navigation_enabled', '0');
+		$linkPreviewEnabled = $this->config->getUserValue($this->userId, Application::APP_ID, 'link_preview_enabled', '1');
 		$userName = $this->config->getUserValue($this->userId, Application::APP_ID, 'user_name');
 		$userDisplayName = $this->config->getUserValue($this->userId, Application::APP_ID, 'user_displayname');
 
@@ -54,6 +55,7 @@ class Personal implements ISettings {
 			'search_issues_enabled' => ($searchIssuesEnabled === '1'),
 			'search_repos_enabled' => ($searchReposEnabled === '1'),
 			'navigation_enabled' => ($navigationEnabled === '1'),
+			'link_preview_enabled' => ($linkPreviewEnabled === '1'),
 			'user_name' => $userName,
 			'user_displayname' => $userDisplayName,
 		];

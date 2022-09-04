@@ -17,6 +17,11 @@
 				@update:checked="onCheckboxChanged($event, 'navigation_enabled')">
 				{{ t('integration_github', 'Enable navigation link') }}
 			</CheckboxRadioSwitch>
+			<CheckboxRadioSwitch
+				:checked="state.link_preview_enabled"
+				@update:checked="onCheckboxChanged($event, 'link_preview_enabled')">
+				{{ t('integration_github', 'Enable GitHub link previews in Talk') }}
+			</CheckboxRadioSwitch>
 			<div v-show="!showOAuth"
 				class="line">
 				<label for="github-token">
