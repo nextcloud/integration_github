@@ -21,21 +21,31 @@
 
 <template>
 	<div class="github-reference">
-		<div v-if="isIssue || isPr">
-			<div class="line">
-				<component :is="iconComponent"
-					v-tooltip.bottom="{ content: stateTooltip }"
-					:size="16"
-					class="icon"
-					:fill-color="iconColor" />
-				<strong>
-					{{ richObject.title }}
-				</strong>
+		<div v-if="isIssue || isPr" class="issue-pr-wrapper">
+			<div class="main-content">
+				<div class="line">
+					<component :is="iconComponent"
+						v-tooltip.top="{ content: stateTooltip }"
+						:size="16"
+						class="icon"
+						:fill-color="iconColor" />
+					<strong>
+						{{ richObject.title }}
+					</strong>
+				</div>
+				<div class="sub-text">
+					<span>#{{ githubId }}</span>
+					&nbsp;
+					<span v-html="subText" />
+				</div>
 			</div>
-			<div class="sub-text">
-				<span>#{{ githubId }}</span>
-				&nbsp;
-				<span v-html="subText" />
+			<div class="spacer" />
+			<div class="right-content">
+				<Avatar v-if="richObject.assignees.length > 0"
+					:tooltip-message="assigneeTooltip"
+					:is-no-user="true"
+					:size="20"
+					:url="assigneeUrl" />
 			</div>
 		</div>
 	</div>
@@ -50,17 +60,22 @@ import PrOpenDraftIcon from '../components/icons/PrOpenDraftIcon.vue'
 import PrMergedIcon from '../components/icons/PrMergedIcon.vue'
 import PrClosedIcon from '../components/icons/PrClosedIcon.vue'
 
+import { generateUrl } from '@nextcloud/router'
 import moment from '@nextcloud/moment'
 import escapeHtml from 'escape-html'
 
+import Avatar from '@nextcloud/vue/dist/Components/Avatar.js'
 import Tooltip from '@nextcloud/vue/dist/Directives/Tooltip.js'
 import Vue from 'vue'
 Vue.directive('tooltip', Tooltip)
 
 export default {
 	name: 'ReferenceGithubWidget',
+
 	components: {
+		Avatar,
 	},
+
 	props: {
 		richObjectType: {
 			type: String,
@@ -75,6 +90,7 @@ export default {
 			default: true,
 		},
 	},
+
 	computed: {
 		isIssue() {
 			return this.richObject.github_type === 'issue'
@@ -219,6 +235,13 @@ export default {
 				creator: this.getUserLink(this.richObject.user?.login),
 			}, null, { escape: false })
 		},
+		assigneeUrl() {
+			const login = this.richObject.assignees[0].login ?? ''
+			return generateUrl('/apps/integration_github/avatar?githubUserName={login}', { login })
+		},
+		assigneeTooltip() {
+			return t('integration_github', 'Assigned to {login}', { login: this.richObject.assignees[0].login })
+		},
 	},
 
 	methods: {
@@ -235,23 +258,34 @@ export default {
 
 <style scoped lang="scss">
 .github-reference {
+	width: 100%;
 	white-space: normal;
 	padding: 8px;
 
-	.line {
+	.issue-pr-wrapper {
+		width: 100%;
 		display: flex;
 		align-items: center;
 
-		> .icon {
-			margin-right: 8px;
+		.line {
+			display: flex;
+			align-items: center;
+
+			> .icon {
+				margin-right: 8px;
+			}
+		}
+
+		.sub-text {
+			display: flex;
+			align-items: center;
+			color: var(--color-text-maxcontrast);
+			margin-left: 24px;
 		}
 	}
 
-	.sub-text {
-		display: flex;
-		align-items: center;
-		color: var(--color-text-maxcontrast);
-		margin-left: 24px;
+	.spacer {
+		flex-grow: 1;
 	}
 }
 </style>
