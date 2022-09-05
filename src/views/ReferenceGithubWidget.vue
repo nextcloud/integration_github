@@ -285,7 +285,7 @@ export default {
 					return this.createdAtSubText
 				} else if (this.richObject.state === 'closed') {
 					if (this.richObject.merged) {
-						return t('integration_github', 'by {creator} was merged {relativeDate}', {
+						return t('integration_github', 'by {creator} was merged on {relativeDate}', {
 							relativeDate: moment(this.richObject.closed_at).fromNow(),
 							creator: this.getUserLink(this.richObject.user?.login),
 						}, null, { escape: false })
@@ -323,13 +323,13 @@ export default {
 			return moment(this.richObject.closed_at).format('LLL')
 		},
 		createdAtSubText() {
-			return t('integration_github', 'opened {relativeDate} by {creator}', {
+			return t('integration_github', 'opened on {relativeDate} by {creator}', {
 				relativeDate: moment(this.richObject.created_at).fromNow(),
 				creator: this.getUserLink(this.richObject.user?.login),
 			}, null, { escape: false })
 		},
 		closedAtSubText() {
-			return t('integration_github', 'by {creator} was closed {relativeDate}', {
+			return t('integration_github', 'by {creator} was closed on {relativeDate}', {
 				relativeDate: moment(this.richObject.closed_at).fromNow(),
 				creator: this.getUserLink(this.richObject.user?.login),
 			}, null, { escape: false })
