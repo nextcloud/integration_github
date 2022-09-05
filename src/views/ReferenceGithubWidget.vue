@@ -64,12 +64,24 @@
 				</div>
 				<div class="sub-text">
 					<span>
-						<a :href="repoUrl" class="slug-link" target="_blank">{{ slug }}</a>#{{ githubId }}
+						<a :href="repoUrl" class="slug-link" target="_blank">
+							{{ slug }}
+						</a>
+						#{{ githubId }}
 					</span>
 					&nbsp;
 					<span
 						v-tooltip.top="{ content: subTextTooltip }"
 						v-html="subText" />
+					&nbsp;
+					<a v-if="richObject.milestone"
+						v-tooltip.top="{ content: richObject.milestone.description }"
+						:href="richObject.milestone.html_url"
+						target="_blank"
+						class="milestone">
+						<MilestoneIcon :size="16" class="icon" />
+						{{ richObject.milestone.title }}
+					</a>
 				</div>
 			</div>
 			<div class="spacer" />
@@ -120,6 +132,7 @@ import PrOpenDraftIcon from '../components/icons/PrOpenDraftIcon.vue'
 import PrMergedIcon from '../components/icons/PrMergedIcon.vue'
 import PrClosedIcon from '../components/icons/PrClosedIcon.vue'
 import CommentIcon from '../components/icons/CommentIcon.vue'
+import MilestoneIcon from '../components/icons/MilestoneIcon.vue'
 
 import CommentReactions from '../components/CommentReactions.vue'
 
@@ -138,6 +151,7 @@ export default {
 	name: 'ReferenceGithubWidget',
 
 	components: {
+		MilestoneIcon,
 		GithubIcon,
 		CommentReactions,
 		Avatar,
@@ -443,11 +457,13 @@ export default {
 			}
 		}
 
+		.milestone,
 		::v-deep .author-link,
 		.slug-link {
 			color: inherit;
 		}
 
+		.milestone,
 		::v-deep .author-link,
 		.slug-link,
 		.issue-pr-link {
@@ -470,6 +486,14 @@ export default {
 			align-items: center;
 			color: var(--color-text-maxcontrast);
 			margin-left: 40px;
+
+			.milestone {
+				display: flex;
+				align-items: center;
+				.icon {
+					margin-right: 4px;
+				}
+			}
 		}
 
 		.right-content {
