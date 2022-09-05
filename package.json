@@ -36,6 +36,7 @@
 		"npm": "^7.0.0 || ^8.0.0"
 	},
 	"dependencies": {
+		"@alchemyalcove/rgb-to-hsl": "^1.0.5",
 		"@nextcloud/auth": "^2.0.0",
 		"@nextcloud/axios": "^2.0.0",
 		"@nextcloud/dialogs": "^3.1.2",

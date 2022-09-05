@@ -45,13 +45,22 @@
 					<component :is="iconComponent"
 						v-tooltip.top="{ content: stateTooltip }"
 						:size="16"
-						class="icon"
+						class="icon main-icon"
 						:fill-color="iconColor" />
-					<a :href="richObject.html_url" class="issue-pr-link" target="_blank">
-						<strong>
-							{{ richObject.title }}
-						</strong>
-					</a>
+					<div class="title-labels">
+						<a :href="richObject.html_url" class="issue-pr-link" target="_blank">
+							<strong>
+								{{ richObject.title }}
+							</strong>
+						</a>
+						<div v-for="label in richObject.labels"
+							:key="label.id"
+							v-tooltip.top="{ content: label.description }"
+							class="label"
+							:style="getLabelStyle(label)">
+							{{ label.name }}
+						</div>
+					</div>
 				</div>
 				<div class="sub-text">
 					<span>
@@ -117,6 +126,8 @@ import CommentReactions from '../components/CommentReactions.vue'
 import { generateUrl } from '@nextcloud/router'
 import moment from '@nextcloud/moment'
 import escapeHtml from 'escape-html'
+import { hexToRgb } from '../utils.js'
+import rgbToHsl from '@alchemyalcove/rgb-to-hsl'
 
 import Avatar from '@nextcloud/vue/dist/Components/Avatar.js'
 import Tooltip from '@nextcloud/vue/dist/Directives/Tooltip.js'
@@ -164,6 +175,14 @@ export default {
 		},
 		isPr() {
 			return this.richObject.github_type === 'pr'
+		},
+		isDarkMode() {
+			const style = getComputedStyle(document.body)
+			const bgColor = style.getPropertyValue('--color-main-background')
+			const rgb = hexToRgb(bgColor)
+			const hsl = rgbToHsl([rgb.r, rgb.g, rgb.b])
+			console.debug('lightnessssssssssssssss', Math.round(hsl[2]))
+			return Math.round(hsl[2]) < 30
 		},
 		slug() {
 			return this.richObject.github_repo_owner + '/' + this.richObject.github_repo
@@ -358,6 +377,21 @@ export default {
 		getAssigneeTooltip(assignee) {
 			return t('integration_github', 'Assigned to {login}', { login: assignee.login })
 		},
+		getLabelStyle(label) {
+			const rgb = hexToRgb('#' + label.color)
+			const hsl = rgbToHsl([rgb.r, rgb.g, rgb.b])
+			return this.isDarkMode
+				? {
+					// like github dark mode
+					background: 'rgba(' + rgb.r + ', ' + rgb.g + ', ' + rgb.b + ', 0.18)',
+					color: `hsl(${Math.round(hsl[0])}, 100%, 75%)`,
+				}
+				: {
+					// like github light mode
+					background: `rgb(${rgb.r}, ${rgb.g}, ${rgb.b})`,
+					color: Math.round(hsl[2]) > 70 ? 'black' : 'white',
+				}
+		},
 	},
 }
 </script>
@@ -366,7 +400,7 @@ export default {
 .github-reference {
 	width: 100%;
 	white-space: normal;
-	padding: 8px;
+	padding: 12px;
 
 	h3 {
 		display: flex;
@@ -381,6 +415,33 @@ export default {
 		width: 100%;
 		display: flex;
 		align-items: start;
+
+		.main-icon {
+			align-self: start;
+			height: 26px;
+		}
+
+		.title-labels {
+			display: flex;
+			align-items: center;
+			flex-wrap: wrap;
+			> * {
+				margin-bottom: 2px;
+			}
+			.issue-pr-link {
+				margin-right: 8px;
+			}
+			.label {
+				display: flex;
+				align-items: center;
+				height: 20px;
+				margin-right: 4px;
+				border: 1px solid var(--color-border-dark);
+				padding: 0 7px;
+				border-radius: var(--border-radius-pill);
+				font-size: 12px;
+			}
+		}
 
 		::v-deep .author-link,
 		.slug-link {
@@ -400,7 +461,7 @@ export default {
 			align-items: center;
 
 			> .icon {
-				margin: 0 15px 0 10px;
+				margin: 0 16px 0 8px;
 			}
 		}
 
@@ -414,7 +475,6 @@ export default {
 		.right-content {
 			display: flex;
 			align-items: center;
-			margin-top: 4px;
 
 			.comments-count {
 				display: flex;

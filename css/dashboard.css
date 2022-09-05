@@ -1,19 +1,19 @@
 .icon-github {
-	background-image: url(./../img/app-dark.svg);
+	background-image: url('../img/app-dark.svg');
 	filter: var(--background-invert-if-dark);
 }
 
 body.theme--dark .icon-github {
-	background-image: url(./../img/app.svg);
+	background-image: url('../img/app.svg');
 }
 
 .icon-github-unsubscribe {
 	background-color: var(--color-main-text);
 	padding: 0 !important;
-	mask: url(./../img/unsub.svg) no-repeat;
+	mask: url('../img/unsub.svg') no-repeat;
 	mask-size: 18px 18px;
 	mask-position: center;
-	-webkit-mask: url(./../img/unsub.svg) no-repeat;
+	-webkit-mask: url('../img/unsub.svg') no-repeat;
 	-webkit-mask-size: 18px 18px;
 	-webkit-mask-position: center;
 	min-width: 44px !important;
