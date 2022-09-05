@@ -50,6 +50,7 @@ OC.L10N.register(
     "Failed to get GitHub notifications" : "Échec de l'obtention des notifications GitHub",
     "Successfully unsubscribed" : "Désabonnement réussi",
     "Failed to edit GitHub notification" : "Échec de la modification de la notification GitHub",
+    "Draft" : "Brouillon",
     "Failed to save GitHub OAuth state" : "Échec de l'enregistrement de l'état OAuth de GitHub"
 },
 "nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;");

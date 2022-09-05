@@ -51,6 +51,7 @@ OC.L10N.register(
     "Failed to get GitHub notifications" : "GitHub bildirimleri alınamadı",
     "Successfully unsubscribed" : "Abonelikten ayrılındı",
     "Failed to edit GitHub notification" : "GitHub bildirimi düzenlenemedi",
+    "Draft" : "Taslak",
     "Failed to save GitHub OAuth state" : "GitHub OAuth durumu kaydedilemedi"
 },
 "nplurals=2; plural=(n > 1);");

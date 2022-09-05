@@ -11,6 +11,7 @@ OC.L10N.register(
     "Use a popup to authenticate" : "користи скокачки прозор за автентификација",
     "Enable navigation link" : "Овозможи линк за навигација",
     "Connected as {user}" : "Поврзан како {user}",
-    "Mark as read" : "Означи како прочитано"
+    "Mark as read" : "Означи како прочитано",
+    "Draft" : "Шаблон"
 },
 "nplurals=2; plural=(n % 10 == 1 && n % 100 != 11) ? 0 : 1;");

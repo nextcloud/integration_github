@@ -51,6 +51,7 @@ OC.L10N.register(
     "Failed to get GitHub notifications" : "A GitHub értesítések elérése sikertelen",
     "Successfully unsubscribed" : "Sikeresen leiratkozva",
     "Failed to edit GitHub notification" : "A GitHub értesítések szerkesztése sikertelen",
+    "Draft" : "Vázlat",
     "Failed to save GitHub OAuth state" : "A GitHub OAuth állapot mentése sikertelen"
 },
 "nplurals=2; plural=(n != 1);");

@@ -49,6 +49,7 @@ OC.L10N.register(
     "Failed to get GitHub notifications" : "Chyba pri získavaní upozornení z GitHubu",
     "Successfully unsubscribed" : "Úspešne odhlásený",
     "Failed to edit GitHub notification" : "Nepodarilo sa upraviť notifikáciu GitHubu",
+    "Draft" : "Koncept",
     "Failed to save GitHub OAuth state" : "Nepodarilo sa uložiť stav OAuth GitHubu"
 },
 "nplurals=4; plural=(n % 1 == 0 && n == 1 ? 0 : n % 1 == 0 && n >= 2 && n <= 4 ? 1 : n % 1 != 0 ? 2: 3);");

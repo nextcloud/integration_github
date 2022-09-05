@@ -49,6 +49,7 @@ OC.L10N.register(
     "Failed to get GitHub notifications" : "Αποτυχία λήψης ειδοποιήσεων GitHub",
     "Successfully unsubscribed" : "Καταργήθηκε η εγγραφή με επιτυχία",
     "Failed to edit GitHub notification" : "Αποτυχία επεξεργασίας της ειδοποίησης GitHub",
+    "Draft" : "Πρόχειρο",
     "Failed to save GitHub OAuth state" : "Αποτυχία αποθήκευσης της κατάστασης GitHub OAuth"
 },
 "nplurals=2; plural=(n != 1);");

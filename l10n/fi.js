@@ -49,6 +49,7 @@ OC.L10N.register(
     "Failed to get GitHub notifications" : "GitHubin ilmoitusten haku epäonnistui",
     "Successfully unsubscribed" : "Tilauksen peruutus onnistui",
     "Failed to edit GitHub notification" : "GitHubin ilmoituksen muokkaus epäonnistui",
+    "Draft" : "Luonnos",
     "Failed to save GitHub OAuth state" : "GitHubin OAuth-tilan tallennus epäonnistui"
 },
 "nplurals=2; plural=(n != 1);");

@@ -49,6 +49,7 @@
     "Failed to get GitHub notifications" : "Nepodařilo se získat upozornění z GitHub",
     "Successfully unsubscribed" : "Úspěšně se odhlášeno z odběru",
     "Failed to edit GitHub notification" : "Nepodařilo se upravit upozornění z GitHub",
+    "Draft" : "Koncept",
     "Failed to save GitHub OAuth state" : "Nepodařilo se uložit stav GitHub OAuth"
 },"pluralForm" :"nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n >= 2 && n <= 4 && n % 1 == 0) ? 1: (n % 1 != 0 ) ? 2 : 3;"
 }

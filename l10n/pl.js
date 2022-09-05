@@ -51,6 +51,7 @@ OC.L10N.register(
     "Failed to get GitHub notifications" : "Nie udało się pobrać powiadomień GitHuba",
     "Successfully unsubscribed" : "Anulowano subskrypcję",
     "Failed to edit GitHub notification" : "Nie udało się edytować powiadomienia GitHuba",
+    "Draft" : "Wersja robocza",
     "Failed to save GitHub OAuth state" : "Nie udało się zapisać statusu OAuth GitHub"
 },
 "nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);");

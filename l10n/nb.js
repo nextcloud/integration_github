@@ -9,6 +9,7 @@ OC.L10N.register(
     "OAuth access token refused" : "OAuth access token ble avslått",
     "Client ID" : "Klient-ID",
     "Client secret" : "Klient-hemmelighet",
-    "Mark as read" : "Merk som lest"
+    "Mark as read" : "Merk som lest",
+    "Draft" : "Kladd"
 },
 "nplurals=2; plural=(n != 1);");

@@ -51,6 +51,7 @@ OC.L10N.register(
     "Failed to get GitHub notifications" : "GitHub-Benachrichtigungen konnten nicht abgerufen werden",
     "Successfully unsubscribed" : "Erfolgreich abbestellt",
     "Failed to edit GitHub notification" : "Fehler bei der Bearbeitung der GitHub-Benachrichtigung",
+    "Draft" : "Entwurf",
     "Failed to save GitHub OAuth state" : "Fehler beim Speichern des GitHub OAuth-Status"
 },
 "nplurals=2; plural=(n != 1);");

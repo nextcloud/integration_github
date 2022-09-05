@@ -51,6 +51,7 @@ OC.L10N.register(
     "Failed to get GitHub notifications" : "取得 GitHub 通知失敗",
     "Successfully unsubscribed" : "成功取消訂閱",
     "Failed to edit GitHub notification" : "編輯 GitHub 通知失敗",
+    "Draft" : "草稿",
     "Failed to save GitHub OAuth state" : "儲存 GitHub OAuth 狀態失敗"
 },
 "nplurals=1; plural=0;");

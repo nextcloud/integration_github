@@ -50,6 +50,7 @@ OC.L10N.register(
     "Failed to get GitHub notifications" : "GitHub jakinarazpenak jasotzeak huts egin du",
     "Successfully unsubscribed" : "Ondo kendu da harpidetza",
     "Failed to edit GitHub notification" : "GitHub jakinarazpena editatzeak huts egin du",
+    "Draft" : "Zirriborroa",
     "Failed to save GitHub OAuth state" : "GitHub OAuth egoera gordetzeak huts egin du"
 },
 "nplurals=2; plural=(n != 1);");
