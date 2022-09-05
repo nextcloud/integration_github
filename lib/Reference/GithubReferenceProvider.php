@@ -22,7 +22,7 @@
 
 namespace OCA\Github\Reference;
 
-use OC\Collaboration\Reference\LinkReferenceProvider;
+use OC\Collaboration\Reference\Reference;
 use OCA\Github\AppInfo\Application;
 use OCA\Github\Service\GithubAPIService;
 use OCP\Collaboration\Reference\IReference;
@@ -30,16 +30,13 @@ use OCP\Collaboration\Reference\IReferenceProvider;
 use OCP\IConfig;
 
 class GithubReferenceProvider implements IReferenceProvider {
-	private LinkReferenceProvider $linkReferenceProvider;
 	private GithubAPIService $githubAPIService;
 	private ?string $userId;
 	private IConfig $config;
 
-	public function __construct(LinkReferenceProvider $linkReferenceProvider,
-								GithubAPIService $githubAPIService,
+	public function __construct(GithubAPIService $githubAPIService,
 								IConfig $config,
 								?string $userId) {
-		$this->linkReferenceProvider = $linkReferenceProvider;
 		$this->githubAPIService = $githubAPIService;
 		$this->userId = $userId;
 		$this->config = $config;
@@ -70,12 +67,12 @@ class GithubReferenceProvider implements IReferenceProvider {
 	 */
 	public function resolveReference(string $referenceText): ?IReference {
 		if ($this->matchReference($referenceText)) {
-			$reference = $this->linkReferenceProvider->resolveReference($referenceText);
 			$issuePath = $this->getIssuePath($referenceText);
 			if ($issuePath !== null) {
 				[$owner, $repo, $id, $end] = $issuePath;
 				$commentInfo = $this->getCommentInfo($owner, $repo, $end);
 				$issueInfo = $this->githubAPIService->getIssueInfo($this->userId, $owner, $repo, $id);
+				$reference = new Reference($referenceText);
 				$reference->setRichObject(Application::APP_ID, [
 					'github_type' => isset($issueInfo['error']) ? 'issue-error' : 'issue',
 					'github_issue_id' => $id,
@@ -84,12 +81,14 @@ class GithubReferenceProvider implements IReferenceProvider {
 					'github_comment' => $commentInfo,
 					...$issueInfo,
 				]);
+				return $reference;
 			} else {
 				$prPath = $this->getPrPath($referenceText);
 				if ($prPath !== null) {
 					[$owner, $repo, $id, $end] = $prPath;
 					$commentInfo = $this->getCommentInfo($owner, $repo, $end);
 					$prInfo = $this->githubAPIService->getPrInfo($this->userId, $owner, $repo, $id);
+					$reference = new Reference($referenceText);
 					$reference->setRichObject(Application::APP_ID, [
 						'github_type' => isset($prInfo['error']) ? 'pr-error' : 'pr',
 						'github_pr_id' => $id,
@@ -98,9 +97,9 @@ class GithubReferenceProvider implements IReferenceProvider {
 						'github_comment' => $commentInfo,
 						...$prInfo,
 					]);
+					return $reference;
 				}
 			}
-			return $reference;
 		}
 
 		return null;

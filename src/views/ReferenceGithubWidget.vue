@@ -444,6 +444,7 @@ export default {
 				white-space: nowrap;
 				padding: 4px 8px;
 				border: 1px solid var(--color-border-dark);
+				border-radius: var(--border-radius);
 			}
 			.body-bubble {
 				margin-left: 15px;
