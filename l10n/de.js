@@ -40,6 +40,7 @@ OC.L10N.register(
     "Connected to GitHub!" : "Mit GitHub verbunden!",
     "GitHub OAuth error:" : "GitHub OAuth-Fehler:",
     "GitHub options saved" : "GitHub-Einstellungen gespeichert",
+    "Invalid access token" : "Ungültiger Zugriffstoken",
     "Failed to save GitHub options" : "Fehler beim Speichern der GutHub-Einstellungen",
     "Mark as read" : "Als gelesen markieren",
     "Unsubscribe" : "Abmelden",
@@ -49,7 +50,10 @@ OC.L10N.register(
     "Failed to get GitHub notifications" : "Fehler beim Abruf der GitHub-Benachrichtigung",
     "Successfully unsubscribed" : "Erfolgreich abbestellt",
     "Failed to edit GitHub notification" : "Fehler bei der Bearbeitung der GitHub-Benachrichtigung",
+    "GitHub API error" : "GitHub API-Fehler",
+    "Unknown state" : "Unbekannter Zustand",
     "Draft" : "Entwurf",
+    "Review requested" : "Review wurde angefordert",
     "Failed to save GitHub OAuth state" : "Fehler beim Speichern des GitHub OAuth-Status"
 },
 "nplurals=2; plural=(n != 1);");
