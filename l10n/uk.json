@@ -1,0 +1,24 @@
+{ "translations": {
+    "Client ID" : "Ідентифікатор клієнта",
+    "Client secret" : "Ключ клієнта",
+    "Enable GitHub link previews in Talk" : "Увімкніть попередній перегляд посилань GitHub у Talk",
+    "Mark as read" : "Відмітити прочитаним",
+    "GitHub API error" : "Помилка API GitHub",
+    "GitHub connected accounts settings" : "Налаштування підключених облікових записів GitHub",
+    "Open issue" : "Відкрите питання",
+    "Closed as not planned issue" : "Закрито як незапланований випуск",
+    "Closed issue" : "Закрите питання",
+    "Open draft pull request" : "Відкрити запит на отримання чернетки",
+    "Open pull request" : "Відкрити запит на отримання",
+    "Merged pull request" : "Об’єднаний запит на отримання",
+    "Closed pull request" : "Закритий запит на отримання",
+    "Unknown state" : "Невідомий стан",
+    "Draft" : "Чернетка",
+    "Review requested" : "Надіслано запит на перегляд",
+    "by {creator} was merged {relativeDate}" : "від {creator} було об’єднано {relativeDate}",
+    "opened {relativeDate} by {creator}" : "відкрито {relativeDate} {creator}",
+    "by {creator} was closed {relativeDate}" : "від {creator} було закрито {relativeDate}",
+    "Comment from {login}" : "Коментар від {login}",
+    "Assigned to {login}" : "Призначено для {login}"
+},"pluralForm" :"nplurals=4; plural=(n % 1 == 0 && n % 10 == 1 && n % 100 != 11 ? 0 : n % 1 == 0 && n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14) ? 1 : n % 1 == 0 && (n % 10 ==0 || (n % 10 >=5 && n % 10 <=9) || (n % 100 >=11 && n % 100 <=14 )) ? 2: 3);"
+}
