@@ -56,7 +56,7 @@ class GithubReferenceProvider implements IReferenceProvider {
 		if (!$adminLinkPreviewEnabled) {
 			return false;
 		}
-		if (preg_match('/^(?:https?:\/\/)?(?:www\.)?github\.com\/[^\/\?]+\/[^\/\?]+\/(issues|pull)\/[0-9]+/', $referenceText) !== false) {
+		if (preg_match('/^(?:https?:\/\/)?(?:www\.)?github\.com\/[^\/\?]+\/[^\/\?]+\/(issues|pull)\/[0-9]+/', $referenceText) === 1) {
 			return true;
 		}
 		return false;

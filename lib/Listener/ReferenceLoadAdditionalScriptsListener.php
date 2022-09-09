@@ -33,7 +33,6 @@ class ReferenceLoadAdditionalScriptsListener implements IEventListener {
 		if (!$event instanceof LoadAdditionalScriptsEvent) {
 			return;
 		}
-		error_log('addScript(integration_github) LoadAdditionalScriptsEvent');
 
 		Util::addScript(Application::APP_ID, Application::APP_ID . '-reference');
 	}
