@@ -23,17 +23,17 @@
 namespace OCA\Github\Listener;
 
 use OCA\Github\AppInfo\Application;
-use OCP\Collaboration\Reference\RenderReferenceEvent;
+use OCP\Collaboration\Resources\LoadAdditionalScriptsEvent;
 use OCP\EventDispatcher\Event;
 use OCP\EventDispatcher\IEventListener;
 use OCP\Util;
 
-class GithubReferenceListener implements IEventListener {
+class ReferenceLoadAdditionalScriptsListener implements IEventListener {
 	public function handle(Event $event): void {
-		if (!$event instanceof RenderReferenceEvent) {
+		if (!$event instanceof LoadAdditionalScriptsEvent) {
 			return;
 		}
-		error_log('addScript(integration_github) RenderReferenceEvent');
+		error_log('addScript(integration_github) LoadAdditionalScriptsEvent');
 
 		Util::addScript(Application::APP_ID, Application::APP_ID . '-reference');
 	}

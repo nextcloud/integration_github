@@ -10,8 +10,10 @@
 namespace OCA\Github\AppInfo;
 
 use OCA\Github\Listener\GithubReferenceListener;
+use OCA\Github\Listener\ReferenceLoadAdditionalScriptsListener;
 use OCA\Github\Reference\GithubReferenceProvider;
 use OCP\Collaboration\Reference\RenderReferenceEvent;
+use OCP\Collaboration\Resources\LoadAdditionalScriptsEvent;
 use OCP\IConfig;
 use OCP\IL10N;
 use OCP\INavigationManager;
@@ -26,7 +28,6 @@ use OCP\AppFramework\Bootstrap\IBootstrap;
 use OCA\Github\Dashboard\GithubWidget;
 use OCA\Github\Search\GithubSearchReposProvider;
 use OCA\Github\Search\GithubSearchIssuesProvider;
-use OCP\Util;
 
 /**
  * Class Application
@@ -52,8 +53,9 @@ class Application extends App implements IBootstrap {
 		$context->registerSearchProvider(GithubSearchReposProvider::class);
 
 		$context->registerReferenceProvider(GithubReferenceProvider::class);
+		// TODO ask what does the RenderReferenceEvent event mean
 		$context->registerEventListener(RenderReferenceEvent::class, GithubReferenceListener::class);
-		Util::addScript(self::APP_ID, self::APP_ID . '-reference');
+		$context->registerEventListener(LoadAdditionalScriptsEvent::class, ReferenceLoadAdditionalScriptsListener::class);
 	}
 
 	public function boot(IBootContext $context): void {
