@@ -483,6 +483,7 @@ export default {
 
 		.sub-text {
 			display: flex;
+			flex-wrap: wrap;
 			align-items: center;
 			color: var(--color-text-maxcontrast);
 			margin-left: 40px;
