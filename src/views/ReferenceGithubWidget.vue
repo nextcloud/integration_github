@@ -86,7 +86,7 @@
 			</div>
 			<div class="spacer" />
 			<div class="right-content">
-				<Avatar v-for="assignee in richObject.assignees"
+				<NcAvatar v-for="assignee in richObject.assignees"
 					:key="assignee.login"
 					:tooltip-message="getAssigneeTooltip(assignee)"
 					:is-no-user="true"
@@ -100,7 +100,7 @@
 		</div>
 		<div v-if="richObject.github_comment" class="comment">
 			<div class="comment--content">
-				<Avatar
+				<NcAvatar
 					class="author-avatar"
 					:tooltip-message="commentAuthorTooltip"
 					:is-no-user="true"
@@ -142,7 +142,7 @@ import escapeHtml from 'escape-html'
 import { hexToRgb } from '../utils.js'
 import rgbToHsl from '@alchemyalcove/rgb-to-hsl'
 
-import Avatar from '@nextcloud/vue/dist/Components/Avatar.js'
+import NcAvatar from '@nextcloud/vue/dist/Components/NcAvatar.js'
 import Tooltip from '@nextcloud/vue/dist/Directives/Tooltip.js'
 import Vue from 'vue'
 Vue.directive('tooltip', Tooltip)
@@ -154,7 +154,7 @@ export default {
 		MilestoneIcon,
 		GithubIcon,
 		CommentReactions,
-		Avatar,
+		NcAvatar,
 		CommentIcon,
 		OpenInNewIcon,
 	},

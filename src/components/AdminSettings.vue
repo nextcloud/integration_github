@@ -51,16 +51,16 @@
 					@input="onInput"
 					@focus="readonly = false">
 			</div>
-			<CheckboxRadioSwitch
+			<NcCheckboxRadioSwitch
 				:checked="state.use_popup"
 				@update:checked="onCheckboxChanged($event, 'use_popup')">
 				{{ t('integration_github', 'Use a popup to authenticate') }}
-			</CheckboxRadioSwitch>
-			<CheckboxRadioSwitch
+			</NcCheckboxRadioSwitch>
+			<NcCheckboxRadioSwitch
 				:checked="state.link_preview_enabled"
 				@update:checked="onCheckboxChanged($event, 'link_preview_enabled')">
 				{{ t('integration_github', 'Enable GitHub link previews in Talk') }}
-			</CheckboxRadioSwitch>
+			</NcCheckboxRadioSwitch>
 		</div>
 	</div>
 </template>
@@ -77,14 +77,14 @@ import axios from '@nextcloud/axios'
 import { delay } from '../utils.js'
 import { showSuccess, showError } from '@nextcloud/dialogs'
 
-import CheckboxRadioSwitch from '@nextcloud/vue/dist/Components/CheckboxRadioSwitch.js'
+import NcCheckboxRadioSwitch from '@nextcloud/vue/dist/Components/NcCheckboxRadioSwitch.js'
 
 export default {
 	name: 'AdminSettings',
 
 	components: {
 		GithubIcon,
-		CheckboxRadioSwitch,
+		NcCheckboxRadioSwitch,
 		KeyIcon,
 		InformationOutlineIcon,
 	},

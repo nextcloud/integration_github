@@ -12,16 +12,16 @@
 			</a>
 		</p>
 		<div id="github-content">
-			<CheckboxRadioSwitch
+			<NcCheckboxRadioSwitch
 				:checked="state.navigation_enabled"
 				@update:checked="onCheckboxChanged($event, 'navigation_enabled')">
 				{{ t('integration_github', 'Enable navigation link') }}
-			</CheckboxRadioSwitch>
-			<CheckboxRadioSwitch
+			</NcCheckboxRadioSwitch>
+			<NcCheckboxRadioSwitch
 				:checked="state.link_preview_enabled"
 				@update:checked="onCheckboxChanged($event, 'link_preview_enabled')">
 				{{ t('integration_github', 'Enable GitHub link previews in Talk') }}
-			</CheckboxRadioSwitch>
+			</NcCheckboxRadioSwitch>
 			<div v-show="!showOAuth"
 				class="line">
 				<label for="github-token">
@@ -60,16 +60,16 @@
 			</div>
 			<br>
 			<div v-if="connected" id="github-search-block">
-				<CheckboxRadioSwitch
+				<NcCheckboxRadioSwitch
 					:checked="state.search_repos_enabled"
 					@update:checked="onCheckboxChanged($event, 'search_repos_enabled')">
 					{{ t('integration_github', 'Enable searching for repositories') }}
-				</CheckboxRadioSwitch>
-				<CheckboxRadioSwitch
+				</NcCheckboxRadioSwitch>
+				<NcCheckboxRadioSwitch
 					:checked="state.search_issues_enabled"
 					@update:checked="onCheckboxChanged($event, 'search_issues_enabled')">
 					{{ t('integration_github', 'Enable searching for issues and pull requests') }}
-				</CheckboxRadioSwitch>
+				</NcCheckboxRadioSwitch>
 				<br>
 				<p v-if="state.search_repos_enabled || state.search_issues_enabled" class="settings-hint">
 					<InformationOutlineIcon :size="20" class="icon" />
@@ -95,15 +95,15 @@ import axios from '@nextcloud/axios'
 import { oauthConnect } from '../utils.js'
 import { showSuccess, showError } from '@nextcloud/dialogs'
 
-import NcButton from '@nextcloud/vue/dist/Components/Button.js'
-import CheckboxRadioSwitch from '@nextcloud/vue/dist/Components/CheckboxRadioSwitch.js'
+import NcButton from '@nextcloud/vue/dist/Components/NcButton.js'
+import NcCheckboxRadioSwitch from '@nextcloud/vue/dist/Components/NcCheckboxRadioSwitch.js'
 
 export default {
 	name: 'PersonalSettings',
 
 	components: {
 		GithubIcon,
-		CheckboxRadioSwitch,
+		NcCheckboxRadioSwitch,
 		NcButton,
 		KeyIcon,
 		CheckIcon,
