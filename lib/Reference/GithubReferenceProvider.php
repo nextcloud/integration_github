@@ -73,14 +73,14 @@ class GithubReferenceProvider implements IReferenceProvider {
 				$commentInfo = $this->getCommentInfo($owner, $repo, $end);
 				$issueInfo = $this->githubAPIService->getIssueInfo($this->userId, $owner, $repo, $id);
 				$reference = new Reference($referenceText);
-				$reference->setRichObject(Application::APP_ID, [
+				$reference->setRichObject(Application::APP_ID, array_merge([
 					'github_type' => isset($issueInfo['error']) ? 'issue-error' : 'issue',
 					'github_issue_id' => $id,
 					'github_repo_owner' => $owner,
 					'github_repo' => $repo,
 					'github_comment' => $commentInfo,
-					...$issueInfo,
-				]);
+					], $issueInfo),
+				);
 				return $reference;
 			} else {
 				$prPath = $this->getPrPath($referenceText);
@@ -89,14 +89,14 @@ class GithubReferenceProvider implements IReferenceProvider {
 					$commentInfo = $this->getCommentInfo($owner, $repo, $end);
 					$prInfo = $this->githubAPIService->getPrInfo($this->userId, $owner, $repo, $id);
 					$reference = new Reference($referenceText);
-					$reference->setRichObject(Application::APP_ID, [
+					$reference->setRichObject(Application::APP_ID, array_merge([
 						'github_type' => isset($prInfo['error']) ? 'pr-error' : 'pr',
 						'github_pr_id' => $id,
 						'github_repo_owner' => $owner,
 						'github_repo' => $repo,
 						'github_comment' => $commentInfo,
-						...$prInfo,
-					]);
+						], $prInfo),
+					);
 					return $reference;
 				}
 			}
