@@ -26,6 +26,11 @@ namespace OCA\Github\Dashboard;
 use OCA\Github\Service\GithubAPIService;
 use OCP\AppFramework\Services\IInitialState;
 use OCP\Dashboard\IAPIWidget;
+use OCP\Dashboard\IButtonWidget;
+use OCP\Dashboard\IIconWidget;
+use OCP\Dashboard\IOptionWidget;
+use OCP\Dashboard\Model\WidgetButton;
+use OCP\Dashboard\Model\WidgetOptions;
 use OCP\IConfig;
 use OCP\IL10N;
 use OCP\IURLGenerator;
@@ -33,7 +38,7 @@ use OCP\Util;
 
 use OCA\Github\AppInfo\Application;
 
-class GithubWidget implements IAPIWidget {
+class GithubWidget implements IAPIWidget, IButtonWidget, IIconWidget, IOptionWidget {
 
 	/** @var IL10N */
 	private $l10n;
@@ -103,6 +108,15 @@ class GithubWidget implements IAPIWidget {
 	/**
 	 * @inheritDoc
 	 */
+	public function getIconUrl(): string {
+		return $this->urlGenerator->getAbsoluteURL(
+			$this->urlGenerator->imagePath(Application::APP_ID, 'app-dark.svg')
+		);
+	}
+
+	/**
+	 * @inheritDoc
+	 */
 	public function getUrl(): ?string {
 		return $this->urlGenerator->linkToRoute('settings.PersonalSettings.index', ['section' => 'connected-accounts']);
 	}
@@ -135,5 +149,25 @@ class GithubWidget implements IAPIWidget {
 		return array_map(static function(array $notification) use ($that) {
 			return $that->githubAPIService->getWidgetFromNotification($notification);
 		}, $notifications);
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function getWidgetButtons(string $userId): array {
+		return [
+			new WidgetButton(
+				WidgetButton::TYPE_MORE,
+				'https://github.com/notifications',
+				$this->l10n->t('More notifications')
+			),
+		];
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function getWidgetOptions(): WidgetOptions {
+		return new WidgetOptions(true);
 	}
 }
