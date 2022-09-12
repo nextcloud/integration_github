@@ -33,7 +33,6 @@ class GithubReferenceListener implements IEventListener {
 		if (!$event instanceof RenderReferenceEvent) {
 			return;
 		}
-		error_log('addScript(integration_github) RenderReferenceEvent');
 
 		Util::addScript(Application::APP_ID, Application::APP_ID . '-reference');
 	}

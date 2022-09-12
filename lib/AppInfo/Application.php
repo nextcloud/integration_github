@@ -10,10 +10,8 @@
 namespace OCA\Github\AppInfo;
 
 use OCA\Github\Listener\GithubReferenceListener;
-use OCA\Github\Listener\ReferenceLoadAdditionalScriptsListener;
 use OCA\Github\Reference\GithubReferenceProvider;
 use OCP\Collaboration\Reference\RenderReferenceEvent;
-use OCP\Collaboration\Resources\LoadAdditionalScriptsEvent;
 use OCP\IConfig;
 use OCP\IL10N;
 use OCP\INavigationManager;
@@ -53,9 +51,7 @@ class Application extends App implements IBootstrap {
 		$context->registerSearchProvider(GithubSearchReposProvider::class);
 
 		$context->registerReferenceProvider(GithubReferenceProvider::class);
-		// TODO ask what does the RenderReferenceEvent event mean
 		$context->registerEventListener(RenderReferenceEvent::class, GithubReferenceListener::class);
-		$context->registerEventListener(LoadAdditionalScriptsEvent::class, ReferenceLoadAdditionalScriptsListener::class);
 	}
 
 	public function boot(IBootContext $context): void {
@@ -74,18 +70,10 @@ class Application extends App implements IBootstrap {
 					$l10n = $container->query(IL10N::class);
 					return [
 						'id' => self::APP_ID,
-
 						'order' => 10,
-
-						// the route that will be shown on startup
 						'href' => 'https://github.com',
-
-						// the icon that will be shown in the navigation
-						// this file needs to exist in img/
+						'target' => '_blank',
 						'icon' => $urlGenerator->imagePath(self::APP_ID, 'app.svg'),
-
-						// the title of your application. This will be used in the
-						// navigation or on the settings page of your app
 						'name' => $l10n->t('GitHub'),
 					];
 				});
