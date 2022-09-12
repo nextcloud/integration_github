@@ -115,16 +115,35 @@ class GithubReferenceProvider implements IReferenceProvider {
 		return count($matches) > 3 ? [$matches[1], $matches[2], $matches[3], $matches[4]] : null;
 	}
 
+	private function getCommentId(string $urlEnd): ?int {
+		preg_match('/^#issuecomment-([0-9]+)$/', $urlEnd, $matches);
+		return (is_array($matches) && count($matches) > 1) ? ((int) $matches[1]) : null;
+	}
+
 	private function getCommentInfo(string $owner, string $repo, string $end): ?array {
-		preg_match('/^#issuecomment-([0-9]+)$/', $end, $matches);
-		return $matches ? $this->githubAPIService->getIssueCommentInfo($this->userId, $owner, $repo, $matches[1]) : null;
+		$commentId = $this->getCommentId($end);
+		return $commentId !== null ? $this->githubAPIService->getIssueCommentInfo($this->userId, $owner, $repo, $commentId) : null;
 	}
 
 	public function getCachePrefix(string $referenceId): string {
+		$issuePath = $this->getIssuePath($referenceId);
+		if ($issuePath !== null) {
+			[$owner, $repo, $id, $end] = $issuePath;
+			$commentId = $this->getCommentId($end);
+			return $owner . '/' . $repo . '/' . $id . '/' . $commentId;
+		} else {
+			$prPath = $this->getPrPath($referenceId);
+			if ($prPath !== null) {
+				[$owner, $repo, $id, $end] = $prPath;
+				$commentId = $this->getCommentId($end);
+				return $owner . '/' . $repo . '/' . $id . '/' . $commentId;
+			}
+		}
+
 		return $referenceId;
 	}
 
 	public function getCacheKey(string $referenceId): ?string {
-		return null;
+		return $this->userId ?? '';
 	}
 }
