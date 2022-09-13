@@ -153,11 +153,45 @@ class GithubAPIController extends Controller {
 	 *
 	 * @param string $owner
 	 * @param string $repo
+	 * @param int $issueNumber
+	 * @return DataResponse
+	 */
+	public function getIssueReactionsInfo(string $owner, string $repo, int $issueNumber): DataResponse {
+		$result = $this->githubAPIService->getIssueReactionsInfo($this->userId, $owner, $repo, $issueNumber);
+		if (!isset($result['error'])) {
+			return new DataResponse($result);
+		} else {
+			return new DataResponse($result, 401);
+		}
+	}
+
+	/**
+	 * @NoAdminRequired
+	 *
+	 * @param string $owner
+	 * @param string $repo
 	 * @param int $commentId
 	 * @return DataResponse
 	 */
 	public function getIssueCommentInfo(string $owner, string $repo, int $commentId): DataResponse {
 		$result = $this->githubAPIService->getIssueCommentInfo($this->userId, $owner, $repo, $commentId);
+		if (!isset($result['error'])) {
+			return new DataResponse($result);
+		} else {
+			return new DataResponse($result, 401);
+		}
+	}
+
+	/**
+	 * @NoAdminRequired
+	 *
+	 * @param string $owner
+	 * @param string $repo
+	 * @param int $commentId
+	 * @return DataResponse
+	 */
+	public function getIssueCommentReactionsInfo(string $owner, string $repo, int $commentId): DataResponse {
+		$result = $this->githubAPIService->getIssueCommentReactionsInfo($this->userId, $owner, $repo, $commentId);
 		if (!isset($result['error'])) {
 			return new DataResponse($result);
 		} else {

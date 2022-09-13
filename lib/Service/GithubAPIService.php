@@ -302,11 +302,35 @@ class GithubAPIService {
 	 * @param string|null $userId
 	 * @param string $owner
 	 * @param string $repo
+	 * @param int $issueNumber
+	 * @return array
+	 */
+	public function getIssueReactionsInfo(?string $userId, string $owner, string $repo, int $issueNumber): array {
+		$endpoint = 'repos/' . $owner . '/' . $repo . '/issues/' . $issueNumber . '/reactions';
+		return $this->request($userId, $endpoint);
+	}
+
+	/**
+	 * @param string|null $userId
+	 * @param string $owner
+	 * @param string $repo
 	 * @param int $commentId
 	 * @return array
 	 */
 	public function getIssueCommentInfo(?string $userId, string $owner, string $repo, int $commentId): array {
 		$endpoint = 'repos/' . $owner . '/' . $repo . '/issues/comments/' . $commentId;
+		return $this->request($userId, $endpoint);
+	}
+
+	/**
+	 * @param string|null $userId
+	 * @param string $owner
+	 * @param string $repo
+	 * @param int $commentId
+	 * @return array
+	 */
+	public function getIssueCommentReactionsInfo(?string $userId, string $owner, string $repo, int $commentId): array {
+		$endpoint = 'repos/' . $owner . '/' . $repo . '/issues/comments/' . $commentId . '/reactions';
 		return $this->request($userId, $endpoint);
 	}
 

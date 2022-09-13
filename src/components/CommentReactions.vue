@@ -2,7 +2,8 @@
 	<div class="reactions">
 		<button v-for="(r, rKey) in displayedReactions"
 			:key="rKey"
-			class="reaction">
+			class="reaction"
+			@mouseenter="$emit('mouseenter')">
 			<img :src="r.url">
 			{{ r.count }}
 		</button>

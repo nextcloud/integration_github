@@ -113,10 +113,12 @@
 		</div>
 		<CommentReactions v-if="richObject.github_comment?.reactions"
 			class="comment--reactions item-reactions"
-			:reactions="richObject.github_comment.reactions" />
+			:reactions="richObject.github_comment.reactions"
+			@mouseenter="getCommentReactions" />
 		<CommentReactions v-else-if="richObject.reactions"
 			class="issue-pr--reactions item-reactions"
-			:reactions="richObject.reactions" />
+			:reactions="richObject.reactions"
+			@mouseenter="getIssueReactions" />
 	</div>
 </template>
 
@@ -137,6 +139,7 @@ import MilestoneIcon from '../components/icons/MilestoneIcon.vue'
 import CommentReactions from '../components/CommentReactions.vue'
 
 import { generateUrl } from '@nextcloud/router'
+import axios from '@nextcloud/axios'
 import moment from '@nextcloud/moment'
 import escapeHtml from 'escape-html'
 import { hexToRgb } from '../utils.js'
@@ -405,6 +408,39 @@ export default {
 					background: `rgb(${rgb.r}, ${rgb.g}, ${rgb.b})`,
 					color: Math.round(hsl[2]) > 70 ? 'black' : 'white',
 				}
+		},
+		getIssueReactions() {
+			console.debug('get issue reactions')
+			if (this.reactionData) {
+				return
+			}
+			const url = generateUrl('/apps/integration_github/repos/{owner}/{repo}/issues/{issueNumber}/reactions', {
+				owner: this.richObject.github_repo_owner,
+				repo: this.richObject.github_repo,
+				// according to https://docs.github.com/en/rest/reactions there is no reactions for pull requests
+				issueNumber: this.richObject.github_issue_id,
+			})
+			axios.get(url).then((response) => {
+				// TODO pass data to CommentReactions component
+			}).catch((error) => {
+				console.error(error)
+			})
+		},
+		getCommentReactions() {
+			console.debug('get comment reactions')
+			if (this.reactionData) {
+				return
+			}
+			const url = generateUrl('/apps/integration_github/repos/{owner}/{repo}/issues/comments/{commentId}/reactions', {
+				owner: this.richObject.github_repo_owner,
+				repo: this.richObject.github_repo,
+				commentId: this.richObject.github_comment.id,
+			})
+			axios.get(url).then((response) => {
+				// TODO
+			}).catch((error) => {
+				console.error(error)
+			})
 		},
 	},
 }

@@ -23,7 +23,9 @@ return [
 		// get user/issue/pr information
 		['name' => 'githubAPI#getUserInfo', 'url' => '/users/{githubUserName}', 'verb' => 'GET'],
 		['name' => 'githubAPI#getIssueInfo', 'url' => '/repos/{owner}/{repo}/issues/{issueNumber}', 'verb' => 'GET'],
+		['name' => 'githubAPI#getIssueReactionsInfo', 'url' => '/repos/{owner}/{repo}/issues/{issueNumber}/reactions', 'verb' => 'GET'],
 		['name' => 'githubAPI#getIssueCommentInfo', 'url' => '/repos/{owner}/{repo}/issues/comments/{commentId}', 'verb' => 'GET'],
+		['name' => 'githubAPI#getIssueCommentReactionsInfo', 'url' => '/repos/{owner}/{repo}/issues/comments/{commentId}/reactions', 'verb' => 'GET'],
 		['name' => 'githubAPI#getPrInfo', 'url' => '/repos/{owner}/{repo}/pulls/{prNumber}', 'verb' => 'GET'],
 	]
 ];
