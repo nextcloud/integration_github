@@ -11,6 +11,7 @@
 
 namespace OCA\Github\Controller;
 
+use OCA\Github\Reference\GithubReferenceProvider;
 use OCP\AppFramework\Http\TemplateResponse;
 use OCP\AppFramework\Services\IInitialState;
 use OCP\IURLGenerator;
@@ -51,6 +52,7 @@ class ConfigController extends Controller {
 	 * @var IInitialState
 	 */
 	private $initialStateService;
+	private GithubReferenceProvider $githubReferenceProvider;
 
 	public function __construct(string $appName,
 								IRequest $request,
@@ -59,6 +61,7 @@ class ConfigController extends Controller {
 								IL10N $l,
 								IInitialState $initialStateService,
 								GithubAPIService $githubAPIService,
+								GithubReferenceProvider $githubReferenceProvider,
 								?string $userId) {
 		parent::__construct($appName, $request);
 		$this->config = $config;
@@ -67,6 +70,7 @@ class ConfigController extends Controller {
 		$this->githubAPIService = $githubAPIService;
 		$this->userId = $userId;
 		$this->initialStateService = $initialStateService;
+		$this->githubReferenceProvider = $githubReferenceProvider;
 	}
 
 	/**
@@ -93,6 +97,7 @@ class ConfigController extends Controller {
 
 		if (isset($values['token'])) {
 			if ($values['token'] && $values['token'] !== '') {
+				// connect with personal token
 				$userInfo = $this->storeUserInfo();
 				$result['user_name'] = $userInfo['user_name'];
 				$result['user_displayname'] = $userInfo['user_displayname'];
@@ -101,12 +106,15 @@ class ConfigController extends Controller {
 					$this->config->setUserValue($this->userId, Application::APP_ID, 'token_type', 'personal');
 				}
 			} else {
+				// disconnect
 				$this->config->deleteUserValue($this->userId, Application::APP_ID, 'user_id');
 				$this->config->deleteUserValue($this->userId, Application::APP_ID, 'user_name');
 				$this->config->deleteUserValue($this->userId, Application::APP_ID, 'user_displayname');
 				$this->config->deleteUserValue($this->userId, Application::APP_ID, 'token_type');
 				$result['user_name'] = '';
 			}
+			// connect or disconnect: invalidate the user-related cache
+			$this->githubReferenceProvider->invalidateUserCache($this->userId);
 		}
 		return new DataResponse($result);
 	}
@@ -164,6 +172,7 @@ class ConfigController extends Controller {
 				'state' => $state
 			], 'POST');
 			if (isset($result['access_token'])) {
+				$this->githubReferenceProvider->invalidateUserCache($this->userId);
 				$accessToken = $result['access_token'];
 				$this->config->setUserValue($this->userId, Application::APP_ID, 'token', $accessToken);
 				$this->config->setUserValue($this->userId, Application::APP_ID, 'token_type', 'oauth');

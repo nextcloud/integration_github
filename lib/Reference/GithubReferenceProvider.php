@@ -23,6 +23,7 @@
 namespace OCA\Github\Reference;
 
 use OC\Collaboration\Reference\Reference;
+use OC\Collaboration\Reference\ReferenceManager;
 use OCA\Github\AppInfo\Application;
 use OCA\Github\Service\GithubAPIService;
 use OCP\Collaboration\Reference\IReference;
@@ -33,13 +34,16 @@ class GithubReferenceProvider implements IReferenceProvider {
 	private GithubAPIService $githubAPIService;
 	private ?string $userId;
 	private IConfig $config;
+	private ReferenceManager $referenceManager;
 
 	public function __construct(GithubAPIService $githubAPIService,
 								IConfig $config,
+								ReferenceManager $referenceManager,
 								?string $userId) {
 		$this->githubAPIService = $githubAPIService;
 		$this->userId = $userId;
 		$this->config = $config;
+		$this->referenceManager = $referenceManager;
 	}
 
 	/**
@@ -105,27 +109,58 @@ class GithubReferenceProvider implements IReferenceProvider {
 		return null;
 	}
 
+	/**
+	 * @param string $url
+	 * @return array|null
+	 */
 	private function getIssuePath(string $url): ?array {
 		preg_match('/^(?:https?:\/\/)?(?:www\.)?github\.com\/([^\/\?]+)\/([^\/\?]+)\/issues\/([0-9]+)(.*$)/', $url, $matches);
 		return count($matches) > 3 ? [$matches[1], $matches[2], $matches[3], $matches[4]] : null;
 	}
 
+	/**
+	 * @param string $url
+	 * @return array|null
+	 */
 	private function getPrPath(string $url): ?array {
 		preg_match('/^(?:https?:\/\/)?(?:www\.)?github\.com\/([^\/\?]+)\/([^\/\?]+)\/pull\/([0-9]+)(.*$)/', $url, $matches);
 		return count($matches) > 3 ? [$matches[1], $matches[2], $matches[3], $matches[4]] : null;
 	}
 
+	/**
+	 * @param string $urlEnd
+	 * @return int|null
+	 */
 	private function getCommentId(string $urlEnd): ?int {
 		preg_match('/^#issuecomment-([0-9]+)$/', $urlEnd, $matches);
 		return (is_array($matches) && count($matches) > 1) ? ((int) $matches[1]) : null;
 	}
 
+	/**
+	 * @param string $owner
+	 * @param string $repo
+	 * @param string $end
+	 * @return array|null
+	 */
 	private function getCommentInfo(string $owner, string $repo, string $end): ?array {
 		$commentId = $this->getCommentId($end);
 		return $commentId !== null ? $this->githubAPIService->getIssueCommentInfo($this->userId, $owner, $repo, $commentId) : null;
 	}
 
+	/**
+	 * We use the userId here because when connecting/disconnecting from the GitHub account,
+	 * we want to invalidate all the user cache and this is only possible with the cache prefix
+	 * @inheritDoc
+	 */
 	public function getCachePrefix(string $referenceId): string {
+		return $this->userId ?? '';
+	}
+
+	/**
+	 * We don't use the userId here but rather a reference unique id
+	 * @inheritDoc
+	 */
+	public function getCacheKey(string $referenceId): ?string {
 		$issuePath = $this->getIssuePath($referenceId);
 		if ($issuePath !== null) {
 			[$owner, $repo, $id, $end] = $issuePath;
@@ -143,7 +178,11 @@ class GithubReferenceProvider implements IReferenceProvider {
 		return $referenceId;
 	}
 
-	public function getCacheKey(string $referenceId): ?string {
-		return $this->userId ?? '';
+	/**
+	 * @param string $userId
+	 * @return void
+	 */
+	public function invalidateUserCache(string $userId): void {
+		$this->referenceManager->invalidateCache($userId);
 	}
 }
