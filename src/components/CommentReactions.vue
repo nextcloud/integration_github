@@ -1,12 +1,14 @@
 <template>
 	<div class="reactions">
-		<button v-for="(r, rKey) in displayedReactions"
-			:key="rKey"
-			class="reaction"
-			@mouseenter="$emit('mouseenter')">
-			<img :src="r.url">
-			{{ r.count }}
-		</button>
+		<div v-for="(r, rKey) in displayedReactions"
+			:key="rKey">
+			<button class="reaction"
+				:title="reactionDetailsByType[rKey]"
+				@mouseenter="$emit('mouseenter')">
+				<img :src="r.url">
+				{{ r.count }}
+			</button>
+		</div>
 	</div>
 </template>
 
@@ -23,6 +25,10 @@ export default {
 		reactions: {
 			type: Object,
 			required: true,
+		},
+		reactionData: {
+			type: Array,
+			default: () => null,
 		},
 	},
 
@@ -53,6 +59,23 @@ export default {
 				}
 			})
 			return result
+		},
+		reactionDetailsByType() {
+			if (this.reactionData === null) {
+				return {}
+			}
+			const byType = {}
+			this.reactionData.forEach(reaction => {
+				if (!byType[reaction.content]) {
+					byType[reaction.content] = []
+				}
+				byType[reaction.content].push(reaction.user.login)
+			})
+			Object.keys(byType).forEach(rKey => {
+				byType[rKey] = t('integration_github', '{logins} reacted with {emoji} emoji', { logins: byType[rKey].join(', '), emoji: rKey })
+			})
+			console.debug('bytype', byType)
+			return byType
 		},
 	},
 

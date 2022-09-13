@@ -114,10 +114,12 @@
 		<CommentReactions v-if="richObject.github_comment?.reactions"
 			class="comment--reactions item-reactions"
 			:reactions="richObject.github_comment.reactions"
+			:reaction-data="reactionData"
 			@mouseenter="getCommentReactions" />
 		<CommentReactions v-else-if="richObject.reactions"
 			class="issue-pr--reactions item-reactions"
 			:reactions="richObject.reactions"
+			:reaction-data="reactionData"
 			@mouseenter="getIssueReactions" />
 	</div>
 </template>
@@ -180,6 +182,7 @@ export default {
 	data() {
 		return {
 			settingsUrl: generateUrl('/settings/user/connected-accounts#github_prefs'),
+			reactionData: null,
 		}
 	},
 
@@ -198,7 +201,6 @@ export default {
 			const bgColor = style.getPropertyValue('--color-main-background')
 			const rgb = hexToRgb(bgColor)
 			const hsl = rgbToHsl([rgb.r, rgb.g, rgb.b])
-			console.debug('lightnessssssssssssssss', Math.round(hsl[2]))
 			return Math.round(hsl[2]) < 30
 		},
 		slug() {
@@ -410,7 +412,6 @@ export default {
 				}
 		},
 		getIssueReactions() {
-			console.debug('get issue reactions')
 			if (this.reactionData) {
 				return
 			}
@@ -421,13 +422,12 @@ export default {
 				issueNumber: this.richObject.github_issue_id,
 			})
 			axios.get(url).then((response) => {
-				// TODO pass data to CommentReactions component
+				this.reactionData = response.data
 			}).catch((error) => {
 				console.error(error)
 			})
 		},
 		getCommentReactions() {
-			console.debug('get comment reactions')
 			if (this.reactionData) {
 				return
 			}
@@ -437,7 +437,7 @@ export default {
 				commentId: this.richObject.github_comment.id,
 			})
 			axios.get(url).then((response) => {
-				// TODO
+				this.reactionData = response.data
 			}).catch((error) => {
 				console.error(error)
 			})
