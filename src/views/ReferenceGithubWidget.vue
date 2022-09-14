@@ -32,7 +32,7 @@
 			</p>
 			<p v-else
 				class="widget-error">
-				{{ widgetGenericErrorText }}
+				{{ t('integration_github', 'Unknown error') }}
 			</p>
 			<a :href="settingsUrl" class="settings-link external" target="_blank">
 				<OpenInNewIcon :size="20" class="icon" />
