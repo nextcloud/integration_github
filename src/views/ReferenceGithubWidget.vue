@@ -98,6 +98,11 @@
 				</div>
 			</div>
 		</div>
+		<CommentReactions v-if="richObject?.reactions?.total_count > 0"
+			class="issue-pr--reactions item-reactions"
+			:reactions="richObject.reactions"
+			:reaction-data="issueReactionData"
+			@mouseenter="getIssueReactions" />
 		<div v-if="richObject.github_comment" class="comment">
 			<div class="comment--content">
 				<NcAvatar
@@ -105,22 +110,41 @@
 					:tooltip-message="commentAuthorTooltip"
 					:is-no-user="true"
 					:url="commentAuthorAvatarUrl" />
-				<span class="body-bubble" />
-				<span class="body" :title="richObject.github_comment.body">
-					{{ richObject.github_comment.body }}
+				<span class="comment--content--bubble-tip" />
+				<span class="comment--content--bubble">
+					<div class="comment--content--bubble--header">
+						<strong>
+							<a :href="getUserUrl(richObject.github_comment.user.login)" target="_blank" class="author-link comment-author-display-name">
+								{{ richObject.github_comment.user.login }}
+							</a>
+						</strong>
+						&nbsp;
+						<span v-tooltip.top="{ content: commentedAtTooltip }">
+							{{ commentedAtText }}
+						</span>
+						<span v-if="richObject.github_comment.created_at !== richObject.github_comment.updated_at"
+							v-tooltip.top="{ content: commentUpdatedAtTooltip }">
+							&nbsp;•&nbsp;{{ commentUpdatedAtText }}
+						</span>
+						<div class="spacer" />
+						<div v-if="richObject.github_comment.user.login === richObject.user.login" class="label">
+							{{ t('integration_github', 'Author') }}
+						</div>
+						<div v-if="richObject.github_comment.user.login === richObject.github_repo_owner" class="label">
+							{{ t('integration_github', 'Owner') }}
+						</div>
+					</div>
+					<div class="comment--content--bubble--content" :title="richObject.github_comment.body">
+						{{ richObject.github_comment.body }}
+					</div>
+					<CommentReactions v-if="richObject.github_comment?.reactions?.total_count > 0"
+						class="comment--reactions item-reactions"
+						:reactions="richObject.github_comment.reactions"
+						:reaction-data="commentReactionData"
+						@mouseenter="getCommentReactions" />
 				</span>
 			</div>
 		</div>
-		<CommentReactions v-if="richObject.github_comment?.reactions"
-			class="comment--reactions item-reactions"
-			:reactions="richObject.github_comment.reactions"
-			:reaction-data="reactionData"
-			@mouseenter="getCommentReactions" />
-		<CommentReactions v-else-if="richObject.reactions"
-			class="issue-pr--reactions item-reactions"
-			:reactions="richObject.reactions"
-			:reaction-data="reactionData"
-			@mouseenter="getIssueReactions" />
 	</div>
 </template>
 
@@ -182,7 +206,8 @@ export default {
 	data() {
 		return {
 			settingsUrl: generateUrl('/settings/user/connected-accounts#github_prefs'),
-			reactionData: null,
+			commentReactionData: null,
+			issueReactionData: null,
 		}
 	},
 
@@ -379,15 +404,31 @@ export default {
 		commentAuthorTooltip() {
 			return t('integration_github', 'Comment from {login}', { login: this.richObject.github_comment.user?.login ?? '' })
 		},
+		commentedAtTooltip() {
+			return moment(this.richObject.github_comment.created_at).format('LLL')
+		},
+		commentedAtText() {
+			return t('integration_github', 'commented {date}', { date: moment(this.richObject.github_comment.created_at).fromNow() })
+		},
+		commentUpdatedAtTooltip() {
+			return moment(this.richObject.github_comment.updated_at).format('LLL')
+		},
+		commentUpdatedAtText() {
+			return t('integration_github', 'edited {date}', { date: moment(this.richObject.github_comment.updated_at).fromNow() })
+		},
 	},
 
 	methods: {
 		getUserLink(userName) {
 			if (userName) {
 				const cleanName = escapeHtml(userName)
-				return '<a href="https://github.com/' + cleanName + '" class="author-link" target="_blank">' + cleanName + '</a>'
+				return '<a href="' + this.getUserUrl(userName) + '" class="author-link" target="_blank">' + cleanName + '</a>'
 			}
 			return '??'
+		},
+		getUserUrl(userName) {
+			const cleanName = escapeHtml(userName)
+			return 'https://github.com/' + cleanName
 		},
 		getAssigneeAvatarUrl(assignee) {
 			const login = assignee.login ?? ''
@@ -412,7 +453,7 @@ export default {
 				}
 		},
 		getIssueReactions() {
-			if (this.reactionData) {
+			if (this.issueReactionData) {
 				return
 			}
 			const url = generateUrl('/apps/integration_github/repos/{owner}/{repo}/issues/{issueNumber}/reactions', {
@@ -422,13 +463,13 @@ export default {
 				issueNumber: this.richObject.github_issue_id,
 			})
 			axios.get(url).then((response) => {
-				this.reactionData = response.data
+				this.issueReactionData = response.data
 			}).catch((error) => {
 				console.error(error)
 			})
 		},
 		getCommentReactions() {
-			if (this.reactionData) {
+			if (this.commentReactionData) {
 				return
 			}
 			const url = generateUrl('/apps/integration_github/repos/{owner}/{repo}/issues/comments/{commentId}/reactions', {
@@ -437,7 +478,7 @@ export default {
 				commentId: this.richObject.github_comment.id,
 			})
 			axios.get(url).then((response) => {
-				this.reactionData = response.data
+				this.commentReactionData = response.data
 			}).catch((error) => {
 				console.error(error)
 			})
@@ -480,31 +521,6 @@ export default {
 			}
 			.issue-pr-link {
 				margin-right: 8px;
-			}
-			.label {
-				display: flex;
-				align-items: center;
-				height: 20px;
-				margin-right: 4px;
-				border: 1px solid var(--color-border-dark);
-				padding: 0 7px;
-				border-radius: var(--border-radius-pill);
-				font-size: 12px;
-			}
-		}
-
-		.milestone,
-		::v-deep .author-link,
-		.slug-link {
-			color: inherit;
-		}
-
-		.milestone,
-		::v-deep .author-link,
-		.slug-link,
-		.issue-pr-link {
-			&:hover {
-				color: #58a6ff;
 			}
 		}
 
@@ -559,15 +575,26 @@ export default {
 			align-items: center;
 			width: 100%;
 
-			.body {
-				text-overflow: ellipsis;
-				overflow: hidden;
-				white-space: nowrap;
+			&--bubble {
+				display: grid;
+				width: 100%;
 				padding: 4px 8px;
 				border: 1px solid var(--color-border-dark);
 				border-radius: var(--border-radius);
+				&--header {
+					display: flex;
+					color: var(--color-text-maxcontrast);
+					.comment-author-display-name {
+						color: var(--color-main-text);
+					}
+				}
+				&--content {
+					text-overflow: ellipsis;
+					overflow: hidden;
+					white-space: nowrap;
+				}
 			}
-			.body-bubble {
+			&--bubble-tip {
 				margin-left: 15px;
 				position: relative;
 				&:before {
@@ -602,8 +629,34 @@ export default {
 		}
 	}
 
-	.item-reactions {
-		margin: 8px 0 0 40px;
+	.label {
+		display: flex;
+		align-items: center;
+		height: 20px;
+		margin-right: 4px;
+		border: 1px solid var(--color-border-dark);
+		padding: 0 7px;
+		border-radius: var(--border-radius-pill);
+		font-size: 12px;
+	}
+
+	.milestone,
+	::v-deep .author-link,
+	.slug-link {
+		color: inherit;
+	}
+
+	.milestone,
+	::v-deep .author-link,
+	.slug-link,
+	.issue-pr-link {
+		&:hover {
+			color: #58a6ff;
+		}
+	}
+
+	.issue-pr--reactions {
+		margin: 4px 0 0 40px;
 	}
 
 	.settings-link {
