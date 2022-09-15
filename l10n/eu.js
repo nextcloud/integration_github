@@ -50,6 +50,9 @@ OC.L10N.register(
     "Failed to get GitHub notifications" : "GitHub jakinarazpenak jasotzeak huts egin du",
     "Successfully unsubscribed" : "Ondo kendu da harpidetza",
     "Failed to edit GitHub notification" : "GitHub jakinarazpena editatzeak huts egin du",
+    "Unknown error" : "Errore ezezaguna",
+    "Author" : "Egilea",
+    "Owner" : "Jabea",
     "Draft" : "Zirriborroa",
     "Failed to save GitHub OAuth state" : "GitHub OAuth egoera gordetzeak huts egin du"
 },

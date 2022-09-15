@@ -20,6 +20,9 @@ OC.L10N.register(
     "Mark as read" : "既読にする",
     "Unsubscribe" : "購読解除",
     "No GitHub notifications!" : "GitHub通知がありません！",
-    "Successfully unsubscribed" : "購読の解除に成功しました"
+    "Successfully unsubscribed" : "購読の解除に成功しました",
+    "Unknown error" : "不明なエラー",
+    "Author" : "作者",
+    "Owner" : "所有者"
 },
 "nplurals=1; plural=0;");

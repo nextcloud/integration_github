@@ -48,6 +48,9 @@ OC.L10N.register(
     "Failed to get GitHub notifications" : "Produciuse un fallo ao obter as notificacións de GitHub",
     "Successfully unsubscribed" : "Desubscrito satisfactoriamente",
     "Failed to edit GitHub notification" : "Produciuse un fallo ao editar a notificación de GitHub",
+    "Unknown error" : "Erro descoñecido",
+    "Author" : "Autor",
+    "Owner" : "Propietario",
     "Failed to save GitHub OAuth state" : "Produciuse un fallo ao gardar o estado do OAuth de GitHub"
 },
 "nplurals=2; plural=(n != 1);");

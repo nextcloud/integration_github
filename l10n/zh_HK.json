@@ -61,6 +61,7 @@
     "Closed pull request" : "已關閉的拉取請求",
     "Unknown state" : "狀態不詳",
     "Draft" : "草稿",
+    "{logins} reacted with {emoji} emoji" : "{logins} 使用 {emoji} 表情符號做出反應",
     "Review requested" : "已請求審核",
     "by {creator} was merged {relativeDate}" : "由 {creator} 於 {relativeDate} 合併",
     "opened {relativeDate} by {creator}" : "由 {creator} 於 {relativeDate} 打開",

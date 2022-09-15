@@ -35,6 +35,9 @@
     "No GitHub account connected" : "没有已连接的GitHub账号",
     "Error connecting to GitHub" : "连接到GitHub时发生错误",
     "No GitHub notifications!" : "无 GitHub 通知！",
+    "Unknown error" : "未知错误",
+    "Author" : "作者",
+    "Owner" : "所有者",
     "Failed to save GitHub OAuth state" : "保存 GitHub OAuth 状态失败"
 },"pluralForm" :"nplurals=1; plural=0;"
 }

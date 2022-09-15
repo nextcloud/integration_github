@@ -10,6 +10,8 @@ OC.L10N.register(
     "Client ID" : "Klient-ID",
     "Client secret" : "Klient-hemmelighet",
     "Mark as read" : "Merk som lest",
+    "Unknown error" : "Ukjent feil",
+    "Owner" : "Eier",
     "Draft" : "Kladd"
 },
 "nplurals=2; plural=(n != 1);");

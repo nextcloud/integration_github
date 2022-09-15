@@ -11,6 +11,9 @@ OC.L10N.register(
     "Client secret" : "Leynilykill biðlara",
     "Enable navigation link" : "Virkja flakktengil",
     "Connected as {user}" : "Tengt sem {user}",
-    "Mark as read" : "Merkja sem lesið"
+    "Mark as read" : "Merkja sem lesið",
+    "Unknown error" : "Óþekkt villa",
+    "Author" : "Höfundur",
+    "Owner" : "Eigandi"
 },
 "nplurals=2; plural=(n % 10 != 1 || n % 100 == 11);");

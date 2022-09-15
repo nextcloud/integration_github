@@ -36,6 +36,7 @@ OC.L10N.register(
     "Failed to get GitHub notifications" : "Kunde inte hämta GitHub-aviseringar",
     "Successfully unsubscribed" : "Prenumerationen har avslutats",
     "Failed to edit GitHub notification" : "Kunde inte ändra GitHub-aviseringar",
+    "Author" : "Upphovsman",
     "Draft" : "Utkast"
 },
 "nplurals=2; plural=(n != 1);");

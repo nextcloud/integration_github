@@ -50,6 +50,9 @@ OC.L10N.register(
     "Failed to get GitHub notifications" : "Falha ao obter notificações do GitHub",
     "Successfully unsubscribed" : "Cancelado com Sucesso",
     "Failed to edit GitHub notification" : "Falha ao editar notificação do GitHub",
+    "Unknown error" : "Erro desconhecido",
+    "Author" : "Autor",
+    "Owner" : "Proprietário",
     "Draft" : "Rascunho",
     "Failed to save GitHub OAuth state" : "Falha ao salvar o estado GitHub OAuth"
 },

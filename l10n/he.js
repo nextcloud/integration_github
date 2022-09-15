@@ -24,6 +24,7 @@ OC.L10N.register(
     "GitHub options saved" : "האפשרויות של GitHub נשמרו",
     "Mark as read" : "סימון כנקרא",
     "Error connecting to GitHub" : "שגיאה בהתחברות ל־GitHub",
-    "No GitHub notifications!" : "אין התראות של GitHub!"
+    "No GitHub notifications!" : "אין התראות של GitHub!",
+    "Unknown error" : "שגיאה בלתי ידועה"
 },
 "nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n == 2 && n % 1 == 0) ? 1: (n % 10 == 0 && n % 1 == 0 && n > 10) ? 2 : 3;");
