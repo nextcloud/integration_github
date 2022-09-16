@@ -70,9 +70,18 @@
 						#{{ githubId }}
 					</span>
 					&nbsp;
-					<span
-						v-tooltip.top="{ content: subTextTooltip }"
-						v-html="subText" />
+					<a :href="'https://github.com/' + richObject.user.login" target="_blank" class="author-link">
+						{{ t('integration_github', 'by {creator}', { creator: richObject.user.login }) }}
+					</a>
+					&nbsp;
+					<span class="date-with-tooltip"
+						v-tooltip.top="{ content: subTextTooltip }">
+						{{ dateSubText }}
+					</span>
+					&nbsp;
+					<span v-if="isPr">
+						{{ prSubText }}
+					</span>
 					&nbsp;
 					<a v-if="richObject.milestone"
 						v-tooltip.top="{ content: richObject.milestone.description }"
@@ -333,54 +342,27 @@ export default {
 			}
 			return t('integration_github', 'Unknown state')
 		},
-		subText() {
-			if (this.isPr) {
-				return this.authorAndDateSubText
-					+ (this.richObject.draft ? ' • ' + t('integration_github', 'Draft') : '')
-					+ (this.richObject.requested_reviewers?.length > 0 ? ' • ' + t('integration_github', 'Review requested') : '')
-			}
-			return this.authorAndDateSubText
+		prSubText() {
+			return (this.richObject.draft ? ' • ' + t('integration_github', 'Draft') : '')
+				+ (this.richObject.requested_reviewers?.length > 0 ? ' • ' + t('integration_github', 'Review requested') : '')
 		},
-		authorAndDateSubText() {
-			if (this.isIssue) {
-				if (this.richObject.state === 'open') {
-					return this.createdAtSubText
-				} else if (this.richObject.state === 'closed') {
+		dateSubText() {
+			if (this.richObject.state === 'open') {
+				return this.createdAtSubText
+			} else if (this.richObject.state === 'closed') {
+				if (this.isPr && this.richObject.merged) {
+					return this.mergedAtSubText
+				} else {
 					return this.closedAtSubText
-				}
-			} else if (this.isPr) {
-				if (this.richObject.state === 'open') {
-					return this.createdAtSubText
-				} else if (this.richObject.state === 'closed') {
-					if (this.richObject.merged) {
-						return t('integration_github', 'by {creator} was merged {relativeDate}', {
-							relativeDate: moment(this.richObject.closed_at).fromNow(),
-							creator: this.getUserLink(this.richObject.user?.login),
-						}, null, { escape: false })
-					} else {
-						return this.closedAtSubText
-					}
 				}
 			}
 			return ''
 		},
 		subTextTooltip() {
-			if (this.isIssue) {
-				if (this.richObject.state === 'open') {
-					return this.createdAtFormatted
-				} else if (this.richObject.state === 'closed') {
-					return this.closedAtFormatted
-				}
-			} else if (this.isPr) {
-				if (this.richObject.state === 'open') {
-					return this.createdAtFormatted
-				} else if (this.richObject.state === 'closed') {
-					if (this.richObject.merged) {
-						return this.closedAtFormatted
-					} else {
-						return this.closedAtFormatted
-					}
-				}
+			if (this.richObject.state === 'open') {
+				return this.createdAtFormatted
+			} else if (this.richObject.state === 'closed') {
+				return this.closedAtFormatted
 			}
 			return ''
 		},
@@ -391,16 +373,13 @@ export default {
 			return moment(this.richObject.closed_at).format('LLL')
 		},
 		createdAtSubText() {
-			return t('integration_github', 'opened {relativeDate} by {creator}', {
-				relativeDate: moment(this.richObject.created_at).fromNow(),
-				creator: this.getUserLink(this.richObject.user?.login),
-			}, null, { escape: false })
+			return t('integration_github', 'opened {relativeDate}', { relativeDate: moment(this.richObject.created_at).fromNow() })
 		},
 		closedAtSubText() {
-			return t('integration_github', 'by {creator} was closed {relativeDate}', {
-				relativeDate: moment(this.richObject.closed_at).fromNow(),
-				creator: this.getUserLink(this.richObject.user?.login),
-			}, null, { escape: false })
+			return t('integration_github', 'was closed {relativeDate}', { relativeDate: moment(this.richObject.closed_at).fromNow() })
+		},
+		mergedAtSubText() {
+			return t('integration_github', 'was merged {relativeDate}', { relativeDate: moment(this.richObject.closed_at).fromNow() })
 		},
 		commentAuthorAvatarUrl() {
 			const login = this.richObject.github_comment.user?.login ?? ''
