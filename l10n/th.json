@@ -1,0 +1,8 @@
+{ "translations": {
+    "Client ID" : "Client ID",
+    "Client secret" : "Client secret",
+    "Connected as {user}" : "เชื่อมต่อเป็น {user} แล้ว",
+    "Unknown error" : "ข้อผิดพลาดที่ไม่รู้จัก",
+    "Owner" : "เจ้าของ"
+},"pluralForm" :"nplurals=1; plural=0;"
+}

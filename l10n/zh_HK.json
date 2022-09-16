@@ -51,7 +51,10 @@
     "Successfully unsubscribed" : "成功取消訂閱",
     "Failed to edit GitHub notification" : "編輯 GitHub 通知失敗",
     "GitHub API error" : "GitHub API 錯誤",
+    "Unknown error" : "錯誤不詳",
     "GitHub connected accounts settings" : "GitHub 連接賬戶設定",
+    "Author" : "作者",
+    "Owner" : "所有者",
     "Open issue" : "未解決的問題",
     "Closed as not planned issue" : "項目已作為“未計劃”問題關閉",
     "Closed issue" : "已關閉的問題",
@@ -67,6 +70,8 @@
     "opened {relativeDate} by {creator}" : "由 {creator} 於 {relativeDate} 打開",
     "by {creator} was closed {relativeDate}" : "由 {creator} 於 {relativeDate} 關閉",
     "Comment from {login}" : "來自 {login} 的評論",
+    "commented {date}" : "於 {date} 被評論",
+    "edited {date}" : "於 {date} 被編輯",
     "Assigned to {login}" : "分配給 {login}",
     "Failed to save GitHub OAuth state" : "儲存 GitHub OAuth 狀態失敗"
 },"pluralForm" :"nplurals=1; plural=0;"

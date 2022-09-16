@@ -7,6 +7,8 @@ OC.L10N.register(
     "Bad credentials" : "Bad credentials",
     "OAuth access token refused" : "OAuth access token refused",
     "Client ID" : "Client ID",
-    "Client secret" : "Client secret"
+    "Client secret" : "Client secret",
+    "Unknown error" : "Unknown error",
+    "Owner" : "Owner"
 },
 "nplurals=2; plural=(n != 1);");

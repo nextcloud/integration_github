@@ -1,0 +1,7 @@
+{ "translations": {
+    "Client ID" : "Kliendi ID",
+    "Client secret" : "Kliendi salasõna",
+    "Unknown error" : "Tundmatu viga",
+    "Owner" : "Omanik"
+},"pluralForm" :"nplurals=2; plural=(n != 1);"
+}

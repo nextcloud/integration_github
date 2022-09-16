@@ -49,7 +49,9 @@ OC.L10N.register(
     "Failed to get GitHub notifications" : "Kon GitHub-meldingen niet ophalen",
     "Successfully unsubscribed" : "Abonnement succesvol beëindigd",
     "Failed to edit GitHub notification" : "Kon GitHub-melding niet bewerken",
+    "Unknown error" : "Onbekende fout",
     "Author" : "Auteur",
+    "Owner" : "Eigenaar",
     "Failed to save GitHub OAuth state" : "Kan GitHub OAuth-status niet bewaren"
 },
 "nplurals=2; plural=(n != 1);");

@@ -1,0 +1,8 @@
+{ "translations": {
+    "Client ID" : "კლიენტის ID",
+    "Client secret" : "კლიენტის საიდუმლო",
+    "Mark as read" : "წაკითხულად მონიშვნა",
+    "Unknown error" : "უცნობი შეცდომა",
+    "Owner" : "მფლობელი"
+},"pluralForm" :"nplurals=2; plural=(n!=1);"
+}

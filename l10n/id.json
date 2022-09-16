@@ -1,0 +1,8 @@
+{ "translations": {
+    "Client ID" : "ID Klien",
+    "Client secret" : "Rahasia klien",
+    "Mark as read" : "tandai sudah dibaca",
+    "Unknown error" : "Kesalahan tidak diketahui",
+    "Owner" : "Owner"
+},"pluralForm" :"nplurals=1; plural=0;"
+}

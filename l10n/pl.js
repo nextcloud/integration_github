@@ -72,6 +72,8 @@ OC.L10N.register(
     "opened {relativeDate} by {creator}" : "otwarty {relativeDate} przez {creator}",
     "by {creator} was closed {relativeDate}" : "przez {creator} został zamknięty {relativeDate}",
     "Comment from {login}" : "Komentarz od {login}",
+    "commented {date}" : "skomentowano {date}",
+    "edited {date}" : "edytowano {date}",
     "Assigned to {login}" : "Przypisany do {login}",
     "Failed to save GitHub OAuth state" : "Nie udało się zapisać statusu OAuth GitHub"
 },
