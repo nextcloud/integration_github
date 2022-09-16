@@ -119,12 +119,17 @@
 							</a>
 						</strong>
 						&nbsp;
-						<span v-tooltip.top="{ content: commentedAtTooltip }">
+						<span v-tooltip.top="{ content: commentedAtTooltip }"
+							class="date-with-tooltip">
 							{{ commentedAtText }}
 						</span>
+						<span v-if="richObject.github_comment.created_at !== richObject.github_comment.updated_at">
+							&nbsp;•&nbsp;
+						</span>
 						<span v-if="richObject.github_comment.created_at !== richObject.github_comment.updated_at"
-							v-tooltip.top="{ content: commentUpdatedAtTooltip }">
-							&nbsp;•&nbsp;{{ commentUpdatedAtText }}
+							v-tooltip.top="{ content: commentUpdatedAtTooltip }"
+							class="date-with-tooltip">
+							{{ commentUpdatedAtText }}
 						</span>
 						<div class="spacer" />
 						<div v-if="richObject.github_comment.user.login === richObject.user.login" class="label">
@@ -572,17 +577,31 @@ export default {
 		align-items: start;
 		&--content {
 			display: flex;
-			align-items: center;
+			align-items: start;
 			width: 100%;
+
+			.author-avatar {
+				margin-top: 4px;
+			}
 
 			&--bubble {
 				display: grid;
 				width: 100%;
-				padding: 4px 8px;
+				padding-bottom: 4px;
 				border: 1px solid var(--color-border-dark);
-				border-radius: var(--border-radius);
+				border-radius: 6px;
+				> * {
+					padding-left: 8px;
+					padding-right: 8px;
+				}
 				&--header {
 					display: flex;
+					align-items: center;
+					height: 38px;
+					background-color: var(--color-background-hover);
+					border-bottom: 1px solid var(--color-border-dark);
+					border-top-left-radius: 6px;
+					border-top-right-radius: 6px;
 					color: var(--color-text-maxcontrast);
 					.comment-author-display-name {
 						color: var(--color-main-text);
@@ -592,11 +611,14 @@ export default {
 					text-overflow: ellipsis;
 					overflow: hidden;
 					white-space: nowrap;
+					padding-top: 4px;
+					padding-bottom: 4px;
 				}
 			}
 			&--bubble-tip {
 				margin-left: 15px;
 				position: relative;
+				top: 20px;
 				&:before {
 					content: '';
 					width: 0px;
@@ -616,7 +638,7 @@ export default {
 					height: 0px;
 					position: absolute;
 					border-left: 8px solid transparent;
-					border-right: 8px solid var(--color-main-background);
+					border-right: 8px solid var(--color-background-hover);
 					border-top: 8px solid transparent;
 					border-bottom: 8px solid transparent;
 					left: -14px;
@@ -646,6 +668,7 @@ export default {
 		color: inherit;
 	}
 
+	.date-with-tooltip,
 	.milestone,
 	::v-deep .author-link,
 	.slug-link,
