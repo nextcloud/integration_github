@@ -24,9 +24,6 @@ OC.L10N.register(
     "Unknown state" : "Невідомий стан",
     "Draft" : "Чернетка",
     "Review requested" : "Надіслано запит на перегляд",
-    "by {creator} was merged {relativeDate}" : "від {creator} було об’єднано {relativeDate}",
-    "opened {relativeDate} by {creator}" : "відкрито {relativeDate} {creator}",
-    "by {creator} was closed {relativeDate}" : "від {creator} було закрито {relativeDate}",
     "Comment from {login}" : "Коментар від {login}",
     "Assigned to {login}" : "Призначено для {login}"
 },

@@ -66,9 +66,6 @@
     "Draft" : "Koncept",
     "{logins} reacted with {emoji} emoji" : "{logins} zareagovel(a) {emoji} emotikonou",
     "Review requested" : "Vyžadováno revidování",
-    "by {creator} was merged {relativeDate}" : "tvůrce {creator} bylo sloučeno {relativeDate}",
-    "opened {relativeDate} by {creator}" : "otevřeno {relativeDate} uživatelem {creator}",
-    "by {creator} was closed {relativeDate}" : "tvůrce {creator} bylo uzavřeno {relativeDate}",
     "Comment from {login}" : "Komentář od {login}",
     "Assigned to {login}" : "Přiřazeno uživateli {login}",
     "Failed to save GitHub OAuth state" : "Nepodařilo se uložit stav GitHub OAuth"

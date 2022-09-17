@@ -67,9 +67,6 @@ OC.L10N.register(
     "Unknown state" : "Ismeretlen állapot",
     "Draft" : "Vázlat",
     "Review requested" : "Átnézés kérve",
-    "by {creator} was merged {relativeDate}" : "{creator} beolvasztotta ekkor: {relativeDate}",
-    "opened {relativeDate} by {creator}" : "{creator} megnyitotta ekkor: {creator}",
-    "by {creator} was closed {relativeDate}" : "{creator} lezárta ekkor: {relativeDate}",
     "Comment from {login}" : "Hozzászólás a következőtől: {login}",
     "Assigned to {login}" : "Hozzárendelve a következőhöz: {login}",
     "Failed to save GitHub OAuth state" : "A GitHub OAuth állapot mentése sikertelen"

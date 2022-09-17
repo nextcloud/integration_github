@@ -68,9 +68,6 @@ OC.L10N.register(
     "Draft" : "Taslak",
     "{logins} reacted with {emoji} emoji" : "{logins} {emoji} ifadesi ile tepki verdi",
     "Review requested" : "Gözden geçirme istendi",
-    "by {creator} was merged {relativeDate}" : "{creator} tarafından {relativeDate} tarihinde birleştirildi",
-    "opened {relativeDate} by {creator}" : "{relativeDate} tarihinde {creator} tarafından açıldı",
-    "by {creator} was closed {relativeDate}" : "{creator} tarafından {relativeDate} tarihinde kapatıldı",
     "Comment from {login}" : "{login} tarafından yorum yapıldı",
     "Assigned to {login}" : "{login} kullanıcısına atandı",
     "Failed to save GitHub OAuth state" : "GitHub OAuth durumu kaydedilemedi"

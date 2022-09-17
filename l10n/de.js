@@ -67,9 +67,6 @@ OC.L10N.register(
     "Unknown state" : "Unbekannter Zustand",
     "Draft" : "Entwurf",
     "Review requested" : "Review wurde angefordert",
-    "by {creator} was merged {relativeDate}" : "{relativeDate} von {creator} zusammengeführt",
-    "opened {relativeDate} by {creator}" : "{relativeDate} von {creator} eröffnet",
-    "by {creator} was closed {relativeDate}" : "{relativeDate} von {creator} geschlossen",
     "Comment from {login}" : "Kommentar von {login}",
     "Assigned to {login}" : "Zugewiesen an {login}",
     "Failed to save GitHub OAuth state" : "Fehler beim Speichern des GitHub OAuth-Status"
