@@ -169,8 +169,17 @@
 							{{ t('integration_github', 'Owner') }}
 						</div>
 					</div>
-					<div class="comment--content--bubble--content" :title="richObject.github_comment.body">
+					<div v-show="shortComment"
+						class="comment--content--bubble--short-content"
+						:title="richObject.github_comment.body"
+						@click="shortComment = false">
 						{{ richObject.github_comment.body }}
+					</div>
+					<div v-show="!shortComment"
+						class="comment--content--bubble--full-content">
+						<RichText
+							:text="richObject.github_comment.body"
+							@click.native="shortComment = true" />
 					</div>
 					<CommentReactions v-if="richObject.github_comment?.reactions?.total_count > 0"
 						class="comment--reactions item-reactions"
@@ -206,6 +215,7 @@ import moment from '@nextcloud/moment'
 import { hexToRgb } from '../utils.js'
 import rgbToHsl from '@alchemyalcove/rgb-to-hsl'
 
+import { RichText } from '@nextcloud/vue-richtext'
 import NcAvatar from '@nextcloud/vue/dist/Components/NcAvatar.js'
 import Tooltip from '@nextcloud/vue/dist/Directives/Tooltip.js'
 import Vue from 'vue'
@@ -215,6 +225,7 @@ export default {
 	name: 'ReferenceGithubWidget',
 
 	components: {
+		RichText,
 		UserPopover,
 		MilestoneIcon,
 		GithubIcon,
@@ -242,6 +253,7 @@ export default {
 	data() {
 		return {
 			settingsUrl: generateUrl('/settings/user/connected-accounts#github_prefs'),
+			shortComment: true,
 			commentReactionData: null,
 			issueReactionData: null,
 			showObjectAuthorPopover: false,
@@ -489,6 +501,8 @@ export default {
 </script>
 
 <style scoped lang="scss">
+@import '@nextcloud/vue-richtext/dist/style.css';
+
 .github-reference {
 	width: 100%;
 	white-space: normal;
@@ -603,7 +617,11 @@ export default {
 						color: var(--color-main-text);
 					}
 				}
-				&--content {
+				&--short-content,
+				&--full-content {
+					cursor: pointer;
+				}
+				&--short-content {
 					text-overflow: ellipsis;
 					overflow: hidden;
 					white-space: nowrap;
