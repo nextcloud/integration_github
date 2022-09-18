@@ -1,5 +1,5 @@
 <!--
-  - @copyright Copyright (c) 2022 2022 Julien Veyssier <eneiluj@posteo.net>
+  - @copyright Copyright (c) 2022 Julien Veyssier <eneiluj@posteo.net>
   -
   - @author 2022 Julien Veyssier <eneiluj@posteo.net>
   -
@@ -70,9 +70,18 @@
 						#{{ githubId }}
 					</span>
 					&nbsp;
-					<a :href="'https://github.com/' + richObject.user.login" target="_blank" class="author-link">
-						{{ t('integration_github', 'by {creator}', { creator: richObject.user.login }) }}
-					</a>
+					<UserPopover :user-login="richObject.user?.login"
+						:shown="showObjectAuthorPopover"
+						:subject-type="richObject.github_type"
+						:subject-id="richObject.id">
+						<a :href="'https://github.com/' + richObject.user.login"
+							target="_blank"
+							class="author-link"
+							@mouseenter="showObjectAuthorPopover = true"
+							@mouseleave="showObjectAuthorPopover = false">
+							{{ t('integration_github', 'by {creator}', { creator: richObject.user.login }) }}
+						</a>
+					</UserPopover>
 					&nbsp;
 					<span v-tooltip.top="{ content: subTextTooltip }"
 						class="date-with-tooltip">
@@ -115,7 +124,9 @@
 		<div v-if="richObject.github_comment" class="comment">
 			<div class="comment--content">
 				<UserPopover :user-login="richObject.github_comment.user?.login"
-					:shown="showCommentAvatarPopover">
+					:shown="showCommentAvatarPopover"
+					:subject-type="richObject.github_type"
+					:subject-id="richObject.id">
 					<NcAvatar
 						class="author-avatar"
 						:is-no-user="true"
@@ -126,11 +137,17 @@
 				<span class="comment--content--bubble-tip" />
 				<span class="comment--content--bubble">
 					<div class="comment--content--bubble--header">
-						<strong>
-							<a :href="commentAuthorUrl" target="_blank" class="author-link comment-author-display-name">
-								{{ richObject.github_comment.user.login }}
-							</a>
-						</strong>
+						<UserPopover :user-login="richObject.github_comment.user?.login"
+							:shown="showCommentAuthorPopover"
+							:subject-type="richObject.github_type"
+							:subject-id="richObject.id">
+							<strong @mouseenter="showCommentAuthorPopover = true"
+								@mouseleave="showCommentAuthorPopover = false">
+								<a :href="commentAuthorUrl" target="_blank" class="author-link comment-author-display-name">
+									{{ richObject.github_comment.user.login }}
+								</a>
+							</strong>
+						</UserPopover>
 						&nbsp;
 						<span v-tooltip.top="{ content: commentedAtTooltip }"
 							class="date-with-tooltip">
@@ -227,7 +244,9 @@ export default {
 			settingsUrl: generateUrl('/settings/user/connected-accounts#github_prefs'),
 			commentReactionData: null,
 			issueReactionData: null,
+			showObjectAuthorPopover: false,
 			showCommentAvatarPopover: false,
+			showCommentAuthorPopover: false,
 		}
 	},
 
@@ -239,7 +258,7 @@ export default {
 			return this.richObject.github_type === 'issue'
 		},
 		isPr() {
-			return this.richObject.github_type === 'pr'
+			return this.richObject.github_type === 'pull_request'
 		},
 		isDarkMode() {
 			const style = getComputedStyle(document.body)

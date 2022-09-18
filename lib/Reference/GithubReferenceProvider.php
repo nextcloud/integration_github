@@ -94,7 +94,7 @@ class GithubReferenceProvider implements IReferenceProvider {
 					$prInfo = $this->githubAPIService->getPrInfo($this->userId, $owner, $repo, $id);
 					$reference = new Reference($referenceText);
 					$reference->setRichObject(Application::APP_ID, array_merge([
-						'github_type' => isset($prInfo['error']) ? 'pr-error' : 'pr',
+						'github_type' => isset($prInfo['error']) ? 'pr-error' : 'pull_request',
 						'github_pr_id' => $id,
 						'github_repo_owner' => $owner,
 						'github_repo' => $repo,

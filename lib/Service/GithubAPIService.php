@@ -288,6 +288,21 @@ class GithubAPIService {
 
 	/**
 	 * @param string|null $userId
+	 * @param string $githubUserName
+	 * @param string $subjectType
+	 * @param int $subjectId
+	 * @return array
+	 */
+	public function getContextualUserInfo(?string $userId, string $githubUserName, string $subjectType, int $subjectId): array {
+		$params = [
+			'subject_type' => $subjectType,
+			'subject_id' => $subjectId,
+		];
+		return $this->request($userId, 'users/' . $githubUserName . '/hovercard', $params);
+	}
+
+	/**
+	 * @param string|null $userId
 	 * @param string $owner
 	 * @param string $repo
 	 * @param int $issueNumber

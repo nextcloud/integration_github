@@ -119,11 +119,30 @@ class GithubAPIController extends Controller {
 	/**
 	 * @NoAdminRequired
 	 *
-	 * @param string $githubUserName
+	 * @param string $githubUserLogin
 	 * @return DataResponse
 	 */
-	public function getUserInfo(string $githubUserName): DataResponse {
-		$result = $this->githubAPIService->getUserInfo($this->userId, $githubUserName);
+	public function getUserInfo(string $githubUserLogin): DataResponse {
+		$result = $this->githubAPIService->getUserInfo($this->userId, $githubUserLogin);
+		if (!isset($result['error'])) {
+			$response = new DataResponse($result);
+			$response->cacheFor(60 * 60 * 24);
+			return $response;
+		} else {
+			return new DataResponse($result, 401);
+		}
+	}
+
+	/**
+	 * @NoAdminRequired
+	 *
+	 * @param string $githubUserLogin
+	 * @param string $subjectType
+	 * @param int $subjectId
+	 * @return DataResponse
+	 */
+	public function getContextualUserInfo(string $githubUserLogin, string $subjectType, int $subjectId): DataResponse {
+		$result = $this->githubAPIService->getContextualUserInfo($this->userId, $githubUserLogin, $subjectType, $subjectId);
 		if (!isset($result['error'])) {
 			$response = new DataResponse($result);
 			$response->cacheFor(60 * 60 * 24);

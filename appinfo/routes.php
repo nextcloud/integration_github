@@ -21,7 +21,8 @@ return [
 		['name' => 'githubAPI#markNotificationAsRead', 'url' => '/notifications/{id}/mark-read', 'verb' => 'PUT'],
 		['name' => 'githubAPI#getAvatar', 'url' => '/avatar', 'verb' => 'GET'],
 		// get user/issue/pr information
-		['name' => 'githubAPI#getUserInfo', 'url' => '/users/{githubUserName}', 'verb' => 'GET'],
+		['name' => 'githubAPI#getUserInfo', 'url' => '/users/{githubUserLogin}', 'verb' => 'GET'],
+		['name' => 'githubAPI#getContextualUserInfo', 'url' => '/users/{githubUserLogin}/hovercard/{subjectType}/{subjectId}', 'verb' => 'GET'],
 		['name' => 'githubAPI#getIssueInfo', 'url' => '/repos/{owner}/{repo}/issues/{issueNumber}', 'verb' => 'GET'],
 		['name' => 'githubAPI#getIssueReactionsInfo', 'url' => '/repos/{owner}/{repo}/issues/{issueNumber}/reactions', 'verb' => 'GET'],
 		['name' => 'githubAPI#getIssueCommentInfo', 'url' => '/repos/{owner}/{repo}/issues/comments/{commentId}', 'verb' => 'GET'],
