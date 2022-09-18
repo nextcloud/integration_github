@@ -74,8 +74,8 @@
 						{{ t('integration_github', 'by {creator}', { creator: richObject.user.login }) }}
 					</a>
 					&nbsp;
-					<span class="date-with-tooltip"
-						v-tooltip.top="{ content: subTextTooltip }">
+					<span v-tooltip.top="{ content: subTextTooltip }"
+						class="date-with-tooltip">
 						{{ dateSubText }}
 					</span>
 					&nbsp;
@@ -114,16 +114,20 @@
 			@mouseenter="getIssueReactions" />
 		<div v-if="richObject.github_comment" class="comment">
 			<div class="comment--content">
-				<NcAvatar
-					class="author-avatar"
-					:tooltip-message="commentAuthorTooltip"
-					:is-no-user="true"
-					:url="commentAuthorAvatarUrl" />
+				<UserPopover :user-login="richObject.github_comment.user?.login"
+					:shown="showCommentAvatarPopover">
+					<NcAvatar
+						class="author-avatar"
+						:is-no-user="true"
+						:url="commentAuthorAvatarUrl"
+						@mouseenter.native="showCommentAvatarPopover = true"
+						@mouseleave.native="showCommentAvatarPopover = false" />
+				</UserPopover>
 				<span class="comment--content--bubble-tip" />
 				<span class="comment--content--bubble">
 					<div class="comment--content--bubble--header">
 						<strong>
-							<a :href="getUserUrl(richObject.github_comment.user.login)" target="_blank" class="author-link comment-author-display-name">
+							<a :href="commentAuthorUrl" target="_blank" class="author-link comment-author-display-name">
 								{{ richObject.github_comment.user.login }}
 							</a>
 						</strong>
@@ -177,11 +181,11 @@ import CommentIcon from '../components/icons/CommentIcon.vue'
 import MilestoneIcon from '../components/icons/MilestoneIcon.vue'
 
 import CommentReactions from '../components/CommentReactions.vue'
+import UserPopover from '../components/UserPopover.vue'
 
 import { generateUrl } from '@nextcloud/router'
 import axios from '@nextcloud/axios'
 import moment from '@nextcloud/moment'
-import escapeHtml from 'escape-html'
 import { hexToRgb } from '../utils.js'
 import rgbToHsl from '@alchemyalcove/rgb-to-hsl'
 
@@ -194,6 +198,7 @@ export default {
 	name: 'ReferenceGithubWidget',
 
 	components: {
+		UserPopover,
 		MilestoneIcon,
 		GithubIcon,
 		CommentReactions,
@@ -222,6 +227,7 @@ export default {
 			settingsUrl: generateUrl('/settings/user/connected-accounts#github_prefs'),
 			commentReactionData: null,
 			issueReactionData: null,
+			showCommentAvatarPopover: false,
 		}
 	},
 
@@ -381,6 +387,9 @@ export default {
 		mergedAtSubText() {
 			return t('integration_github', 'was merged {relativeDate}', { relativeDate: moment(this.richObject.closed_at).fromNow() })
 		},
+		commentAuthorUrl() {
+			return 'https://github.com/' + this.richObject.github_comment?.user?.login
+		},
 		commentAuthorAvatarUrl() {
 			const login = this.richObject.github_comment.user?.login ?? ''
 			return generateUrl('/apps/integration_github/avatar?githubUserName={login}', { login })
@@ -403,17 +412,6 @@ export default {
 	},
 
 	methods: {
-		getUserLink(userName) {
-			if (userName) {
-				const cleanName = escapeHtml(userName)
-				return '<a href="' + this.getUserUrl(userName) + '" class="author-link" target="_blank">' + cleanName + '</a>'
-			}
-			return '??'
-		},
-		getUserUrl(userName) {
-			const cleanName = escapeHtml(userName)
-			return 'https://github.com/' + cleanName
-		},
 		getAssigneeAvatarUrl(assignee) {
 			const login = assignee.login ?? ''
 			return generateUrl('/apps/integration_github/avatar?githubUserName={login}', { login })

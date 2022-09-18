@@ -125,7 +125,9 @@ class GithubAPIController extends Controller {
 	public function getUserInfo(string $githubUserName): DataResponse {
 		$result = $this->githubAPIService->getUserInfo($this->userId, $githubUserName);
 		if (!isset($result['error'])) {
-			return new DataResponse($result);
+			$response = new DataResponse($result);
+			$response->cacheFor(60 * 60 * 24);
+			return $response;
 		} else {
 			return new DataResponse($result, 401);
 		}
