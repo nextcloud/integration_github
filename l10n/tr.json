@@ -3,6 +3,7 @@
     "Error getting OAuth access token" : "OAuth erişim kodu alınırken sorun çıktı",
     "Error during OAuth exchanges" : "OAuth takasında sorun çıktı",
     "GitHub notifications" : "GitHub bildirimleri",
+    "More notifications" : "Diğer bildirimler",
     "GitHub issues and pull requests" : "GitHub sorunları ve birleştirme istekleri",
     "GitHub repositories" : "GitHub depoları",
     "Bad HTTP method" : "HTTP yöntemi hatalı",
@@ -53,6 +54,7 @@
     "GitHub API error" : "GitHub API sorunu",
     "Unknown error" : "Bilinmeyen sorun",
     "GitHub connected accounts settings" : "GitHub bağlantılı hesapların ayarları",
+    "by {creator}" : "{creator} tarafından oluşturuldu",
     "Author" : "İlgili",
     "Owner" : "Sahibi",
     "Open issue" : "Konu aç",
@@ -66,7 +68,12 @@
     "Draft" : "Taslak",
     "{logins} reacted with {emoji} emoji" : "{logins} {emoji} ifadesi ile tepki verdi",
     "Review requested" : "Gözden geçirme istendi",
+    "opened {relativeDate}" : "{relativeDate} açıldı",
+    "was closed {relativeDate}" : "{relativeDate} kapatıldı",
+    "was merged {relativeDate}" : "{relativeDate} birleştirildi",
     "Comment from {login}" : "{login} tarafından yorum yapıldı",
+    "commented {date}" : "{date} zamanında yorum yapıldı",
+    "edited {date}" : "{date} zamanında düzenlendi",
     "Assigned to {login}" : "{login} kullanıcısına atandı",
     "Failed to save GitHub OAuth state" : "GitHub OAuth durumu kaydedilemedi"
 },"pluralForm" :"nplurals=2; plural=(n > 1);"
