@@ -98,12 +98,12 @@ class GithubAPIController extends Controller {
 	 * but first: understand why it fails for images and not for data requests
 	 *
 	 * Get repository avatar
-	 * @param string $githubUserName
+	 * @param string $githubLogin
 	 * @return DataDisplayResponse The avatar image content
 	 * @throws \Exception
 	 */
-	public function getAvatar(string $githubUserName): DataDisplayResponse {
-		$avatar = $this->githubAPIService->getAvatar($this->userId, $githubUserName);
+	public function getAvatar(string $githubLogin): DataDisplayResponse {
+		$avatar = $this->githubAPIService->getAvatar($this->userId, $githubLogin);
 		if ($avatar !== null && isset($avatar['body'], $avatar['headers'])) {
 			$response = new DataDisplayResponse(
 				$avatar['body'],

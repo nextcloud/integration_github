@@ -267,7 +267,7 @@ export default {
 		},
 		getRepositoryAvatarUrl(n) {
 			return n.repository?.owner?.login
-				? generateUrl('/apps/integration_github/avatar?') + encodeURIComponent('githubUserName') + '=' + encodeURIComponent(n.repository.owner.login)
+				? generateUrl('/apps/integration_github/avatar/{login}', { login: n.repository.owner.login })
 				: ''
 		},
 		getRepositoryOwnerName(n) {

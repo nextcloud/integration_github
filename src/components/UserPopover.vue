@@ -99,7 +99,7 @@ export default {
 
 	computed: {
 		avatarUrl() {
-			return generateUrl('/apps/integration_github/avatar?githubUserName={login}', { login: this.userLogin })
+			return generateUrl('/apps/integration_github/avatar/{login}', { login: this.userLogin })
 		},
 	},
 

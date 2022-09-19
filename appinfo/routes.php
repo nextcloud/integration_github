@@ -19,7 +19,7 @@ return [
 		['name' => 'githubAPI#getNotifications', 'url' => '/notifications', 'verb' => 'GET'],
 		['name' => 'githubAPI#unsubscribeNotification', 'url' => '/notifications/{id}/unsubscribe', 'verb' => 'PUT'],
 		['name' => 'githubAPI#markNotificationAsRead', 'url' => '/notifications/{id}/mark-read', 'verb' => 'PUT'],
-		['name' => 'githubAPI#getAvatar', 'url' => '/avatar', 'verb' => 'GET'],
+		['name' => 'githubAPI#getAvatar', 'url' => '/avatar/{githubLogin}', 'verb' => 'GET'],
 		// get user/issue/pr information
 		['name' => 'githubAPI#getUserInfo', 'url' => '/users/{githubUserLogin}', 'verb' => 'GET'],
 		['name' => 'githubAPI#getContextualUserInfo', 'url' => '/users/{githubUserLogin}/hovercard/{subjectType}/{subjectId}', 'verb' => 'GET'],

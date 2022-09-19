@@ -423,7 +423,7 @@ export default {
 		},
 		commentAuthorAvatarUrl() {
 			const login = this.richObject.github_comment.user?.login ?? ''
-			return generateUrl('/apps/integration_github/avatar?githubUserName={login}', { login })
+			return generateUrl('/apps/integration_github/avatar/{login}', { login })
 		},
 		commentAuthorTooltip() {
 			return t('integration_github', 'Comment from {login}', { login: this.richObject.github_comment.user?.login ?? '' })
@@ -445,7 +445,7 @@ export default {
 	methods: {
 		getAssigneeAvatarUrl(assignee) {
 			const login = assignee.login ?? ''
-			return generateUrl('/apps/integration_github/avatar?githubUserName={login}', { login })
+			return generateUrl('/apps/integration_github/avatar/{login}', { login })
 		},
 		getAssigneeTooltip(assignee) {
 			return t('integration_github', 'Assigned to {login}', { login: assignee.login })
