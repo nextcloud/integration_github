@@ -3,6 +3,7 @@
     "Error getting OAuth access token" : "Chyba při získávání přístupového OAuth přístupového tokenu",
     "Error during OAuth exchanges" : "Chyba při výměnách informací v rámci OAuth",
     "GitHub notifications" : "Upozornění z GitHub",
+    "More notifications" : "Další upozornění",
     "GitHub issues and pull requests" : "Hlášení problémů a požadavky na začlenění z GitHub",
     "GitHub repositories" : "Repozitáře na GitHub",
     "Bad HTTP method" : "Nesprávná HTTP metoda",
@@ -53,6 +54,7 @@
     "GitHub API error" : "Chyba GitHub API",
     "Unknown error" : "Neznámá chyba",
     "GitHub connected accounts settings" : "Nastavení pro propojený účet na GitHub",
+    "by {creator}" : "od {creator}",
     "Author" : "Autor",
     "Owner" : "Vlastník",
     "Open issue" : "Otevřít hlášení problému",
@@ -66,7 +68,12 @@
     "Draft" : "Koncept",
     "{logins} reacted with {emoji} emoji" : "{logins} zareagovel(a) {emoji} emotikonou",
     "Review requested" : "Vyžadováno revidování",
+    "opened {relativeDate}" : "oevřeno {relativeDate}",
+    "was closed {relativeDate}" : "bylo uzavřeno {relativeDate}",
+    "was merged {relativeDate}" : "bylo začleněno {relativeDate}",
     "Comment from {login}" : "Komentář od {login}",
+    "commented {date}" : "okomentováno {date}",
+    "edited {date}" : "upraveno {date}",
     "Assigned to {login}" : "Přiřazeno uživateli {login}",
     "Failed to save GitHub OAuth state" : "Nepodařilo se uložit stav GitHub OAuth"
 },"pluralForm" :"nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n >= 2 && n <= 4 && n % 1 == 0) ? 1: (n % 1 != 0 ) ? 2 : 3;"

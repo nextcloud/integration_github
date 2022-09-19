@@ -51,9 +51,14 @@ OC.L10N.register(
     "Successfully unsubscribed" : "Ondo kendu da harpidetza",
     "Failed to edit GitHub notification" : "GitHub jakinarazpena editatzeak huts egin du",
     "Unknown error" : "Errore ezezaguna",
+    "by {creator}" : "{creator}-(e)k sortua",
     "Author" : "Egilea",
     "Owner" : "Jabea",
+    "Open issue" : "Arazo irekia",
+    "Closed issue" : "Arazo itxia",
+    "Unknown state" : "Egoera ezezaguna",
     "Draft" : "Zirriborroa",
+    "Review requested" : "Berrikuspena eskatuta",
     "Failed to save GitHub OAuth state" : "GitHub OAuth egoera gordetzeak huts egin du"
 },
 "nplurals=2; plural=(n != 1);");
