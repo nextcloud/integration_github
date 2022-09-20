@@ -170,8 +170,8 @@
 						</div>
 					</div>
 					<div v-show="shortComment"
+						v-tooltip.top="{ content: t('integration_github', 'Click to expand comment') }"
 						class="comment--content--bubble--short-content"
-						:title="richObject.github_comment.body"
 						@click="shortComment = false">
 						{{ richObject.github_comment.body }}
 					</div>
@@ -179,6 +179,7 @@
 						class="comment--content--bubble--full-content">
 						<RichText
 							:text="richObject.github_comment.body"
+							:use-markdown="true"
 							@click.native="shortComment = true" />
 					</div>
 					<CommentReactions v-if="richObject.github_comment?.reactions?.total_count > 0"
