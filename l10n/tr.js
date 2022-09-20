@@ -45,6 +45,7 @@ OC.L10N.register(
     "GitHub options saved" : "GitHub ayarları kaydedildi",
     "Invalid access token" : "Erişim kodu geçersiz",
     "Failed to save GitHub options" : "GitHub ayarları kaydedilemedi",
+    "Loading data" : "Veriler yükleniyor",
     "Mark as read" : "Okunmuş olarak işaretle",
     "Unsubscribe" : "Abonelikten ayrıl",
     "No GitHub account connected" : "Bağlı bir GitHub hesabı yok",

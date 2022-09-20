@@ -45,6 +45,7 @@ OC.L10N.register(
     "GitHub options saved" : "Opcje GitHuba zostały zapisane",
     "Invalid access token" : "Nieprawidłowy token dostępu",
     "Failed to save GitHub options" : "Nie udało się zapisać opcji GitHuba",
+    "Loading data" : "Ładowanie danych",
     "Mark as read" : "Oznacz jako przeczytane",
     "Unsubscribe" : "Wypisz się",
     "No GitHub account connected" : "Brak połączonego konta GitHub",

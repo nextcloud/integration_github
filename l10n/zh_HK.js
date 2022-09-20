@@ -45,6 +45,7 @@ OC.L10N.register(
     "GitHub options saved" : "已儲存 GitHub 選項",
     "Invalid access token" : "無效的存取權杖",
     "Failed to save GitHub options" : "儲存 GitHub 選項失敗",
+    "Loading data" : "數據加載中…",
     "Mark as read" : "標為已讀",
     "Unsubscribe" : "取消訂閱",
     "No GitHub account connected" : "未連線至 GitHub 賬號",
