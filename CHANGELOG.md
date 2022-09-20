@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## 1.0.5 – 2022-09-21
+### Added
+- reference widget for issues, prs and comments
+- implement new dashboard apis for clients
+
 ## 1.0.4 – 2022-08-26
 ### Added
 - optionally authenticate with a popup (OAuth only)
