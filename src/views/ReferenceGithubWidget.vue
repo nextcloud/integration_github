@@ -506,6 +506,11 @@ export default {
 	white-space: normal;
 	padding: 12px;
 
+	a {
+		padding: 0 !important;
+		color: var(--color-main-text) !important;
+	}
+
 	h3 {
 		display: flex;
 		align-items: center;
@@ -619,6 +624,8 @@ export default {
 				}
 				&--content {
 					cursor: pointer;
+					margin: 6px 0;
+
 					max-height: 250px;
 					overflow: scroll;
 					&.short-comment {
