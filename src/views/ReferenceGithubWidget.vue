@@ -509,6 +509,7 @@ export default {
 	a {
 		padding: 0 !important;
 		color: var(--color-main-text) !important;
+		text-decoration: unset !important;
 	}
 
 	h3 {
@@ -684,7 +685,7 @@ export default {
 	.milestone,
 	::v-deep .author-link,
 	.slug-link {
-		color: inherit;
+		color: inherit !important;
 	}
 
 	.date-with-tooltip,
@@ -693,7 +694,7 @@ export default {
 	.slug-link,
 	.issue-pr-link {
 		&:hover {
-			color: #58a6ff;
+			color: #58a6ff !important;
 		}
 	}
 
