@@ -169,18 +169,15 @@
 							{{ t('integration_github', 'Owner') }}
 						</div>
 					</div>
-					<div v-show="shortComment"
-						v-tooltip.top="{ content: t('integration_github', 'Click to expand comment') }"
-						class="comment--content--bubble--short-content"
-						@click="shortComment = false">
-						{{ richObject.github_comment.body }}
-					</div>
-					<div v-show="!shortComment"
-						class="comment--content--bubble--full-content">
+					<div :class="{
+						'comment--content--bubble--content': true,
+						'short-comment': shortComment,
+					}">
 						<RichText
+							v-tooltip.top="{ content: shortComment ? t('integration_github', 'Click to expand comment') : undefined }"
 							:text="richObject.github_comment.body"
 							:use-markdown="true"
-							@click.native="shortComment = true" />
+							@click.native="shortComment = !shortComment" />
 					</div>
 					<CommentReactions v-if="richObject.github_comment?.reactions?.total_count > 0"
 						class="comment--reactions item-reactions"
@@ -596,11 +593,13 @@ export default {
 			}
 
 			&--bubble {
-				display: grid;
+				display: flex;
+				flex-direction: column;
 				width: 100%;
 				padding-bottom: 4px;
 				border: 1px solid var(--color-border-dark);
 				border-radius: 6px;
+
 				> * {
 					padding-left: 8px;
 					padding-right: 8px;
@@ -618,16 +617,14 @@ export default {
 						color: var(--color-main-text);
 					}
 				}
-				&--short-content,
-				&--full-content {
+				&--content {
 					cursor: pointer;
-				}
-				&--short-content {
-					text-overflow: ellipsis;
-					overflow: hidden;
-					white-space: nowrap;
-					padding-top: 4px;
-					padding-bottom: 4px;
+					max-height: 250px;
+					overflow: scroll;
+					&.short-comment {
+						max-height: 25px;
+						overflow: hidden;
+					}
 				}
 			}
 			&--bubble-tip {
