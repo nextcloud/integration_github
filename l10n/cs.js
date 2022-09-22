@@ -60,6 +60,7 @@ OC.L10N.register(
     "by {creator}" : "od {creator}",
     "Author" : "Autor",
     "Owner" : "Vlastník",
+    "Click to expand comment" : "Komentář rozbalíte kliknutím",
     "Open issue" : "Otevřít hlášení problému",
     "Closed as not planned issue" : "Zavřeno jako není v plánu řešit",
     "Closed issue" : "Problém uzavřen",

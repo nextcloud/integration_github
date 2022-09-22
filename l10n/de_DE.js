@@ -60,6 +60,7 @@ OC.L10N.register(
     "by {creator}" : "von {creator}",
     "Author" : "Autor",
     "Owner" : "Besitzer",
+    "Click to expand comment" : "Klicken, um den Kommentar zu erweitern",
     "Open issue" : "Thema öffnen",
     "Closed as not planned issue" : "Als nicht geplantes Thema schließen",
     "Closed issue" : "Geschlossenes Thema",

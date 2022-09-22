@@ -52,6 +52,7 @@ OC.L10N.register(
     "Unknown error" : "Onbekende fout",
     "Author" : "Auteur",
     "Owner" : "Eigenaar",
+    "Draft" : "Concept",
     "Failed to save GitHub OAuth state" : "Kan GitHub OAuth-status niet bewaren"
 },
 "nplurals=2; plural=(n != 1);");
