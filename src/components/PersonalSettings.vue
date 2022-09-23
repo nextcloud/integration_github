@@ -20,7 +20,7 @@
 			<NcCheckboxRadioSwitch
 				:checked="state.link_preview_enabled"
 				@update:checked="onCheckboxChanged($event, 'link_preview_enabled')">
-				{{ t('integration_github', 'Enable GitHub link previews in Talk') }}
+				{{ t('integration_github', 'Enable GitHub link previews') }}
 			</NcCheckboxRadioSwitch>
 			<div v-show="!showOAuth"
 				class="line">
@@ -89,14 +89,14 @@ import CloseIcon from 'vue-material-design-icons/Close.vue'
 
 import GithubIcon from './icons/GithubIcon.vue'
 
+import NcButton from '@nextcloud/vue/dist/Components/NcButton.js'
+import NcCheckboxRadioSwitch from '@nextcloud/vue/dist/Components/NcCheckboxRadioSwitch.js'
+
 import { loadState } from '@nextcloud/initial-state'
 import { generateUrl } from '@nextcloud/router'
 import axios from '@nextcloud/axios'
-import { oauthConnect } from '../utils.js'
 import { showSuccess, showError } from '@nextcloud/dialogs'
-
-import NcButton from '@nextcloud/vue/dist/Components/NcButton.js'
-import NcCheckboxRadioSwitch from '@nextcloud/vue/dist/Components/NcCheckboxRadioSwitch.js'
+import { oauthConnect } from '../utils.js'
 
 export default {
 	name: 'PersonalSettings',
