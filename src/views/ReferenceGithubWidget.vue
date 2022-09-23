@@ -50,7 +50,7 @@
 					<div class="title-labels">
 						<a :href="richObject.html_url" class="issue-pr-link" target="_blank">
 							<strong>
-								{{ richObject.title }}
+								{{ cleanTitle }}
 							</strong>
 						</a>
 						<div v-for="label in richObject.labels"
@@ -212,6 +212,7 @@ import axios from '@nextcloud/axios'
 import moment from '@nextcloud/moment'
 import { hexToRgb } from '../utils.js'
 import rgbToHsl from '@alchemyalcove/rgb-to-hsl'
+import removeMd from 'remove-markdown'
 
 import { RichText } from '@nextcloud/vue-richtext'
 import NcAvatar from '@nextcloud/vue/dist/Components/NcAvatar.js'
@@ -276,6 +277,9 @@ export default {
 			const rgb = hexToRgb(bgColor)
 			const hsl = rgbToHsl([rgb.r, rgb.g, rgb.b])
 			return Math.round(hsl[2]) < 30
+		},
+		cleanTitle() {
+			return removeMd(this.richObject.title)
 		},
 		slug() {
 			return this.richObject.github_repo_owner + '/' + this.richObject.github_repo
