@@ -79,6 +79,7 @@ class ConfigController extends Controller {
 	 *
 	 * @param array $values key/value pairs to store in user preferences
 	 * @return DataResponse
+	 * @throws PreConditionNotMetException
 	 */
 	public function setConfig(array $values): DataResponse {
 		// revoke the oauth token if needed

@@ -206,7 +206,7 @@ class GithubAPIService {
 			'q' => $query,
 			'order' => 'desc'
 		];
-		$result = $this->request($userId, 'search/repositories', $params, 'GET');
+		$result = $this->request($userId, 'search/repositories', $params, 'GET', true);
 		if (!isset($result['error'])) {
 			$result['items'] = array_slice($result['items'], $offset, $limit);
 		}
@@ -226,7 +226,7 @@ class GithubAPIService {
 			'q' => $query,
 			'order' => 'desc'
 		];
-		$result = $this->request($userId, 'search/issues', $params, 'GET');
+		$result = $this->request($userId, 'search/issues', $params, 'GET', true);
 		if (!isset($result['error'])) {
 			$result['items'] = array_slice($result['items'], $offset, $limit);
 			$reposToGet = [];
@@ -257,7 +257,7 @@ class GithubAPIService {
 			$repoAvatarUrls = [];
 			$repoOwnerLogins = [];
 			foreach ($reposToGet as $repo) {
-				$info = $this->request($userId, 'repos/' . $repo['owner'] . '/' . $repo['repo']);
+				$info = $this->request($userId, 'repos/' . $repo['owner'] . '/' . $repo['repo'], [], 'GET', true);
 				if (!isset($info['error']) && isset($info['owner'], $info['owner']['avatar_url'], $info['owner']['login'])) {
 					$repoAvatarUrls[$repo['key']] = $info['owner']['avatar_url'];
 					$repoOwnerLogins[$repo['key']] = $info['owner']['login'];
@@ -283,7 +283,7 @@ class GithubAPIService {
 	 * @return array
 	 */
 	public function getUserInfo(?string $userId, string $githubUserName): array {
-		return $this->request($userId, 'users/' . $githubUserName);
+		return $this->request($userId, 'users/' . $githubUserName, [], 'GET', true);
 	}
 
 	/**
@@ -298,7 +298,7 @@ class GithubAPIService {
 			'subject_type' => $subjectType,
 			'subject_id' => $subjectId,
 		];
-		return $this->request($userId, 'users/' . $githubUserName . '/hovercard', $params);
+		return $this->request($userId, 'users/' . $githubUserName . '/hovercard', $params, 'GET', true);
 	}
 
 	/**
@@ -310,7 +310,7 @@ class GithubAPIService {
 	 */
 	public function getIssueInfo(?string $userId, string $owner, string $repo, int $issueNumber): array {
 		$endpoint = 'repos/' . $owner . '/' . $repo . '/issues/' . $issueNumber;
-		return $this->request($userId, $endpoint);
+		return $this->request($userId, $endpoint, [], 'GET', true);
 	}
 
 	/**
@@ -322,7 +322,7 @@ class GithubAPIService {
 	 */
 	public function getIssueReactionsInfo(?string $userId, string $owner, string $repo, int $issueNumber): array {
 		$endpoint = 'repos/' . $owner . '/' . $repo . '/issues/' . $issueNumber . '/reactions';
-		return $this->request($userId, $endpoint);
+		return $this->request($userId, $endpoint, [], 'GET', true);
 	}
 
 	/**
@@ -334,7 +334,7 @@ class GithubAPIService {
 	 */
 	public function getIssueCommentInfo(?string $userId, string $owner, string $repo, int $commentId): array {
 		$endpoint = 'repos/' . $owner . '/' . $repo . '/issues/comments/' . $commentId;
-		return $this->request($userId, $endpoint);
+		return $this->request($userId, $endpoint, [], 'GET', true);
 	}
 
 	/**
@@ -346,7 +346,7 @@ class GithubAPIService {
 	 */
 	public function getIssueCommentReactionsInfo(?string $userId, string $owner, string $repo, int $commentId): array {
 		$endpoint = 'repos/' . $owner . '/' . $repo . '/issues/comments/' . $commentId . '/reactions';
-		return $this->request($userId, $endpoint);
+		return $this->request($userId, $endpoint, [], 'GET', true);
 	}
 
 	/**
@@ -358,7 +358,7 @@ class GithubAPIService {
 	 */
 	public function getPrInfo(?string $userId, string $owner, string $repo, int $prNumber): array {
 		$endpoint = 'repos/' . $owner . '/' . $repo . '/pulls/' . $prNumber;
-		return $this->request($userId, $endpoint);
+		return $this->request($userId, $endpoint, [], 'GET', true);
 	}
 
 	/**
@@ -367,9 +367,10 @@ class GithubAPIService {
 	 * @param string $endPoint The path to reach in api.github.com
 	 * @param array $params Query parameters (key/val pairs)
 	 * @param string $method HTTP query method
+	 * @param bool $useDefaultToken
 	 * @return array decoded request result or error
 	 */
-	public function request(?string $userId, string $endPoint, array $params = [], string $method = 'GET'): array {
+	public function request(?string $userId, string $endPoint, array $params = [], string $method = 'GET', bool $useDefaultToken = false): array {
 		try {
 			$url = 'https://api.github.com/' . $endPoint;
 			$options = [
@@ -377,12 +378,17 @@ class GithubAPIService {
 					'User-Agent' => 'Nextcloud GitHub integration',
 				],
 			];
-			// try anonymous request if no user (public page) or user not connected to a github account
+			// use user access token in priority
+			// fallback to admin default token if $useDefaultToken
+			$accessToken = '';
 			if ($userId !== null) {
 				$accessToken = $this->config->getUserValue($userId, Application::APP_ID, 'token');
-				if ($accessToken !== '') {
-					$options['headers']['Authorization'] = 'token ' . $accessToken;
-				}
+			}
+			if ($accessToken === '' && $useDefaultToken) {
+				$accessToken = $this->config->getAppValue(Application::APP_ID, 'default_link_token');
+			}
+			if ($accessToken !== '') {
+				$options['headers']['Authorization'] = 'token ' . $accessToken;
 			}
 
 			if (count($params) > 0) {
