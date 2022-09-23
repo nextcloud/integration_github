@@ -6,6 +6,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## 1.0.6 – 2022-09-23
+### Added
+- admin default access token for search and reference stuff
+
+### Fixed
+- remove markdown marks from reference widget title
+- style issues to make the reference widget work in Text
+
 ## 1.0.5 – 2022-09-21
 ### Added
 - reference widget for issues, prs and comments
