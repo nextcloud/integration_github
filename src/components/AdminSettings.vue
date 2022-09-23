@@ -51,6 +51,24 @@
 					@input="onInput"
 					@focus="readonly = false">
 			</div>
+			<br>
+			<p class="settings-hint">
+				<InformationOutlineIcon :size="20" class="icon" />
+				{{ t('integration_github', 'This default token will be used for link previews and unified search by users who didn\'t connect to GitHub.') }}
+			</p>
+			<div class="line">
+				<label for="github-link-token">
+					<KeyIcon :size="20" class="icon" />
+					{{ t('integration_github', 'Default access token') }}
+				</label>
+				<input id="github-link-token"
+					v-model="state.default_link_token"
+					type="password"
+					:readonly="readonly"
+					:placeholder="t('integration_github', 'personal access token')"
+					@input="onInput"
+					@focus="readonly = false">
+			</div>
 			<NcCheckboxRadioSwitch
 				:checked="state.use_popup"
 				@update:checked="onCheckboxChanged($event, 'use_popup')">
@@ -59,7 +77,7 @@
 			<NcCheckboxRadioSwitch
 				:checked="state.link_preview_enabled"
 				@update:checked="onCheckboxChanged($event, 'link_preview_enabled')">
-				{{ t('integration_github', 'Enable GitHub link previews in Talk') }}
+				{{ t('integration_github', 'Enable GitHub link previews') }}
 			</NcCheckboxRadioSwitch>
 		</div>
 	</div>
@@ -116,6 +134,7 @@ export default {
 				this.saveOptions({
 					client_id: this.state.client_id,
 					client_secret: this.state.client_secret,
+					default_link_token: this.state.default_link_token,
 				})
 			}, 2000)()
 		},
