@@ -577,6 +577,7 @@ export default {
 				align-items: center;
 				margin-left: 8px;
 				color: var(--color-text-maxcontrast);
+				white-space: nowrap;
 				.icon {
 					margin-right: 4px;
 				}
