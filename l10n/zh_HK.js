@@ -26,7 +26,6 @@ OC.L10N.register(
     "Client secret" : "客戶端密碼",
     "Client secret of your GitHub application" : "您 GitHub 應用程式的客戶端密碼",
     "Use a popup to authenticate" : "使用彈出窗口進行身份驗證",
-    "Enable GitHub link previews in Talk" : "在 Talk 中啟用 GitHub 連結預覽",
     "GitHub admin options saved" : "已儲存 GitHub 管理員選項",
     "Failed to save GitHub admin options" : "儲存 GitHub 管理員選項失敗",
     "When you create a personal access token yourself, give it at least \"read:user\", \"user:email\" and \"notifications\" permissions." : "當您自行建立存取權杖時，至少給予 \"read：user\"， \"user：email\" 與 \"notifications\" 權限。",

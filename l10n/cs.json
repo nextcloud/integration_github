@@ -24,7 +24,6 @@
     "Client secret" : "Klientské tajemství",
     "Client secret of your GitHub application" : "Klientské tajemství vaší GitHub aplikace",
     "Use a popup to authenticate" : "Ověřte se ve vyskakovacím okně",
-    "Enable GitHub link previews in Talk" : "Zapnout v Talk náhledy odkazů na GitHub",
     "GitHub admin options saved" : "Předvolby správy GitHub uloženy",
     "Failed to save GitHub admin options" : "Nepodařilo se uložit předvolby správy GitHub",
     "When you create a personal access token yourself, give it at least \"read:user\", \"user:email\" and \"notifications\" permissions." : "Když si osobní přístupový token vytváříte sami, udělte mu přinejmenším oprávnění pro „čtení:uživatrel“ a „upozornění“.",

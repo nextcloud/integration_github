@@ -23,7 +23,6 @@
     "Client secret" : "Klienstitok",
     "Client secret of your GitHub application" : "A GitHub alkalmazás klienstitka",
     "Use a popup to authenticate" : "Felugró ablak használata a hitelesítéshez",
-    "Enable GitHub link previews in Talk" : "GitHub hivatkozások előnézetének engedélyezése a Beszélgetésben",
     "GitHub admin options saved" : "A GitHub rendszergazdai beállításai mentve",
     "Failed to save GitHub admin options" : "A GitHub rendszergazdai beállítások mentése sikertelen",
     "When you create a personal access token yourself, give it at least \"read:user\", \"user:email\" and \"notifications\" permissions." : "Amikor saját maga hoz létre személyes hozzáférési tokent, adjon meg neki legalább „read:user”, „user:email” és „notifications” engedélyeket.",

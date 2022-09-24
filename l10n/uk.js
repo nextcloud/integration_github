@@ -8,7 +8,6 @@ OC.L10N.register(
     "OAuth access token refused" : "Маркер доступу OAuth відхилено",
     "Client ID" : "Ідентифікатор клієнта",
     "Client secret" : "Ключ клієнта",
-    "Enable GitHub link previews in Talk" : "Увімкніть попередній перегляд посилань GitHub у Talk",
     "Mark as read" : "Відмітити прочитаним",
     "GitHub API error" : "Помилка API GitHub",
     "Unknown error" : "Невідома помилка",

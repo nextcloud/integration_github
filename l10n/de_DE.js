@@ -26,7 +26,6 @@ OC.L10N.register(
     "Client secret" : "Geheime Zeichenkette des Clients",
     "Client secret of your GitHub application" : "Client-Geheimnis der GitHub-Anwendung",
     "Use a popup to authenticate" : "Popup zur Authentifizierung verwenden",
-    "Enable GitHub link previews in Talk" : "Vorschau von GitHub-Links in Talk aktivieren",
     "GitHub admin options saved" : "GitHub-Administrator-Einstellungen gespeichert",
     "Failed to save GitHub admin options" : "Fehler beim Speichern der GitHub-Administrator-Einstellungen",
     "When you create a personal access token yourself, give it at least \"read:user\", \"user:email\" and \"notifications\" permissions." : "Wenn Sie selbst einen persönlichen Zugriffstoken erstellen, geben Sie diesem mindestens die Berechtigungen \"read:user\", \"user:email\" und \"notifications\".",

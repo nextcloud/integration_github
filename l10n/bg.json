@@ -23,7 +23,6 @@
     "Client secret" : "Тайна на клиент",
     "Client secret of your GitHub application" : "Клиентска тайна на вашето GitHub приложение",
     "Use a popup to authenticate" : "Използване на изскачащ прозорец за удостоверяване",
-    "Enable GitHub link previews in Talk" : "Активиране на визуализации на GitHub връзки в Talk",
     "GitHub admin options saved" : "Опциите за администратор на GitHub са записани",
     "Failed to save GitHub admin options" : "Неуспешно записване на опциите за администратор на GitHub",
     "When you create a personal access token yourself, give it at least \"read:user\", \"user:email\" and \"notifications\" permissions." : "Когато сами създавате личен токен за достъп, дайте му поне права за „прочитане:потребител“, „потребител:имейл“ и „известия“.",

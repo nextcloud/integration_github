@@ -46,6 +46,7 @@
     "Unknown error" : "Error desconegut",
     "Author" : "Autor/a",
     "Owner" : "Propietari",
+    "Draft" : "Esborrany",
     "Failed to save GitHub OAuth state" : "No s'ha pogut desar l'estat d'OAuth de GitHub"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

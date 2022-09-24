@@ -26,7 +26,6 @@ OC.L10N.register(
     "Client secret" : "Secret client",
     "Client secret of your GitHub application" : "Secret client de votre application GitHub",
     "Use a popup to authenticate" : "Utiliser un pop-up pour s'authentifier",
-    "Enable GitHub link previews in Talk" : "Activer les aperçus de liens dans Talk",
     "GitHub admin options saved" : "Options d'administration GitHub enregistrées",
     "Failed to save GitHub admin options" : "Échec de l'enregistrement des options d'administration GitHub",
     "When you create a personal access token yourself, give it at least \"read:user\", \"user:email\" and \"notifications\" permissions." : "Lorsque vous créez vous-même un jeton d'accès personnel, donnez-lui au moins les autorisations «read:user», «user:email» et «notifications».",
