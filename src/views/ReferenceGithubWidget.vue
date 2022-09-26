@@ -681,7 +681,6 @@ export default {
 		align-items: center;
 		height: 20px;
 		margin-right: 4px;
-		border: 1px solid var(--color-border-dark);
 		padding: 0 7px;
 		border-radius: var(--border-radius-pill);
 		font-size: 12px;
