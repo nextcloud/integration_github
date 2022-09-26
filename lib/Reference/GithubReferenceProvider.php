@@ -22,7 +22,7 @@
 
 namespace OCA\Github\Reference;
 
-use OC\Collaboration\Reference\Reference;
+use OCP\Collaboration\Reference\Reference;
 use OC\Collaboration\Reference\ReferenceManager;
 use OCA\Github\AppInfo\Application;
 use OCA\Github\Service\GithubAPIService;
