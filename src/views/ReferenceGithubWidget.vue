@@ -460,6 +460,7 @@ export default {
 					// like github dark mode
 					background: 'rgba(' + rgb.r + ', ' + rgb.g + ', ' + rgb.b + ', 0.18)',
 					color: `hsl(${Math.round(hsl[0])}, 100%, 75%)`,
+					border: `1px solid hsl(${Math.round(hsl[0])}, 60%, 75%)`,
 				}
 				: {
 					// like github light mode
