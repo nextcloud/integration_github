@@ -6,7 +6,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
-## 1.0.7 – 2022-09-27
+## 1.0.8 – 2022-09-27
 ### Changed
 - adjust to new reference class
 
