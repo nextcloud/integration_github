@@ -5,7 +5,7 @@
     <summary>Integration of GitHub software development management service</summary>
     <description><![CDATA[GitHub integration provides a dashboard widget displaying your most important notifications
     and a unified search provider for repositories, issues and pull requests.]]></description>
-    <version>1.0.6</version>
+    <version>1.0.7</version>
     <licence>agpl</licence>
     <author>Julien Veyssier</author>
     <namespace>Github</namespace>

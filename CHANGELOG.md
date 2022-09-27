@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## 1.0.7 – 2022-09-27
+### Changed
+- adjust to new reference class
+
 ## 1.0.6 – 2022-09-23
 ### Added
 - admin default access token for search and reference stuff
