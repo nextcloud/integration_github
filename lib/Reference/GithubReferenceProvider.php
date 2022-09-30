@@ -29,21 +29,25 @@ use OCA\Github\Service\GithubAPIService;
 use OCP\Collaboration\Reference\IReference;
 use OCP\Collaboration\Reference\IReferenceProvider;
 use OCP\IConfig;
+use OCP\IL10N;
 
 class GithubReferenceProvider implements IReferenceProvider {
 	private GithubAPIService $githubAPIService;
 	private ?string $userId;
 	private IConfig $config;
 	private ReferenceManager $referenceManager;
+	private IL10N $l10n;
 
 	public function __construct(GithubAPIService $githubAPIService,
 								IConfig $config,
+								IL10N $l10n,
 								ReferenceManager $referenceManager,
 								?string $userId) {
 		$this->githubAPIService = $githubAPIService;
 		$this->userId = $userId;
 		$this->config = $config;
 		$this->referenceManager = $referenceManager;
+		$this->l10n = $l10n;
 	}
 
 	/**
@@ -77,6 +81,10 @@ class GithubReferenceProvider implements IReferenceProvider {
 				$commentInfo = $this->getCommentInfo($owner, $repo, $end);
 				$issueInfo = $this->githubAPIService->getIssueInfo($this->userId, $owner, $repo, $id);
 				$reference = new Reference($referenceText);
+				$issueTitle = $issueInfo['title'] ?? '';
+				$issueNumber = $issueInfo['number'] ?? '';
+				$titlePrefix = $commentInfo ? '[' . $this->l10n->t('Comment') .'] ' : '';
+				$reference->setTitle($titlePrefix . $issueTitle . ' · Issue #' . $issueNumber . ' · ' . $owner . '/' . $repo);
 				$reference->setRichObject(Application::APP_ID, array_merge([
 					'github_type' => isset($issueInfo['error']) ? 'issue-error' : 'issue',
 					'github_issue_id' => $id,
@@ -93,6 +101,10 @@ class GithubReferenceProvider implements IReferenceProvider {
 					$commentInfo = $this->getCommentInfo($owner, $repo, $end);
 					$prInfo = $this->githubAPIService->getPrInfo($this->userId, $owner, $repo, $id);
 					$reference = new Reference($referenceText);
+					$prTitle = $prInfo['title'] ?? '';
+					$prNumber = $prInfo['number'] ?? '';
+					$titlePrefix = $commentInfo ? '[' . $this->l10n->t('Comment') .'] ' : '';
+					$reference->setTitle($titlePrefix . $prTitle . ' · Pull Request #' . $prNumber . ' · ' . $owner . '/' . $repo);
 					$reference->setRichObject(Application::APP_ID, array_merge([
 						'github_type' => isset($prInfo['error']) ? 'pr-error' : 'pull_request',
 						'github_pr_id' => $id,
