@@ -1,4 +1,5 @@
 { "translations": {
+    "Comment" : "კომენტარი",
     "Client ID" : "კლიენტის ID",
     "Client secret" : "კლიენტის საიდუმლო",
     "Mark as read" : "წაკითხულად მონიშვნა",

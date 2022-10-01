@@ -3,6 +3,7 @@
     "Error getting OAuth access token" : "Error al conseguir el token de acceso OAuth",
     "Error during OAuth exchanges" : "Error durante los intercambios OAuth",
     "GitHub notifications" : "Notificaciones de GitHub",
+    "Comment" : "Comentario",
     "GitHub issues and pull requests" : "Issues y pull requests de GitHub",
     "GitHub repositories" : "Repositorios de GitHub",
     "Bad HTTP method" : "Método HTTP incorrecto",

@@ -5,6 +5,7 @@ OC.L10N.register(
     "Error getting OAuth access token" : "Chyba pri získavaní prístupového tokenu OAuth",
     "Error during OAuth exchanges" : "Chyba počas výmeny OAuth",
     "GitHub notifications" : "GitHub notifikácie",
+    "Comment" : "Komentár",
     "GitHub issues and pull requests" : "GitLab problémy a žiadosti o pull",
     "GitHub repositories" : "GitHub repozitáre",
     "Bad HTTP method" : "Zlá metóda HTTP",

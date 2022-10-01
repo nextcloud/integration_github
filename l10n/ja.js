@@ -5,6 +5,7 @@ OC.L10N.register(
     "Error getting OAuth access token" : "OAuthアクセストークン取得時のエラー",
     "Error during OAuth exchanges" : "OAuth通信中のエラー",
     "GitHub notifications" : "GitHubの通知",
+    "Comment" : "コメント",
     "GitHub repositories" : "GitHubリポジトリ",
     "Bad credentials" : "不正な資格情報",
     "OAuth access token refused" : "OAuthアクセストークンが拒否されました",

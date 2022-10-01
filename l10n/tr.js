@@ -6,6 +6,7 @@ OC.L10N.register(
     "Error during OAuth exchanges" : "OAuth takasında sorun çıktı",
     "GitHub notifications" : "GitHub bildirimleri",
     "More notifications" : "Diğer bildirimler",
+    "Comment" : "Yorum",
     "GitHub issues and pull requests" : "GitHub sorunları ve birleştirme istekleri",
     "GitHub repositories" : "GitHub depoları",
     "Bad HTTP method" : "HTTP yöntemi hatalı",

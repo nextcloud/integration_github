@@ -5,6 +5,7 @@ OC.L10N.register(
     "Error getting OAuth access token" : "Hiba történt az OAuth hozzáférési token lekérése során",
     "Error during OAuth exchanges" : "Hiba történt az OAuth üzenetváltás során",
     "GitHub notifications" : "GitHub értesítések",
+    "Comment" : "Megjegyzés",
     "GitHub issues and pull requests" : "GitHub jegyek és beolvasztási kérések",
     "GitHub repositories" : "GitHub tárolók",
     "Bad HTTP method" : "Hibás HTTP metódus",

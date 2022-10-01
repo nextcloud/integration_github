@@ -2,6 +2,7 @@ OC.L10N.register(
     "integration_github",
     {
     "GitHub" : "GitHub",
+    "Comment" : "Коментар",
     "Client ID" : "ID клијента",
     "Client secret" : "Тајна клијента",
     "Mark as read" : "Означи као прочитано",

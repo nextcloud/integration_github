@@ -3,6 +3,7 @@ OC.L10N.register(
     {
     "GitHub" : "غيت هب",
     "GitHub notifications" : "الإشعارات العامة",
+    "Comment" : "تعليق",
     "Client ID" : "معرف العميل",
     "Mark as read" : "تمييز كمقروء",
     "Unknown error" : "خطأ غير معروف",

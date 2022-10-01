@@ -5,6 +5,7 @@ OC.L10N.register(
     "Error getting OAuth access token" : "Σφάλμα κατά τη λήψη διακριτικού πρόσβασης OAuth",
     "Error during OAuth exchanges" : "Σφάλμα κατά την ανταλλαγή OAuth",
     "GitHub notifications" : "Ειδοποιήσεις GitHub",
+    "Comment" : "Σχόλιο",
     "GitHub issues and pull requests" : "Ζητήματα GitHub και αιτήματα λήψης",
     "GitHub repositories" : "Αποθετήρια GitHub",
     "Bad HTTP method" : "Κακή μέθοδος HTTP",

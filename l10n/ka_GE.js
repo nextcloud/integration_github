@@ -1,6 +1,7 @@
 OC.L10N.register(
     "integration_github",
     {
+    "Comment" : "კომენტარი",
     "Client ID" : "კლიენტის ID",
     "Client secret" : "კლიენტის საიდუმლო",
     "Mark as read" : "წაკითხულად მონიშვნა",

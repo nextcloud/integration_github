@@ -1,6 +1,7 @@
 OC.L10N.register(
     "integration_github",
     {
+    "Comment" : "Komentar",
     "Client ID" : "ID Klien",
     "Client secret" : "Rahasia klien",
     "Mark as read" : "tandai sudah dibaca",

@@ -1,6 +1,7 @@
 OC.L10N.register(
     "integration_github",
     {
+    "Comment" : "نظر",
     "Connected accounts" : "حساب‌های متصل",
     "Client ID" : "شناسه مشتری",
     "Client secret" : "رمز مشتری",

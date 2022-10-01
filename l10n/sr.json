@@ -1,5 +1,6 @@
 { "translations": {
     "GitHub" : "GitHub",
+    "Comment" : "Коментар",
     "Client ID" : "ID клијента",
     "Client secret" : "Тајна клијента",
     "Mark as read" : "Означи као прочитано",

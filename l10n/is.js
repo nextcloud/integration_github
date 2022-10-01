@@ -4,6 +4,7 @@ OC.L10N.register(
     "GitHub" : "GitHub",
     "Error getting OAuth access token" : "Villa við að ná í OAuth-aðgangsteikn",
     "Error during OAuth exchanges" : "Villa í OAuth-samskiptum",
+    "Comment" : "Athugasemd",
     "Bad credentials" : "Gölluð auðkenni",
     "OAuth access token refused" : "OAuth-aðgangsteikni hafnað",
     "Connected accounts" : "Tengdir aðgangar",

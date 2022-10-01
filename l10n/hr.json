@@ -3,6 +3,7 @@
     "Error getting OAuth access token" : "Pogreška pri dohvaćanju tokena za pristup OAuth",
     "Error during OAuth exchanges" : "Pogreška tijekom razmjene radi autentifikacije OAuth",
     "GitHub notifications" : "GitHub obavijesti",
+    "Comment" : "Komentar",
     "GitHub issues and pull requests" : "GitHub problemi i zahtjevi za dohvaćanje",
     "GitHub repositories" : "GitHub spremišta",
     "Bad HTTP method" : "Pogrešna metoda HTTP-a",

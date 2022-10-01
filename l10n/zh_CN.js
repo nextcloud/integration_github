@@ -5,6 +5,7 @@ OC.L10N.register(
     "Error getting OAuth access token" : "获取 OAuth 访问令牌时出错",
     "Error during OAuth exchanges" : "交换 OAuth 时出错",
     "GitHub notifications" : "GitHub 通知",
+    "Comment" : "评论",
     "GitHub issues and pull requests" : "GitHub issues 和 pull requests",
     "GitHub repositories" : "GitHub 仓库",
     "Bad HTTP method" : "错误的HTTP方法",

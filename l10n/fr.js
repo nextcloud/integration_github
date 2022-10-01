@@ -6,6 +6,7 @@ OC.L10N.register(
     "Error during OAuth exchanges" : "Erreur lors des échanges OAuth",
     "GitHub notifications" : "Notifications GitHub",
     "More notifications" : "Plus de notifications",
+    "Comment" : "Commentaire",
     "GitHub issues and pull requests" : "Tickets et pull requests GitHub",
     "GitHub repositories" : "Dépôts GitHub",
     "Bad HTTP method" : "Mauvaise méthode HTTP",

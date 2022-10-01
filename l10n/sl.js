@@ -5,6 +5,7 @@ OC.L10N.register(
     "Error getting OAuth access token" : "Napaka med pridobivanjem žetona OAuth za dostop",
     "Error during OAuth exchanges" : " Napaka med izmenjavo podatkov OAuth",
     "GitHub notifications" : "Obvestila GitHub",
+    "Comment" : "Opomba",
     "GitHub issues and pull requests" : "Odprte naloge in zahteve za združitev kode GitHub",
     "GitHub repositories" : "Skladišča GitHub",
     "Bad HTTP method" : "Neustrezna metoda HTTP",

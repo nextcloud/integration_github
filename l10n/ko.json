@@ -3,6 +3,7 @@
     "Error getting OAuth access token" : "OAuth 액세스 토큰을 가져오는데 오류가 발생했습니다",
     "Error during OAuth exchanges" : "OAuth 교환 중 오류가 발생했습니다",
     "GitHub notifications" : "GitHub 알림",
+    "Comment" : "설명",
     "GitHub repositories" : "GitHub 저장소",
     "Bad HTTP method" : "옳지 않은 HTTP 메소드",
     "Bad credentials" : "잘못된 자격 증명",

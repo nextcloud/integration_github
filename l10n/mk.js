@@ -3,6 +3,7 @@ OC.L10N.register(
     {
     "GitHub" : "GitHub",
     "Error during OAuth exchanges" : "Грешка при размена на податоци за OAuth ",
+    "Comment" : "Коментар",
     "Bad credentials" : "Неточни акредитиви",
     "OAuth access token refused" : "Одбиен OAuth пристапен токен ",
     "Connected accounts" : "Поврзани сметки",

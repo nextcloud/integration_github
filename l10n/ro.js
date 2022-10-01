@@ -4,6 +4,7 @@ OC.L10N.register(
     "GitHub" : "GitHub",
     "Error getting OAuth access token" : "Eroare în obținerea token-ului OAuth",
     "Error during OAuth exchanges" : "Eroare în schimbarea OAuth",
+    "Comment" : "Comentariu",
     "Bad HTTP method" : "Metodă HTTP nepotrivită",
     "Bad credentials" : "Credențiale greșite",
     "OAuth access token refused" : "Token-ul OAuth a fost refuzat",

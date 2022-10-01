@@ -1,5 +1,6 @@
 { "translations": {
     "GitHub" : "GitHub",
+    "Comment" : "Comentario",
     "Client ID" : "ID del cliente",
     "Client secret" : "Secreto del cliente",
     "Unknown error" : "Error desconocido",

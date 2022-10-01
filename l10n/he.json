@@ -3,6 +3,7 @@
     "Error getting OAuth access token" : "שגיאה בקבלת אסימון גישה עם OAuth",
     "Error during OAuth exchanges" : "שגיאה במהלך החלפות OAuth",
     "GitHub notifications" : "התראות GitHub",
+    "Comment" : "הערה",
     "GitHub issues and pull requests" : "דיווחים ובקשות דחיפה ב־GitHub",
     "GitHub repositories" : "מאגרי GitHub",
     "Bad credentials" : "פרטי גישה שגויים",

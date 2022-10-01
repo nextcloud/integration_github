@@ -5,6 +5,7 @@ OC.L10N.register(
     "Error getting OAuth access token" : "Errore recuperende su token de intrada OAuth.",
     "Error during OAuth exchanges" : "Errore in su negòssiu OAuth",
     "GitHub notifications" : "Notìficas GitHub",
+    "Comment" : "Cummentu",
     "GitHub issues and pull requests" : "Problemas e rechestas de pull de GitHub",
     "GitHub repositories" : "Magasinu GitHub ",
     "Bad HTTP method" : "Mètodu HTTP malu",
