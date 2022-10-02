@@ -1,0 +1,8 @@
+{ "translations": {
+    "Comment" : "Bình luận",
+    "Client ID" : "ID khách hàng",
+    "Mark as read" : "Đánh dấu đã đọc",
+    "Unknown error" : "Lỗi không xác định",
+    "Owner" : "Chủ"
+},"pluralForm" :"nplurals=1; plural=0;"
+}

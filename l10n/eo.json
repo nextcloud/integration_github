@@ -1,0 +1,8 @@
+{ "translations": {
+    "Comment" : "Komento",
+    "Client ID" : "Klientidentigilo",
+    "Client secret" : "Klientosekreto",
+    "Unknown error" : "Nekonata eraro",
+    "Owner" : "Posedanto"
+},"pluralForm" :"nplurals=2; plural=(n != 1);"
+}

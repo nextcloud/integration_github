@@ -1,0 +1,8 @@
+{ "translations": {
+    "Comment" : "Comentariu",
+    "Client ID" : "ID de veceru",
+    "Client secret" : "Veceru secretu",
+    "Unknown error" : "Fallu desconocíu",
+    "Owner" : "Owner"
+},"pluralForm" :"nplurals=2; plural=(n != 1);"
+}

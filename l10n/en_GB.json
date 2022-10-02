@@ -1,6 +1,7 @@
 { "translations": {
     "Error getting OAuth access token" : "Error getting OAuth access token",
     "Error during OAuth exchanges" : "Error during OAuth exchanges",
+    "Comment" : "Comment",
     "Bad HTTP method" : "Bad HTTP method",
     "Bad credentials" : "Bad credentials",
     "OAuth access token refused" : "OAuth access token refused",

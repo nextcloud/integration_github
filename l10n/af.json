@@ -1,0 +1,8 @@
+{ "translations": {
+    "GitHub" : "GitHub",
+    "Comment" : "Kommentaar",
+    "Client ID" : "Kliënt-ID",
+    "Unknown error" : "Onbekende fout",
+    "Owner" : "Eienaar"
+},"pluralForm" :"nplurals=2; plural=(n != 1);"
+}
