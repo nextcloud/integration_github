@@ -64,7 +64,7 @@ class GithubReferenceProvider implements IReferenceProvider {
 		if (!$adminLinkPreviewEnabled) {
 			return false;
 		}
-		if (preg_match('/^(?:https?:\/\/)?(?:www\.)?github\.com\/[^\/\?]+\/[^\/\?]+\/(issues|pull)\/[0-9]+/', $referenceText) === 1) {
+		if (preg_match('/^(?:https?:\/\/)?(?:www\.)?github\.com\/[^\/\?]+\/[^\/\?]+\/(issues|pull)\/[0-9]+/i', $referenceText) === 1) {
 			return true;
 		}
 		return false;
@@ -126,7 +126,7 @@ class GithubReferenceProvider implements IReferenceProvider {
 	 * @return array|null
 	 */
 	private function getIssuePath(string $url): ?array {
-		preg_match('/^(?:https?:\/\/)?(?:www\.)?github\.com\/([^\/\?]+)\/([^\/\?]+)\/issues\/([0-9]+)(.*$)/', $url, $matches);
+		preg_match('/^(?:https?:\/\/)?(?:www\.)?github\.com\/([^\/\?]+)\/([^\/\?]+)\/issues\/([0-9]+)(.*$)/i', $url, $matches);
 		return count($matches) > 3 ? [$matches[1], $matches[2], $matches[3], $matches[4]] : null;
 	}
 
@@ -135,7 +135,7 @@ class GithubReferenceProvider implements IReferenceProvider {
 	 * @return array|null
 	 */
 	private function getPrPath(string $url): ?array {
-		preg_match('/^(?:https?:\/\/)?(?:www\.)?github\.com\/([^\/\?]+)\/([^\/\?]+)\/pull\/([0-9]+)(.*$)/', $url, $matches);
+		preg_match('/^(?:https?:\/\/)?(?:www\.)?github\.com\/([^\/\?]+)\/([^\/\?]+)\/pull\/([0-9]+)(.*$)/i', $url, $matches);
 		return count($matches) > 3 ? [$matches[1], $matches[2], $matches[3], $matches[4]] : null;
 	}
 
