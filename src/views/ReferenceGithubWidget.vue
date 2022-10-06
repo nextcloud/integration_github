@@ -162,10 +162,10 @@
 							{{ commentUpdatedAtText }}
 						</span>
 						<div class="spacer" />
-						<div v-if="richObject.github_comment.user.login === richObject.user.login" class="label">
+						<div v-if="richObject.github_comment.user.login === richObject.user.login" class="label comment-header-label">
 							{{ t('integration_github', 'Author') }}
 						</div>
-						<div v-if="richObject.github_comment.user.login === richObject.github_repo_owner" class="label">
+						<div v-if="richObject.github_comment.user.login === richObject.github_repo_owner" class="label comment-header-label">
 							{{ t('integration_github', 'Owner') }}
 						</div>
 					</div>
@@ -684,6 +684,10 @@ export default {
 		padding: 0 7px;
 		border-radius: var(--border-radius-pill);
 		font-size: 12px;
+	}
+
+	.comment-header-label {
+		border: 1px solid var(--color-border-dark);
 	}
 
 	.milestone,
