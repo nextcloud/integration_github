@@ -679,7 +679,7 @@ export default {
 	.label {
 		display: flex;
 		align-items: center;
-		height: 20px;
+		line-height: 20px;
 		margin-right: 4px;
 		padding: 0 7px;
 		border-radius: var(--border-radius-pill);
