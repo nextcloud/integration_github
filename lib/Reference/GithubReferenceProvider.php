@@ -22,7 +22,6 @@
 
 namespace OCA\Github\Reference;
 
-use League\CommonMark\GithubFlavoredMarkdownConverter;
 use OCP\Collaboration\Reference\Reference;
 use OC\Collaboration\Reference\ReferenceManager;
 use OCA\Github\AppInfo\Application;
@@ -33,6 +32,7 @@ use OCP\IConfig;
 use OCP\IL10N;
 
 require_once __DIR__ . '/../../vendor/autoload.php';
+use League\CommonMark\GithubFlavoredMarkdownConverter;
 
 class GithubReferenceProvider implements IReferenceProvider {
 	private GithubAPIService $githubAPIService;
