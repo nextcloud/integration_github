@@ -22,6 +22,7 @@
 
 namespace OCA\Github\Reference;
 
+use League\CommonMark\GithubFlavoredMarkdownConverter;
 use OCP\Collaboration\Reference\Reference;
 use OC\Collaboration\Reference\ReferenceManager;
 use OCA\Github\AppInfo\Application;
@@ -30,6 +31,8 @@ use OCP\Collaboration\Reference\IReference;
 use OCP\Collaboration\Reference\IReferenceProvider;
 use OCP\IConfig;
 use OCP\IL10N;
+
+require_once __DIR__ . '/../../vendor/autoload.php';
 
 class GithubReferenceProvider implements IReferenceProvider {
 	private GithubAPIService $githubAPIService;
@@ -81,6 +84,9 @@ class GithubReferenceProvider implements IReferenceProvider {
 				$commentInfo = $this->getCommentInfo($owner, $repo, $end);
 				$issueInfo = $this->githubAPIService->getIssueInfo($this->userId, $owner, $repo, $id);
 				$reference = new Reference($referenceText);
+				if ($issueInfo['title']) {
+					$issueInfo['title'] = $this->stripMarkdown($issueInfo['title']);
+				}
 				$issueTitle = $issueInfo['title'] ?? '';
 				$issueNumber = $issueInfo['number'] ?? '';
 				$titlePrefix = $commentInfo ? '[' . $this->l10n->t('Comment') .'] ' : '';
@@ -102,6 +108,9 @@ class GithubReferenceProvider implements IReferenceProvider {
 					$prInfo = $this->githubAPIService->getPrInfo($this->userId, $owner, $repo, $id);
 					$reference = new Reference($referenceText);
 					$prTitle = $prInfo['title'] ?? '';
+					if ($prInfo['title']) {
+						$prInfo['title'] = $this->stripMarkdown($prInfo['title']);
+					}
 					$prNumber = $prInfo['number'] ?? '';
 					$titlePrefix = $commentInfo ? '[' . $this->l10n->t('Comment') .'] ' : '';
 					$reference->setTitle($titlePrefix . $prTitle . ' · Pull Request #' . $prNumber . ' · ' . $owner . '/' . $repo);
@@ -196,5 +205,10 @@ class GithubReferenceProvider implements IReferenceProvider {
 	 */
 	public function invalidateUserCache(string $userId): void {
 		$this->referenceManager->invalidateCache($userId);
+	}
+
+	private function stripMarkdown(string $content): string {
+		$converter = new GithubFlavoredMarkdownConverter();
+		return strip_tags($converter->convert($content)->getContent());
 	}
 }

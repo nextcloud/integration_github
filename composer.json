@@ -1,0 +1,13 @@
+{
+    "name": "nextcloud/integration_github",
+    "authors": [
+        {
+            "name": "Julien Veyssier",
+            "email": "eneiluj@posteo.net"
+        }
+    ],
+    "require": {
+        "league/commonmark": "^2.3",
+        "php": ">=7.4"
+    }
+}
