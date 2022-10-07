@@ -13,7 +13,6 @@
     "Connected accounts" : "Yhdistetyt tilit",
     "GitHub integration" : "GitHub-integraatio",
     "Integration of GitHub software development management service" : "GitHub-sovelluskehityksen hallintapalvelun integraatio",
-    "GitHub integration provides a dashboard widget displaying your most important notifications\n    and a unified search provider for repositories, issues and pull requests." : "GitHub-integraatio tarjoaa sekä konsoliin pienoissovelluksen, joka näyttää tärkeimmät ilmoituksesi, \n    että mahdollisuuden etsiä tietovarastoja, aiheita ja pull-pyyntöjä Nextcloudin yhtenäisestä hausta.",
     "If you want to allow your Nextcloud users to use OAuth to authenticate to https://github.com, create an OAuth application in your GitHub settings." : "Jos haluat Nextcloud-käyttäjien voivan käyttää OAuthia tunnistautumiseen, luo OAuth-sovellus GitHub-asetuksissasi.",
     "GitHub OAuth settings" : "GitHubin OAuth-asetukset",
     "Set \"Application name\", \"Homepage URL\" and \"Application description\" to values that will make sense to your Nextcloud users as they will see them when connecting to GitHub using your OAuth app." : "\"Application name\"-, \"Homepage URL\"- ja \"Application description\" -arvot näkyvät Nextcloud-käyttäjillesi, kun he yhdistävät GitHubiin OAuth-sovelluksen kautta.",

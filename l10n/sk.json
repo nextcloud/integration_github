@@ -12,7 +12,6 @@
     "Connected accounts" : "Prepojené účty",
     "GitHub integration" : "GitHub integrácia",
     "Integration of GitHub software development management service" : "Integrácia služby riadenia vývoja softvéru GitHub",
-    "GitHub integration provides a dashboard widget displaying your most important notifications\n    and a unified search provider for repositories, issues and pull requests." : "Integrácia s GitHubom poskytuje miniaplikáciu pre dashboard ktorá zobrazuje vaše najdôležitejšie oznámenia.\n   a jednotné vyhľadávanie pre úložiská, problémy a žiadosti o zlúčenie.",
     "If you want to allow your Nextcloud users to use OAuth to authenticate to https://github.com, create an OAuth application in your GitHub settings." : "Ak chcete umožniť používateľom Nextcloud používať OAuth na autentifikáciu s https://github.com, vytvorte OAuth aplikáciu v nastaveniach vášho GitHubu.",
     "GitHub OAuth settings" : "Nastavenia OAuth pre GitHub",
     "Set \"Application name\", \"Homepage URL\" and \"Application description\" to values that will make sense to your Nextcloud users as they will see them when connecting to GitHub using your OAuth app." : "Nastavte „Názov aplikácie“, „Adresu URL domovskej stránky“ a „Popis aplikácie“ na hodnoty, ktoré budú vašim používateľom Nextcloud dávať zmysel, pretože ich uvidia pri pripojení k GitHubu pomocou vašej aplikácie OAuth.",

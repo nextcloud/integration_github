@@ -14,7 +14,6 @@ OC.L10N.register(
     "Connected accounts" : "Kapcsolt fiókok",
     "GitHub integration" : "GitHub integráció",
     "Integration of GitHub software development management service" : "A GitHub Szoftverfejlesztés-menedzsment szolgáltatás integrációja",
-    "GitHub integration provides a dashboard widget displaying your most important notifications\n    and a unified search provider for repositories, issues and pull requests." : "A GitHub integráció irányítópult modult kínál, amely megjeleníti a legfontosabb értesítéseket\nés egységes keresési szolgáltatást nyújt a tárolókhoz, a jegyekhez és a beolvasztási kérésekhez.",
     "If you want to allow your Nextcloud users to use OAuth to authenticate to https://github.com, create an OAuth application in your GitHub settings." : "Ha azt szeretné, hogy a Nextcloud felhasználók OAuth használatával hitelesítsenek a https://github.com webhelyen, hozzon létre egy OAuth alkalmazást a GitHub beállításaiban.",
     "GitHub OAuth settings" : "GitHub OAuth beállítások",
     "Set \"Application name\", \"Homepage URL\" and \"Application description\" to values that will make sense to your Nextcloud users as they will see them when connecting to GitHub using your OAuth app." : "Állítsa az „Alkalmazás neve”, a „Kezdőlap URL” és az „Alkalmazás leírása” értékeket olyan értékekre, amelyek értelmesek lesznek a Nextcloud felhasználói számára, mivel látni fogják ezeket, amikor az OAuth alkalmazás segítségével csatlakoznak a GitHubhoz.",

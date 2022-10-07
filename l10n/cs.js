@@ -15,7 +15,6 @@ OC.L10N.register(
     "Connected accounts" : "Propojené účty",
     "GitHub integration" : "Napojení na GitHub",
     "Integration of GitHub software development management service" : "Napojení na službu pro správu vývoje software GitHub",
-    "GitHub integration provides a dashboard widget displaying your most important notifications\n    and a unified search provider for repositories, issues and pull requests." : "Napojení na GitHub poskytuje ovládací prvek pro nástěnku, zobrazující nejdůležitější upozornění pro vás\n    a poskytovatele do sjednoceného vyhledávání pro hledání v repozitářích, hlášeních chyba a požadavcích na začlenění kódu.",
     "If you want to allow your Nextcloud users to use OAuth to authenticate to https://github.com, create an OAuth application in your GitHub settings." : "Pokud chcete svým Nextcloud uživatelům umožnit použití ověření pomocí https://github.com OAuth, vytvořte v nastavení GitHub OAuth aplikaci.",
     "GitHub OAuth settings" : "Natavení pro GitHub OAuth",
     "Set \"Application name\", \"Homepage URL\" and \"Application description\" to values that will make sense to your Nextcloud users as they will see them when connecting to GitHub using your OAuth app." : "Hodnoty „Název aplikace“, „URL adresa domovské stránky“ a „Popis aplikace“ nastavte na takové, které budou srozumitelné pro vaše Nextcloud uživatele, protože budou viditelné při připojování se ke GitHub pomocí vaší OAuth aplikace.",

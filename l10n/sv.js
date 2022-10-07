@@ -14,7 +14,6 @@ OC.L10N.register(
     "Connected accounts" : "Anslutna konton",
     "GitHub integration" : "GitHub-integrering",
     "Integration of GitHub software development management service" : "Integrering av GitHub-tjänster för mjukvaruutveckling",
-    "GitHub integration provides a dashboard widget displaying your most important notifications\n    and a unified search provider for repositories, issues and pull requests." : "GitHub-integrering tillhandahåller en dashboard-widget med dina viktigaste notifikationer\n    och en gemensam sökmotor för arkiv, ärenden och pull-förfrågningar.",
     "Client ID" : "Klient-ID",
     "Client ID of your GitHub application" : "Klient-id för din GitHub-applikation",
     "Client secret" : "Klienthemlighet",

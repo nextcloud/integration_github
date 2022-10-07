@@ -13,7 +13,6 @@
     "Connected accounts" : "Bağlı hesaplar",
     "GitHub integration" : "GitHub bütünleştirmesi",
     "Integration of GitHub software development management service" : "GitHub yazılım geliştirme yönetimi sistemi bütünleştirmesi",
-    "GitHub integration provides a dashboard widget displaying your most important notifications\n    and a unified search provider for repositories, issues and pull requests." : "GitHub bütünleştirmesi en önemli bildirimler ile depolar, sorunlar ve birleştirme istekleri\n    için birleşik arama özelliğini görüntüleyen bir pano bileşeni sağlar.",
     "If you want to allow your Nextcloud users to use OAuth to authenticate to https://github.com, create an OAuth application in your GitHub settings." : "Nextcloud kullanıcılarınızın https://github.com kimlik doğrulaması için OAuth uygulamasını kullanmak istiyorsanız, GitHub ayarlarınızdan bir OAuth uygulaması oluşturun.",
     "GitHub OAuth settings" : "GitHub OAuth ayarları",
     "Set \"Application name\", \"Homepage URL\" and \"Application description\" to values that will make sense to your Nextcloud users as they will see them when connecting to GitHub using your OAuth app." : "OAuth uygulaması kullanılarak GitHub bağlantısı kurulurken Nextcloud kullanıcılarınıza görüntüleneceğinden, \"Uygulama adı\", \"Ana sayfa adresi\" ve \"Uygulama açıklaması\" alanlarına kullanıcılarınıza anlamlı görünecek şeyler yazın.",

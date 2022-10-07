@@ -15,7 +15,6 @@ OC.L10N.register(
     "Connected accounts" : "Comptes connectés",
     "GitHub integration" : "Intégration de GitHub",
     "Integration of GitHub software development management service" : "Intégration du service de gestion de développement logiciel GitHub",
-    "GitHub integration provides a dashboard widget displaying your most important notifications\n    and a unified search provider for repositories, issues and pull requests." : "L'intégration GitHub fournit un widget de tableau de bord affichant vos notifications les plus importantes\net un fournisseur de recherche unifié pour les dépôts, les tickets et les pull requests.",
     "If you want to allow your Nextcloud users to use OAuth to authenticate to https://github.com, create an OAuth application in your GitHub settings." : "Si vous souhaitez permettre à vos utilisateurs Nextcloud d'utiliser OAuth pour s'authentifier sur https://github.com, créez une application OAuth dans vos paramètres GitHub.",
     "GitHub OAuth settings" : "Paramètres OAuth de GitHub",
     "Set \"Application name\", \"Homepage URL\" and \"Application description\" to values that will make sense to your Nextcloud users as they will see them when connecting to GitHub using your OAuth app." : "Remplissez «Nom de l'application», «URL de la page d'accueil» et «Description de l'application» avec des valeurs qui auront du sens pour vos utilisateurs Nextcloud, car ils les verront lorsqu'ils se connecteront à GitHub à l'aide de votre application OAuth.",

@@ -12,7 +12,6 @@
     "Connected accounts" : "Verbonden accounts",
     "GitHub integration" : "GitHub integratie",
     "Integration of GitHub software development management service" : "Integratie van GitHub software development management service",
-    "GitHub integration provides a dashboard widget displaying your most important notifications\n    and a unified search provider for repositories, issues and pull requests." : "Github-integratie biedt een dashboardwidget dat je belangrijke meldingen weergeeft,\nen een uniforme zoekmachine voor projecten, issues en pull requests.",
     "If you want to allow your Nextcloud users to use OAuth to authenticate to https://github.com, create an OAuth application in your GitHub settings." : "Als je wilt dat je Nextcloud-gebruikers OAuth kunnen gebruiken om te verifiëren bij https://github.com, maak dan een OAuth-applicatie aan in je GitHub-instellingen.",
     "GitHub OAuth settings" : "GitHub OAuth instellingen",
     "Set \"Application name\", \"Homepage URL\" and \"Application description\" to values that will make sense to your Nextcloud users as they will see them when connecting to GitHub using your OAuth app." : "Stel \"Applicatienaam\", \"Homepage-URL\" en \"Applicatiebeschrijving\" in op waarden die voor je Nextcloud-gebruikers logisch zijn, omdat ze die zullen zien wanneer ze met je OAuth-app verbinding maken met GitHub.",
