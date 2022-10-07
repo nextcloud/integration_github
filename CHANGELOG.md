@@ -6,6 +6,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## 1.0.9 – 2022-10-07
+### Added
+- Set fallback link information to render reference without the widget
+
+### Fixed
+- Replace frontend markdown stripping for title by a server-side one using league/commonmark
+- make reference link match case insensitive
+  [#51](https://github.com/nextcloud/integration_github/issues/51) @SystemKeeper
+- wrapping with narrow widget
+
 ## 1.0.8 – 2022-09-27
 ### Changed
 - adjust to new reference class

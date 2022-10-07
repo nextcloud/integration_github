@@ -4,7 +4,8 @@
     <name>GitHub integration</name>
     <summary>Integration of GitHub software development management service</summary>
     <description><![CDATA[GitHub integration provides a dashboard widget displaying your most important notifications
-    and a unified search provider for repositories, issues and pull requests.]]></description>
+    and a unified search provider for repositories, issues and pull requests. It also provides a link reference provider
+    to render links to issues, pull requests and comments in Talk and Text.]]></description>
     <version>1.0.9</version>
     <licence>agpl</licence>
     <author>Julien Veyssier</author>

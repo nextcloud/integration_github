@@ -2,8 +2,10 @@
 
 🐙 Put an octopus in your engine!
 
-This app adds a dashboard item to see your most important GitHub notifications.
-It also adds a search provider for repositories, issues and pull requests.
+This app adds:
+* A dashboard widget to see your most important GitHub notifications
+* A search provider for repositories, issues and pull requests
+* A link reference provider to render links to issues, pull requests and comments in Talk and Text
 
 ## 🔧 Configuration
 
