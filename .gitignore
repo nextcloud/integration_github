@@ -6,3 +6,5 @@ js/
 .vscode-upload.json
 .*.sw*
 node_modules
+
+/vendor/
