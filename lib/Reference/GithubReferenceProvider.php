@@ -91,12 +91,14 @@ class GithubReferenceProvider implements IReferenceProvider {
 				$issueNumber = $issueInfo['number'] ?? '';
 				$titlePrefix = $commentInfo ? '[' . $this->l10n->t('Comment') .'] ' : '';
 				$reference->setTitle($titlePrefix . $issueTitle . ' · Issue #' . $issueNumber . ' · ' . $owner . '/' . $repo);
-				$reference->setRichObject(Application::APP_ID, array_merge([
-					'github_type' => isset($issueInfo['error']) ? 'issue-error' : 'issue',
-					'github_issue_id' => $id,
-					'github_repo_owner' => $owner,
-					'github_repo' => $repo,
-					'github_comment' => $commentInfo,
+				$reference->setRichObject(
+					Application::APP_ID,
+					array_merge([
+						'github_type' => isset($issueInfo['error']) ? 'issue-error' : 'issue',
+						'github_issue_id' => $id,
+						'github_repo_owner' => $owner,
+						'github_repo' => $repo,
+						'github_comment' => $commentInfo,
 					], $issueInfo),
 				);
 				return $reference;
@@ -114,12 +116,14 @@ class GithubReferenceProvider implements IReferenceProvider {
 					$prNumber = $prInfo['number'] ?? '';
 					$titlePrefix = $commentInfo ? '[' . $this->l10n->t('Comment') .'] ' : '';
 					$reference->setTitle($titlePrefix . $prTitle . ' · Pull Request #' . $prNumber . ' · ' . $owner . '/' . $repo);
-					$reference->setRichObject(Application::APP_ID, array_merge([
-						'github_type' => isset($prInfo['error']) ? 'pr-error' : 'pull_request',
-						'github_pr_id' => $id,
-						'github_repo_owner' => $owner,
-						'github_repo' => $repo,
-						'github_comment' => $commentInfo,
+					$reference->setRichObject(
+						Application::APP_ID,
+						array_merge([
+							'github_type' => isset($prInfo['error']) ? 'pr-error' : 'pull_request',
+							'github_pr_id' => $id,
+							'github_repo_owner' => $owner,
+							'github_repo' => $repo,
+							'github_comment' => $commentInfo,
 						], $prInfo),
 					);
 					return $reference;
