@@ -84,7 +84,7 @@ class GithubReferenceProvider implements IReferenceProvider {
 				$commentInfo = $this->getCommentInfo($owner, $repo, $end);
 				$issueInfo = $this->githubAPIService->getIssueInfo($this->userId, $owner, $repo, $id);
 				$reference = new Reference($referenceText);
-				if ($issueInfo['title']) {
+				if (isset($issueInfo['title'])) {
 					$issueInfo['title'] = $this->stripMarkdown($issueInfo['title']);
 				}
 				$issueTitle = $issueInfo['title'] ?? '';
@@ -108,7 +108,7 @@ class GithubReferenceProvider implements IReferenceProvider {
 					$prInfo = $this->githubAPIService->getPrInfo($this->userId, $owner, $repo, $id);
 					$reference = new Reference($referenceText);
 					$prTitle = $prInfo['title'] ?? '';
-					if ($prInfo['title']) {
+					if (isset($prInfo['title'])) {
 						$prInfo['title'] = $this->stripMarkdown($prInfo['title']);
 					}
 					$prNumber = $prInfo['number'] ?? '';
