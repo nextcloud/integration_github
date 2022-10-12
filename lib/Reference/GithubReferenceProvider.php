@@ -207,8 +207,18 @@ class GithubReferenceProvider implements IReferenceProvider {
 		$this->referenceManager->invalidateCache($userId);
 	}
 
+	/**
+	 * @param string $content
+	 * @return string
+	 */
 	private function stripMarkdown(string $content): string {
 		$converter = new GithubFlavoredMarkdownConverter();
-		return strip_tags($converter->convert($content)->getContent());
+		// remove html chars like &quot; &nbsp; etc...
+		return html_entity_decode(
+			// remove xml tags
+			strip_tags(
+				$converter->convert($content)->getContent()
+			)
+		);
 	}
 }

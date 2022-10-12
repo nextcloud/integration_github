@@ -110,7 +110,7 @@ class GithubAPIController extends Controller {
 				Http::STATUS_OK,
 				['Content-Type' => $avatar['headers']['Content-Type'][0] ?? 'image/jpeg']
 			);
-			$response->cacheFor(60 * 60 * 24);
+			$response->cacheFor(60 * 60 * 24, false, true);
 			return $response;
 		}
 		return new DataDisplayResponse('', 400);
