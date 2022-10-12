@@ -618,7 +618,9 @@ export default {
 				&--header {
 					display: flex;
 					align-items: center;
-					height: 38px;
+					flex-wrap: wrap;
+					padding-top: 5px;
+					padding-bottom: 5px;
 					background-color: var(--color-background-hover);
 					border-bottom: 1px solid var(--color-border-dark);
 					border-top-left-radius: 6px;
