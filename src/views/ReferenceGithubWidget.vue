@@ -47,18 +47,32 @@
 						:size="16"
 						class="icon main-icon"
 						:fill-color="iconColor" />
-					<div class="title-labels">
-						<a :href="richObject.html_url" class="issue-pr-link" target="_blank">
-							<strong>
-								{{ cleanTitle }}
-							</strong>
-						</a>
-						<div v-for="label in richObject.labels"
-							:key="label.id"
-							v-tooltip.top="{ content: label.description }"
-							class="label"
-							:style="getLabelStyle(label)">
-							{{ label.name }}
+					<div class="main-info">
+						<div class="title-labels">
+							<a :href="richObject.html_url" class="issue-pr-link" target="_blank">
+								<strong>
+									{{ cleanTitle }}
+								</strong>
+							</a>
+							<div v-for="label in richObject.labels"
+								:key="label.id"
+								v-tooltip.top="{ content: label.description }"
+								class="label"
+								:style="getLabelStyle(label)">
+								{{ label.name }}
+							</div>
+						</div>
+						<div class="assignee-comment-count">
+							<NcAvatar v-for="assignee in richObject.assignees"
+								:key="assignee.login"
+								:tooltip-message="getAssigneeTooltip(assignee)"
+								:is-no-user="true"
+								:size="20"
+								:url="getAssigneeAvatarUrl(assignee)" />
+							<div v-if="richObject.comments > 0" class="comments-count">
+								<CommentIcon :size="16" class="icon" />
+								{{ richObject.comments }}
+							</div>
 						</div>
 					</div>
 				</div>
@@ -100,19 +114,6 @@
 						<MilestoneIcon :size="16" class="icon" />
 						{{ richObject.milestone.title }}
 					</a>
-				</div>
-			</div>
-			<div class="spacer" />
-			<div class="right-content">
-				<NcAvatar v-for="assignee in richObject.assignees"
-					:key="assignee.login"
-					:tooltip-message="getAssigneeTooltip(assignee)"
-					:is-no-user="true"
-					:size="20"
-					:url="getAssigneeAvatarUrl(assignee)" />
-				<div v-if="richObject.comments > 0" class="comments-count">
-					<CommentIcon :size="16" class="icon" />
-					{{ richObject.comments }}
 				</div>
 			</div>
 		</div>
@@ -535,15 +536,39 @@ export default {
 			height: 26px;
 		}
 
-		.title-labels {
+		.main-info {
 			display: flex;
-			align-items: center;
 			flex-wrap: wrap;
-			> * {
-				margin-bottom: 2px;
+
+			.title-labels {
+				display: flex;
+				flex: 1 1 300px;
+				max-width: fit-content;
+				align-items: center;
+				flex-wrap: wrap;
+				> * {
+					margin-bottom: 2px;
+				}
+				.issue-pr-link {
+					margin-right: 8px;
+				}
 			}
-			.issue-pr-link {
-				margin-right: 8px;
+
+			.assignee-comment-count {
+				display: flex;
+				align-items: center;
+				align-self: start;
+
+				.comments-count {
+					display: flex;
+					align-items: center;
+					margin-left: 8px;
+					color: var(--color-text-maxcontrast);
+					white-space: nowrap;
+					.icon {
+						margin-right: 4px;
+					}
+				}
 			}
 		}
 
@@ -566,22 +591,6 @@ export default {
 			.milestone {
 				display: flex;
 				align-items: center;
-				.icon {
-					margin-right: 4px;
-				}
-			}
-		}
-
-		.right-content {
-			display: flex;
-			align-items: center;
-
-			.comments-count {
-				display: flex;
-				align-items: center;
-				margin-left: 8px;
-				color: var(--color-text-maxcontrast);
-				white-space: nowrap;
 				.icon {
 					margin-right: 4px;
 				}
