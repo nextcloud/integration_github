@@ -6,6 +6,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## 1.0.10 – 2022-10-13
+### Changed
+- use @nextcloud/vue v7.0.0
+- improve reference widget wrapping
+
+### Fixed
+- Avatar in search provider results
+- remove html special characters in reference widget title
+
 ## 1.0.9 – 2022-10-07
 ### Added
 - Set fallback link information to render reference without the widget
