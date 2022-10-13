@@ -157,10 +157,10 @@ class GithubSearchIssuesProvider implements IProvider {
 				? '✅'
 				: ($entry['state'] === 'closed'
 					? '❌'
-					: '⋯'))
+					: ''))
 			: ($entry['state'] === 'closed'
 				? '❌'
-				: '⋯');
+				: '');
 		return $stateChar . ' ' . $entry['title'];
 	}
 
@@ -174,7 +174,7 @@ class GithubSearchIssuesProvider implements IProvider {
 //		$owner = $spl[0];
 		$repo = $spl[1];
 		$number = $entry['number'];
-		$typeChar = isset($entry['pull_request']) ? '⑃' : '🛈';
+		$typeChar = isset($entry['pull_request']) ? '⑃' : '⦿';
 		return $typeChar . ' ' . $repo . '#' . $number;
 	}
 
@@ -192,6 +192,6 @@ class GithubSearchIssuesProvider implements IProvider {
 	 */
 	protected function getThumbnailUrl(array $entry): string {
 		$userName = $entry['project_owner_login'] ?? '';
-		return $this->urlGenerator->linkToRoute('integration_github.githubAPI.getAvatar', []) . '?githubUserName=' . urlencode($userName);
+		return $this->urlGenerator->linkToRoute('integration_github.githubAPI.getAvatar', ['githubLogin' => $userName]);
 	}
 }

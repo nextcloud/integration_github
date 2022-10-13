@@ -177,6 +177,6 @@ class GithubSearchReposProvider implements IProvider {
 	 */
 	protected function getThumbnailUrl(array $entry): string {
 		$userName = $entry['owner']['login'] ?? '';
-		return $this->urlGenerator->linkToRoute('integration_github.githubAPI.getAvatar', []) . '?githubUserName=' . urlencode($userName);
+		return $this->urlGenerator->linkToRoute('integration_github.githubAPI.getAvatar', ['githubLogin' => $userName]);
 	}
 }
