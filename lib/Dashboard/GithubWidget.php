@@ -145,6 +145,9 @@ class GithubWidget implements IAPIWidget, IButtonWidget, IIconWidget, IOptionWid
 	 */
 	public function getItems(string $userId, ?string $since = null, int $limit = 7): array {
 		$notifications = $this->githubAPIService->getNotifications($this->userId, null, $since, $limit);
+		if (isset($notifications['error'])) {
+			return [];
+		}
 		$that = $this;
 		return array_map(static function(array $notification) use ($that) {
 			return $that->githubAPIService->getWidgetFromNotification($notification);

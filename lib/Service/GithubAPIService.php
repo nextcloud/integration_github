@@ -134,7 +134,7 @@ class GithubAPIService {
 			? ''
 			: $this->urlGenerator->getAbsoluteURL(
 				$this->urlGenerator->linkToRoute(Application::APP_ID . '.githubAPI.getAvatar', [
-					'githubUserName' => $repoOwnerLogin,
+					'githubLogin' => $repoOwnerLogin,
 				])
 			);
 	}
