@@ -118,7 +118,7 @@ class GithubWidget implements IAPIWidget, IButtonWidget, IIconWidget, IOptionWid
 	 * @inheritDoc
 	 */
 	public function getUrl(): ?string {
-		return $this->urlGenerator->linkToRoute('settings.PersonalSettings.index', ['section' => 'connected-accounts']);
+		return $this->urlGenerator->linkToRouteAbsolute('settings.PersonalSettings.index', ['section' => 'connected-accounts']);
 	}
 
 	/**
