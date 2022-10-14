@@ -6,6 +6,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## 1.0.12 – 2022-10-14
+### Fixed
+- reference widget: width of first line in chromium based browsers
+  [#55](https://github.com/nextcloud/integration_github/issues/55) @st3iny
+- widget url in dashboard client api
+
 ## 1.0.11 – 2022-10-13
 ### Changed
 - use @nextcloud/vue v7.0.0
