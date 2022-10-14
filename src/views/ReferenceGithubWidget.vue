@@ -531,6 +531,10 @@ export default {
 		display: flex;
 		align-items: start;
 
+		.issue-pr-info {
+			width: 100%;
+		}
+
 		.main-icon {
 			align-self: start;
 			height: 26px;
@@ -539,11 +543,14 @@ export default {
 		.main-info {
 			display: flex;
 			flex-wrap: wrap;
+			width: 100%;
 
 			.title-labels {
 				display: flex;
 				flex: 1 1 300px;
 				max-width: fit-content;
+				max-width: -webkit-fit-content;
+				max-width: -moz-fit-content;
 				align-items: center;
 				flex-wrap: wrap;
 				> * {
