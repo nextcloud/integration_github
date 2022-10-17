@@ -50,6 +50,7 @@ OC.L10N.register(
     "Successfully unsubscribed" : "Abonnement succesvol beëindigd",
     "Failed to edit GitHub notification" : "Kon GitHub-melding niet bewerken",
     "Unknown error" : "Onbekende fout",
+    "by {creator}" : "door {creator}",
     "Author" : "Auteur",
     "Owner" : "Eigenaar",
     "Draft" : "Concept",
