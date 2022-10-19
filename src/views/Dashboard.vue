@@ -281,6 +281,8 @@ export default {
 					.replace('api.github.com', 'github.com')
 					.replace('/repos/', '/')
 					.replace(/\/[0-9]+/, '')
+			} else if (n.subject?.type === 'RepositoryAdvisory') {
+				return n.repository.html_url
 			} else if (n.subject?.type !== 'Discussion') {
 				return n.subject.url
 					.replace('api.github.com', 'github.com')
