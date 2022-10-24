@@ -21,6 +21,9 @@
     <dependencies>
         <nextcloud min-version="25" max-version="26"/>
     </dependencies>
+    <commands>
+		<command>OCA\Github\Command\GetRepoStats</command>
+    </commands>
     <settings>
         <admin>OCA\Github\Settings\Admin</admin>
         <admin-section>OCA\Github\Settings\AdminSection</admin-section>
