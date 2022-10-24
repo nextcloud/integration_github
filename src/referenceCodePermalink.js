@@ -22,10 +22,10 @@
 import { registerWidget } from '@nextcloud/vue-richtext'
 import './bootstrap.js'
 import Vue from 'vue'
-import ReferenceGithubWidget from './views/ReferenceGithubWidget.vue'
+import GithubCodePermalinkReferenceWidget from './views/GithubCodePermalinkReferenceWidget.vue'
 
-registerWidget('integration_github', (el, { richObjectType, richObject, accessible }) => {
-	const Widget = Vue.extend(ReferenceGithubWidget)
+registerWidget('integration_github_code_permalink', (el, { richObjectType, richObject, accessible }) => {
+	const Widget = Vue.extend(GithubCodePermalinkReferenceWidget)
 	new Widget({
 		propsData: {
 			richObjectType,

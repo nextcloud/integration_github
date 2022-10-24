@@ -10,6 +10,7 @@
 namespace OCA\Github\AppInfo;
 
 use OCA\Github\Listener\GithubReferenceListener;
+use OCA\Github\Reference\GithubCodeReferenceProvider;
 use OCA\Github\Reference\GithubReferenceProvider;
 use OCP\Collaboration\Reference\RenderReferenceEvent;
 use OCP\IConfig;
@@ -51,6 +52,7 @@ class Application extends App implements IBootstrap {
 		$context->registerSearchProvider(GithubSearchReposProvider::class);
 
 		$context->registerReferenceProvider(GithubReferenceProvider::class);
+		$context->registerReferenceProvider(GithubCodeReferenceProvider::class);
 		$context->registerEventListener(RenderReferenceEvent::class, GithubReferenceListener::class);
 	}
 
