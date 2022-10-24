@@ -41,6 +41,8 @@ class GithubReferenceProvider implements IReferenceProvider {
 	private ReferenceManager $referenceManager;
 	private IL10N $l10n;
 
+	private const RICH_OBJECT_TYPE = Application::APP_ID . '_issue_pr';
+
 	public function __construct(GithubAPIService $githubAPIService,
 								IConfig $config,
 								IL10N $l10n,
@@ -92,7 +94,7 @@ class GithubReferenceProvider implements IReferenceProvider {
 				$titlePrefix = $commentInfo ? '[' . $this->l10n->t('Comment') .'] ' : '';
 				$reference->setTitle($titlePrefix . $issueTitle . ' · Issue #' . $issueNumber . ' · ' . $owner . '/' . $repo);
 				$reference->setRichObject(
-					Application::APP_ID,
+					self::RICH_OBJECT_TYPE,
 					array_merge([
 						'github_type' => isset($issueInfo['error']) ? 'issue-error' : 'issue',
 						'github_issue_id' => $id,
@@ -117,7 +119,7 @@ class GithubReferenceProvider implements IReferenceProvider {
 					$titlePrefix = $commentInfo ? '[' . $this->l10n->t('Comment') .'] ' : '';
 					$reference->setTitle($titlePrefix . $prTitle . ' · Pull Request #' . $prNumber . ' · ' . $owner . '/' . $repo);
 					$reference->setRichObject(
-						Application::APP_ID,
+						self::RICH_OBJECT_TYPE,
 						array_merge([
 							'github_type' => isset($prInfo['error']) ? 'pr-error' : 'pull_request',
 							'github_pr_id' => $id,

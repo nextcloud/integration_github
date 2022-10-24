@@ -361,6 +361,14 @@ class GithubAPIService {
 		return $this->request($userId, $endpoint, [], 'GET', true);
 	}
 
+	public function getFileContent(?string $userId, string $owner, string $repo, string $commit, string $filePath): array {
+		$endpoint = 'repos/' . $owner . '/' . $repo . '/contents/' . $filePath;
+		$params = [
+			'ref' => $commit,
+		];
+		return $this->request($userId, $endpoint, $params, 'GET', true);
+	}
+
 	/**
 	 * Make an authenticated HTTP request to GitHub API
 	 * @param string|null $userId

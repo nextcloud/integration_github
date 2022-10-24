@@ -20,7 +20,7 @@
   -->
 
 <template>
-	<div class="github-reference">
+	<div class="github-issue-pr-reference">
 		<div v-if="isError">
 			<h3>
 				<GithubIcon :size="20" class="icon" />
@@ -221,7 +221,7 @@ import Vue from 'vue'
 Vue.directive('tooltip', Tooltip)
 
 export default {
-	name: 'ReferenceGithubWidget',
+	name: 'GithubIssuePrReferenceWidget',
 
 	components: {
 		RichText,
@@ -506,7 +506,7 @@ export default {
 <style scoped lang="scss">
 @import '@nextcloud/vue-richtext/dist/style.css';
 
-.github-reference {
+.github-issue-pr-reference {
 	width: 100%;
 	white-space: normal;
 	padding: 12px;
