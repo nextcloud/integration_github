@@ -40,16 +40,15 @@
 			</a>
 		</div>
 		<div v-else class="code-wrapper">
-			<a :href="titleLink">
+			<a :href="titleLink" class="line">
+				<GithubIcon :size="20" class="icon" />
 				<strong>
 					{{ title }}
 				</strong>
 			</a>
 			<div class="sub-title">
 				{{ subtitle }}
-				<a :href="commitLink">
-					({{ shortCommit }})
-				</a>
+				(<a :href="commitLink">{{ shortCommit }}</a>)
 			</div>
 			<hr>
 			<div
@@ -59,13 +58,6 @@
 					'short-content': showShortContent,
 				}"
 				@click="showShortContent = !showShortContent">
-				<!--RichText
-					v-tooltip.top="{ content: t('integration_github', 'Click to expand comment') }"
-					:text="textContent"
-					@click.native="showShortContent = !showShortContent" /-->
-				<!--pre v-highlightjs="textContent">
-					<code class="php" />
-				</pre-->
 				<pre>{{ textContent }}</pre>
 			</div>
 		</div>
@@ -153,8 +145,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import '@nextcloud/vue-richtext/dist/style.css';
-
 .github-code-permalink-reference {
 	width: 100%;
 	white-space: normal;
@@ -193,7 +183,7 @@ export default {
 			align-items: center;
 
 			> .icon {
-				margin: 0 16px 0 8px;
+				margin: 0 8px 0 8px;
 			}
 		}
 
