@@ -41,9 +41,32 @@
 		</div>
 		<div v-else class="code-wrapper">
 			<a :href="titleLink">
-				{{ title }}
+				<strong>
+					{{ title }}
+				</strong>
 			</a>
-			<div v-html="subTitle" class="sub-title">
+			<div class="sub-title">
+				{{ subtitle }}
+				<a :href="commitLink">
+					({{ shortCommit }})
+				</a>
+			</div>
+			<hr>
+			<div
+				v-tooltip.top="{ content: t('integration_github', 'Click to expand/collapse content') }"
+				:class="{
+					'content': true,
+					'short-content': showShortContent,
+				}"
+				@click="showShortContent = !showShortContent">
+				<!--RichText
+					v-tooltip.top="{ content: t('integration_github', 'Click to expand comment') }"
+					:text="textContent"
+					@click.native="showShortContent = !showShortContent" /-->
+				<!--pre v-highlightjs="textContent">
+					<code class="php" />
+				</pre-->
+				<pre>{{ textContent }}</pre>
 			</div>
 		</div>
 	</div>
@@ -56,13 +79,14 @@ import GithubIcon from '../components/icons/GithubIcon.vue'
 
 import { generateUrl } from '@nextcloud/router'
 
-import { RichText } from '@nextcloud/vue-richtext'
+import Tooltip from '@nextcloud/vue/dist/Directives/Tooltip.js'
+import Vue from 'vue'
+Vue.directive('tooltip', Tooltip)
 
 export default {
 	name: 'GithubCodePermalinkReferenceWidget',
 
 	components: {
-		RichText,
 		GithubIcon,
 		OpenInNewIcon,
 	},
@@ -85,6 +109,7 @@ export default {
 	data() {
 		return {
 			settingsUrl: generateUrl('/settings/user/connected-accounts#github_prefs'),
+			showShortContent: true,
 		}
 	},
 
@@ -101,8 +126,24 @@ export default {
 		titleLink() {
 			return this.richObject.link
 		},
-		subTitle() {
-			return 'NYI'
+		subtitle() {
+			return this.richObject.lineEnd
+				? t('integration_github', 'Line {begin} to {end}', { begin: this.richObject.lineBegin, end: this.richObject.lineEnd })
+				: t('integration_github', 'Line {line}', { line: this.richObject.lineBegin })
+		},
+		commitLink() {
+			return 'https://github.com/' + this.richObject.owner + '/' + this.richObject.repo + '/commit/' + this.richObject.commit
+		},
+		shortCommit() {
+			return this.richObject.commit.slice(0, 7)
+		},
+		textContent() {
+			let content = ''
+			for (let i = 0; i < this.richObject.lines.length; i++) {
+				content += (this.richObject.lineBegin + i) + ' ' + this.richObject.lines[i] + '\n'
+				// content += this.richObject.lines[i] + '\n'
+			}
+			return content.replace(/^\s+|\s+$/g, '')
 		},
 	},
 
@@ -123,6 +164,9 @@ export default {
 		padding: 0 !important;
 		color: var(--color-main-text) !important;
 		text-decoration: unset !important;
+		&:hover {
+			color: #58a6ff !important;
+		}
 	}
 
 	h3 {
@@ -132,6 +176,10 @@ export default {
 		.icon {
 			margin-right: 8px;
 		}
+	}
+
+	hr {
+		width: 100%;
 	}
 
 	.code-wrapper {
@@ -146,6 +194,19 @@ export default {
 
 			> .icon {
 				margin: 0 16px 0 8px;
+			}
+		}
+
+		.content {
+			width: 100%;
+			cursor: pointer;
+			max-height: 300px;
+			overflow: scroll;
+			&.short-content {
+				max-height: 125px;
+			}
+			pre {
+				cursor: pointer;
 			}
 		}
 	}
