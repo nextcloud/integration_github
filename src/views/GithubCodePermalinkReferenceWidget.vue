@@ -75,7 +75,6 @@ import { generateUrl } from '@nextcloud/router'
 import VueHighlightJS from 'vue-highlightjs'
 import Tooltip from '@nextcloud/vue/dist/Directives/Tooltip.js'
 import Vue from 'vue'
-import 'highlight.js/styles/github-dark-dimmed.css'
 Vue.directive('tooltip', Tooltip)
 Vue.use(VueHighlightJS)
 
@@ -160,6 +159,10 @@ export default {
 </script>
 
 <style scoped lang="scss">
+// found in https://blog.jim-nielsen.com/2019/conditional-syntax-highlighting-in-dark-mode-with-css-imports/
+@import 'highlight.js/styles/github.css' screen;
+@import 'highlight.js/styles/github-dark-dimmed.css' screen and (prefers-color-scheme: dark);
+
 .github-code-permalink-reference {
 	width: 100%;
 	white-space: normal;
