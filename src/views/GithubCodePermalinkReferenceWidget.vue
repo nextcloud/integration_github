@@ -55,11 +55,13 @@
 				v-tooltip.top="{ content: t('integration_github', 'Click to expand/collapse content') }"
 				:class="{
 					'content': true,
-					'short-content': showShortContent,
 				}"
 				@click="showShortContent = !showShortContent">
 				<!--pre>{{ textContent }}</pre-->
-				<pre v-highlightjs="textContent"><code :class="codeClass" /></pre>
+				<pre v-highlightjs="textContent"><code :class="{
+					[codeClass]: true,
+					'short-content': showShortContent,
+				}" /></pre>
 			</div>
 		</div>
 	</div>
@@ -208,14 +210,16 @@ export default {
 		.content {
 			width: 100%;
 			cursor: pointer;
-			max-height: 300px;
-			overflow: scroll;
-			scrollbar-color: var(--color-primary);
-			&.short-content {
-				max-height: 125px;
-			}
-			pre {
+			code {
 				cursor: pointer;
+
+				max-height: 300px;
+				overflow: scroll;
+				scrollbar-width: auto;
+				scrollbar-color: var(--color-primary);
+				&.short-content {
+					max-height: 125px;
+				}
 			}
 		}
 	}
