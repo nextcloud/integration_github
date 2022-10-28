@@ -32,9 +32,9 @@ class GetRepoStats extends Command {
 		$this->setName('github:project-stats')
 			->setDescription('Get daily stats for a project')
 			->addArgument(
-				'repo',
+				'repoPath',
 				InputArgument::REQUIRED,
-				'The path of the project (nextcloud/text for example)'
+				'The path of the project ("nextcloud/text" for example)'
 			)
 			->addOption(
 				'userid',
