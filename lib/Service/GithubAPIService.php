@@ -422,7 +422,12 @@ class GithubAPIService {
 		} catch (ClientException | ServerException $e) {
 			$responseBody = $e->getResponse()->getBody();
 			$parsedResponseBody = json_decode($responseBody, true);
-			$this->logger->warning('GitHub API error : ' . $e->getMessage(), ['response_body' => $responseBody, 'app' => Application::APP_ID]);
+			if ($e->getResponse()->getStatusCode() === 404) {
+				// Only log inaccessible github links as debug
+				$this->logger->debug('GitHub API error : ' . $e->getMessage(), ['response_body' => $responseBody, 'app' => Application::APP_ID]);
+			} else {
+				$this->logger->warning('GitHub API error : ' . $e->getMessage(), ['response_body' => $responseBody, 'app' => Application::APP_ID]);
+			}
 			return [
 				'error' => $e->getMessage(),
 				'body' => $parsedResponseBody,
