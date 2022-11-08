@@ -67,3 +67,12 @@ export function hexToRgb(hex) {
 		}
 		: null
 }
+
+export function isDarkMode() {
+	const bodyDataTheme = document.body.getAttribute('data-themes')
+	return bodyDataTheme.startsWith('light')
+		? false
+		: bodyDataTheme.startsWith('dark')
+			? true
+			: (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)
+}

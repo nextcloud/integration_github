@@ -211,7 +211,7 @@ import UserPopover from '../components/UserPopover.vue'
 import { generateUrl } from '@nextcloud/router'
 import axios from '@nextcloud/axios'
 import moment from '@nextcloud/moment'
-import { hexToRgb } from '../utils.js'
+import { hexToRgb, isDarkMode } from '../utils.js'
 import rgbToHsl from '@alchemyalcove/rgb-to-hsl'
 
 import { RichText } from '@nextcloud/vue-richtext'
@@ -272,11 +272,7 @@ export default {
 			return this.richObject.github_type === 'pull_request'
 		},
 		isDarkMode() {
-			const style = getComputedStyle(document.body)
-			const bgColor = style.getPropertyValue('--color-main-background')
-			const rgb = hexToRgb(bgColor)
-			const hsl = rgbToHsl([rgb.r, rgb.g, rgb.b])
-			return Math.round(hsl[2]) < 30
+			return isDarkMode()
 		},
 		cleanTitle() {
 			return this.richObject.title
