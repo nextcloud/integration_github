@@ -74,6 +74,7 @@ import GithubIcon from '../components/icons/GithubIcon.vue'
 
 import { generateUrl, imagePath } from '@nextcloud/router'
 
+import { isDarkMode } from '../utils.js'
 import VueHighlightJS from 'vue-highlightjs'
 import Tooltip from '@nextcloud/vue/dist/Directives/Tooltip.js'
 import Vue from 'vue'
@@ -154,12 +155,7 @@ export default {
 			return ''
 		},
 		isDarkMode() {
-			const bodyDataTheme = document.body.getAttribute('data-themes')
-			return bodyDataTheme.startsWith('light')
-				? false
-				: bodyDataTheme.startsWith('dark')
-					? true
-					: (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)
+			return isDarkMode()
 		},
 		isHighContrastMode() {
 			const bodyDataTheme = document.body.getAttribute('data-themes')
