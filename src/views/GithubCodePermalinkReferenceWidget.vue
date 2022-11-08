@@ -72,7 +72,7 @@ import OpenInNewIcon from 'vue-material-design-icons/OpenInNew.vue'
 
 import GithubIcon from '../components/icons/GithubIcon.vue'
 
-import { generateUrl } from '@nextcloud/router'
+import { generateUrl, imagePath } from '@nextcloud/router'
 
 import VueHighlightJS from 'vue-highlightjs'
 import Tooltip from '@nextcloud/vue/dist/Directives/Tooltip.js'
@@ -153,6 +153,31 @@ export default {
 			}
 			return ''
 		},
+		isDarkMode() {
+			const bodyDataTheme = document.body.getAttribute('data-themes')
+			return bodyDataTheme.startsWith('light')
+				? false
+				: bodyDataTheme.startsWith('dark')
+					? true
+					: (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)
+		},
+		isHighContrastMode() {
+			const bodyDataTheme = document.body.getAttribute('data-themes')
+			return bodyDataTheme.endsWith('highcontrast')
+		},
+	},
+
+	beforeMount() {
+		const cssFileName = this.isDarkMode
+			? this.isHighContrastMode
+				? 'github-dark.css'
+				: 'github-dark-dimmed.css'
+			: 'github.css'
+		// load the css file by inserting a <link rel="stylesheet"> tag
+		const styleCSS = document.createElement('link')
+		styleCSS.rel = 'stylesheet'
+		styleCSS.href = imagePath('integration_github', 'example.svg').replace(/img\/example\.svg$/, 'css/' + cssFileName)
+		document.head.insertBefore(styleCSS, document.head.childNodes[document.head.childNodes.length - 1].nextSibling)
 	},
 
 	methods: {
@@ -161,10 +186,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-// found in https://blog.jim-nielsen.com/2019/conditional-syntax-highlighting-in-dark-mode-with-css-imports/
-@import 'highlight.js/styles/github.css' screen;
-@import 'highlight.js/styles/github-dark-dimmed.css' screen and (prefers-color-scheme: dark);
-
 .github-code-permalink-reference {
 	width: 100%;
 	white-space: normal;
