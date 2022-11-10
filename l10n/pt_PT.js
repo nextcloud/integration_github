@@ -1,7 +1,10 @@
 OC.L10N.register(
     "integration_github",
     {
+    "Error during OAuth exchanges" : "Erro durante trocas com o OAuth",
     "Comment" : "Comentário",
+    "Bad HTTP method" : "Método HTTP incorreto",
+    "Bad credentials" : "Credenciais inválidas",
     "Client ID" : "Id. do Cliente",
     "Client secret" : "Segredo do cliente\\\\",
     "Unknown error" : "Erro desconhecido",
