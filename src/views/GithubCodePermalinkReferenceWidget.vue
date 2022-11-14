@@ -72,12 +72,8 @@ import OpenInNewIcon from 'vue-material-design-icons/OpenInNew.vue'
 
 import GithubIcon from '../components/icons/GithubIcon.vue'
 
-import {
-	generateUrl,
-	imagePath,
-} from '@nextcloud/router'
+import { generateUrl } from '@nextcloud/router'
 
-import { isDarkMode } from '../utils.js'
 import VueHighlightJS from 'vue-highlightjs'
 import Tooltip from '@nextcloud/vue/dist/Directives/Tooltip.js'
 import Vue from 'vue'
@@ -157,26 +153,6 @@ export default {
 			}
 			return ''
 		},
-		isDarkMode() {
-			return isDarkMode()
-		},
-		isHighContrastMode() {
-			const bodyDataTheme = document.body.getAttribute('data-themes')
-			return bodyDataTheme.endsWith('highcontrast')
-		},
-	},
-
-	beforeMount() {
-		const cssFileName = this.isDarkMode
-			? this.isHighContrastMode
-				? 'github-dark.css'
-				: 'github-dark-dimmed.css'
-			: 'github.css'
-		// load the css file by inserting a <link rel="stylesheet"> tag
-		const styleCSS = document.createElement('link')
-		styleCSS.rel = 'stylesheet'
-		styleCSS.href = imagePath('integration_github', 'example.svg').replace(/img\/example\.svg$/, 'css/' + cssFileName)
-		document.head.insertBefore(styleCSS, document.head.childNodes[document.head.childNodes.length - 1].nextSibling)
 	},
 
 	methods: {
@@ -184,27 +160,28 @@ export default {
 }
 </script>
 
-<!--style lang="scss">
-// does not work :-)
+<style lang="scss">
 body[data-theme-default] {
 	@media (prefers-color-scheme: dark) {
-		@import 'highlight.js/styles/github-dark-dimmed.css';
+		/* stylelint-disable-next-line no-invalid-position-at-import-rule */
+		@import 'highlight.js/styles/github-dark-dimmed';
 	}
 	@media (prefers-color-scheme: light) {
-		@import 'highlight.js/styles/github.css';
+		/* stylelint-disable-next-line no-invalid-position-at-import-rule */
+		@import 'highlight.js/styles/github';
 	}
 }
 
 body[data-theme-dark] {
-	//@import 'highlight.js/styles/github-dark-dimmed.css';
-	@import '../../css/github-dark-dimmed.css';
+	/* stylelint-disable-next-line */
+	@import 'highlight.js/styles/github-dark-dimmed';
 }
 
 body[data-theme-light] {
-	//@import 'highlight.js/styles/github.css';
-	@import '../../css/github.css';
+	/* stylelint-disable-next-line */
+	@import 'highlight.js/styles/github';
 }
-</style-->
+</style>
 
 <style scoped lang="scss">
 .github-code-permalink-reference {
