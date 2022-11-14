@@ -72,7 +72,10 @@ import OpenInNewIcon from 'vue-material-design-icons/OpenInNew.vue'
 
 import GithubIcon from '../components/icons/GithubIcon.vue'
 
-import { generateUrl, imagePath } from '@nextcloud/router'
+import {
+	generateUrl,
+	imagePath,
+} from '@nextcloud/router'
 
 import { isDarkMode } from '../utils.js'
 import VueHighlightJS from 'vue-highlightjs'
@@ -180,6 +183,28 @@ export default {
 	},
 }
 </script>
+
+<!--style lang="scss">
+// does not work :-)
+body[data-theme-default] {
+	@media (prefers-color-scheme: dark) {
+		@import 'highlight.js/styles/github-dark-dimmed.css';
+	}
+	@media (prefers-color-scheme: light) {
+		@import 'highlight.js/styles/github.css';
+	}
+}
+
+body[data-theme-dark] {
+	//@import 'highlight.js/styles/github-dark-dimmed.css';
+	@import '../../css/github-dark-dimmed.css';
+}
+
+body[data-theme-light] {
+	//@import 'highlight.js/styles/github.css';
+	@import '../../css/github.css';
+}
+</style-->
 
 <style scoped lang="scss">
 .github-code-permalink-reference {
