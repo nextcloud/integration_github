@@ -6,6 +6,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## 1.0.13 – 2022-11-22
+### Added
+- new reference widget for code permalink (https://github.com/namespace/repo/blob/691cbe/src/main.js#L12-L15)
+
+### Fixed
+- Don't spam warnings when the repo is 404
+  [#58](https://github.com/nextcloud/integration_github/pull/58) @nickvergessen
+
 ## 1.0.12 – 2022-10-14
 ### Fixed
 - reference widget: width of first line in chromium based browsers
