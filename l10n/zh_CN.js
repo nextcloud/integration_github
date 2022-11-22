@@ -14,6 +14,7 @@ OC.L10N.register(
     "Connected accounts" : "关联账号",
     "GitHub integration" : "GitHub 集成",
     "Integration of GitHub software development management service" : "集成GitHub软件开发管理服务",
+    "If you want to allow your Nextcloud users to use OAuth to authenticate to https://github.com, create an OAuth application in your GitHub settings." : "如果您想要允许您的Nextcloud用户使用OAuth对 https://github.com 进行身份验证，请在您的GitHub设置中创建一个OAuth应用。",
     "GitHub OAuth settings" : "GitHub OAuth 设置",
     "Make sure you set the \"Authorization callback URL\" to" : "确定您将 \"Authorization callback URL\" 设定为",
     "Put the OAuth app \"Client ID\" and \"Client secret\" below." : "在下面输入OAuth应用“Client ID”和“Client secret”。",

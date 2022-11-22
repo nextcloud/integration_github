@@ -37,8 +37,10 @@ OC.L10N.register(
     "Successfully unsubscribed" : "Prenumerationen har avslutats",
     "Failed to edit GitHub notification" : "Kunde inte ändra GitHub-aviseringar",
     "Unknown error" : "Okänt fel",
+    "by {creator}" : "av {creator}",
     "Author" : "Upphovsman",
     "Owner" : "Ägare",
+    "Click to expand comment" : "Klicka för att utöka kommentaren",
     "Draft" : "Utkast"
 },
 "nplurals=2; plural=(n != 1);");
