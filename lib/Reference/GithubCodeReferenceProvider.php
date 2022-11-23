@@ -84,28 +84,36 @@ class GithubCodeReferenceProvider implements IReferenceProvider {
 			if ($info !== null) {
 				$reference = new Reference($referenceText);
 
-				$contentResponse = $this->githubAPIService->getFileContent($this->userId, $info['owner'], $info['repo'], $info['commit'], $info['filePath']);
 				$info['github_type'] = isset($info['error']) ? 'code-error' : 'code';
 				$info['link'] = $referenceText;
 
-				if (isset($contentResponse['type']) && $contentResponse['type'] === 'file') {
-					$base64Content = $contentResponse['content'];
-					$rawContent = base64_decode($base64Content);
-					$contentLines = explode("\n", $rawContent);
+				if (!isset($info['error'])) {
+					$contentResponse = $this->githubAPIService->getFileContent($this->userId, $info['owner'], $info['repo'], $info['ref'], $info['filePath']);
 
-					$reference->setTitle('Code permalink ' . $referenceText);
-//					$reference->setTitle(json_encode($info));
-					if (!isset($info['lineEnd'])) {
-						$lineIndex = $info['lineBegin'] - 1;
-						$reference->setDescription($contentLines[$lineIndex]);
-						$info['lines'] = [$contentLines[$lineIndex]];
-					} else {
-						$firstLineIndex = $info['lineBegin'] - 1;
-						$lastLineIndex = 1 + $info['lineEnd'] - $info['lineBegin'];
-						$reference->setDescription(
-							implode("\n", array_slice($contentLines, $firstLineIndex, $lastLineIndex))
-						);
-						$info['lines'] = array_slice($contentLines, $firstLineIndex, $lastLineIndex);
+					if (isset($contentResponse['error'])) {
+						$info['error'] = $contentResponse['error'];
+						$info['body'] = $contentResponse['body'] ?? null;
+						$info['github_type'] = 'code-error';
+					} elseif (isset($contentResponse['type']) && $contentResponse['type'] === 'file') {
+						$info['html_url'] = $contentResponse['html_url'] ?? null;
+
+						$base64Content = $contentResponse['content'];
+						$rawContent = base64_decode($base64Content);
+						$contentLines = explode("\n", $rawContent);
+
+						$reference->setTitle('Code permalink ' . $referenceText);
+						if (!isset($info['lineEnd'])) {
+							$lineIndex = $info['lineBegin'] - 1;
+							$reference->setDescription($contentLines[$lineIndex]);
+							$info['lines'] = [$contentLines[$lineIndex]];
+						} else {
+							$firstLineIndex = $info['lineBegin'] - 1;
+							$lastLineIndex = 1 + $info['lineEnd'] - $info['lineBegin'];
+							$reference->setDescription(
+								implode("\n", array_slice($contentLines, $firstLineIndex, $lastLineIndex))
+							);
+							$info['lines'] = array_slice($contentLines, $firstLineIndex, $lastLineIndex);
+						}
 					}
 				}
 
@@ -129,18 +137,18 @@ class GithubCodeReferenceProvider implements IReferenceProvider {
 		if (count($matches) > 4) {
 			$owner = $matches[1];
 			$repo = $matches[2];
-			$commit = $matches[3];
+			$ref = $matches[3];
 			$lines = $matches[4];
 
 			$parsedUrl = parse_url($url);
 			$path = trim($parsedUrl['path'], '/');
-			$filePath = str_replace($owner . '/' . $repo . '/blob/' . $commit . '/', '', $path);
+			$filePath = str_replace($owner . '/' . $repo . '/blob/' . $ref . '/', '', $path);
 
 			$info = [
 				'owner' => $owner,
 				'repo' => $repo,
-				'commit' => $commit,
-				'lines' => $lines,
+				'ref' => $ref,
+				'lineBeginEnd' => $lines,
 				'filePath' => $filePath,
 			];
 

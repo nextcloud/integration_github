@@ -22,7 +22,7 @@
 <template>
 	<div class="github-code-permalink-reference">
 		<div v-if="isError">
-			<h3>
+			<h3 class="error-title">
 				<GithubIcon :size="20" class="icon" />
 				<span>{{ t('integration_github', 'GitHub API error') }}</span>
 			</h3>
@@ -46,9 +46,9 @@
 					{{ title }}
 				</strong>
 			</a>
-			<div class="sub-title">
+			<div v-if="richObject.html_url" class="sub-title">
 				{{ subtitle }}
-				(<a :href="commitLink">{{ shortCommit }}</a>)
+				(<a :href="richObject.link">{{ shortRef }}</a>)
 			</div>
 			<hr>
 			<div
@@ -133,11 +133,8 @@ export default {
 				? t('integration_github', 'Line {begin} to {end}', { begin: this.richObject.lineBegin, end: this.richObject.lineEnd })
 				: t('integration_github', 'Line {line}', { line: this.richObject.lineBegin })
 		},
-		commitLink() {
-			return 'https://github.com/' + this.richObject.owner + '/' + this.richObject.repo + '/commit/' + this.richObject.commit
-		},
-		shortCommit() {
-			return this.richObject.commit.slice(0, 7)
+		shortRef() {
+			return this.richObject.ref.slice(0, 7)
 		},
 		textContent() {
 			let content = ''
@@ -198,10 +195,11 @@ body[data-theme-light] {
 		}
 	}
 
-	h3 {
+	.error-title {
 		display: flex;
 		align-items: center;
 		font-weight: bold;
+		margin-top: 0;
 		.icon {
 			margin-right: 8px;
 		}

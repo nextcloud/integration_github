@@ -361,10 +361,18 @@ class GithubAPIService {
 		return $this->request($userId, $endpoint, [], 'GET', true);
 	}
 
-	public function getFileContent(?string $userId, string $owner, string $repo, string $commit, string $filePath): array {
+	/**
+	 * @param string|null $userId
+	 * @param string $owner
+	 * @param string $repo
+	 * @param string $ref
+	 * @param string $filePath
+	 * @return array
+	 */
+	public function getFileContent(?string $userId, string $owner, string $repo, string $ref, string $filePath): array {
 		$endpoint = 'repos/' . $owner . '/' . $repo . '/contents/' . $filePath;
 		$params = [
-			'ref' => $commit,
+			'ref' => $ref,
 		];
 		return $this->request($userId, $endpoint, $params, 'GET', true);
 	}
