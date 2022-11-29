@@ -59,6 +59,7 @@ OC.L10N.register(
     "GitHub API error" : "Erreur de l'API GitHub",
     "Unknown error" : "Erreur inconnue",
     "GitHub connected accounts settings" : "Paramètres de comptes connectés pour GitHub",
+    "Click to expand/collapse content" : "Cliquer pour déplier/replier le contenu",
     "by {creator}" : "par {creator}",
     "Author" : "Auteur",
     "Owner" : "Propriétaire",
