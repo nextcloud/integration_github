@@ -3,8 +3,10 @@ OC.L10N.register(
     {
     "GitHub" : "GitHub",
     "Comment" : "Kommentér",
+    "Connected accounts" : "Forbundne konti",
     "Client ID" : "Klient-ID",
     "Client secret" : "Klient hemmelighed",
+    "Connected as {user}" : "Forbundet som {user}",
     "Mark as read" : "Marker som læst",
     "Unknown error" : "Ukendt fejl",
     "Owner" : "Ejer"
