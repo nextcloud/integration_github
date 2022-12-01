@@ -88,7 +88,7 @@ class GithubCodeReferenceProvider implements IReferenceProvider {
 				$info['link'] = $referenceText;
 
 				if (!isset($info['error'])) {
-					$contentResponse = $this->githubAPIService->getFileContent($this->userId, $info['owner'], $info['repo'], $info['ref'], $info['filePath']);
+					$contentResponse = $this->githubAPIService->getFileContent($this->userId, $info['owner'], $info['repo'], $info['ref']['original_ref'], $info['filePath']);
 
 					if (isset($contentResponse['error'])) {
 						$info['error'] = $contentResponse['error'];
@@ -133,16 +133,17 @@ class GithubCodeReferenceProvider implements IReferenceProvider {
 	 * @return array|null
 	 */
 	private function getPermalinkInfo(string $url): ?array {
-		preg_match('/^(?:https?:\/\/)?(?:www\.)?github\.com\/([^\/\?]+)\/([^\/\?]+)\/blob\/([0-9a-z]+)\/.*#([^#]+)$/i', $url, $matches);
-		if (count($matches) > 4) {
+		preg_match('/^(?:https?:\/\/)?(?:www\.)?github\.com\/([^\/\?]+)\/([^\/\?]+)\/blob\/[0-9a-z]+\/.*#([^#]+)$/i', $url, $matches);
+		if (count($matches) > 3) {
 			$owner = $matches[1];
 			$repo = $matches[2];
-			$ref = $matches[3];
-			$lines = $matches[4];
+			$lines = $matches[3];
 
 			$parsedUrl = parse_url($url);
 			$path = trim($parsedUrl['path'], '/');
-			$filePath = str_replace($owner . '/' . $repo . '/blob/' . $ref . '/', '', $path);
+			$refAndPath = str_replace($owner . '/' . $repo . '/blob/', '', $path);
+			$ref = $this->findRefFromPath($owner, $repo, $refAndPath);
+			$filePath = str_replace($ref['original_ref'] . '/', '', $refAndPath);
 
 			$info = [
 				'owner' => $owner,
@@ -172,6 +173,25 @@ class GithubCodeReferenceProvider implements IReferenceProvider {
 			return $info;
 		}
 		return null;
+	}
+
+	private function findRefFromPath($owner, $repo, $refAndPath): array {
+		$parts = explode('/', $refAndPath);
+
+		while (count($parts) > 1) {
+			array_pop($parts);
+			$candidateRef = implode('/', $parts);
+			$commitResponse = $this->githubAPIService->getCommitInfo($this->userId, $owner, $repo, $candidateRef);
+			if (!isset($commitResponse['error'])) {
+				$commitResponse['original_ref'] = $candidateRef;
+				return $commitResponse;
+			}
+		}
+
+		return [
+			'original_ref' => '',
+			'sha' => '',
+		];
 	}
 
 	/**

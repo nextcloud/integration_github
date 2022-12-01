@@ -377,6 +377,11 @@ class GithubAPIService {
 		return $this->request($userId, $endpoint, $params, 'GET', true);
 	}
 
+	public function getCommitInfo(?string $userId, string $owner, string $repo, string $ref): array {
+		$endpoint = 'repos/' . $owner . '/' . $repo . '/commits/' . $ref;
+		return $this->request($userId, $endpoint, [], 'GET', true);
+	}
+
 	/**
 	 * Make an authenticated HTTP request to GitHub API
 	 * @param string|null $userId

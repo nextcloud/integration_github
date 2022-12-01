@@ -134,7 +134,10 @@ export default {
 				: t('integration_github', 'Line {line}', { line: this.richObject.lineBegin })
 		},
 		shortRef() {
-			return this.richObject.ref.slice(0, 7)
+			if (this.richObject.ref.original_ref === this.richObject.ref.sha) {
+				return this.richObject.ref.original_ref
+			}
+			return this.richObject.ref.original_ref + ' ' + this.richObject.ref.sha
 		},
 		textContent() {
 			let content = ''
