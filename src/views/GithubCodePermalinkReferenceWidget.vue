@@ -135,9 +135,9 @@ export default {
 		},
 		shortRef() {
 			if (this.richObject.ref.original_ref === this.richObject.ref.sha) {
-				return this.richObject.ref.original_ref
+				return this.richObject.ref.sha.slice(0, 7)
 			}
-			return this.richObject.ref.original_ref + ' ' + this.richObject.ref.sha
+			return this.richObject.ref.original_ref + ' ' + this.richObject.ref.sha.slice(0, 7)
 		},
 		textContent() {
 			let content = ''
