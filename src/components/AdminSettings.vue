@@ -65,10 +65,19 @@
 					v-model="state.default_link_token"
 					type="password"
 					:readonly="readonly"
-					:placeholder="t('integration_github', 'personal access token')"
+					:placeholder="t('integration_github', 'access token')"
 					@input="onInput"
 					@focus="readonly = false">
 			</div>
+			<p v-if="state.default_link_token" id="default-token-warning" class="settings-hint">
+				<AlertIcon :size="20" class="icon" />
+				{{ t('integration_github', 'Warning: The default token can access private repositories of its owner.') }}
+			</p>
+			<NcCheckboxRadioSwitch
+				:checked="state.default_link_token_require_auth"
+				@update:checked="onCheckboxChanged($event, 'default_link_token_require_auth')">
+				{{ t('integration_github', 'Only use the default token with authenticated users') }}
+			</NcCheckboxRadioSwitch>
 			<NcCheckboxRadioSwitch
 				:checked="state.use_popup"
 				@update:checked="onCheckboxChanged($event, 'use_popup')">
@@ -86,6 +95,7 @@
 <script>
 import InformationOutlineIcon from 'vue-material-design-icons/InformationOutline.vue'
 import KeyIcon from 'vue-material-design-icons/Key.vue'
+import AlertIcon from 'vue-material-design-icons/Alert.vue'
 
 import GithubIcon from './icons/GithubIcon.vue'
 
@@ -105,6 +115,7 @@ export default {
 		NcCheckboxRadioSwitch,
 		KeyIcon,
 		InformationOutlineIcon,
+		AlertIcon,
 	},
 
 	props: [],
@@ -135,6 +146,7 @@ export default {
 					client_id: this.state.client_id,
 					client_secret: this.state.client_secret,
 					default_link_token: this.state.default_link_token,
+					default_link_token_require_auth: this.state.default_link_token_require_auth,
 				})
 			}, 2000)()
 		},
@@ -188,6 +200,10 @@ export default {
 		> input {
 			width: 300px;
 		}
+	}
+
+	#default-token-warning {
+		margin-top: 8px;
 	}
 }
 </style>

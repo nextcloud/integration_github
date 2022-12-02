@@ -400,7 +400,9 @@ class GithubAPIService {
 			if ($userId !== null) {
 				$accessToken = $this->config->getUserValue($userId, Application::APP_ID, 'token');
 			}
-			if ($accessToken === '' && $useDefaultToken) {
+			// only use the default token if authenticated or if default_link_token_require_auth is disabled
+			$defaultLinkTokenRequireAuth = $this->config->getAppValue(Application::APP_ID, 'default_link_token_require_auth', '1') === '1';
+			if ($accessToken === '' && $useDefaultToken && ($userId !== null || !$defaultLinkTokenRequireAuth)) {
 				$accessToken = $this->config->getAppValue(Application::APP_ID, 'default_link_token');
 			}
 			if ($accessToken !== '') {
