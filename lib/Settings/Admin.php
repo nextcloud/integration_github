@@ -3,23 +3,22 @@ namespace OCA\Github\Settings;
 
 use OCP\AppFramework\Http\TemplateResponse;
 use OCP\AppFramework\Services\IInitialState;
+use OCP\Collaboration\Reference\RenderReferenceEvent;
+use OCP\EventDispatcher\IEventDispatcher;
 use OCP\IConfig;
 use OCP\Settings\ISettings;
 use OCA\Github\AppInfo\Application;
 
 class Admin implements ISettings {
 
-	/**
-	 * @var IConfig
-	 */
-	private $config;
-	/**
-	 * @var IInitialState
-	 */
-	private $initialStateService;
+	private IEventDispatcher $dispatcher;
+	private IConfig $config;
+	private IInitialState $initialStateService;
 
 	public function __construct(IConfig $config,
-								IInitialState $initialStateService) {
+								IInitialState $initialStateService,
+								IEventDispatcher $dispatcher) {
+		$this->dispatcher = $dispatcher;
 		$this->config = $config;
 		$this->initialStateService = $initialStateService;
 	}
@@ -46,6 +45,12 @@ class Admin implements ISettings {
 			'allow_default_link_token_to_guests' => $allowDefaultTokenToGuests,
 		];
 		$this->initialStateService->provideInitialState('admin-config', $adminConfig);
+
+		// to get the provider list via initial state in admin settings
+		// TODO remove that
+		$event = new RenderReferenceEvent();
+		$this->dispatcher->dispatchTyped($event);
+
 		return new TemplateResponse(Application::APP_ID, 'adminSettings');
 	}
 

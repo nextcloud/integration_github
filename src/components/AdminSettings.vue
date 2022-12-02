@@ -4,6 +4,8 @@
 			<GithubIcon class="icon" />
 			{{ t('integration_github', 'GitHub integration') }}
 		</h2>
+		<ReferenceTextareaTest />
+		<br>
 		<p class="settings-hint">
 			{{ t('integration_github', 'If you want to allow your Nextcloud users to use OAuth to authenticate to https://github.com, create an OAuth application in your GitHub settings.') }}
 			<a href="https://github.com/settings/developers" class="external">{{ t('integration_github', 'GitHub OAuth settings') }}</a>
@@ -110,10 +112,13 @@ import { showSuccess, showError } from '@nextcloud/dialogs'
 
 import NcCheckboxRadioSwitch from '@nextcloud/vue/dist/Components/NcCheckboxRadioSwitch.js'
 
+import ReferenceTextareaTest from './ReferenceTextareaTest.vue'
+
 export default {
 	name: 'AdminSettings',
 
 	components: {
+		ReferenceTextareaTest,
 		GithubIcon,
 		NcCheckboxRadioSwitch,
 		KeyIcon,
