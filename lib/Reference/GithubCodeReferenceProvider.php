@@ -178,12 +178,19 @@ class GithubCodeReferenceProvider implements IReferenceProvider {
 	private function findRefFromPath($owner, $repo, $refAndPath): array {
 		$parts = explode('/', $refAndPath);
 
-		while (count($parts) > 1) {
+		// try with first path part (might be the most common winner)
+		$refCandidates = [$parts[0]];
+		// then try from bigger to smaller potential refs
+		while (count($parts) > 2) {
 			array_pop($parts);
-			$candidateRef = implode('/', $parts);
-			$commitResponse = $this->githubAPIService->getCommitInfo($this->userId, $owner, $repo, $candidateRef);
+			$refCandidates[] = implode('/', $parts);
+		}
+		// so, for "a/b/c/d/e.php", the ref candidates will be "a", "a/b/c/d", "a/b/c", "a/b"
+
+		foreach ($refCandidates as $refCandidate) {
+			$commitResponse = $this->githubAPIService->getCommitInfo($this->userId, $owner, $repo, $refCandidate);
 			if (!isset($commitResponse['error'])) {
-				$commitResponse['original_ref'] = $candidateRef;
+				$commitResponse['original_ref'] = $refCandidate;
 				return $commitResponse;
 			}
 		}
