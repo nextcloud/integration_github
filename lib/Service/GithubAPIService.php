@@ -283,7 +283,7 @@ class GithubAPIService {
 	 * @return array
 	 */
 	public function getUserInfo(?string $userId, string $githubUserName): array {
-		return $this->request($userId, 'users/' . $githubUserName, [], 'GET', true);
+		return $this->request($userId, 'users/' . $githubUserName, [], 'GET', true, 5);
 	}
 
 	/**
@@ -298,7 +298,7 @@ class GithubAPIService {
 			'subject_type' => $subjectType,
 			'subject_id' => $subjectId,
 		];
-		return $this->request($userId, 'users/' . $githubUserName . '/hovercard', $params, 'GET', true);
+		return $this->request($userId, 'users/' . $githubUserName . '/hovercard', $params, 'GET', true, 5);
 	}
 
 	/**
@@ -310,7 +310,7 @@ class GithubAPIService {
 	 */
 	public function getIssueInfo(?string $userId, string $owner, string $repo, int $issueNumber): array {
 		$endpoint = 'repos/' . $owner . '/' . $repo . '/issues/' . $issueNumber;
-		return $this->request($userId, $endpoint, [], 'GET', true);
+		return $this->request($userId, $endpoint, [], 'GET', true, 5);
 	}
 
 	/**
@@ -322,7 +322,7 @@ class GithubAPIService {
 	 */
 	public function getIssueReactionsInfo(?string $userId, string $owner, string $repo, int $issueNumber): array {
 		$endpoint = 'repos/' . $owner . '/' . $repo . '/issues/' . $issueNumber . '/reactions';
-		return $this->request($userId, $endpoint, [], 'GET', true);
+		return $this->request($userId, $endpoint, [], 'GET', true, 5);
 	}
 
 	/**
@@ -334,7 +334,7 @@ class GithubAPIService {
 	 */
 	public function getIssueCommentInfo(?string $userId, string $owner, string $repo, int $commentId): array {
 		$endpoint = 'repos/' . $owner . '/' . $repo . '/issues/comments/' . $commentId;
-		return $this->request($userId, $endpoint, [], 'GET', true);
+		return $this->request($userId, $endpoint, [], 'GET', true, 5);
 	}
 
 	/**
@@ -346,7 +346,7 @@ class GithubAPIService {
 	 */
 	public function getIssueCommentReactionsInfo(?string $userId, string $owner, string $repo, int $commentId): array {
 		$endpoint = 'repos/' . $owner . '/' . $repo . '/issues/comments/' . $commentId . '/reactions';
-		return $this->request($userId, $endpoint, [], 'GET', true);
+		return $this->request($userId, $endpoint, [], 'GET', true, 5);
 	}
 
 	/**
@@ -358,7 +358,7 @@ class GithubAPIService {
 	 */
 	public function getPrInfo(?string $userId, string $owner, string $repo, int $prNumber): array {
 		$endpoint = 'repos/' . $owner . '/' . $repo . '/pulls/' . $prNumber;
-		return $this->request($userId, $endpoint, [], 'GET', true);
+		return $this->request($userId, $endpoint, [], 'GET', true, 5);
 	}
 
 	/**
@@ -374,12 +374,12 @@ class GithubAPIService {
 		$params = [
 			'ref' => $ref,
 		];
-		return $this->request($userId, $endpoint, $params, 'GET', true);
+		return $this->request($userId, $endpoint, $params, 'GET', true, 5);
 	}
 
 	public function getCommitInfo(?string $userId, string $owner, string $repo, string $ref): array {
 		$endpoint = 'repos/' . $owner . '/' . $repo . '/commits/' . $ref;
-		return $this->request($userId, $endpoint, [], 'GET', true);
+		return $this->request($userId, $endpoint, [], 'GET', true, 5);
 	}
 
 	/**
@@ -389,12 +389,15 @@ class GithubAPIService {
 	 * @param array $params Query parameters (key/val pairs)
 	 * @param string $method HTTP query method
 	 * @param bool $useDefaultToken
+	 * @param int $timeout
 	 * @return array decoded request result or error
 	 */
-	public function request(?string $userId, string $endPoint, array $params = [], string $method = 'GET', bool $useDefaultToken = false): array {
+	public function request(?string $userId, string $endPoint, array $params = [], string $method = 'GET',
+							bool $useDefaultToken = false, int $timeout = 30): array {
 		try {
 			$url = 'https://api.github.com/' . $endPoint;
 			$options = [
+				'timeout' => $timeout,
 				'headers' => [
 					'User-Agent' => 'Nextcloud GitHub integration',
 				],
