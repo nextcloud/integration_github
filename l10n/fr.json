@@ -58,6 +58,8 @@
     "Unknown error" : "Erreur inconnue",
     "GitHub connected accounts settings" : "Paramètres de comptes connectés pour GitHub",
     "Click to expand/collapse content" : "Cliquer pour déplier/replier le contenu",
+    "Line {begin} to {end}" : "Lignes {begin} à {end}",
+    "Line {line}" : "Ligne {line}",
     "by {creator}" : "par {creator}",
     "Author" : "Auteur",
     "Owner" : "Propriétaire",
