@@ -218,6 +218,35 @@ class GithubAPIService {
 	}
 
 	/**
+	 * @param int $offset
+	 * @param int $limit
+	 * @return array [perPage, page, leftPadding]
+	 */
+	private function getGitHubPaginationValues(int $offset = 0, int $limit = 5): array {
+		// compute pagination values
+		// indexes offset => offset + limit
+		if (($offset % $limit) === 0) {
+			$perPage = $limit;
+			// page number starts at 1
+			$page = ($offset / $limit) + 1;
+			return [$perPage, $page, 0];
+		} else {
+			$firstIndex = $offset;
+			$lastIndex = $offset + $limit - 1;
+			$perPage = $limit;
+			// while there is no page that contains them'all
+			while (intdiv($firstIndex, $perPage) !== intdiv($lastIndex, $perPage)) {
+				$perPage++;
+			}
+			$page = intdiv($offset, $perPage) + 1;
+			$leftPadding = $firstIndex % $perPage;
+
+			return [$perPage, $page, $leftPadding];
+		}
+
+	}
+
+	/**
 	 * Search issues and PRs
 	 * @param string $userId
 	 * @param string $query What to search for
@@ -226,56 +255,24 @@ class GithubAPIService {
 	 * @return array request result
 	 */
 	public function searchIssues(string $userId, string $query, int $offset = 0, int $limit = 5): array {
+		[$perPage, $page, $leftPadding] = $this->getGitHubPaginationValues($offset, $limit);
 		$params = [
 			'q' => $query,
-			'order' => 'desc'
+			'order' => 'desc',
+			'per_page' => $perPage,
+			'page' => $page,
 		];
 		$result = $this->request($userId, 'search/issues', $params, 'GET', true);
 		if (!isset($result['error'])) {
-			$result['items'] = array_slice($result['items'], $offset, $limit);
-			$reposToGet = [];
+			$result['items'] = array_slice($result['items'], $leftPadding, $limit);
 			foreach ($result['items'] as $k => $entry) {
 				$repoFullName = str_replace('https://api.github.com/repos/', '', $entry['repository_url']);
 				$spl = explode('/', $repoFullName);
 				$owner = $spl[0];
-				$repo = $spl[1];
-				$number = $entry['number'];
 				if (isset($entry['pull_request'])) {
-					$info = $this->request($userId, 'repos/' . $owner . '/' . $repo . '/' . 'pulls/' . $number);
-					if (!isset($info['error'])) {
-						$result['items'][$k]['merged'] = $info['merged'];
-						if (isset($info['head'], $info['head']['repo'], $info['head']['repo']['owner'], $info['head']['repo']['owner']['login'], $info['head']['repo']['owner']['avatar_url'])) {
-							$result['items'][$k]['project_avatar_url'] = $info['head']['repo']['owner']['avatar_url'];
-							$result['items'][$k]['project_owner_login'] = $info['head']['repo']['owner']['login'];
-						}
-					}
-				} else {
-					$reposToGet[] = [
-						'key' => $repoFullName,
-						'owner' => $owner,
-						'repo' => $repo,
-					];
+					$result['items'][$k]['merged'] = isset($entry['pull_request']['merged_at']) && $entry['pull_request']['merged_at'];
 				}
-			}
-			// get repos info (for issues only)
-			$repoAvatarUrls = [];
-			$repoOwnerLogins = [];
-			foreach ($reposToGet as $repo) {
-				$info = $this->request($userId, 'repos/' . $repo['owner'] . '/' . $repo['repo'], [], 'GET', true);
-				if (!isset($info['error']) && isset($info['owner'], $info['owner']['avatar_url'], $info['owner']['login'])) {
-					$repoAvatarUrls[$repo['key']] = $info['owner']['avatar_url'];
-					$repoOwnerLogins[$repo['key']] = $info['owner']['login'];
-				}
-			}
-			foreach ($result['items'] as $k => $entry) {
-				$repoFullName = str_replace('https://api.github.com/repos/', '', $entry['repository_url']);
-				if (!isset($entry['pull_request'])
-					&& array_key_exists($repoFullName, $repoAvatarUrls)
-					&& array_key_exists($repoFullName, $repoOwnerLogins)
-				) {
-					$result['items'][$k]['project_avatar_url'] = $repoAvatarUrls[$repoFullName];
-					$result['items'][$k]['project_owner_login'] = $repoOwnerLogins[$repoFullName];
-				}
+				$result['items'][$k]['project_owner_login'] = $owner;
 			}
 		}
 		return $result;
