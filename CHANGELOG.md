@@ -6,6 +6,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## 1.0.14 – 2022-12-13
+### Changed
+- use @nextcloud/vue 7.2.0
+
+### Fixed
+- handle refs with slashes in permalink reference provider
+
 ## 1.0.13 – 2022-11-22
 ### Added
 - new reference widget for code permalink (https://github.com/namespace/repo/blob/691cbe/src/main.js#L12-L15)
