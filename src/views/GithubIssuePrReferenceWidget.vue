@@ -22,7 +22,7 @@
 <template>
 	<div class="github-issue-pr-reference">
 		<div v-if="isError">
-			<h3>
+			<h3 class="error-title">
 				<GithubIcon :size="20" class="icon" />
 				<span>{{ t('integration_github', 'GitHub API error') }}</span>
 			</h3>
@@ -513,10 +513,11 @@ export default {
 		text-decoration: unset !important;
 	}
 
-	h3 {
+	.error-title {
 		display: flex;
 		align-items: center;
 		font-weight: bold;
+		margin-top: 0;
 		.icon {
 			margin-right: 8px;
 		}
