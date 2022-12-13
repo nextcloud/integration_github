@@ -70,6 +70,12 @@
 					@focus="readonly = false">
 			</div>
 			<NcCheckboxRadioSwitch
+				:checked="state.default_link_token_for_anonymous"
+				:disabled="!state.default_link_token"
+				@update:checked="onCheckboxChanged($event, 'default_link_token_for_anonymous')">
+				{{ t('integration_github', 'Use default access token for anonymous users') }}
+			</NcCheckboxRadioSwitch>
+			<NcCheckboxRadioSwitch
 				:checked="state.use_popup"
 				@update:checked="onCheckboxChanged($event, 'use_popup')">
 				{{ t('integration_github', 'Use a popup to authenticate') }}

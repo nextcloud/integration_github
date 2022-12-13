@@ -383,17 +383,43 @@ class GithubAPIService {
 	}
 
 	/**
+	 * @param string|null $userId
+	 * @param bool $endpointUsesDefaultToken
+	 * @return string
+	 */
+	public function getAccessToken(?string $userId, bool $endpointUsesDefaultToken = false): string {
+		// use user access token in priority
+		$accessToken = '';
+		// for logged in users
+		if ($userId !== null) {
+			$accessToken = $this->config->getUserValue($userId, Application::APP_ID, 'token');
+			// fallback to admin default token if $useDefaultToken
+			if ($accessToken === '' && $endpointUsesDefaultToken) {
+				$accessToken = $this->config->getAppValue(Application::APP_ID, 'default_link_token');
+			}
+		} elseif ($endpointUsesDefaultToken) {
+			// anonymous users
+			$allowDefaultTokenToAnonymous = $this->config->getAppValue(Application::APP_ID, 'default_link_token_for_anonymous', '1') === '1';
+			if ($allowDefaultTokenToAnonymous) {
+				$accessToken = $this->config->getAppValue(Application::APP_ID, 'default_link_token');
+			}
+		}
+
+		return $accessToken;
+	}
+
+	/**
 	 * Make an authenticated HTTP request to GitHub API
 	 * @param string|null $userId
 	 * @param string $endPoint The path to reach in api.github.com
 	 * @param array $params Query parameters (key/val pairs)
 	 * @param string $method HTTP query method
-	 * @param bool $useDefaultToken
+	 * @param bool $endpointUsesDefaultToken
 	 * @param int $timeout
 	 * @return array decoded request result or error
 	 */
 	public function request(?string $userId, string $endPoint, array $params = [], string $method = 'GET',
-							bool $useDefaultToken = false, int $timeout = 30): array {
+							bool $endpointUsesDefaultToken = false, int $timeout = 30): array {
 		try {
 			$url = 'https://api.github.com/' . $endPoint;
 			$options = [
@@ -402,15 +428,7 @@ class GithubAPIService {
 					'User-Agent' => 'Nextcloud GitHub integration',
 				],
 			];
-			// use user access token in priority
-			// fallback to admin default token if $useDefaultToken
-			$accessToken = '';
-			if ($userId !== null) {
-				$accessToken = $this->config->getUserValue($userId, Application::APP_ID, 'token');
-			}
-			if ($accessToken === '' && $useDefaultToken) {
-				$accessToken = $this->config->getAppValue(Application::APP_ID, 'default_link_token');
-			}
+			$accessToken = $this->getAccessToken($userId, $endpointUsesDefaultToken);
 			if ($accessToken !== '') {
 				$options['headers']['Authorization'] = 'token ' . $accessToken;
 			}
