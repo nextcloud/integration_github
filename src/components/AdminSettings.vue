@@ -70,10 +70,16 @@
 					@focus="readonly = false">
 			</div>
 			<NcCheckboxRadioSwitch
-				:checked="state.default_link_token_for_anonymous"
+				:checked="state.allow_default_link_token_to_anonymous"
 				:disabled="!state.default_link_token"
-				@update:checked="onCheckboxChanged($event, 'default_link_token_for_anonymous')">
+				@update:checked="onCheckboxChanged($event, 'allow_default_link_token_to_anonymous')">
 				{{ t('integration_github', 'Use default access token for anonymous users') }}
+			</NcCheckboxRadioSwitch>
+			<NcCheckboxRadioSwitch
+				:checked="state.allow_default_link_token_to_guests"
+				:disabled="!state.default_link_token"
+				@update:checked="onCheckboxChanged($event, 'allow_default_link_token_to_guests')">
+				{{ t('integration_github', 'Use default access token for guest users') }}
 			</NcCheckboxRadioSwitch>
 			<NcCheckboxRadioSwitch
 				:checked="state.use_popup"

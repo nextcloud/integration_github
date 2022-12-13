@@ -21,6 +21,7 @@ use OCP\Dashboard\Model\WidgetItem;
 use OCP\IConfig;
 use OCP\IL10N;
 use OCP\IURLGenerator;
+use OCP\IUserManager;
 use Psr\Log\LoggerInterface;
 use OCP\Http\Client\IClientService;
 use Throwable;
@@ -46,6 +47,7 @@ class GithubAPIService {
 	 * @var IURLGenerator
 	 */
 	private $urlGenerator;
+	private IUserManager $userManager;
 
 	/**
 	 * Service to make requests to GitHub v3 (JSON) API
@@ -55,12 +57,14 @@ class GithubAPIService {
 								IL10N $l10n,
 								IConfig $config,
 								IURLGenerator $urlGenerator,
+								IUserManager $userManager,
 								IClientService $clientService) {
 		$this->logger = $logger;
 		$this->l10n = $l10n;
 		$this->client = $clientService->newClient();
 		$this->config = $config;
 		$this->urlGenerator = $urlGenerator;
+		$this->userManager = $userManager;
 	}
 
 	/**
@@ -383,6 +387,11 @@ class GithubAPIService {
 	}
 
 	/**
+	 * Get the user access token
+	 * If there is none, get the default one, check:
+	 * - if we use it for this endpoint
+	 * - if user is anonymous
+	 * - if user is a guest
 	 * @param string|null $userId
 	 * @param bool $endpointUsesDefaultToken
 	 * @return string
@@ -395,11 +404,17 @@ class GithubAPIService {
 			$accessToken = $this->config->getUserValue($userId, Application::APP_ID, 'token');
 			// fallback to admin default token if $useDefaultToken
 			if ($accessToken === '' && $endpointUsesDefaultToken) {
-				$accessToken = $this->config->getAppValue(Application::APP_ID, 'default_link_token');
+				$user = $this->userManager->get($userId);
+				$isGuestUser = $user->getBackendClassName() === 'Guests';
+				$allowDefaultTokenToGuests = $this->config->getAppValue(Application::APP_ID, 'allow_default_link_token_to_guests', '1') === '1';
+
+				if ((!$isGuestUser) || $allowDefaultTokenToGuests) {
+					$accessToken = $this->config->getAppValue(Application::APP_ID, 'default_link_token');
+				}
 			}
 		} elseif ($endpointUsesDefaultToken) {
 			// anonymous users
-			$allowDefaultTokenToAnonymous = $this->config->getAppValue(Application::APP_ID, 'default_link_token_for_anonymous', '1') === '1';
+			$allowDefaultTokenToAnonymous = $this->config->getAppValue(Application::APP_ID, 'allow_default_link_token_to_anonymous', '1') === '1';
 			if ($allowDefaultTokenToAnonymous) {
 				$accessToken = $this->config->getAppValue(Application::APP_ID, 'default_link_token');
 			}
