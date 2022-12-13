@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## 1.0.14 – 2022-12-13
 ### Changed
 - use @nextcloud/vue 7.2.0
+- optionally avoid using the default access token for guests and anonymous users
 
 ### Fixed
 - handle refs with slashes in permalink reference provider
