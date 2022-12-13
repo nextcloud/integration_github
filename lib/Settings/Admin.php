@@ -33,8 +33,8 @@ class Admin implements ISettings {
 		$usePopup = $this->config->getAppValue(Application::APP_ID, 'use_popup', '0');
 		$adminLinkPreviewEnabled = $this->config->getAppValue(Application::APP_ID, 'link_preview_enabled', '1') === '1';
 		$defaultLinkToken = $this->config->getAppValue(Application::APP_ID, 'default_link_token');
-		$allowDefaultTokenToAnonymous = $this->config->getAppValue(Application::APP_ID, 'allow_default_link_token_to_anonymous', '1') === '1';
-		$allowDefaultTokenToGuests = $this->config->getAppValue(Application::APP_ID, 'allow_default_link_token_to_guests', '1') === '1';
+		$allowDefaultTokenToAnonymous = $this->config->getAppValue(Application::APP_ID, 'allow_default_link_token_to_anonymous', '0') === '1';
+		$allowDefaultTokenToGuests = $this->config->getAppValue(Application::APP_ID, 'allow_default_link_token_to_guests', '0') === '1';
 
 		$adminConfig = [
 			'client_id' => $clientID,

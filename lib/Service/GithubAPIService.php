@@ -406,7 +406,7 @@ class GithubAPIService {
 			if ($accessToken === '' && $endpointUsesDefaultToken) {
 				$user = $this->userManager->get($userId);
 				$isGuestUser = $user->getBackendClassName() === 'Guests';
-				$allowDefaultTokenToGuests = $this->config->getAppValue(Application::APP_ID, 'allow_default_link_token_to_guests', '1') === '1';
+				$allowDefaultTokenToGuests = $this->config->getAppValue(Application::APP_ID, 'allow_default_link_token_to_guests', '0') === '1';
 
 				if ((!$isGuestUser) || $allowDefaultTokenToGuests) {
 					$accessToken = $this->config->getAppValue(Application::APP_ID, 'default_link_token');
@@ -414,7 +414,7 @@ class GithubAPIService {
 			}
 		} elseif ($endpointUsesDefaultToken) {
 			// anonymous users
-			$allowDefaultTokenToAnonymous = $this->config->getAppValue(Application::APP_ID, 'allow_default_link_token_to_anonymous', '1') === '1';
+			$allowDefaultTokenToAnonymous = $this->config->getAppValue(Application::APP_ID, 'allow_default_link_token_to_anonymous', '0') === '1';
 			if ($allowDefaultTokenToAnonymous) {
 				$accessToken = $this->config->getAppValue(Application::APP_ID, 'default_link_token');
 			}

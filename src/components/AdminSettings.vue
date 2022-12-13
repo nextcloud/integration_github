@@ -53,8 +53,8 @@
 			</div>
 			<br>
 			<p class="settings-hint">
-				<InformationOutlineIcon :size="20" class="icon" />
-				{{ t('integration_github', 'This default token will be used for link previews and unified search by users who didn\'t connect to GitHub.') }}
+				<AlertIcon :size="20" class="icon" />
+				{{ t('integration_github', 'The default access token will be used for link previews and unified search by users who didn\'t connect to GitHub.') }}
 			</p>
 			<div class="line">
 				<label for="github-link-token">
@@ -97,6 +97,7 @@
 
 <script>
 import InformationOutlineIcon from 'vue-material-design-icons/InformationOutline.vue'
+import AlertIcon from 'vue-material-design-icons/Alert.vue'
 import KeyIcon from 'vue-material-design-icons/Key.vue'
 
 import GithubIcon from './icons/GithubIcon.vue'
@@ -116,6 +117,7 @@ export default {
 		GithubIcon,
 		NcCheckboxRadioSwitch,
 		KeyIcon,
+		AlertIcon,
 		InformationOutlineIcon,
 	},
 
