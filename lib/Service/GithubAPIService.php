@@ -222,7 +222,7 @@ class GithubAPIService {
 	 * @param int $limit
 	 * @return array [perPage, page, leftPadding]
 	 */
-	private function getGitHubPaginationValues(int $offset = 0, int $limit = 5): array {
+	public static function getGitHubPaginationValues(int $offset = 0, int $limit = 5): array {
 		// compute pagination values
 		// indexes offset => offset + limit
 		if (($offset % $limit) === 0) {
@@ -255,7 +255,7 @@ class GithubAPIService {
 	 * @return array request result
 	 */
 	public function searchIssues(string $userId, string $query, int $offset = 0, int $limit = 5): array {
-		[$perPage, $page, $leftPadding] = $this->getGitHubPaginationValues($offset, $limit);
+		[$perPage, $page, $leftPadding] = self::getGitHubPaginationValues($offset, $limit);
 		$params = [
 			'q' => $query,
 			'order' => 'desc',
