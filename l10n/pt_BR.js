@@ -26,7 +26,6 @@ OC.L10N.register(
     "Client ID of your GitHub application" : "ID do cliente do seu aplicativo GitHub",
     "Client secret" : "Segredo do cliente",
     "Client secret of your GitHub application" : "Segredo do cliente do seu aplicativo GitHub",
-    "This default token will be used for link previews and unified search by users who didn't connect to GitHub." : "Esse token padrão será usado para visualizações de links e pesquisa unificada por usuários que não se conectaram ao GitHub.",
     "Default access token" : "Token de acesso padrão",
     "personal access token" : "token de acesso pessoal",
     "Use a popup to authenticate" : "Use um pop-up para autenticar",

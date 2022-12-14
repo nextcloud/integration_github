@@ -24,7 +24,6 @@
     "Client ID of your GitHub application" : "ID klienta vašej aplikácie GitHub",
     "Client secret" : "Heslo klienta",
     "Client secret of your GitHub application" : "Tajomstvo klienta vašej aplikácie GitHub",
-    "This default token will be used for link previews and unified search by users who didn't connect to GitHub." : "Tento predvolený token sa bude používať na náhľady odkazov a jednotné vyhľadávanie užívateľom, ktorí sa nepripojili ku GitHub.",
     "Default access token" : "Predvolený prístupový token",
     "personal access token" : "osobný prístupový token",
     "Use a popup to authenticate" : "Pre overenie použite kontextové okno",

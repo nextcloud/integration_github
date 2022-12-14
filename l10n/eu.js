@@ -26,7 +26,6 @@ OC.L10N.register(
     "Client ID of your GitHub application" : "GitHub aplikazioaren bezero IDa",
     "Client secret" : "Bezeroaren sekretua",
     "Client secret of your GitHub application" : "GitHub aplikazioaren bezero-sekretua",
-    "This default token will be used for link previews and unified search by users who didn't connect to GitHub." : "Token lehenetsi hau GitHub-era konektatu ez diren erabiltzaileek esteken aurrebista eta bilaketa bateratuetarako erabiliko dute.",
     "Default access token" : "Lehenetsitako sarbide tokena",
     "personal access token" : "sarbide token pertsonala",
     "Use a popup to authenticate" : "Erabili laster-menua autentifikatzeko",

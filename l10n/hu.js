@@ -26,7 +26,6 @@ OC.L10N.register(
     "Client ID of your GitHub application" : "A GitHub alkalmazás kliensazonosítója",
     "Client secret" : "Klienstitok",
     "Client secret of your GitHub application" : "A GitHub alkalmazás klienstitka",
-    "This default token will be used for link previews and unified search by users who didn't connect to GitHub." : "Ez az alapértelmezett token lesz használva a hivatkozáselőzményekhez és a GitHubhoz nem kapcsolódó felhasználók egyesített kereséséhez.",
     "Default access token" : "Alapértelmezett hozzáférési token",
     "personal access token" : "személyes hozzáférési token",
     "Use a popup to authenticate" : "Felugró ablak használata a hitelesítéshez",

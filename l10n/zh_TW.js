@@ -26,7 +26,6 @@ OC.L10N.register(
     "Client ID of your GitHub application" : "您 GitHub 應用程式的客戶端 ID",
     "Client secret" : "客戶端密碼",
     "Client secret of your GitHub application" : "您 GitHub 應用程式的客戶端密碼",
-    "This default token will be used for link previews and unified search by users who didn't connect to GitHub." : "此預設權杖將會用於供未連線至 GitHub 的使用者進行連結預覽與統一搜尋。",
     "Default access token" : "預設存取權杖",
     "personal access token" : "個人存取權杖",
     "Use a popup to authenticate" : "使用彈出式視窗進行驗證",

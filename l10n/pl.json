@@ -24,7 +24,6 @@
     "Client ID of your GitHub application" : "ID klienta aplikacji GitHub",
     "Client secret" : "Tajny klucz klienta",
     "Client secret of your GitHub application" : "Tajny klucz klienta aplikacji GitHub",
-    "This default token will be used for link previews and unified search by users who didn't connect to GitHub." : "Ten domyślny token będzie używany do podglądu linków i ujednoliconego wyszukiwania przez użytkowników, którzy nie łączyli się z GitHubem.",
     "Default access token" : "Domyślny token dostępu",
     "personal access token" : "osobisty token dostępu",
     "Use a popup to authenticate" : "Użyj wyskakującego okienka do uwierzytelnienia",

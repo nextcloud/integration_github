@@ -26,7 +26,6 @@ OC.L10N.register(
     "Client ID of your GitHub application" : "GitHub uygulamanızın istemci kimliği",
     "Client secret" : "İstemci sırrı",
     "Client secret of your GitHub application" : "GitHub uygulamanızın istemci sırrı",
-    "This default token will be used for link previews and unified search by users who didn't connect to GitHub." : "Bu varsayılan kod, GitHub bağlantısı kurmamış kullanıcıların bağlantıları ön izlemesi ve birleşik arama yapabilmesi için kullanılır ",
     "Default access token" : "Varsayılan erişim kodu",
     "personal access token" : "kişisel erişim kodu",
     "Use a popup to authenticate" : "Kimlik doğrulaması için açılan pencere kullanılsın",
