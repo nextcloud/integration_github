@@ -9,6 +9,12 @@
 			rows="10"
 			cols="50"
 			@keydown.hash="onHashKeydown" />
+		<NcButton v-tooltip.top="{ content: 'Open link picker' }"
+			@click="onButtonClick">
+			<template #icon>
+				<LinkVariantIcon />
+			</template>
+		</NcButton>
 		<ReferencePicker v-if="showRefPicker"
 			:width="500"
 			:focus-on-create="true"
@@ -20,18 +26,26 @@
 </template>
 
 <script>
+import LinkVariantIcon from 'vue-material-design-icons/LinkVariant.vue'
+
 import { ReferencePicker } from '@nextcloud/vue-richtext'
+import NcButton from '@nextcloud/vue/dist/Components/NcButton.js'
 
 import { showSuccess } from '@nextcloud/dialogs'
 
 import Vue from 'vue'
+import Tooltip from '@nextcloud/vue/dist/Directives/Tooltip.js'
+
 Vue.config.keyCodes.hash = 51
+Vue.directive('tooltip', Tooltip)
 
 export default {
 	name: 'ReferenceTextareaTest',
 
 	components: {
 		ReferencePicker,
+		NcButton,
+		LinkVariantIcon,
 	},
 
 	props: {
@@ -88,6 +102,9 @@ export default {
 				e.preventDefault()
 				this.showRefPicker = true
 			}
+		},
+		onButtonClick() {
+			this.showRefPicker = true
 		},
 		onHashKeydown(e) {
 			console.debug('on hash key down', e)
