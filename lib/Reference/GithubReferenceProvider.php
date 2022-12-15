@@ -95,7 +95,20 @@ class GithubReferenceProvider extends ADiscoverableReferenceProvider implements 
 	 * @inheritDoc
 	 */
 	public function getSupportedSearchProviderIds(): array {
-		return ['github-search-issues'];
+		if ($this->userId !== null) {
+			$ids = [];
+			$searchIssuesEnabled = $this->config->getUserValue($this->userId, Application::APP_ID, 'search_issues_enabled', '0') === '1';
+			$searchReposEnabled = $this->config->getUserValue($this->userId, Application::APP_ID, 'search_repos_enabled', '0') === '1';
+			if ($searchIssuesEnabled) {
+				$ids[] = 'github-search-issues';
+			}
+			if ($searchReposEnabled) {
+				$ids[] = 'github-search-repos';
+			}
+			return $ids;
+		}
+		return ['github-search-issues', 'github-search-repos'];
+
 	}
 
 	/**
