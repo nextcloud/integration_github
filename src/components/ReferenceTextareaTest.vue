@@ -15,13 +15,14 @@
 				<LinkVariantIcon />
 			</template>
 		</NcButton>
-		<ReferencePicker v-if="showRefPicker"
-			:width="500"
-			:focus-on-create="true"
-			@submit="onLinkSubmit"
-			@cancel-search="onCancelSearch"
-			@cancel-raw-link="onCancelRawLink"
-			@cancel-provider-select="onCancelProviderSelect" />
+		<div v-if="showRefPicker" class="resizable">
+			<ReferencePicker
+				:focus-on-create="true"
+				@submit="onLinkSubmit"
+				@cancel-search="onCancelSearch"
+				@cancel-raw-link="onCancelRawLink"
+				@cancel-provider-select="onCancelProviderSelect" />
+		</div>
 	</div>
 </template>
 
@@ -116,5 +117,10 @@ export default {
 </script>
 
 <style scoped lang="scss">
-// nope
+.resizable {
+	border: 2px solid var(--color-border);
+	resize: horizontal;
+	overflow: auto;
+	height: 350px;
+}
 </style>
