@@ -206,13 +206,16 @@ class GithubAPIService {
 	 * @return array request result
 	 */
 	public function searchRepositories(string $userId, string $query, int $offset = 0, int $limit = 5): array {
+		[$perPage, $page, $leftPadding] = self::getGitHubPaginationValues($offset, $limit);
 		$params = [
 			'q' => $query,
-			'order' => 'desc'
+			'order' => 'desc',
+			'per_page' => $perPage,
+			'page' => $page,
 		];
 		$result = $this->request($userId, 'search/repositories', $params, 'GET', true);
 		if (!isset($result['error'])) {
-			$result['items'] = array_slice($result['items'], $offset, $limit);
+			$result['items'] = array_slice($result['items'], $leftPadding, $limit);
 		}
 		return $result;
 	}
