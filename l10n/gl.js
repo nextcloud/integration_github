@@ -51,6 +51,7 @@ OC.L10N.register(
     "Unknown error" : "Erro descoñecido",
     "Author" : "Autor",
     "Owner" : "Propietario",
+    "Draft" : "Borrador",
     "Failed to save GitHub OAuth state" : "Produciuse un fallo ao gardar o estado do OAuth de GitHub"
 },
 "nplurals=2; plural=(n != 1);");
