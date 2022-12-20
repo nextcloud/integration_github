@@ -19,11 +19,10 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { registerWidget, registerCustomPickerElement } from '@nextcloud/vue-richtext'
+import { registerWidget } from '@nextcloud/vue-richtext'
 import './bootstrap.js'
 import Vue from 'vue'
 import GithubIssuePrReferenceWidget from './views/GithubIssuePrReferenceWidget.vue'
-import GithubIssuePrCustomPickerElement from './views/GithubIssuePrCustomPickerElement.vue'
 
 registerWidget('integration_github_issue_pr', (el, { richObjectType, richObject, accessible }) => {
 	const Widget = Vue.extend(GithubIssuePrReferenceWidget)
@@ -31,16 +30,6 @@ registerWidget('integration_github_issue_pr', (el, { richObjectType, richObject,
 		propsData: {
 			richObjectType,
 			richObject,
-			accessible,
-		},
-	}).$mount(el)
-})
-
-registerCustomPickerElement('github-issue-pr', (el, { providerId, accessible }) => {
-	const Element = Vue.extend(GithubIssuePrCustomPickerElement)
-	return new Element({
-		propsData: {
-			providerId,
 			accessible,
 		},
 	}).$mount(el)

@@ -43,8 +43,8 @@ export default {
 
 	methods: {
 		onSubmit() {
-			console.debug('in github, submit', 'plop.fr' + this.providerId)
-			this.$emit('submit', 'plop.fr' + this.providerId)
+			console.debug('in github, submit', 'Custom picker result for ' + this.providerId)
+			this.$emit('submit', 'Custom picker result for the "' + this.providerId + '" provider')
 		},
 	},
 }

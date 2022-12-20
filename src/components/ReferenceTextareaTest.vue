@@ -1,12 +1,11 @@
 <template>
-	<div style="display: flex; align-items: center;">
-		Reference picker example:
+	<div style="display: flex; align-items: center; margin: 600px 0;">
 		<!-- eslint-disable vue/valid-v-on -->
 		<textarea ref="out-text-editor"
 			v-model="textContent"
 			:placeholder="placeholder"
 			style="width: unset;"
-			rows="10"
+			rows="20"
 			cols="50"
 			@keydown.hash="onHashKeydown" />
 		<NcButton v-tooltip.top="{ content: 'Open link picker' }"
@@ -32,7 +31,7 @@ import LinkVariantIcon from 'vue-material-design-icons/LinkVariant.vue'
 import { ReferencePicker } from '@nextcloud/vue-richtext'
 import NcButton from '@nextcloud/vue/dist/Components/NcButton.js'
 
-import { showSuccess } from '@nextcloud/dialogs'
+// import { showSuccess } from '@nextcloud/dialogs'
 
 import Vue from 'vue'
 import Tooltip from '@nextcloud/vue/dist/Directives/Tooltip.js'
@@ -86,15 +85,15 @@ export default {
 			this.focusOnText()
 		},
 		onCancelProviderSelect() {
-			showSuccess('[GitHub] provider selection canceled')
+			// showSuccess('[GitHub] provider selection canceled')
 			this.showRefPicker = false
 			this.focusOnText()
 		},
 		onCancelSearch(title) {
-			showSuccess('[GitHub] search canceled (' + title + ')')
+			// showSuccess('[GitHub] search canceled (' + title + ')')
 		},
 		onCancelRawLink(title) {
-			showSuccess('[GitHub] raw link input canceled (' + title + ')')
+			// showSuccess('[GitHub] raw link input canceled (' + title + ')')
 		},
 		onKeydown(e) {
 			console.debug('on key down', e)
@@ -105,7 +104,7 @@ export default {
 			}
 		},
 		onButtonClick() {
-			this.showRefPicker = true
+			this.showRefPicker = !this.showRefPicker
 		},
 		onHashKeydown(e) {
 			console.debug('on hash key down', e)
@@ -119,6 +118,7 @@ export default {
 <style scoped lang="scss">
 .resizable {
 	border: 2px solid var(--color-border);
+	width: 400px;
 	resize: horizontal;
 	overflow: auto;
 	height: 350px;
