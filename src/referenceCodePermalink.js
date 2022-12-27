@@ -19,11 +19,12 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { registerWidget, registerCustomPickerElement } from '@nextcloud/vue-richtext'
+import { registerWidget, registerCustomPickerElement, CustomPickerRenderResult } from '@nextcloud/vue-richtext'
 import './bootstrap.js'
 import Vue from 'vue'
 import GithubCodePermalinkReferenceWidget from './views/GithubCodePermalinkReferenceWidget.vue'
 import GithubIssuePrCustomPickerElement from './views/GithubIssuePrCustomPickerElement.vue'
+import FileReferencePickerElement from './views/FileReferencePickerElement.vue'
 
 registerWidget('integration_github_code_permalink', (el, { richObjectType, richObject, accessible }) => {
 	const Widget = Vue.extend(GithubCodePermalinkReferenceWidget)
@@ -44,4 +45,18 @@ registerCustomPickerElement('github-permalink', (el, { providerId, accessible })
 			accessible,
 		},
 	}).$mount(el)
+})
+
+registerCustomPickerElement('files-files', (el, { providerId, accessible }) => {
+	const Element = Vue.extend(FileReferencePickerElement)
+	const vueElement = new Element({
+		propsData: {
+			providerId,
+			accessible,
+		},
+	}).$mount(el)
+	return new CustomPickerRenderResult(vueElement.$el, vueElement)
+}, (el, renderResult) => {
+	console.debug('file custom destroy callback. el', el, 'renderResult:', renderResult)
+	renderResult.object.$destroy()
 })
