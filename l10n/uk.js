@@ -23,6 +23,7 @@ OC.L10N.register(
     "Closed pull request" : "Закритий запит на отримання",
     "Unknown state" : "Невідомий стан",
     "Draft" : "Чернетка",
+    "{logins} reacted with {emoji} emoji" : "{logins} відреагував з емоційкою {emoji}",
     "Review requested" : "Надіслано запит на перегляд",
     "Comment from {login}" : "Коментар від {login}",
     "Assigned to {login}" : "Призначено для {login}"
