@@ -1,13 +1,27 @@
 <template>
 	<div style="display: flex; align-items: center; margin: 600px 0;">
-		<!-- eslint-disable vue/valid-v-on -->
-		<textarea ref="out-text-editor"
-			v-model="textContent"
-			:placeholder="placeholder"
-			style="width: unset;"
-			rows="20"
-			cols="50"
-			@keydown.hash="onHashKeydown" />
+		<div id="inputs">
+			<!-- eslint-disable vue/valid-v-on -->
+			<textarea ref="out-text-editor"
+				v-model="textContent"
+				:placeholder="placeholder"
+				style="width: unset;"
+				rows="20"
+				cols="50"
+				@keydown.hash="onHashKeydown" />
+			<!--NcRichContenteditableLink
+				:value.sync="textContent"
+				:auto-complete="autoComplete"
+				:user-data="{}"
+				placeholder="super placeholder for NcRichContenteditableLink"
+				@submit="onRCESubmit" /-->
+			<NcRichContenteditable
+				:value.sync="textContent"
+				:auto-complete="autoComplete"
+				:user-data="{}"
+				placeholder="super placeholder for NcRichContenteditable"
+				@submit="onRCESubmit" />
+		</div>
 		<NcButton v-tooltip.top="{ content: 'Open link picker' }"
 			@click="onButtonClick">
 			<template #icon>
@@ -30,8 +44,8 @@ import LinkVariantIcon from 'vue-material-design-icons/LinkVariant.vue'
 
 import { ReferencePicker } from '@nextcloud/vue-richtext'
 import NcButton from '@nextcloud/vue/dist/Components/NcButton.js'
-
-// import { showSuccess } from '@nextcloud/dialogs'
+// import { NcRichContenteditableLink } from '@nextcloud/vue/dist/Components/NcRichContenteditable.js'
+import NcRichContenteditable from '@nextcloud/vue/dist/Components/NcRichContenteditable.js'
 
 import Vue from 'vue'
 import Tooltip from '@nextcloud/vue/dist/Directives/Tooltip.js'
@@ -46,6 +60,8 @@ export default {
 		ReferencePicker,
 		NcButton,
 		LinkVariantIcon,
+		NcRichContenteditable,
+		// NcRichContenteditableLink,
 	},
 
 	props: {
@@ -69,6 +85,13 @@ export default {
 	},
 
 	methods: {
+		onRCESubmit() {
+			console.debug('RCE submit', this.textContent)
+		},
+		autoComplete(search, callback) {
+			const values = []
+			callback(values)
+		},
 		focusOnText() {
 			this.$nextTick(() => {
 				this.$refs['out-text-editor']?.focus()
@@ -116,6 +139,11 @@ export default {
 </script>
 
 <style scoped lang="scss">
+#inputs {
+	display: flex;
+	flex-direction: column;
+}
+
 .resizable {
 	border: 2px solid var(--color-border);
 	width: 400px;

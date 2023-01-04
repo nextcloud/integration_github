@@ -23,7 +23,7 @@ import { registerWidget, registerCustomPickerElement, CustomPickerRenderResult }
 import './bootstrap.js'
 import Vue from 'vue'
 import GithubCodePermalinkReferenceWidget from './views/GithubCodePermalinkReferenceWidget.vue'
-import GithubIssuePrCustomPickerElement from './views/GithubIssuePrCustomPickerElement.vue'
+// import GithubIssuePrCustomPickerElement from './views/GithubIssuePrCustomPickerElement.vue'
 import FileReferencePickerElement from './views/FileReferencePickerElement.vue'
 
 registerWidget('integration_github_code_permalink', (el, { richObjectType, richObject, accessible }) => {
@@ -37,15 +37,21 @@ registerWidget('integration_github_code_permalink', (el, { richObjectType, richO
 	}).$mount(el)
 })
 
+/*
 registerCustomPickerElement('github-permalink', (el, { providerId, accessible }) => {
 	const Element = Vue.extend(GithubIssuePrCustomPickerElement)
-	return new Element({
+	const vueElement = new Element({
 		propsData: {
 			providerId,
 			accessible,
 		},
 	}).$mount(el)
+	return new CustomPickerRenderResult(vueElement.$el, vueElement)
+}, (el, renderResult) => {
+	console.debug('github-permalink custom destroy callback. el', el, 'renderResult:', renderResult)
+	renderResult.object.$destroy()
 })
+*/
 
 registerCustomPickerElement('files-files', (el, { providerId, accessible }) => {
 	const Element = Vue.extend(FileReferencePickerElement)
