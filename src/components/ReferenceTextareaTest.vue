@@ -28,21 +28,31 @@
 				<LinkVariantIcon />
 			</template>
 		</NcButton>
+		<NcButton v-tooltip.top="{ content: 'Open link picker modal' }"
+			@click="onModalButtonClick">
+			<template #icon>
+				<LinkVariantIcon />
+			</template>
+		</NcButton>
 		<div v-if="showRefPicker" class="resizable">
 			<ReferencePicker
 				:focus-on-create="true"
 				@submit="onLinkSubmit"
 				@cancel-search="onCancelSearch"
 				@cancel-raw-link="onCancelRawLink"
-				@cancel-provider-select="onCancelProviderSelect" />
+				@cancel="onCancelProviderSelect" />
 		</div>
+		<ReferencePickerModal v-if="showRefPickerModal"
+			:focus-on-create="true"
+			@submit="onLinkSubmit"
+			@cancel="onCancelModal" />
 	</div>
 </template>
 
 <script>
 import LinkVariantIcon from 'vue-material-design-icons/LinkVariant.vue'
 
-import { ReferencePicker } from '@nextcloud/vue-richtext'
+import { ReferencePicker, ReferencePickerModal } from '@nextcloud/vue-richtext'
 import NcButton from '@nextcloud/vue/dist/Components/NcButton.js'
 // import { NcRichContenteditableLink } from '@nextcloud/vue/dist/Components/NcRichContenteditable.js'
 import NcRichContenteditable from '@nextcloud/vue/dist/Components/NcRichContenteditable.js'
@@ -58,6 +68,7 @@ export default {
 
 	components: {
 		ReferencePicker,
+		ReferencePickerModal,
 		NcButton,
 		LinkVariantIcon,
 		NcRichContenteditable,
@@ -71,6 +82,7 @@ export default {
 		return {
 			placeholder: 'The reference picker will pop if you type the "#" character',
 			showRefPicker: false,
+			showRefPickerModal: false,
 			textContent: '',
 		}
 	},
@@ -105,12 +117,16 @@ export default {
 			}
 
 			this.showRefPicker = false
+			this.showRefPickerModal = false
 			this.focusOnText()
 		},
 		onCancelProviderSelect() {
 			// showSuccess('[GitHub] provider selection canceled')
 			this.showRefPicker = false
 			this.focusOnText()
+		},
+		onCancelModal() {
+			this.showRefPickerModal = false
 		},
 		onCancelSearch(title) {
 			// showSuccess('[GitHub] search canceled (' + title + ')')
@@ -128,6 +144,9 @@ export default {
 		},
 		onButtonClick() {
 			this.showRefPicker = !this.showRefPicker
+		},
+		onModalButtonClick() {
+			this.showRefPickerModal = true
 		},
 		onHashKeydown(e) {
 			console.debug('on hash key down', e)
