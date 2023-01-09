@@ -14,6 +14,7 @@
     "Integration of GitHub software development management service" : "Združevalnik za dostop do storitev upravljanja razvijalskega okolja GitHub",
     "If you want to allow your Nextcloud users to use OAuth to authenticate to https://github.com, create an OAuth application in your GitHub settings." : "Za overitev okolja Github znotraj Nextcloud do povezave https://github.com je treba ustvariti program OAuth med nastavitvami GitHub.",
     "GitHub OAuth settings" : "Nastavitve overitve GitHub OAuth",
+    "Set \"Application name\", \"Homepage URL\" and \"Application description\" to values that will make sense to your Nextcloud users as they will see them when connecting to GitHub using your OAuth app." : "Nastavite »Ime programa«, »Naslov URL domače strani« in »Opis programa« na vrednosti, ki bodo razumljive uporabnikom oblaka Nextcloud. Podatki so izpisani, ko se s programom OAuth povežejo v okolje GitHub.",
     "Make sure you set the \"Authorization callback URL\" to" : "Poskrbite, da bo preusmeritveni / povratni naslov URL nastavljen na",
     "Put the OAuth app \"Client ID\" and \"Client secret\" below." : "Vpisati je treba »ID programa« in »geslo programa«.",
     "Your Nextcloud users will then see a \"Connect to GitHub\" button in their personal settings." : "Uporabniki Nextcloud bodo med nastavitvami videli gumb »Poveži z računom GitHub«",
