@@ -246,7 +246,6 @@ class GithubAPIService {
 
 			return [$perPage, $page, $leftPadding];
 		}
-
 	}
 
 	/**

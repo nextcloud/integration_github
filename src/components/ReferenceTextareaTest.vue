@@ -2,13 +2,13 @@
 	<div style="display: flex; align-items: center; margin: 600px 0;">
 		<div id="inputs">
 			<!-- eslint-disable vue/valid-v-on -->
-			<textarea ref="out-text-editor"
+			<!--textarea ref="out-text-editor"
 				v-model="textContent"
 				:placeholder="placeholder"
 				style="width: unset;"
 				rows="20"
 				cols="50"
-				@keydown.hash="onHashKeydown" />
+				@keydown.hash="onHashKeydown" /-->
 			<!--NcRichContenteditableLink
 				:value.sync="textContent"
 				:auto-complete="autoComplete"
@@ -19,7 +19,7 @@
 				:value.sync="textContent"
 				:auto-complete="autoComplete"
 				:user-data="{}"
-				placeholder="super placeholder for NcRichContenteditable"
+				:placeholder="rcePlaceholder"
 				@submit="onRCESubmit" />
 		</div>
 		<NcButton v-tooltip.top="{ content: 'Open link picker' }"
@@ -84,6 +84,7 @@ export default {
 			showRefPicker: false,
 			showRefPickerModal: false,
 			textContent: '',
+			rcePlaceholder: 'Write message, use "/" to search links, use "@" to mention someone, use ":" for emoji autocompletion …',
 		}
 	},
 
@@ -106,7 +107,7 @@ export default {
 		},
 		focusOnText() {
 			this.$nextTick(() => {
-				this.$refs['out-text-editor']?.focus()
+				// this.$refs['out-text-editor']?.focus()
 			})
 		},
 		onLinkSubmit(link) {
@@ -161,10 +162,11 @@ export default {
 #inputs {
 	display: flex;
 	flex-direction: column;
+	width: 700px;
 }
 
 .resizable {
-	border: 2px solid var(--color-border);
+	//border: 2px solid var(--color-border);
 	width: 400px;
 	resize: horizontal;
 	overflow: auto;
