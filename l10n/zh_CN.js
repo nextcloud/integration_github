@@ -46,6 +46,7 @@ OC.L10N.register(
     "Unknown error" : "未知错误",
     "Author" : "作者",
     "Owner" : "所有者",
+    "Draft" : "草稿",
     "Failed to save GitHub OAuth state" : "保存 GitHub OAuth 状态失败"
 },
 "nplurals=1; plural=0;");
