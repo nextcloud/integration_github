@@ -72,7 +72,7 @@ class GithubReferenceProvider extends ADiscoverableReferenceProvider implements 
 	 * @inheritDoc
 	 */
 	public function getTitle(): string {
-		return $this->l10n->t('GitHub issues, Pull requests and comments');
+		return $this->l10n->t('GitHub issues, pull requests and comments');
 	}
 
 	/**

@@ -1,5 +1,5 @@
 <template>
-	<div style="display: flex; align-items: center; margin: 600px 0;">
+	<div style="display: flex; align-items: center; margin: 900px 0;">
 		<div id="inputs">
 			<!-- eslint-disable vue/valid-v-on -->
 			<!--textarea ref="out-text-editor"
