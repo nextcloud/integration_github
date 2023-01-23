@@ -113,7 +113,7 @@ class GithubAPIService {
 		$interestingNotifications = array_filter($notifications, static function(array $notification) {
 			return $notification['unread']
 				&& (
-					in_array($notification['reason'], ['assign', 'mention', 'review_requested'])
+					in_array($notification['reason'], ['assign', 'mention', 'team_mention', 'review_requested', 'author', 'manual'])
 					|| (
 						$notification['reason'] === 'subscribed' && ($notification['subject']['type'] ?? '') === 'Release'
 					)

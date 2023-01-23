@@ -230,7 +230,7 @@ export default {
 				return (
 					n.unread
 					&& (
-						['assign', 'mention', 'review_requested'].includes(n.reason)
+						['assign', 'mention', 'team_mention', 'review_requested', 'author', 'manual'].includes(n.reason)
 						|| (n.reason === 'subscribed' && n.subject?.type === 'Release')
 					)
 				)
