@@ -95,10 +95,9 @@ export default {
 	display: flex;
 	align-items: center;
 	.reaction {
-		width: 42px;
 		height: 26px;
 		min-height: 26px;
-		padding: 0;
+		padding: 0 6px;
 		margin-right: 8px;
 		display: flex;
 		align-items: center;
@@ -107,7 +106,7 @@ export default {
 		img {
 			width: 12px;
 			height: 12px;
-			margin-right: 6px;
+			margin-right: 4px;
 		}
 	}
 }
