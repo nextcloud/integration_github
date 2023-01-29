@@ -17,7 +17,7 @@
     <category>dashboard</category>
     <website>https://github.com/nextcloud/integration_github</website>
     <bugs>https://github.com/nextcloud/integration_github/issues</bugs>
-    <screenshot>https://github.com/nextcloud/integration_github/raw/master/img/screenshot1.jpg</screenshot>
+    <screenshot>https://github.com/nextcloud/integration_github/raw/main/img/screenshot1.jpg</screenshot>
     <dependencies>
         <nextcloud min-version="26" max-version="26"/>
     </dependencies>
