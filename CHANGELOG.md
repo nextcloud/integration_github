@@ -6,6 +6,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## 1.0.15 – 2023-01-29
+### Changed
+- show more notifications (team_mention, author, manual)
+
+### Fixed
+- speedup issue and repo search (by a lot)
+- fix pagination in GitHub API requests
+- reaction button width
+
 ## 1.0.14 – 2022-12-13
 ### Changed
 - use @nextcloud/vue 7.2.0
