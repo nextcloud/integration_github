@@ -38,6 +38,7 @@
     "Connected to GitHub!" : "Подключено к GitHub!",
     "GitHub OAuth error:" : "Ошибка GitHub OAuth:",
     "GitHub options saved" : "Параметры GitHub сохранены",
+    "Invalid access token" : "Неверный маркер доступа",
     "Failed to save GitHub options" : "Не удалось сохранить параметры GitHub",
     "Mark as read" : "Пометить как прочитанное",
     "Unsubscribe" : "Отписаться",
