@@ -22,30 +22,35 @@
 
 namespace OCA\Github\Reference;
 
+use OCP\Collaboration\Reference\ADiscoverableReferenceProvider;
+use OCP\Collaboration\Reference\ISearchableReferenceProvider;
 use OCP\Collaboration\Reference\Reference;
 use OC\Collaboration\Reference\ReferenceManager;
 use OCA\Github\AppInfo\Application;
 use OCA\Github\Service\GithubAPIService;
 use OCP\Collaboration\Reference\IReference;
-use OCP\Collaboration\Reference\IReferenceProvider;
 use OCP\IConfig;
 use OCP\IL10N;
 
 require_once __DIR__ . '/../../vendor/autoload.php';
 use League\CommonMark\GithubFlavoredMarkdownConverter;
+use OCP\IURLGenerator;
 
-class GithubReferenceProvider implements IReferenceProvider {
+class GithubReferenceProvider extends ADiscoverableReferenceProvider implements ISearchableReferenceProvider {
+
+	private const RICH_OBJECT_TYPE = Application::APP_ID . '_issue_pr';
+
 	private GithubAPIService $githubAPIService;
 	private ?string $userId;
 	private IConfig $config;
 	private ReferenceManager $referenceManager;
 	private IL10N $l10n;
-
-	private const RICH_OBJECT_TYPE = Application::APP_ID . '_issue_pr';
+	private IURLGenerator $urlGenerator;
 
 	public function __construct(GithubAPIService $githubAPIService,
 								IConfig $config,
 								IL10N $l10n,
+								IURLGenerator $urlGenerator,
 								ReferenceManager $referenceManager,
 								?string $userId) {
 		$this->githubAPIService = $githubAPIService;
@@ -53,6 +58,57 @@ class GithubReferenceProvider implements IReferenceProvider {
 		$this->config = $config;
 		$this->referenceManager = $referenceManager;
 		$this->l10n = $l10n;
+		$this->urlGenerator = $urlGenerator;
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function getId(): string	{
+		return 'github-issue-pr';
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function getTitle(): string {
+		return $this->l10n->t('GitHub issues, pull requests and comments');
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function getOrder(): int	{
+		return 10;
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function getIconUrl(): string {
+		return $this->urlGenerator->getAbsoluteURL(
+			$this->urlGenerator->imagePath(Application::APP_ID, 'app-dark.svg')
+		);
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function getSupportedSearchProviderIds(): array {
+		if ($this->userId !== null) {
+			$ids = [];
+			$searchIssuesEnabled = $this->config->getUserValue($this->userId, Application::APP_ID, 'search_issues_enabled', '0') === '1';
+			$searchReposEnabled = $this->config->getUserValue($this->userId, Application::APP_ID, 'search_repos_enabled', '0') === '1';
+			if ($searchIssuesEnabled) {
+				$ids[] = 'github-search-issues';
+			}
+			if ($searchReposEnabled) {
+				$ids[] = 'github-search-repos';
+			}
+			return $ids;
+		}
+		return ['github-search-issues', 'github-search-repos'];
+
 	}
 
 	/**

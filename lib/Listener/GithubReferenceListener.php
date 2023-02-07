@@ -34,7 +34,6 @@ class GithubReferenceListener implements IEventListener {
 			return;
 		}
 
-		Util::addScript(Application::APP_ID, Application::APP_ID . '-referenceIssuePr');
-		Util::addScript(Application::APP_ID, Application::APP_ID . '-referenceCodePermalink');
+		Util::addScript(Application::APP_ID, Application::APP_ID . '-reference');
 	}
 }

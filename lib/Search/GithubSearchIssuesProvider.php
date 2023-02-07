@@ -174,7 +174,7 @@ class GithubSearchIssuesProvider implements IProvider {
 //		$owner = $spl[0];
 		$repo = $spl[1];
 		$number = $entry['number'];
-		$typeChar = isset($entry['pull_request']) ? '⑃' : '⦿';
+		$typeChar = isset($entry['pull_request']) ? '⑁' : '⦿';
 		return $typeChar . ' ' . $repo . '#' . $number;
 	}
 

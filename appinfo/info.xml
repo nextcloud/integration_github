@@ -19,7 +19,7 @@
     <bugs>https://github.com/nextcloud/integration_github/issues</bugs>
     <screenshot>https://github.com/nextcloud/integration_github/raw/main/img/screenshot1.jpg</screenshot>
     <dependencies>
-        <nextcloud min-version="25" max-version="26"/>
+        <nextcloud min-version="26" max-version="26"/>
     </dependencies>
     <settings>
         <admin>OCA\Github\Settings\Admin</admin>

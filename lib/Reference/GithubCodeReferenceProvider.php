@@ -22,27 +22,31 @@
 
 namespace OCA\Github\Reference;
 
+use OCP\Collaboration\Reference\ADiscoverableReferenceProvider;
 use OCP\Collaboration\Reference\Reference;
 use OC\Collaboration\Reference\ReferenceManager;
 use OCA\Github\AppInfo\Application;
 use OCA\Github\Service\GithubAPIService;
 use OCP\Collaboration\Reference\IReference;
-use OCP\Collaboration\Reference\IReferenceProvider;
 use OCP\IConfig;
 use OCP\IL10N;
+use OCP\IURLGenerator;
 
-class GithubCodeReferenceProvider implements IReferenceProvider {
+class GithubCodeReferenceProvider extends ADiscoverableReferenceProvider {
+
+	private const RICH_OBJECT_TYPE = Application::APP_ID . '_code_permalink';
+
 	private GithubAPIService $githubAPIService;
 	private ?string $userId;
 	private IConfig $config;
 	private ReferenceManager $referenceManager;
 	private IL10N $l10n;
-
-	private const RICH_OBJECT_TYPE = Application::APP_ID . '_code_permalink';
+	private IURLGenerator $urlGenerator;
 
 	public function __construct(GithubAPIService $githubAPIService,
 								IConfig $config,
 								IL10N $l10n,
+								IURLGenerator $urlGenerator,
 								ReferenceManager $referenceManager,
 								?string $userId) {
 		$this->githubAPIService = $githubAPIService;
@@ -50,6 +54,37 @@ class GithubCodeReferenceProvider implements IReferenceProvider {
 		$this->config = $config;
 		$this->referenceManager = $referenceManager;
 		$this->l10n = $l10n;
+		$this->urlGenerator = $urlGenerator;
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function getId(): string	{
+		return 'github-permalink';
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function getTitle(): string {
+		return $this->l10n->t('GitHub code permalink');
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function getOrder(): int	{
+		return 10;
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function getIconUrl(): string {
+		return $this->urlGenerator->getAbsoluteURL(
+			$this->urlGenerator->imagePath(Application::APP_ID, 'app-dark.svg')
+		);
 	}
 
 	/**
