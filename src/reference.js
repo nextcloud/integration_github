@@ -20,12 +20,14 @@
  */
 
 import { registerWidget } from '@nextcloud/vue-richtext'
-import './bootstrap.js'
-import Vue from 'vue'
-import GithubIssuePrReferenceWidget from './views/GithubIssuePrReferenceWidget.vue'
-import GithubCodePermalinkReferenceWidget from './views/GithubCodePermalinkReferenceWidget.vue'
 
-registerWidget('integration_github_issue_pr', (el, { richObjectType, richObject, accessible }) => {
+__webpack_nonce__ = btoa(OC.requestToken) // eslint-disable-line
+__webpack_public_path__ = OC.linkTo('integration_github', 'js/') // eslint-disable-line
+
+registerWidget('integration_github_issue_pr', async (el, { richObjectType, richObject, accessible }) => {
+	const { default: Vue } = await import(/* webpackChunkName: "reference-issue-lazy" */'vue')
+	const { default: GithubIssuePrReferenceWidget } = await import(/* webpackChunkName: "reference-issue-lazy" */'./views/GithubIssuePrReferenceWidget.vue')
+	Vue.mixin({ methods: { t, n } })
 	const Widget = Vue.extend(GithubIssuePrReferenceWidget)
 	new Widget({
 		propsData: {
@@ -36,7 +38,10 @@ registerWidget('integration_github_issue_pr', (el, { richObjectType, richObject,
 	}).$mount(el)
 })
 
-registerWidget('integration_github_code_permalink', (el, { richObjectType, richObject, accessible }) => {
+registerWidget('integration_github_code_permalink', async (el, { richObjectType, richObject, accessible }) => {
+	const { default: Vue } = await import(/* webpackChunkName: "reference-permalink-lazy" */'vue')
+	const { default: GithubCodePermalinkReferenceWidget } = await import(/* webpackChunkName: "reference-permalink-lazy" */'./views/GithubCodePermalinkReferenceWidget.vue')
+	Vue.mixin({ methods: { t, n } })
 	const Widget = Vue.extend(GithubCodePermalinkReferenceWidget)
 	new Widget({
 		propsData: {
