@@ -6,6 +6,8 @@ OC.L10N.register(
     "Error during OAuth exchanges" : "Error durante los intercambios OAuth",
     "GitHub notifications" : "Notificaciones de GitHub",
     "More notifications" : "Más notificaciones",
+    "GitHub code permalink" : "Enlace permanente al código en Github",
+    "GitHub issues, pull requests and comments" : "Issues en Github, pull requests y comentarios",
     "Comment" : "Comentario",
     "GitHub issues and pull requests" : "Issues y pull requests de GitHub",
     "GitHub repositories" : "Repositorios de GitHub",
