@@ -53,6 +53,7 @@ OC.L10N.register(
     "Unknown error" : "Неизвестная ошибка",
     "Author" : "Автор",
     "Owner" : "Владелец",
+    "Click to expand comment" : "Нажмите, чтобы развернуть комментарии",
     "Draft" : "Черновик",
     "Failed to save GitHub OAuth state" : "Не удалось сохранить состояние GitHub OAuth"
 },
