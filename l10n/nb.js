@@ -12,6 +12,7 @@ OC.L10N.register(
     "Client secret" : "Klient-hemmelighet",
     "Mark as read" : "Merk som lest",
     "Unknown error" : "Ukjent feil",
+    "Author" : "Forfatter",
     "Owner" : "Eier",
     "Draft" : "Kladd"
 },
