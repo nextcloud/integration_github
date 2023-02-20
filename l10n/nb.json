@@ -10,6 +10,7 @@
     "Client secret" : "Klient-hemmelighet",
     "Mark as read" : "Merk som lest",
     "Unknown error" : "Ukjent feil",
+    "Author" : "Forfatter",
     "Owner" : "Eier",
     "Draft" : "Kladd"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
