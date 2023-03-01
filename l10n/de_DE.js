@@ -65,7 +65,7 @@ OC.L10N.register(
     "GitHub API error" : "GitHub API-Fehler",
     "Unknown error" : "Unbekannter Fehler",
     "GitHub connected accounts settings" : "GitHub-Einstellungen für verbundene Konten",
-    "Click to expand/collapse content" : "Klicken, um den Inhalt zu erweitern/einzuklappen",
+    "Click to expand/collapse content" : "Klicken, um den Inhalt zu auszuklappen/ einzuklappen",
     "Line {begin} to {end}" : "Zeile {begin} bis {end}",
     "Line {line}" : "Zeile {line}",
     "by {creator}" : "von {creator}",
