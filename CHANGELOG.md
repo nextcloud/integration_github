@@ -6,6 +6,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## 2.0.0 – 2023-03-03
+### Added
+- implement discoverable/searchable reference provider
+
+### Changed
+- lazy load dashboard widget and reference widgets
+
 ## 1.0.15 – 2023-01-29
 ### Changed
 - show more notifications (team_mention, author, manual)
