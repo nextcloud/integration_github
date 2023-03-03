@@ -39,7 +39,7 @@
 		"@alchemyalcove/rgb-to-hsl": "^1.0.5",
 		"@nextcloud/auth": "^2.0.0",
 		"@nextcloud/axios": "^2.0.0",
-		"@nextcloud/dialogs": "^3.1.2",
+		"@nextcloud/dialogs": "^4.0.1",
 		"@nextcloud/initial-state": "^2.0.0",
 		"@nextcloud/l10n": "^2.0.1",
 		"@nextcloud/moment": "^1.1.1",
