@@ -19,7 +19,9 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { registerWidget } from '@nextcloud/vue-richtext'
+// with nc/vue 7.8.0, if we remove this, we get "Uncaught TypeError: inspect is undefined"
+import {} from '@nextcloud/vue-richtext'
+import { registerWidget } from '@nextcloud/vue/dist/Components/NcRichText.js'
 
 __webpack_nonce__ = btoa(OC.requestToken) // eslint-disable-line
 __webpack_public_path__ = OC.linkTo('integration_github', 'js/') // eslint-disable-line

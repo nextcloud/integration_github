@@ -174,7 +174,7 @@
 						'comment--content--bubble--content': true,
 						'short-comment': shortComment,
 					}">
-						<RichText
+						<NcRichText
 							v-tooltip.top="{ content: shortComment ? t('integration_github', 'Click to expand comment') : undefined }"
 							:text="richObject.github_comment.body"
 							:use-markdown="true"
@@ -214,7 +214,7 @@ import moment from '@nextcloud/moment'
 import { hexToRgb, isDarkMode } from '../utils.js'
 import rgbToHsl from '@alchemyalcove/rgb-to-hsl'
 
-import { RichText } from '@nextcloud/vue-richtext'
+import { NcRichText } from '@nextcloud/vue/dist/Components/NcRichText.js'
 import NcAvatar from '@nextcloud/vue/dist/Components/NcAvatar.js'
 import Tooltip from '@nextcloud/vue/dist/Directives/Tooltip.js'
 import Vue from 'vue'
@@ -224,7 +224,7 @@ export default {
 	name: 'GithubIssuePrReferenceWidget',
 
 	components: {
-		RichText,
+		NcRichText,
 		UserPopover,
 		MilestoneIcon,
 		GithubIcon,
@@ -500,8 +500,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import '@nextcloud/vue-richtext/dist/style.css';
-
 .github-issue-pr-reference {
 	width: 100%;
 	white-space: normal;
