@@ -9,6 +9,7 @@
 
 namespace OCA\Github\AppInfo;
 
+use OCA\Github\Listener\ContentSecurityPolicyListener;
 use OCA\Github\Listener\GithubReferenceListener;
 use OCA\Github\Reference\GithubCodeReferenceProvider;
 use OCA\Github\Reference\GithubReferenceProvider;
@@ -27,12 +28,8 @@ use OCP\AppFramework\Bootstrap\IBootstrap;
 use OCA\Github\Dashboard\GithubWidget;
 use OCA\Github\Search\GithubSearchReposProvider;
 use OCA\Github\Search\GithubSearchIssuesProvider;
+use OCP\Security\CSP\AddContentSecurityPolicyEvent;
 
-/**
- * Class Application
- *
- * @package OCA\Github\AppInfo
- */
 class Application extends App implements IBootstrap {
 
 	public const APP_ID = 'integration_github';
@@ -54,6 +51,7 @@ class Application extends App implements IBootstrap {
 		$context->registerReferenceProvider(GithubReferenceProvider::class);
 		$context->registerReferenceProvider(GithubCodeReferenceProvider::class);
 		$context->registerEventListener(RenderReferenceEvent::class, GithubReferenceListener::class);
+		$context->registerEventListener(AddContentSecurityPolicyEvent::class, ContentSecurityPolicyListener::class);
 	}
 
 	public function boot(IBootContext $context): void {
