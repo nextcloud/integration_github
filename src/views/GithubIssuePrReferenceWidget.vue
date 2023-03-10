@@ -654,8 +654,10 @@ export default {
 					}
 
 					:deep(.comment-richtext) {
+						white-space: initial;
 						h1, h2, h3, h4, h5, h6 {
 							margin-top: 0;
+							font-weight: bold;
 						}
 						h1 {
 							font-size: xx-large;
@@ -682,6 +684,9 @@ export default {
 							> li {
 								list-style: disc;
 							}
+						}
+						p {
+							margin: 12px 0;
 						}
 					}
 				}
