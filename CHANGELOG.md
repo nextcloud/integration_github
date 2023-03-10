@@ -6,6 +6,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## 2.0.1 – 2023-03-10
+### Changed
+- allow loading images from https://user-images.githubusercontent.com in global CSP (for markdown content in widgets)
+
+### Fixed
+- many style issues in the issue/pr/comment widget
+
 ## 2.0.0 – 2023-03-03
 ### Added
 - implement discoverable/searchable reference provider
