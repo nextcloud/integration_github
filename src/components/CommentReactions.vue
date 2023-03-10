@@ -94,6 +94,7 @@ export default {
 .reactions {
 	display: flex;
 	align-items: center;
+	flex-wrap: wrap;
 	.reaction {
 		height: 26px;
 		min-height: 26px;
