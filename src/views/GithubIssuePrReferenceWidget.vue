@@ -145,7 +145,7 @@
 							<strong @mouseenter="showCommentAuthorPopover = true"
 								@mouseleave="showCommentAuthorPopover = false">
 								<a :href="commentAuthorUrl" target="_blank" class="author-link comment-author-display-name">
-									{{ richObject.github_comment.user.login }}
+									{{ richObject.github_comment?.user?.login }}
 								</a>
 							</strong>
 						</UserPopover>
@@ -163,10 +163,10 @@
 							{{ commentUpdatedAtText }}
 						</span>
 						<div class="spacer" />
-						<div v-if="richObject.github_comment.user.login === richObject.user.login" class="label comment-header-label">
+						<div v-if="richObject.github_comment.user?.login === richObject.user?.login" class="label comment-header-label">
 							{{ t('integration_github', 'Author') }}
 						</div>
-						<div v-if="richObject.github_comment.user.login === richObject.github_repo_owner" class="label comment-header-label">
+						<div v-if="richObject.github_comment.user?.login === richObject.github_repo_owner" class="label comment-header-label">
 							{{ t('integration_github', 'Owner') }}
 						</div>
 					</div>
@@ -174,8 +174,9 @@
 						'comment--content--bubble--content': true,
 						'short-comment': shortComment,
 					}">
-						<RichText
+						<NcRichText
 							v-tooltip.top="{ content: shortComment ? t('integration_github', 'Click to expand comment') : undefined }"
+							class="comment-richtext"
 							:text="richObject.github_comment.body"
 							:use-markdown="true"
 							@click.native="shortComment = !shortComment" />
@@ -214,7 +215,7 @@ import moment from '@nextcloud/moment'
 import { hexToRgb, isDarkMode } from '../utils.js'
 import rgbToHsl from '@alchemyalcove/rgb-to-hsl'
 
-import { RichText } from '@nextcloud/vue-richtext'
+import { NcRichText } from '@nextcloud/vue/dist/Components/NcRichText.js'
 import NcAvatar from '@nextcloud/vue/dist/Components/NcAvatar.js'
 import Tooltip from '@nextcloud/vue/dist/Directives/Tooltip.js'
 import Vue from 'vue'
@@ -224,7 +225,7 @@ export default {
 	name: 'GithubIssuePrReferenceWidget',
 
 	components: {
-		RichText,
+		NcRichText,
 		UserPopover,
 		MilestoneIcon,
 		GithubIcon,
@@ -500,8 +501,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import '@nextcloud/vue-richtext/dist/style.css';
-
 .github-issue-pr-reference {
 	width: 100%;
 	white-space: normal;
@@ -652,6 +651,38 @@ export default {
 					&.short-comment {
 						max-height: 25px;
 						overflow: hidden;
+					}
+
+					:deep(.comment-richtext) {
+						h1, h2, h3, h4, h5, h6 {
+							margin-top: 0;
+						}
+						h1 {
+							font-size: xx-large;
+						}
+						h2 {
+							font-size: x-large;
+						}
+						h3 {
+							font-size: large;
+						}
+						h4 {
+							font-size: medium;
+						}
+						h5 {
+							font-size: small;
+						}
+						h6 {
+							font-size: x-small;
+						}
+						ul, ol {
+							margin-left: 16px;
+						}
+						ul {
+							> li {
+								list-style: disc;
+							}
+						}
 					}
 				}
 			}
