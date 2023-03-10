@@ -618,7 +618,8 @@ export default {
 			&--bubble {
 				display: flex;
 				flex-direction: column;
-				width: 100%;
+				flex-grow: 1;
+				max-width: calc(100% - 48px);
 				padding-bottom: 4px;
 				border: 1px solid var(--color-border-dark);
 				border-radius: 6px;
@@ -657,6 +658,7 @@ export default {
 						white-space: initial;
 						h1, h2, h3, h4, h5, h6 {
 							margin-top: 0;
+							margin-bottom: 24px;
 							font-weight: bold;
 						}
 						h1 {
@@ -679,6 +681,12 @@ export default {
 						}
 						ul, ol {
 							margin-left: 16px;
+							margin-bottom: 24px;
+							li {
+								ul, ol {
+									margin-bottom: 0;
+								}
+							}
 						}
 						ul {
 							> li {
@@ -686,7 +694,7 @@ export default {
 							}
 						}
 						p {
-							margin: 12px 0;
+							margin-bottom: 24px;
 						}
 					}
 				}
