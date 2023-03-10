@@ -175,7 +175,7 @@
 						'short-comment': shortComment,
 					}">
 						<NcRichText
-							v-tooltip.top="{ content: shortComment ? t('integration_github', 'Click to expand comment') : undefined }"
+							:title="shortComment ? t('integration_github', 'Click to expand comment') : t('integration_github', 'Click to shrink comment')"
 							class="comment-richtext"
 							:text="richObject.github_comment.body"
 							:use-markdown="true"
@@ -655,7 +655,11 @@ export default {
 					}
 
 					:deep(.comment-richtext) {
+						cursor: pointer;
 						white-space: initial;
+						* {
+							cursor: pointer;
+						}
 						h1, h2, h3, h4, h5, h6 {
 							margin-top: 0;
 							margin-bottom: 24px;
