@@ -72,6 +72,7 @@ OC.L10N.register(
     "Author" : "İlgili",
     "Owner" : "Sahibi",
     "Click to expand comment" : "Yorumu genişletmek için tıklayın",
+    "Click to shrink comment" : "Yorumu daraltmak için tıklayın",
     "Open issue" : "Konu aç",
     "Closed as not planned issue" : "Planlanmamış konu olarak kapatıldı",
     "Closed issue" : "Kapatılmış konu",

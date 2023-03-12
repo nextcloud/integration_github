@@ -72,6 +72,7 @@ OC.L10N.register(
     "Author" : "Author",
     "Owner" : "Owner",
     "Click to expand comment" : "Click to expand comment",
+    "Click to shrink comment" : "Click to shrink comment",
     "Open issue" : "Open issue",
     "Closed as not planned issue" : "Closed as not planned issue",
     "Closed issue" : "Closed issue",

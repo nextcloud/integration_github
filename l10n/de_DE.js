@@ -72,6 +72,7 @@ OC.L10N.register(
     "Author" : "Autor",
     "Owner" : "Besitzer",
     "Click to expand comment" : "Klicken, um den Kommentar zu erweitern",
+    "Click to shrink comment" : "Klicken, um den Kommentar zu verkleinern",
     "Open issue" : "Thema öffnen",
     "Closed as not planned issue" : "Als nicht geplantes Thema schließen",
     "Closed issue" : "Geschlossenes Thema",
