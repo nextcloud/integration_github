@@ -72,6 +72,7 @@ OC.L10N.register(
     "Author" : "作者",
     "Owner" : "擁有者",
     "Click to expand comment" : "點擊展開留言",
+    "Click to shrink comment" : "點擊縮小留言",
     "Open issue" : "開啟問題",
     "Closed as not planned issue" : "以「未計畫」關閉問題",
     "Closed issue" : "已關閉的問題",
