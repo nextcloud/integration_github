@@ -72,6 +72,7 @@ OC.L10N.register(
     "Author" : "Auteur",
     "Owner" : "Propriétaire",
     "Click to expand comment" : "Cliquer pour déplier le commentaire",
+    "Click to shrink comment" : "Cliquer pour replier le commentaire",
     "Open issue" : "Ticket ouvert",
     "Closed as not planned issue" : "Ticket fermé comme non planifié",
     "Closed issue" : "Ticket fermé",
