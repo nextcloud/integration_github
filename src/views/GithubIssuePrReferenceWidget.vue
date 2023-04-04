@@ -175,7 +175,7 @@
 						'short-comment': shortComment,
 					}">
 						<NcRichText
-							:title="shortComment ? t('integration_github', 'Click to expand comment') : t('integration_github', 'Click to shrink comment')"
+							:title="shortComment ? t('integration_github', 'Click to unfold comment') : t('integration_github', 'Click to fold comment')"
 							class="comment-richtext"
 							:text="richObject.github_comment.body"
 							:use-markdown="true"
