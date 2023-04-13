@@ -122,7 +122,7 @@
 			:reactions="richObject.reactions"
 			:reaction-data="issueReactionData"
 			@mouseenter="getIssueReactions" />
-		<div v-if="richObject.github_comment" class="comment">
+		<div v-if="!isError && richObject.github_comment" class="comment">
 			<div class="comment--content">
 				<UserPopover :user-login="richObject.github_comment.user?.login"
 					:shown="showCommentAvatarPopover"
