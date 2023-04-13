@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## 2.0.2 – 2023-04-13
+### Fixed
+- in GithubIssuePrReferenceWidget, do not display the comment if the issue/pr is not found
+
 ## 2.0.1 – 2023-03-10
 ### Changed
 - allow loading images from https://user-images.githubusercontent.com in global CSP (for markdown content in widgets)

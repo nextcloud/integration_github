@@ -6,7 +6,7 @@
     <description><![CDATA[GitHub integration provides a dashboard widget displaying your most important notifications
     and a unified search provider for repositories, issues and pull requests. It also provides a link reference provider
     to render links to issues, pull requests and comments in Talk and Text.]]></description>
-    <version>2.0.1</version>
+    <version>2.0.2</version>
     <licence>agpl</licence>
     <author>Julien Veyssier</author>
     <namespace>Github</namespace>
