@@ -1,7 +1,12 @@
 { "translations": {
     "GitHub" : "غيت هب",
+    "Error during OAuth exchanges" : "خطأ أثناء تبادل OAuth.",
     "GitHub notifications" : "الإشعارات العامة",
     "Comment" : "تعليق",
+    "Bad HTTP method" : "دالة HTTP  غير صحيحة",
+    "Bad credentials" : "رموز التعريف غير صحيحة",
+    "OAuth access token refused" : "أمارة token مرفوضة",
+    "Connected accounts" : "حسابات مترابطة",
     "Client ID" : "معرف العميل",
     "Mark as read" : "تمييز كمقروء",
     "Unknown error" : "خطأ غير معروف",

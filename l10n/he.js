@@ -8,6 +8,7 @@ OC.L10N.register(
     "Comment" : "הערה",
     "GitHub issues and pull requests" : "דיווחים ובקשות דחיפה ב־GitHub",
     "GitHub repositories" : "מאגרי GitHub",
+    "Bad HTTP method" : "שגיאה במתודת HTTP",
     "Bad credentials" : "פרטי גישה שגויים",
     "OAuth access token refused" : "אסימון הגישה ב־OAuth סורב",
     "Connected accounts" : "חשבונות מקושרים",
