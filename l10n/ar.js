@@ -10,6 +10,8 @@ OC.L10N.register(
     "OAuth access token refused" : "أمارة token مرفوضة",
     "Connected accounts" : "حسابات مترابطة",
     "Client ID" : "معرف العميل",
+    "Use a popup to authenticate" : "استخدم النافذة المنبثقة للتعريف عن نفسك ",
+    "Connected as {user}" : "متصل بصفته {user}",
     "Mark as read" : "تمييز كمقروء",
     "Unknown error" : "خطأ غير معروف",
     "Owner" : "المالك"
