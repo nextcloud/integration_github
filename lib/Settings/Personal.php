@@ -9,25 +9,9 @@ use OCA\Github\AppInfo\Application;
 
 class Personal implements ISettings {
 
-	/**
-	 * @var IConfig
-	 */
-	private $config;
-	/**
-	 * @var IInitialState
-	 */
-	private $initialStateService;
-	/**
-	 * @var string|null
-	 */
-	private $userId;
-
-	public function __construct(IConfig $config,
-								IInitialState $initialStateService,
-								?string $userId) {
-		$this->config = $config;
-		$this->initialStateService = $initialStateService;
-		$this->userId = $userId;
+	public function __construct(private IConfig $config,
+								private IInitialState $initialStateService,
+								private ?string $userId) {
 	}
 
 	/**

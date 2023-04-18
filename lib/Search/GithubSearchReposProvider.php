@@ -34,45 +34,15 @@ use OCP\IUser;
 use OCP\Search\IProvider;
 use OCP\Search\ISearchQuery;
 use OCP\Search\SearchResult;
+use OCP\Search\SearchResultEntry;
 
 class GithubSearchReposProvider implements IProvider {
 
-	/** @var IAppManager */
-	private $appManager;
-
-	/** @var IL10N */
-	private $l10n;
-
-	/** @var IURLGenerator */
-	private $urlGenerator;
-	/**
-	 * @var IConfig
-	 */
-	private $config;
-	/**
-	 * @var GithubAPIService
-	 */
-	private $service;
-
-	/**
-	 * CospendSearchProvider constructor.
-	 *
-	 * @param IAppManager $appManager
-	 * @param IL10N $l10n
-	 * @param IConfig $config
-	 * @param IURLGenerator $urlGenerator
-	 * @param GithubAPIService $service
-	 */
-	public function __construct(IAppManager $appManager,
-								IL10N $l10n,
-								IConfig $config,
-								IURLGenerator $urlGenerator,
-								GithubAPIService $service) {
-		$this->appManager = $appManager;
-		$this->l10n = $l10n;
-		$this->config = $config;
-		$this->urlGenerator = $urlGenerator;
-		$this->service = $service;
+	public function __construct(private IAppManager $appManager,
+								private IL10N $l10n,
+								private IConfig $config,
+								private IURLGenerator $urlGenerator,
+								private GithubAPIService $service) {
 	}
 
 	/**
@@ -129,8 +99,8 @@ class GithubSearchReposProvider implements IProvider {
 			$repos = $searchResult['items'];
 		}
 
-		$formattedResults = array_map(function (array $entry): GithubSearchResultEntry {
-			return new GithubSearchResultEntry(
+		$formattedResults = array_map(function (array $entry): SearchResultEntry {
+			return new SearchResultEntry(
 				$this->getThumbnailUrl($entry),
 				$this->getMainText($entry),
 				$this->getSubline($entry),

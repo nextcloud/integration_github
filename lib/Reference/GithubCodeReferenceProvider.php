@@ -36,25 +36,12 @@ class GithubCodeReferenceProvider extends ADiscoverableReferenceProvider {
 
 	private const RICH_OBJECT_TYPE = Application::APP_ID . '_code_permalink';
 
-	private GithubAPIService $githubAPIService;
-	private ?string $userId;
-	private IConfig $config;
-	private ReferenceManager $referenceManager;
-	private IL10N $l10n;
-	private IURLGenerator $urlGenerator;
-
-	public function __construct(GithubAPIService $githubAPIService,
-								IConfig $config,
-								IL10N $l10n,
-								IURLGenerator $urlGenerator,
-								ReferenceManager $referenceManager,
-								?string $userId) {
-		$this->githubAPIService = $githubAPIService;
-		$this->userId = $userId;
-		$this->config = $config;
-		$this->referenceManager = $referenceManager;
-		$this->l10n = $l10n;
-		$this->urlGenerator = $urlGenerator;
+	public function __construct(private GithubAPIService $githubAPIService,
+								private IConfig $config,
+								private IL10N $l10n,
+								private IURLGenerator $urlGenerator,
+								private ReferenceManager $referenceManager,
+								private ?string $userId) {
 	}
 
 	/**

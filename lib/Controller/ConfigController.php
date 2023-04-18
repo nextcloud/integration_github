@@ -28,49 +28,16 @@ use OCP\PreConditionNotMetException;
 
 class ConfigController extends Controller {
 
-	/**
-	 * @var IConfig
-	 */
-	private $config;
-	/**
-	 * @var IURLGenerator
-	 */
-	private $urlGenerator;
-	/**
-	 * @var IL10N
-	 */
-	private $l;
-	/**
-	 * @var GithubAPIService
-	 */
-	private $githubAPIService;
-	/**
-	 * @var string|null
-	 */
-	private $userId;
-	/**
-	 * @var IInitialState
-	 */
-	private $initialStateService;
-	private GithubReferenceProvider $githubReferenceProvider;
-
 	public function __construct(string $appName,
 								IRequest $request,
-								IConfig $config,
-								IURLGenerator $urlGenerator,
-								IL10N $l,
-								IInitialState $initialStateService,
-								GithubAPIService $githubAPIService,
-								GithubReferenceProvider $githubReferenceProvider,
-								?string $userId) {
+								private IConfig $config,
+								private IURLGenerator $urlGenerator,
+								private IL10N $l,
+								private IInitialState $initialStateService,
+								private GithubAPIService $githubAPIService,
+								private GithubReferenceProvider $githubReferenceProvider,
+								private ?string $userId) {
 		parent::__construct($appName, $request);
-		$this->config = $config;
-		$this->urlGenerator = $urlGenerator;
-		$this->l = $l;
-		$this->githubAPIService = $githubAPIService;
-		$this->userId = $userId;
-		$this->initialStateService = $initialStateService;
-		$this->githubReferenceProvider = $githubReferenceProvider;
 	}
 
 	/**

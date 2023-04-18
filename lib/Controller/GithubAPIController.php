@@ -21,22 +21,11 @@ use OCA\Github\Service\GithubAPIService;
 
 class GithubAPIController extends Controller {
 
-	/**
-	 * @var GithubAPIService
-	 */
-	private $githubAPIService;
-	/**
-	 * @var string|null
-	 */
-	private $userId;
-
 	public function __construct(string $appName,
 								IRequest $request,
-								GithubAPIService $githubAPIService,
-								?string $userId) {
+								private GithubAPIService $githubAPIService,
+								private ?string $userId) {
 		parent::__construct($appName, $request);
-		$this->githubAPIService = $githubAPIService;
-		$this->userId = $userId;
 	}
 
 	/**

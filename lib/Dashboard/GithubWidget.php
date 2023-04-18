@@ -40,41 +40,12 @@ use OCA\Github\AppInfo\Application;
 
 class GithubWidget implements IAPIWidget, IButtonWidget, IIconWidget, IOptionWidget {
 
-	/** @var IL10N */
-	private $l10n;
-	/**
-	 * @var IConfig
-	 */
-	private $config;
-	/**
-	 * @var IInitialState
-	 */
-	private $initialStateService;
-	/**
-	 * @var string|null
-	 */
-	private $userId;
-	/**
-	 * @var GithubAPIService
-	 */
-	private $githubAPIService;
-	/**
-	 * @var IURLGenerator
-	 */
-	private $urlGenerator;
-
-	public function __construct(IL10N $l10n,
-								IConfig $config,
-								IURLGenerator $urlGenerator,
-								IInitialState $initialStateService,
-								GithubAPIService $githubAPIService,
-								?string $userId) {
-		$this->l10n = $l10n;
-		$this->config = $config;
-		$this->initialStateService = $initialStateService;
-		$this->userId = $userId;
-		$this->githubAPIService = $githubAPIService;
-		$this->urlGenerator = $urlGenerator;
+	public function __construct(private IL10N $l10n,
+								private IConfig $config,
+								private IURLGenerator $urlGenerator,
+								private IInitialState $initialStateService,
+								private GithubAPIService $githubAPIService,
+								private ?string $userId) {
 	}
 
 	/**
