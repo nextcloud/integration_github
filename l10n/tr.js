@@ -3,7 +3,7 @@ OC.L10N.register(
     {
     "GitHub" : "GitHub",
     "Error getting OAuth access token" : "OAuth erişim kodu alınırken sorun çıktı",
-    "Error during OAuth exchanges" : "OAuth takasında sorun çıktı",
+    "Error during OAuth exchanges" : "OAuth alış verişinde sorun çıktı",
     "GitHub notifications" : "GitHub bildirimleri",
     "More notifications" : "Diğer bildirimler",
     "GitHub code permalink" : "GitHub kod kalıcı bağlantısı",
