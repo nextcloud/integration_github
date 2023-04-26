@@ -6,6 +6,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## 2.0.4 – 2023-04-26
+
+### Fixed
+
+- wrong exclusion of vendor when building the appstore archive
+
 ## 2.0.3 – 2023-04-26
 ### Changed
 - get rid of the `@nextcloud/vue-richtext` dependency as the build bug has been fixed in the nextcloud webpack config @julien-nc
