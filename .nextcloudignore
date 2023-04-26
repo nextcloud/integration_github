@@ -19,7 +19,7 @@
 /node_modules
 /screenshots
 /src
-/vendor
+/vendor/bin
 /jest.config.js
 /Makefile
 /makefile
