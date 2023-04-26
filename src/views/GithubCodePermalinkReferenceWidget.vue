@@ -1,7 +1,7 @@
 <!--
-  - @copyright Copyright (c) 2022 Julien Veyssier <eneiluj@posteo.net>
+  - @copyright Copyright (c) 2022 Julien Veyssier <julien-nc@posteo.net>
   -
-  - @author 2022 Julien Veyssier <eneiluj@posteo.net>
+  - @author 2022 Julien Veyssier <julien-nc@posteo.net>
   -
   - @license GNU AGPL version 3 or any later version
   -
