@@ -3,12 +3,12 @@
 	"authors": [
 		{
 			"name": "Julien Veyssier",
-			"email": "eneiluj@posteo.net"
+			"email": "julien-nc@posteo.net"
 		}
 	],
 	"require": {
 		"league/commonmark": "^2.3",
-		"php": "^7.4 || ^8.0"
+		"php": "^8.0"
 	},
 	"scripts": {
 		"lint": "find . -name \\*.php -not -path './vendor/*' -print0 | xargs -0 -n1 php -l",
