@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## 2.0.3 – 2023-04-26
+### Changed
+- get rid of the `@nextcloud/vue-richtext` dependency as the build bug has been fixed in the nextcloud webpack config @julien-nc
+- update all npm pkgs @julien-nc
+
 ## 2.0.2 – 2023-04-13
 ### Fixed
 - in GithubIssuePrReferenceWidget, do not display the comment if the issue/pr is not found
