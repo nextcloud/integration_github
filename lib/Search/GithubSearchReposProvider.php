@@ -84,11 +84,16 @@ class GithubSearchReposProvider implements IProvider {
 		$offset = $query->getCursor();
 		$offset = $offset ? intval($offset) : 0;
 
-//		$theme = $this->config->getUserValue($user->getUID(), 'accessibility', 'theme', '');
+		$routeFrom = $query->getRoute();
+		$requestedFromSmartPicker = $routeFrom === '' || $routeFrom === 'smart-picker';
+
+		$searchReposEnabled = $this->config->getUserValue($user->getUID(), Application::APP_ID, 'search_repos_enabled', '0') === '1';
+		if (!$requestedFromSmartPicker && !$searchReposEnabled) {
+			return SearchResult::paginated($this->getName(), [], 0);
+		}
 
 		$accessToken = $this->config->getUserValue($user->getUID(), Application::APP_ID, 'token');
-		$searchReposEnabled = $this->config->getUserValue($user->getUID(), Application::APP_ID, 'search_repos_enabled', '0') === '1';
-		if ($accessToken === '' || !$searchReposEnabled) {
+		if ($accessToken === '') {
 			return SearchResult::paginated($this->getName(), [], 0);
 		}
 

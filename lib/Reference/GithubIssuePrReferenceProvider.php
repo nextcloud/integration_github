@@ -36,7 +36,7 @@ require_once __DIR__ . '/../../vendor/autoload.php';
 use League\CommonMark\GithubFlavoredMarkdownConverter;
 use OCP\IURLGenerator;
 
-class GithubReferenceProvider extends ADiscoverableReferenceProvider implements ISearchableReferenceProvider {
+class GithubIssuePrReferenceProvider extends ADiscoverableReferenceProvider implements ISearchableReferenceProvider {
 
 	private const RICH_OBJECT_TYPE = Application::APP_ID . '_issue_pr';
 
@@ -82,20 +82,7 @@ class GithubReferenceProvider extends ADiscoverableReferenceProvider implements 
 	 * @inheritDoc
 	 */
 	public function getSupportedSearchProviderIds(): array {
-		if ($this->userId !== null) {
-			$ids = [];
-			$searchIssuesEnabled = $this->config->getUserValue($this->userId, Application::APP_ID, 'search_issues_enabled', '0') === '1';
-			$searchReposEnabled = $this->config->getUserValue($this->userId, Application::APP_ID, 'search_repos_enabled', '0') === '1';
-			if ($searchIssuesEnabled) {
-				$ids[] = 'github-search-issues';
-			}
-			if ($searchReposEnabled) {
-				$ids[] = 'github-search-repos';
-			}
-			return $ids;
-		}
 		return ['github-search-issues', 'github-search-repos'];
-
 	}
 
 	/**
@@ -112,10 +99,7 @@ class GithubReferenceProvider extends ADiscoverableReferenceProvider implements 
 		if (!$adminLinkPreviewEnabled) {
 			return false;
 		}
-		if (preg_match('/^(?:https?:\/\/)?(?:www\.)?github\.com\/[^\/\?]+\/[^\/\?]+\/(issues|pull)\/[0-9]+/i', $referenceText) === 1) {
-			return true;
-		}
-		return false;
+		return preg_match('/^(?:https?:\/\/)?(?:www\.)?github\.com\/[^\/\?]+\/[^\/\?]+\/(issues|pull)\/[0-9]+/i', $referenceText) === 1;
 	}
 
 	/**

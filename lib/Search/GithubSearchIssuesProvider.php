@@ -84,11 +84,16 @@ class GithubSearchIssuesProvider implements IProvider {
 		$offset = $query->getCursor();
 		$offset = $offset ? intval($offset) : 0;
 
-//		$theme = $this->config->getUserValue($user->getUID(), 'accessibility', 'theme', '');
+		$routeFrom = $query->getRoute();
+		$requestedFromSmartPicker = $routeFrom === '' || $routeFrom === 'smart-picker';
+
+		$searchIssuesEnabled = $this->config->getUserValue($user->getUID(), Application::APP_ID, 'search_issues_enabled', '0') === '1';
+		if (!$requestedFromSmartPicker && !$searchIssuesEnabled) {
+			return SearchResult::paginated($this->getName(), [], 0);
+		}
 
 		$accessToken = $this->config->getUserValue($user->getUID(), Application::APP_ID, 'token');
-		$searchIssuesEnabled = $this->config->getUserValue($user->getUID(), Application::APP_ID, 'search_issues_enabled', '0') === '1';
-		if ($accessToken === '' || !$searchIssuesEnabled) {
+		if ($accessToken === '') {
 			return SearchResult::paginated($this->getName(), [], 0);
 		}
 

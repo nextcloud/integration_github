@@ -11,7 +11,7 @@
 
 namespace OCA\Github\Controller;
 
-use OCA\Github\Reference\GithubReferenceProvider;
+use OCA\Github\Reference\GithubIssuePrReferenceProvider;
 use OCP\AppFramework\Http\TemplateResponse;
 use OCP\AppFramework\Services\IInitialState;
 use OCP\IURLGenerator;
@@ -28,15 +28,17 @@ use OCP\PreConditionNotMetException;
 
 class ConfigController extends Controller {
 
-	public function __construct(string $appName,
-								IRequest $request,
-								private IConfig $config,
-								private IURLGenerator $urlGenerator,
-								private IL10N $l,
-								private IInitialState $initialStateService,
-								private GithubAPIService $githubAPIService,
-								private GithubReferenceProvider $githubReferenceProvider,
-								private ?string $userId) {
+	public function __construct(
+		string                                 $appName,
+		IRequest                               $request,
+		private IConfig                        $config,
+		private IURLGenerator                  $urlGenerator,
+		private IL10N                          $l,
+		private IInitialState                  $initialStateService,
+		private GithubAPIService               $githubAPIService,
+		private GithubIssuePrReferenceProvider $githubIssuePrReferenceProvider,
+		private ?string                        $userId
+	) {
 		parent::__construct($appName, $request);
 	}
 
@@ -82,7 +84,7 @@ class ConfigController extends Controller {
 				$result['user_name'] = '';
 			}
 			// connect or disconnect: invalidate the user-related cache
-			$this->githubReferenceProvider->invalidateUserCache($this->userId);
+			$this->githubIssuePrReferenceProvider->invalidateUserCache($this->userId);
 		}
 		return new DataResponse($result);
 	}
@@ -140,7 +142,7 @@ class ConfigController extends Controller {
 				'state' => $state
 			], 'POST');
 			if (isset($result['access_token'])) {
-				$this->githubReferenceProvider->invalidateUserCache($this->userId);
+				$this->githubIssuePrReferenceProvider->invalidateUserCache($this->userId);
 				$accessToken = $result['access_token'];
 				$this->config->setUserValue($this->userId, Application::APP_ID, 'token', $accessToken);
 				$this->config->setUserValue($this->userId, Application::APP_ID, 'token_type', 'oauth');
