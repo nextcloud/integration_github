@@ -22,6 +22,8 @@
 
 namespace OCA\Github\Reference;
 
+use DateTime;
+use Exception;
 use OCP\Collaboration\Reference\ADiscoverableReferenceProvider;
 use OCP\Collaboration\Reference\ISearchableReferenceProvider;
 use OCP\Collaboration\Reference\Reference;
@@ -35,6 +37,7 @@ use OCP\IL10N;
 require_once __DIR__ . '/../../vendor/autoload.php';
 use League\CommonMark\GithubFlavoredMarkdownConverter;
 use OCP\IURLGenerator;
+use Throwable;
 
 class GithubIssuePrReferenceProvider extends ADiscoverableReferenceProvider implements ISearchableReferenceProvider {
 
@@ -128,6 +131,8 @@ class GithubIssuePrReferenceProvider extends ADiscoverableReferenceProvider impl
 						'github_repo_owner' => $owner,
 						'github_repo' => $repo,
 						'github_comment' => $commentInfo,
+						'vcs_comment' => $commentInfo ? $this->getGenericCommentInfo($commentInfo) : null,
+						'vcs_issue' => $this->getGenericIssueInfo($issueInfo),
 					], $issueInfo),
 				);
 				return $reference;
@@ -153,6 +158,8 @@ class GithubIssuePrReferenceProvider extends ADiscoverableReferenceProvider impl
 							'github_repo_owner' => $owner,
 							'github_repo' => $repo,
 							'github_comment' => $commentInfo,
+							'vcs_comment' => $commentInfo ? $this->getGenericCommentInfo($commentInfo) : null,
+							'vcs_pull_request' => $this->getGenericPrInfo($prInfo),
 						], $prInfo),
 					);
 					return $reference;
@@ -161,6 +168,103 @@ class GithubIssuePrReferenceProvider extends ADiscoverableReferenceProvider impl
 		}
 
 		return null;
+	}
+
+	/**
+	 * @param $commentInfo
+	 * @return array
+	 */
+	private function getGenericCommentInfo($commentInfo): array {
+		$info = [
+			'url' => $commentInfo['html_url'] ?? null,
+			'body' => $commentInfo['body'] ?? '',
+		];
+		if (isset($commentInfo['created_at'])) {
+			try {
+				$ts = (new DateTime($commentInfo['created_at']))->getTimestamp();
+				$info['created_at'] = $ts;
+			} catch (Exception | Throwable $e) {
+			}
+		}
+		if (isset($commentInfo['updated_at'])) {
+			try {
+				$ts = (new DateTime($commentInfo['updated_at']))->getTimestamp();
+				$info['updated_at'] = $ts;
+			} catch (Exception | Throwable $e) {
+			}
+		}
+		if (isset($commentInfo['user'], $commentInfo['user']['login'])) {
+			$info['author'] = $commentInfo['user']['login'];
+		}
+
+		return $info;
+	}
+
+	private function getGenericIssueInfo($issueInfo): array {
+		$info = [
+			'id' => $issueInfo['number'] ?? null,
+			'url' => $issueInfo['html_url'] ?? null,
+			'title' => $issueInfo['title'] ?? '',
+			'comment_count' => $issueInfo['comments'] ?? 0,
+			'state' => $issueInfo['state'],
+		];
+
+		if (isset($issueInfo['labels']) && is_array($issueInfo['labels'])) {
+			$info['labels'] = array_map(static function(array $label) {
+				return [
+					'name' => $label['name'],
+					'color' => $label['color'],
+				];
+			}, $issueInfo['labels']);
+		}
+		if (isset($issueInfo['created_at'])) {
+			try {
+				$ts = (new DateTime($issueInfo['created_at']))->getTimestamp();
+				$info['created_at'] = $ts;
+			} catch (Exception | Throwable $e) {
+			}
+		}
+		if (isset($issueInfo['user'], $issueInfo['user']['login'])) {
+			$info['author'] = $issueInfo['user']['login'];
+		}
+
+		return $info;
+	}
+
+	/**
+	 * @param $prInfo
+	 * @return array
+	 */
+	private function getGenericPrInfo($prInfo): array {
+		$info = [
+			'id' => $prInfo['number'] ?? null,
+			'url' => $prInfo['html_url'] ?? null,
+			'title' => $prInfo['title'] ?? '',
+			'comment_count' => $prInfo['comments'] ?? 0,
+			'state' => $prInfo['state'],
+			'draft' => $prInfo['draft'] ?? false,
+		];
+
+		if (isset($prInfo['labels']) && is_array($prInfo['labels'])) {
+			$info['labels'] = array_map(static function(array $label) {
+				return [
+					'name' => $label['name'],
+					'color' => $label['color'],
+				];
+			}, $prInfo['labels']);
+		}
+		if (isset($prInfo['created_at'])) {
+			try {
+				$ts = (new DateTime($prInfo['created_at']))->getTimestamp();
+				$info['created_at'] = $ts;
+			} catch (Exception | Throwable $e) {
+			}
+		}
+		if (isset($prInfo['user'], $prInfo['user']['login'])) {
+			$info['author'] = $prInfo['user']['login'];
+		}
+
+		return $info;
 	}
 
 	/**

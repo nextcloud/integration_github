@@ -136,6 +136,7 @@ class GithubCodeReferenceProvider extends ADiscoverableReferenceProvider {
 							);
 							$info['lines'] = array_slice($contentLines, $firstLineIndex, $lastLineIndex);
 						}
+						$info['vcs_code_permalink'] = $this->getGenericCodeInfo($info);
 					}
 				}
 
@@ -148,6 +149,21 @@ class GithubCodeReferenceProvider extends ADiscoverableReferenceProvider {
 		}
 
 		return null;
+	}
+
+	/**
+	 * @param array $permalinkInfo
+	 * @return array
+	 */
+	private function getGenericCodeInfo(array $permalinkInfo): array {
+		return [
+			'line_begin' => $permalinkInfo['lineBegin'],
+			'line_end' => $permalinkInfo['lineEnd'],
+			'lines' => $permalinkInfo['lines'],
+			'file_url' => $permalinkInfo['html_url'],
+			'file_path' => $permalinkInfo['filePath'],
+			'file_name' => basename($permalinkInfo['filePath']),
+		];
 	}
 
 	/**
@@ -197,7 +213,13 @@ class GithubCodeReferenceProvider extends ADiscoverableReferenceProvider {
 		return null;
 	}
 
-	private function findRefFromPath($owner, $repo, $refAndPath): array {
+	/**
+	 * @param string $owner
+	 * @param string $repo
+	 * @param string $refAndPath
+	 * @return string[]
+	 */
+	private function findRefFromPath(string $owner, string $repo, string $refAndPath): array {
 		$parts = explode('/', $refAndPath);
 
 		// try with first path part (might be the most common winner)

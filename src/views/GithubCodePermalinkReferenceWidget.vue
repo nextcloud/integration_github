@@ -52,12 +52,9 @@
 			</div>
 			<hr>
 			<div
-				v-tooltip.top="{ content: t('integration_github', 'Click to expand/collapse content') }"
-				:class="{
-					'content': true,
-				}"
+				:title="t('integration_github', 'Click to fold/unfold content')"
+				class="content"
 				@click="showShortContent = !showShortContent">
-				<!--pre>{{ textContent }}</pre-->
 				<pre v-highlightjs="textContent"><code :class="{
 					[codeClass]: true,
 					'short-content': showShortContent,
@@ -75,14 +72,19 @@ import GithubIcon from '../components/icons/GithubIcon.vue'
 import { generateUrl } from '@nextcloud/router'
 
 import VueHighlightJS from 'vue-highlightjs'
-import Tooltip from '@nextcloud/vue/dist/Directives/Tooltip.js'
 import Vue from 'vue'
-Vue.directive('tooltip', Tooltip)
 Vue.use(VueHighlightJS)
 
 const extensionToClass = {
 	js: 'javascript',
+	ts: 'typescript',
 	php: 'php',
+	py: 'python',
+	java: 'java',
+	rs: 'rust',
+	go: 'go',
+	c: 'c',
+	cpp: 'cpp',
 }
 
 export default {
