@@ -65,14 +65,11 @@ OC.L10N.register(
     "GitHub API error" : "GitHub API sorunu",
     "Unknown error" : "Bilinmeyen sorun",
     "GitHub connected accounts settings" : "GitHub bağlantılı hesapların ayarları",
-    "Click to expand/collapse content" : "İçeriği genişletmek ya da daraltmak için tıklayın",
     "Line {begin} to {end}" : "{begin} - {end}. satırlar",
     "Line {line}" : "{line}. satır",
     "by {creator}" : "{creator} tarafından oluşturuldu",
     "Author" : "İlgili",
     "Owner" : "Sahibi",
-    "Click to expand comment" : "Yorumu genişletmek için tıklayın",
-    "Click to shrink comment" : "Yorumu daraltmak için tıklayın",
     "Open issue" : "Konu aç",
     "Closed as not planned issue" : "Planlanmamış konu olarak kapatıldı",
     "Closed issue" : "Kapatılmış konu",
@@ -91,6 +88,8 @@ OC.L10N.register(
     "commented {date}" : "{date} zamanında yorum yapıldı",
     "edited {date}" : "{date} zamanında düzenlendi",
     "Assigned to {login}" : "{login} kullanıcısına atandı",
-    "Failed to save GitHub OAuth state" : "GitHub OAuth durumu kaydedilemedi"
+    "Failed to save GitHub OAuth state" : "GitHub OAuth durumu kaydedilemedi",
+    "Click to expand/collapse content" : "İçeriği genişletmek ya da daraltmak için tıklayın",
+    "Click to expand comment" : "Yorumu genişletmek için tıklayın"
 },
 "nplurals=2; plural=(n > 1);");

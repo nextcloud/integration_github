@@ -65,14 +65,11 @@ OC.L10N.register(
     "GitHub API error" : "GitHub API грешка",
     "Unknown error" : "Непозната грешка",
     "GitHub connected accounts settings" : "GitHub подешавања повезаних налога",
-    "Click to expand/collapse content" : "Кликните да проширите/зажмете садржај",
     "Line {begin} to {end}" : "Линија {begin} до {end}",
     "Line {line}" : "Линија {line}",
     "by {creator}" : "од {creator}",
     "Author" : "Аутор",
     "Owner" : "Власник",
-    "Click to expand comment" : "Кликните да проширите коментар",
-    "Click to shrink comment" : "Кликните да сажмете садржај",
     "Open issue" : "Отвори проблем",
     "Closed as not planned issue" : "Затвори као непланирани проблем",
     "Closed issue" : "Затворени проблем",
@@ -91,6 +88,8 @@ OC.L10N.register(
     "commented {date}" : "прокоментарисао је {date}",
     "edited {date}" : "уредио је {date}",
     "Assigned to {login}" : "Додељено је {login}",
-    "Failed to save GitHub OAuth state" : "Није успело чување GitHub OAuth стања"
+    "Failed to save GitHub OAuth state" : "Није успело чување GitHub OAuth стања",
+    "Click to expand/collapse content" : "Кликните да проширите/зажмете садржај",
+    "Click to expand comment" : "Кликните да проширите коментар"
 },
 "nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);");

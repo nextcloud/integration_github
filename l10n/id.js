@@ -65,14 +65,11 @@ OC.L10N.register(
     "GitHub API error" : "Terjadi kesalahan API GitHub",
     "Unknown error" : "Kesalahan tidak diketahui",
     "GitHub connected accounts settings" : "Setelan akun GitHub yang terhubung",
-    "Click to expand/collapse content" : "Klik untuk membuka/menutup konten",
     "Line {begin} to {end}" : "Baris {begin} ke {end}",
     "Line {line}" : "Baris {line}",
     "by {creator}" : "oleh {creator}",
     "Author" : "Penulis",
     "Owner" : "Owner",
-    "Click to expand comment" : "Klik untuk membuka komentar",
-    "Click to shrink comment" : "Klik untuk menutup komentar",
     "Open issue" : "Isu terbuka",
     "Closed as not planned issue" : "Ditutup sebagai isu yang tidak direncanakan",
     "Closed issue" : "Isu tertutup",
@@ -91,6 +88,8 @@ OC.L10N.register(
     "commented {date}" : "berkomentar {date}",
     "edited {date}" : "menyunting {date}",
     "Assigned to {login}" : "Ditugaskan kepada {login}",
-    "Failed to save GitHub OAuth state" : "Gagal menyimpan keadaan OAuth GitHub"
+    "Failed to save GitHub OAuth state" : "Gagal menyimpan keadaan OAuth GitHub",
+    "Click to expand/collapse content" : "Klik untuk membuka/menutup konten",
+    "Click to expand comment" : "Klik untuk membuka komentar"
 },
 "nplurals=1; plural=0;");

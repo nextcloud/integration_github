@@ -49,8 +49,8 @@ OC.L10N.register(
     "Unknown error" : "Error desconegut",
     "Author" : "Autor/a",
     "Owner" : "Propietari",
-    "Click to expand comment" : "Feu clic per ampliar el comentari",
     "Draft" : "Esborrany",
-    "Failed to save GitHub OAuth state" : "No s'ha pogut desar l'estat d'OAuth de GitHub"
+    "Failed to save GitHub OAuth state" : "No s'ha pogut desar l'estat d'OAuth de GitHub",
+    "Click to expand comment" : "Feu clic per ampliar el comentari"
 },
 "nplurals=2; plural=(n != 1);");

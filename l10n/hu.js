@@ -65,14 +65,11 @@ OC.L10N.register(
     "GitHub API error" : "GitHub API hiba",
     "Unknown error" : "Ismeretlen hiba",
     "GitHub connected accounts settings" : "GitHubhoz kapcsolt fiókok beállításai",
-    "Click to expand/collapse content" : "Kattintson a tartalom kibontásához",
     "Line {begin} to {end}" : "{begin}. – {end}. sor",
     "Line {line}" : "{line}. sor",
     "by {creator}" : "létrehozta: {creator}",
     "Author" : "Szerző",
     "Owner" : "Tulajdonos",
-    "Click to expand comment" : "Kattintson a megjegyzés kibontásához",
-    "Click to shrink comment" : "Kattintson a megjegyzés összecsukásához",
     "Open issue" : "Nyitott jegy",
     "Closed as not planned issue" : "Lezárva nem tervezett jegyként",
     "Closed issue" : "Lezárt jegy",
@@ -91,6 +88,8 @@ OC.L10N.register(
     "commented {date}" : "hozzászólva: {date}",
     "edited {date}" : "szerkesztve: {date}",
     "Assigned to {login}" : "Hozzárendelve a következőhöz: {login}",
-    "Failed to save GitHub OAuth state" : "A GitHub OAuth állapot mentése sikertelen"
+    "Failed to save GitHub OAuth state" : "A GitHub OAuth állapot mentése sikertelen",
+    "Click to expand/collapse content" : "Kattintson a tartalom kibontásához",
+    "Click to expand comment" : "Kattintson a megjegyzés kibontásához"
 },
 "nplurals=2; plural=(n != 1);");

@@ -63,13 +63,11 @@ OC.L10N.register(
     "GitHub API error" : "Błąd interfejsu API GitHub",
     "Unknown error" : "Nieznany błąd",
     "GitHub connected accounts settings" : "Ustawienia kont połączonych z GitHubem",
-    "Click to expand/collapse content" : "Kliknij, aby rozwinąć/zwinąć zawartość",
     "Line {begin} to {end}" : "Kolejka {begin} do {end}",
     "Line {line}" : "Kolejka {line}",
     "by {creator}" : "przez {creator}",
     "Author" : "Autor",
     "Owner" : "Właściciel",
-    "Click to expand comment" : "Kliknij, aby rozwinąć komentarz",
     "Open issue" : "Otwarty problem",
     "Closed as not planned issue" : "Zamknięty jako nieplanowany problem",
     "Closed issue" : "Zamknięty problem",
@@ -88,6 +86,8 @@ OC.L10N.register(
     "commented {date}" : "skomentowano {date}",
     "edited {date}" : "edytowano {date}",
     "Assigned to {login}" : "Przypisany do {login}",
-    "Failed to save GitHub OAuth state" : "Nie udało się zapisać statusu OAuth GitHub"
+    "Failed to save GitHub OAuth state" : "Nie udało się zapisać statusu OAuth GitHub",
+    "Click to expand/collapse content" : "Kliknij, aby rozwinąć/zwinąć zawartość",
+    "Click to expand comment" : "Kliknij, aby rozwinąć komentarz"
 },
 "nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);");
