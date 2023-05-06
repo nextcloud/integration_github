@@ -65,14 +65,11 @@ OC.L10N.register(
     "GitHub API error" : "GitHub API 錯誤",
     "Unknown error" : "未知的錯誤",
     "GitHub connected accounts settings" : "GitHub 已連結帳號設定",
-    "Click to expand/collapse content" : "點擊以展開/折疊留言",
     "Line {begin} to {end}" : "行 {begin} 到 {end}",
     "Line {line}" : "行 {line}",
     "by {creator}" : "由 {creator} 建立",
     "Author" : "作者",
     "Owner" : "擁有者",
-    "Click to expand comment" : "點擊展開留言",
-    "Click to shrink comment" : "點擊縮小留言",
     "Open issue" : "開啟問題",
     "Closed as not planned issue" : "以「未計畫」關閉問題",
     "Closed issue" : "已關閉的問題",
@@ -91,6 +88,8 @@ OC.L10N.register(
     "commented {date}" : "於 {date} 被評論",
     "edited {date}" : "編輯於 {date}",
     "Assigned to {login}" : "指派給 {login}",
-    "Failed to save GitHub OAuth state" : "儲存 GitHub OAuth 狀態失敗"
+    "Failed to save GitHub OAuth state" : "儲存 GitHub OAuth 狀態失敗",
+    "Click to expand/collapse content" : "點擊以展開/折疊留言",
+    "Click to expand comment" : "點擊展開留言"
 },
 "nplurals=1; plural=0;");

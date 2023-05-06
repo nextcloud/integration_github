@@ -65,14 +65,11 @@ OC.L10N.register(
     "GitHub API error" : "Erreur de l'API GitHub",
     "Unknown error" : "Erreur inconnue",
     "GitHub connected accounts settings" : "Paramètres de comptes connectés pour GitHub",
-    "Click to expand/collapse content" : "Cliquer pour déplier/replier le contenu",
     "Line {begin} to {end}" : "Lignes {begin} à {end}",
     "Line {line}" : "Ligne {line}",
     "by {creator}" : "par {creator}",
     "Author" : "Auteur",
     "Owner" : "Propriétaire",
-    "Click to expand comment" : "Cliquer pour déplier le commentaire",
-    "Click to shrink comment" : "Cliquer pour replier le commentaire",
     "Open issue" : "Issue ouverte",
     "Closed as not planned issue" : "Issue fermée comme non planifiée",
     "Closed issue" : "Issue fermée",
@@ -91,6 +88,8 @@ OC.L10N.register(
     "commented {date}" : "commenté le {date}",
     "edited {date}" : "édité le {date}",
     "Assigned to {login}" : "Assigné à {login}",
-    "Failed to save GitHub OAuth state" : "Échec de l'enregistrement de l'état OAuth de GitHub"
+    "Failed to save GitHub OAuth state" : "Échec de l'enregistrement de l'état OAuth de GitHub",
+    "Click to expand/collapse content" : "Cliquer pour déplier/replier le contenu",
+    "Click to expand comment" : "Cliquer pour déplier le commentaire"
 },
 "nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;");

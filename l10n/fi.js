@@ -59,7 +59,6 @@ OC.L10N.register(
     "by {creator}" : "tehnyt {creator}",
     "Author" : "Tekijä",
     "Owner" : "Omistaja",
-    "Click to expand comment" : "Napsauta laajentaaksesi kommentin",
     "Open issue" : "Avaa issue",
     "Closed as not planned issue" : "Suljettu ei suunniteltuna issuena",
     "Closed issue" : "Suljettu issue",
@@ -74,6 +73,7 @@ OC.L10N.register(
     "was merged {relativeDate}" : "yhdistettiin {relativeDate}",
     "commented {date}" : "kommentoitu {date}",
     "edited {date}" : "muokattu {date}",
-    "Failed to save GitHub OAuth state" : "GitHubin OAuth-tilan tallennus epäonnistui"
+    "Failed to save GitHub OAuth state" : "GitHubin OAuth-tilan tallennus epäonnistui",
+    "Click to expand comment" : "Napsauta laajentaaksesi kommentin"
 },
 "nplurals=2; plural=(n != 1);");

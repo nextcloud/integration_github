@@ -63,14 +63,11 @@
     "GitHub API error" : "Грешка в API на GitHub",
     "Unknown error" : "Неизвестна грешка",
     "GitHub connected accounts settings" : "Настройки на профили, свързани с GitHub",
-    "Click to expand/collapse content" : "Кликване за разширяване/свиване на съдържанието",
     "Line {begin} to {end}" : "Ред от {begin} до {end}",
     "Line {line}" : "Ред {line}",
     "by {creator}" : "от {creator}",
     "Author" : "Автор",
     "Owner" : "Собственик",
-    "Click to expand comment" : "Кликване за разширяване на коментара",
-    "Click to shrink comment" : "Кликване за свиване на коментара",
     "Open issue" : "Отваряне на проблем /въпрос/",
     "Closed as not planned issue" : "Затворен като непланиран проблем /въпрос/",
     "Closed issue" : "Приключен проблем /въпрос/",
@@ -89,6 +86,8 @@
     "commented {date}" : "коментира {date}",
     "edited {date}" : "редактиран на {дата}",
     "Assigned to {login}" : "Зачислено на {login}",
-    "Failed to save GitHub OAuth state" : "Неуспешно записване на състоянието на GitHub OAuth"
+    "Failed to save GitHub OAuth state" : "Неуспешно записване на състоянието на GitHub OAuth",
+    "Click to expand/collapse content" : "Кликване за разширяване/свиване на съдържанието",
+    "Click to expand comment" : "Кликване за разширяване на коментара"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

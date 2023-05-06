@@ -63,7 +63,6 @@ OC.L10N.register(
     "by {creator}" : "od {creator}",
     "Author" : "Autor",
     "Owner" : "Vlastník",
-    "Click to expand comment" : "Kliknite pre zobrazenie komentára",
     "Open issue" : "Otvoriť problém",
     "Closed as not planned issue" : "Zatvoriť ako neplánovaný problém",
     "Closed issue" : "Zavretý problém",
@@ -82,6 +81,7 @@ OC.L10N.register(
     "commented {date}" : "komentované v {date}",
     "edited {date}" : "editované v {date}",
     "Assigned to {login}" : "Priradené k {login}",
-    "Failed to save GitHub OAuth state" : "Nepodarilo sa uložiť stav OAuth GitHubu"
+    "Failed to save GitHub OAuth state" : "Nepodarilo sa uložiť stav OAuth GitHubu",
+    "Click to expand comment" : "Kliknite pre zobrazenie komentára"
 },
 "nplurals=4; plural=(n % 1 == 0 && n == 1 ? 0 : n % 1 == 0 && n >= 2 && n <= 4 ? 1 : n % 1 != 0 ? 2: 3);");

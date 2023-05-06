@@ -63,14 +63,11 @@
     "GitHub API error" : "GitHub API-Fehler",
     "Unknown error" : "Unbekannter Fehler",
     "GitHub connected accounts settings" : "GitHub-Einstellungen für verbundene Konten",
-    "Click to expand/collapse content" : "Klicken, um den Inhalt zu auszuklappen/ einzuklappen",
     "Line {begin} to {end}" : "Zeile {begin} bis {end}",
     "Line {line}" : "Zeile {line}",
     "by {creator}" : "von {creator}",
     "Author" : "Autor",
     "Owner" : "Besitzer",
-    "Click to expand comment" : "Klicken, um den Kommentar zu erweitern",
-    "Click to shrink comment" : "Klicken, um den Kommentar zu verkleinern",
     "Open issue" : "Thema öffnen",
     "Closed as not planned issue" : "Als nicht geplantes Thema schließen",
     "Closed issue" : "Geschlossenes Thema",
@@ -89,6 +86,8 @@
     "commented {date}" : "Kommentiert {date}",
     "edited {date}" : "Bearbeitet {date}",
     "Assigned to {login}" : "Zugewiesen an {login}",
-    "Failed to save GitHub OAuth state" : "Fehler beim Speichern des GitHub OAuth-Status"
+    "Failed to save GitHub OAuth state" : "Fehler beim Speichern des GitHub OAuth-Status",
+    "Click to expand/collapse content" : "Klicken, um den Inhalt zu auszuklappen/ einzuklappen",
+    "Click to expand comment" : "Klicken, um den Kommentar zu erweitern"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

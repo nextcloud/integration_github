@@ -40,7 +40,7 @@ OC.L10N.register(
     "by {creator}" : "av {creator}",
     "Author" : "Upphovsman",
     "Owner" : "Ägare",
-    "Click to expand comment" : "Klicka för att utöka kommentaren",
-    "Draft" : "Utkast"
+    "Draft" : "Utkast",
+    "Click to expand comment" : "Klicka för att utöka kommentaren"
 },
 "nplurals=2; plural=(n != 1);");

@@ -51,11 +51,11 @@
     "Unknown error" : "Neznana napaka",
     "Author" : "Avtor",
     "Owner" : "Lastnik",
-    "Click to expand comment" : "Kliknite za razširitev opombe",
     "Open issue" : "Odpri nalogo",
     "Closed issue" : "Zapri nalogo",
     "Unknown state" : "Neznano stanje",
     "Draft" : "Osnutek",
-    "Failed to save GitHub OAuth state" : "Shranjevanje stanja GitHub OAuth je spodletelo"
+    "Failed to save GitHub OAuth state" : "Shranjevanje stanja GitHub OAuth je spodletelo",
+    "Click to expand comment" : "Kliknite za razširitev opombe"
 },"pluralForm" :"nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);"
 }

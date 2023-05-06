@@ -65,13 +65,11 @@ OC.L10N.register(
     "GitHub API error" : "GitHub API errorea",
     "Unknown error" : "Errore ezezaguna",
     "GitHub connected accounts settings" : "GitHub konektatutako kontuen ezarpenak",
-    "Click to expand/collapse content" : "Egin klik edukia zabaltzeko/tolesteko",
     "Line {begin} to {end}" : "{begin}. lerrotik {end}.era",
     "Line {line}" : "{line}. lerroa",
     "by {creator}" : "{creator}-(e)k sortua",
     "Author" : "Egilea",
     "Owner" : "Jabea",
-    "Click to expand comment" : "Egin klik iruzkina handitzeko",
     "Open issue" : "Arazo irekia",
     "Closed as not planned issue" : "Itxita, aurreikusi gabeko arazoagatik",
     "Closed issue" : "Arazo itxia",
@@ -90,6 +88,8 @@ OC.L10N.register(
     "commented {date}" : "iruzkin-data {date}",
     "edited {date}" : "edizio-data {date}",
     "Assigned to {login}" : "{login}(e)ri esleituta",
-    "Failed to save GitHub OAuth state" : "GitHub OAuth egoera gordetzeak huts egin du"
+    "Failed to save GitHub OAuth state" : "GitHub OAuth egoera gordetzeak huts egin du",
+    "Click to expand/collapse content" : "Egin klik edukia zabaltzeko/tolesteko",
+    "Click to expand comment" : "Egin klik iruzkina handitzeko"
 },
 "nplurals=2; plural=(n != 1);");
