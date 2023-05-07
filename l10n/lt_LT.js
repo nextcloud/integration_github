@@ -5,6 +5,7 @@ OC.L10N.register(
     "Error getting OAuth access token" : "Klaida gaunant „OAuth“ prieigos raktą",
     "Error during OAuth exchanges" : "Klaida „OAuth“ apsikeitimo metu",
     "GitHub notifications" : "„GitHub“ pranešimai",
+    "More notifications" : "Daugiau pranešimų",
     "Comment" : "Komentaras",
     "GitHub repositories" : "„GitHub“ saugyklos",
     "Bad HTTP method" : "Blogas HTTP metodas",
@@ -21,6 +22,7 @@ OC.L10N.register(
     "Connected to GitHub!" : "Prisijungta prie „GitHub“!",
     "GitHub options saved" : "„GitHub“ parinktys įrašytos",
     "Failed to save GitHub options" : "Nepavyko įrašyti „GitHub“ parinkčių",
+    "Loading data" : "Įkeliami duomenys",
     "Mark as read" : "Žymėti kaip skaitytą",
     "Unsubscribe" : "Atsisakyti prenumeratos",
     "No GitHub account connected" : "Neprijungta jokia „GitHub“ paskyra",
@@ -32,6 +34,7 @@ OC.L10N.register(
     "Unknown error" : "Nežinoma klaida",
     "Author" : "Autorius",
     "Owner" : "Savininkas",
+    "Unknown state" : "Nežinoma būsena",
     "Draft" : "Juodraštis"
 },
 "nplurals=4; plural=(n % 10 == 1 && (n % 100 > 19 || n % 100 < 11) ? 0 : (n % 10 >= 2 && n % 10 <=9) && (n % 100 > 19 || n % 100 < 11) ? 1 : n % 1 != 0 ? 2: 3);");
