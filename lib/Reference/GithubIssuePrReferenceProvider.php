@@ -1,8 +1,8 @@
 <?php
 /**
- * @copyright Copyright (c) 2022 Julien Veyssier <eneiluj@posteo.net>
+ * @copyright Copyright (c) 2022 Julien Veyssier <julien-nc@posteo.net>
  *
- * @author Julien Veyssier <eneiluj@posteo.net>
+ * @author Julien Veyssier <julien-nc@posteo.net>
  *
  * @license GNU AGPL version 3 or any later version
  *
@@ -171,10 +171,10 @@ class GithubIssuePrReferenceProvider extends ADiscoverableReferenceProvider impl
 	}
 
 	/**
-	 * @param $commentInfo
+	 * @param array $commentInfo
 	 * @return array
 	 */
-	private function getGenericCommentInfo($commentInfo): array {
+	private function getGenericCommentInfo(array $commentInfo): array {
 		$info = [
 			'url' => $commentInfo['html_url'] ?? null,
 			'body' => $commentInfo['body'] ?? '',
@@ -200,7 +200,11 @@ class GithubIssuePrReferenceProvider extends ADiscoverableReferenceProvider impl
 		return $info;
 	}
 
-	private function getGenericIssueInfo($issueInfo): array {
+	/**
+	 * @param array $issueInfo
+	 * @return array
+	 */
+	private function getGenericIssueInfo(array $issueInfo): array {
 		$info = [
 			'id' => $issueInfo['number'] ?? null,
 			'url' => $issueInfo['html_url'] ?? null,
@@ -232,10 +236,10 @@ class GithubIssuePrReferenceProvider extends ADiscoverableReferenceProvider impl
 	}
 
 	/**
-	 * @param $prInfo
+	 * @param array $prInfo
 	 * @return array
 	 */
-	private function getGenericPrInfo($prInfo): array {
+	private function getGenericPrInfo(array $prInfo): array {
 		$info = [
 			'id' => $prInfo['number'] ?? null,
 			'url' => $prInfo['html_url'] ?? null,
