@@ -246,6 +246,7 @@ class GithubIssuePrReferenceProvider extends ADiscoverableReferenceProvider impl
 			'title' => $prInfo['title'] ?? '',
 			'comment_count' => $prInfo['comments'] ?? 0,
 			'state' => $prInfo['state'],
+			'merged' => $prInfo['merged'] ?? false,
 			'draft' => $prInfo['draft'] ?? false,
 		];
 
