@@ -13,6 +13,7 @@ use OCA\Github\Listener\ContentSecurityPolicyListener;
 use OCA\Github\Listener\GithubReferenceListener;
 use OCA\Github\Reference\GithubCodeReferenceProvider;
 use OCA\Github\Reference\GithubIssuePrReferenceProvider;
+use OCP\AppFramework\IAppContainer;
 use OCP\Collaboration\Reference\RenderReferenceEvent;
 use OCP\IConfig;
 use OCP\IL10N;
@@ -33,6 +34,9 @@ use OCP\Security\CSP\AddContentSecurityPolicyEvent;
 class Application extends App implements IBootstrap {
 
 	public const APP_ID = 'integration_github';
+
+	private IAppContainer $container;
+	private IConfig $config;
 
 	public function __construct(array $urlParams = []) {
 		parent::__construct(self::APP_ID, $urlParams);
