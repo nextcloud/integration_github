@@ -20,9 +20,11 @@
  */
 
 import { registerWidget } from '@nextcloud/vue/dist/Components/NcRichText.js'
+import { linkTo } from '@nextcloud/router'
+import { getRequestToken } from '@nextcloud/auth'
 
-__webpack_nonce__ = btoa(OC.requestToken) // eslint-disable-line
-__webpack_public_path__ = OC.linkTo('integration_github', 'js/') // eslint-disable-line
+__webpack_nonce__ = btoa(getRequestToken()) // eslint-disable-line
+__webpack_public_path__ = linkTo('integration_github', 'js/') // eslint-disable-line
 
 registerWidget('integration_github_issue_pr', async (el, { richObjectType, richObject, accessible }) => {
 	const { default: Vue } = await import(/* webpackChunkName: "reference-issue-lazy" */'vue')
