@@ -43,7 +43,7 @@ OC.L10N.register(
     "GitHub options saved" : "Gardáronse as opcións de GitHub",
     "Failed to save GitHub options" : "Produciuse un fallo ao gardar as opcións de GitHub.",
     "Mark as read" : "Marcar como lido",
-    "Unsubscribe" : "Desubscribir",
+    "Unsubscribe" : "Cancelar a subscrición",
     "No GitHub account connected" : "Non hai ningunha conta de GitHub conectada",
     "Error connecting to GitHub" : "Produciuse un erro ao conectar con GitHub",
     "No GitHub notifications!" : "Non hai notificacións de GitHub.",
