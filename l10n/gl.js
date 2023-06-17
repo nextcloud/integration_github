@@ -24,7 +24,7 @@ OC.L10N.register(
     "Client ID of your GitHub application" : "ID do cliente da súa aplicación de GitHub",
     "Client secret" : "Segredo do cliente",
     "Client secret of your GitHub application" : "Segredo do cliente da súa aplicación de GitHub",
-    "Use a popup to authenticate" : "Use unha ventá emerxente para autenticarse",
+    "Use a popup to authenticate" : "Use unha xanela emerxente para autenticarse",
     "GitHub admin options saved" : "Gardáronse as opcións de administración de GitHub",
     "Failed to save GitHub admin options" : "Produciuse un fallo ao gardar as opcións de administración de GitHub.",
     "When you create a personal access token yourself, give it at least \"read:user\", \"user:email\" and \"notifications\" permissions." : "Cando vostede cree un testemuño de acceso, déalle polo menos os permisos «read:user», «user:email» e «notifications».",
