@@ -14,12 +14,12 @@ OC.L10N.register(
     "Connected accounts" : "Contas conectadas",
     "GitHub integration" : "Integración de GitHub",
     "Integration of GitHub software development management service" : "Integración do servizo de xestión de desenvolvemento de software GitHub",
-    "If you want to allow your Nextcloud users to use OAuth to authenticate to https://github.com, create an OAuth application in your GitHub settings." : "Se quere permitir que os seus usuarios do Nextcloud usen OAuth para autenticarse en https://github.com, cree unha aplicación OAuth nos axustes de GitHub.",
+    "If you want to allow your Nextcloud users to use OAuth to authenticate to https://github.com, create an OAuth application in your GitHub settings." : "Se quere permitir que os seus usuarios de Nextcloud usen OAuth para autenticarse en https://github.com, cree unha aplicación OAuth nos axustes de GitHub.",
     "GitHub OAuth settings" : "Axustes do OAuth de GitHub",
-    "Set \"Application name\", \"Homepage URL\" and \"Application description\" to values that will make sense to your Nextcloud users as they will see them when connecting to GitHub using your OAuth app." : "Estabeleza o «Nome da aplicación», «URL de inicio» e a «'Descrición da aplicación» a valores que teñán sentido para os seus usuarios do Nextcloud, xa que os verán cando se conecten a GitHub usando a súa aplicación OAuth.",
+    "Set \"Application name\", \"Homepage URL\" and \"Application description\" to values that will make sense to your Nextcloud users as they will see them when connecting to GitHub using your OAuth app." : "Estabeleza o «Nome da aplicación», «URL de inicio» e a «'Descrición da aplicación» a valores que teñán sentido para os seus usuarios de Nextcloud, xa que os verán cando se conecten a GitHub usando a súa aplicación OAuth.",
     "Make sure you set the \"Authorization callback URL\" to" : "Asegúrese de estabelecer o «URL de devolución de chamada de autorización» como",
     "Put the OAuth app \"Client ID\" and \"Client secret\" below." : "Poña  o «ID de cliente» e o «Segredo do cliente» da aplicación OAuth a seguir.",
-    "Your Nextcloud users will then see a \"Connect to GitHub\" button in their personal settings." : "Os seus usuarios do Nextcloud verán entón un botón «Conectar con GitHub» nos seus axustes persoais.",
+    "Your Nextcloud users will then see a \"Connect to GitHub\" button in their personal settings." : "Os seus usuarios de Nextcloud verán entón un botón «Conectar con GitHub» nos seus axustes persoais.",
     "Client ID" : "ID do cliente",
     "Client ID of your GitHub application" : "ID do cliente da súa aplicación de GitHub",
     "Client secret" : "Segredo do cliente",
@@ -54,6 +54,7 @@ OC.L10N.register(
     "Author" : "Autor",
     "Owner" : "Propietario",
     "Draft" : "Borrador",
-    "Failed to save GitHub OAuth state" : "Produciuse un fallo ao gardar o estado do OAuth de GitHub"
+    "Failed to save GitHub OAuth state" : "Produciuse un fallo ao gardar o estado do OAuth de GitHub",
+    "Click to expand comment" : "Prema para ampliar o comentario"
 },
 "nplurals=2; plural=(n != 1);");
