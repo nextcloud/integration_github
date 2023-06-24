@@ -12,6 +12,7 @@ OC.L10N.register(
     "Client ID" : "معرف العميل",
     "Client secret" : "كلمة سر العميل",
     "Use a popup to authenticate" : "استخدم النافذة المنبثقة للتعريف عن نفسك ",
+    "Enable navigation link" : "تميكن رابط التنقُّل",
     "Connected as {user}" : "متصل بصفته {user}",
     "Mark as read" : "تمييز كمقروء",
     "Unknown error" : "خطأ غير معروف",
