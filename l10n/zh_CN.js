@@ -64,6 +64,7 @@ OC.L10N.register(
     "Open issue" : "开启议题",
     "Closed issue" : "已关闭的议题",
     "Draft" : "草稿",
-    "Failed to save GitHub OAuth state" : "保存GitHub OAuth状态失败"
+    "Failed to save GitHub OAuth state" : "保存GitHub OAuth状态失败",
+    "Click to expand comment" : "点击展开评论"
 },
 "nplurals=1; plural=0;");
