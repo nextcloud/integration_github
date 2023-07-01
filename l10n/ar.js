@@ -16,6 +16,7 @@ OC.L10N.register(
     "Connected as {user}" : "متصل بصفته {user}",
     "Mark as read" : "تمييز كمقروء",
     "Unknown error" : "خطأ غير معروف",
+    "Author" : "الكاتب",
     "Owner" : "المالك",
     "Click to expand comment" : "إضغط للتوسع في الملاحظات"
 },
