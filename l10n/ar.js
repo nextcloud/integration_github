@@ -2,6 +2,7 @@ OC.L10N.register(
     "integration_github",
     {
     "GitHub" : "غيت هب",
+    "Error getting OAuth access token" : "حدث خطأ أثناء محاولة الحصول على أَمَارَة token للتصديق المفتوح OAuth",
     "Error during OAuth exchanges" : "خطأ أثناء تبادل OAuth.",
     "GitHub notifications" : "الإشعارات العامة",
     "Comment" : "تعليق",
