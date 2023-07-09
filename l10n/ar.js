@@ -60,6 +60,7 @@ OC.L10N.register(
     "GitHub connected accounts settings" : "إعدادات حسابات جيت هب المتصلة",
     "Author" : "الكاتب",
     "Owner" : "المالك",
+    "Draft" : "مسودة",
     "Failed to save GitHub OAuth state" : "فشل حفظ حالة GitHub OAuth",
     "Click to expand comment" : "إضغط للتوسع في الملاحظات"
 },
