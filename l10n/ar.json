@@ -58,6 +58,7 @@
     "GitHub connected accounts settings" : "إعدادات حسابات جيت هب المتصلة",
     "Author" : "الكاتب",
     "Owner" : "المالك",
+    "Draft" : "مسودة",
     "Failed to save GitHub OAuth state" : "فشل حفظ حالة GitHub OAuth",
     "Click to expand comment" : "إضغط للتوسع في الملاحظات"
 },"pluralForm" :"nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;"
