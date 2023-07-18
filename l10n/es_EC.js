@@ -1,6 +1,7 @@
 OC.L10N.register(
     "integration_github",
     {
+    "GitHub" : "GitHub",
     "Comment" : "Comentario",
     "Client ID" : "ID del cliente",
     "Client secret" : "Secreto del cliente",
