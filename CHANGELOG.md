@@ -6,6 +6,18 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## 2.0.5 – 2023-07-20
+
+### Changed
+
+- Make the picker work even if the search provider is disabled @julien-nc
+- Add information in the link preview rich object for future clients implementation of the smart picker @julien-nc
+- do not use OC functions/vars anymore @julien-nc
+
+### Fixed
+
+- Remove warning in Application.php @julien-nc
+
 ## 2.0.4 – 2023-04-26
 
 ### Fixed
