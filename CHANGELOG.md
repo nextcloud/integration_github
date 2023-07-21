@@ -6,6 +6,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## 2.0.6 – 2023-07-21
+
+### Fixed
+
+- handle missing information in link preview rich objects @julien-nc
+
 ## 2.0.5 – 2023-07-20
 
 ### Changed
