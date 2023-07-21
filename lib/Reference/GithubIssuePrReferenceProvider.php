@@ -210,7 +210,7 @@ class GithubIssuePrReferenceProvider extends ADiscoverableReferenceProvider impl
 			'url' => $issueInfo['html_url'] ?? null,
 			'title' => $issueInfo['title'] ?? '',
 			'comment_count' => $issueInfo['comments'] ?? 0,
-			'state' => $issueInfo['state'],
+			'state' => $issueInfo['state'] ?? null,
 		];
 
 		if (isset($issueInfo['labels']) && is_array($issueInfo['labels'])) {
@@ -245,7 +245,7 @@ class GithubIssuePrReferenceProvider extends ADiscoverableReferenceProvider impl
 			'url' => $prInfo['html_url'] ?? null,
 			'title' => $prInfo['title'] ?? '',
 			'comment_count' => $prInfo['comments'] ?? 0,
-			'state' => $prInfo['state'],
+			'state' => $prInfo['state'] ?? null,
 			'merged' => $prInfo['merged'] ?? false,
 			'draft' => $prInfo['draft'] ?? false,
 		];

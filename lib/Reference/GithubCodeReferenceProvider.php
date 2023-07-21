@@ -157,8 +157,8 @@ class GithubCodeReferenceProvider extends ADiscoverableReferenceProvider {
 	 */
 	private function getGenericCodeInfo(array $permalinkInfo): array {
 		return [
-			'line_begin' => $permalinkInfo['lineBegin'],
-			'line_end' => $permalinkInfo['lineEnd'],
+			'line_begin' => $permalinkInfo['lineBegin'] ?? 0,
+			'line_end' => $permalinkInfo['lineEnd'] ?? 0,
 			'lines' => $permalinkInfo['lines'],
 			'file_url' => $permalinkInfo['html_url'],
 			'file_path' => $permalinkInfo['filePath'],
