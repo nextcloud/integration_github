@@ -63,7 +63,7 @@ OC.L10N.register(
     "Successfully unsubscribed" : "Desubscrito satisfactoriamente",
     "Failed to edit GitHub notification" : "Produciuse un fallo ao editar a notificación de GitHub",
     "GitHub API error" : "Produciuse un erro na API de GitHub",
-    "Unknown error" : "Erro descoñecido",
+    "Unknown error" : "Produciuse un erro descoñecido",
     "GitHub connected accounts settings" : "Axustes das contas conectadas de GitHub",
     "Click to fold/unfold content" : "Prema para contraer/despregar o contido",
     "Line {begin} to {end}" : "Liña {begin} a {end}",
