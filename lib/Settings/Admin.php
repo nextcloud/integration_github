@@ -20,6 +20,7 @@ class Admin implements ISettings {
 		$clientID = $this->config->getAppValue(Application::APP_ID, 'client_id');
 		$clientSecret = $this->config->getAppValue(Application::APP_ID, 'client_secret');
 		$usePopup = $this->config->getAppValue(Application::APP_ID, 'use_popup', '0');
+		$adminDashboardEnabled = $this->config->getAppValue(Application::APP_ID, 'dashboard_enabled', '1') === '1';
 		$adminLinkPreviewEnabled = $this->config->getAppValue(Application::APP_ID, 'link_preview_enabled', '1') === '1';
 		$defaultLinkToken = $this->config->getAppValue(Application::APP_ID, 'default_link_token');
 		$allowDefaultTokenToAnonymous = $this->config->getAppValue(Application::APP_ID, 'allow_default_link_token_to_anonymous', '0') === '1';
@@ -29,6 +30,7 @@ class Admin implements ISettings {
 			'client_id' => $clientID,
 			'client_secret' => $clientSecret,
 			'use_popup' => ($usePopup === '1'),
+			'dashboard_enabled' => $adminDashboardEnabled,
 			'link_preview_enabled' => $adminLinkPreviewEnabled,
 			'default_link_token' => $defaultLinkToken,
 			'allow_default_link_token_to_anonymous' => $allowDefaultTokenToAnonymous,

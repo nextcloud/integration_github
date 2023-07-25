@@ -47,7 +47,9 @@ class Application extends App implements IBootstrap {
 	}
 
 	public function register(IRegistrationContext $context): void {
-		$context->registerDashboardWidget(GithubWidget::class);
+		if ($this->config->getAppValue(self::APP_ID, 'dashboard_enabled', '1') === '1') {
+			$context->registerDashboardWidget(GithubWidget::class);
+		}
 
 		$context->registerSearchProvider(GithubSearchIssuesProvider::class);
 		$context->registerSearchProvider(GithubSearchReposProvider::class);

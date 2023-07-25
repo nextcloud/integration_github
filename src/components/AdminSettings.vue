@@ -91,6 +91,11 @@
 				@update:checked="onCheckboxChanged($event, 'link_preview_enabled')">
 				{{ t('integration_github', 'Enable GitHub link previews') }}
 			</NcCheckboxRadioSwitch>
+			<NcCheckboxRadioSwitch
+				:checked="state.dashboard_enabled"
+				@update:checked="onCheckboxChanged($event, 'dashboard_enabled')">
+				{{ t('integration_github', 'Enable GitHub dashboard widget') }}
+			</NcCheckboxRadioSwitch>
 		</div>
 	</div>
 </template>
