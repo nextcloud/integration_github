@@ -31,8 +31,8 @@
     "personal access token" : "Persönliches Zugriffstoken",
     "Use default access token for anonymous users" : "Standard-Zugriffstoken für anonyme Benutzer verwenden",
     "Use default access token for guest users" : "Standard-Zugriffstoken für Gastbenutzer verwenden",
-    "Use a popup to authenticate" : "Popup zur Authentifizierung verwenden",
     "Enable GitHub link previews" : "Vorschau von GitHub-Links aktivieren",
+    "Enable GitHub dashboard widget" : "GitHub-Dashboard-Widget aktivieren",
     "GitHub admin options saved" : "GitHub-Administrator-Einstellungen gespeichert",
     "Failed to save GitHub admin options" : "Fehler beim Speichern der GitHub-Administrator-Einstellungen",
     "When you create a personal access token yourself, give it at least \"read:user\", \"user:email\" and \"notifications\" permissions." : "Wenn Sie selbst einen persönlichen Zugriffstoken erstellen, geben Sie diesem mindestens die Berechtigungen \"read:user\", \"user:email\" und \"notifications\".",
@@ -90,6 +90,7 @@
     "edited {date}" : "Bearbeitet {date}",
     "Assigned to {login}" : "Zugewiesen an {login}",
     "Failed to save GitHub OAuth state" : "Fehler beim Speichern des GitHub OAuth-Status",
+    "Use a popup to authenticate" : "Popup zur Authentifizierung verwenden",
     "Click to expand/collapse content" : "Klicken, um den Inhalt zu auszuklappen/ einzuklappen",
     "Click to expand comment" : "Klicken, um den Kommentar zu erweitern"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"

@@ -24,7 +24,6 @@ OC.L10N.register(
     "Client ID of your GitHub application" : "ID Odjemalca programa GitHub",
     "Client secret" : "Skrivni ključ odjemalca",
     "Client secret of your GitHub application" : "Koda programa za povezavo z računom GitHub",
-    "Use a popup to authenticate" : "Uporabi pojavno okno za overitev",
     "GitHub admin options saved" : "Skrbniške nastavitve povezave GitHub so shranjene",
     "Failed to save GitHub admin options" : "Shranjevanje skrbniških nastavitev računa GitHub je spodletelo",
     "When you create a personal access token yourself, give it at least \"read:user\", \"user:email\" and \"notifications\" permissions." : "Ko ustvarite osebni žeton za dostop, odobrite vsaj dovoljenja »read:user (dovoljenje za branje)«, »user:email (elektronski naslov)« in »notifications (obvestila)«.",
@@ -58,6 +57,7 @@ OC.L10N.register(
     "Unknown state" : "Neznano stanje",
     "Draft" : "Osnutek",
     "Failed to save GitHub OAuth state" : "Shranjevanje stanja GitHub OAuth je spodletelo",
+    "Use a popup to authenticate" : "Uporabi pojavno okno za overitev",
     "Click to expand comment" : "Kliknite za razširitev opombe"
 },
 "nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);");

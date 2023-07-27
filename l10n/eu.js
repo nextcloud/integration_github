@@ -33,7 +33,6 @@ OC.L10N.register(
     "personal access token" : "sarbide token pertsonala",
     "Use default access token for anonymous users" : "Erabili sarbide-token lehenetsia erabiltzaile anonimoentzat",
     "Use default access token for guest users" : "Erabili erabiltzaile gonbidatuentzako sarbide-token lehenetsia",
-    "Use a popup to authenticate" : "Erabili laster-menua autentifikatzeko",
     "Enable GitHub link previews" : "Gaitu GitHub esteka aurreikuspenak",
     "GitHub admin options saved" : "GitHub administratzaile aukerak ondo gorde dira",
     "Failed to save GitHub admin options" : "GitHub admin aukerak gordetzeak huts egin du",
@@ -89,6 +88,7 @@ OC.L10N.register(
     "edited {date}" : "edizio-data {date}",
     "Assigned to {login}" : "{login}(e)ri esleituta",
     "Failed to save GitHub OAuth state" : "GitHub OAuth egoera gordetzeak huts egin du",
+    "Use a popup to authenticate" : "Erabili laster-menua autentifikatzeko",
     "Click to expand/collapse content" : "Egin klik edukia zabaltzeko/tolesteko",
     "Click to expand comment" : "Egin klik iruzkina handitzeko"
 },

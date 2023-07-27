@@ -31,7 +31,6 @@ OC.L10N.register(
     "personal access token" : "个人访问令牌",
     "Use default access token for anonymous users" : "为匿名用户使用默认访问令牌",
     "Use default access token for guest users" : "为访客用户使用默认访问令牌",
-    "Use a popup to authenticate" : "使用弹出窗口进行验证",
     "Enable GitHub link previews" : "启用GitHub链接预览",
     "GitHub admin options saved" : "已保存GitHub管理员选项",
     "Failed to save GitHub admin options" : "保存GitHub管理员选项失败",
@@ -89,6 +88,7 @@ OC.L10N.register(
     "edited {date}" : "编辑于{date}",
     "Assigned to {login}" : "指派给{login}",
     "Failed to save GitHub OAuth state" : "保存GitHub OAuth状态失败",
+    "Use a popup to authenticate" : "使用弹出窗口进行验证",
     "Click to expand/collapse content" : "点击以展开/折叠留言",
     "Click to expand comment" : "点击展开评论"
 },

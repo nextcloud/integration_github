@@ -1,7 +1,7 @@
 OC.L10N.register(
     "integration_github",
     {
-    "GitHub" : "GitHub",
+    "GitHub" : "قيت هب GitHub",
     "Error getting OAuth access token" : "حدث خطأ أثناء محاولة الحصول على أَمَارَة token للتصديق المفتوح OAuth",
     "Error during OAuth exchanges" : "خطأ أثناء تبادل OAuth.",
     "GitHub notifications" : "إشعارات GitHub",
@@ -33,8 +33,8 @@ OC.L10N.register(
     "personal access token" : "أَمَارَة الدخول الشخصية personal access token",
     "Use default access token for anonymous users" : "إستخدِم أَمَارَة الدخول الافتراضية Default access token للمستخدمين غير المُعرّفِين",
     "Use default access token for guest users" : "إستخدِم أَمَارَة الدخول الافتراضية Default access token للمستخدِمين الضُيُوف",
-    "Use a popup to authenticate" : "إستخدِم النافذة المُنبثِقة للتعريف عن نفسك ",
     "Enable GitHub link previews" : "تمكين معاينات روابط GitHub ",
+    "Enable GitHub dashboard widget" : "تفعيل وَدْجَة widget لوحة معلومات GitHub",
     "GitHub admin options saved" : "تمّ حفظ خيارات مُشرِف GitHub ",
     "Failed to save GitHub admin options" : "فشل حفظ خيارات مُشرِف GitHub ",
     "When you create a personal access token yourself, give it at least \"read:user\", \"user:email\" and \"notifications\" permissions." : "عند إنشاء أمارة token وصول شخصي بنفسك، فيجب منحه على الأقل أذونات \"قراءة: مستخدم\" read:user، و \"مستخدم: البريد الإلكتروني\" user:email، و \"الإشعارات\" notifications.",
@@ -92,6 +92,7 @@ OC.L10N.register(
     "edited {date}" : "عُدّل في {date}",
     "Assigned to {login}" : "أُسنِدَ إلى {login}",
     "Failed to save GitHub OAuth state" : "فشل في حفظ حالة GitHub OAuth",
+    "Use a popup to authenticate" : "إستخدِم النافذة المُنبثِقة للتعريف عن نفسك ",
     "Click to expand/collapse content" : "إضغط لِـ\"فَرْدِ/طَيِّ\" expand/collapse المحتوى",
     "Click to expand comment" : "إضغط لِفَرْدِ expand الملاحظات"
 },
