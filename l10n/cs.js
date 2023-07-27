@@ -33,8 +33,8 @@ OC.L10N.register(
     "personal access token" : "osobní přístupový token",
     "Use default access token for anonymous users" : "Použít výchozí přístupový token pro anonymní uživatele",
     "Use default access token for guest users" : "Použít výchozí přístupový token pro anonymní uživatele-hosty",
-    "Use a popup to authenticate" : "Ověřte se ve vyskakovacím okně",
     "Enable GitHub link previews" : "Zapnout náhledy odkazů na GitHub",
+    "Enable GitHub dashboard widget" : "Zapnout ovládací prvek nástěnky pro GitHub",
     "GitHub admin options saved" : "Předvolby správy GitHub uloženy",
     "Failed to save GitHub admin options" : "Nepodařilo se uložit předvolby správy GitHub",
     "When you create a personal access token yourself, give it at least \"read:user\", \"user:email\" and \"notifications\" permissions." : "Když si osobní přístupový token vytváříte sami, udělte mu přinejmenším oprávnění pro „čtení:uživatrel“ a „upozornění“.",
@@ -92,6 +92,7 @@ OC.L10N.register(
     "edited {date}" : "upraveno {date}",
     "Assigned to {login}" : "Přiřazeno uživateli {login}",
     "Failed to save GitHub OAuth state" : "Nepodařilo se uložit stav GitHub OAuth",
+    "Use a popup to authenticate" : "Ověřte se ve vyskakovacím okně",
     "Click to expand/collapse content" : "Obsah rozbalíte/sbalíte kliknutím",
     "Click to expand comment" : "Komentář rozbalíte kliknutím"
 },

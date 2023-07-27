@@ -25,7 +25,6 @@ OC.L10N.register(
     "Client ID of your GitHub application" : "GitHub-sovelluksesi Asiakas-ID",
     "Client secret" : "Asiakassalasana",
     "Client secret of your GitHub application" : "GitHub-sovelluksesi asiakassalasana",
-    "Use a popup to authenticate" : "Käytä ponnahdusikkunaa tunnistautumista varten",
     "Enable GitHub link previews" : "Käytä GitHub-linkkiesikatseluja",
     "GitHub admin options saved" : "GitHub-ylläpidon asetukset tallennettu",
     "Failed to save GitHub admin options" : "GitHub-ylläpidon asetuksien tallennus epäonnistui",
@@ -74,6 +73,7 @@ OC.L10N.register(
     "commented {date}" : "kommentoitu {date}",
     "edited {date}" : "muokattu {date}",
     "Failed to save GitHub OAuth state" : "GitHubin OAuth-tilan tallennus epäonnistui",
+    "Use a popup to authenticate" : "Käytä ponnahdusikkunaa tunnistautumista varten",
     "Click to expand comment" : "Napsauta laajentaaksesi kommentin"
 },
 "nplurals=2; plural=(n != 1);");

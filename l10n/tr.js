@@ -33,7 +33,6 @@ OC.L10N.register(
     "personal access token" : "kişisel erişim kodu",
     "Use default access token for anonymous users" : "Anonim kullanıcılar için varsayılan erişim kodu kullanılsın",
     "Use default access token for guest users" : "Konuk kullanıcılar için varsayılan erişim kodu kullanılsın",
-    "Use a popup to authenticate" : "Kimlik doğrulaması için açılan pencere kullanılsın",
     "Enable GitHub link previews" : "GitHub bağlantıları ön izlenebilsin",
     "GitHub admin options saved" : "GitHub yönetici ayarları kaydedildi",
     "Failed to save GitHub admin options" : "GitHub yönetici ayarları kaydedilemedi",
@@ -92,6 +91,7 @@ OC.L10N.register(
     "edited {date}" : "{date} zamanında düzenlendi",
     "Assigned to {login}" : "{login} kullanıcısına atandı",
     "Failed to save GitHub OAuth state" : "GitHub OAuth durumu kaydedilemedi",
+    "Use a popup to authenticate" : "Kimlik doğrulaması için açılan pencere kullanılsın",
     "Click to expand/collapse content" : "İçeriği genişletmek ya da daraltmak için tıklayın",
     "Click to expand comment" : "Yorumu genişletmek için tıklayın"
 },

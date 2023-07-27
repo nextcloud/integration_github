@@ -33,7 +33,6 @@ OC.L10N.register(
     "personal access token" : "личен токен за достъп",
     "Use default access token for anonymous users" : "Използване на токен за достъп по подразбиране за анонимни потребители",
     "Use default access token for guest users" : "Използване на токен за достъп по подразбиране за гост потребители",
-    "Use a popup to authenticate" : "Използване на изскачащ прозорец за удостоверяване",
     "Enable GitHub link previews" : "Активиране на визуализации на връзките в GitHub",
     "GitHub admin options saved" : "Опциите за администратор на GitHub са записани",
     "Failed to save GitHub admin options" : "Неуспешно записване на опциите за администратор на GitHub",
@@ -89,6 +88,7 @@ OC.L10N.register(
     "edited {date}" : "редактиран на {дата}",
     "Assigned to {login}" : "Зачислено на {login}",
     "Failed to save GitHub OAuth state" : "Неуспешно записване на състоянието на GitHub OAuth",
+    "Use a popup to authenticate" : "Използване на изскачащ прозорец за удостоверяване",
     "Click to expand/collapse content" : "Кликване за разширяване/свиване на съдържанието",
     "Click to expand comment" : "Кликване за разширяване на коментара"
 },

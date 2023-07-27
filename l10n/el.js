@@ -24,7 +24,6 @@ OC.L10N.register(
     "Client ID of your GitHub application" : "Αναγνωριστικό πελάτη της εφαρμογής GitHub",
     "Client secret" : "Μυστικό πελάτη",
     "Client secret of your GitHub application" : "Μυστικό πελάτη της εφαρμογής GitHub",
-    "Use a popup to authenticate" : "Χρησιμοποιήστε ένα αναδυόμενο παράθυρο για έλεγχο ταυτότητας",
     "GitHub admin options saved" : "Οι επιλογές διαχειριστή GitHub αποθηκεύτηκαν",
     "Failed to save GitHub admin options" : "Αποτυχία αποθήκευσης των επιλογών διαχειριστή GitHub",
     "When you create a personal access token yourself, give it at least \"read:user\", \"user:email\" and \"notifications\" permissions." : "Όταν δημιουργείτε ένα διακριτικό προσωπικής πρόσβασης, δώστε του τουλάχιστον δικαιώματα «read: user», «user: email» και «notification».",
@@ -55,6 +54,7 @@ OC.L10N.register(
     "Owner" : "Κάτοχος",
     "Draft" : "Πρόχειρο",
     "Failed to save GitHub OAuth state" : "Αποτυχία αποθήκευσης της κατάστασης GitHub OAuth",
+    "Use a popup to authenticate" : "Χρησιμοποιήστε ένα αναδυόμενο παράθυρο για έλεγχο ταυτότητας",
     "Click to expand comment" : "Κλικ για επέκταση σχολίου"
 },
 "nplurals=2; plural=(n != 1);");

@@ -31,8 +31,8 @@
     "personal access token" : "testemuño de acceso persoal",
     "Use default access token for anonymous users" : "Usar o testemuño de acceso predeterminado para usuarios anónimos",
     "Use default access token for guest users" : "Usar o testemuño de acceso predeterminado para os usuarios convidados",
-    "Use a popup to authenticate" : "Use unha xanela emerxente para autenticarse",
     "Enable GitHub link previews" : "Activar as vistas previas das ligazóns de GitHub",
+    "Enable GitHub dashboard widget" : "Activar o trebello de taboleiro de GitHub",
     "GitHub admin options saved" : "Gardáronse as opcións de administración de GitHub",
     "Failed to save GitHub admin options" : "Produciuse un fallo ao gardar as opcións de administración de GitHub.",
     "When you create a personal access token yourself, give it at least \"read:user\", \"user:email\" and \"notifications\" permissions." : "Cando Vde. cree un testemuño de acceso, déalle polo menos os permisos «read:user», «user:email» e «notifications».",
@@ -90,6 +90,7 @@
     "edited {date}" : "editado o {date}",
     "Assigned to {login}" : "Asignado a {login}",
     "Failed to save GitHub OAuth state" : "Produciuse un fallo ao gardar o estado do OAuth de GitHub",
+    "Use a popup to authenticate" : "Use unha xanela emerxente para autenticarse",
     "Click to expand/collapse content" : "Fai clic para despregar/contraer o contido",
     "Click to expand comment" : "Prema para despregar o comentario"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"

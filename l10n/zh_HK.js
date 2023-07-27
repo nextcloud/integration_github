@@ -33,7 +33,6 @@ OC.L10N.register(
     "personal access token" : "個人存取權杖",
     "Use default access token for anonymous users" : "為匿名用戶使用默認存取權杖",
     "Use default access token for guest users" : "為訪客用戶使用默認存取權杖",
-    "Use a popup to authenticate" : "使用彈出窗口進行身份驗證",
     "Enable GitHub link previews" : "啟用 GitHub 連結預覽",
     "GitHub admin options saved" : "已儲存 GitHub 管理員選項",
     "Failed to save GitHub admin options" : "儲存 GitHub 管理員選項失敗",
@@ -92,6 +91,7 @@ OC.L10N.register(
     "edited {date}" : "於 {date} 被編輯",
     "Assigned to {login}" : "分配給 {login}",
     "Failed to save GitHub OAuth state" : "儲存 GitHub OAuth 狀態失敗",
+    "Use a popup to authenticate" : "使用彈出窗口進行身份驗證",
     "Click to expand/collapse content" : "點擊以展開／折疊留言",
     "Click to expand comment" : "點擊展開評論"
 },

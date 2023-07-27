@@ -33,7 +33,6 @@ OC.L10N.register(
     "personal access token" : "személyes hozzáférési token",
     "Use default access token for anonymous users" : "Az alapértelmezett hozzáférési token használata a névtelen felhasználókhoz",
     "Use default access token for guest users" : "Az alapértelmezett hozzáférési token használata a vendégfelhasználókhoz",
-    "Use a popup to authenticate" : "Felugró ablak használata a hitelesítéshez",
     "Enable GitHub link previews" : "GitHub hivatkozások előnézetének engedélyezése",
     "GitHub admin options saved" : "A GitHub rendszergazdai beállításai mentve",
     "Failed to save GitHub admin options" : "A GitHub rendszergazdai beállítások mentése sikertelen",
@@ -92,6 +91,7 @@ OC.L10N.register(
     "edited {date}" : "szerkesztve: {date}",
     "Assigned to {login}" : "Hozzárendelve a következőhöz: {login}",
     "Failed to save GitHub OAuth state" : "A GitHub OAuth állapot mentése sikertelen",
+    "Use a popup to authenticate" : "Felugró ablak használata a hitelesítéshez",
     "Click to expand/collapse content" : "Kattintson a tartalom kibontásához",
     "Click to expand comment" : "Kattintson a megjegyzés kibontásához"
 },

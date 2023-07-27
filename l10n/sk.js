@@ -28,7 +28,6 @@ OC.L10N.register(
     "Client secret of your GitHub application" : "Tajomstvo klienta vašej aplikácie GitHub",
     "Default access token" : "Predvolený prístupový token",
     "personal access token" : "osobný prístupový token",
-    "Use a popup to authenticate" : "Pre overenie použite kontextové okno",
     "Enable GitHub link previews" : "Povoliť ukážky odkazov GitHub",
     "GitHub admin options saved" : "Možnosti administrátora GitHub boli uložené",
     "Failed to save GitHub admin options" : "Nepodarilo sa uložiť možnosti administrátora GitHub",
@@ -82,6 +81,7 @@ OC.L10N.register(
     "edited {date}" : "editované v {date}",
     "Assigned to {login}" : "Priradené k {login}",
     "Failed to save GitHub OAuth state" : "Nepodarilo sa uložiť stav OAuth GitHubu",
+    "Use a popup to authenticate" : "Pre overenie použite kontextové okno",
     "Click to expand comment" : "Kliknite pre zobrazenie komentára"
 },
 "nplurals=4; plural=(n % 1 == 0 && n == 1 ? 0 : n % 1 == 0 && n >= 2 && n <= 4 ? 1 : n % 1 != 0 ? 2: 3);");

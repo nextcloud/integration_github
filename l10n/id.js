@@ -33,7 +33,6 @@ OC.L10N.register(
     "personal access token" : "token akses pribadi",
     "Use default access token for anonymous users" : "Gunakan token akses bawaan untuk pengguna anonim",
     "Use default access token for guest users" : "Gunakan token akses bawaan untuk pengguna tamu",
-    "Use a popup to authenticate" : "Gunakan sembulan untuk mengautentikasi",
     "Enable GitHub link previews" : "Aktifkan penampilan tautan GitHub",
     "GitHub admin options saved" : "Opsi admin GitHub disimpan",
     "Failed to save GitHub admin options" : "Gagal menyimpan opsi admin GitHub",
@@ -89,6 +88,7 @@ OC.L10N.register(
     "edited {date}" : "menyunting {date}",
     "Assigned to {login}" : "Ditugaskan kepada {login}",
     "Failed to save GitHub OAuth state" : "Gagal menyimpan keadaan OAuth GitHub",
+    "Use a popup to authenticate" : "Gunakan sembulan untuk mengautentikasi",
     "Click to expand/collapse content" : "Klik untuk membuka/menutup konten",
     "Click to expand comment" : "Klik untuk membuka komentar"
 },
