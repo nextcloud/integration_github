@@ -31,6 +31,7 @@
     "personal access token" : "osobní přístupový token",
     "Use default access token for anonymous users" : "Použít výchozí přístupový token pro anonymní uživatele",
     "Use default access token for guest users" : "Použít výchozí přístupový token pro anonymní uživatele-hosty",
+    "Use a popup for OAuth authentication" : "V rámci OAuth se ověřte ve vyskakovacím okně",
     "Enable GitHub link previews" : "Zapnout náhledy odkazů na GitHub",
     "Enable GitHub dashboard widget" : "Zapnout ovládací prvek nástěnky pro GitHub",
     "GitHub admin options saved" : "Předvolby správy GitHub uloženy",
