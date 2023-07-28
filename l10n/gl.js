@@ -33,6 +33,7 @@ OC.L10N.register(
     "personal access token" : "testemuño de acceso persoal",
     "Use default access token for anonymous users" : "Usar o testemuño de acceso predeterminado para usuarios anónimos",
     "Use default access token for guest users" : "Usar o testemuño de acceso predeterminado para os usuarios convidados",
+    "Use a popup for OAuth authentication" : "Use unha xanela emerxente para a autenticación de OAuth",
     "Enable GitHub link previews" : "Activar as vistas previas das ligazóns de GitHub",
     "Enable GitHub dashboard widget" : "Activar o trebello de taboleiro de GitHub",
     "GitHub admin options saved" : "Gardáronse as opcións de administración de GitHub",
