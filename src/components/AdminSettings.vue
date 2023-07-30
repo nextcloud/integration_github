@@ -84,7 +84,7 @@
 			<NcCheckboxRadioSwitch
 				:checked="state.use_popup"
 				@update:checked="onCheckboxChanged($event, 'use_popup')">
-				{{ t('integration_github', 'Use a popup to authenticate') }}
+				{{ t('integration_github', 'Use a popup for OAuth authentication') }}
 			</NcCheckboxRadioSwitch>
 			<NcCheckboxRadioSwitch
 				:checked="state.link_preview_enabled"
