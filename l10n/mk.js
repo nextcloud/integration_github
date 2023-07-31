@@ -15,7 +15,6 @@ OC.L10N.register(
     "Unknown error" : "Непозната грешка",
     "Author" : "Автор",
     "Owner" : "Сопственик",
-    "Draft" : "Шаблон",
-    "Use a popup to authenticate" : "користи скокачки прозор за автентификација"
+    "Draft" : "Шаблон"
 },
 "nplurals=2; plural=(n % 10 == 1 && n % 100 != 11) ? 0 : 1;");

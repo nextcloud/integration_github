@@ -33,7 +33,6 @@ OC.L10N.register(
     "personal access token" : "Persönliches Zugriffstoken",
     "Use default access token for anonymous users" : "Standard-Zugriffstoken für anonyme Benutzer verwenden",
     "Use default access token for guest users" : "Standard-Zugriffstoken für Gastbenutzer verwenden",
-    "Use a popup for OAuth authentication" : "Für die OAuth-Anmeldung ein Pop-Up verwenden",
     "Enable GitHub link previews" : "Vorschau von GitHub-Links aktivieren",
     "Enable GitHub dashboard widget" : "GitHub-Dashboard-Widget aktivieren",
     "GitHub admin options saved" : "GitHub-Administrator-Einstellungen gespeichert",
@@ -93,7 +92,6 @@ OC.L10N.register(
     "edited {date}" : "Bearbeitet {date}",
     "Assigned to {login}" : "Zugewiesen an {login}",
     "Failed to save GitHub OAuth state" : "Fehler beim Speichern des GitHub OAuth-Status",
-    "Use a popup to authenticate" : "Pop-up zur Authentifizierung verwenden",
     "Click to expand/collapse content" : "Klicken, um den Inhalt zu auszuklappen/ einzuklappen",
     "Click to expand comment" : "Klicken, um den Kommentar zu erweitern"
 },

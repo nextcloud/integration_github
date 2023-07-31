@@ -91,7 +91,6 @@ OC.L10N.register(
     "edited {date}" : "{date} zamanında düzenlendi",
     "Assigned to {login}" : "{login} kullanıcısına atandı",
     "Failed to save GitHub OAuth state" : "GitHub OAuth durumu kaydedilemedi",
-    "Use a popup to authenticate" : "Kimlik doğrulaması için açılan pencere kullanılsın",
     "Click to expand/collapse content" : "İçeriği genişletmek ya da daraltmak için tıklayın",
     "Click to expand comment" : "Yorumu genişletmek için tıklayın"
 },
