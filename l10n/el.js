@@ -54,7 +54,6 @@ OC.L10N.register(
     "Owner" : "Κάτοχος",
     "Draft" : "Πρόχειρο",
     "Failed to save GitHub OAuth state" : "Αποτυχία αποθήκευσης της κατάστασης GitHub OAuth",
-    "Use a popup to authenticate" : "Χρησιμοποιήστε ένα αναδυόμενο παράθυρο για έλεγχο ταυτότητας",
     "Click to expand comment" : "Κλικ για επέκταση σχολίου"
 },
 "nplurals=2; plural=(n != 1);");

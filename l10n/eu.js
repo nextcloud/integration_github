@@ -88,7 +88,6 @@ OC.L10N.register(
     "edited {date}" : "edizio-data {date}",
     "Assigned to {login}" : "{login}(e)ri esleituta",
     "Failed to save GitHub OAuth state" : "GitHub OAuth egoera gordetzeak huts egin du",
-    "Use a popup to authenticate" : "Erabili laster-menua autentifikatzeko",
     "Click to expand/collapse content" : "Egin klik edukia zabaltzeko/tolesteko",
     "Click to expand comment" : "Egin klik iruzkina handitzeko"
 },

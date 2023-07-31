@@ -88,7 +88,6 @@ OC.L10N.register(
     "edited {date}" : "édité le {date}",
     "Assigned to {login}" : "Assigné à {login}",
     "Failed to save GitHub OAuth state" : "Échec de l'enregistrement de l'état OAuth de GitHub",
-    "Use a popup to authenticate" : "Utiliser un pop-up pour s'authentifier",
     "Click to expand/collapse content" : "Cliquer pour déplier/replier le contenu",
     "Click to expand comment" : "Cliquer pour déplier le commentaire"
 },

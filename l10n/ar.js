@@ -33,7 +33,6 @@ OC.L10N.register(
     "personal access token" : "أَمَارَة الدخول الشخصية personal access token",
     "Use default access token for anonymous users" : "إستخدِم أَمَارَة الدخول الافتراضية Default access token للمستخدمين غير المُعرّفِين",
     "Use default access token for guest users" : "إستخدِم أَمَارَة الدخول الافتراضية Default access token للمستخدِمين الضُيُوف",
-    "Use a popup for OAuth authentication" : "إستعمِل نافذة منبثقة للتصديق المفتوح OAuth",
     "Enable GitHub link previews" : "تمكين معاينات روابط GitHub ",
     "Enable GitHub dashboard widget" : "تفعيل وَدْجَة widget لوحة معلومات GitHub",
     "GitHub admin options saved" : "تمّ حفظ خيارات مُشرِف GitHub ",
@@ -93,7 +92,6 @@ OC.L10N.register(
     "edited {date}" : "عُدّل في {date}",
     "Assigned to {login}" : "أُسنِدَ إلى {login}",
     "Failed to save GitHub OAuth state" : "فشل في حفظ حالة GitHub OAuth",
-    "Use a popup to authenticate" : "إستخدِم النافذة المُنبثِقة للتعريف عن نفسك ",
     "Click to expand/collapse content" : "إضغط لِـ\"فَرْدِ/طَيِّ\" expand/collapse المحتوى",
     "Click to expand comment" : "إضغط لِفَرْدِ expand الملاحظات"
 },
