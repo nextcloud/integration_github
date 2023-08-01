@@ -33,6 +33,7 @@ OC.L10N.register(
     "personal access token" : "個人存取權杖",
     "Use default access token for anonymous users" : "為匿名使用者使用預設存取權杖",
     "Use default access token for guest users" : "為訪客使用者使用預設存取權杖",
+    "Use a pop-up for OAuth authentication" : "對 OAuth 驗證使用彈出式視窗",
     "Enable GitHub link previews" : "啟用 GitHub 連結預覽",
     "Enable GitHub dashboard widget" : "啟用 GitHub 儀表板小工具",
     "GitHub admin options saved" : "已儲存 GitHub 管理員選項",
