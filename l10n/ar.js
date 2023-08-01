@@ -33,6 +33,7 @@ OC.L10N.register(
     "personal access token" : "أَمَارَة الدخول الشخصية personal access token",
     "Use default access token for anonymous users" : "إستخدِم أَمَارَة الدخول الافتراضية Default access token للمستخدمين غير المُعرّفِين",
     "Use default access token for guest users" : "إستخدِم أَمَارَة الدخول الافتراضية Default access token للمستخدِمين الضُيُوف",
+    "Use a pop-up for OAuth authentication" : "إستعمل النافذة المنبثقة لتحقيق هويتك",
     "Enable GitHub link previews" : "تمكين معاينات روابط GitHub ",
     "Enable GitHub dashboard widget" : "تفعيل وَدْجَة widget لوحة معلومات GitHub",
     "GitHub admin options saved" : "تمّ حفظ خيارات مُشرِف GitHub ",

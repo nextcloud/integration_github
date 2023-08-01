@@ -31,6 +31,7 @@
     "personal access token" : "個人存取權杖",
     "Use default access token for anonymous users" : "為匿名用戶使用默認存取權杖",
     "Use default access token for guest users" : "為訪客用戶使用默認存取權杖",
+    "Use a pop-up for OAuth authentication" : "使用彈出式視窗進行 OAuth 身份驗證",
     "Enable GitHub link previews" : "啟用 GitHub 連結預覽",
     "Enable GitHub dashboard widget" : "啟用 GitHub 儀表板小部件",
     "GitHub admin options saved" : "已儲存 GitHub 管理員選項",
