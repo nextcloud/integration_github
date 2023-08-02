@@ -31,7 +31,7 @@
     "personal access token" : "Persönliches Zugriffstoken",
     "Use default access token for anonymous users" : "Standard-Zugriffstoken für anonyme Benutzer verwenden",
     "Use default access token for guest users" : "Standard-Zugriffstoken für Gastbenutzer verwenden",
-    "Use a pop-up for OAuth authentication" : "Für die OAuth-Anmeldung ein Pop-Up verwenden",
+    "Use a pop-up for OAuth authentication" : "Für die OAuth-Authentifizierung ein Pop-Up verwenden",
     "Enable GitHub link previews" : "Vorschau von GitHub-Links aktivieren",
     "Enable GitHub dashboard widget" : "GitHub-Dashboard-Widget aktivieren",
     "GitHub admin options saved" : "GitHub-Administrator-Einstellungen gespeichert",
