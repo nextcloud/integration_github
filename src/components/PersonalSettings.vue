@@ -4,6 +4,9 @@
 			<GithubIcon class="icon" />
 			{{ t('integration_github', 'GitHub integration') }}
 		</h2>
+		<NcButton @click="assistant">
+			Open assistant
+		</NcButton>
 		<p v-if="!showOAuth && !connected" class="settings-hint">
 			{{ t('integration_github', 'When you create a personal access token yourself, give it at least "read:user", "user:email" and "notifications" permissions.') }}
 			<a href="https://github.com/settings/tokens" target="_blank" class="external">
@@ -152,6 +155,12 @@ export default {
 	},
 
 	methods: {
+		assistant() {
+			OCA.TPAssistant.openTextProcessingModal('integration_github', 'IDID', 'OCP\\TextProcessing\\FreePromptTaskType', 'count to four')
+				.then(r => {
+					console.debug('yeyeyeyeyeye', r)
+				})
+		},
 		onLogoutClick() {
 			this.state.token = ''
 			this.saveOptions({ token: this.state.token })

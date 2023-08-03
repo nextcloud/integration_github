@@ -9,10 +9,12 @@
 
 namespace OCA\Github\AppInfo;
 
+use OCA\Github\Listener\AssistantListener;
 use OCA\Github\Listener\ContentSecurityPolicyListener;
 use OCA\Github\Listener\GithubReferenceListener;
 use OCA\Github\Reference\GithubCodeReferenceProvider;
 use OCA\Github\Reference\GithubIssuePrReferenceProvider;
+use OCA\TPAssistant\Event\BeforeAssistantNotificationEvent;
 use OCP\AppFramework\IAppContainer;
 use OCP\Collaboration\Reference\RenderReferenceEvent;
 use OCP\IConfig;
@@ -58,6 +60,7 @@ class Application extends App implements IBootstrap {
 		$context->registerReferenceProvider(GithubCodeReferenceProvider::class);
 		$context->registerEventListener(RenderReferenceEvent::class, GithubReferenceListener::class);
 		$context->registerEventListener(AddContentSecurityPolicyEvent::class, ContentSecurityPolicyListener::class);
+		$context->registerEventListener(BeforeAssistantNotificationEvent::class, AssistantListener::class);
 	}
 
 	public function boot(IBootContext $context): void {
