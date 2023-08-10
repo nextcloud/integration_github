@@ -93,7 +93,7 @@ OC.L10N.register(
     "edited {date}" : "editado o {date}",
     "Assigned to {login}" : "Asignado a {login}",
     "Failed to save GitHub OAuth state" : "Produciuse un fallo ao gardar o estado do OAuth de GitHub",
-    "Click to expand/collapse content" : "Fai clic para despregar/contraer o contido",
+    "Click to expand/collapse content" : "Prema para despregar/contraer o contido",
     "Click to expand comment" : "Prema para despregar o comentario"
 },
 "nplurals=2; plural=(n != 1);");
