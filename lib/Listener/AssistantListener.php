@@ -15,7 +15,8 @@ class AssistantListener implements IEventListener {
 
 		if ($event->getTask()->getAppId() === Application::APP_ID) {
 			$event->setWantsNotification(true);
-			$event->setNotificationTarget('https://free.fr/githubbbbbbbb');
+			$event->setNotificationActionLabel('plip plop');
+//			$event->setNotificationTarget('https://free.fr/githubbbbbbbb');
 		}
 	}
 }
