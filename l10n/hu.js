@@ -34,6 +34,7 @@ OC.L10N.register(
     "Use default access token for anonymous users" : "Az alapértelmezett hozzáférési token használata a névtelen felhasználókhoz",
     "Use default access token for guest users" : "Az alapértelmezett hozzáférési token használata a vendégfelhasználókhoz",
     "Enable GitHub link previews" : "GitHub hivatkozások előnézetének engedélyezése",
+    "Enable GitHub dashboard widget" : "GitHub irányítópult widget engedélyezése",
     "GitHub admin options saved" : "A GitHub rendszergazdai beállításai mentve",
     "Failed to save GitHub admin options" : "A GitHub rendszergazdai beállítások mentése sikertelen",
     "When you create a personal access token yourself, give it at least \"read:user\", \"user:email\" and \"notifications\" permissions." : "Amikor saját maga hoz létre személyes hozzáférési tokent, adjon meg neki legalább „read:user”, „user:email” és „notifications” engedélyeket.",
