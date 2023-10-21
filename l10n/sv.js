@@ -28,6 +28,7 @@ OC.L10N.register(
     "Enable searching for issues and pull requests" : "Aktivera sökning efter ärenden och pull-förfrågningar",
     "Warning, everything you type in the search bar will be sent to GitHub." : "Varning, allt du skriver i sökfältet skickas till GitHub.",
     "Connected to GitHub!" : "Ansluten till GitHub!",
+    "Invalid access token" : "Ogiltig åtkomsttoken",
     "Mark as read" : "Markera som läst",
     "Unsubscribe" : "Avsluta prenumeration",
     "No GitHub account connected" : "Inget GitHub-konto anslutet",
