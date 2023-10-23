@@ -71,7 +71,7 @@ OC.L10N.register(
     "Closed pull request" : "Zatvorená žiadosť o pull",
     "Unknown state" : "Neznámy stav",
     "Draft" : "Koncept",
-    "{logins} reacted with {emoji} emoji" : "{logins} reagoval s emotikonom {emoji}",
+    "{logins} reacted with {emoji} emoji" : "{logins} reagoval s emotikonou {emoji}",
     "Review requested" : "Vyžadovaná revízia",
     "opened {relativeDate}" : "otvorené od {relativeDate}",
     "was closed {relativeDate}" : "bolo zatvorené {relativeDate}",
