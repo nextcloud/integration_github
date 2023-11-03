@@ -51,10 +51,10 @@ import { generateUrl, imagePath } from '@nextcloud/router'
 import { showError, showSuccess } from '@nextcloud/dialogs'
 import { loadState } from '@nextcloud/initial-state'
 import moment from '@nextcloud/moment'
-// import { DashboardWidget, DashboardWidgetItem } from '@nextcloud/vue-dashboard'
+
 import NcEmptyContent from '@nextcloud/vue/dist/Components/NcEmptyContent.js'
 import NcDashboardWidget from '@nextcloud/vue/dist/Components/NcDashboardWidget.js'
-// import NcDashboardWidgetItem from '@nextcloud/vue/dist/Components/NcDashboardWidgetItem.js'
+
 import NcButton from '@nextcloud/vue/dist/Components/NcButton.js'
 
 export default {
@@ -62,10 +62,9 @@ export default {
 
 	components: {
 		NcDashboardWidget,
-	    NcEmptyContent,
-	    NcButton,
-	    LoginVariantIcon,
-	    // NcDashboardWidgetItem,
+		NcEmptyContent,
+		NcButton,
+		LoginVariantIcon,
 	},
 
 	props: {
