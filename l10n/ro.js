@@ -14,6 +14,7 @@ OC.L10N.register(
     "Enable navigation link" : "Pornește link-ul de navifare",
     "Mark as read" : "Marchează ca citit",
     "Unknown error" : "Eroare necunoscută",
-    "Owner" : "Proprietar"
+    "Owner" : "Proprietar",
+    "Draft" : "Schiță"
 },
 "nplurals=3; plural=(n==1?0:(((n%100>19)||((n%100==0)&&(n!=0)))?2:1));");
