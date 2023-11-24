@@ -92,8 +92,6 @@ OC.L10N.register(
     "commented {date}" : "commented {date}",
     "edited {date}" : "edited {date}",
     "Assigned to {login}" : "Assigned to {login}",
-    "Failed to save GitHub OAuth state" : "Failed to save GitHub OAuth state",
-    "Click to expand/collapse content" : "Click to expand/collapse content",
-    "Click to expand comment" : "Click to expand comment"
+    "Failed to save GitHub OAuth state" : "Failed to save GitHub OAuth state"
 },
 "nplurals=2; plural=(n != 1);");

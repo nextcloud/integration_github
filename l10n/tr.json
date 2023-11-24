@@ -90,8 +90,6 @@
     "commented {date}" : "{date} zamanında yorum yapıldı",
     "edited {date}" : "{date} zamanında düzenlendi",
     "Assigned to {login}" : "{login} kullanıcısına atandı",
-    "Failed to save GitHub OAuth state" : "GitHub OAuth durumu kaydedilemedi",
-    "Click to expand/collapse content" : "İçeriği genişletmek ya da daraltmak için tıklayın",
-    "Click to expand comment" : "Yorumu genişletmek için tıklayın"
+    "Failed to save GitHub OAuth state" : "GitHub OAuth durumu kaydedilemedi"
 },"pluralForm" :"nplurals=2; plural=(n > 1);"
 }

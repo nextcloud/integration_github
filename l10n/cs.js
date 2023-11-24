@@ -92,8 +92,6 @@ OC.L10N.register(
     "commented {date}" : "okomentováno {date}",
     "edited {date}" : "upraveno {date}",
     "Assigned to {login}" : "Přiřazeno uživateli {login}",
-    "Failed to save GitHub OAuth state" : "Nepodařilo se uložit stav GitHub OAuth",
-    "Click to expand/collapse content" : "Obsah rozbalíte/sbalíte kliknutím",
-    "Click to expand comment" : "Komentář rozbalíte kliknutím"
+    "Failed to save GitHub OAuth state" : "Nepodařilo se uložit stav GitHub OAuth"
 },
 "nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n >= 2 && n <= 4 && n % 1 == 0) ? 1: (n % 1 != 0 ) ? 2 : 3;");

@@ -87,8 +87,6 @@ OC.L10N.register(
     "commented {date}" : "评论于{date}",
     "edited {date}" : "编辑于{date}",
     "Assigned to {login}" : "指派给{login}",
-    "Failed to save GitHub OAuth state" : "保存GitHub OAuth状态失败",
-    "Click to expand/collapse content" : "点击以展开/折叠留言",
-    "Click to expand comment" : "点击展开评论"
+    "Failed to save GitHub OAuth state" : "保存GitHub OAuth状态失败"
 },
 "nplurals=1; plural=0;");

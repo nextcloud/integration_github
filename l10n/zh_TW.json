@@ -90,8 +90,6 @@
     "commented {date}" : "於 {date} 被評論",
     "edited {date}" : "編輯於 {date}",
     "Assigned to {login}" : "指派給 {login}",
-    "Failed to save GitHub OAuth state" : "儲存 GitHub OAuth 狀態失敗",
-    "Click to expand/collapse content" : "點擊以展開/折疊留言",
-    "Click to expand comment" : "點擊展開留言"
+    "Failed to save GitHub OAuth state" : "儲存 GitHub OAuth 狀態失敗"
 },"pluralForm" :"nplurals=1; plural=0;"
 }

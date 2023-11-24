@@ -18,7 +18,6 @@ OC.L10N.register(
     "Unknown error" : "Ukjent feil",
     "Author" : "Forfatter",
     "Owner" : "Eier",
-    "Draft" : "Kladd",
-    "Click to expand comment" : "Klikk for å utvide kommentaren"
+    "Draft" : "Kladd"
 },
 "nplurals=2; plural=(n != 1);");

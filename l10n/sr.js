@@ -92,8 +92,6 @@ OC.L10N.register(
     "commented {date}" : "прокоментарисао је {date}",
     "edited {date}" : "уредио је {date}",
     "Assigned to {login}" : "Додељено је {login}",
-    "Failed to save GitHub OAuth state" : "Није успело чување GitHub OAuth стања",
-    "Click to expand/collapse content" : "Кликните да проширите/зажмете садржај",
-    "Click to expand comment" : "Кликните да проширите коментар"
+    "Failed to save GitHub OAuth state" : "Није успело чување GitHub OAuth стања"
 },
 "nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);");

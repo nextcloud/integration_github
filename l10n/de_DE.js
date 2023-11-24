@@ -92,8 +92,6 @@ OC.L10N.register(
     "commented {date}" : "Kommentiert {date}",
     "edited {date}" : "Bearbeitet {date}",
     "Assigned to {login}" : "Zugewiesen an {login}",
-    "Failed to save GitHub OAuth state" : "Fehler beim Speichern des GitHub OAuth-Status",
-    "Click to expand/collapse content" : "Klicken, um den Inhalt zu auszuklappen/ einzuklappen",
-    "Click to expand comment" : "Klicken, um den Kommentar zu erweitern"
+    "Failed to save GitHub OAuth state" : "Fehler beim Speichern des GitHub OAuth-Status"
 },
 "nplurals=2; plural=(n != 1);");

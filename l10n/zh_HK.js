@@ -92,8 +92,6 @@ OC.L10N.register(
     "commented {date}" : "於 {date} 被評論",
     "edited {date}" : "於 {date} 被編輯",
     "Assigned to {login}" : "分配給 {login}",
-    "Failed to save GitHub OAuth state" : "儲存 GitHub OAuth 狀態失敗",
-    "Click to expand/collapse content" : "點擊以展開／折疊留言",
-    "Click to expand comment" : "點擊展開評論"
+    "Failed to save GitHub OAuth state" : "儲存 GitHub OAuth 狀態失敗"
 },
 "nplurals=1; plural=0;");

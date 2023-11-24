@@ -50,7 +50,6 @@ OC.L10N.register(
     "Author" : "Autor/a",
     "Owner" : "Propietari",
     "Draft" : "Esborrany",
-    "Failed to save GitHub OAuth state" : "No s'ha pogut desar l'estat d'OAuth de GitHub",
-    "Click to expand comment" : "Feu clic per ampliar el comentari"
+    "Failed to save GitHub OAuth state" : "No s'ha pogut desar l'estat d'OAuth de GitHub"
 },
 "nplurals=2; plural=(n != 1);");

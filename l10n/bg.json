@@ -85,8 +85,6 @@
     "commented {date}" : "коментира {date}",
     "edited {date}" : "редактиран на {дата}",
     "Assigned to {login}" : "Зачислено на {login}",
-    "Failed to save GitHub OAuth state" : "Неуспешно записване на състоянието на GitHub OAuth",
-    "Click to expand/collapse content" : "Кликване за разширяване/свиване на съдържанието",
-    "Click to expand comment" : "Кликване за разширяване на коментара"
+    "Failed to save GitHub OAuth state" : "Неуспешно записване на състоянието на GitHub OAuth"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

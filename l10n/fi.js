@@ -72,7 +72,6 @@ OC.L10N.register(
     "was merged {relativeDate}" : "yhdistettiin {relativeDate}",
     "commented {date}" : "kommentoitu {date}",
     "edited {date}" : "muokattu {date}",
-    "Failed to save GitHub OAuth state" : "GitHubin OAuth-tilan tallennus epäonnistui",
-    "Click to expand comment" : "Napsauta laajentaaksesi kommentin"
+    "Failed to save GitHub OAuth state" : "GitHubin OAuth-tilan tallennus epäonnistui"
 },
 "nplurals=2; plural=(n != 1);");

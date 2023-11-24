@@ -87,8 +87,6 @@ OC.L10N.register(
     "commented {date}" : "iruzkin-data {date}",
     "edited {date}" : "edizio-data {date}",
     "Assigned to {login}" : "{login}(e)ri esleituta",
-    "Failed to save GitHub OAuth state" : "GitHub OAuth egoera gordetzeak huts egin du",
-    "Click to expand/collapse content" : "Egin klik edukia zabaltzeko/tolesteko",
-    "Click to expand comment" : "Egin klik iruzkina handitzeko"
+    "Failed to save GitHub OAuth state" : "GitHub OAuth egoera gordetzeak huts egin du"
 },
 "nplurals=2; plural=(n != 1);");

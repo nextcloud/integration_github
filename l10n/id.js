@@ -87,8 +87,6 @@ OC.L10N.register(
     "commented {date}" : "berkomentar {date}",
     "edited {date}" : "menyunting {date}",
     "Assigned to {login}" : "Ditugaskan kepada {login}",
-    "Failed to save GitHub OAuth state" : "Gagal menyimpan keadaan OAuth GitHub",
-    "Click to expand/collapse content" : "Klik untuk membuka/menutup konten",
-    "Click to expand comment" : "Klik untuk membuka komentar"
+    "Failed to save GitHub OAuth state" : "Gagal menyimpan keadaan OAuth GitHub"
 },
 "nplurals=1; plural=0;");

@@ -92,8 +92,6 @@ OC.L10N.register(
     "commented {date}" : "hozzászólva: {date}",
     "edited {date}" : "szerkesztve: {date}",
     "Assigned to {login}" : "Hozzárendelve a következőhöz: {login}",
-    "Failed to save GitHub OAuth state" : "A GitHub OAuth állapot mentése sikertelen",
-    "Click to expand/collapse content" : "Kattintson a tartalom kibontásához",
-    "Click to expand comment" : "Kattintson a megjegyzés kibontásához"
+    "Failed to save GitHub OAuth state" : "A GitHub OAuth állapot mentése sikertelen"
 },
 "nplurals=2; plural=(n != 1);");
