@@ -14,6 +14,7 @@ OC.L10N.register(
     "Enable navigation link" : "Pornește link-ul de navifare",
     "Mark as read" : "Marchează ca citit",
     "Unknown error" : "Eroare necunoscută",
+    "Author" : "Autor",
     "Owner" : "Proprietar",
     "Draft" : "Schiță"
 },
