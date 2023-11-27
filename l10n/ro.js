@@ -13,6 +13,7 @@ OC.L10N.register(
     "Client secret" : "Secret client",
     "Enable navigation link" : "Pornește link-ul de navifare",
     "Mark as read" : "Marchează ca citit",
+    "Unsubscribe" : "Desubscrie",
     "Unknown error" : "Eroare necunoscută",
     "Author" : "Autor",
     "Owner" : "Proprietar",
