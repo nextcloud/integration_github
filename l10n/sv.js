@@ -38,6 +38,7 @@ OC.L10N.register(
     "Successfully unsubscribed" : "Prenumerationen har avslutats",
     "Failed to edit GitHub notification" : "Kunde inte ändra GitHub-aviseringar",
     "Unknown error" : "Okänt fel",
+    "Line {line}" : "Rad {line}",
     "by {creator}" : "av {creator}",
     "Author" : "Upphovsman",
     "Owner" : "Ägare",
