@@ -50,6 +50,7 @@ OC.L10N.register(
     "Successfully unsubscribed" : "Sottoscrizione annullata con successo",
     "Failed to edit GitHub notification" : "Modifica della notifica GitHub non riuscita",
     "Unknown error" : "Errore sconosciuto",
+    "Line {line}" : "Riga {line}",
     "Author" : "Autore",
     "Owner" : "Proprietario",
     "Draft" : "Bozza",
