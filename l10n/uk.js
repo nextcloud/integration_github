@@ -15,6 +15,7 @@ OC.L10N.register(
     "GitHub API error" : "Помилка API GitHub",
     "Unknown error" : "Невідома помилка",
     "GitHub connected accounts settings" : "Налаштування підключених облікових записів GitHub",
+    "Line {line}" : "Рядок {line}",
     "Owner" : "Власник",
     "Open issue" : "Відкрите питання",
     "Closed as not planned issue" : "Закрито як незапланований випуск",
