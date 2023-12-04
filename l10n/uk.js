@@ -16,6 +16,7 @@ OC.L10N.register(
     "Unknown error" : "Невідома помилка",
     "GitHub connected accounts settings" : "Налаштування підключених облікових записів GitHub",
     "Line {line}" : "Рядок {line}",
+    "Author" : "Автор",
     "Owner" : "Власник",
     "Open issue" : "Відкрите питання",
     "Closed as not planned issue" : "Закрито як незапланований випуск",
