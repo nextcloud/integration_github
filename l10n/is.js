@@ -14,6 +14,7 @@ OC.L10N.register(
     "Connected as {user}" : "Tengt sem {user}",
     "Mark as read" : "Merkja sem lesið",
     "Unknown error" : "Óþekkt villa",
+    "Line {line}" : "Lína {line}",
     "Author" : "Höfundur",
     "Owner" : "Eigandi"
 },
