@@ -37,6 +37,7 @@
 	},
 	"dependencies": {
 		"@alchemyalcove/rgb-to-hsl": "^1.0.5",
+		"@mdi/svg": "^7.3.67",
 		"@nextcloud/auth": "^2.0.0",
 		"@nextcloud/axios": "^2.0.0",
 		"@nextcloud/dialogs": "^4.0.1",

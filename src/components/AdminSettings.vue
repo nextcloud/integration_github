@@ -1,9 +1,29 @@
 <template>
 	<div id="github_prefs" class="section">
-		<h2>
-			<GithubIcon class="icon" />
-			{{ t('integration_github', 'GitHub integration') }}
-		</h2>
+		<NcButton @click="onTitleClick">
+			<template #icon>
+				<CreationIcon />
+			</template>
+			Populate field 1 or 2
+		</NcButton>
+		<div class="line">
+			<label for="github-field1">
+				{{ t('integration_github', 'Field 1') }}
+			</label>
+			<input id="github-field1"
+				v-model="field1"
+				type="text">
+		</div>
+		<div class="line">
+			<label for="github-field2">
+				{{ t('integration_github', 'Field 2') }}
+			</label>
+			<input id="github-field2"
+				v-model="field2"
+				type="text">
+		</div>
+		<br>
+		<br>
 		<p class="settings-hint">
 			{{ t('integration_github', 'If you want to allow your Nextcloud users to use OAuth to authenticate to https://github.com, create an OAuth application in your GitHub settings.') }}
 			<a href="https://github.com/settings/developers" class="external">{{ t('integration_github', 'GitHub OAuth settings') }}</a>
@@ -104,6 +124,11 @@
 import InformationOutlineIcon from 'vue-material-design-icons/InformationOutline.vue'
 import AlertIcon from 'vue-material-design-icons/Alert.vue'
 import KeyIcon from 'vue-material-design-icons/Key.vue'
+import CreationIcon from 'vue-material-design-icons/Creation.vue'
+import cogSvg from '@mdi/svg/svg/cog.svg'
+import plusSvg from '@mdi/svg/svg/plus.svg'
+
+import NcButton from '@nextcloud/vue/dist/Components/NcButton.js'
 
 import GithubIcon from './icons/GithubIcon.vue'
 
@@ -124,6 +149,8 @@ export default {
 		KeyIcon,
 		AlertIcon,
 		InformationOutlineIcon,
+		NcButton,
+		CreationIcon,
 	},
 
 	props: [],
@@ -134,6 +161,8 @@ export default {
 			// to prevent some browsers to fill fields with remembered passwords
 			readonly: true,
 			redirect_uri: window.location.protocol + '//' + window.location.host,
+			field1: '',
+			field2: '',
 		}
 	},
 
@@ -144,6 +173,28 @@ export default {
 	},
 
 	methods: {
+		onTitleClick() {
+			const params = {
+				appId: 'plopApp',
+				identifier: 'idid',
+				input: 'give me a short summary of a simple settings section about GitHub',
+				actionButtons: [
+					{
+						label: 'Put in field 1',
+						title: 'Title 1',
+						type: 'warning',
+						iconSvg: cogSvg,
+						onClick: (task) => { this.field1 = task.output; console.debug('first button', task) },
+					},
+					{
+						label: 'Put in field 2',
+						title: 'Title 2',
+						onClick: (task) => { this.field2 = task.output },
+					},
+				],
+			}
+			OCA.TPAssistant.openAssistantForm(params)
+		},
 		onCheckboxChanged(newValue, key) {
 			this.state[key] = newValue
 			this.saveOptions({ [key]: this.state[key] ? '1' : '0' })
@@ -192,6 +243,10 @@ export default {
 		.icon {
 			margin-right: 4px;
 		}
+	}
+
+	.settings-hint {
+		margin-top: 2000px;
 	}
 
 	h2 .icon {
