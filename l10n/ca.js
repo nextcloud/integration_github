@@ -47,6 +47,7 @@ OC.L10N.register(
     "Successfully unsubscribed" : "La subscripció s'ha cancel·lat correctament",
     "Failed to edit GitHub notification" : "No s'ha pogut editar la notificació de GitHub",
     "Unknown error" : "Error desconegut",
+    "Line {line}" : "Línia {line}",
     "Author" : "Autor/a",
     "Owner" : "Propietari",
     "Draft" : "Esborrany",
