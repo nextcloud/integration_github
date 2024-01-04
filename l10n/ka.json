@@ -1,0 +1,13 @@
+{ "translations": {
+    "Comment" : "Comment",
+    "Client ID" : "Client ID",
+    "Client secret" : "Client secret",
+    "Mark as read" : "Mark as read",
+    "Unsubscribe" : "Unsubscribe",
+    "Unknown error" : "Unknown error",
+    "Line {line}" : "Line {line}",
+    "Author" : "Author",
+    "Owner" : "Owner",
+    "Draft" : "Draft"
+},"pluralForm" :"nplurals=2; plural=(n!=1);"
+}
