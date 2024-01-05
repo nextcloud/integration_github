@@ -23,6 +23,7 @@ OC.L10N.register(
     "No GitHub notifications!" : "GitHub通知がありません！",
     "Successfully unsubscribed" : "購読の解除に成功しました",
     "Unknown error" : "不明なエラー",
+    "Line {line}" : "行 {line}",
     "Author" : "作者",
     "Owner" : "所有者"
 },
