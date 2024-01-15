@@ -40,6 +40,7 @@ OC.L10N.register(
     "Connected to GitHub!" : "Συνδεθήκατε στο GitHub!",
     "GitHub OAuth error:" : "Σφάλμα GitHub OAuth:",
     "GitHub options saved" : "Οι ρυθμίσεις του GitHub αποθηκεύτηκαν",
+    "Invalid access token" : "Μη έγκυρο διακριτικό πρόσβασης",
     "Failed to save GitHub options" : "Αποτυχία αποθήκευσης επιλογών GitHub",
     "Mark as read" : "Σήμανση ως αναγνωσμένο",
     "Unsubscribe" : "Κατάργηση εγγραφής",
