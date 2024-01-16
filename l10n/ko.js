@@ -29,6 +29,7 @@ OC.L10N.register(
     "Successfully unsubscribed" : "성공적으로 구독 취소되었습니다.",
     "Unknown error" : "알 수 없는 오류",
     "Author" : "저자",
-    "Owner" : "소유자"
+    "Owner" : "소유자",
+    "Draft" : "임시 저장"
 },
 "nplurals=1; plural=0;");
