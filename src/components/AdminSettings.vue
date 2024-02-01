@@ -6,6 +6,18 @@
 			</template>
 			Populate field 1 or 2
 		</NcButton>
+		<NcButton @click="onSimpleClick">
+			<template #icon>
+				<CreationIcon />
+			</template>
+			Simple assistant integration
+		</NcButton>
+		<NcButton @click="onSimpleMetaClick">
+			<template #icon>
+				<CreationIcon />
+			</template>
+			Simple assistant integration (meta task)
+		</NcButton>
 		<div class="line">
 			<label for="github-field1">
 				{{ t('integration_github', 'Field 1') }}
@@ -21,6 +33,14 @@
 			<input id="github-field2"
 				v-model="field2"
 				type="text">
+		</div>
+		<div class="line">
+			<label for="github-field3">
+				{{ t('integration_github', 'Field 3') }}
+			</label>
+			<textarea id="github-field3"
+				v-model="field3"
+				style="width: 400px; height: 200px;" />
 		</div>
 		<br>
 		<br>
@@ -126,11 +146,8 @@ import AlertIcon from 'vue-material-design-icons/Alert.vue'
 import KeyIcon from 'vue-material-design-icons/Key.vue'
 import CreationIcon from 'vue-material-design-icons/Creation.vue'
 import cogSvg from '@mdi/svg/svg/cog.svg'
-import plusSvg from '@mdi/svg/svg/plus.svg'
 
 import NcButton from '@nextcloud/vue/dist/Components/NcButton.js'
-
-import GithubIcon from './icons/GithubIcon.vue'
 
 import { loadState } from '@nextcloud/initial-state'
 import { generateUrl } from '@nextcloud/router'
@@ -144,7 +161,6 @@ export default {
 	name: 'AdminSettings',
 
 	components: {
-		GithubIcon,
 		NcCheckboxRadioSwitch,
 		KeyIcon,
 		AlertIcon,
@@ -163,6 +179,7 @@ export default {
 			redirect_uri: window.location.protocol + '//' + window.location.host,
 			field1: '',
 			field2: '',
+			field3: '',
 		}
 	},
 
@@ -194,6 +211,31 @@ export default {
 				],
 			}
 			OCA.TPAssistant.openAssistantForm(params)
+		},
+		onSimpleClick() {
+			const params = {
+				appId: 'plopApp',
+				identifier: 'idid',
+				input: 'give me a short summary of a simple settings section about GitHub',
+				closeOnResult: true,
+			}
+			OCA.TPAssistant.openAssistantForm(params).then(task => {
+				console.debug('aaa simple task', task)
+				this.field3 = task.output
+			})
+		},
+		onSimpleMetaClick() {
+			const params = {
+				appId: 'plopApp',
+				identifier: 'idid',
+				input: 'give me a short summary of a simple settings section about GitHub',
+				closeOnResult: true,
+				useMetaTasks: true,
+			}
+			OCA.TPAssistant.openAssistantForm(params).then(task => {
+				console.debug('aaa simple meta task', task)
+				this.field3 = task.output
+			})
 		},
 		onCheckboxChanged(newValue, key) {
 			this.state[key] = newValue
