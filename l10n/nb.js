@@ -15,6 +15,7 @@ OC.L10N.register(
     "Connected as {user}" : "Tilkoblet som {user}",
     "Invalid access token" : "Ugyldig tilgangstoken",
     "Mark as read" : "Merk som lest",
+    "Unsubscribe" : "Avslutt abonnement",
     "Unknown error" : "Ukjent feil",
     "Author" : "Forfatter",
     "Owner" : "Eier",
