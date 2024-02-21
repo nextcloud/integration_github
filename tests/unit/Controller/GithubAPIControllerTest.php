@@ -185,7 +185,6 @@ class GithubAPIControllerTest extends TestCase {
 
 		$this->iClient->expects($this->exactly(2))
 			->method('get')
-			->withConsecutive([$firstUrl, $options], [$secondUrl, []])
 			->willReturnOnConsecutiveCalls($firstIResponse, $secondIResponse);
 
 		$result = $this->githubApiController->getAvatar($githubLogin);

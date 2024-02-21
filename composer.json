@@ -16,7 +16,7 @@
 		"cs:check": "php-cs-fixer fix --dry-run --diff",
 		"cs:fix": "php-cs-fixer fix",
 		"psalm": "psalm.phar --no-cache",
-		"test:unit": "phpunit -c tests/phpunit.xml",
+		"test:unit": "phpunit -c tests/phpunit.xml --no-coverage",
 		"post-install-cmd": [
 			"@composer bin all install --ansi",
 			"composer dump-autoload"
@@ -33,7 +33,8 @@
 			"php": "8.0"
 		},
 		"allow-plugins": {
-			"bamarni/composer-bin-plugin": true
+			"bamarni/composer-bin-plugin": true,
+			"composer/package-versions-deprecated": true
 		}
 	},
 	"require-dev": {
