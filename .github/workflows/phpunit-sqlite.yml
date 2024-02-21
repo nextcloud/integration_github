@@ -30,7 +30,7 @@ permissions:
 
 concurrency:
   group: phpunit-sqlite-${{ github.head_ref || github.run_id }}
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   phpunit-sqlite:
