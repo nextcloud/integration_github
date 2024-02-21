@@ -24,11 +24,11 @@ declare(strict_types=1);
  */
 namespace OCA\Github\Search;
 
-use OCA\Github\Service\GithubAPIService;
 use OCA\Github\AppInfo\Application;
+use OCA\Github\Service\GithubAPIService;
 use OCP\App\IAppManager;
-use OCP\IL10N;
 use OCP\IConfig;
+use OCP\IL10N;
 use OCP\IURLGenerator;
 use OCP\IUser;
 use OCP\Search\IProvider;
@@ -39,10 +39,10 @@ use OCP\Search\SearchResultEntry;
 class GithubSearchReposProvider implements IProvider {
 
 	public function __construct(private IAppManager $appManager,
-								private IL10N $l10n,
-								private IConfig $config,
-								private IURLGenerator $urlGenerator,
-								private GithubAPIService $service) {
+		private IL10N $l10n,
+		private IConfig $config,
+		private IURLGenerator $urlGenerator,
+		private GithubAPIService $service) {
 	}
 
 	/**

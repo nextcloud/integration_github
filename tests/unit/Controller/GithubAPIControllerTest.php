@@ -4,24 +4,23 @@ namespace OCA\Github\Tests;
 
 use OCA\Github\AppInfo\Application;
 use OCA\Github\Service\GithubAPIService;
-use OCP\Http\Client\IClientService;
-use OCP\IUserManager;
-use OCP\IL10N;
-use OCP\IConfig;
-use OCP\IURLGenerator;
-use OCP\IRequest;
 use OCP\Http\Client\IClient;
+use OCP\Http\Client\IClientService;
 use OCP\Http\Client\IResponse;
+use OCP\IConfig;
+use OCP\IL10N;
+use OCP\IRequest;
+use OCP\IURLGenerator;
+use OCP\IUserManager;
 use Test\TestCase;
 use Test\Util\User\Dummy;
 
 /**
  * @group DB
  */
-class GithubAPIControllerTest extends TestCase
-{
-	const APP_NAME = 'integration_github';
-	const TEST_USER1 = 'testuser';
+class GithubAPIControllerTest extends TestCase {
+	public const APP_NAME = 'integration_github';
+	public const TEST_USER1 = 'testuser';
 	public const API_TOKEN = 'testtoken';
 	public const DEFAULT_HEADERS = ['User-Agent' => 'Nextcloud GitHub integration', 'Authorization' => 'token ' . self::API_TOKEN];
 
@@ -30,24 +29,21 @@ class GithubAPIControllerTest extends TestCase
 	private $iClient;
 	private $config;
 
-	public static function setUpBeforeClass(): void
-	{
+	public static function setUpBeforeClass(): void {
 		parent::setUpBeforeClass();
 		$backend = new Dummy();
 		$backend->createUser(self::TEST_USER1, self::TEST_USER1);
 		\OC::$server->get(IUserManager::class)->registerBackend($backend);
 	}
 
-	public static function tearDownAfterClass(): void
-	{
+	public static function tearDownAfterClass(): void {
 		$backend = new Dummy();
 		$backend->deleteUser(self::TEST_USER1);
 		\OC::$server->get(IUserManager::class)->removeBackend($backend);
 		parent::tearDownAfterClass();
 	}
 
-	protected function setUp(): void
-	{
+	protected function setUp(): void {
 		parent::setUp();
 
 		$this->loginAsUser(self::TEST_USER1);
@@ -79,8 +75,7 @@ class GithubAPIControllerTest extends TestCase
 		$this->config->setUserValue(self::TEST_USER1, Application::APP_ID, 'token', self::API_TOKEN);
 	}
 
-	public function testGetNotifications(): void
-	{
+	public function testGetNotifications(): void {
 		$since = '1800-01-01T00:00:00Z';
 
 		// Read the file in ./data/notification.json and copy the contents into the variable below
@@ -109,8 +104,7 @@ class GithubAPIControllerTest extends TestCase
 		$this->assertEquals($correctResult, $result->getData());
 	}
 
-	public function testUnsubscribeNotification(): void
-	{
+	public function testUnsubscribeNotification(): void {
 		$id = 12345;
 
 		$response = '{
@@ -142,8 +136,7 @@ class GithubAPIControllerTest extends TestCase
 		$this->assertEquals(json_decode($response, true), $result->getData());
 	}
 
-	public function testMarkNotificationAsRead(): void
-	{
+	public function testMarkNotificationAsRead(): void {
 		$id = 12345;
 
 		$response = '';
@@ -168,8 +161,7 @@ class GithubAPIControllerTest extends TestCase
 		$this->assertEquals([], $result->getData());
 	}
 
-	public function testGetAvatar(): void
-	{
+	public function testGetAvatar(): void {
 		$githubLogin = 'testuser';
 
 		$firstResponse = file_get_contents(__DIR__ . '/data/users.json');
@@ -202,8 +194,7 @@ class GithubAPIControllerTest extends TestCase
 		$this->assertEquals($secondResponse, $result->getData());
 	}
 
-	public function testGetUserInfo(): void
-	{
+	public function testGetUserInfo(): void {
 		$githubLogin = 'testuser';
 
 		$response = file_get_contents(__DIR__ . '/data/users.json');
@@ -227,8 +218,7 @@ class GithubAPIControllerTest extends TestCase
 		$this->assertEquals(json_decode($response, true), $result->getData());
 	}
 
-	public function testGetContextualUserInfo(): void
-	{
+	public function testGetContextualUserInfo(): void {
 		$githubLogin = 'testuser';
 		$subjectType = 'repository';
 		$subjectId = 12345;

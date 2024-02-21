@@ -19,12 +19,12 @@ use GuzzleHttp\Exception\ServerException;
 use OCA\Github\AppInfo\Application;
 use OCP\Dashboard\Model\WidgetItem;
 use OCP\Http\Client\IClient;
+use OCP\Http\Client\IClientService;
 use OCP\IConfig;
 use OCP\IL10N;
 use OCP\IURLGenerator;
 use OCP\IUserManager;
 use Psr\Log\LoggerInterface;
-use OCP\Http\Client\IClientService;
 use Throwable;
 
 /**
@@ -34,13 +34,13 @@ class GithubAPIService {
 
 	private IClient $client;
 
-	public function __construct (string                  $appName,
-								 private LoggerInterface $logger,
-								 private IL10N           $l10n,
-								 private IConfig         $config,
-								 private IURLGenerator   $urlGenerator,
-								 private IUserManager    $userManager,
-								 IClientService  $clientService) {
+	public function __construct(string                  $appName,
+		private LoggerInterface $logger,
+		private IL10N           $l10n,
+		private IConfig         $config,
+		private IURLGenerator   $urlGenerator,
+		private IUserManager    $userManager,
+		IClientService  $clientService) {
 		$this->client = $clientService->newClient();
 	}
 
@@ -87,7 +87,7 @@ class GithubAPIService {
 		if (isset($notifications['error'])) {
 			return $notifications;
 		}
-		$interestingNotifications = array_filter($notifications, static function(array $notification) {
+		$interestingNotifications = array_filter($notifications, static function (array $notification) {
 			return $notification['unread']
 				&& (
 					in_array($notification['reason'], ['assign', 'mention', 'team_mention', 'review_requested', 'author', 'manual'])
@@ -410,7 +410,7 @@ class GithubAPIService {
 	 * @return array decoded request result or error
 	 */
 	public function request(?string $userId, string $endPoint, array $params = [], string $method = 'GET',
-							bool $endpointUsesDefaultToken = false, int $timeout = 30): array {
+		bool $endpointUsesDefaultToken = false, int $timeout = 30): array {
 		try {
 			$url = 'https://api.github.com/' . $endPoint;
 			$options = [
@@ -435,11 +435,11 @@ class GithubAPIService {
 
 			if ($method === 'GET') {
 				$response = $this->client->get($url, $options);
-			} else if ($method === 'POST') {
+			} elseif ($method === 'POST') {
 				$response = $this->client->post($url, $options);
-			} else if ($method === 'PUT') {
+			} elseif ($method === 'PUT') {
 				$response = $this->client->put($url, $options);
-			} else if ($method === 'DELETE') {
+			} elseif ($method === 'DELETE') {
 				$response = $this->client->delete($url, $options);
 			} else {
 				return ['error' => $this->l10n->t('Bad HTTP method')];
@@ -528,11 +528,11 @@ class GithubAPIService {
 
 			if ($method === 'GET') {
 				$response = $this->client->get($url, $options);
-			} else if ($method === 'POST') {
+			} elseif ($method === 'POST') {
 				$response = $this->client->post($url, $options);
-			} else if ($method === 'PUT') {
+			} elseif ($method === 'PUT') {
 				$response = $this->client->put($url, $options);
-			} else if ($method === 'DELETE') {
+			} elseif ($method === 'DELETE') {
 				$response = $this->client->delete($url, $options);
 			} else {
 				return ['error' => $this->l10n->t('Bad HTTP method')];

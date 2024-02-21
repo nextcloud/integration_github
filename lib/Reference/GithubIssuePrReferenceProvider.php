@@ -24,13 +24,13 @@ namespace OCA\Github\Reference;
 
 use DateTime;
 use Exception;
-use OCP\Collaboration\Reference\ADiscoverableReferenceProvider;
-use OCP\Collaboration\Reference\ISearchableReferenceProvider;
-use OCP\Collaboration\Reference\Reference;
 use OC\Collaboration\Reference\ReferenceManager;
 use OCA\Github\AppInfo\Application;
 use OCA\Github\Service\GithubAPIService;
+use OCP\Collaboration\Reference\ADiscoverableReferenceProvider;
 use OCP\Collaboration\Reference\IReference;
+use OCP\Collaboration\Reference\ISearchableReferenceProvider;
+use OCP\Collaboration\Reference\Reference;
 use OCP\IConfig;
 use OCP\IL10N;
 
@@ -44,17 +44,17 @@ class GithubIssuePrReferenceProvider extends ADiscoverableReferenceProvider impl
 	private const RICH_OBJECT_TYPE = Application::APP_ID . '_issue_pr';
 
 	public function __construct(private GithubAPIService $githubAPIService,
-								private IConfig $config,
-								private IL10N $l10n,
-								private IURLGenerator $urlGenerator,
-								private ReferenceManager $referenceManager,
-								private ?string $userId) {
+		private IConfig $config,
+		private IL10N $l10n,
+		private IURLGenerator $urlGenerator,
+		private ReferenceManager $referenceManager,
+		private ?string $userId) {
 	}
 
 	/**
 	 * @inheritDoc
 	 */
-	public function getId(): string	{
+	public function getId(): string {
 		return 'github-issue-pr';
 	}
 
@@ -68,7 +68,7 @@ class GithubIssuePrReferenceProvider extends ADiscoverableReferenceProvider impl
 	/**
 	 * @inheritDoc
 	 */
-	public function getOrder(): int	{
+	public function getOrder(): int {
 		return 10;
 	}
 
@@ -214,7 +214,7 @@ class GithubIssuePrReferenceProvider extends ADiscoverableReferenceProvider impl
 		];
 
 		if (isset($issueInfo['labels']) && is_array($issueInfo['labels'])) {
-			$info['labels'] = array_map(static function(array $label) {
+			$info['labels'] = array_map(static function (array $label) {
 				return [
 					'name' => $label['name'],
 					'color' => $label['color'],
@@ -251,7 +251,7 @@ class GithubIssuePrReferenceProvider extends ADiscoverableReferenceProvider impl
 		];
 
 		if (isset($prInfo['labels']) && is_array($prInfo['labels'])) {
-			$info['labels'] = array_map(static function(array $label) {
+			$info['labels'] = array_map(static function (array $label) {
 				return [
 					'name' => $label['name'],
 					'color' => $label['color'],
@@ -296,7 +296,7 @@ class GithubIssuePrReferenceProvider extends ADiscoverableReferenceProvider impl
 	 */
 	private function getCommentId(string $urlEnd): ?int {
 		preg_match('/^#issuecomment-([0-9]+)$/', $urlEnd, $matches);
-		return (is_array($matches) && count($matches) > 1) ? ((int) $matches[1]) : null;
+		return count($matches) > 1 ? ((int) $matches[1]) : null;
 	}
 
 	/**

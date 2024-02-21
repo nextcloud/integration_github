@@ -11,19 +11,19 @@
 
 namespace OCA\Github\Controller;
 
+use OCA\Github\AppInfo\Application;
 use OCA\Github\Reference\GithubIssuePrReferenceProvider;
+use OCA\Github\Service\GithubAPIService;
+use OCP\AppFramework\Controller;
+use OCP\AppFramework\Http\DataResponse;
+use OCP\AppFramework\Http\RedirectResponse;
 use OCP\AppFramework\Http\TemplateResponse;
 use OCP\AppFramework\Services\IInitialState;
-use OCP\IURLGenerator;
 use OCP\IConfig;
 use OCP\IL10N;
-use OCP\IRequest;
-use OCP\AppFramework\Http\RedirectResponse;
-use OCP\AppFramework\Http\DataResponse;
-use OCP\AppFramework\Controller;
 
-use OCA\Github\Service\GithubAPIService;
-use OCA\Github\AppInfo\Application;
+use OCP\IRequest;
+use OCP\IURLGenerator;
 use OCP\PreConditionNotMetException;
 
 class ConfigController extends Controller {

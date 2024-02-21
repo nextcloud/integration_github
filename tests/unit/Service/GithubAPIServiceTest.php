@@ -2,7 +2,6 @@
 
 namespace OCA\Github\Tests;
 
-
 use OCA\Github\AppInfo\Application;
 use OCA\Github\Service\GithubAPIService;
 

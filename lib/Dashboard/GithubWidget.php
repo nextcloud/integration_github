@@ -23,6 +23,7 @@
 
 namespace OCA\Github\Dashboard;
 
+use OCA\Github\AppInfo\Application;
 use OCA\Github\Service\GithubAPIService;
 use OCP\AppFramework\Services\IInitialState;
 use OCP\Dashboard\IAPIWidget;
@@ -34,18 +35,17 @@ use OCP\Dashboard\Model\WidgetOptions;
 use OCP\IConfig;
 use OCP\IL10N;
 use OCP\IURLGenerator;
-use OCP\Util;
 
-use OCA\Github\AppInfo\Application;
+use OCP\Util;
 
 class GithubWidget implements IAPIWidget, IButtonWidget, IIconWidget, IOptionWidget {
 
 	public function __construct(private IL10N $l10n,
-								private IConfig $config,
-								private IURLGenerator $urlGenerator,
-								private IInitialState $initialStateService,
-								private GithubAPIService $githubAPIService,
-								private ?string $userId) {
+		private IConfig $config,
+		private IURLGenerator $urlGenerator,
+		private IInitialState $initialStateService,
+		private GithubAPIService $githubAPIService,
+		private ?string $userId) {
 	}
 
 	/**
@@ -120,7 +120,7 @@ class GithubWidget implements IAPIWidget, IButtonWidget, IIconWidget, IOptionWid
 			return [];
 		}
 		$that = $this;
-		return array_map(static function(array $notification) use ($that) {
+		return array_map(static function (array $notification) use ($that) {
 			return $that->githubAPIService->getWidgetFromNotification($notification);
 		}, $notifications);
 	}

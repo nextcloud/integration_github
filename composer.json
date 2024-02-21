@@ -8,25 +8,36 @@
 	],
 	"require": {
 		"league/commonmark": "^2.3",
-		"php": "^8.0"
+		"php": "^8.0",
+		"bamarni/composer-bin-plugin": "^1.8"
 	},
 	"scripts": {
 		"lint": "find . -name \\*.php -not -path './vendor/*' -print0 | xargs -0 -n1 php -l",
 		"cs:check": "php-cs-fixer fix --dry-run --diff",
 		"cs:fix": "php-cs-fixer fix",
-		"psalm": "psalm.phar",
-		"test:unit": "phpunit -c tests/phpunit.xml"
+		"psalm": "psalm.phar --no-cache",
+		"test:unit": "phpunit -c tests/phpunit.xml",
+		"post-install-cmd": [
+			"@composer bin all install --ansi",
+			"composer dump-autoload"
+		],
+		"post-update-cmd": [
+			"@composer bin all update --ansi",
+			"composer dump-autoload"
+		]
 	},
 	"config": {
 		"optimize-autoloader": true,
 		"classmap-authoritative": true,
 		"platform": {
 			"php": "8.0"
+		},
+		"allow-plugins": {
+			"bamarni/composer-bin-plugin": true
 		}
 	},
 	"require-dev": {
 		"ext-mbstring": "*",
-		"phpunit/phpunit": "^9.5",
-		"nextcloud/coding-standard": "^1.1"
+		"nextcloud/ocp": "^28.0"
 	}
 }
