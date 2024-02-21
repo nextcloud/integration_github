@@ -27,8 +27,9 @@ use OCP\Collaboration\Reference\RenderReferenceEvent;
 use OCP\EventDispatcher\Event;
 use OCP\EventDispatcher\IEventListener;
 use OCP\Util;
+
 /**
- * @implements IEventListener<RenderReferenceEvent> 
+ * @implements IEventListener<RenderReferenceEvent>
  */
 class GithubReferenceListener implements IEventListener {
 	public function handle(Event $event): void {

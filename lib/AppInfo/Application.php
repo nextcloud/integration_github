@@ -21,29 +21,30 @@ use OCP\AppFramework\Bootstrap\IBootContext;
 use OCP\AppFramework\Bootstrap\IBootstrap;
 use OCP\AppFramework\Bootstrap\IRegistrationContext;
 
-use OCP\AppFramework\IAppContainer;
 use OCP\Collaboration\Reference\RenderReferenceEvent;
+
 use OCP\IConfig;
 use OCP\IL10N;
-
 use OCP\INavigationManager;
+
 use OCP\IURLGenerator;
 use OCP\IUserSession;
 use OCP\Security\CSP\AddContentSecurityPolicyEvent;
+use Psr\Container\ContainerInterface;
 
 class Application extends App implements IBootstrap {
 
 	public const APP_ID = 'integration_github';
 
-	private IAppContainer $container;
+	private ContainerInterface $container;
 	private IConfig $config;
 
 	public function __construct(array $urlParams = []) {
 		parent::__construct(self::APP_ID, $urlParams);
 
-		$container = $this->getContainer();
-		$this->container = $container;
-		$this->config = $container->query(IConfig::class);
+		
+		$this->container = $this->getContainer();
+		$this->config = $this->container->get(IConfig::class);
 	}
 
 	public function register(IRegistrationContext $context): void {
