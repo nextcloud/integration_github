@@ -9,41 +9,42 @@
 
 namespace OCA\Github\AppInfo;
 
+use OCA\Github\Dashboard\GithubWidget;
 use OCA\Github\Listener\ContentSecurityPolicyListener;
 use OCA\Github\Listener\GithubReferenceListener;
 use OCA\Github\Reference\GithubCodeReferenceProvider;
 use OCA\Github\Reference\GithubIssuePrReferenceProvider;
-use OCP\AppFramework\IAppContainer;
+use OCA\Github\Search\GithubSearchIssuesProvider;
+use OCA\Github\Search\GithubSearchReposProvider;
+use OCP\AppFramework\App;
+use OCP\AppFramework\Bootstrap\IBootContext;
+use OCP\AppFramework\Bootstrap\IBootstrap;
+use OCP\AppFramework\Bootstrap\IRegistrationContext;
+
 use OCP\Collaboration\Reference\RenderReferenceEvent;
+
 use OCP\IConfig;
 use OCP\IL10N;
 use OCP\INavigationManager;
+
 use OCP\IURLGenerator;
 use OCP\IUserSession;
-
-use OCP\AppFramework\App;
-use OCP\AppFramework\Bootstrap\IRegistrationContext;
-use OCP\AppFramework\Bootstrap\IBootContext;
-use OCP\AppFramework\Bootstrap\IBootstrap;
-
-use OCA\Github\Dashboard\GithubWidget;
-use OCA\Github\Search\GithubSearchReposProvider;
-use OCA\Github\Search\GithubSearchIssuesProvider;
 use OCP\Security\CSP\AddContentSecurityPolicyEvent;
+use Psr\Container\ContainerInterface;
 
 class Application extends App implements IBootstrap {
 
 	public const APP_ID = 'integration_github';
 
-	private IAppContainer $container;
+	private ContainerInterface $container;
 	private IConfig $config;
 
 	public function __construct(array $urlParams = []) {
 		parent::__construct(self::APP_ID, $urlParams);
 
-		$container = $this->getContainer();
-		$this->container = $container;
-		$this->config = $container->query(IConfig::class);
+		
+		$this->container = $this->getContainer();
+		$this->config = $this->container->get(IConfig::class);
 	}
 
 	public function register(IRegistrationContext $context): void {
@@ -71,9 +72,9 @@ class Application extends App implements IBootstrap {
 			$container = $this->container;
 
 			if ($this->config->getUserValue($userId, self::APP_ID, 'navigation_enabled', '0') === '1') {
-				$container->query(INavigationManager::class)->add(static function () use ($container) {
-					$urlGenerator = $container->query(IURLGenerator::class);
-					$l10n = $container->query(IL10N::class);
+				$container->get(INavigationManager::class)->add(static function () use ($container) {
+					$urlGenerator = $container->get(IURLGenerator::class);
+					$l10n = $container->get(IL10N::class);
 					return [
 						'id' => self::APP_ID,
 						'order' => 10,
@@ -87,4 +88,3 @@ class Application extends App implements IBootstrap {
 		}
 	}
 }
-

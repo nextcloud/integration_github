@@ -27,6 +27,9 @@ use OCP\EventDispatcher\Event;
 use OCP\EventDispatcher\IEventListener;
 use OCP\Security\CSP\AddContentSecurityPolicyEvent;
 
+/**
+ * @implements IEventListener<Event>
+ */
 class ContentSecurityPolicyListener implements IEventListener {
 
 	public function __construct() {

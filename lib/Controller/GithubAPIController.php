@@ -11,20 +11,20 @@
 
 namespace OCA\Github\Controller;
 
+use OCA\Github\Service\GithubAPIService;
+use OCP\AppFramework\Controller;
 use OCP\AppFramework\Http;
 use OCP\AppFramework\Http\DataDisplayResponse;
-use OCP\IRequest;
 use OCP\AppFramework\Http\DataResponse;
-use OCP\AppFramework\Controller;
 
-use OCA\Github\Service\GithubAPIService;
+use OCP\IRequest;
 
 class GithubAPIController extends Controller {
 
 	public function __construct(string $appName,
-								IRequest $request,
-								private GithubAPIService $githubAPIService,
-								private ?string $userId) {
+		IRequest $request,
+		private GithubAPIService $githubAPIService,
+		private ?string $userId) {
 		parent::__construct($appName, $request);
 	}
 
