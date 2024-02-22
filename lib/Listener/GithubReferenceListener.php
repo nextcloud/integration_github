@@ -29,7 +29,7 @@ use OCP\EventDispatcher\IEventListener;
 use OCP\Util;
 
 /**
- * @implements IEventListener<RenderReferenceEvent>
+ * @implements IEventListener<Event>
  */
 class GithubReferenceListener implements IEventListener {
 	public function handle(Event $event): void {

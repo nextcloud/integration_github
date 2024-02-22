@@ -28,7 +28,7 @@ use OCP\EventDispatcher\IEventListener;
 use OCP\Security\CSP\AddContentSecurityPolicyEvent;
 
 /**
- * @implements IEventListener<AddContentSecurityPolicyEvent>
+ * @implements IEventListener<Event>
  */
 class ContentSecurityPolicyListener implements IEventListener {
 
