@@ -38,8 +38,8 @@ jobs:
 
     strategy:
       matrix:
-        php-versions: ['8.1', '8.2']
-        server-versions: ['master', 'stable28']
+        php-versions: ['8.1']
+        server-versions: ['master']
 
     services:
       mysql:

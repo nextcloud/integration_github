@@ -1,5 +1,11 @@
 {
     "require-dev": {
-        "psalm/phar": "^5.22"
+        "psalm/phar": "^5.22",
+        "php": "^8.0"
+    },
+    "config": {
+		"platform": {
+			"php": "8.0"
+		}
     }
 }
