@@ -26,6 +26,7 @@
 	},
 	"require-dev": {
 		"ext-mbstring": "*",
-		"phpunit/phpunit": "^9.5"
+		"phpunit/phpunit": "^9.5",
+		"nextcloud/coding-standard": "^1.1"
 	}
 }
