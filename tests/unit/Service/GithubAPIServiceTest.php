@@ -4,8 +4,9 @@ namespace OCA\Github\Tests;
 
 use OCA\Github\AppInfo\Application;
 use OCA\Github\Service\GithubAPIService;
+use Test\TestCase;
 
-class GithubAPIServiceTest extends \PHPUnit\Framework\TestCase {
+class GithubAPIServiceTest extends TestCase {
 
 	public function testDummy() {
 		$app = new Application();

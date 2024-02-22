@@ -39,7 +39,7 @@ jobs:
     strategy:
       matrix:
         php-versions: ['8.0', '8.1', '8.2']
-        server-versions: ['master', 'stable26', 'stable27', 'stable28']
+        server-versions: ['master', 'stable27', 'stable28']
 
     services:
       mysql:
@@ -134,11 +134,6 @@ jobs:
         if: steps.check_integration.outcome == 'success'
         working-directory: apps/${{ env.APP_NAME }}
         run: composer run test:integration
-
-      - name: Print logs
-        if: always()
-        run: |
-          cat data/nextcloud.log
 
       - name: Skipped
         # Fail the action when neither unit nor integration tests ran
