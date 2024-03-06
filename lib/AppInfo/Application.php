@@ -42,7 +42,6 @@ class Application extends App implements IBootstrap {
 	public function __construct(array $urlParams = []) {
 		parent::__construct(self::APP_ID, $urlParams);
 
-		
 		$this->container = $this->getContainer();
 		$this->config = $this->container->get(IConfig::class);
 	}

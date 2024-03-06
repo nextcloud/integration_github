@@ -1,7 +1,8 @@
 <template>
-	<DashboardWidget :items="items"
+	<NcDashboardWidget :items="items"
 		:show-more-url="showMoreUrl"
 		:show-more-text="title"
+		:empty-content-message="t('integration_github', 'OMG! No GitHub notifications!')"
 		:loading="state === 'loading'"
 		:item-menu="itemMenu"
 		@unsubscribe="onUnsubscribe"
@@ -34,7 +35,7 @@
 				</template>
 			</NcEmptyContent>
 		</template>
-	</DashboardWidget>
+	</NcDashboardWidget>
 </template>
 
 <script>
@@ -50,15 +51,17 @@ import { generateUrl, imagePath } from '@nextcloud/router'
 import { showError, showSuccess } from '@nextcloud/dialogs'
 import { loadState } from '@nextcloud/initial-state'
 import moment from '@nextcloud/moment'
-import { DashboardWidget } from '@nextcloud/vue-dashboard'
+
 import NcEmptyContent from '@nextcloud/vue/dist/Components/NcEmptyContent.js'
+import NcDashboardWidget from '@nextcloud/vue/dist/Components/NcDashboardWidget.js'
+
 import NcButton from '@nextcloud/vue/dist/Components/NcButton.js'
 
 export default {
 	name: 'Dashboard',
 
 	components: {
-		DashboardWidget,
+		NcDashboardWidget,
 		NcEmptyContent,
 		NcButton,
 		LoginVariantIcon,
@@ -122,16 +125,16 @@ export default {
 				return t('integration_github', 'Error connecting to GitHub')
 			} else if (this.state === 'ok') {
 				return t('integration_github', 'No GitHub notifications!')
+			} else if (this.state === 'loading') {
+				return t('integration_github', 'Loading...')
 			}
-			return ''
+			return ' '
 		},
 		emptyContentIcon() {
 			if (this.state === 'no-token') {
 				return GithubIcon
 			} else if (this.state === 'error') {
 				return CloseIcon
-			} else if (this.state === 'ok') {
-				return CheckIcon
 			}
 			return CheckIcon
 		},
