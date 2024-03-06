@@ -50,7 +50,7 @@ export function oauthConnect(clientId, oauthOrigin, usePopup = false) {
 		}).catch((error) => {
 			showError(
 				t('integration_github', 'Failed to save GitHub OAuth state')
-				+ ': ' + (error.response?.request?.responseText ?? '')
+				+ ': ' + (error.response?.request?.responseText ?? ''),
 			)
 			console.error(error)
 		})
