@@ -4,10 +4,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
-## [Unreleased]
+## 2.0.7 – 2024-03-06
+
+### Changed
+
+- Upgrade to NcDashboardWidget (#89) @MB-Finski
+- Update node packages (mainly vue 8) @kyteinsky
+- Bumped support to NC 29 @kyteinsky
 
 ### Added
 
+- Test the assistant notification event @julien-nc
 - Php unit tests for all API controller methods @MB-Finski
 
 ## 2.0.6 – 2023-07-21
