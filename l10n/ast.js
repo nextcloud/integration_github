@@ -3,7 +3,10 @@ OC.L10N.register(
     {
     "GitHub" : "GitHub",
     "Comment" : "Comentariu",
+    "Client ID" : "ID de veceru",
+    "Client secret" : "Secretu de veceru",
     "Unknown error" : "Error desconocíu",
+    "Line {line}" : "Llinia {line}",
     "Author" : "Autoría",
     "Owner" : "Propietariu"
 },
