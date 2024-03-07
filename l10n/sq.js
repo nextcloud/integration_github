@@ -5,6 +5,7 @@ OC.L10N.register(
     "Client ID" : "ID klienti",
     "Client secret" : "E fshehtë klienti",
     "Mark as read" : "Shënoje si të lexuar",
+    "Loading..." : "Po ngarkohet",
     "Unknown error" : "Gabim i panjohur",
     "Owner" : "Zotëruesi"
 },

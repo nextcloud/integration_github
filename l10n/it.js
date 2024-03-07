@@ -46,6 +46,7 @@ OC.L10N.register(
     "No GitHub account connected" : "Nessun account GitHub connesso",
     "Error connecting to GitHub" : "Errore durante la connessione a GitHub",
     "No GitHub notifications!" : "Nessuna notifica GitHub!",
+    "Loading..." : "Caricamento in corso...",
     "Failed to get GitHub notifications" : "Impossibile ricevere le notifiche di GitHub",
     "Successfully unsubscribed" : "Sottoscrizione annullata con successo",
     "Failed to edit GitHub notification" : "Modifica della notifica GitHub non riuscita",

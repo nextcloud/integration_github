@@ -28,6 +28,7 @@ OC.L10N.register(
     "No GitHub account connected" : "Neprijungta jokia „GitHub“ paskyra",
     "Error connecting to GitHub" : "Klaida jungiantis prie „GitHub“",
     "No GitHub notifications!" : "Nėra „GitHub“ pranešimų!",
+    "Loading..." : "Įkeliama...",
     "Failed to get GitHub notifications" : "Nepavyko gauti „GitHub“ pranešimų",
     "Successfully unsubscribed" : "Sėkmingai atsisakyta prenumeratos",
     "Failed to edit GitHub notification" : "Nepavyko taisyti „GitHub“ pranešimo",

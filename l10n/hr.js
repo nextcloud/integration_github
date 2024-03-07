@@ -46,6 +46,7 @@ OC.L10N.register(
     "No GitHub account connected" : "Nema povezanih GitHub računa",
     "Error connecting to GitHub" : "Pogreška pri povezivanju s GitHubom",
     "No GitHub notifications!" : "Nema GitHub obavijesti!",
+    "Loading..." : "Učitavanje...",
     "Failed to get GitHub notifications" : "Dohvaćanje GitHub obavijesti nije uspjelo",
     "Successfully unsubscribed" : "Uspješno otkazana pretplata",
     "Failed to edit GitHub notification" : "Uređivanje GitHub obavijesti nije uspjelo",

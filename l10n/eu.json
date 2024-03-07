@@ -56,6 +56,7 @@
     "No GitHub account connected" : "Ez dago GitHub konturik konektatuta",
     "Error connecting to GitHub" : "Errorea GitHub-era konektatzean",
     "No GitHub notifications!" : "Ez dago GitHub jakinarazpenik!",
+    "Loading..." : "Kargatzen...",
     "Failed to get GitHub notifications" : "GitHub jakinarazpenak jasotzeak huts egin du",
     "Successfully unsubscribed" : "Ondo kendu da harpidetza",
     "Failed to edit GitHub notification" : "GitHub jakinarazpena editatzeak huts egin du",

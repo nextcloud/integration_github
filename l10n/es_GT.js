@@ -4,6 +4,7 @@ OC.L10N.register(
     "Comment" : "Comentario",
     "Client ID" : "ID del cliente",
     "Client secret" : "Secreto del cliente",
+    "Loading..." : "Cargando...",
     "Unknown error" : "Error desconocido",
     "Owner" : "Dueño"
 },

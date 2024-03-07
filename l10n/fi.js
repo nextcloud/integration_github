@@ -49,6 +49,7 @@ OC.L10N.register(
     "No GitHub account connected" : "GitHub-tiliä ei ole yhdistetty",
     "Error connecting to GitHub" : "Virhe yhdistäessä GitHubiin",
     "No GitHub notifications!" : "Ei GitHub-ilmoituksia!",
+    "Loading..." : "Ladataan...",
     "Failed to get GitHub notifications" : "GitHubin ilmoitusten haku epäonnistui",
     "Successfully unsubscribed" : "Tilauksen peruutus onnistui",
     "Failed to edit GitHub notification" : "GitHubin ilmoituksen muokkaus epäonnistui",

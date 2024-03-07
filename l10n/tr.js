@@ -60,6 +60,7 @@ OC.L10N.register(
     "No GitHub account connected" : "Bağlı bir GitHub hesabı yok",
     "Error connecting to GitHub" : "GitHub ile bağlantı kurulurken sorun çıktı",
     "No GitHub notifications!" : "Herhangi bir GitHub bildirimi yok!",
+    "Loading..." : "Yükleniyor...",
     "Failed to get GitHub notifications" : "GitHub bildirimleri alınamadı",
     "Successfully unsubscribed" : "Abonelikten ayrılındı",
     "Failed to edit GitHub notification" : "GitHub bildirimi düzenlenemedi",

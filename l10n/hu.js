@@ -60,6 +60,7 @@ OC.L10N.register(
     "No GitHub account connected" : "Nincs GitHub fiók csatlakoztatva",
     "Error connecting to GitHub" : "Hiba történt a GitHubhoz történő csatlakozáskor",
     "No GitHub notifications!" : "Nincsenek GitHub-értesítések",
+    "Loading..." : "Betöltés...",
     "Failed to get GitHub notifications" : "A GitHub értesítések elérése sikertelen",
     "Successfully unsubscribed" : "Sikeresen leiratkozva",
     "Failed to edit GitHub notification" : "A GitHub értesítések szerkesztése sikertelen",

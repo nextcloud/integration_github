@@ -13,6 +13,7 @@ OC.L10N.register(
     "Enable navigation link" : "Virkja flakktengil",
     "Connected as {user}" : "Tengt sem {user}",
     "Mark as read" : "Merkja sem lesið",
+    "Loading..." : "Hleð...",
     "Unknown error" : "Óþekkt villa",
     "Line {line}" : "Lína {line}",
     "Author" : "Höfundur",

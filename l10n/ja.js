@@ -21,6 +21,7 @@ OC.L10N.register(
     "Mark as read" : "既読にする",
     "Unsubscribe" : "購読解除",
     "No GitHub notifications!" : "GitHub通知がありません！",
+    "Loading..." : "読み込み中…",
     "Successfully unsubscribed" : "購読の解除に成功しました",
     "Unknown error" : "不明なエラー",
     "Line {line}" : "行 {line}",

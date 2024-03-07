@@ -45,6 +45,7 @@
     "No GitHub account connected" : "Δεν έχει συνδεθεί λογαριασμός GitHub",
     "Error connecting to GitHub" : "Σφάλμα σύνδεσης στο GitHub",
     "No GitHub notifications!" : "Καμία ειδοποίηση από το GitHub!",
+    "Loading..." : "Γίνεται φόρτωση...",
     "Failed to get GitHub notifications" : "Αποτυχία λήψης ειδοποιήσεων GitHub",
     "Successfully unsubscribed" : "Καταργήθηκε η εγγραφή με επιτυχία",
     "Failed to edit GitHub notification" : "Αποτυχία επεξεργασίας της ειδοποίησης GitHub",

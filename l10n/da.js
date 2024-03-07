@@ -8,6 +8,7 @@ OC.L10N.register(
     "Client secret" : "Klient hemmelighed",
     "Connected as {user}" : "Forbundet som {user}",
     "Mark as read" : "Marker som læst",
+    "Loading..." : "Indlæser...",
     "Unknown error" : "Ukendt fejl",
     "Owner" : "Ejer"
 },

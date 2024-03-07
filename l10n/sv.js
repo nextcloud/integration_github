@@ -34,6 +34,7 @@ OC.L10N.register(
     "No GitHub account connected" : "Inget GitHub-konto anslutet",
     "Error connecting to GitHub" : "Kunde inte ansluta till GitHub",
     "No GitHub notifications!" : "Inga GitHub-aviseringar!",
+    "Loading..." : "Laddar...",
     "Failed to get GitHub notifications" : "Kunde inte hämta GitHub-aviseringar",
     "Successfully unsubscribed" : "Prenumerationen har avslutats",
     "Failed to edit GitHub notification" : "Kunde inte ändra GitHub-aviseringar",

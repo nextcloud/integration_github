@@ -53,6 +53,7 @@ OC.L10N.register(
     "No GitHub account connected" : "Nie je pripojený žiadny GitHub účet",
     "Error connecting to GitHub" : "Chyba pri pripájaní ku GitHub",
     "No GitHub notifications!" : "Žiadne upozornenia z GitHubu!",
+    "Loading..." : "Načítava sa…",
     "Failed to get GitHub notifications" : "Chyba pri získavaní upozornení z GitHubu",
     "Successfully unsubscribed" : "Úspešne odhlásený",
     "Failed to edit GitHub notification" : "Nepodarilo sa upraviť notifikáciu GitHubu",

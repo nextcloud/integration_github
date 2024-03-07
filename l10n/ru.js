@@ -47,6 +47,7 @@ OC.L10N.register(
     "No GitHub account connected" : "Учетная запись GitHub не подключена",
     "Error connecting to GitHub" : "Ошибка подключения к GitHub",
     "No GitHub notifications!" : "Нет уведомлений GitHub!",
+    "Loading..." : "Загрузка...",
     "Failed to get GitHub notifications" : "Не удалось получить уведомления GitHub",
     "Successfully unsubscribed" : "Подписка успешно отменена",
     "Failed to edit GitHub notification" : "Не удалось изменить уведомление GitHub",

@@ -58,6 +58,7 @@
     "No GitHub account connected" : "Ingen GitHub-konto tilkoblet",
     "Error connecting to GitHub" : "Feil ved tilkobling til GitHub",
     "No GitHub notifications!" : "Ingen GitHub-varsler!",
+    "Loading..." : "Laster…",
     "Failed to get GitHub notifications" : "Henting av GitHub-varsler feilet",
     "Successfully unsubscribed" : "Avsluttet abonnementet",
     "Failed to edit GitHub notification" : "Redigering av GitHub-varsel feilet",

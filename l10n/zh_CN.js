@@ -55,6 +55,7 @@ OC.L10N.register(
     "No GitHub account connected" : "未连接至GitHub账号",
     "Error connecting to GitHub" : "连接到GitHub时发生错误",
     "No GitHub notifications!" : "无GitHub通知！",
+    "Loading..." : "载入中...",
     "Failed to get GitHub notifications" : "获取GitHub通知失败",
     "Successfully unsubscribed" : "退订成功",
     "Failed to edit GitHub notification" : "编辑GitHub通知失败",

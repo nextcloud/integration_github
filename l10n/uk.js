@@ -13,6 +13,7 @@ OC.L10N.register(
     "Client secret" : "Ключ клієнта",
     "Mark as read" : "Відмітити прочитаним",
     "Unsubscribe" : "Відписатися",
+    "Loading..." : "Завантаження...",
     "GitHub API error" : "Помилка API GitHub",
     "Unknown error" : "Невідома помилка",
     "GitHub connected accounts settings" : "Налаштування підключених облікових записів GitHub",
