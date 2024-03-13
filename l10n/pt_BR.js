@@ -55,6 +55,7 @@ OC.L10N.register(
     "Invalid access token" : "Token de acesso inválido",
     "Failed to save GitHub options" : "Erro ao salvar as opções do GitHub",
     "Loading data" : "Carregando dados",
+    "OMG! No GitHub notifications!" : "OH MEU DEUS! Nenhuma notificação do GitHub!",
     "Mark as read" : "Marcar como lida",
     "Unsubscribe" : "Cancelar inscrição",
     "No GitHub account connected" : "Nenhuma conta GitHub conectada",
