@@ -3,7 +3,7 @@ OC.L10N.register(
     {
     "GitHub" : "GitHub",
     "Error getting OAuth access token" : "OAuth erişim kodu alınırken sorun çıktı",
-    "Error during OAuth exchanges" : "OAuth alış verişinde sorun çıktı",
+    "Error during OAuth exchanges" : "OAuth alışverişinde sorun çıktı",
     "GitHub notifications" : "GitHub bildirimleri",
     "More notifications" : "Diğer bildirimler",
     "GitHub code permalink" : "GitHub kod kalıcı bağlantısı",
@@ -55,6 +55,7 @@ OC.L10N.register(
     "Invalid access token" : "Erişim kodu geçersiz",
     "Failed to save GitHub options" : "GitHub ayarları kaydedilemedi",
     "Loading data" : "Veriler yükleniyor",
+    "OMG! No GitHub notifications!" : "Hayret! Herhangi bir GitHub bildirimi yok!",
     "Mark as read" : "Okunmuş olarak işaretle",
     "Unsubscribe" : "Abonelikten ayrıl",
     "No GitHub account connected" : "Bağlı bir GitHub hesabı yok",
