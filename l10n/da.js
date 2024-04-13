@@ -10,6 +10,7 @@ OC.L10N.register(
     "Mark as read" : "Marker som læst",
     "Loading..." : "Indlæser...",
     "Unknown error" : "Ukendt fejl",
+    "Author" : "Forfatter",
     "Owner" : "Ejer"
 },
 "nplurals=2; plural=(n != 1);");

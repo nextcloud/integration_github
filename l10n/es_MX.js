@@ -6,6 +6,7 @@ OC.L10N.register(
     "Client secret" : "Secreto del cliente",
     "Loading..." : "Cargando...",
     "Unknown error" : "Se presentó un error desconocido",
+    "Line {line}" : "Línea {line}",
     "Author" : "Autor",
     "Owner" : "Dueño"
 },
