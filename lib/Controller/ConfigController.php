@@ -196,11 +196,11 @@ class ConfigController extends Controller {
 		if (isset($info['login'], $info['id'])) {
 			$this->config->setUserValue($this->userId, Application::APP_ID, 'user_id', $info['id']);
 			$this->config->setUserValue($this->userId, Application::APP_ID, 'user_name', $info['login']);
-			$this->config->setUserValue($this->userId, Application::APP_ID, 'user_displayname', $info['name']);
+			$this->config->setUserValue($this->userId, Application::APP_ID, 'user_displayname', $info['name'] ?? '');
 			return [
 				'user_id' => $info['id'],
 				'user_name' => $info['login'],
-				'user_displayname' => $info['name'],
+				'user_displayname' => $info['name'] ?? '',
 			];
 		} else {
 			$this->config->deleteUserValue($this->userId, Application::APP_ID, 'user_id');
