@@ -10,6 +10,7 @@
     "Unknown error" : "Error desconocíu",
     "Line {line}" : "Llinia {line}",
     "Author" : "Autoría",
-    "Owner" : "Propietariu"
+    "Owner" : "Propietariu",
+    "Draft" : "Borrador"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

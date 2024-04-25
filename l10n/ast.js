@@ -12,6 +12,7 @@ OC.L10N.register(
     "Unknown error" : "Error desconocíu",
     "Line {line}" : "Llinia {line}",
     "Author" : "Autoría",
-    "Owner" : "Propietariu"
+    "Owner" : "Propietariu",
+    "Draft" : "Borrador"
 },
 "nplurals=2; plural=(n != 1);");
