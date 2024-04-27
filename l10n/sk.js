@@ -60,6 +60,7 @@ OC.L10N.register(
     "GitHub API error" : "Chyba GitHub API",
     "Unknown error" : "Neznáma chyba",
     "GitHub connected accounts settings" : "Nastavenia pripojených účtov GitHub",
+    "Line {line}" : "Riadok {line}",
     "by {creator}" : "od {creator}",
     "Author" : "Autor",
     "Owner" : "Vlastník",
