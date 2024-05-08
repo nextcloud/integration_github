@@ -1,5 +1,9 @@
+<!--
+  - SPDX-FileCopyrightText: 2020 Nextcloud GmbH and Nextcloud contributors
+  - SPDX-License-Identifier: CC0-1.0
+-->
 # Authors
 
-* Julien Veyssier <julien-nc@posteo.net> (Developper)
-* Sami Finnilä <sami.finnila@nextcloud.com> (Secondary developer)
-
+- Anupam Kumar <kyteinsky@gmail.com>
+- Julien Veyssier <julien-nc@posteo.net>
+- Sami Finnilä <sami.finnila@nextcloud.com>
