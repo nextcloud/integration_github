@@ -26,6 +26,7 @@ OC.L10N.register(
     "Unknown error" : "不明なエラー",
     "Line {line}" : "行 {line}",
     "Author" : "作者",
-    "Owner" : "所有者"
+    "Owner" : "所有者",
+    "Draft" : "下書き"
 },
 "nplurals=1; plural=0;");
