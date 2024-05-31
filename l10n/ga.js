@@ -2,8 +2,11 @@ OC.L10N.register(
     "integration_github",
     {
     "Comment" : "Trácht",
+    "Client ID" : "Aitheantas Cliant",
+    "Client secret" : "Rún an chliaint",
     "Mark as read" : "Marcáil mar léite",
     "Unknown error" : "Earráid anaithnid",
+    "Line {line}" : "Líne {line}",
     "Author" : "Údar",
     "Owner" : "Úinéir"
 },
