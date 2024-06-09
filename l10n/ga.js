@@ -5,6 +5,7 @@ OC.L10N.register(
     "Client ID" : "Aitheantas Cliant",
     "Client secret" : "Rún an chliaint",
     "Mark as read" : "Marcáil mar léite",
+    "Unsubscribe" : "Díliostáil",
     "Unknown error" : "Earráid anaithnid",
     "Line {line}" : "Líne {line}",
     "Author" : "Údar",
