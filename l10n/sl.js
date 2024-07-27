@@ -50,6 +50,7 @@ OC.L10N.register(
     "Successfully unsubscribed" : "Naročnina je uspešno preklicana",
     "Failed to edit GitHub notification" : "Urejanje obvestila GitHub je spodletelo",
     "Unknown error" : "Neznana napaka",
+    "Line {line}" : "Vrstica {line}",
     "Author" : "Avtor",
     "Owner" : "Lastnik",
     "Open issue" : "Odpri nalogo",
