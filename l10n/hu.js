@@ -55,6 +55,7 @@ OC.L10N.register(
     "Invalid access token" : "Érvénytelen hozzáférési token",
     "Failed to save GitHub options" : "A GitHub beállítások mentése sikertelen",
     "Loading data" : "Adatok betöltése",
+    "OMG! No GitHub notifications!" : "Te jó ég, nincsenek GitHub-értesítések",
     "Mark as read" : "Megjelölés olvasottként",
     "Unsubscribe" : "Leiratkozás",
     "No GitHub account connected" : "Nincs GitHub fiók csatlakoztatva",
