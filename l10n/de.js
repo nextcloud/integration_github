@@ -55,6 +55,7 @@ OC.L10N.register(
     "Invalid access token" : "Ungültiger Zugriffstoken",
     "Failed to save GitHub options" : "Fehler beim Speichern der GutHub-Einstellungen",
     "Loading data" : "Daten werden geladen",
+    "OMG! No GitHub notifications!" : "OMG! Keine GitHub-Benachrichtigungen!",
     "Mark as read" : "Als gelesen markieren",
     "Unsubscribe" : "Abmelden",
     "No GitHub account connected" : "Kein GitHub-Konto verbunden",
