@@ -8,6 +8,10 @@
 			<GithubIcon class="icon" />
 			{{ t('integration_github', 'GitHub integration') }}
 		</h2>
+		<button @click="onButtonClick">
+			plop
+		</button>
+		<textarea v-model="text" />
 		<p class="settings-hint">
 			{{ t('integration_github', 'If you want to allow your Nextcloud users to use OAuth to authenticate to https://github.com, create an OAuth application in your GitHub settings.') }}
 			<a href="https://github.com/settings/developers" class="external">{{ t('integration_github', 'GitHub OAuth settings') }}</a>
@@ -140,6 +144,7 @@ export default {
 			// to prevent some browsers to fill fields with remembered passwords
 			readonly: true,
 			redirect_uri: window.location.protocol + '//' + window.location.host,
+			text: '',
 		}
 	},
 
@@ -150,6 +155,26 @@ export default {
 	},
 
 	methods: {
+		onButtonClick() {
+			if (OCA.Assistant.openAssistantForm) {
+				OCA.Assistant.openAssistantForm({
+					appId: 'spreed',
+					customId: 'message translation',
+					taskType: 'core:text2text:translate',
+					inputs: {
+						input: 'the content of the message',
+					},
+					closeOnResult: false,
+				}).then(task => {
+					if (task.status === 'STATUS_SUCCESSFUL') {
+						this.text = task.output.output
+						console.debug('assistant result task output', task.output.output)
+					} else {
+						console.debug('assistant result task', task)
+					}
+				})
+			}
+		},
 		onCheckboxChanged(newValue, key) {
 			this.state[key] = newValue
 			this.saveOptions({ [key]: this.state[key] ? '1' : '0' }, false)
