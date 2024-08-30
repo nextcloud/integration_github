@@ -65,7 +65,6 @@ OC.L10N.register(
     "Failed to edit GitHub notification" : "Failed to edit GitHub notification",
     "GitHub API error" : "GitHub API error",
     "Unknown error" : "خطای ناشناخته",
-    "GitHub connected accounts settings" : "GitHub connected accounts settings",
     "Click to fold/unfold content" : "Click to fold/unfold content",
     "Line {begin} to {end}" : "Line {begin} to {end}",
     "Line {line}" : "Line {line}",
