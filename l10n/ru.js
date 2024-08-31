@@ -5,6 +5,7 @@ OC.L10N.register(
     "Error getting OAuth access token" : "Ошибка получения токена доступа OAuth",
     "Error during OAuth exchanges" : "Ошибка во время обмена данными OAuth",
     "GitHub notifications" : "Уведомления GitHub",
+    "GitHub issues, pull requests and comments" : "Проблемы на GitHub, запросы на удаление и комментарии",
     "Comment" : "Комментарий",
     "GitHub issues and pull requests" : "Проблемы с GitHub и запросы на слияние",
     "GitHub repositories" : "Репозитории GitHub",
@@ -52,9 +53,15 @@ OC.L10N.register(
     "Successfully unsubscribed" : "Подписка успешно отменена",
     "Failed to edit GitHub notification" : "Не удалось изменить уведомление GitHub",
     "Unknown error" : "Неизвестная ошибка",
+    "GitHub connected accounts settings" : "Настройки подключенных учетных записей на GitHub",
     "Author" : "Автор",
     "Owner" : "Владелец",
+    "Open draft pull request" : "Запрос на извлечение открытого черновика",
+    "Open pull request" : "Открытый запрос на извлечение",
+    "Merged pull request" : "Объединенный запрос на извлечение",
+    "Closed pull request" : "Закрытый запрос на извлечение",
     "Draft" : "Черновик",
+    "Review requested" : "Запрошенный обзор",
     "Failed to save GitHub OAuth state" : "Не удалось сохранить состояние GitHub OAuth"
 },
 "nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);");
