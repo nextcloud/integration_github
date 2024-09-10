@@ -23,6 +23,7 @@
     "Client ID of your GitHub application" : "ID клиента приложения GitHub",
     "Client secret" : "Клиентский ключ ",
     "Client secret of your GitHub application" : "Секрет клиента вашего приложения GitHub",
+    "The default access token will be used for link previews and unified search by users who didn't connect to GitHub." : "Токен доступа по умолчанию будет использоваться для предварительного просмотра ссылок и унифицированного поиска пользователями, которые не подключились к GitHub.",
     "GitHub admin options saved" : "Параметры администратора GitHub сохранены",
     "Failed to save GitHub admin options" : "Не удалось сохранить параметры администратора GitHub",
     "When you create a personal access token yourself, give it at least \"read:user\", \"user:email\" and \"notifications\" permissions." : "Когда вы создаете личный токен доступа самостоятельно, дайте ему как минимум разрешения «чтение:пользователь», «пользователь:электронная почта» и «уведомления».",
