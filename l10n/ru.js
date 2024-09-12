@@ -56,6 +56,7 @@ OC.L10N.register(
     "Failed to edit GitHub notification" : "Не удалось изменить уведомление GitHub",
     "Unknown error" : "Неизвестная ошибка",
     "GitHub connected accounts settings" : "Настройки подключенных учетных записей на GitHub",
+    "Line {line}" : "Линия {line}",
     "Author" : "Автор",
     "Owner" : "Владелец",
     "Open draft pull request" : "Запрос на извлечение открытого черновика",
