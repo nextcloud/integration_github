@@ -8,6 +8,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 3.0.0 – 2024-09-28
+
+### Changed
+
+- Switch from Webpack to Vite
+- Update npm pkgs
+- Support NC 30
+- Add SPDX headers
+
+### Fixed
+
+- fix crash when connecting to an account without display name
+
 ## 2.0.7 – 2024-03-06
 
 ### Changed
