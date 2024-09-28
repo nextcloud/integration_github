@@ -36,4 +36,5 @@
 /stylelint.config.js
 /webpack.config.js
 /webpack.js
+/vite.config.ts
 tests
