@@ -38,8 +38,8 @@ jobs:
       # do not stop on another job's failure
       fail-fast: false
       matrix:
-        ocp-version: [ '^26', '^27', '^28', 'dev-stable29', 'dev-master' ]
-        php-version: [ '8.0', '8.1', '8.2', '8.3' ]
+        ocp-version: ['^26', '^27', '^28', '^29', '^30', 'dev-master']
+        php-version: ['8.0', '8.1', '8.2', '8.3']
 
 
     name: Psalm check on PHP ${{ matrix.php-version }} and OCP ${{ matrix.ocp-version }}
@@ -63,7 +63,7 @@ jobs:
         run: composer require --dev nextcloud/ocp:${{ matrix.ocp-version }} --ignore-platform-reqs --with-dependencies
 
       - name: Install dependencies
-        run: composer require --dev 
+        run: composer require --dev
 
       - name: Run coding standards check
         run: composer run psalm
