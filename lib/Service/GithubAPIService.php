@@ -29,13 +29,15 @@ class GithubAPIService {
 
 	private IClient $client;
 
-	public function __construct(string                  $appName,
+	public function __construct(
+		string                  $appName,
 		private LoggerInterface $logger,
 		private IL10N           $l10n,
 		private IConfig         $config,
 		private IURLGenerator   $urlGenerator,
 		private IUserManager    $userManager,
-		IClientService  $clientService) {
+		IClientService  $clientService,
+	) {
 		$this->client = $clientService->newClient();
 	}
 
@@ -447,7 +449,7 @@ class GithubAPIService {
 			} else {
 				return json_decode($body, true) ?: [];
 			}
-		} catch (ClientException | ServerException $e) {
+		} catch (ClientException|ServerException $e) {
 			$responseBody = $e->getResponse()->getBody();
 			$parsedResponseBody = json_decode($responseBody, true);
 			if ($e->getResponse()->getStatusCode() === 404) {
@@ -460,7 +462,7 @@ class GithubAPIService {
 				'error' => $e->getMessage(),
 				'body' => $parsedResponseBody,
 			];
-		} catch (Exception | Throwable $e) {
+		} catch (Exception|Throwable $e) {
 			$this->logger->warning('GitHub API error : ' . $e->getMessage(), ['app' => Application::APP_ID]);
 			return ['error' => $e->getMessage()];
 		}
@@ -492,7 +494,7 @@ class GithubAPIService {
 				return [];
 			}
 		} catch (Exception $e) {
-			$this->logger->warning('GitHub API error : '.$e->getMessage(), ['app' => Application::APP_ID]);
+			$this->logger->warning('GitHub API error : ' . $e->getMessage(), ['app' => Application::APP_ID]);
 			return ['error' => $e->getMessage()];
 		}
 	}
@@ -542,7 +544,7 @@ class GithubAPIService {
 				return $resultArray;
 			}
 		} catch (Exception $e) {
-			$this->logger->warning('GitHub OAuth error : '.$e->getMessage(), ['app' => Application::APP_ID]);
+			$this->logger->warning('GitHub OAuth error : ' . $e->getMessage(), ['app' => Application::APP_ID]);
 			return ['error' => $e->getMessage()];
 		}
 	}

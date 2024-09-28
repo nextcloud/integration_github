@@ -20,12 +20,14 @@ class GithubCodeReferenceProvider extends ADiscoverableReferenceProvider {
 
 	private const RICH_OBJECT_TYPE = Application::APP_ID . '_code_permalink';
 
-	public function __construct(private GithubAPIService $githubAPIService,
+	public function __construct(
+		private GithubAPIService $githubAPIService,
 		private IConfig $config,
 		private IL10N $l10n,
 		private IURLGenerator $urlGenerator,
 		private ReferenceManager $referenceManager,
-		private ?string $userId) {
+		private ?string $userId,
+	) {
 	}
 
 	/**

@@ -27,12 +27,14 @@ class GithubIssuePrReferenceProvider extends ADiscoverableReferenceProvider impl
 
 	private const RICH_OBJECT_TYPE = Application::APP_ID . '_issue_pr';
 
-	public function __construct(private GithubAPIService $githubAPIService,
+	public function __construct(
+		private GithubAPIService $githubAPIService,
 		private IConfig $config,
 		private IL10N $l10n,
 		private IURLGenerator $urlGenerator,
 		private ReferenceManager $referenceManager,
-		private ?string $userId) {
+		private ?string $userId,
+	) {
 	}
 
 	/**
@@ -105,7 +107,7 @@ class GithubIssuePrReferenceProvider extends ADiscoverableReferenceProvider impl
 				}
 				$issueTitle = $issueInfo['title'] ?? '';
 				$issueNumber = $issueInfo['number'] ?? '';
-				$titlePrefix = $commentInfo ? '[' . $this->l10n->t('Comment') .'] ' : '';
+				$titlePrefix = $commentInfo ? '[' . $this->l10n->t('Comment') . '] ' : '';
 				$reference->setTitle($titlePrefix . $issueTitle . ' · Issue #' . $issueNumber . ' · ' . $owner . '/' . $repo);
 				$reference->setRichObject(
 					self::RICH_OBJECT_TYPE,
@@ -132,7 +134,7 @@ class GithubIssuePrReferenceProvider extends ADiscoverableReferenceProvider impl
 						$prInfo['title'] = $this->stripMarkdown($prInfo['title']);
 					}
 					$prNumber = $prInfo['number'] ?? '';
-					$titlePrefix = $commentInfo ? '[' . $this->l10n->t('Comment') .'] ' : '';
+					$titlePrefix = $commentInfo ? '[' . $this->l10n->t('Comment') . '] ' : '';
 					$reference->setTitle($titlePrefix . $prTitle . ' · Pull Request #' . $prNumber . ' · ' . $owner . '/' . $repo);
 					$reference->setRichObject(
 						self::RICH_OBJECT_TYPE,
@@ -167,14 +169,14 @@ class GithubIssuePrReferenceProvider extends ADiscoverableReferenceProvider impl
 			try {
 				$ts = (new DateTime($commentInfo['created_at']))->getTimestamp();
 				$info['created_at'] = $ts;
-			} catch (Exception | Throwable $e) {
+			} catch (Exception|Throwable $e) {
 			}
 		}
 		if (isset($commentInfo['updated_at'])) {
 			try {
 				$ts = (new DateTime($commentInfo['updated_at']))->getTimestamp();
 				$info['updated_at'] = $ts;
-			} catch (Exception | Throwable $e) {
+			} catch (Exception|Throwable $e) {
 			}
 		}
 		if (isset($commentInfo['user'], $commentInfo['user']['login'])) {
@@ -209,7 +211,7 @@ class GithubIssuePrReferenceProvider extends ADiscoverableReferenceProvider impl
 			try {
 				$ts = (new DateTime($issueInfo['created_at']))->getTimestamp();
 				$info['created_at'] = $ts;
-			} catch (Exception | Throwable $e) {
+			} catch (Exception|Throwable $e) {
 			}
 		}
 		if (isset($issueInfo['user'], $issueInfo['user']['login'])) {
@@ -246,7 +248,7 @@ class GithubIssuePrReferenceProvider extends ADiscoverableReferenceProvider impl
 			try {
 				$ts = (new DateTime($prInfo['created_at']))->getTimestamp();
 				$info['created_at'] = $ts;
-			} catch (Exception | Throwable $e) {
+			} catch (Exception|Throwable $e) {
 			}
 		}
 		if (isset($prInfo['user'], $prInfo['user']['login'])) {
@@ -280,7 +282,7 @@ class GithubIssuePrReferenceProvider extends ADiscoverableReferenceProvider impl
 	 */
 	private function getCommentId(string $urlEnd): ?int {
 		preg_match('/^#issuecomment-([0-9]+)$/', $urlEnd, $matches);
-		return count($matches) > 1 ? ((int) $matches[1]) : null;
+		return count($matches) > 1 ? ((int)$matches[1]) : null;
 	}
 
 	/**

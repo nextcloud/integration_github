@@ -23,12 +23,14 @@ use OCP\Util;
 
 class GithubWidget implements IAPIWidget, IButtonWidget, IIconWidget, IOptionWidget {
 
-	public function __construct(private IL10N $l10n,
+	public function __construct(
+		private IL10N $l10n,
 		private IConfig $config,
 		private IURLGenerator $urlGenerator,
 		private IInitialState $initialStateService,
 		private GithubAPIService $githubAPIService,
-		private ?string $userId) {
+		private ?string $userId,
+	) {
 	}
 
 	/**

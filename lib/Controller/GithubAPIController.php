@@ -16,10 +16,12 @@ use OCP\IRequest;
 
 class GithubAPIController extends Controller {
 
-	public function __construct(string $appName,
+	public function __construct(
+		string $appName,
 		IRequest $request,
 		private GithubAPIService $githubAPIService,
-		private ?string $userId) {
+		private ?string $userId,
+	) {
 		parent::__construct($appName, $request);
 	}
 

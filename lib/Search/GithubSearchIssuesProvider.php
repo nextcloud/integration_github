@@ -22,11 +22,13 @@ use OCP\Search\SearchResultEntry;
 
 class GithubSearchIssuesProvider implements IProvider {
 
-	public function __construct(private IAppManager $appManager,
+	public function __construct(
+		private IAppManager $appManager,
 		private IL10N $l10n,
 		private IConfig $config,
 		private IURLGenerator $urlGenerator,
-		private GithubAPIService $service) {
+		private GithubAPIService $service,
+	) {
 	}
 
 	/**

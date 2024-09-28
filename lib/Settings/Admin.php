@@ -13,8 +13,10 @@ use OCP\Settings\ISettings;
 
 class Admin implements ISettings {
 
-	public function __construct(private IConfig $config,
-		private IInitialState $initialStateService) {
+	public function __construct(
+		private IConfig $config,
+		private IInitialState $initialStateService,
+	) {
 	}
 
 	/**

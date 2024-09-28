@@ -32,7 +32,7 @@ class ConfigController extends Controller {
 		private IInitialState                  $initialStateService,
 		private GithubAPIService               $githubAPIService,
 		private GithubIssuePrReferenceProvider $githubIssuePrReferenceProvider,
-		private ?string                        $userId
+		private ?string                        $userId,
 	) {
 		parent::__construct($appName, $request);
 	}
