@@ -9,7 +9,10 @@ namespace OCA\Github\Controller;
 use OCA\Github\AppInfo\Application;
 use OCA\Github\Reference\GithubIssuePrReferenceProvider;
 use OCA\Github\Service\GithubAPIService;
+use OCA\Github\Service\SecretService;
 use OCP\AppFramework\Controller;
+use OCP\AppFramework\Http\Attribute\NoAdminRequired;
+use OCP\AppFramework\Http\Attribute\NoCSRFRequired;
 use OCP\AppFramework\Http\DataResponse;
 use OCP\AppFramework\Http\RedirectResponse;
 use OCP\AppFramework\Http\TemplateResponse;
@@ -24,27 +27,28 @@ use OCP\PreConditionNotMetException;
 class ConfigController extends Controller {
 
 	public function __construct(
-		string                                 $appName,
-		IRequest                               $request,
-		private IConfig                        $config,
-		private IURLGenerator                  $urlGenerator,
-		private IL10N                          $l,
-		private IInitialState                  $initialStateService,
-		private GithubAPIService               $githubAPIService,
+		string $appName,
+		IRequest $request,
+		private IConfig $config,
+		private IURLGenerator $urlGenerator,
+		private IL10N $l,
+		private IInitialState $initialStateService,
+		private GithubAPIService $githubAPIService,
+		private SecretService $secretService,
 		private GithubIssuePrReferenceProvider $githubIssuePrReferenceProvider,
-		private ?string                        $userId,
+		private ?string $userId,
 	) {
 		parent::__construct($appName, $request);
 	}
 
 	/**
-	 * @NoAdminRequired
 	 * Set config values
 	 *
 	 * @param array $values key/value pairs to store in user preferences
 	 * @return DataResponse
 	 * @throws PreConditionNotMetException
 	 */
+	#[NoAdminRequired]
 	public function setConfig(array $values): DataResponse {
 		// revoke the oauth token if needed
 		if (isset($values['token']) && $values['token'] === '') {
@@ -56,7 +60,11 @@ class ConfigController extends Controller {
 
 		// save values
 		foreach ($values as $key => $value) {
-			$this->config->setUserValue($this->userId, Application::APP_ID, $key, $value);
+			if ($key === 'token') {
+				$this->secretService->setEncryptedUserValue($this->userId, $key, $value);
+			} else {
+				$this->config->setUserValue($this->userId, Application::APP_ID, $key, $value);
+			}
 		}
 		$result = [];
 
@@ -76,6 +84,7 @@ class ConfigController extends Controller {
 				$this->config->deleteUserValue($this->userId, Application::APP_ID, 'user_name');
 				$this->config->deleteUserValue($this->userId, Application::APP_ID, 'user_displayname');
 				$this->config->deleteUserValue($this->userId, Application::APP_ID, 'token_type');
+				$this->config->deleteUserValue($this->userId, Application::APP_ID, 'token');
 				$result['user_name'] = '';
 			}
 			// connect or disconnect: invalidate the user-related cache
@@ -92,28 +101,28 @@ class ConfigController extends Controller {
 	 */
 	public function setAdminConfig(array $values): DataResponse {
 		foreach ($values as $key => $value) {
-			$this->config->setAppValue(Application::APP_ID, $key, $value);
+			if (in_array($key, ['client_id', 'client_secret', 'default_link_token'], true)) {
+				$this->secretService->setEncryptedAppValue($key, $value);
+			} else {
+				$this->config->setAppValue(Application::APP_ID, $key, $value);
+			}
 		}
 		return new DataResponse(1);
 	}
 
 	/**
-	 * @NoAdminRequired
-	 * @NoCSRFRequired
-	 *
 	 * @param string $user_name
 	 * @param string $user_displayname
 	 * @return TemplateResponse
 	 */
+	#[NoAdminRequired]
+	#[NoCSRFRequired]
 	public function popupSuccessPage(string $user_name, string $user_displayname): TemplateResponse {
 		$this->initialStateService->provideInitialState('popup-data', ['user_name' => $user_name, 'user_displayname' => $user_displayname]);
 		return new TemplateResponse(Application::APP_ID, 'popupSuccess', [], TemplateResponse::RENDER_AS_GUEST);
 	}
 
 	/**
-	 * @NoAdminRequired
-	 * @NoCSRFRequired
-	 *
 	 * Receive oauth code and get oauth access token
 	 *
 	 * @param string $code request code to use when requesting oauth token
@@ -121,10 +130,12 @@ class ConfigController extends Controller {
 	 * @return RedirectResponse to user settings
 	 * @throws PreConditionNotMetException
 	 */
+	#[NoAdminRequired]
+	#[NoCSRFRequired]
 	public function oauthRedirect(string $code, string $state): RedirectResponse {
 		$configState = $this->config->getUserValue($this->userId, Application::APP_ID, 'oauth_state');
-		$clientID = $this->config->getAppValue(Application::APP_ID, 'client_id');
-		$clientSecret = $this->config->getAppValue(Application::APP_ID, 'client_secret');
+		$clientID = $this->secretService->getEncryptedAppValue('client_id');
+		$clientSecret = $this->secretService->getEncryptedAppValue('client_secret');
 
 		// anyway, reset state
 		$this->config->deleteUserValue($this->userId, Application::APP_ID, 'oauth_state');
@@ -139,7 +150,7 @@ class ConfigController extends Controller {
 			if (isset($result['access_token'])) {
 				$this->githubIssuePrReferenceProvider->invalidateUserCache($this->userId);
 				$accessToken = $result['access_token'];
-				$this->config->setUserValue($this->userId, Application::APP_ID, 'token', $accessToken);
+				$this->secretService->setEncryptedUserValue($this->userId, 'token', $accessToken);
 				$this->config->setUserValue($this->userId, Application::APP_ID, 'token_type', 'oauth');
 				$userInfo = $this->storeUserInfo();
 

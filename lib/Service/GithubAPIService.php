@@ -30,13 +30,12 @@ class GithubAPIService {
 	private IClient $client;
 
 	public function __construct(
-		string                  $appName,
+		private SecretService $secretService,
 		private LoggerInterface $logger,
-		private IL10N           $l10n,
-		private IConfig         $config,
-		private IURLGenerator   $urlGenerator,
-		private IUserManager    $userManager,
-		IClientService  $clientService,
+		private IL10N $l10n,
+		private IConfig $config,
+		private IURLGenerator $urlGenerator,
+		IClientService $clientService,
 	) {
 		$this->client = $clientService->newClient();
 	}
@@ -360,43 +359,6 @@ class GithubAPIService {
 	}
 
 	/**
-	 * Get the user access token
-	 * If there is none, get the default one, check:
-	 * - if we use it for this endpoint
-	 * - if user is anonymous
-	 * - if user is a guest
-	 * @param string|null $userId
-	 * @param bool $endpointUsesDefaultToken
-	 * @return string
-	 */
-	public function getAccessToken(?string $userId, bool $endpointUsesDefaultToken = false): string {
-		// use user access token in priority
-		$accessToken = '';
-		// for logged in users
-		if ($userId !== null) {
-			$accessToken = $this->config->getUserValue($userId, Application::APP_ID, 'token');
-			// fallback to admin default token if $useDefaultToken
-			if ($accessToken === '' && $endpointUsesDefaultToken) {
-				$user = $this->userManager->get($userId);
-				$isGuestUser = $user->getBackendClassName() === 'Guests';
-				$allowDefaultTokenToGuests = $this->config->getAppValue(Application::APP_ID, 'allow_default_link_token_to_guests', '0') === '1';
-
-				if ((!$isGuestUser) || $allowDefaultTokenToGuests) {
-					$accessToken = $this->config->getAppValue(Application::APP_ID, 'default_link_token');
-				}
-			}
-		} elseif ($endpointUsesDefaultToken) {
-			// anonymous users
-			$allowDefaultTokenToAnonymous = $this->config->getAppValue(Application::APP_ID, 'allow_default_link_token_to_anonymous', '0') === '1';
-			if ($allowDefaultTokenToAnonymous) {
-				$accessToken = $this->config->getAppValue(Application::APP_ID, 'default_link_token');
-			}
-		}
-
-		return $accessToken;
-	}
-
-	/**
 	 * Make an authenticated HTTP request to GitHub API
 	 * @param string|null $userId
 	 * @param string $endPoint The path to reach in api.github.com
@@ -416,7 +378,7 @@ class GithubAPIService {
 					'User-Agent' => 'Nextcloud GitHub integration',
 				],
 			];
-			$accessToken = $this->getAccessToken($userId, $endpointUsesDefaultToken);
+			$accessToken = $this->secretService->getAccessToken($userId, $endpointUsesDefaultToken);
 			if ($accessToken !== '') {
 				$options['headers']['Authorization'] = 'token ' . $accessToken;
 			}
@@ -469,9 +431,9 @@ class GithubAPIService {
 	}
 
 	public function revokeOauthToken(string $userId): array {
-		$accessToken = $this->config->getUserValue($userId, Application::APP_ID, 'token');
-		$clientId = $this->config->getAppValue(Application::APP_ID, 'client_id');
-		$clientSecret = $this->config->getAppValue(Application::APP_ID, 'client_secret');
+		$accessToken = $this->secretService->getEncryptedUserValue($userId, 'token');
+		$clientId = $this->secretService->getEncryptedAppValue('client_id');
+		$clientSecret = $this->secretService->getEncryptedAppValue('client_secret');
 		$endPoint = 'applications/' . $clientId . '/token';
 		try {
 			$url = 'https://api.github.com/' . $endPoint;

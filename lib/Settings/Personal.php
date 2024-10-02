@@ -6,6 +6,7 @@
 namespace OCA\Github\Settings;
 
 use OCA\Github\AppInfo\Application;
+use OCA\Github\Service\SecretService;
 use OCP\AppFramework\Http\TemplateResponse;
 use OCP\AppFramework\Services\IInitialState;
 use OCP\IConfig;
@@ -14,6 +15,7 @@ use OCP\Settings\ISettings;
 class Personal implements ISettings {
 
 	public function __construct(
+		private SecretService $secretService,
 		private IConfig $config,
 		private IInitialState $initialStateService,
 		private ?string $userId,
@@ -24,7 +26,7 @@ class Personal implements ISettings {
 	 * @return TemplateResponse
 	 */
 	public function getForm(): TemplateResponse {
-		$token = $this->config->getUserValue($this->userId, Application::APP_ID, 'token');
+		$token = $this->secretService->getEncryptedUserValue($this->userId, 'token');
 		$searchIssuesEnabled = $this->config->getUserValue($this->userId, Application::APP_ID, 'search_issues_enabled', '0');
 		$searchReposEnabled = $this->config->getUserValue($this->userId, Application::APP_ID, 'search_repos_enabled', '0');
 		$navigationEnabled = $this->config->getUserValue($this->userId, Application::APP_ID, 'navigation_enabled', '0');
@@ -33,14 +35,14 @@ class Personal implements ISettings {
 		$userDisplayName = $this->config->getUserValue($this->userId, Application::APP_ID, 'user_displayname');
 
 		// for OAuth
-		$clientID = $this->config->getAppValue(Application::APP_ID, 'client_id');
-		$clientSecret = $this->config->getAppValue(Application::APP_ID, 'client_secret') !== '';
+		$clientID = $this->secretService->getEncryptedAppValue('client_id');
+		$clientSecret = $this->secretService->getEncryptedAppValue('client_secret');
 		$usePopup = $this->config->getAppValue(Application::APP_ID, 'use_popup', '0');
 
 		$userConfig = [
-			'token' => $token,
+			'token' => $token === '' ? '' : 'dummyToken',
 			'client_id' => $clientID,
-			'client_secret' => $clientSecret,
+			'client_secret' => $clientSecret !== '',
 			'use_popup' => ($usePopup === '1'),
 			'search_issues_enabled' => ($searchIssuesEnabled === '1'),
 			'search_repos_enabled' => ($searchReposEnabled === '1'),
