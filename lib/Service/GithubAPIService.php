@@ -18,7 +18,6 @@ use OCP\Http\Client\IClientService;
 use OCP\IConfig;
 use OCP\IL10N;
 use OCP\IURLGenerator;
-use OCP\IUserManager;
 use Psr\Log\LoggerInterface;
 use Throwable;
 

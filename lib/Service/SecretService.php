@@ -6,23 +6,12 @@
 
 namespace OCA\Github\Service;
 
-use DateInterval;
-use DateTime;
 use Exception;
-use GuzzleHttp\Exception\ClientException;
-use GuzzleHttp\Exception\ServerException;
 use OCA\Github\AppInfo\Application;
-use OCP\Dashboard\Model\WidgetItem;
-use OCP\Http\Client\IClient;
-use OCP\Http\Client\IClientService;
 use OCP\IConfig;
-use OCP\IL10N;
-use OCP\IURLGenerator;
 use OCP\IUserManager;
 use OCP\PreConditionNotMetException;
 use OCP\Security\ICrypto;
-use Psr\Log\LoggerInterface;
-use Throwable;
 
 /**
  * Service to make requests to GitHub v3 (JSON) API
