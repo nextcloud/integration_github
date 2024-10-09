@@ -2,8 +2,8 @@
 
 namespace OCA\Github\Tests;
 
-use OCA\Github\AppInfo\Application;
 use OCA\Github\Service\GithubAPIService;
+use OCA\Github\Service\SecretService;
 use OCP\Http\Client\IClient;
 use OCP\Http\Client\IClientService;
 use OCP\Http\Client\IResponse;
@@ -27,7 +27,6 @@ class GithubAPIControllerTest extends TestCase {
 	private $githubApiController;
 	private $githubApiService;
 	private $iClient;
-	private $config;
 
 	public static function setUpBeforeClass(): void {
 		parent::setUpBeforeClass();
@@ -54,13 +53,14 @@ class GithubAPIControllerTest extends TestCase {
 		$this->iClient = $this->createMock(IClient::class);
 		$clientService->method('newClient')->willReturn($this->iClient);
 
+		$secretService = \OC::$server->get(SecretService::class);
+
 		$this->githubApiService = new GithubAPIService(
-			self::APP_NAME,
+			$secretService,
 			\OC::$server->get(\Psr\Log\LoggerInterface::class),
 			$this->createMock(IL10N::class),
 			\OC::$server->get(IConfig::class),
 			\OC::$server->get(IURLGenerator::class),
-			\OC::$server->get(IUserManager::class),
 			$clientService,
 		);
 
@@ -71,8 +71,7 @@ class GithubAPIControllerTest extends TestCase {
 			self::TEST_USER1
 		);
 
-		$this->config = \OC::$server->get(IConfig::class);
-		$this->config->setUserValue(self::TEST_USER1, Application::APP_ID, 'token', self::API_TOKEN);
+		$secretService->setEncryptedUserValue(self::TEST_USER1, 'token', self::API_TOKEN);
 	}
 
 	public function testGetNotifications(): void {

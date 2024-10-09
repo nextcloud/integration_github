@@ -6,6 +6,7 @@
 namespace OCA\Github\Settings;
 
 use OCA\Github\AppInfo\Application;
+use OCA\Github\Service\SecretService;
 use OCP\AppFramework\Http\TemplateResponse;
 use OCP\AppFramework\Services\IInitialState;
 use OCP\IConfig;
@@ -14,6 +15,7 @@ use OCP\Settings\ISettings;
 class Admin implements ISettings {
 
 	public function __construct(
+		private SecretService $secretService,
 		private IConfig $config,
 		private IInitialState $initialStateService,
 	) {
@@ -23,22 +25,22 @@ class Admin implements ISettings {
 	 * @return TemplateResponse
 	 */
 	public function getForm(): TemplateResponse {
-		$clientID = $this->config->getAppValue(Application::APP_ID, 'client_id');
-		$clientSecret = $this->config->getAppValue(Application::APP_ID, 'client_secret');
+		$clientID = $this->secretService->getEncryptedAppValue('client_id');
+		$clientSecret = $this->secretService->getEncryptedAppValue('client_secret');
 		$usePopup = $this->config->getAppValue(Application::APP_ID, 'use_popup', '0');
 		$adminDashboardEnabled = $this->config->getAppValue(Application::APP_ID, 'dashboard_enabled', '1') === '1';
 		$adminLinkPreviewEnabled = $this->config->getAppValue(Application::APP_ID, 'link_preview_enabled', '1') === '1';
-		$defaultLinkToken = $this->config->getAppValue(Application::APP_ID, 'default_link_token');
+		$defaultLinkToken = $this->secretService->getEncryptedAppValue('default_link_token');
 		$allowDefaultTokenToAnonymous = $this->config->getAppValue(Application::APP_ID, 'allow_default_link_token_to_anonymous', '0') === '1';
 		$allowDefaultTokenToGuests = $this->config->getAppValue(Application::APP_ID, 'allow_default_link_token_to_guests', '0') === '1';
 
 		$adminConfig = [
 			'client_id' => $clientID,
-			'client_secret' => $clientSecret,
+			'client_secret' => $clientSecret === '' ? '' : 'dummyClientSecret',
 			'use_popup' => ($usePopup === '1'),
 			'dashboard_enabled' => $adminDashboardEnabled,
 			'link_preview_enabled' => $adminLinkPreviewEnabled,
-			'default_link_token' => $defaultLinkToken,
+			'default_link_token' => $defaultLinkToken === '' ? '' : 'dummyToken',
 			'allow_default_link_token_to_anonymous' => $allowDefaultTokenToAnonymous,
 			'allow_default_link_token_to_guests' => $allowDefaultTokenToGuests,
 		];

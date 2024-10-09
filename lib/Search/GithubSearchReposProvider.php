@@ -10,6 +10,7 @@ namespace OCA\Github\Search;
 
 use OCA\Github\AppInfo\Application;
 use OCA\Github\Service\GithubAPIService;
+use OCA\Github\Service\SecretService;
 use OCP\App\IAppManager;
 use OCP\IConfig;
 use OCP\IL10N;
@@ -28,6 +29,7 @@ class GithubSearchReposProvider implements IProvider {
 		private IConfig $config,
 		private IURLGenerator $urlGenerator,
 		private GithubAPIService $service,
+		private SecretService $secretService,
 	) {
 	}
 
@@ -78,7 +80,7 @@ class GithubSearchReposProvider implements IProvider {
 			return SearchResult::paginated($this->getName(), [], 0);
 		}
 
-		$accessToken = $this->config->getUserValue($user->getUID(), Application::APP_ID, 'token');
+		$accessToken = $this->secretService->getAccessToken($user->getUID());
 		if ($accessToken === '') {
 			return SearchResult::paginated($this->getName(), [], 0);
 		}
