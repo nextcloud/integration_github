@@ -27,7 +27,7 @@ OC.L10N.register(
     "Client ID" : "مُعرّف العميل Client ID",
     "Client ID of your GitHub application" : "مُعرّف العميل لتطبيق GitHub خاصّتك",
     "Client secret" : "كلمة سر العميل Client secret",
-    "Client secret of your GitHub application" : "كلمة سر العميل لتطبيق GitHub خاصّتك",
+    "Client secret of your GitHub application" : "كلمة سر العميل لتطبيق GitHub الخاص بك",
     "The default access token will be used for link previews and unified search by users who didn't connect to GitHub." : "سيتم استخدام أمارة الوصول الافتراضي default access token لمعاينات الارتباط والبحث الموحد بواسطة المستخدمين الغير متصلين بـ GitHub.",
     "Default access token" : "أَمَارَة الدخول الافتراضية Default access token",
     "personal access token" : "أَمَارَة الدخول الشخصية personal access token",
