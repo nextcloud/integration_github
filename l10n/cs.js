@@ -55,6 +55,7 @@ OC.L10N.register(
     "Invalid access token" : "Neplatný přístupový token",
     "Failed to save GitHub options" : "Nepodařilo se uložit předvolby pro GitHub",
     "Loading data" : "Načítání dat",
+    "OMG! No GitHub notifications!" : "No tedy! Žádná upozornění z GitHub!",
     "Mark as read" : "Označit jako přečtené",
     "Unsubscribe" : "Zrušit přihlášení k odběru",
     "No GitHub account connected" : "Nepřipojen žádný GitHub účet",
