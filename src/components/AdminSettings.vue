@@ -156,11 +156,16 @@ export default {
 		},
 		onInput() {
 			delay(() => {
-				this.saveOptions({
+				const values = {
 					client_id: this.state.client_id,
-					client_secret: this.state.client_secret,
-					default_link_token: this.state.default_link_token,
-				}, true)
+				}
+				if (this.state.client_secret !== 'dummyClientSecret') {
+					values.client_secret = this.state.client_secret
+				}
+				if (this.state.default_link_token !== 'dummyToken') {
+					values.default_link_token = this.state.default_link_token
+				}
+				this.saveOptions(values, true)
 			}, 2000)()
 		},
 		async saveOptions(values, sensitive = true) {
