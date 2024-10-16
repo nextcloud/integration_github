@@ -168,7 +168,7 @@ export default {
 				this.saveOptions(values, true)
 			}, 2000)()
 		},
-		async saveOptions(values, sensitive = true) {
+		async saveOptions(values, sensitive = false) {
 			if (sensitive) {
 				await confirmPassword()
 			}
