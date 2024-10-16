@@ -11,8 +11,10 @@ use OCA\Github\Reference\GithubIssuePrReferenceProvider;
 use OCA\Github\Service\GithubAPIService;
 use OCA\Github\Service\SecretService;
 use OCP\AppFramework\Controller;
+use OCP\AppFramework\Http;
 use OCP\AppFramework\Http\Attribute\NoAdminRequired;
 use OCP\AppFramework\Http\Attribute\NoCSRFRequired;
+use OCP\AppFramework\Http\Attribute\PasswordConfirmationRequired;
 use OCP\AppFramework\Http\DataResponse;
 use OCP\AppFramework\Http\RedirectResponse;
 use OCP\AppFramework\Http\TemplateResponse;
@@ -102,12 +104,30 @@ class ConfigController extends Controller {
 	public function setAdminConfig(array $values): DataResponse {
 		foreach ($values as $key => $value) {
 			if (in_array($key, ['client_id', 'client_secret', 'default_link_token'], true)) {
+				return new DataResponse([], Http::STATUS_BAD_REQUEST);
+			} else {
+				$this->config->setAppValue(Application::APP_ID, $key, $value);
+			}
+		}
+		return new DataResponse([]);
+	}
+
+	/**
+	 * Set admin config values
+	 *
+	 * @param array $values key/value pairs to store in app config
+	 * @return DataResponse
+	 */
+	#[PasswordConfirmationRequired]
+	public function setSensitiveAdminConfig(array $values): DataResponse {
+		foreach ($values as $key => $value) {
+			if (in_array($key, ['client_id', 'client_secret', 'default_link_token'], true)) {
 				$this->secretService->setEncryptedAppValue($key, $value);
 			} else {
 				$this->config->setAppValue(Application::APP_ID, $key, $value);
 			}
 		}
-		return new DataResponse(1);
+		return new DataResponse([]);
 	}
 
 	/**

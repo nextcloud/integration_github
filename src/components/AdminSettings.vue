@@ -111,13 +111,15 @@ import KeyIcon from 'vue-material-design-icons/Key.vue'
 
 import GithubIcon from './icons/GithubIcon.vue'
 
+import NcCheckboxRadioSwitch from '@nextcloud/vue/dist/Components/NcCheckboxRadioSwitch.js'
+
 import { loadState } from '@nextcloud/initial-state'
 import { generateUrl } from '@nextcloud/router'
 import axios from '@nextcloud/axios'
-import { delay } from '../utils.js'
 import { showSuccess, showError } from '@nextcloud/dialogs'
+import { confirmPassword } from '@nextcloud/password-confirmation'
 
-import NcCheckboxRadioSwitch from '@nextcloud/vue/dist/Components/NcCheckboxRadioSwitch.js'
+import { delay } from '../utils.js'
 
 export default {
 	name: 'AdminSettings',
@@ -150,7 +152,7 @@ export default {
 	methods: {
 		onCheckboxChanged(newValue, key) {
 			this.state[key] = newValue
-			this.saveOptions({ [key]: this.state[key] ? '1' : '0' })
+			this.saveOptions({ [key]: this.state[key] ? '1' : '0' }, false)
 		},
 		onInput() {
 			delay(() => {
@@ -158,14 +160,19 @@ export default {
 					client_id: this.state.client_id,
 					client_secret: this.state.client_secret,
 					default_link_token: this.state.default_link_token,
-				})
+				}, true)
 			}, 2000)()
 		},
-		saveOptions(values) {
+		async saveOptions(values, sensitive = true) {
+			if (sensitive) {
+				await confirmPassword()
+			}
 			const req = {
 				values,
 			}
-			const url = generateUrl('/apps/integration_github/admin-config')
+			const url = sensitive
+				? generateUrl('/apps/integration_github/sensitive-admin-config')
+				: generateUrl('/apps/integration_github/admin-config')
 			axios.put(url, req)
 				.then((response) => {
 					showSuccess(t('integration_github', 'GitHub admin options saved'))
