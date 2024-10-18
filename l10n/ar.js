@@ -12,7 +12,7 @@ OC.L10N.register(
     "GitHub issues and pull requests" : "مسائل وطلبات الاستخراج لـ GitHub",
     "GitHub repositories" : "مستودعات GitHub",
     "Bad HTTP method" : "دالة HTTP  غير صحيحة",
-    "Bad credentials" : "حيثيّات الدخول credentials غير صحيحة",
+    "Bad credentials" : "بيانات تسجيل الدخول غير صحيحة",
     "OAuth access token refused" : "أَمَارَة token مرفوضة",
     "Connected accounts" : "حسابات مترابطة",
     "GitHub integration" : "مٌكاملة GitHub",
