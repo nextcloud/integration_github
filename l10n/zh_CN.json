@@ -24,7 +24,7 @@
     "Client ID of your GitHub application" : "您的GitHub应用程序的客户端ID",
     "Client secret" : "客户端密钥",
     "Client secret of your GitHub application" : "GitHub应用程序的 Client secret",
-    "The default access token will be used for link previews and unified search by users who didn't connect to GitHub." : "默认的访问令牌将会用于让未连接到GitHub的用户进行链接预览与统一搜索。",
+    "The default access token will be used for link previews and unified search by users who didn't connect to GitHub." : "默认访问令牌将用于未连接到 GitHub 的用户的链接预览和统一搜索。",
     "Default access token" : "默认访问令牌",
     "personal access token" : "个人访问令牌",
     "Use default access token for anonymous users" : "为匿名用户使用默认访问令牌",
