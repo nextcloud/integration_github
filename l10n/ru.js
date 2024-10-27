@@ -45,6 +45,7 @@ OC.L10N.register(
     "GitHub options saved" : "Параметры GitHub сохранены",
     "Invalid access token" : "Неверный маркер доступа",
     "Failed to save GitHub options" : "Не удалось сохранить параметры GitHub",
+    "OMG! No GitHub notifications!" : "ОМГ! Нет уведомлений GitHub!",
     "Mark as read" : "Пометить как прочитанное",
     "Unsubscribe" : "Отписаться",
     "No GitHub account connected" : "Учетная запись GitHub не подключена",
