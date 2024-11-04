@@ -13,6 +13,8 @@ use OCA\Github\AppInfo\Application;
 use OCA\Github\Reference\GithubIssuePrReferenceProvider;
 use OCA\Github\Service\GithubAPIService;
 use OCA\Github\Service\SecretService;
+use OCA\UserOIDC\Event\ExchangedTokenRequestedEvent;
+use OCA\UserOIDC\Exception\TokenExchangeFailedException;
 use OCP\AppFramework\Controller;
 use OCP\AppFramework\Http;
 use OCP\AppFramework\Http\Attribute\NoAdminRequired;
@@ -22,6 +24,7 @@ use OCP\AppFramework\Http\DataResponse;
 use OCP\AppFramework\Http\RedirectResponse;
 use OCP\AppFramework\Http\TemplateResponse;
 use OCP\AppFramework\Services\IInitialState;
+use OCP\EventDispatcher\IEventDispatcher;
 use OCP\IConfig;
 use OCP\IL10N;
 
@@ -43,6 +46,8 @@ class ConfigController extends Controller {
 		private GithubAPIService $githubAPIService,
 		private SecretService $secretService,
 		private GithubIssuePrReferenceProvider $githubIssuePrReferenceProvider,
+		private IEventDispatcher $eventDispatcher,
+		private LoggerInterface $logger,
 		private ?string $userId,
 	) {
 		parent::__construct($appName, $request);
@@ -57,6 +62,25 @@ class ConfigController extends Controller {
 	 */
 	#[NoAdminRequired]
 	public function setConfig(array $values): DataResponse {
+		if (class_exists('OCA\UserOIDC\Event\ExchangedTokenRequestedEvent')) {
+			$event = new ExchangedTokenRequestedEvent('exchange');
+			try {
+				$this->eventDispatcher->dispatchTyped($event);
+			} catch (TokenExchangeFailedException $e) {
+				$this->logger->debug('----- GITHUB [TokenService] FAILED to exchange token: ' . $e->getMessage());
+			}
+			$token = $event->getToken();
+			if ($token !== null) {
+				$this->logger->debug('----- GITHUB [TokenService] we have a token that expires in ' . $token->getExpiresInFromNow());
+				return new DataResponse($token->jsonSerialize());
+			} else {
+				$this->logger->debug('----- GITHUB [TokenService] Event has not been caught');
+			}
+		} else {
+			$this->logger->debug('----- GITHUB [TokenService] user_oidc is not installed');
+		}
+
+
 		// revoke the oauth token if needed
 		if (isset($values['token']) && $values['token'] === '') {
 			$tokenType = $this->config->getUserValue($this->userId, Application::APP_ID, 'token_type');
