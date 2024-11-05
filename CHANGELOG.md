@@ -8,6 +8,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 3.1.0 – 2024-11-05
+
+### Changed
+
+- Encrypt secrets @julien-nc #114
+- Ask password confirmation for sensitive admin settings @julien-nc #115
+- Add more logs and more details in logs @julien-nc #120
+- Allow to set a personal token even if oauth is possible @julien-nc #119
+
 ## 3.0.0 – 2024-09-28
 
 ### Changed
