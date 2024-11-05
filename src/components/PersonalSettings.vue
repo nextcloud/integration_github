@@ -53,7 +53,7 @@
 				</NcButton>
 			</div>
 			<NcButton v-if="showOAuth && !connected"
-				:disabled="loading === true || (!showOAuth && !state.token)"
+				:disabled="loading || state.token !== ''"
 				:class="{ loading, connectButton: true }"
 				@click="connectWithOauth">
 				<template #icon>
