@@ -89,6 +89,7 @@ class ConfigController extends Controller {
 				$this->config->deleteUserValue($this->userId, Application::APP_ID, 'user_displayname');
 				$this->config->deleteUserValue($this->userId, Application::APP_ID, 'token_type');
 				$this->config->deleteUserValue($this->userId, Application::APP_ID, 'token');
+				$this->config->deleteUserValue($this->userId, Application::APP_ID, 'redirect_uri');
 				$result['user_name'] = '';
 			}
 			// connect or disconnect: invalidate the user-related cache

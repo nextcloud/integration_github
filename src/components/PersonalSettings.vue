@@ -8,13 +8,6 @@
 			<GithubIcon class="icon" />
 			{{ t('integration_github', 'GitHub integration') }}
 		</h2>
-		<p v-if="!showOAuth && !connected" class="settings-hint">
-			{{ t('integration_github', 'When you create a personal access token yourself, give it at least "read:user", "user:email" and "notifications" permissions.') }}
-			<a href="https://github.com/settings/tokens" target="_blank" class="external">
-				<span class="icon icon-external" />
-				{{ t('integration_github', 'GitHub personal access tokens') }}
-			</a>
-		</p>
 		<div id="github-content">
 			<NcCheckboxRadioSwitch
 				:checked="state.navigation_enabled"
@@ -26,30 +19,50 @@
 				@update:checked="onCheckboxChanged($event, 'link_preview_enabled')">
 				{{ t('integration_github', 'Enable GitHub link previews') }}
 			</NcCheckboxRadioSwitch>
-			<div v-show="!showOAuth"
-				class="line">
-				<label for="github-token">
-					<KeyIcon :size="20" class="icon" />
-					{{ t('integration_github', 'Personal access token') }}
-				</label>
-				<input id="github-token"
-					v-model="state.token"
+			<NcNoteCard v-if="showOAuth && !connected" type="info">
+				{{ t('integration_github', 'You can manually provide a personal access token or connect via OAuth ') }}
+			</NcNoteCard>
+			<NcNoteCard v-if="!connected" type="info">
+				{{ t('integration_github', 'When you create a personal access token yourself, give it at least "read:user", "user:email" and "notifications" permissions.') }}
+				<a href="https://github.com/settings/tokens" target="_blank" class="external">
+					<span class="icon icon-external" />
+					{{ t('integration_github', 'GitHub personal access tokens') }}
+				</a>
+			</NcNoteCard>
+			<div v-if="!connected" class="line">
+				<NcTextField
+					id="github-token"
+					class="input"
+					:value.sync="state.token"
 					type="password"
-					:disabled="connected === true"
-					:placeholder="t('integration_github', 'GitHub personal access token')"
-					@keyup.enter="onConnectClick"
-					@focus="readonly = false">
+					:label="t('integration_github', 'Personal access token')"
+					placeholder="..."
+					:show-trailing-button="!!state.token"
+					@keyup.enter="connectWithToken"
+					@trailing-button-click="state.token = ''">
+					<KeyIcon />
+				</NcTextField>
+				<NcButton v-if="!connected"
+					:disabled="loading || state.token === ''"
+					:class="{ loading }"
+					@click="connectWithToken">
+					<template #icon>
+						<OpenInNewIcon :size="20" />
+					</template>
+					{{ t('integration_github', 'Connect to GitHub with a personal token') }}
+				</NcButton>
 			</div>
-			<NcButton v-if="!connected"
-				:disabled="loading === true || (!showOAuth && !state.token)"
-				:class="{ loading }"
-				@click="onConnectClick">
+			<NcButton v-if="showOAuth && !connected"
+				:disabled="loading || state.token !== ''"
+				:class="{ loading, connectButton: true }"
+				@click="connectWithOauth">
 				<template #icon>
 					<OpenInNewIcon :size="20" />
 				</template>
-				{{ t('integration_github', 'Connect to GitHub') }}
+				{{ t('integration_github', 'Connect to GitHub with OAuth') }}
 			</NcButton>
-			<div v-if="connected" class="line">
+			<br>
+			<div v-if="connected" class="column">
 				<label>
 					<CheckIcon :size="20" class="icon" />
 					{{ t('integration_github', 'Connected as {user}', { user: connectedAs }) }}
@@ -60,7 +73,6 @@
 					</template>
 					{{ t('integration_github', 'Disconnect from GitHub') }}
 				</NcButton>
-				<span />
 			</div>
 			<br>
 			<div v-if="connected" id="github-search-block">
@@ -95,6 +107,8 @@ import GithubIcon from './icons/GithubIcon.vue'
 
 import NcButton from '@nextcloud/vue/dist/Components/NcButton.js'
 import NcCheckboxRadioSwitch from '@nextcloud/vue/dist/Components/NcCheckboxRadioSwitch.js'
+import NcNoteCard from '@nextcloud/vue/dist/Components/NcNoteCard.js'
+import NcTextField from '@nextcloud/vue/dist/Components/NcTextField.js'
 
 import { loadState } from '@nextcloud/initial-state'
 import { generateUrl } from '@nextcloud/router'
@@ -109,6 +123,8 @@ export default {
 		GithubIcon,
 		NcCheckboxRadioSwitch,
 		NcButton,
+		NcNoteCard,
+		NcTextField,
 		KeyIcon,
 		CheckIcon,
 		CloseIcon,
@@ -187,13 +203,6 @@ export default {
 				this.loading = false
 			})
 		},
-		onConnectClick() {
-			if (this.showOAuth) {
-				this.connectWithOauth()
-			} else {
-				this.connectWithToken()
-			}
-		},
 		connectWithToken() {
 			this.loading = true
 			this.saveOptions({
@@ -236,14 +245,32 @@ export default {
 	}
 
 	.line {
+		display: flex;
+		align-items: center;
+		gap: 4px;
 		> label {
 			width: 300px;
 			display: flex;
 			align-items: center;
 		}
-		> input {
+		> input, > .input {
 			width: 250px;
+			margin: 0;
 		}
+	}
+
+	.column {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+		label {
+			display: flex;
+			align-items: center;
+		}
+	}
+
+	.connectButton {
+		margin-top: 12px;
 	}
 }
 </style>
