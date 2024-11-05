@@ -25,6 +25,7 @@ use OCP\IL10N;
 use OCP\IRequest;
 use OCP\IURLGenerator;
 use OCP\PreConditionNotMetException;
+use Psr\Log\LoggerInterface;
 
 class ConfigController extends Controller {
 
@@ -35,6 +36,7 @@ class ConfigController extends Controller {
 		private IURLGenerator $urlGenerator,
 		private IL10N $l,
 		private IInitialState $initialStateService,
+		private LoggerInterface $logger,
 		private GithubAPIService $githubAPIService,
 		private SecretService $secretService,
 		private GithubIssuePrReferenceProvider $githubIssuePrReferenceProvider,
@@ -202,6 +204,7 @@ class ConfigController extends Controller {
 				}
 			}
 			$result = $this->l->t('Error getting OAuth access token');
+			$this->logger->warning('No access token in the token request response', ['response' => $result]);
 		} else {
 			$result = $this->l->t('Error during OAuth exchanges');
 		}

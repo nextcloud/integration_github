@@ -415,16 +415,16 @@ class GithubAPIService {
 			$parsedResponseBody = json_decode($responseBody, true);
 			if ($e->getResponse()->getStatusCode() === 404) {
 				// Only log inaccessible github links as debug
-				$this->logger->debug('GitHub API error : ' . $e->getMessage(), ['response_body' => $responseBody, 'app' => Application::APP_ID]);
+				$this->logger->debug('GitHub API client or server error', ['response_body' => $responseBody, 'exception' => $e]);
 			} else {
-				$this->logger->warning('GitHub API error : ' . $e->getMessage(), ['response_body' => $responseBody, 'app' => Application::APP_ID]);
+				$this->logger->warning('GitHub API client or server error', ['response_body' => $responseBody, 'exception' => $e]);
 			}
 			return [
 				'error' => $e->getMessage(),
 				'body' => $parsedResponseBody,
 			];
 		} catch (Exception|Throwable $e) {
-			$this->logger->warning('GitHub API error : ' . $e->getMessage(), ['app' => Application::APP_ID]);
+			$this->logger->warning('GitHub API request error', ['exception' => $e]);
 			return ['error' => $e->getMessage()];
 		}
 	}
@@ -455,7 +455,7 @@ class GithubAPIService {
 				return [];
 			}
 		} catch (Exception $e) {
-			$this->logger->warning('GitHub API error : ' . $e->getMessage(), ['app' => Application::APP_ID]);
+			$this->logger->warning('GitHub API revoke token error', ['exception' => $e]);
 			return ['error' => $e->getMessage()];
 		}
 	}
@@ -505,7 +505,7 @@ class GithubAPIService {
 				return $resultArray;
 			}
 		} catch (Exception $e) {
-			$this->logger->warning('GitHub OAuth error : ' . $e->getMessage(), ['app' => Application::APP_ID]);
+			$this->logger->warning('GitHub OAuth access token request error', ['exception' => $e]);
 			return ['error' => $e->getMessage()];
 		}
 	}
