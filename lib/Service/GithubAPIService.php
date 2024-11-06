@@ -499,12 +499,13 @@ class GithubAPIService {
 			$respCode = $response->getStatusCode();
 
 			if ($respCode >= 400) {
+				$this->logger->warning('GitHub OAuth access token request error, OAuth access token refused');
 				return ['error' => $this->l10n->t('OAuth access token refused')];
 			} else {
 				parse_str($body, $resultArray);
 				return $resultArray;
 			}
-		} catch (Exception $e) {
+		} catch (Exception|Throwable $e) {
 			$this->logger->warning('GitHub OAuth access token request error', ['exception' => $e]);
 			return ['error' => $e->getMessage()];
 		}
