@@ -8,6 +8,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 3.1.1 – 2024-11-06
+
+### Changed
+
+- Better logs during oauth flow @julien-nc #122
+
 ## 3.1.0 – 2024-11-05
 
 ### Changed
