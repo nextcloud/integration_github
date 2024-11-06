@@ -204,8 +204,8 @@ class ConfigController extends Controller {
 					);
 				}
 			}
-			$result = $this->l->t('Error getting OAuth access token');
 			$this->logger->warning('No access token in the token request response', ['response' => $result]);
+			$result = $this->l->t('Error getting OAuth access token');
 		} else {
 			$result = $this->l->t('Error during OAuth exchanges');
 		}
