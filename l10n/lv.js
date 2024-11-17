@@ -2,6 +2,9 @@ OC.L10N.register(
     "integration_github",
     {
     "Comment" : "Piebilde",
+    "Bad HTTP method" : "Nederīgs HTTP pieprasījuma veids",
+    "Bad credentials" : "Nederīgi pieteikšanās dati",
+    "Connected accounts" : "Savienotie konti",
     "Client ID" : "Klienta ID",
     "Loading..." : "Notiek ielāde...",
     "Unknown error" : "Nezināma kļūda",
