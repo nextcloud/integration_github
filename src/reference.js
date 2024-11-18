@@ -17,7 +17,7 @@ registerWidget('integration_github_issue_pr', async (el, { richObjectType, richO
 			accessible,
 		},
 	}).$mount(el)
-})
+}, () => {}, { hasInteractiveView: false })
 
 registerWidget('integration_github_code_permalink', async (el, { richObjectType, richObject, accessible }) => {
 	const { default: Vue } = await import(/* webpackChunkName: "reference-permalink-lazy" */'vue')
@@ -31,4 +31,4 @@ registerWidget('integration_github_code_permalink', async (el, { richObjectType,
 			accessible,
 		},
 	}).$mount(el)
-})
+}, () => {}, { hasInteractiveView: false })
