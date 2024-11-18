@@ -34,8 +34,9 @@
 				</div>
 			</div>
 		</div>
-		<template #trigger>
-			<slot />
+		<!-- See https://nextcloud-vue-components.netlify.app/#/Components/NcPopover -->
+		<template #trigger="{ attrs }">
+			<slot name="trigger" v-bind="attrs" />
 		</template>
 	</NcPopover>
 </template>

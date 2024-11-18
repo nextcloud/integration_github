@@ -72,13 +72,16 @@
 						:shown="showObjectAuthorPopover"
 						:subject-type="richObject.github_type"
 						:subject-id="richObject.id">
-						<a :href="'https://github.com/' + richObject.user.login"
-							target="_blank"
-							class="author-link"
-							@mouseenter="showObjectAuthorPopover = true"
-							@mouseleave="showObjectAuthorPopover = false">
-							{{ t('integration_github', 'by {creator}', { creator: richObject.user.login }) }}
-						</a>
+						<template #trigger="{ attrs }">
+							<a v-bind="attrs"
+								:href="'https://github.com/' + richObject.user.login"
+								target="_blank"
+								class="author-link"
+								@mouseenter="showObjectAuthorPopover = true"
+								@mouseleave="showObjectAuthorPopover = false">
+								{{ t('integration_github', 'by {creator}', { creator: richObject.user.login }) }}
+							</a>
+						</template>
 					</UserPopover>
 					&nbsp;
 					<span v-tooltip.top="{ content: subTextTooltip }"
@@ -112,12 +115,14 @@
 					:shown="showCommentAvatarPopover"
 					:subject-type="richObject.github_type"
 					:subject-id="richObject.id">
-					<NcAvatar
-						class="author-avatar"
-						:is-no-user="true"
-						:url="commentAuthorAvatarUrl"
-						@mouseenter.native="showCommentAvatarPopover = true"
-						@mouseleave.native="showCommentAvatarPopover = false" />
+					<template #trigger="{ attrs }">
+						<NcAvatar v-bind="attrs"
+							class="author-avatar"
+							:is-no-user="true"
+							:url="commentAuthorAvatarUrl"
+							@mouseenter.native="showCommentAvatarPopover = true"
+							@mouseleave.native="showCommentAvatarPopover = false" />
+					</template>
 				</UserPopover>
 				<span class="comment--content--bubble-tip" />
 				<span class="comment--content--bubble">
@@ -126,12 +131,15 @@
 							:shown="showCommentAuthorPopover"
 							:subject-type="richObject.github_type"
 							:subject-id="richObject.id">
-							<strong @mouseenter="showCommentAuthorPopover = true"
-								@mouseleave="showCommentAuthorPopover = false">
-								<a :href="commentAuthorUrl" target="_blank" class="author-link comment-author-display-name">
-									{{ richObject.github_comment?.user?.login }}
-								</a>
-							</strong>
+							<template #trigger="{ attrs }">
+								<strong v-bind="attrs"
+									@mouseenter="showCommentAuthorPopover = true"
+									@mouseleave="showCommentAuthorPopover = false">
+									<a :href="commentAuthorUrl" target="_blank" class="author-link comment-author-display-name">
+										{{ richObject.github_comment?.user?.login }}
+									</a>
+								</strong>
+							</template>
 						</UserPopover>
 						&nbsp;
 						<span v-tooltip.top="{ content: commentedAtTooltip }"
