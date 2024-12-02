@@ -63,11 +63,12 @@ class ConfigController extends Controller {
 	#[NoAdminRequired]
 	public function setConfig(array $values): DataResponse {
 		if (class_exists('OCA\UserOIDC\Event\ExchangedTokenRequestedEvent')) {
-			$event = new ExchangedTokenRequestedEvent('exchange');
+			$event = new ExchangedTokenRequestedEvent('exchange2');
 			try {
 				$this->eventDispatcher->dispatchTyped($event);
 			} catch (TokenExchangeFailedException $e) {
 				$this->logger->debug('----- GITHUB [TokenService] FAILED to exchange token: ' . $e->getMessage());
+				$this->logger->debug('----- GITHUB [TokenService] EXCEPTION attributes: ' . $e->getError() . ' ______ ' . $e->getErrorDescription());
 			}
 			$token = $event->getToken();
 			if ($token !== null) {
