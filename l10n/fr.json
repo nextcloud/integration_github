@@ -40,6 +40,8 @@
     "When you create a personal access token yourself, give it at least \"read:user\", \"user:email\" and \"notifications\" permissions." : "Lorsque vous créez vous-même un jeton d'accès personnel, donnez-lui au moins les autorisations «read:user», «user:email» et «notifications».",
     "GitHub personal access tokens" : "Jeton d'accès personnel GitHub",
     "Personal access token" : "Jeton d'accès personnel",
+    "Connect to GitHub with a personal token" : "Connectez-vous à GitHub à l'aide d'un token d'accès personnel",
+    "Connect to GitHub with OAuth" : "Connectez-vous à GitHub à l'aide d'OAuth",
     "Connected as {user}" : "Connecté en tant que {user}",
     "Disconnect from GitHub" : "Se déconnecter de GitHub",
     "Enable searching for repositories" : "Activer la recherche de dépôts",
