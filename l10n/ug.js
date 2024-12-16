@@ -85,7 +85,7 @@ OC.L10N.register(
     "Unknown state" : "نامەلۇم دۆلەت",
     "Draft" : "لايىھە",
     "{logins} reacted with {emoji} emoji" : "{كىرىش} {emoji} emoji بىلەن ئىنكاس قايتۇردى",
-    "Review requested" : "قايتا تەكشۈرۈش تەلەپ قىلىندى",
+    "Review requested" : "تەكشۈرۈش تەلەپ قىلىندى",
     "opened {relativeDate}" : "ئېچىلدى {relativeDate}",
     "was closed {relativeDate}" : "تاقالدى {relativeDate}",
     "was merged {relativeDate}" : "بىرلەشتۈرۈلدى {relativeDate}",
