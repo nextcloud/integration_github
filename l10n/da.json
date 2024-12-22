@@ -9,6 +9,7 @@
     "Loading..." : "Indlæser...",
     "Unknown error" : "Ukendt fejl",
     "Author" : "Forfatter",
-    "Owner" : "Ejer"
+    "Owner" : "Ejer",
+    "Draft" : "Kladde"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

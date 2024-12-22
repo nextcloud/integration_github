@@ -11,6 +11,7 @@ OC.L10N.register(
     "Loading..." : "Indlæser...",
     "Unknown error" : "Ukendt fejl",
     "Author" : "Forfatter",
-    "Owner" : "Ejer"
+    "Owner" : "Ejer",
+    "Draft" : "Kladde"
 },
 "nplurals=2; plural=(n != 1);");
