@@ -160,12 +160,16 @@ export default {
 				OCA.Assistant.openAssistantForm({
 					appId: 'spreed',
 					customId: 'message translation',
-					taskType: 'core:text2text:translate',
+					// taskType: 'core:text2text:translate',
+					taskType: 'core:text2text',
 					inputs: {
-						input: 'the content of the message',
+						// input: { fileId: 3296 },
+						input: { filePath: '/special chars/ddd.md' },
+						// input: 'the content of the message',
 					},
 					closeOnResult: false,
 				}).then(task => {
+					console.debug('assistant promise result', task)
 					if (task.status === 'STATUS_SUCCESSFUL') {
 						this.text = task.output.output
 						console.debug('assistant result task output', task.output.output)
