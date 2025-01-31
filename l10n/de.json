@@ -37,7 +37,7 @@
     "GitHub admin options saved" : "GitHub-Verwaltungseinstellungen gespeichert",
     "Failed to save GitHub admin options" : "Fehler beim Speichern der GitHub-Verwaltungseinstellungen",
     "Enable navigation link" : "Navigations-Link aktivieren",
-    "You can manually provide a personal access token or connect via OAuth " : "Sie können manuell ein persönliches Zugriffstoken bereitstellen oder eine Verbindung über OAuth herstellen",
+    "You can manually provide a personal access token or connect via OAuth " : "Du kannst manuell ein persönliches Zugriffstoken bereitstellen oder eine Verbindung über OAuth herstellen",
     "When you create a personal access token yourself, give it at least \"read:user\", \"user:email\" and \"notifications\" permissions." : "Wenn du selbst einen persönlichen Zugriffstoken erstellst, gib diesem mindestens die Berechtigungen \"read:user\", \"user:email\" und \"notifications\".",
     "GitHub personal access tokens" : "GitHub persönliche Zugriffstoken",
     "Personal access token" : "Persönlicher Zugriffstoken",
