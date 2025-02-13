@@ -13,10 +13,12 @@ OC.L10N.register(
     "Enable navigation link" : "Virkja flakktengil",
     "Connected as {user}" : "Tengt sem {user}",
     "Mark as read" : "Merkja sem lesið",
+    "Unsubscribe" : "Hætta í áskrift",
     "Loading..." : "Hleð...",
     "Unknown error" : "Óþekkt villa",
     "Line {line}" : "Lína {line}",
     "Author" : "Höfundur",
-    "Owner" : "Eigandi"
+    "Owner" : "Eigandi",
+    "Draft" : "Drög"
 },
 "nplurals=2; plural=(n % 10 != 1 || n % 100 == 11);");
