@@ -48,6 +48,7 @@ OC.L10N.register(
     "Failed to edit GitHub notification" : "No s'ha pogut editar la notificació de GitHub",
     "Unknown error" : "Error desconegut",
     "Line {line}" : "Línia {line}",
+    "by {creator}" : "per {creator}",
     "Author" : "Autor/a",
     "Owner" : "Propietari",
     "Draft" : "Esborrany",
