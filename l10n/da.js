@@ -13,11 +13,11 @@ OC.L10N.register(
     "Connected as {user}" : "Forbundet som {user}",
     "Mark as read" : "Marker som læst",
     "Loading..." : "Indlæser...",
-    "Unknown error" : "Ukendt fejl",
     "Line {line}" : "Linje {line}",
+    "Unknown error" : "Ukendt fejl",
+    "Draft" : "Kladde",
     "by {creator}" : "af {creator}",
     "Author" : "Forfatter",
-    "Owner" : "Ejer",
-    "Draft" : "Kladde"
+    "Owner" : "Ejer"
 },
 "nplurals=2; plural=(n != 1);");

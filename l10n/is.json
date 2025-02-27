@@ -13,10 +13,10 @@
     "Mark as read" : "Merkja sem lesið",
     "Unsubscribe" : "Hætta í áskrift",
     "Loading..." : "Hleð...",
-    "Unknown error" : "Óþekkt villa",
     "Line {line}" : "Lína {line}",
+    "Unknown error" : "Óþekkt villa",
+    "Draft" : "Drög",
     "Author" : "Höfundur",
-    "Owner" : "Eigandi",
-    "Draft" : "Drög"
+    "Owner" : "Eigandi"
 },"pluralForm" :"nplurals=2; plural=(n % 10 != 1 || n % 100 == 11);"
 }

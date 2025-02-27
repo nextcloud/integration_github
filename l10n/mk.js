@@ -15,8 +15,8 @@ OC.L10N.register(
     "Connected as {user}" : "Поврзан како {user}",
     "Mark as read" : "Означи како прочитано",
     "Unknown error" : "Непозната грешка",
+    "Draft" : "Шаблон",
     "Author" : "Автор",
-    "Owner" : "Сопственик",
-    "Draft" : "Шаблон"
+    "Owner" : "Сопственик"
 },
 "nplurals=2; plural=(n % 10 == 1 && n % 100 != 11) ? 0 : 1;");

@@ -6,10 +6,10 @@ OC.L10N.register(
     "Client secret" : "Client secret",
     "Mark as read" : "Mark as read",
     "Unsubscribe" : "Unsubscribe",
-    "Unknown error" : "Unknown error",
     "Line {line}" : "Line {line}",
+    "Unknown error" : "Unknown error",
+    "Draft" : "Draft",
     "Author" : "Author",
-    "Owner" : "Owner",
-    "Draft" : "Draft"
+    "Owner" : "Owner"
 },
 "nplurals=2; plural=(n!=1);");

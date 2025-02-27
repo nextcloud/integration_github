@@ -6,9 +6,9 @@ OC.L10N.register(
     "Bad credentials" : "Nederīgi pieteikšanās dati",
     "Connected accounts" : "Savienotie konti",
     "Client ID" : "Klienta ID",
+    "{logins} reacted with {emoji} emoji" : "{logins} atsaucās ar emocijzīmi {emoji}",
     "Loading..." : "Notiek ielāde...",
     "Unknown error" : "Nezināma kļūda",
-    "Owner" : "Īpašnieks",
-    "{logins} reacted with {emoji} emoji" : "{logins} atsaucās ar emocijzīmi {emoji}"
+    "Owner" : "Īpašnieks"
 },
 "nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : 2);");

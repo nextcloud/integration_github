@@ -14,11 +14,10 @@
     "Client ID of your GitHub application" : "당신의 GitHub 애플리케이션 클라이언트 ID",
     "Client secret" : "클라이언트 비밀 값",
     "Client secret of your GitHub application" : "당신의 GitHub 애플리케이션 클라이언트 비밀 값",
-    "Connected as {user}" : "{user}로 연결됨",
-    "Disconnect from GitHub" : "GitHub와 연결 해제",
     "Connected to GitHub!" : "GitHub와 연결되었습니다!",
     "GitHub OAuth error:" : "GitHub OAuth 오류:",
-    "Connect to GitHub" : "GitHub에 연결",
+    "Connected as {user}" : "{user}로 연결됨",
+    "Disconnect from GitHub" : "GitHub와 연결 해제",
     "Mark as read" : "읽은 것으로 표시",
     "Unsubscribe" : "구독 취소",
     "No GitHub account connected" : "연결된 GitHub 계정 없음",
@@ -26,10 +25,11 @@
     "No GitHub notifications!" : "GitHub 알림 없음!",
     "Loading..." : "불러오는 중...",
     "Successfully unsubscribed" : "성공적으로 구독 취소되었습니다.",
+    "Connect to GitHub" : "GitHub에 연결",
     "Unknown error" : "알 수 없는 오류",
     "GitHub connected accounts settings" : "GitHub 연결 계정 설정",
+    "Draft" : "임시 저장",
     "Author" : "저자",
-    "Owner" : "소유자",
-    "Draft" : "임시 저장"
+    "Owner" : "소유자"
 },"pluralForm" :"nplurals=1; plural=0;"
 }
