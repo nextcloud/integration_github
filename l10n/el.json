@@ -48,6 +48,7 @@
     "Successfully unsubscribed" : "Καταργήθηκε η εγγραφή με επιτυχία",
     "Failed to edit GitHub notification" : "Αποτυχία επεξεργασίας της ειδοποίησης GitHub",
     "Connect to GitHub" : "Σύνδεση στο Github",
+    "Line {line}" : "Γραμμή {line}",
     "Unknown error" : "Άγνωστο σφάλμα",
     "Draft" : "Πρόχειρο",
     "Author" : "Δημιουργός",
