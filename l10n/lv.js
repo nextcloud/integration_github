@@ -11,6 +11,7 @@ OC.L10N.register(
     "Loading..." : "Notiek ielāde...",
     "Unknown error" : "Nezināma kļūda",
     "GitHub connected accounts settings" : "Sasaistīto GitHub kontu iestatījumi",
+    "Comment from {login}" : "Piebilde no {login}",
     "Owner" : "Īpašnieks"
 },
 "nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : 2);");
