@@ -4,6 +4,7 @@ OC.L10N.register(
     "Comment" : "Kommentaar",
     "Client ID" : "Kliendi ID",
     "Client secret" : "Kliendi salasõna",
+    "Mark as read" : "Märgi loetuks",
     "Unknown error" : "Tundmatu viga",
     "Author" : "Autor",
     "Owner" : "Omanik"
