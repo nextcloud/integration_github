@@ -4,6 +4,7 @@
     "Client secret" : "Kliendi salasõna",
     "Mark as read" : "Märgi loetuks",
     "Unknown error" : "Tundmatu viga",
+    "by {creator}" : "kasutajalt {creator}",
     "Author" : "Autor",
     "Owner" : "Omanik"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"

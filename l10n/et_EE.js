@@ -6,6 +6,7 @@ OC.L10N.register(
     "Client secret" : "Kliendi salasõna",
     "Mark as read" : "Märgi loetuks",
     "Unknown error" : "Tundmatu viga",
+    "by {creator}" : "kasutajalt {creator}",
     "Author" : "Autor",
     "Owner" : "Omanik"
 },
