@@ -33,6 +33,8 @@ class Personal implements ISettings {
 		$linkPreviewEnabled = $this->config->getUserValue($this->userId, Application::APP_ID, 'link_preview_enabled', '1');
 		$userName = $this->config->getUserValue($this->userId, Application::APP_ID, 'user_name');
 		$userDisplayName = $this->config->getUserValue($this->userId, Application::APP_ID, 'user_displayname');
+		$notificationsEnabled = $this->config->getUserValue($this->userId, Application::APP_ID, 'gh_notifications_enabled', '0');
+		$adminNotificationsEnabled = $this->config->getAppValue(Application::APP_ID, 'issue_notifications_enabled', '1');
 
 		// for OAuth
 		$clientID = $this->secretService->getEncryptedAppValue('client_id');
@@ -50,6 +52,8 @@ class Personal implements ISettings {
 			'link_preview_enabled' => ($linkPreviewEnabled === '1'),
 			'user_name' => $userName,
 			'user_displayname' => $userDisplayName,
+			'issue_notifications_enabled' => ($notificationsEnabled === '1'),
+			'admin_issue_notifications_enabled' => ($adminNotificationsEnabled === '1'),
 		];
 		$this->initialStateService->provideInitialState('user-config', $userConfig);
 		return new TemplateResponse(Application::APP_ID, 'personalSettings');

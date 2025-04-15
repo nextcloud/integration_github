@@ -18,6 +18,9 @@ use OCP\Http\Client\IClientService;
 use OCP\IConfig;
 use OCP\IL10N;
 use OCP\IURLGenerator;
+use OCP\IUser;
+use OCP\IUserManager;
+use OCP\Notification\IManager;
 use Psr\Log\LoggerInterface;
 use Throwable;
 
@@ -34,6 +37,8 @@ class GithubAPIService {
 		private IL10N $l10n,
 		private IConfig $config,
 		private IURLGenerator $urlGenerator,
+		private IUserManager $userManager,
+		private IManager $notificationManager,
 		IClientService $clientService,
 	) {
 		$this->client = $clientService->newClient();
@@ -357,6 +362,75 @@ class GithubAPIService {
 		return $this->request($userId, $endpoint, [], 'GET', true, 5);
 	}
 
+	public function updateLinkTokenUserInfo(string $defaultLinkToken): array {
+		$info = $this->request(null, 'user', [], 'GET', true, 30, $defaultLinkToken);
+		if (isset($info['login'], $info['name'])) {
+			$this->config->setAppValue(Application::APP_ID, 'user_name', $info['login']);
+			$this->config->setAppValue(Application::APP_ID, 'user_displayname', $info['name']);
+			return [
+				'user_name' => $info['login'],
+				'user_displayname' => $info['name'],
+			];
+		} else {
+			$this->config->deleteAppValue(Application::APP_ID, 'user_name');
+			$this->config->deleteAppValue(Application::APP_ID, 'user_displayname');
+			return [
+				'user_name' => '',
+				'user_displayname' => '',
+			];
+		}
+	}
+
+	public function checkNewNotifications() {
+		$notificationEnabled = $this->config->getAppValue(Application::APP_ID, 'issue_notifications_enabled', '1') === '1';
+		if (!$notificationEnabled) {
+			return;
+		}
+		$this->userManager->callForAllUsers(function (IUser $user) {
+			$this->checkNewNotificationsForUser($user->getUID());
+		});
+	}
+
+	private function checkNewNotificationsForUser(string $userId): void {
+		$notificationsEnabled = ($this->config->getUserValue($userId, Application::APP_ID, 'issue_notifications_enabled', '0') === '1');
+		if ($notificationsEnabled) {
+			$lastNotificationCheck = $this->config->getUserValue($userId, Application::APP_ID, 'last_notification_check');
+			if ($lastNotificationCheck === '') {
+				$lastNotificationCheck = new DateTime();
+				$this->config->setUserValue($userId, Application::APP_ID, 'last_notification_check', $lastNotificationCheck->format('Y-m-d\TH:i:s\Z'));
+			} else {
+				$lastNotificationCheck = DateTime::createFromFormat('Y-m-d\TH:i:s\Z', $lastNotificationCheck);
+			}
+			$since = $lastNotificationCheck->format('Y-m-d\TH:i:s\Z');
+
+			$notifications = $this->getNotifications($userId, null, $since);
+			if (!isset($notifications['error'])) {
+				$newNotifications = 0;
+
+				foreach ($notifications as $notification) {
+					if ($notification['unread']) {
+						$newNotifications++;
+					}
+				}
+
+				if ($newNotifications > 0) {
+					$this->config->setUserValue($userId, Application::APP_ID, 'last_notification_check', (new DateTime())->format('Y-m-d\TH:i:s\Z'));
+
+					$notification = $this->notificationManager->createNotification();
+					$notification->setApp(Application::APP_ID)
+						->setUser($userId)
+						->setDateTime(new DateTime())
+						->setObject('github-notification', 'github-notification')
+						->setSubject('new-github-notification', [
+							'newNotifications' => $newNotifications,
+						]);
+
+					$this->notificationManager->notify($notification);
+				}
+			}
+		}
+	}
+
 	/**
 	 * Make an authenticated HTTP request to GitHub API
 	 * @param string|null $userId
@@ -368,7 +442,7 @@ class GithubAPIService {
 	 * @return array decoded request result or error
 	 */
 	public function request(?string $userId, string $endPoint, array $params = [], string $method = 'GET',
-		bool $endpointUsesDefaultToken = false, int $timeout = 30): array {
+		bool $endpointUsesDefaultToken = false, int $timeout = 30, string $defaultToken = ''): array {
 		try {
 			$url = 'https://api.github.com/' . $endPoint;
 			$options = [
@@ -377,7 +451,8 @@ class GithubAPIService {
 					'User-Agent' => 'Nextcloud GitHub integration',
 				],
 			];
-			$accessToken = $this->secretService->getAccessToken($userId, $endpointUsesDefaultToken);
+
+			$accessToken = $defaultToken === '' ? $this->secretService->getEncryptedUserValue($userId, 'token') : $defaultToken;
 			if ($accessToken !== '') {
 				$options['headers']['Authorization'] = 'token ' . $accessToken;
 			}

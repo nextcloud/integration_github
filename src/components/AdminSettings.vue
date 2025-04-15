@@ -60,6 +60,12 @@
 				<AlertIcon :size="20" class="icon" />
 				{{ t('integration_github', 'The default access token will be used for link previews and unified search by users who didn\'t connect to GitHub.') }}
 			</p>
+			<div v-if="defaultTokenConnected" class="line">
+				<label style="width: 100%; margin-bottom: 0.5em;">
+					<CheckIcon :size="20" class="icon" />
+					{{ t('integration_github', 'Connected as {user}', { user: connectedAs }) }}
+				</label>
+			</div>
 			<div class="line">
 				<label for="github-link-token">
 					<KeyIcon :size="20" class="icon" />
@@ -100,6 +106,11 @@
 				@update:checked="onCheckboxChanged($event, 'dashboard_enabled')">
 				{{ t('integration_github', 'Enable GitHub dashboard widget') }}
 			</NcCheckboxRadioSwitch>
+			<NcCheckboxRadioSwitch
+				:checked="state.issue_notifications_enabled"
+				@update:checked="onCheckboxChanged($event, 'issue_notifications_enabled')">
+				{{ t('integration_github', 'Enable notifications for new unread GitHub notifications') }}
+			</NcCheckboxRadioSwitch>
 		</div>
 	</div>
 </template>
@@ -108,6 +119,7 @@
 import InformationOutlineIcon from 'vue-material-design-icons/InformationOutline.vue'
 import AlertIcon from 'vue-material-design-icons/Alert.vue'
 import KeyIcon from 'vue-material-design-icons/Key.vue'
+import CheckIcon from 'vue-material-design-icons/Check.vue'
 
 import GithubIcon from './icons/GithubIcon.vue'
 
@@ -130,6 +142,7 @@ export default {
 		KeyIcon,
 		AlertIcon,
 		InformationOutlineIcon,
+		CheckIcon,
 	},
 
 	props: [],
@@ -141,6 +154,17 @@ export default {
 			readonly: true,
 			redirect_uri: window.location.protocol + '//' + window.location.host,
 		}
+	},
+
+	computed: {
+		defaultTokenConnected() {
+			return this.state.default_link_token && this.state.default_link_token !== '' && this.state.user_name && this.state.user_name !== ''
+		},
+		connectedAs() {
+			return this.state.user_displayname
+				? this.state.user_displayname + ' (@' + this.state.user_name + ')'
+				: '@' + this.state.user_name
+		},
 	},
 
 	watch: {
@@ -181,6 +205,10 @@ export default {
 			axios.put(url, req)
 				.then((response) => {
 					showSuccess(t('integration_github', 'GitHub admin options saved'))
+					if (response.data.user_name !== undefined) {
+						this.state.user_name = response.data.user_name
+						this.state.user_displayname = response.data.user_displayname
+					}
 				})
 				.catch((error) => {
 					showError(
