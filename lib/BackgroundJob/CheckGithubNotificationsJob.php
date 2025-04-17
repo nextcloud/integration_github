@@ -19,7 +19,7 @@ class CheckGithubNotificationsJob extends TimedJob {
 	public function __construct(
 		ITimeFactory $time,
 		private GithubAPIService $githubAPIService,
-		private LoggerInterface $logger
+		private LoggerInterface $logger,
 	) {
 		parent::__construct($time);
 		$this->setInterval(60 * 15); // Every 15 minutes
