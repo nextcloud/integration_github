@@ -19,7 +19,7 @@ OC.L10N.register(
     "Integration of GitHub software development management service" : "Einbindung des GitHub Software Development Management Service",
     "GitHub integration provides a dashboard widget displaying your most important notifications\n    and a unified search provider for repositories, issues and pull requests. It also provides a link reference provider\n    to render links to issues, pull requests and comments in Talk and Text." : "Die GitHub-Integration bietet ein Dashboard-Widget, das dein wichtigsten Benachrichtigungen anzeigt\n  und ein einheitlicher Suchanbieter für Repositories, Issues und Pull-Requests. Es bietet auch einen Link-Referenzanbieter\n  um Links zu Issues, Pull-Requests und Kommentaren in Talk und Text zu rendern.",
     "GitHub admin options saved" : "GitHub-Verwaltungseinstellungen gespeichert",
-    "Failed to save GitHub admin options" : "Fehler beim Speichern der GitHub-Verwaltungseinstellungen",
+    "Failed to save GitHub admin options" : "GitHub-Administrationseinstellungen konnten nicht gespeichert werden",
     "If you want to allow your Nextcloud users to use OAuth to authenticate to https://github.com, create an OAuth application in your GitHub settings." : "Wenn du zulassen möchtest, dass deine Nextcloud-Benutzer sich mittels OAuth bei https://github.com anmelden können, erstelle eine OAuth-Anwendung in Deinen GitHub-Einstellungen.",
     "GitHub OAuth settings" : "GitHub OAuth-Einstellungen",
     "Set \"Application name\", \"Homepage URL\" and \"Application description\" to values that will make sense to your Nextcloud users as they will see them when connecting to GitHub using your OAuth app." : "Stelle \"Anwendungsname\", \"Homepage-URL\" und \"Anwendungsbeschreibung\" auf Werte ein, die für deine Nextcloud-Benutzer sinnvoll sind, da sie diese sehen, wenn sie mit deiner OAuth-App eine Verbindung zu GitHub herstellen.",
@@ -43,7 +43,7 @@ OC.L10N.register(
     "GitHub OAuth error:" : "GitHub OAuth-Fehler:",
     "GitHub options saved" : "GitHub-Einstellungen gespeichert",
     "Invalid access token" : "Ungültiger Zugriffstoken",
-    "Failed to save GitHub options" : "Fehler beim Speichern der GutHub-Einstellungen",
+    "Failed to save GitHub options" : "GitHub-Einstellungen konnten nicht gespeichert werden",
     "Enable navigation link" : "Navigations-Link aktivieren",
     "You can manually provide a personal access token or connect via OAuth " : "Du kannst manuell ein persönliches Zugriffstoken bereitstellen oder eine Verbindung über OAuth herstellen",
     "When you create a personal access token yourself, give it at least \"read:user\", \"user:email\" and \"notifications\" permissions." : "Wenn du selbst einen persönlichen Zugriffstoken erstellst, gib diesem mindestens die Berechtigungen \"read:user\", \"user:email\" und \"notifications\".",
@@ -63,9 +63,9 @@ OC.L10N.register(
     "Error connecting to GitHub" : "Fehler bei der Verbindung zu GitHub",
     "No GitHub notifications!" : "Keine GitHub-Benachrichtigungen!",
     "Loading..." : "Lade…",
-    "Failed to get GitHub notifications" : "Fehler beim Abruf der GitHub-Benachrichtigung",
+    "Failed to get GitHub notifications" : "GitHub-Benachrichtigungen konnten nicht abgerufen werden",
     "Successfully unsubscribed" : "Erfolgreich abbestellt",
-    "Failed to edit GitHub notification" : "Fehler bei der Bearbeitung der GitHub-Benachrichtigung",
+    "Failed to edit GitHub notification" : "GitHub-Benachrichtigung konnte nicht bearbeitet werden",
     "OMG! No GitHub notifications!" : "OMG! Keine GitHub-Benachrichtigungen!",
     "Connect to GitHub" : "Mit GitHub verbinden",
     "Line {begin} to {end}" : "Zeile {begin} bis {end}",
@@ -96,6 +96,6 @@ OC.L10N.register(
     "Owner" : "Besitzer",
     "Click to unfold comment" : "Klicken um Kommentar zu erweitern",
     "Click to fold comment" : "Klicken um Kommentar einzuklappen",
-    "Failed to save GitHub OAuth state" : "Fehler beim Speichern des GitHub OAuth-Status"
+    "Failed to save GitHub OAuth state" : "GitHub OAuth-Status konnte nicht gespeichert werden"
 },
 "nplurals=2; plural=(n != 1);");
