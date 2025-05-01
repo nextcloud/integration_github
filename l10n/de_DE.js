@@ -73,7 +73,7 @@ OC.L10N.register(
     "GitHub API error" : "GitHub API-Fehler",
     "Unknown error" : "Unbekannter Fehler",
     "GitHub connected accounts settings" : "GitHub-Einstellungen für verbundene Konten",
-    "Click to fold/unfold content" : "Klicken um Inhalt einzuklappen / zu erweitern",
+    "Click to fold/unfold content" : "Klicken, um Inhalt einzuklappen / zu erweitern",
     "Open issue" : "Thema öffnen",
     "Closed as not planned issue" : "Als nicht geplantes Thema schließen",
     "Closed issue" : "Geschlossenes Thema",
@@ -94,8 +94,8 @@ OC.L10N.register(
     "by {creator}" : "von {creator}",
     "Author" : "Autor",
     "Owner" : "Besitzer",
-    "Click to unfold comment" : "Klicken um Kommentar zu erweitern",
-    "Click to fold comment" : "Klicken um Kommentar einzuklappen",
+    "Click to unfold comment" : "Klicken, um Kommentar zu erweitern",
+    "Click to fold comment" : "Klicken, um Kommentar einzuklappen",
     "Failed to save GitHub OAuth state" : "GitHub OAuth-Status konnte nicht gespeichert werden"
 },
 "nplurals=2; plural=(n != 1);");
