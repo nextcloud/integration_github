@@ -20,6 +20,7 @@ OC.L10N.register(
     "Unsubscribe" : "Lõpeta tellimus",
     "Line {line}" : "Rida {line}",
     "Unknown error" : "Tundmatu viga",
+    "Draft" : "Kavand",
     "by {creator}" : "kasutajalt {creator}",
     "Author" : "Autor",
     "Owner" : "Omanik"
