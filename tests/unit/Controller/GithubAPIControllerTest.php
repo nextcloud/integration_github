@@ -12,6 +12,7 @@ use OCP\IL10N;
 use OCP\IRequest;
 use OCP\IURLGenerator;
 use OCP\IUserManager;
+use OCP\Notification\IManager;
 use Test\TestCase;
 use Test\Util\User\Dummy;
 
@@ -61,6 +62,8 @@ class GithubAPIControllerTest extends TestCase {
 			$this->createMock(IL10N::class),
 			\OC::$server->get(IConfig::class),
 			\OC::$server->get(IURLGenerator::class),
+			\OC::$server->get(IUserManager::class),
+			\OC::$server->get(IManager::class),
 			$clientService,
 		);
 

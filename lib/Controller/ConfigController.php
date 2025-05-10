@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /**
  * SPDX-FileCopyrightText: 2020 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: AGPL-3.0-or-later
@@ -126,6 +129,10 @@ class ConfigController extends Controller {
 		foreach ($values as $key => $value) {
 			if (in_array($key, ['client_id', 'client_secret', 'default_link_token'], true)) {
 				$this->secretService->setEncryptedAppValue($key, $value);
+				if ($key === 'default_link_token') {
+					$info = $this->githubAPIService->updateLinkTokenUserInfo($value);
+					return new DataResponse($info);
+				}
 			} else {
 				$this->config->setAppValue(Application::APP_ID, $key, $value);
 			}
