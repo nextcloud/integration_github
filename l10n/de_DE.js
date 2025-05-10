@@ -58,7 +58,7 @@ OC.L10N.register(
     "Warning, everything you type in the search bar will be sent to GitHub." : "Achtung, alles, was Sie in die Suchleiste eingeben, wird an GitHub gesendet.",
     "Loading data" : "Daten werden geladen",
     "Mark as read" : "Als gelesen markieren",
-    "Unsubscribe" : "Abmelden",
+    "Unsubscribe" : "Abbestellen",
     "No GitHub account connected" : "Kein GitHub-Konto verbunden",
     "Error connecting to GitHub" : "Fehler bei der Verbindung zu GitHub",
     "No GitHub notifications!" : "Keine GitHub-Benachrichtigungen!",
