@@ -105,9 +105,9 @@ class GithubWidget implements IAPIWidget, IButtonWidget, IIconWidget, IOptionWid
 			return [];
 		}
 		$that = $this;
-		return array_map(static function (array $notification) use ($that) {
+		return array_values(array_map(static function (array $notification) use ($that) {
 			return $that->githubAPIService->getWidgetFromNotification($notification);
-		}, $notifications);
+		}, $notifications));
 	}
 
 	/**
