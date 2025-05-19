@@ -406,13 +406,12 @@ class GithubAPIService {
 
 			$notifications = $this->getNotifications($userId, null, $since);
 			if (!isset($notifications['error'])) {
-				$newNotifications = 0;
-
-				foreach ($notifications as $notification) {
-					if ($notification['unread']) {
-						$newNotifications++;
+				$newNotifications = count(array_filter(
+					$notifications,
+					function (array $notification) {
+						return $notification['unread'] ?? false;
 					}
-				}
+				));
 
 				if ($newNotifications > 0) {
 					$this->config->setUserValue($userId, Application::APP_ID, 'last_notification_check', (new DateTime())->format('Y-m-d\TH:i:s\Z'));
