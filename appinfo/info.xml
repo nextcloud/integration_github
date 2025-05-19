@@ -10,7 +10,7 @@
     <description><![CDATA[GitHub integration provides a dashboard widget displaying your most important notifications
     and a unified search provider for repositories, issues and pull requests. It also provides a link reference provider
     to render links to issues, pull requests and comments in Talk and Text.]]></description>
-    <version>3.1.1</version>
+    <version>3.2.0</version>
     <licence>agpl</licence>
     <author>Julien Veyssier</author>
     <namespace>Github</namespace>
@@ -23,8 +23,11 @@
     <bugs>https://github.com/nextcloud/integration_github/issues</bugs>
     <screenshot>https://github.com/nextcloud/integration_github/raw/main/img/screenshot1.jpg</screenshot>
     <dependencies>
-        <nextcloud min-version="27" max-version="31"/>
+        <nextcloud min-version="29" max-version="32"/>
     </dependencies>
+    <background-jobs>
+        <job>OCA\Github\BackgroundJob\CheckGithubNotificationsJob</job>
+    </background-jobs>
     <settings>
         <admin>OCA\Github\Settings\Admin</admin>
         <admin-section>OCA\Github\Settings\AdminSection</admin-section>

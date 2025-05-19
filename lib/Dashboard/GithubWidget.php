@@ -1,4 +1,5 @@
 <?php
+
 /**
  * SPDX-FileCopyrightText: 2020 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: AGPL-3.0-or-later
@@ -105,9 +106,9 @@ class GithubWidget implements IAPIWidget, IButtonWidget, IIconWidget, IOptionWid
 			return [];
 		}
 		$that = $this;
-		return array_map(static function (array $notification) use ($that) {
+		return array_values(array_map(static function (array $notification) use ($that) {
 			return $that->githubAPIService->getWidgetFromNotification($notification);
-		}, $notifications);
+		}, $notifications));
 	}
 
 	/**

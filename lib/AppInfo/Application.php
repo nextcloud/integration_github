@@ -1,4 +1,5 @@
 <?php
+
 /**
  * SPDX-FileCopyrightText: 2020 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: AGPL-3.0-or-later
@@ -9,6 +10,7 @@ namespace OCA\Github\AppInfo;
 use OCA\Github\Dashboard\GithubWidget;
 use OCA\Github\Listener\ContentSecurityPolicyListener;
 use OCA\Github\Listener\GithubReferenceListener;
+use OCA\Github\Notification\GitHubNotifier;
 use OCA\Github\Reference\GithubCodeReferenceProvider;
 use OCA\Github\Reference\GithubIssuePrReferenceProvider;
 use OCA\Github\Search\GithubSearchIssuesProvider;
@@ -46,6 +48,10 @@ class Application extends App implements IBootstrap {
 	public function register(IRegistrationContext $context): void {
 		if ($this->config->getAppValue(self::APP_ID, 'dashboard_enabled', '1') === '1') {
 			$context->registerDashboardWidget(GithubWidget::class);
+		}
+
+		if ($this->config->getAppValue(self::APP_ID, 'issue_notifications_enabled', '1') === '1') {
+			$context->registerNotifierService(GitHubNotifier::class);
 		}
 
 		$context->registerSearchProvider(GithubSearchIssuesProvider::class);

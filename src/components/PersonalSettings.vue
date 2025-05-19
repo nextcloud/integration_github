@@ -19,6 +19,15 @@
 				@update:checked="onCheckboxChanged($event, 'link_preview_enabled')">
 				{{ t('integration_github', 'Enable GitHub link previews') }}
 			</NcCheckboxRadioSwitch>
+			<NcCheckboxRadioSwitch
+				:disabled="!state.admin_issue_notifications_enabled"
+				:checked="state.issue_notifications_enabled"
+				@update:checked="onCheckboxChanged($event, 'issue_notifications_enabled')">
+				{{ t('integration_github', 'Enable notifications for new unread GitHub notifications') }}
+				<span v-if="!state.admin_issue_notifications_enabled" style="font-style: italic;">
+					&nbsp;({{ t('integration_github', 'Disabled by administrator') }})
+				</span>
+			</NcCheckboxRadioSwitch>
 			<NcNoteCard v-if="showOAuth && !connected" type="info">
 				{{ t('integration_github', 'You can manually provide a personal access token or connect via OAuth ') }}
 			</NcNoteCard>
