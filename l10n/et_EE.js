@@ -22,6 +22,7 @@ OC.L10N.register(
     "Line {line}" : "Rida {line}",
     "Unknown error" : "Tundmatu viga",
     "Draft" : "Kavand",
+    "Assigned to {login}" : "Määratud kasutajale {login}",
     "by {creator}" : "kasutajalt {creator}",
     "Author" : "Autor",
     "Owner" : "Omanik"
