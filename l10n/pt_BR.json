@@ -74,7 +74,7 @@
     "GitHub API error" : "Erro da API do GitHub",
     "Unknown error" : "Erro desconhecido",
     "GitHub connected accounts settings" : "Configurações de contas conectadas do GitHub",
-    "Click to fold/unfold content" : "Clique para encolher/desdobrar o conteúdo",
+    "Click to fold/unfold content" : "Clique para recolher/expandir o conteúdo",
     "Open issue" : "Problema em aberto",
     "Closed as not planned issue" : "Problema concluído como não planejado",
     "Closed issue" : "Problema concluído",
@@ -85,8 +85,8 @@
     "Unknown state" : "Estado desconhecido",
     "Draft" : "Rascunho",
     "Review requested" : "Revisão solicitada",
-    "opened {relativeDate}" : "abriu {relativeDate}",
-    "was closed {relativeDate}" : "foi fechado {relativeDate}",
+    "opened {relativeDate}" : "aberto {relativeDate}",
+    "was closed {relativeDate}" : "foi concluído {relativeDate}",
     "was merged {relativeDate}" : "foi mesclado {relativeDate}",
     "Comment from {login}" : "Comentário de {login}",
     "commented {date}" : "comentou em {date}",
@@ -95,8 +95,8 @@
     "by {creator}" : "por {creator}",
     "Author" : "Autor",
     "Owner" : "Proprietário",
-    "Click to unfold comment" : "Clique para desdobrar o comentário",
-    "Click to fold comment" : "Clique para encolher o comentário",
+    "Click to unfold comment" : "Clique para expandir o comentário",
+    "Click to fold comment" : "Clique para recolher o comentário",
     "Failed to save GitHub OAuth state" : "Falha ao salvar o estado GitHub OAuth"
 },"pluralForm" :"nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;"
 }
