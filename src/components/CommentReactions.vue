@@ -76,6 +76,7 @@ export default {
 				byType[reaction.content].push(reaction.user.login)
 			})
 			Object.keys(byType).forEach(rKey => {
+				// TRANSLATORS this text is shown on the emoji icon hover tooltip, it is a list of users who reacted with this emoji (e.g. "user1, user2, user3 reacted with eyes emoji")
 				byType[rKey] = t('integration_github', '{logins} reacted with {emoji} emoji', { logins: byType[rKey].join(', '), emoji: rKey })
 			})
 			console.debug('bytype', byType)
