@@ -1,0 +1,18 @@
+OC.L10N.register(
+    "integration_github",
+    {
+    "Error getting OAuth access token" : "Hitilafu katika kupata token ya ufikiaji ya OAuth",
+    "Error during OAuth exchanges" : "Hitilafu wakati wa kubadilishana OAuth",
+    "Bad HTTP method" : "Njia mbaya ya HTTP ",
+    "Bad credentials" : "Sifa mbaya",
+    "OAuth access token refused" : "Ufikiaji wa token za OAuth umekataliwa",
+    "Connected accounts" : "Akaunti zilizounganishwa",
+    "Put the OAuth app \"Client ID\" and \"Client secret\" below." : "Put the OAuth app \"Client ID\" and \"Client secret\" below.",
+    "Client ID" : "Kitambulisho cha mteja",
+    "Client secret" : "Siri ya mteja",
+    "Connected as {user}" : "Imeunganishwa kama {user}",
+    "Enable navigation link" : "Enable navigation link",
+    "Unknown error" : "Hitilafu isiyojulikana",
+    "Owner" : "Mmiliki"
+},
+"nplurals=2; plural=(n != 1);");
