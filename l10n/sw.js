@@ -3,6 +3,7 @@ OC.L10N.register(
     {
     "Error getting OAuth access token" : "Hitilafu katika kupata token ya ufikiaji ya OAuth",
     "Error during OAuth exchanges" : "Hitilafu wakati wa kubadilishana OAuth",
+    "Comment" : "Maoni",
     "Bad HTTP method" : "Njia mbaya ya HTTP ",
     "Bad credentials" : "Sifa mbaya",
     "OAuth access token refused" : "Ufikiaji wa token za OAuth umekataliwa",
