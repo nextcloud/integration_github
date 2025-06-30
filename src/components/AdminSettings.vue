@@ -164,9 +164,14 @@ export default {
 					taskType: 'core:text2text',
 					inputs: {
 						// input: { fileId: 3296 },
-						input: { filePath: '/special chars/ddd.md' },
+						input: { filePath: '/aaa.md' },
 						// input: 'the content of the message',
 					},
+					taskTypeIdList: [
+						'richdocuments:text_to_text_document',
+						'core:text2text',
+						'core:audio2text',
+					],
 					closeOnResult: false,
 				}).then(task => {
 					console.debug('assistant promise result', task)
