@@ -6,11 +6,13 @@ OC.L10N.register(
     "Bad credentials" : "Nederīgi pieteikšanās dati",
     "Connected accounts" : "Sasaistītie konti",
     "Client ID" : "Klienta ID",
+    "Connected as {user}" : "Savienojies kā {user}",
     "{logins} reacted with {emoji} emoji" : "{logins} atsaucās ar emocijzīmi {emoji}",
     "No GitHub account connected" : "Nav sasaistītu GitHub kontu",
     "Loading..." : "Notiek ielāde...",
     "Unknown error" : "Nezināma kļūda",
     "GitHub connected accounts settings" : "Sasaistīto GitHub kontu iestatījumi",
+    "Draft" : "Melnraksts",
     "opened {relativeDate}" : "atvēra {relativeDate}",
     "Comment from {login}" : "Piebilde no {login}",
     "Owner" : "Īpašnieks"
