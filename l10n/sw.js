@@ -15,6 +15,7 @@ OC.L10N.register(
     "Enable navigation link" : "Enable navigation link",
     "Mark as read" : "Weka alama kama iliyosomwa",
     "Unknown error" : "Hitilafu isiyojulikana",
+    "by {creator}" : "kwa {creator}",
     "Owner" : "Mmiliki"
 },
 "nplurals=2; plural=(n != 1);");
