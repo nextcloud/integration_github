@@ -15,6 +15,7 @@ OC.L10N.register(
     "Enable navigation link" : "Enable navigation link",
     "Mark as read" : "Weka alama kama iliyosomwa",
     "Unknown error" : "Hitilafu isiyojulikana",
+    "Draft" : "Draft",
     "by {creator}" : "kwa {creator}",
     "Owner" : "Mmiliki"
 },
