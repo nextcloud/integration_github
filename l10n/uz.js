@@ -4,6 +4,7 @@ OC.L10N.register(
     "Comment" : "Izoh",
     "Bad HTTP method" : "Yomon HTTP usuli",
     "Bad credentials" : "Akkaunt ma'lumotlari xato",
+    "Connected accounts" : "Ulangan akkauntlar",
     "Client ID" : "Mijoz identifikatori",
     "Personal access token" : "Shaxsiy kirish belgisi",
     "Unknown error" : "Unknown error",
