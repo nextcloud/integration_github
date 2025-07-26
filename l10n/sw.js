@@ -13,6 +13,7 @@ OC.L10N.register(
     "Client secret" : "Siri ya mteja",
     "Connected as {user}" : "Imeunganishwa kama {user}",
     "Enable navigation link" : "Enable navigation link",
+    "Personal access token" : "Personal access token",
     "Mark as read" : "Weka alama kama iliyosomwa",
     "Unknown error" : "Hitilafu isiyojulikana",
     "Draft" : "Draft",
