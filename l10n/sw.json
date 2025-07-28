@@ -10,6 +10,7 @@
     "Client ID" : "Kitambulisho cha mteja",
     "Client secret" : "Siri ya mteja",
     "Connected as {user}" : "Imeunganishwa kama {user}",
+    "Invalid access token" : "Invalid access token",
     "Enable navigation link" : "Enable navigation link",
     "Personal access token" : "Personal access token",
     "Mark as read" : "Weka alama kama iliyosomwa",
