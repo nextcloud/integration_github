@@ -3,6 +3,7 @@ OC.L10N.register(
     {
     "Comment" : "Каментарый",
     "Client ID" : "Ідэнтыфікатар кліента",
+    "Mark as read" : "Пазначыць як прачытанае",
     "Unknown error" : "Невядомая памылка",
     "Draft" : "Чарнавік",
     "Author" : "Аўтар",
