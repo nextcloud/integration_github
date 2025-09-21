@@ -53,6 +53,7 @@ OC.L10N.register(
     "Line {line}" : "Γραμμή {line}",
     "Unknown error" : "Άγνωστο σφάλμα",
     "Draft" : "Πρόχειρο",
+    "by {creator}" : "από {creator}",
     "Author" : "Δημιουργός",
     "Owner" : "Κάτοχος",
     "Failed to save GitHub OAuth state" : "Αποτυχία αποθήκευσης της κατάστασης GitHub OAuth"
