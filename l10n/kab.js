@@ -1,0 +1,10 @@
+OC.L10N.register(
+    "integration_github",
+    {
+    "Comment" : "Commentaire",
+    "Mark as read" : "Creḍ yettwaɣra",
+    "Unknown error" : "Erreur inconnue",
+    "Draft" : "Arewway",
+    "Owner" : "Bab"
+},
+"nplurals=2; plural=(n != 1);");
