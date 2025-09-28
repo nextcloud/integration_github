@@ -14,6 +14,7 @@ OC.L10N.register(
     "Connected as {user}" : "Forbundet som {user}",
     "Enable navigation link" : "Aktiver navigationslink",
     "Personal access token" : "Personligt adgangstoken",
+    "Loading data" : "Indlæser data",
     "Mark as read" : "Marker som læst",
     "Loading..." : "Indlæser...",
     "Line {line}" : "Linje {line}",
