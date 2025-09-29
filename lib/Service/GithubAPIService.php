@@ -140,12 +140,16 @@ class GithubAPIService {
 			$url = $notification['subject']['url'] ?? '';
 			$url = str_replace('api.github.com', 'github.com', $url);
 			$url = str_replace('/repos/', '/', $url);
-			return preg_replace('/\/[0-9]+/', '', $url);
+			/** @var string $result */
+			$result = preg_replace('/\/[0-9]+/', '', $url);
+			return $result;
 		} elseif ($subjectType !== 'Discussion') {
 			$url = $notification['subject']['url'] ?? '';
 			$url = str_replace('api.github.com', 'github.com', $url);
 			$url = str_replace('/repos/', '/', $url);
-			return str_replace('/pulls/', '/pull/', $url);
+			/** @var string $result */
+			$result = str_replace('/pulls/', '/pull/', $url);
+			return $result;
 		}
 		// this is a discussion
 		$repoFullName = $notification['repository']['full_name'] ?? '';

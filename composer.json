@@ -8,7 +8,7 @@
 	],
 	"require": {
 		"league/commonmark": "^2.3",
-		"php": "^8.1",
+		"php": "^8.2",
 		"bamarni/composer-bin-plugin": "^1.8"
 	},
 	"scripts": {
@@ -30,7 +30,7 @@
 		"optimize-autoloader": true,
 		"classmap-authoritative": true,
 		"platform": {
-			"php": "8.1"
+			"php": "8.2"
 		},
 		"allow-plugins": {
 			"bamarni/composer-bin-plugin": true,
