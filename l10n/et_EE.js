@@ -33,6 +33,7 @@ OC.L10N.register(
     "Loading data" : "Laadin andmeid",
     "Mark as read" : "Märgi loetuks",
     "Unsubscribe" : "Lõpeta tellimus",
+    "Loading..." : "Laadin...",
     "Line {line}" : "Rida {line}",
     "Unknown error" : "Tundmatu viga",
     "Draft" : "Kavand",
