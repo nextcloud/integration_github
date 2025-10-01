@@ -16,12 +16,13 @@ use OCP\IConfig;
 use OCP\IL10N;
 use OCP\IURLGenerator;
 use OCP\IUser;
+use OCP\Search\IExternalProvider;
 use OCP\Search\IProvider;
 use OCP\Search\ISearchQuery;
 use OCP\Search\SearchResult;
 use OCP\Search\SearchResultEntry;
 
-class GithubSearchIssuesProvider implements IProvider {
+class GithubSearchIssuesProvider implements IProvider, IExternalProvider {
 
 	public function __construct(
 		private IAppManager $appManager,
@@ -156,5 +157,9 @@ class GithubSearchIssuesProvider implements IProvider {
 	protected function getThumbnailUrl(array $entry): string {
 		$userName = $entry['project_owner_login'] ?? '';
 		return $this->urlGenerator->linkToRoute('integration_github.githubAPI.getAvatar', ['githubLogin' => $userName]);
+	}
+
+	public function isExternalProvider(): bool {
+		return true;
 	}
 }

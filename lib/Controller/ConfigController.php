@@ -197,8 +197,8 @@ class ConfigController extends Controller {
 					$this->config->deleteUserValue($this->userId, Application::APP_ID, 'oauth_origin');
 					if ($oauthOrigin === 'settings') {
 						return new RedirectResponse(
-							$this->urlGenerator->linkToRoute('settings.PersonalSettings.index', ['section' => 'connected-accounts']) .
-							'?githubToken=success'
+							$this->urlGenerator->linkToRoute('settings.PersonalSettings.index', ['section' => 'connected-accounts'])
+							. '?githubToken=success'
 						);
 					} elseif ($oauthOrigin === 'dashboard') {
 						return new RedirectResponse(
@@ -206,8 +206,8 @@ class ConfigController extends Controller {
 						);
 					}
 					return new RedirectResponse(
-						$this->urlGenerator->linkToRoute('settings.PersonalSettings.index', ['section' => 'connected-accounts']) .
-						'?githubToken=success'
+						$this->urlGenerator->linkToRoute('settings.PersonalSettings.index', ['section' => 'connected-accounts'])
+						. '?githubToken=success'
 					);
 				}
 			}
@@ -217,8 +217,8 @@ class ConfigController extends Controller {
 			$result = $this->l->t('Error during OAuth exchanges');
 		}
 		return new RedirectResponse(
-			$this->urlGenerator->linkToRoute('settings.PersonalSettings.index', ['section' => 'connected-accounts']) .
-			'?githubToken=error&message=' . urlencode($result)
+			$this->urlGenerator->linkToRoute('settings.PersonalSettings.index', ['section' => 'connected-accounts'])
+			. '?githubToken=error&message=' . urlencode($result)
 		);
 	}
 
