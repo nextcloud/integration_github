@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "80537f3ad881fb421b9530dab60ddcac",
+    "content-hash": "9574e2288412cfb95405864a5f245c20",
     "packages": [
         {
             "name": "bamarni/composer-bin-plugin",
@@ -687,12 +687,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/nextcloud-deps/ocp.git",
-                "reference": "78495561326ae067174199f39babe103ff0763cc"
+                "reference": "6101c4313b00e7f20d06395b093c4e0f97e2d837"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nextcloud-deps/ocp/zipball/78495561326ae067174199f39babe103ff0763cc",
-                "reference": "78495561326ae067174199f39babe103ff0763cc",
+                "url": "https://api.github.com/repos/nextcloud-deps/ocp/zipball/6101c4313b00e7f20d06395b093c4e0f97e2d837",
+                "reference": "6101c4313b00e7f20d06395b093c4e0f97e2d837",
                 "shasum": ""
             },
             "require": {
@@ -728,7 +728,7 @@
                 "issues": "https://github.com/nextcloud-deps/ocp/issues",
                 "source": "https://github.com/nextcloud-deps/ocp/tree/master"
             },
-            "time": "2025-09-29T00:49:48+00:00"
+            "time": "2025-10-01T00:54:58+00:00"
         },
         {
             "name": "psr/clock",
@@ -890,13 +890,13 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": "^8.2"
+        "php": "^8.1"
     },
     "platform-dev": {
         "ext-mbstring": "*"
     },
     "platform-overrides": {
-        "php": "8.2"
+        "php": "8.1"
     },
     "plugin-api-version": "2.6.0"
 }
