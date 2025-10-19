@@ -27,7 +27,7 @@
     "Your Nextcloud users will then see a \"Connect to GitHub\" button in their personal settings." : "Deine Nextcloud-Benutzer sehen dann in ihren persönlichen Einstellungen die Schaltfläche \"Mit GitHub verbinden\".",
     "Client ID" : "Client-ID",
     "Client ID of your GitHub application" : "Client-ID deiner GitHub-Anwendung",
-    "Client secret" : "Geheime Zeichenkette des Clients",
+    "Client secret" : "Client-Geheimnis des Clients",
     "Client secret of your GitHub application" : "Client-Geheimnis der GitHub-Anwendung",
     "The default access token will be used for link previews and unified search by users who didn't connect to GitHub." : "Das Standardzugriffstoken wird für Linkvorschauen und die einheitliche Suche von Benutzern verwendet, die keine Verbindung zu GitHub hergestellt haben.",
     "Connected as {user}" : "Verbunden als {user}",
