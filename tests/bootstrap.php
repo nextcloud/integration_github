@@ -1,9 +1,8 @@
 <?php
 
-use OCA\Github\AppInfo\Application;
-use OCP\App\IAppManager;
-
 require_once __DIR__ . '/../../../tests/bootstrap.php';
 
-\OCP\Server::get(IAppManager::class)->loadApp(Application::APP_ID);
+use OCP\App\IAppManager;
+
+\OC::$server->get(IAppManager::class)->loadApps();
 OC_Hook::clear();
