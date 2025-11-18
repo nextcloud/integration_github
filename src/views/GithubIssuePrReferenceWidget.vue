@@ -743,14 +743,12 @@ export default {
 	}
 
 	.milestone,
-	::v-deep .author-link,
 	.slug-link {
 		color: inherit !important;
 	}
 
 	.date-with-tooltip,
 	.milestone,
-	::v-deep .author-link,
 	.slug-link,
 	.issue-pr-link {
 		&:hover {
