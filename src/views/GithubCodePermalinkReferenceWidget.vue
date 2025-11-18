@@ -39,10 +39,17 @@
 				:title="t('integration_github', 'Click to fold/unfold content')"
 				class="content"
 				@click="showShortContent = !showShortContent">
-				<pre v-highlightjs="textContent"><code :class="{
-					[codeClass]: true,
-					'short-content': showShortContent,
-				}" /></pre>
+				<!-- some people say this is needed
+				 :autodetect="false"
+				 https://github.com/highlightjs/vue-plugin/issues/49
+				 -->
+				<highlightjs
+					:class="{
+						'short-content': showShortContent,
+						'highlight': true,
+					}"
+					:language="codeClass"
+					:code="textContent" />
 			</div>
 		</div>
 	</div>
@@ -55,9 +62,8 @@ import GithubIcon from '../components/icons/GithubIcon.vue'
 
 import { generateUrl } from '@nextcloud/router'
 
-import VueHighlightJS from 'vue-highlightjs'
-import Vue from 'vue'
-Vue.use(VueHighlightJS)
+import hljs from 'highlight.js/lib/common'
+import hljsVuePlugin from '@highlightjs/vue-plugin'
 
 const extensionToClass = {
 	js: 'javascript',
@@ -77,6 +83,7 @@ export default {
 	components: {
 		GithubIcon,
 		OpenInNewIcon,
+		highlightjs: hljsVuePlugin.component,
 	},
 
 	props: {
@@ -139,6 +146,18 @@ export default {
 			}
 			return ''
 		},
+		codeExtension() {
+			const extension = this.richObject.filePath.match(/\.([a-zA-Z0-9]+)$/)
+			if (extension && extension.length > 1) {
+				return extension[1]
+			}
+			return ''
+		},
+	},
+
+	mounted() {
+		// this is required to be able to import hljs without using it
+		console.debug('[integration_github] hljs language list', hljs.listLanguages())
 	},
 
 	methods: {
@@ -215,16 +234,19 @@ body[data-theme-light] {
 
 		.content {
 			width: 100%;
-			cursor: pointer;
-			code {
-				cursor: pointer;
-
+			.highlight {
 				max-height: 300px;
 				overflow: scroll;
 				scrollbar-width: auto;
 				scrollbar-color: var(--color-primary);
 				&.short-content {
 					max-height: 125px;
+				}
+				:deep(code) {
+					cursor: pointer !important;
+					> * {
+						cursor: pointer !important;
+					}
 				}
 			}
 		}
