@@ -9,26 +9,22 @@
 			{{ t('integration_github', 'GitHub integration') }}
 		</h2>
 		<div id="github-content">
-			<p class="settings-hint">
-				{{ t('integration_github', 'If you want to allow your Nextcloud users to use OAuth to authenticate to https://github.com, create an OAuth application in your GitHub settings.') }}
-				<a href="https://github.com/settings/developers" class="external">{{ t('integration_github', 'GitHub OAuth settings') }}</a>
-			</p>
-			<p class="settings-hint">
+			<NcNoteCard type="info">
+				{{ t('integration_github', 'If you want to allow your Nextcloud users to use OAuth to authenticate to {githubUrl}, create an OAuth application in your GitHub settings.', { githubUrl: 'https://github.com' }) }}
+				<br>
+				<a href="https://github.com/settings/developers" class="external" target="_blank">
+					{{ t('integration_github', 'GitHub OAuth settings') }}
+				</a>
+				<br>
 				{{ t('integration_github', 'Set "Application name", "Homepage URL" and "Application description" to values that will make sense to your Nextcloud users as they will see them when connecting to GitHub using your OAuth app.') }}
-			</p>
-			<br>
-			<p class="settings-hint">
-				<InformationOutlineIcon :size="20" class="icon" />
+				<br>
 				{{ t('integration_github', 'Make sure you set the "Authorization callback URL" to') }}
-			</p>
-			<strong>{{ redirect_uri }}</strong>
-			<br><br>
-			<p class="settings-hint">
+				<br>
+				<strong>{{ redirect_uri }}</strong>
+				<br>
 				{{ t('integration_github', 'Put the OAuth app "Client ID" and "Client secret" below.') }}
-			</p>
-			<p class="settings-hint">
 				{{ t('integration_github', 'Your Nextcloud users will then see a "Connect to GitHub" button in their personal settings.') }}
-			</p>
+			</NcNoteCard>
 			<NcTextField
 				v-model="state.client_id"
 				class="input"
@@ -60,16 +56,9 @@
 				</template>
 			</NcTextField>
 			<br>
-			<p class="settings-hint">
-				<AlertIcon :size="20" class="icon" />
+			<NcNoteCard type="warning">
 				{{ t('integration_github', 'The default access token will be used for link previews and unified search by users who didn\'t connect to GitHub.') }}
-			</p>
-			<div v-if="defaultTokenConnected" class="line">
-				<label style="width: 100%; margin-bottom: 0.5em;">
-					<CheckIcon :size="20" class="icon" />
-					{{ t('integration_github', 'Connected as {user}', { user: connectedAs }) }}
-				</label>
-			</div>
+			</NcNoteCard>
 			<NcTextField
 				v-model="state.default_link_token"
 				class="input"
@@ -85,52 +74,60 @@
 					<KeyIcon :size="20" />
 				</template>
 			</NcTextField>
-			<NcCheckboxRadioSwitch
-				:model-value="state.allow_default_link_token_to_anonymous"
-				:disabled="!state.default_link_token"
-				@update:model-value="onCheckboxChanged($event, 'allow_default_link_token_to_anonymous')">
-				{{ t('integration_github', 'Use default access token for anonymous users') }}
-			</NcCheckboxRadioSwitch>
-			<NcCheckboxRadioSwitch
-				:model-value="state.allow_default_link_token_to_guests"
-				:disabled="!state.default_link_token"
-				@update:model-value="onCheckboxChanged($event, 'allow_default_link_token_to_guests')">
-				{{ t('integration_github', 'Use default access token for guest users') }}
-			</NcCheckboxRadioSwitch>
-			<NcCheckboxRadioSwitch
-				:model-value="state.use_popup"
-				@update:model-value="onCheckboxChanged($event, 'use_popup')">
-				{{ t('integration_github', 'Use a pop-up for OAuth authentication') }}
-			</NcCheckboxRadioSwitch>
-			<NcCheckboxRadioSwitch
-				:model-value="state.link_preview_enabled"
-				@update:model-value="onCheckboxChanged($event, 'link_preview_enabled')">
-				{{ t('integration_github', 'Enable GitHub link previews') }}
-			</NcCheckboxRadioSwitch>
-			<NcCheckboxRadioSwitch
-				:model-value="state.dashboard_enabled"
-				@update:model-value="onCheckboxChanged($event, 'dashboard_enabled')">
-				{{ t('integration_github', 'Enable GitHub dashboard widget') }}
-			</NcCheckboxRadioSwitch>
-			<NcCheckboxRadioSwitch
-				:model-value="state.issue_notifications_enabled"
-				@update:model-value="onCheckboxChanged($event, 'issue_notifications_enabled')">
-				{{ t('integration_github', 'Enable notifications for new unread GitHub notifications') }}
-			</NcCheckboxRadioSwitch>
+			<div v-if="defaultTokenConnected" class="line">
+				<label style="width: 100%; margin-top: 0.5em;">
+					<CheckIcon :size="20" class="icon" />
+					{{ t('integration_github', 'Connected with the default access token as {user}', { user: connectedAs }) }}
+				</label>
+			</div>
+			<br>
+			<NcFormBox>
+				<NcFormBoxSwitch :model-value="state.allow_default_link_token_to_anonymous"
+					:disabled="!state.default_link_token"
+					@update:model-value="onCheckboxChanged($event, 'allow_default_link_token_to_anonymous')">
+					{{ t('integration_github', 'Use default access token for anonymous users') }}
+				</NcFormBoxSwitch>
+				<NcFormBoxSwitch
+					:model-value="state.allow_default_link_token_to_guests"
+					:disabled="!state.default_link_token"
+					@update:model-value="onCheckboxChanged($event, 'allow_default_link_token_to_guests')">
+					{{ t('integration_github', 'Use default access token for guest users') }}
+				</NcFormBoxSwitch>
+				<NcFormBoxSwitch
+					:model-value="state.use_popup"
+					@update:model-value="onCheckboxChanged($event, 'use_popup')">
+					{{ t('integration_github', 'Use a pop-up for OAuth authentication') }}
+				</NcFormBoxSwitch>
+				<NcFormBoxSwitch
+					:model-value="state.link_preview_enabled"
+					@update:model-value="onCheckboxChanged($event, 'link_preview_enabled')">
+					{{ t('integration_github', 'Enable GitHub link previews') }}
+				</NcFormBoxSwitch>
+				<NcFormBoxSwitch
+					:model-value="state.dashboard_enabled"
+					@update:model-value="onCheckboxChanged($event, 'dashboard_enabled')">
+					{{ t('integration_github', 'Enable GitHub dashboard widget') }}
+				</NcFormBoxSwitch>
+				<NcFormBoxSwitch
+					:model-value="state.issue_notifications_enabled"
+					@update:model-value="onCheckboxChanged($event, 'issue_notifications_enabled')">
+					{{ t('integration_github', 'Enable notifications for new unread GitHub notifications') }}
+				</NcFormBoxSwitch>
+			</NcFormBox>
 		</div>
 	</div>
 </template>
 
 <script>
-import InformationOutlineIcon from 'vue-material-design-icons/InformationOutline.vue'
-import AlertIcon from 'vue-material-design-icons/Alert.vue'
 import KeyIcon from 'vue-material-design-icons/Key.vue'
 import CheckIcon from 'vue-material-design-icons/Check.vue'
 
 import GithubIcon from './icons/GithubIcon.vue'
 
-import NcCheckboxRadioSwitch from '@nextcloud/vue/components/NcCheckboxRadioSwitch'
 import NcTextField from '@nextcloud/vue/components/NcTextField'
+import NcNoteCard from '@nextcloud/vue/components/NcNoteCard'
+import NcFormBox from '@nextcloud/vue/components/NcFormBox'
+import NcFormBoxSwitch from '@nextcloud/vue/components/NcFormBoxSwitch'
 
 import { loadState } from '@nextcloud/initial-state'
 import { generateUrl } from '@nextcloud/router'
@@ -145,11 +142,11 @@ export default {
 
 	components: {
 		GithubIcon,
-		NcCheckboxRadioSwitch,
 		NcTextField,
+		NcNoteCard,
+		NcFormBox,
+		NcFormBoxSwitch,
 		KeyIcon,
-		AlertIcon,
-		InformationOutlineIcon,
 		CheckIcon,
 	},
 
@@ -235,6 +232,7 @@ export default {
 #github_prefs {
 	#github-content {
 		margin-left: 40px;
+		max-width: 800px;
 	}
 	h2 {
 		justify-content: start;
@@ -254,7 +252,7 @@ export default {
 	}
 
 	.input {
-		width: 500px;
+		width: 100%;
 	}
 
 	.line {
