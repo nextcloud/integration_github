@@ -8,53 +8,57 @@
 			<GithubIcon class="icon" />
 			{{ t('integration_github', 'GitHub integration') }}
 		</h2>
-		<p class="settings-hint">
-			{{ t('integration_github', 'If you want to allow your Nextcloud users to use OAuth to authenticate to https://github.com, create an OAuth application in your GitHub settings.') }}
-			<a href="https://github.com/settings/developers" class="external">{{ t('integration_github', 'GitHub OAuth settings') }}</a>
-		</p>
-		<p class="settings-hint">
-			{{ t('integration_github', 'Set "Application name", "Homepage URL" and "Application description" to values that will make sense to your Nextcloud users as they will see them when connecting to GitHub using your OAuth app.') }}
-		</p>
-		<br>
-		<p class="settings-hint">
-			<InformationOutlineIcon :size="20" class="icon" />
-			{{ t('integration_github', 'Make sure you set the "Authorization callback URL" to') }}
-		</p>
-		<strong>{{ redirect_uri }}</strong>
-		<br><br>
-		<p class="settings-hint">
-			{{ t('integration_github', 'Put the OAuth app "Client ID" and "Client secret" below.') }}
-		</p>
-		<p class="settings-hint">
-			{{ t('integration_github', 'Your Nextcloud users will then see a "Connect to GitHub" button in their personal settings.') }}
-		</p>
 		<div id="github-content">
-			<div class="line">
-				<label for="github-client-id">
-					<KeyIcon :size="20" class="icon" />
-					{{ t('integration_github', 'Client ID') }}
-				</label>
-				<input id="github-client-id"
-					v-model="state.client_id"
-					type="password"
-					:readonly="readonly"
-					:placeholder="t('integration_github', 'Client ID of your GitHub application')"
-					@focus="readonly = false"
-					@input="onInput">
-			</div>
-			<div class="line">
-				<label for="github-client-secret">
-					<KeyIcon :size="20" class="icon" />
-					{{ t('integration_github', 'Client secret') }}
-				</label>
-				<input id="github-client-secret"
-					v-model="state.client_secret"
-					type="password"
-					:readonly="readonly"
-					:placeholder="t('integration_github', 'Client secret of your GitHub application')"
-					@input="onInput"
-					@focus="readonly = false">
-			</div>
+			<p class="settings-hint">
+				{{ t('integration_github', 'If you want to allow your Nextcloud users to use OAuth to authenticate to https://github.com, create an OAuth application in your GitHub settings.') }}
+				<a href="https://github.com/settings/developers" class="external">{{ t('integration_github', 'GitHub OAuth settings') }}</a>
+			</p>
+			<p class="settings-hint">
+				{{ t('integration_github', 'Set "Application name", "Homepage URL" and "Application description" to values that will make sense to your Nextcloud users as they will see them when connecting to GitHub using your OAuth app.') }}
+			</p>
+			<br>
+			<p class="settings-hint">
+				<InformationOutlineIcon :size="20" class="icon" />
+				{{ t('integration_github', 'Make sure you set the "Authorization callback URL" to') }}
+			</p>
+			<strong>{{ redirect_uri }}</strong>
+			<br><br>
+			<p class="settings-hint">
+				{{ t('integration_github', 'Put the OAuth app "Client ID" and "Client secret" below.') }}
+			</p>
+			<p class="settings-hint">
+				{{ t('integration_github', 'Your Nextcloud users will then see a "Connect to GitHub" button in their personal settings.') }}
+			</p>
+			<NcTextField
+				v-model="state.client_id"
+				class="input"
+				type="password"
+				:label="t('integration_github', 'Client ID')"
+				:placeholder="t('integration_github', 'Client ID of your GitHub application')"
+				:readonly="readonly"
+				:show-trailing-button="!!state.client_id"
+				@trailing-button-click="state.client_id = ''"
+				@focus="readonly = false"
+				@update:model-value="onInput">
+				<template #icon>
+					<KeyIcon :size="20" />
+				</template>
+			</NcTextField>
+			<NcTextField
+				v-model="state.client_secret"
+				class="input"
+				type="password"
+				:label="t('integration_github', 'Client secret')"
+				:placeholder="t('integration_github', 'Client secret of your GitHub application')"
+				:readonly="readonly"
+				:show-trailing-button="!!state.client_secret"
+				@trailing-button-click="state.client_secret = ''"
+				@focus="readonly = false"
+				@update:model-value="onInput">
+				<template #icon>
+					<KeyIcon :size="20" />
+				</template>
+			</NcTextField>
 			<br>
 			<p class="settings-hint">
 				<AlertIcon :size="20" class="icon" />
@@ -66,49 +70,51 @@
 					{{ t('integration_github', 'Connected as {user}', { user: connectedAs }) }}
 				</label>
 			</div>
-			<div class="line">
-				<label for="github-link-token">
-					<KeyIcon :size="20" class="icon" />
-					{{ t('integration_github', 'Default access token') }}
-				</label>
-				<input id="github-link-token"
-					v-model="state.default_link_token"
-					type="password"
-					:readonly="readonly"
-					:placeholder="t('integration_github', 'personal access token')"
-					@input="onInput"
-					@focus="readonly = false">
-			</div>
+			<NcTextField
+				v-model="state.default_link_token"
+				class="input"
+				type="password"
+				:label="t('integration_github', 'Default access token')"
+				:placeholder="t('integration_github', 'personal access token')"
+				:readonly="readonly"
+				:show-trailing-button="!!state.default_link_token"
+				@trailing-button-click="state.default_link_token = ''"
+				@focus="readonly = false"
+				@update:model-value="onInput">
+				<template #icon>
+					<KeyIcon :size="20" />
+				</template>
+			</NcTextField>
 			<NcCheckboxRadioSwitch
-				:checked="state.allow_default_link_token_to_anonymous"
+				:model-value="state.allow_default_link_token_to_anonymous"
 				:disabled="!state.default_link_token"
-				@update:checked="onCheckboxChanged($event, 'allow_default_link_token_to_anonymous')">
+				@update:model-value="onCheckboxChanged($event, 'allow_default_link_token_to_anonymous')">
 				{{ t('integration_github', 'Use default access token for anonymous users') }}
 			</NcCheckboxRadioSwitch>
 			<NcCheckboxRadioSwitch
-				:checked="state.allow_default_link_token_to_guests"
+				:model-value="state.allow_default_link_token_to_guests"
 				:disabled="!state.default_link_token"
-				@update:checked="onCheckboxChanged($event, 'allow_default_link_token_to_guests')">
+				@update:model-value="onCheckboxChanged($event, 'allow_default_link_token_to_guests')">
 				{{ t('integration_github', 'Use default access token for guest users') }}
 			</NcCheckboxRadioSwitch>
 			<NcCheckboxRadioSwitch
-				:checked="state.use_popup"
-				@update:checked="onCheckboxChanged($event, 'use_popup')">
+				:model-value="state.use_popup"
+				@update:model-value="onCheckboxChanged($event, 'use_popup')">
 				{{ t('integration_github', 'Use a pop-up for OAuth authentication') }}
 			</NcCheckboxRadioSwitch>
 			<NcCheckboxRadioSwitch
-				:checked="state.link_preview_enabled"
-				@update:checked="onCheckboxChanged($event, 'link_preview_enabled')">
+				:model-value="state.link_preview_enabled"
+				@update:model-value="onCheckboxChanged($event, 'link_preview_enabled')">
 				{{ t('integration_github', 'Enable GitHub link previews') }}
 			</NcCheckboxRadioSwitch>
 			<NcCheckboxRadioSwitch
-				:checked="state.dashboard_enabled"
-				@update:checked="onCheckboxChanged($event, 'dashboard_enabled')">
+				:model-value="state.dashboard_enabled"
+				@update:model-value="onCheckboxChanged($event, 'dashboard_enabled')">
 				{{ t('integration_github', 'Enable GitHub dashboard widget') }}
 			</NcCheckboxRadioSwitch>
 			<NcCheckboxRadioSwitch
-				:checked="state.issue_notifications_enabled"
-				@update:checked="onCheckboxChanged($event, 'issue_notifications_enabled')">
+				:model-value="state.issue_notifications_enabled"
+				@update:model-value="onCheckboxChanged($event, 'issue_notifications_enabled')">
 				{{ t('integration_github', 'Enable notifications for new unread GitHub notifications') }}
 			</NcCheckboxRadioSwitch>
 		</div>
@@ -123,7 +129,8 @@ import CheckIcon from 'vue-material-design-icons/Check.vue'
 
 import GithubIcon from './icons/GithubIcon.vue'
 
-import NcCheckboxRadioSwitch from '@nextcloud/vue/dist/Components/NcCheckboxRadioSwitch.js'
+import NcCheckboxRadioSwitch from '@nextcloud/vue/components/NcCheckboxRadioSwitch'
+import NcTextField from '@nextcloud/vue/components/NcTextField'
 
 import { loadState } from '@nextcloud/initial-state'
 import { generateUrl } from '@nextcloud/router'
@@ -139,6 +146,7 @@ export default {
 	components: {
 		GithubIcon,
 		NcCheckboxRadioSwitch,
+		NcTextField,
 		KeyIcon,
 		AlertIcon,
 		InformationOutlineIcon,
@@ -228,6 +236,9 @@ export default {
 	#github-content {
 		margin-left: 40px;
 	}
+	h2 {
+		justify-content: start;
+	}
 	h2,
 	.line,
 	.settings-hint {
@@ -240,6 +251,10 @@ export default {
 
 	h2 .icon {
 		margin-right: 8px;
+	}
+
+	.input {
+		width: 500px;
 	}
 
 	.line {

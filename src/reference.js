@@ -3,32 +3,36 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
-import { registerWidget } from '@nextcloud/vue/dist/Components/NcRichText.js'
+import { registerWidget } from '@nextcloud/vue/components/NcRichText'
 
 registerWidget('integration_github_issue_pr', async (el, { richObjectType, richObject, accessible }) => {
-	const { default: Vue } = await import('vue')
+	const { createApp } = await import('vue')
 	const { default: GithubIssuePrReferenceWidget } = await import('./views/GithubIssuePrReferenceWidget.vue')
-	Vue.mixin({ methods: { t, n } })
-	const Widget = Vue.extend(GithubIssuePrReferenceWidget)
-	new Widget({
-		propsData: {
+
+	const app = createApp(
+		GithubIssuePrReferenceWidget,
+		{
 			richObjectType,
 			richObject,
 			accessible,
 		},
-	}).$mount(el)
+	)
+	app.mixin({ methods: { t, n } })
+	app.mount(el)
 }, () => {}, { hasInteractiveView: false })
 
 registerWidget('integration_github_code_permalink', async (el, { richObjectType, richObject, accessible }) => {
-	const { default: Vue } = await import(/* webpackChunkName: "reference-permalink-lazy" */'vue')
+	const { createApp } = await import('vue')
 	const { default: GithubCodePermalinkReferenceWidget } = await import('./views/GithubCodePermalinkReferenceWidget.vue')
-	Vue.mixin({ methods: { t, n } })
-	const Widget = Vue.extend(GithubCodePermalinkReferenceWidget)
-	new Widget({
-		propsData: {
+
+	const app = createApp(
+		GithubCodePermalinkReferenceWidget,
+		{
 			richObjectType,
 			richObject,
 			accessible,
 		},
-	}).$mount(el)
+	)
+	app.mixin({ methods: { t, n } })
+	app.mount(el)
 }, () => {}, { hasInteractiveView: false })

@@ -3,9 +3,9 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
-import Vue from 'vue'
-import './bootstrap.js'
+import { createApp } from 'vue'
 import PersonalSettings from './components/PersonalSettings.vue'
 
-const View = Vue.extend(PersonalSettings)
-new View().$mount('#github_prefs')
+const app = createApp(PersonalSettings)
+app.mixin({ methods: { t, n } })
+app.mount('#github_prefs')

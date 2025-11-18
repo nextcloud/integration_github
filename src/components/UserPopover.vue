@@ -49,9 +49,9 @@ import RepositoryIcon from './icons/RepositoryIcon.vue'
 import CommitIcon from './icons/CommitIcon.vue'
 import RocketIcon from './icons/RocketIcon.vue'
 
-import NcPopover from '@nextcloud/vue/dist/Components/NcPopover.js'
-import NcAvatar from '@nextcloud/vue/dist/Components/NcAvatar.js'
-import NcLoadingIcon from '@nextcloud/vue/dist/Components/NcLoadingIcon.js'
+import NcPopover from '@nextcloud/vue/components/NcPopover'
+import NcAvatar from '@nextcloud/vue/components/NcAvatar'
+import NcLoadingIcon from '@nextcloud/vue/components/NcLoadingIcon'
 
 import { generateUrl } from '@nextcloud/router'
 import axios from '@nextcloud/axios'
