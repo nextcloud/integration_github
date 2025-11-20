@@ -9,47 +9,51 @@
 			{{ t('integration_github', 'GitHub integration') }}
 		</h2>
 		<div id="github-content">
-			<NcCheckboxRadioSwitch
-				:checked="state.navigation_enabled"
-				@update:checked="onCheckboxChanged($event, 'navigation_enabled')">
-				{{ t('integration_github', 'Enable navigation link') }}
-			</NcCheckboxRadioSwitch>
-			<NcCheckboxRadioSwitch
-				:checked="state.link_preview_enabled"
-				@update:checked="onCheckboxChanged($event, 'link_preview_enabled')">
-				{{ t('integration_github', 'Enable GitHub link previews') }}
-			</NcCheckboxRadioSwitch>
-			<NcCheckboxRadioSwitch
-				:disabled="!state.admin_issue_notifications_enabled"
-				:checked="state.issue_notifications_enabled"
-				@update:checked="onCheckboxChanged($event, 'issue_notifications_enabled')">
-				{{ t('integration_github', 'Enable notifications for new unread GitHub notifications') }}
-				<span v-if="!state.admin_issue_notifications_enabled" style="font-style: italic;">
-					&nbsp;({{ t('integration_github', 'Disabled by administrator') }})
-				</span>
-			</NcCheckboxRadioSwitch>
+			<NcFormBox>
+				<NcFormBoxSwitch
+					:model-value="state.navigation_enabled"
+					@update:model-value="onCheckboxChanged($event, 'navigation_enabled')">
+					{{ t('integration_github', 'Enable navigation link') }}
+				</NcFormBoxSwitch>
+				<NcFormBoxSwitch
+					:model-value="state.link_preview_enabled"
+					@update:model-value="onCheckboxChanged($event, 'link_preview_enabled')">
+					{{ t('integration_github', 'Enable GitHub link previews') }}
+				</NcFormBoxSwitch>
+				<NcFormBoxSwitch
+					:disabled="!state.admin_issue_notifications_enabled"
+					:model-value="state.issue_notifications_enabled"
+					@update:model-value="onCheckboxChanged($event, 'issue_notifications_enabled')">
+					{{ t('integration_github', 'Enable notifications for new unread GitHub notifications') }}
+					<span v-if="!state.admin_issue_notifications_enabled" style="font-style: italic;">
+						&nbsp;({{ t('integration_github', 'Disabled by administrator') }})
+					</span>
+				</NcFormBoxSwitch>
+			</NcFormBox>
 			<NcNoteCard v-if="showOAuth && !connected" type="info">
 				{{ t('integration_github', 'You can manually provide a personal access token or connect via OAuth ') }}
 			</NcNoteCard>
 			<NcNoteCard v-if="!connected" type="info">
 				{{ t('integration_github', 'When you create a personal access token yourself, give it at least "read:user", "user:email" and "notifications" permissions.') }}
 				<a href="https://github.com/settings/tokens" target="_blank" class="external">
-					<span class="icon icon-external" />
 					{{ t('integration_github', 'GitHub personal access tokens') }}
+					<OpenInNewIcon :size="20" />
 				</a>
 			</NcNoteCard>
-			<div v-if="!connected" class="line">
+			<div v-if="!connected" class="column">
 				<NcTextField
 					id="github-token"
+					v-model="state.token"
 					class="input"
-					:value.sync="state.token"
 					type="password"
 					:label="t('integration_github', 'Personal access token')"
 					placeholder="..."
 					:show-trailing-button="!!state.token"
 					@keyup.enter="connectWithToken"
 					@trailing-button-click="state.token = ''">
-					<KeyIcon />
+					<template #icon>
+						<KeyIcon :size="20" />
+					</template>
 				</NcTextField>
 				<NcButton v-if="!connected"
 					:disabled="loading || state.token === ''"
@@ -85,28 +89,28 @@
 			</div>
 			<br>
 			<div v-if="connected" id="github-search-block">
-				<NcCheckboxRadioSwitch
-					:checked="state.search_repos_enabled"
-					@update:checked="onCheckboxChanged($event, 'search_repos_enabled')">
-					{{ t('integration_github', 'Enable searching for repositories') }}
-				</NcCheckboxRadioSwitch>
-				<NcCheckboxRadioSwitch
-					:checked="state.search_issues_enabled"
-					@update:checked="onCheckboxChanged($event, 'search_issues_enabled')">
-					{{ t('integration_github', 'Enable searching for issues and pull requests') }}
-				</NcCheckboxRadioSwitch>
-				<br>
-				<p v-if="state.search_repos_enabled || state.search_issues_enabled" class="settings-hint">
-					<InformationOutlineIcon :size="20" class="icon" />
+				<NcFormBox>
+					<NcFormBoxSwitch
+						:model-value="state.search_repos_enabled"
+						@update:model-value="onCheckboxChanged($event, 'search_repos_enabled')">
+						{{ t('integration_github', 'Enable searching for repositories') }}
+					</NcFormBoxSwitch>
+					<NcFormBoxSwitch
+						:model-value="state.search_issues_enabled"
+						@update:model-value="onCheckboxChanged($event, 'search_issues_enabled')">
+						{{ t('integration_github', 'Enable searching for issues and pull requests') }}
+					</NcFormBoxSwitch>
+				</NcFormBox>
+				<NcNoteCard v-if="state.search_repos_enabled || state.search_issues_enabled"
+					type="warning">
 					{{ t('integration_github', 'Warning, everything you type in the search bar will be sent to GitHub.') }}
-				</p>
+				</NcNoteCard>
 			</div>
 		</div>
 	</div>
 </template>
 
 <script>
-import InformationOutlineIcon from 'vue-material-design-icons/InformationOutline.vue'
 import OpenInNewIcon from 'vue-material-design-icons/OpenInNew.vue'
 import KeyIcon from 'vue-material-design-icons/Key.vue'
 import CheckIcon from 'vue-material-design-icons/Check.vue'
@@ -114,10 +118,11 @@ import CloseIcon from 'vue-material-design-icons/Close.vue'
 
 import GithubIcon from './icons/GithubIcon.vue'
 
-import NcButton from '@nextcloud/vue/dist/Components/NcButton.js'
-import NcCheckboxRadioSwitch from '@nextcloud/vue/dist/Components/NcCheckboxRadioSwitch.js'
-import NcNoteCard from '@nextcloud/vue/dist/Components/NcNoteCard.js'
-import NcTextField from '@nextcloud/vue/dist/Components/NcTextField.js'
+import NcButton from '@nextcloud/vue/components/NcButton'
+import NcNoteCard from '@nextcloud/vue/components/NcNoteCard'
+import NcTextField from '@nextcloud/vue/components/NcTextField'
+import NcFormBox from '@nextcloud/vue/components/NcFormBox'
+import NcFormBoxSwitch from '@nextcloud/vue/components/NcFormBoxSwitch'
 
 import { loadState } from '@nextcloud/initial-state'
 import { generateUrl } from '@nextcloud/router'
@@ -130,14 +135,14 @@ export default {
 
 	components: {
 		GithubIcon,
-		NcCheckboxRadioSwitch,
 		NcButton,
 		NcNoteCard,
 		NcTextField,
+		NcFormBox,
+		NcFormBoxSwitch,
 		KeyIcon,
 		CheckIcon,
 		CloseIcon,
-		InformationOutlineIcon,
 		OpenInNewIcon,
 	},
 
@@ -238,34 +243,22 @@ export default {
 #github_prefs {
 	#github-content {
 		margin-left: 40px;
+		max-width: 800px;
 	}
-	h2,
-	.line,
-	.settings-hint {
+	h2 {
 		display: flex;
+		justify-content: start;
 		align-items: center;
-		.icon {
-			margin-right: 4px;
-		}
+		gap: 4px;
 	}
 
 	h2 .icon {
 		margin-right: 8px;
 	}
 
-	.line {
+	a.external {
 		display: flex;
-		align-items: center;
 		gap: 4px;
-		> label {
-			width: 300px;
-			display: flex;
-			align-items: center;
-		}
-		> input, > .input {
-			width: 250px;
-			margin: 0;
-		}
 	}
 
 	.column {
