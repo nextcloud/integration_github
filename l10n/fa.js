@@ -59,6 +59,7 @@ OC.L10N.register(
     "No GitHub account connected" : "No GitHub account connected",
     "Error connecting to GitHub" : "Error connecting to GitHub",
     "No GitHub notifications!" : "No GitHub notifications!",
+    "Loading..." : "در حال بارگذاری...",
     "Failed to get GitHub notifications" : "Failed to get GitHub notifications",
     "Successfully unsubscribed" : "Successfully unsubscribed",
     "Failed to edit GitHub notification" : "Failed to edit GitHub notification",
