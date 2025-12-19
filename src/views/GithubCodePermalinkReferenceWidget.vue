@@ -146,13 +146,6 @@ export default {
 			}
 			return ''
 		},
-		codeExtension() {
-			const extension = this.richObject.filePath.match(/\.([a-zA-Z0-9]+)$/)
-			if (extension && extension.length > 1) {
-				return extension[1]
-			}
-			return ''
-		},
 	},
 
 	mounted() {
