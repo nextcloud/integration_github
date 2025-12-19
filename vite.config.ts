@@ -27,6 +27,9 @@ export default createAppConfig({
 			},
 		},
 		plugins: [eslint(), stylelint()],
+		build: {
+			cssCodeSplit: true,
+		},
 	},
 	inlineCSS: { relativeCSSInjection: true },
 	minify: isProduction,

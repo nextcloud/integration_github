@@ -27,7 +27,7 @@
 			<div class="issue-pr-info">
 				<div class="line">
 					<component :is="iconComponent"
-						v-tooltip.top="{ content: stateTooltip }"
+						:title="stateTooltip"
 						:size="16"
 						class="icon main-icon"
 						:fill-color="iconColor" />
@@ -40,7 +40,7 @@
 							</a>
 							<div v-for="label in richObject.labels"
 								:key="label.id"
-								v-tooltip.top="{ content: label.description }"
+								:title="label.description"
 								class="label"
 								:style="getLabelStyle(label)">
 								{{ label.name }}
@@ -84,7 +84,7 @@
 						</template>
 					</UserPopover>
 					&nbsp;
-					<span v-tooltip.top="{ content: subTextTooltip }"
+					<span :title="subTextTooltip"
 						class="date-with-tooltip">
 						{{ dateSubText }}
 					</span>
@@ -94,7 +94,7 @@
 					</span>
 					&nbsp;
 					<a v-if="richObject.milestone"
-						v-tooltip.top="{ content: richObject.milestone.description }"
+						:title="richObject.milestone.description"
 						:href="richObject.milestone.html_url"
 						target="_blank"
 						class="milestone">
@@ -142,7 +142,7 @@
 							</template>
 						</UserPopover>
 						&nbsp;
-						<span v-tooltip.top="{ content: commentedAtTooltip }"
+						<span :title="commentedAtTooltip"
 							class="date-with-tooltip">
 							{{ commentedAtText }}
 						</span>
@@ -150,7 +150,7 @@
 							&nbsp;•&nbsp;
 						</span>
 						<span v-if="richObject.github_comment.created_at !== richObject.github_comment.updated_at"
-							v-tooltip.top="{ content: commentUpdatedAtTooltip }"
+							:title="commentUpdatedAtTooltip"
 							class="date-with-tooltip">
 							{{ commentUpdatedAtText }}
 						</span>
@@ -207,11 +207,8 @@ import moment from '@nextcloud/moment'
 import { hexToRgb, isDarkMode } from '../utils.js'
 import rgbToHsl from '@alchemyalcove/rgb-to-hsl'
 
-import { NcRichText } from '@nextcloud/vue/dist/Components/NcRichText.js'
-import NcAvatar from '@nextcloud/vue/dist/Components/NcAvatar.js'
-import Tooltip from '@nextcloud/vue/dist/Directives/Tooltip.js'
-import Vue from 'vue'
-Vue.directive('tooltip', Tooltip)
+import { NcRichText } from '@nextcloud/vue/components/NcRichText'
+import NcAvatar from '@nextcloud/vue/components/NcAvatar'
 
 export default {
 	name: 'GithubIssuePrReferenceWidget',
@@ -746,14 +743,12 @@ export default {
 	}
 
 	.milestone,
-	::v-deep .author-link,
 	.slug-link {
 		color: inherit !important;
 	}
 
 	.date-with-tooltip,
 	.milestone,
-	::v-deep .author-link,
 	.slug-link,
 	.issue-pr-link {
 		&:hover {

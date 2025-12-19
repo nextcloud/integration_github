@@ -56,10 +56,10 @@ import { showError, showSuccess } from '@nextcloud/dialogs'
 import { loadState } from '@nextcloud/initial-state'
 import moment from '@nextcloud/moment'
 
-import NcEmptyContent from '@nextcloud/vue/dist/Components/NcEmptyContent.js'
-import NcDashboardWidget from '@nextcloud/vue/dist/Components/NcDashboardWidget.js'
+import NcEmptyContent from '@nextcloud/vue/components/NcEmptyContent'
+import NcDashboardWidget from '@nextcloud/vue/components/NcDashboardWidget'
 
-import NcButton from '@nextcloud/vue/dist/Components/NcButton.js'
+import NcButton from '@nextcloud/vue/components/NcButton'
 
 export default {
 	name: 'Dashboard',
@@ -154,7 +154,7 @@ export default {
 		},
 	},
 
-	beforeDestroy() {
+	beforeUnmount() {
 		document.removeEventListener('visibilitychange', this.changeWindowVisibility)
 	},
 
@@ -336,7 +336,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-::v-deep .connect-button {
+.connect-button {
 	margin-top: 10px;
 }
 </style>
