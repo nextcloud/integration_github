@@ -6,8 +6,8 @@ OC.L10N.register(
     "Bad credentials" : "Thông tin đăng nhập không hợp lệ.",
     "Connected accounts" : "Đã kết nối tài khoản",
     "Client ID" : "ID khách hàng",
-    "Connected as {user}" : "Kết nối bởi {user}",
     "Invalid access token" : "Mã thông báo truy cập không hợp lệ",
+    "Connected as {user}" : "Kết nối bởi {user}",
     "Mark as read" : "Đánh dấu đã đọc",
     "Unknown error" : "Lỗi không xác định",
     "Owner" : "Chủ"
