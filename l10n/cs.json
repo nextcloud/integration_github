@@ -32,6 +32,7 @@
     "The default access token will be used for link previews and unified search by users who didn't connect to GitHub." : "Výchozí přístupový token bude použit pro náhledy odkazů a sjednocené vyhledávání uživateli, kteří se nenapojili na GitHub.",
     "Default access token" : "Výchozí přístupový token",
     "personal access token" : "osobní přístupový token",
+    "Connected with the default access token as {user}" : "Připojeno s použitím výchozího přístupového tokenu jako {user}",
     "Use default access token for anonymous users" : "Použít výchozí přístupový token pro anonymní uživatele",
     "Use default access token for guest users" : "Použít výchozí přístupový token pro anonymní uživatele-hosty",
     "Use a pop-up for OAuth authentication" : "V rámci OAuth se ověřte ve vyskakovacím okně",
