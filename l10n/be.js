@@ -17,6 +17,7 @@ OC.L10N.register(
     "Personal access token" : "Асабісты токен доступу",
     "Connect to GitHub with a personal token" : "Падключыцеся да GitHub з дапамогай асабістага токена",
     "Mark as read" : "Пазначыць як прачытанае",
+    "Loading..." : "Загрузка…",
     "Unknown error" : "Невядомая памылка",
     "Draft" : "Чарнавік",
     "Author" : "Аўтар",
