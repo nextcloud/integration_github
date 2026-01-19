@@ -58,6 +58,7 @@ OC.L10N.register(
     "No GitHub account connected" : "Tidak ada akun GitHub yang terhubung",
     "Error connecting to GitHub" : "Terjadi kesalahan menghubungkan ke GitHub",
     "No GitHub notifications!" : "Tidak ada notifikasi GitHub!",
+    "Loading..." : "Memuat...",
     "Failed to get GitHub notifications" : "Gagal mendapatkan notifikasi GitHub",
     "Successfully unsubscribed" : "Berhasil berhenti berlangganan",
     "Failed to edit GitHub notification" : "Gagal menyunting notifikasi GitHub",
