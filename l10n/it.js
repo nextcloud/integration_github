@@ -25,6 +25,7 @@ OC.L10N.register(
     "Client ID of your GitHub application" : "ID client della tua applicazione GitHub",
     "Client secret" : "Segreto del client",
     "Client secret of your GitHub application" : "Segreto del client della tua applicazione GitHub",
+    "{logins} reacted with {emoji} emoji" : "{logins} ha reagito con {emoji} emoji",
     "Connected to GitHub!" : "Connesso a GitHub!",
     "GitHub OAuth error:" : "Errore OAuth di GitHub:",
     "GitHub options saved" : "Opzioni di GitHub salvate",
