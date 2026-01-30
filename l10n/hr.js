@@ -48,6 +48,7 @@ OC.L10N.register(
     "Successfully unsubscribed" : "Uspješno otkazana pretplata",
     "Failed to edit GitHub notification" : "Uređivanje GitHub obavijesti nije uspjelo",
     "Connect to GitHub" : "Poveži se s GitHubom",
+    "Line {line}" : "Redak {line}",
     "Unknown error" : "Nepoznata pogreška",
     "Author" : "Autor",
     "Owner" : "Vlasnik",
