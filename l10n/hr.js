@@ -50,6 +50,7 @@ OC.L10N.register(
     "Connect to GitHub" : "Poveži se s GitHubom",
     "Line {line}" : "Redak {line}",
     "Unknown error" : "Nepoznata pogreška",
+    "by {creator}" : "objavio je {creator}",
     "Author" : "Autor",
     "Owner" : "Vlasnik",
     "Failed to save GitHub OAuth state" : "Spremanje stanja GitHub OAuth nije uspjelo"
