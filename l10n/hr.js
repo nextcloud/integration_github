@@ -50,6 +50,7 @@ OC.L10N.register(
     "Connect to GitHub" : "Poveži se s GitHubom",
     "Line {line}" : "Redak {line}",
     "Unknown error" : "Nepoznata pogreška",
+    "Draft" : "Skica",
     "by {creator}" : "objavio je {creator}",
     "Author" : "Autor",
     "Owner" : "Vlasnik",
