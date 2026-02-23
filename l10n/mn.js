@@ -5,6 +5,7 @@ OC.L10N.register(
     "Comment" : "undefined",
     "Bad HTTP method" : "Буруу HTTP арга",
     "Bad credentials" : "Буруу нэвтрэх мэдээлэл",
+    "Connected accounts" : "Холбогдсон бүртгэлүүд",
     "Client ID" : "Хэрэглэгчийн ID",
     "Client secret" : "Клиентийн нууц",
     "Mark as read" : "Уншсан гэж тэмдэглэх",
