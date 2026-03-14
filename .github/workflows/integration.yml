@@ -1,0 +1,82 @@
+# SPDX-FileCopyrightText: 2026 Nextcloud GmbH and Nextcloud contributors
+# SPDX-License-Identifier: MIT
+
+name: Integration tests
+
+on:
+  pull_request:
+    paths:
+      - .github/workflows/integration.yml
+      - appinfo/**
+      - composer.*
+      - lib/**
+      - templates/**
+      - tests/**
+  push:
+    branches:
+      - main
+      - stable*
+      - test
+    paths:
+      - .github/workflows/integration.yml
+      - appinfo/**
+      - composer.*
+      - lib/**
+      - templates/**
+      - tests/**
+
+env:
+  APP_NAME: integration_github
+
+jobs:
+  integration:
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        php-versions: ['8.2']
+        databases: ['sqlite']
+        server-versions: ['master']
+
+    name: php${{ matrix.php-versions }}-${{ matrix.databases }}-${{ matrix.server-versions }}
+
+    steps:
+      - name: Checkout server
+        uses: actions/checkout@v4
+        with:
+          repository: nextcloud/server
+          ref: ${{ matrix.server-versions }}
+          submodules: true
+
+      - name: Checkout app
+        uses: actions/checkout@v4
+        with:
+          path: apps/${{ env.APP_NAME }}
+
+      - name: Set up php ${{ matrix.php-versions }}
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-versions }}
+          tools: phpunit:11.x
+          extensions: mbstring, iconv, fileinfo, intl, sqlite, pdo_sqlite, gd, zip
+
+      - name: Set up PHPUnit
+        working-directory: apps/${{ env.APP_NAME }}
+        run: composer i
+
+      - name: Set up Nextcloud
+        run: |
+          mkdir data
+          ./occ maintenance:install --verbose --database=sqlite --admin-user admin --admin-pass admin
+          ./occ app:enable --force ${{ env.APP_NAME }}
+
+      - name: PHPUnit integration
+        working-directory: apps/${{ env.APP_NAME }}
+        env:
+          CI_CLIENT_ID: ${{ secrets.CI_CLIENT_ID }}
+          CI_CLIENT_SECRET: ${{ secrets.CI_CLIENT_SECRET }}
+          CI_USER_LOGIN: ${{ secrets.CI_USER_LOGIN }}
+          CI_USER_PASSWORD: ${{ secrets.CI_USER_PASSWORD }}
+          CI_TOTP_SECRET: ${{ secrets.CI_TOTP_SECRET }}
+        run: composer run test:integration
