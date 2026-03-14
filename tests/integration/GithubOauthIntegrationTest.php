@@ -407,7 +407,10 @@ class GithubOauthIntegrationTest extends TestCase {
 		return $params['code'];
 	}
 
-	public function testOAuthLogin(): void {
+	/**
+	 * @return array{userId: string, login: string} User ID and GitHub login for dependent tests
+	 */
+	public function testOAuthLogin(): array {
 		$this->requireCredentials();
 
 		$this->secretService->setEncryptedAppValue('client_id', $this->githubClientId);
@@ -461,5 +464,10 @@ class GithubOauthIntegrationTest extends TestCase {
 		$this->assertArrayNotHasKey('error', $userInfo, 'API request returned error: ' . json_encode($userInfo));
 		$this->assertArrayHasKey('login', $userInfo);
 		$this->assertSame($this->githubLogin, $userInfo['login']);
+
+		return [
+			'userId' => $this->userId,
+			'login' => $this->githubLogin,
+		];
 	}
 }
