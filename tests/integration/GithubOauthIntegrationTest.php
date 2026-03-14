@@ -26,11 +26,10 @@ use OCP\IURLGenerator;
 use OCP\IUserManager;
 use OCP\IUserSession;
 use OCP\Server;
+use PHPUnit\Framework\Attributes\Group;
 use Test\TestCase;
 
-/**
- * @group DB
- */
+#[Group('DB')]
 class GithubOauthIntegrationTest extends TestCase {
 	private const TEST_USER_ID = 'github_test_user';
 	private const OAUTH_SCOPE = 'read:user user:email repo notifications';

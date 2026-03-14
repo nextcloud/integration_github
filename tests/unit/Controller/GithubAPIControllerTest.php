@@ -13,12 +13,11 @@ use OCP\IRequest;
 use OCP\IURLGenerator;
 use OCP\IUserManager;
 use OCP\Notification\IManager;
+use PHPUnit\Framework\Attributes\Group;
 use Test\TestCase;
 use Test\Util\User\Dummy;
 
-/**
- * @group DB
- */
+#[Group('DB')]
 class GithubAPIControllerTest extends TestCase {
 	public const APP_NAME = 'integration_github';
 	public const TEST_USER1 = 'testuser';

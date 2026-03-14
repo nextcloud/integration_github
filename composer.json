@@ -16,7 +16,7 @@
 		"cs:check": "php-cs-fixer fix --dry-run --diff",
 		"cs:fix": "php-cs-fixer fix",
 		"psalm": "psalm.phar --no-cache",
-		"test:unit": "phpunit -c tests/phpunit.xml --no-coverage",
+		"test:unit": "phpunit -c tests/phpunit.xml --no-coverage --display-phpunit-deprecations",
 		"test:integration": "phpunit -c tests/phpunit.integration.xml --no-coverage --display-phpunit-deprecations",
 		"post-install-cmd": [
 			"@composer bin all install --ansi",

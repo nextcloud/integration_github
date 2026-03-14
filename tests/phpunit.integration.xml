@@ -10,12 +10,12 @@
 		 timeoutForSmallTests="900"
 		 timeoutForMediumTests="900"
 		 timeoutForLargeTests="900">
-  <coverage>
+  <source>
     <include>
       <directory suffix=".php">../appinfo</directory>
       <directory suffix=".php">../lib</directory>
     </include>
-  </coverage>
+  </source>
   <testsuite name="GitHub Integration Tests">
     <directory suffix="Test.php">./integration</directory>
   </testsuite>

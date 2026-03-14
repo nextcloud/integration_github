@@ -14,11 +14,10 @@ use OCA\Github\Service\SecretService;
 use OCP\IConfig;
 use OCP\Server;
 use PHPUnit\Framework\Attributes\DependsExternal;
+use PHPUnit\Framework\Attributes\Group;
 use Test\TestCase;
 
-/**
- * @group DB
- */
+#[Group('DB')]
 class GitHubSearchIntegrationTest extends TestCase {
 	private GithubAPIService $githubAPIService;
 	private SecretService $secretService;
