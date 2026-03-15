@@ -43,7 +43,6 @@ final class GitHubHtml {
 	public static function findAuthorizeForm(DOMXPath $selector): ?DOMElement {
 		return self::findForm($selector, [
 			'//form[contains(@class, "js-oauth-authorize-form")]',
-			'//form[contains(@class, "js-oath-authorize-form")]',
 			'//form[@action="/login/oauth/authorize"]',
 			'//form[contains(@action, "authorize")]',
 		]);
