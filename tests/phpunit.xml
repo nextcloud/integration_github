@@ -12,6 +12,6 @@
     </include>
   </source>
   <testsuite name="GitHub integration App Tests">
-    <directory suffix="Test.php">.</directory>
+    <directory suffix="Test.php">./unit</directory>
   </testsuite>
 </phpunit>
