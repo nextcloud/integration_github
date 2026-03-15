@@ -12,7 +12,6 @@ namespace OCA\Github\Tests\Integration;
 use OCA\Github\Reference\GithubCodeReferenceProvider;
 use OCA\Github\Service\SecretService;
 use OCP\Collaboration\Reference\IReference;
-use OCP\IConfig;
 use OCP\Server;
 use PHPUnit\Framework\Attributes\DependsExternal;
 use PHPUnit\Framework\Attributes\Group;
@@ -22,14 +21,12 @@ use Test\TestCase;
 class GitHubCodeReferenceIntegrationTest extends TestCase {
 	private GithubCodeReferenceProvider $referenceProvider;
 	private SecretService $secretService;
-	private IConfig $config;
 
 	protected function setUp(): void {
 		parent::setUp();
 
 		$this->referenceProvider = Server::get(GithubCodeReferenceProvider::class);
 		$this->secretService = Server::get(SecretService::class);
-		$this->config = Server::get(IConfig::class);
 	}
 
 	#[DependsExternal(GithubOauthIntegrationTest::class, 'testOAuthLogin')]
