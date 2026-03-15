@@ -294,7 +294,14 @@ class GithubIssuePrReferenceProvider extends ADiscoverableReferenceProvider impl
 	 */
 	private function getCommentInfo(string $owner, string $repo, string $end): ?array {
 		$commentId = $this->getCommentId($end);
-		return $commentId !== null ? $this->githubAPIService->getIssueCommentInfo($this->userId, $owner, $repo, $commentId) : null;
+		if ($commentId === null) {
+			return null;
+		}
+		$commentInfo = $this->githubAPIService->getIssueCommentInfo($this->userId, $owner, $repo, $commentId);
+		if (isset($commentInfo['error'])) {
+			return null;
+		}
+		return $commentInfo;
 	}
 
 	/**
