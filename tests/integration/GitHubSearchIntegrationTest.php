@@ -11,7 +11,6 @@ namespace OCA\Github\Tests\Integration;
 
 use OCA\Github\Service\GithubAPIService;
 use OCA\Github\Service\SecretService;
-use OCP\IConfig;
 use OCP\Server;
 use PHPUnit\Framework\Attributes\DependsExternal;
 use PHPUnit\Framework\Attributes\Group;
@@ -21,14 +20,12 @@ use Test\TestCase;
 class GitHubSearchIntegrationTest extends TestCase {
 	private GithubAPIService $githubAPIService;
 	private SecretService $secretService;
-	private IConfig $config;
 
 	protected function setUp(): void {
 		parent::setUp();
 
 		$this->githubAPIService = Server::get(GithubAPIService::class);
 		$this->secretService = Server::get(SecretService::class);
-		$this->config = Server::get(IConfig::class);
 	}
 
 	#[DependsExternal(GithubOauthIntegrationTest::class, 'testOAuthLogin')]
