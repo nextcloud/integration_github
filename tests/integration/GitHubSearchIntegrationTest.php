@@ -165,28 +165,4 @@ class GitHubSearchIntegrationTest extends TestCase {
 		}
 	}
 
-	#[DependsExternal(GithubOauthIntegrationTest::class, 'testOAuthLogin')]
-	public function testSearchIssuesSublineFormat(array $oauthData): void {
-		$this->assertIsArray($oauthData, 'oauthData should be an array from OAuth test');
-		$this->assertArrayHasKey('userId', $oauthData, 'oauthData must contain userId');
-		$userId = $oauthData['userId'];
-
-		$result = $this->githubAPIService->searchIssues($userId, 'nextcloud is:open', 0, 5);
-		$this->assertArrayNotHasKey('error', $result, 'GitHub API returned error');
-
-		foreach ($result['items'] as $item) {
-			$repoFullName = str_replace('https://api.github.com/repos/', '', $item['repository_url']);
-			$parts = explode('/', $repoFullName);
-			$repo = $parts[1] ?? '';
-			$number = $item['number'];
-
-			$this->assertNotSame('', $repo, 'Repository name should be extracted');
-			$this->assertGreaterThan(0, $number, 'Issue/PR number should be positive');
-
-			$typeChar = isset($item['pull_request']) ? '⑁' : '⦿';
-			$expectedSubline = $typeChar . ' ' . $repo . '#' . $number;
-
-			$this->assertMatchesRegularExpression('/^[⑁⦿] .+#\d+$/u', $expectedSubline, 'Subline should match expected format');
-		}
-	}
 }

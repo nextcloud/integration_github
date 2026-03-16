@@ -103,7 +103,6 @@ final class GitHubHtml {
 			}
 			$formParams[$name] = $value;
 		}
-		libxml_clear_errors();
 
 		return $formParams;
 	}
