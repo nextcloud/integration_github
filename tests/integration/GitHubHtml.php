@@ -57,6 +57,25 @@ final class GitHubHtml {
 		]);
 	}
 
+	public static function findTotpAlternativeUrl(DOMXPath $selector): ?string {
+		$linkSelectors = [
+			'//a[contains(@href, "two-factor/app")]',
+			'//a[contains(@href, "totp")]',
+			'//a[contains(text(), "authenticator")]',
+			'//a[contains(text(), "authentication app")]',
+			'//a[contains(text(), "Use your authenticator")]',
+		];
+		foreach ($linkSelectors as $linkSelector) {
+			$result = $selector->query($linkSelector);
+			$link = $result?->item(0);
+			if ($link instanceof DOMElement && $link->hasAttribute('href')) {
+				return self::resolveUrl($link->getAttribute('href'), 'https://github.com/sessions/two-factor/app');
+			}
+		}
+
+		return null;
+	}
+
 	public static function resolveUrl(string $url, string $fallbackUrl): string {
 		if ($url === '') {
 			return $fallbackUrl;

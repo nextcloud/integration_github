@@ -238,7 +238,10 @@ class GithubOauthIntegrationTest extends TestCase {
 
 		['selector' => $selector, 'title' => $title] = $this->getPageContext($body);
 
-		if (GitHubHtml::findTwoFactorForm($selector) !== null || str_contains($title, 'Two-factor authentication') || str_contains($body, 'Two-factor authentication')) {
+		$isTwoFactorPage = GitHubHtml::findTwoFactorForm($selector) !== null
+			|| str_contains($finalUrl, 'two-factor')
+			|| str_contains($title, 'Two-factor authentication');
+		if ($isTwoFactorPage) {
 			return [
 				'status' => 'two_factor_required',
 				'two_factor_url' => $finalUrl,
@@ -309,6 +312,29 @@ class GithubOauthIntegrationTest extends TestCase {
 		return $this->interpretAuthenticatedResponse($loginBody, $finalUrl, 'login');
 	}
 
+	private function navigateToTotpPage(string $currentUrl, string $currentBody): array {
+		['selector' => $selector] = $this->getPageContext($currentBody);
+
+		$totpUrl = GitHubHtml::findTotpAlternativeUrl($selector);
+		if ($totpUrl === null) {
+			// Fallback: try the common GitHub TOTP URL directly
+			$totpUrl = 'https://github.com/sessions/two-factor/app';
+		}
+
+		$response = $this->client->get($totpUrl, [
+			RequestOptions::HTTP_ERRORS => false,
+		]);
+		$body = $response->getBody()->getContents();
+		$statusCode = $response->getStatusCode();
+
+		$this->assertOkStatus($statusCode, 'Failed to navigate to TOTP page from WebAuthn page. URL: ' . $totpUrl . '.');
+
+		return [
+			'url' => $totpUrl,
+			'body' => $body,
+		];
+	}
+
 	private function handleTwoFactorPage(string $twoFactorUrl, string $body): array {
 		try {
 			$totpCodes = Totp::generateCandidates($this->githubTotpSecret);
@@ -326,7 +352,16 @@ class GithubOauthIntegrationTest extends TestCase {
 
 			$twoFactorForm = GitHubHtml::findTwoFactorForm($selector);
 			if ($twoFactorForm === null) {
-				$this->fail('Could not find the GitHub 2FA form after login. Page title: ' . $title . '. URL: ' . $currentUrl);
+				// WebAuthn/passkey page may be shown instead of TOTP, navigate to TOTP alternative
+				$totpPage = $this->navigateToTotpPage($currentUrl, $currentBody);
+				$currentUrl = $totpPage['url'];
+				$currentBody = $totpPage['body'];
+
+				['selector' => $selector, 'title' => $title] = $this->getPageContext($currentBody);
+				$twoFactorForm = GitHubHtml::findTwoFactorForm($selector);
+				if ($twoFactorForm === null) {
+					$this->fail('Could not find the GitHub 2FA form after navigating away from WebAuthn page. Page title: ' . $title . '. URL: ' . $currentUrl);
+				}
 			}
 
 			$formParams = GitHubHtml::extractFormInputs($selector, $twoFactorForm);
