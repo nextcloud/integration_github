@@ -20,6 +20,8 @@ final class GitHubHtml {
 		libxml_use_internal_errors(true);
 		$doc->loadHTML($body);
 
+		libxml_clear_errors();
+
 		return new DOMXPath($doc);
 	}
 
