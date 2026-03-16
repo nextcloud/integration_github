@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  - SPDX-FileCopyrightText: 2026 Nextcloud GmbH and Nextcloud contributors
+  - SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/11.5/phpunit.xsd"
+		 bootstrap="bootstrap.php"
+		 executionOrder="depends,defects"
+		 timeoutForSmallTests="900"
+		 timeoutForMediumTests="900"
+		 timeoutForLargeTests="900">
+  <source>
+    <include>
+      <directory suffix=".php">../appinfo</directory>
+      <directory suffix=".php">../lib</directory>
+    </include>
+  </source>
+  <testsuite name="GitHub Integration Tests">
+    <directory suffix="Test.php">./integration</directory>
+  </testsuite>
+</phpunit>
