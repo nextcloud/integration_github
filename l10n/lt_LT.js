@@ -35,6 +35,7 @@ OC.L10N.register(
     "Unknown error" : "Nežinoma klaida",
     "Unknown state" : "Nežinoma būsena",
     "Draft" : "Juodraštis",
+    "by {creator}" : "autorius {creator}",
     "Author" : "Autorius",
     "Owner" : "Savininkas"
 },
