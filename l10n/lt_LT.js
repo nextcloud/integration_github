@@ -32,6 +32,7 @@ OC.L10N.register(
     "Failed to get GitHub notifications" : "Nepavyko gauti „GitHub“ pranešimų",
     "Successfully unsubscribed" : "Sėkmingai atsisakyta prenumeratos",
     "Failed to edit GitHub notification" : "Nepavyko taisyti „GitHub“ pranešimo",
+    "Line {line}" : "Eilutė {line}",
     "Unknown error" : "Nežinoma klaida",
     "Unknown state" : "Nežinoma būsena",
     "Draft" : "Juodraštis",
