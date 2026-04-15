@@ -18,6 +18,10 @@
 				class="widget-error">
 				{{ t('integration_github', 'Unknown error') }}
 			</p>
+			<p v-if="richObject.body?.message === 'Not Found'"
+				class="widget-error">
+				{{ t('integration_github', 'If this is a private repository, make sure your token has the "repo" scope.') }}
+			</p>
 			<a :href="settingsUrl" class="settings-link external" target="_blank">
 				<OpenInNewIcon :size="20" class="icon" />
 				{{ t('integration_github', 'GitHub connected accounts settings') }}
