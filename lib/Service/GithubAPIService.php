@@ -456,7 +456,7 @@ class GithubAPIService {
 				],
 			];
 
-			$accessToken = $defaultToken === '' ? $this->secretService->getEncryptedUserValue($userId, 'token') : $defaultToken;
+			$accessToken = $defaultToken === '' ? $this->secretService->getAccessToken($userId, $endpointUsesDefaultToken) : $defaultToken;
 			if ($accessToken !== '') {
 				$options['headers']['Authorization'] = 'token ' . $accessToken;
 			}
