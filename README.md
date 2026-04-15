@@ -24,3 +24,11 @@ A link to the "Connected accounts" user settings section will be displayed in th
 ### Admin settings
 
 There also is a "Connected accounts" **admin** settings section if you want to allow your Nextcloud users to use OAuth to authenticate to GitHub.
+
+## 🚧 Development setup
+
+1. Simply clone this repository into the `apps` folder of your Nextcloud development instance.
+2. Run `make composer` to install the dependencies.
+3. Run `make npm` for a production build or `make npm-dev` for a watch/dev build.
+4. Then activate it through the apps management.
+5. Make sure to configure it in "Connected accounts" in personal/administration settings.
