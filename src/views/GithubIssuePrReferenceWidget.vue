@@ -10,17 +10,17 @@
 				<GithubIcon :size="20" class="icon" />
 				<span>{{ t('integration_github', 'GitHub API error') }}</span>
 			</h3>
-			<p v-if="richObject.body?.message"
+			<p v-if="richObject.body?.message === 'Not Found'"
+				class="widget-error">
+				{{ t('integration_github', 'Not Found. If this is a private repository, make sure your token has the "repo" scope.') }}
+			</p>
+			<p v-else-if="richObject.body?.message"
 				class="widget-error">
 				{{ richObject.body?.message }}
 			</p>
 			<p v-else
 				class="widget-error">
 				{{ t('integration_github', 'Unknown error') }}
-			</p>
-			<p v-if="richObject.body?.message === 'Not Found'"
-				class="widget-error">
-				{{ t('integration_github', 'If this is a private repository, make sure your token has the "repo" scope.') }}
 			</p>
 			<a :href="settingsUrl" class="settings-link external" target="_blank">
 				<OpenInNewIcon :size="20" class="icon" />
