@@ -34,7 +34,7 @@
 				{{ t('integration_github', 'You can manually provide a personal access token or connect via OAuth ') }}
 			</NcNoteCard>
 			<NcNoteCard v-if="!connected" type="info">
-				{{ t('integration_github', 'When you create a personal access token yourself, give it at least "read:user", "user:email" and "notifications" permissions.') }}
+				{{ t('integration_github', 'When you create a personal access token yourself, give it at least "read:user", "user:email" and "notifications" permissions. To also preview private repository links, add the "repo" scope.') }}
 				<a href="https://github.com/settings/tokens" target="_blank" class="external">
 					{{ t('integration_github', 'GitHub personal access tokens') }}
 					<OpenInNewIcon :size="20" />
