@@ -37,7 +37,7 @@ jobs:
       matrix:
         php-versions: ['8.2']
         databases: ['sqlite']
-        server-versions: ['master']
+        server-versions: ['master', 'stable33']
 
     name: php${{ matrix.php-versions }}-${{ matrix.databases }}-${{ matrix.server-versions }}
 
@@ -80,3 +80,11 @@ jobs:
           CI_USER_PASSWORD: ${{ secrets.CI_USER_PASSWORD }}
           CI_TOTP_SECRET: ${{ secrets.CI_TOTP_SECRET }}
         run: composer run test:integration
+
+      - name: Upload Nextcloud log on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: nextcloud-log-${{ matrix.server-versions }}
+          path: data/nextcloud.log
+          if-no-files-found: ignore

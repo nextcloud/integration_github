@@ -238,6 +238,17 @@ class GithubOauthIntegrationTest extends TestCase {
 
 		['selector' => $selector, 'title' => $title] = $this->getPageContext($body);
 
+		// GitHub periodically interrupts authenticated navigation with a "Verify your
+		// two-factor authentication (2FA) settings" checkup page. It is not a real 2FA
+		// challenge, just a reminder; POSTing the delay form dismisses it.
+		if (GitHubHtml::findTwoFactorCheckupDelayForm($selector) !== null) {
+			return [
+				'status' => 'two_factor_checkup',
+				'checkup_url' => $finalUrl,
+				'body' => $body,
+			];
+		}
+
 		$isTwoFactorPage = GitHubHtml::findTwoFactorForm($selector) !== null
 			|| str_contains($finalUrl, 'two-factor')
 			|| str_contains($title, 'Two-factor authentication');
@@ -261,7 +272,11 @@ class GithubOauthIntegrationTest extends TestCase {
 			$this->fail('GitHub returned the sign-in page after the ' . $step . ' step. This usually means the authenticated session was not established or cookies were not kept. Final URL: ' . $finalUrl);
 		}
 
-		$this->fail('GitHub completed the ' . $step . ' step but neither a 2FA form, an authorize form, nor a callback redirect with code was found. Final URL: ' . $finalUrl . '. Page title: ' . $title);
+		$this->fail(
+			'GitHub completed the ' . $step . ' step but neither a 2FA form, an authorize form, nor a callback redirect with code was found. '
+			. 'Final URL: ' . $finalUrl . '. Page title: ' . $title . '. '
+			. 'Page: ' . GitHubHtml::describePage($selector)
+		);
 	}
 
 	private function loginToGitHub(string $authorizeUrl): array {
@@ -327,12 +342,38 @@ class GithubOauthIntegrationTest extends TestCase {
 		$body = $response->getBody()->getContents();
 		$statusCode = $response->getStatusCode();
 
-		$this->assertOkStatus($statusCode, 'Failed to navigate to TOTP page from WebAuthn page. URL: ' . $totpUrl . '.');
+		$this->assertOkStatus(
+			$statusCode,
+			'Failed to navigate to TOTP page from page without a recognized 2FA form. '
+			. 'Source URL: ' . $currentUrl . '. Attempted TOTP URL: ' . $totpUrl . '. '
+			. 'Source page: ' . GitHubHtml::describePage($selector) . '.'
+		);
 
 		return [
 			'url' => $totpUrl,
 			'body' => $body,
 		];
+	}
+
+	private function dismissTwoFactorCheckup(string $body, string $checkupUrl): array {
+		['selector' => $selector] = $this->getPageContext($body);
+		$delayForm = GitHubHtml::findTwoFactorCheckupDelayForm($selector);
+		if ($delayForm === null) {
+			$this->fail('Expected a 2FA checkup delay form on ' . $checkupUrl . ' but none was found. Page: ' . GitHubHtml::describePage($selector));
+		}
+
+		$formParams = GitHubHtml::extractFormInputs($selector, $delayForm);
+		$actionUrl = GitHubHtml::resolveUrl($delayForm->getAttribute('action'), $checkupUrl);
+
+		$result = $this->requestFollowingGitHubRedirects('POST', $actionUrl, [
+			RequestOptions::FORM_PARAMS => $formParams,
+		]);
+		$statusCode = $result['response']->getStatusCode();
+		if (($result['stopped_before_external_redirect'] ?? false) !== true && $statusCode >= 400) {
+			$this->fail('Dismissing the 2FA checkup via ' . $actionUrl . ' returned status ' . $statusCode . '.');
+		}
+
+		return $this->interpretAuthenticatedResponse($result['body'], $result['final_url'], 'checkup dismissal');
 	}
 
 	private function handleTwoFactorPage(string $twoFactorUrl, string $body): array {
@@ -459,6 +500,10 @@ class GithubOauthIntegrationTest extends TestCase {
 
 		if ($loginResult['status'] === 'two_factor_required') {
 			$loginResult = $this->handleTwoFactorPage($loginResult['two_factor_url'] ?? $authorizeUrl, $loginResult['body']);
+		}
+
+		if ($loginResult['status'] === 'two_factor_checkup') {
+			$loginResult = $this->dismissTwoFactorCheckup($loginResult['body'], $loginResult['checkup_url'] ?? $authorizeUrl);
 		}
 
 		if ($loginResult['status'] === 'invalid_credentials') {
