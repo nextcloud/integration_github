@@ -48,7 +48,6 @@ OC.L10N.register(
     "Enable navigation link" : "Activer le lien de navigation",
     "Disabled by administrator" : "Désactivé par l'administrateur",
     "You can manually provide a personal access token or connect via OAuth " : "Vous pouvez fournir manuellement un jeton d'accès personnel ou vous connecter via OAuth",
-    "When you create a personal access token yourself, give it at least \"read:user\", \"user:email\" and \"notifications\" permissions." : "Lorsque vous créez vous-même un jeton d'accès personnel, donnez-lui au moins les autorisations «read:user», «user:email» et «notifications».",
     "GitHub personal access tokens" : "Jeton d'accès personnel GitHub",
     "Personal access token" : "Jeton d'accès personnel",
     "Connect to GitHub with a personal token" : "Connectez-vous à GitHub à l'aide d'un token d'accès personnel",

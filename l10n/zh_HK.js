@@ -50,7 +50,6 @@ OC.L10N.register(
     "Enable navigation link" : "啟用導覽連結",
     "Disabled by administrator" : "已被管理員停用",
     "You can manually provide a personal access token or connect via OAuth " : "您可以手動提供個人存取權杖，或透過 OAuth 連線 ",
-    "When you create a personal access token yourself, give it at least \"read:user\", \"user:email\" and \"notifications\" permissions." : "當您自行建立存取權杖時，至少給予 \"read：user\"， \"user：email\" 與 \"notifications\" 權限。",
     "GitHub personal access tokens" : "GitHub 個人存取權杖",
     "Personal access token" : "個人存取權杖",
     "Connect to GitHub with a personal token" : "使用個人存取權杖連線至 GitHub",

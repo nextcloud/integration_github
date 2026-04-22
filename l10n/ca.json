@@ -25,7 +25,6 @@
     "GitHub options saved" : "S'han desat les opcions de GitHub",
     "Failed to save GitHub options" : "No s'han pogut desar les opcions de GitHub",
     "Enable navigation link" : "Habilita l'enllaç de navegació",
-    "When you create a personal access token yourself, give it at least \"read:user\", \"user:email\" and \"notifications\" permissions." : "Quan creeu un testimoni d'accés personal, doneu-li com a mínim els permisos «read:user», «user:email» i «notifications».",
     "GitHub personal access tokens" : "Testimonis d'accés personal de GitHub",
     "Personal access token" : "Testimoni d'accés personal",
     "Connected as {user}" : "Connectat com a {user}",

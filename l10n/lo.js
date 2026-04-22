@@ -48,7 +48,6 @@ OC.L10N.register(
     "Enable navigation link" : "ເປີດໃຊ້ລິ້ງນຳທາງ",
     "Disabled by administrator" : "ຖືກປິດໃຊ້ງານໂດຍຜູ້ເບິ່ງແຍງລະບົບ",
     "You can manually provide a personal access token or connect via OAuth " : "ທ່ານສາມາດປ້ອນໂທເຄັນການເຂົ້າເຖິງສ່ວນຕົວດ້ວຍຕົນເອງ ຫຼື ເຊື່ອມຕໍ່ຜ່ານ OAuth ",
-    "When you create a personal access token yourself, give it at least \"read:user\", \"user:email\" and \"notifications\" permissions." : "ເມື່ອທ່ານສ້າງໂທເຄັນການເຂົ້າເຖິງສ່ວນຕົວ, ໃຫ້ກຳນົດສິດຢ່າງໜ້ອຍ \"read:user\", \"user:email\" ແລະ \"notifications\".",
     "GitHub personal access tokens" : "ໂທເຄັນການເຂົ້າເຖິງສ່ວນຕົວ GitHub",
     "Personal access token" : "ໂທເຄັນການເຂົ້າເຖິງສ່ວນຕົວ",
     "Connect to GitHub with a personal token" : "ເຊື່ອມຕໍ່ກັບ GitHub ດ້ວຍໂທເຄັນສ່ວນຕົວ",

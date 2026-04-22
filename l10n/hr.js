@@ -30,7 +30,6 @@ OC.L10N.register(
     "GitHub options saved" : "Postavke GitHuba su spremljene",
     "Failed to save GitHub options" : "Spremanje postavki GitHuba nije uspjelo",
     "Enable navigation link" : "Omogući navigacijsku poveznicu",
-    "When you create a personal access token yourself, give it at least \"read:user\", \"user:email\" and \"notifications\" permissions." : "Ako sami stvarate osobni token za pristup, minimalno mu dodijelite dopuštenja „read:user“, „user:email“ i „notifications“.",
     "GitHub personal access tokens" : "GitHub osobni tokeni za pristup",
     "Personal access token" : "Osobni token za pristup",
     "Connected as {user}" : "Povezan kao {user}",

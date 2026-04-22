@@ -30,7 +30,6 @@ OC.L10N.register(
     "GitHub options saved" : "Sèberos de GitHub sarvados",
     "Failed to save GitHub options" : "No at fatu a sarvare is sèberos de GitHub",
     "Enable navigation link" : "Ativa su ligòngiu de navigatzione",
-    "When you create a personal access token yourself, give it at least \"read:user\", \"user:email\" and \"notifications\" permissions." : "Cando as a creare tue etotu unu token de intrada personale, dae·li a su mancu is permisos «read:user», «user:email» y «notifications».",
     "GitHub personal access tokens" : "Tokens de intrada personales de GitHub",
     "Personal access token" : "Token de intrada personale",
     "Connected as {user}" : "Connètidu comente {user}",

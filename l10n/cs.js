@@ -50,7 +50,6 @@ OC.L10N.register(
     "Enable navigation link" : "Povolit navigační odkaz",
     "Disabled by administrator" : "Vypnuto správcem",
     "You can manually provide a personal access token or connect via OAuth " : "Můžete ručně poskytnout osobní přístupový token nebo připojit prostřednictvím OAuth",
-    "When you create a personal access token yourself, give it at least \"read:user\", \"user:email\" and \"notifications\" permissions." : "Když si osobní přístupový token vytváříte sami, udělte mu přinejmenším oprávnění pro „čtení:uživatrel“ a „upozornění“.",
     "GitHub personal access tokens" : "Osobní přístupové tokeny GitHub",
     "Personal access token" : "Osobní přístupový token",
     "Connect to GitHub with a personal token" : "Připojit se ke GitHub osobním přístupovým tokenem",

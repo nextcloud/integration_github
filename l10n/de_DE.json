@@ -48,7 +48,6 @@
     "Enable navigation link" : "Nagivations-Link aktivieren",
     "Disabled by administrator" : "Von der Administration deaktiviert",
     "You can manually provide a personal access token or connect via OAuth " : "Sie können manuell ein persönliches Zugriffstoken bereitstellen oder eine Verbindung über OAuth herstellen",
-    "When you create a personal access token yourself, give it at least \"read:user\", \"user:email\" and \"notifications\" permissions." : "Wenn Sie selbst einen persönlichen Zugriffstoken erstellen, geben Sie diesem mindestens die Berechtigungen \"read:user\", \"user:email\" und \"notifications\".",
     "GitHub personal access tokens" : "GitHub persönliche Zugriffstoken",
     "Personal access token" : "Persönlicher Zugriffstoken",
     "Connect to GitHub with a personal token" : "Mithilfe des persönlichen Zugriffstokens eine Verbindung zu GitHub herstellen",

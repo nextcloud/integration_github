@@ -30,7 +30,6 @@
     "GitHub options saved" : "GitHub-asetukset tallennettu",
     "Failed to save GitHub options" : "GitHub-asetusten tallennus epäonnistui",
     "Enable navigation link" : "Näytä navigointipalkissa",
-    "When you create a personal access token yourself, give it at least \"read:user\", \"user:email\" and \"notifications\" permissions." : "Kun luot henkilökohtaisen käyttöoikeustietueen, anna sille käyttöoikeuksiksi vähintään \"read:user\", \"user:email\" ja \"notifications\".",
     "GitHub personal access tokens" : "GitHubin henkilökohtaiset pääsypoletit",
     "Personal access token" : "Henkilökohtainen valtuutustietue",
     "Connected as {user}" : "Yhdistetty käyttäjänä {user}",

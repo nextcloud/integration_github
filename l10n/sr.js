@@ -48,7 +48,6 @@ OC.L10N.register(
     "Enable navigation link" : "Укључи линк за навигацију",
     "Disabled by administrator" : "Искључио је администратор",
     "You can manually provide a personal access token or connect via OAuth " : "Лични приступни жетон можете ручно да поставите, или да се повежете преко OAuth",
-    "When you create a personal access token yourself, give it at least \"read:user\", \"user:email\" and \"notifications\" permissions." : "Када сами креирате лични приступни жетон, омогућите му макар „read:user”, „user:email” и „notifications” дозволе.",
     "GitHub personal access tokens" : "GitHub лични приступни жетони",
     "Personal access token" : "Лични приступни жетон",
     "Connect to GitHub with a personal token" : "Повежи се са GitHub личним жетоном",

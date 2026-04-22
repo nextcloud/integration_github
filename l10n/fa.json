@@ -42,7 +42,6 @@
     "Invalid access token" : "Invalid access token",
     "Failed to save GitHub options" : "Failed to save GitHub options",
     "Enable navigation link" : "Enable navigation link",
-    "When you create a personal access token yourself, give it at least \"read:user\", \"user:email\" and \"notifications\" permissions." : "When you create a personal access token yourself, give it at least \"read:user\", \"user:email\" and \"notifications\" permissions.",
     "GitHub personal access tokens" : "GitHub personal access tokens",
     "Personal access token" : "Personal access token",
     "Connected as {user}" : "متصل به عنوان {user}",

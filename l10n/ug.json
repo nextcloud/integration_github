@@ -48,7 +48,6 @@
     "Enable navigation link" : "يول باشلاش ئۇلانمىسىنى قوزغىتىڭ",
     "Disabled by administrator" : "باشقۇرغۇچىڭىز تەرىپىدىن تاقالغان",
     "You can manually provide a personal access token or connect via OAuth " : "سىز قولدا بىر شەخسىي كىرىش بەلگىسى تەمىنلىيەلەيسىز ياكى OAuth ئارقىلىق ئۇلىيالايسىز",
-    "When you create a personal access token yourself, give it at least \"read:user\", \"user:email\" and \"notifications\" permissions." : "ئۆزىڭىز شەخسىي زىيارەت بەلگىسىنى قۇرغاندا ، ھېچ بولمىغاندا «ئوقۇش: ئىشلەتكۈچى» ، «ئىشلەتكۈچى: ئېلېكترونلۇق خەت» ۋە «ئۇقتۇرۇش» ئىجازەتلىرىنى بېرىڭ.",
     "GitHub personal access tokens" : "GitHub شەخسىي زىيارەت بەلگىسى",
     "Personal access token" : "شەخسىي زىيارەت بەلگىسى",
     "Connect to GitHub with a personal token" : "گىتخابغا شەخسىي بەلگە ئارقىلىق ئۇلا",

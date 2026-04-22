@@ -48,7 +48,6 @@ OC.L10N.register(
     "Enable navigation link" : "Wezesha kiungo cha urambazaji",
     "Disabled by administrator" : "Imelemazwa na msimamizi",
     "You can manually provide a personal access token or connect via OAuth " : "Unaweza kutoa tokeni ya ufikiaji wa kibinafsi mwenyewe au kuunganishwa kupitia OAuth",
-    "When you create a personal access token yourself, give it at least \"read:user\", \"user:email\" and \"notifications\" permissions." : "Unapounda tokeni ya ufikiaji wa kibinafsi, mpe angalau ruhusa za \"soma:mtumiaji\", \"mtumiaji:barua pepe\" na \"arifa\".",
     "GitHub personal access tokens" : "Tokeni za ufikiaji wa kibinafsi za GitHub",
     "Personal access token" : "Ishara ya ufikiaji binafsi",
     "Connect to GitHub with a personal token" : "Unganisha na GitHub kwa kutumia tokeni ya kibinafsi",

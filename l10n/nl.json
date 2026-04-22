@@ -28,7 +28,6 @@
     "GitHub options saved" : "GitHub-opties bewaard",
     "Failed to save GitHub options" : "Kon GitHub-opties niet opslaan",
     "Enable navigation link" : "Inschakelen navigatielink",
-    "When you create a personal access token yourself, give it at least \"read:user\", \"user:email\" and \"notifications\" permissions." : "Als je zelf een persoonlijk access token aanmaakt, geef het dan minimaal \"read:user\", \"user:email\" en \"notifications\" machtigingen.",
     "GitHub personal access tokens" : "GitHub persoonlijk access tokens",
     "Personal access token" : "Persoonlijk access token",
     "Connected as {user}" : "Verbonden als {user}",

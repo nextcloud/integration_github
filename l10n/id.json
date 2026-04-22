@@ -42,7 +42,6 @@
     "Invalid access token" : "Token akses tidak valid",
     "Failed to save GitHub options" : "Gagal menyimpan opsi GitHub",
     "Enable navigation link" : "Aktifkan tautan navigasi",
-    "When you create a personal access token yourself, give it at least \"read:user\", \"user:email\" and \"notifications\" permissions." : "Ketika Anda membuat sebuah token akses pribadi secara diri sendiri, berikan setidaknya izin \"read:user\", \"user:email\", dan \"notifications\".",
     "GitHub personal access tokens" : "Token akses pribadi GitHub",
     "Personal access token" : "Token akses pribadi",
     "Connected as {user}" : "Terhubung sebagai {user}",

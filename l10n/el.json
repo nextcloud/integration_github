@@ -46,7 +46,6 @@
     "Enable navigation link" : "Ενεργοποίηση συνδέσμου πλοήγησης",
     "Disabled by administrator" : "Απενεργοποιημένο από τον διαχειριστή",
     "You can manually provide a personal access token or connect via OAuth " : "Μπορείτε να δώσετε χειροκίνητα ένα διακριτικό προσωπικής πρόσβασης ή να συνδεθείτε μέσω OAuth",
-    "When you create a personal access token yourself, give it at least \"read:user\", \"user:email\" and \"notifications\" permissions." : "Όταν δημιουργείτε ένα διακριτικό προσωπικής πρόσβασης, δώστε του τουλάχιστον δικαιώματα «read:user», «user:email» και «notifications».",
     "GitHub personal access tokens" : "Διακριτικά προσωπικής πρόσβασης GitHub",
     "Personal access token" : "Διακριτικό προσωπικής πρόσβασης",
     "Connect to GitHub with a personal token" : "Σύνδεση στο GitHub με προσωπικό διακριτικό",

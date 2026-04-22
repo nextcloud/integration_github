@@ -48,7 +48,6 @@
     "Enable navigation link" : "Navigációs hivatkozás engedélyezése",
     "Disabled by administrator" : "Rendszergazda által letiltva",
     "You can manually provide a personal access token or connect via OAuth " : "Megadhat egy személyes hozzáférési tokent kézileg, vagy kapcsolódhat OAuth használatával",
-    "When you create a personal access token yourself, give it at least \"read:user\", \"user:email\" and \"notifications\" permissions." : "Amikor saját maga hoz létre személyes hozzáférési tokent, adjon meg neki legalább „read:user”, „user:email” és „notifications” engedélyeket.",
     "GitHub personal access tokens" : "GitHub személyes hozzáférési token",
     "Personal access token" : "Személyes hozzáférési token",
     "Connect to GitHub with a personal token" : "Csatlakozás a GitHubhoz személyes tokennel",

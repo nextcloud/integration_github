@@ -43,7 +43,6 @@
     "Failed to save GitHub options" : "GitHub aukerak gordetzeak huts egin du",
     "Enable navigation link" : "Gaitu nabigazio esteka",
     "You can manually provide a personal access token or connect via OAuth " : "Eskuz eman dezakezu sarbide-token pertsonala edo OAuth bidez konektatu",
-    "When you create a personal access token yourself, give it at least \"read:user\", \"user:email\" and \"notifications\" permissions." : "Zuk zeuk sarbide token pertsonal bat sortzen duzunean, eman iezazkiozu gutxienez \"read:user\", \"user:email\" eta \"notifications\" baimenak.",
     "GitHub personal access tokens" : "GitHub sarbide token pertsonalak",
     "Personal access token" : "Sarbide token pertsonala",
     "Connect to GitHub with a personal token" : "Konektatu GitHub-era token pertsonal batekin",

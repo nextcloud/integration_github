@@ -48,7 +48,6 @@
     "Enable navigation link" : "Gezinme bağlantısı kullanılsın",
     "Disabled by administrator" : "Yöneticiniz tarafından kullanımdan kaldırılmış",
     "You can manually provide a personal access token or connect via OAuth " : "Kişisel erişim kodunu el ile yazabilir ya da OAuth ile bağlanabilirsiniz",
-    "When you create a personal access token yourself, give it at least \"read:user\", \"user:email\" and \"notifications\" permissions." : "Kendiniz için bir kişisel erişim kodu oluştururken en azından \"read:user\", \"user:email\" ve \"notifications\" izinlerini verin.",
     "GitHub personal access tokens" : "GitHub kişisel erişim kodları",
     "Personal access token" : "Kişisel erişim kodu",
     "Connect to GitHub with a personal token" : "Kişisel erişim kodu ile GitHub bağlantısı kur",

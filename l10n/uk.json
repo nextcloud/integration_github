@@ -46,7 +46,6 @@
     "Enable navigation link" : "Увімкнути навігаційне посилання",
     "Disabled by administrator" : "Вимкнено адміністратором",
     "You can manually provide a personal access token or connect via OAuth " : "Ви можете вручну надати персональний токен доступу або підключитися через OAuth",
-    "When you create a personal access token yourself, give it at least \"read:user\", \"user:email\" and \"notifications\" permissions." : "Коли ви створюєте особистий токен доступу самостійно, надайте йому принаймні дозволи «read:user», «user:email» та «notifications».",
     "GitHub personal access tokens" : "Персональні токени доступу до GitHub",
     "Personal access token" : "Персональний токен доступу",
     "Connect to GitHub with a personal token" : "Підключіться до GitHub за допомогою персонального токену",

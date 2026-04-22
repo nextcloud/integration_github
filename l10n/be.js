@@ -12,7 +12,6 @@ OC.L10N.register(
     "Use default access token for guest users" : "Выкарыстоўваць прадвызначаны токен доступу для гасцей",
     "Invalid access token" : "Памылковы токен доступу",
     "You can manually provide a personal access token or connect via OAuth " : "Вы можаце ўручную задаць асабісты токен доступу або падключыцца праз OAuth",
-    "When you create a personal access token yourself, give it at least \"read:user\", \"user:email\" and \"notifications\" permissions." : "Калі вы самі ствараеце асабісты токен доступу, дайце яму як мінімум правы \"read:user\", \"user:email\" і \"notifications\".",
     "GitHub personal access tokens" : "Асабістыя токены доступу GitHub",
     "Personal access token" : "Асабісты токен доступу",
     "Connect to GitHub with a personal token" : "Падключыцеся да GitHub з дапамогай асабістага токена",

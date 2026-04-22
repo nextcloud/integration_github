@@ -45,7 +45,6 @@ OC.L10N.register(
     "Failed to save GitHub options" : "Nepodarilo sa uložiť nastavenia GitHubu",
     "Enable navigation link" : "Povoliť navigačný odkaz",
     "You can manually provide a personal access token or connect via OAuth " : "Môžete manuálne poskytnúť osobný prístupový token alebo sa pripojiť cez OAuth",
-    "When you create a personal access token yourself, give it at least \"read:user\", \"user:email\" and \"notifications\" permissions." : "Keď si sami vytvoríte prístupový token, udeľte mu aspoň práva „read_user“, „user:email“ a „notifications“.",
     "GitHub personal access tokens" : "GitHub osobné prístupové tokeny",
     "Personal access token" : "Osobný prístupový token",
     "Connect to GitHub with a personal token" : "Pripojiť ku GitHubu pomocou osobného tokenu",

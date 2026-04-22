@@ -40,7 +40,6 @@
     "Invalid access token" : "Token de acceso no válido",
     "Failed to save GitHub options" : "Error al guardar las opciones de GitHub",
     "Enable navigation link" : "Habilitar enlace de navegación",
-    "When you create a personal access token yourself, give it at least \"read:user\", \"user:email\" and \"notifications\" permissions." : "Cuando crees un token de acceso personal, asegúrate de otorgarle al menos los permisos \"read:user\", \"user:email\" y \"notifications\".",
     "GitHub personal access tokens" : "Tokens de acceso personal de GitHub",
     "Personal access token" : "Token de acceso personal",
     "Connected as {user}" : "Conectado como {usuario}",
