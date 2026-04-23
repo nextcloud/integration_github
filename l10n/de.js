@@ -50,6 +50,7 @@ OC.L10N.register(
     "Enable navigation link" : "Navigations-Link aktivieren",
     "Disabled by administrator" : "Von der Administration deaktiviert",
     "You can manually provide a personal access token or connect via OAuth " : "Du kannst manuell ein persönliches Zugriffstoken bereitstellen oder eine Verbindung über OAuth herstellen",
+    "When you create a personal access token yourself, give it at least \"read:user\", \"user:email\" and \"notifications\" permissions. To also preview private repository links, add the \"repo\" scope." : "Wenn du selbst ein persönliches Zugriffstoken erstellst, erteile ihm mindestens die Berechtigungen \"read:user\", \"user:email\" und \"notifications\". Um auch eine Vorschau privater Repository-Links anzuzeigen, füge den Bereich \"Repo\" hinzu.",
     "GitHub personal access tokens" : "GitHub persönliche Zugriffstoken",
     "Personal access token" : "Persönlicher Zugriffstoken",
     "Connect to GitHub with a personal token" : "Mithilfe des persönlichen Zugriffstokens eine Verbindung zu GitHub herstellen",
