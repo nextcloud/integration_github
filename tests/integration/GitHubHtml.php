@@ -57,6 +57,13 @@ final class GitHubHtml {
 		]);
 	}
 
+	public static function findTwoFactorCheckupDelayForm(DOMXPath $selector): ?DOMElement {
+		return self::findForm($selector, [
+			'//form[@action="/settings/two_factor_checkup/delay"]',
+			'//form[contains(@action, "two_factor_checkup/delay")]',
+		]);
+	}
+
 	public static function findTotpAlternativeUrl(DOMXPath $selector): ?string {
 		$linkSelectors = [
 			'//a[contains(@href, "two-factor/app")]',
@@ -105,5 +112,46 @@ final class GitHubHtml {
 		}
 
 		return $formParams;
+	}
+
+	/**
+	 * Summarize the forms and headings on a page for failure diagnostics.
+	 * Emits form actions and input names (never values) plus h1/h2 text,
+	 * so CI logs show what GitHub actually returned without leaking tokens.
+	 */
+	public static function describePage(DOMXPath $selector): string {
+		$parts = [];
+
+		$forms = $selector->query('//form');
+		if ($forms !== false) {
+			foreach ($forms as $form) {
+				if (!$form instanceof DOMElement) {
+					continue;
+				}
+				$action = $form->getAttribute('action');
+				$inputNodes = $selector->query('.//input[@name] | .//button[@name]', $form);
+				$names = [];
+				if ($inputNodes !== false) {
+					foreach ($inputNodes as $input) {
+						if ($input instanceof DOMElement) {
+							$names[] = $input->getAttribute('name');
+						}
+					}
+				}
+				$parts[] = 'form(action=' . ($action === '' ? '<empty>' : $action) . ', inputs=[' . implode(',', $names) . '])';
+			}
+		}
+
+		$headings = $selector->query('//h1 | //h2');
+		if ($headings !== false) {
+			foreach ($headings as $heading) {
+				$text = trim($heading->textContent);
+				if ($text !== '') {
+					$parts[] = $heading->nodeName . '=' . mb_substr($text, 0, 120);
+				}
+			}
+		}
+
+		return $parts === [] ? '<no forms or headings found>' : implode(' | ', $parts);
 	}
 }
