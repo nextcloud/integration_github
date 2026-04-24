@@ -8,6 +8,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 3.2.4 - 2026-04-24
+
+### Fixed
+
+- Sync the appstore-build-publish workflow to the current Nextcloud template so the signing step runs on a PHP version that matches the app's minimum (the hardcoded PHP 8.1 was blocking 3.2.3 from publishing on Nextcloud 33+).
+
 ## 3.2.3 - 2026-04-21
 
 ### Added
