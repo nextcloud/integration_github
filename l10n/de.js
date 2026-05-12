@@ -25,7 +25,7 @@ OC.L10N.register(
     "GitHub OAuth settings" : "GitHub OAuth-Einstellungen",
     "Set \"Application name\", \"Homepage URL\" and \"Application description\" to values that will make sense to your Nextcloud users as they will see them when connecting to GitHub using your OAuth app." : "Stelle \"Anwendungsname\", \"Homepage-URL\" und \"Anwendungsbeschreibung\" auf Werte ein, die für deine Nextcloud-Benutzer sinnvoll sind, da sie diese sehen, wenn sie mit deiner OAuth-App eine Verbindung zu GitHub herstellen.",
     "Make sure you set the \"Authorization callback URL\" to" : "Stelle sicher, dass du die \"Autorisierungs-Rückruf-URL\" wie folgt setzt",
-    "Put the OAuth app \"Client ID\" and \"Client secret\" below." : "Gib unten die OAuth-App \"Client ID\" und \"Client secret\" ein.",
+    "Put the OAuth app \"Client ID\" and \"Client secret\" below." : "Unten die OAuth-App \"Client ID\" und \"Client secret\" eingeben.",
     "Your Nextcloud users will then see a \"Connect to GitHub\" button in their personal settings." : "Deine Nextcloud-Benutzer sehen dann in ihren persönlichen Einstellungen die Schaltfläche \"Mit GitHub verbinden\".",
     "Client ID" : "Client-ID",
     "Client ID of your GitHub application" : "Client-ID deiner GitHub-Anwendung",

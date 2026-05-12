@@ -23,7 +23,7 @@
     "GitHub OAuth settings" : "GitHub OAuth-Einstellungen",
     "Set \"Application name\", \"Homepage URL\" and \"Application description\" to values that will make sense to your Nextcloud users as they will see them when connecting to GitHub using your OAuth app." : "Stellen Sie \"Anwendungsname\", \"Homepage-URL\" und \"Anwendungsbeschreibung\" auf Werte ein, die für Ihre Nextcloud-Benutzer sinnvoll sind, da sie diese sehen, wenn Sie mit Ihrer OAuth-App eine Verbindung zu GitHub herstellen.",
     "Make sure you set the \"Authorization callback URL\" to" : "Stellen Sie sicher, dass Sie die \"Autorisierungs-Rückruf-URL\" wie folgt setzen",
-    "Put the OAuth app \"Client ID\" and \"Client secret\" below." : "Geben Sie unten die OAuth-App \"Client ID\" und \"Client secret\" ein.",
+    "Put the OAuth app \"Client ID\" and \"Client secret\" below." : "Unten \"Client ID\" und \"Client Passwort\" der OAuth-App eingeben.",
     "Your Nextcloud users will then see a \"Connect to GitHub\" button in their personal settings." : "Ihre Nextcloud-Benutzer sehen dann in ihren persönlichen Einstellungen die Schaltfläche \"Mit GitHub verbinden\".",
     "Client ID" : "Client-ID",
     "Client ID of your GitHub application" : "Client-ID von Ihrer GitHub-Anwendung",
