@@ -8,6 +8,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 3.2.5 - 2026-05-16
+
+### Fixed
+
+- Stop spamming the log with `\InvalidArgumentException` deprecation warnings from the notifier; throw `OCP\Notification\UnknownNotificationException` instead for unknown notifications.
+
 ## 3.2.4 - 2026-04-24
 
 ### Fixed

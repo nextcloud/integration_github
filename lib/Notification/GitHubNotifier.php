@@ -9,12 +9,12 @@ declare(strict_types=1);
 
 namespace OCA\Github\Notification;
 
-use InvalidArgumentException;
 use OCA\Github\AppInfo\Application;
 use OCP\IURLGenerator;
 use OCP\L10N\IFactory;
 use OCP\Notification\INotification;
 use OCP\Notification\INotifier;
+use OCP\Notification\UnknownNotificationException;
 
 class GitHubNotifier implements INotifier {
 	public function __construct(
@@ -33,7 +33,7 @@ class GitHubNotifier implements INotifier {
 
 	public function prepare(INotification $notification, string $languageCode): INotification {
 		if ($notification->getApp() !== Application::APP_ID) {
-			throw new InvalidArgumentException();
+			throw new UnknownNotificationException();
 		}
 
 		$l = $this->factory->get(Application::APP_ID, $languageCode);
@@ -50,7 +50,7 @@ class GitHubNotifier implements INotifier {
 				return $notification;
 
 			default:
-				throw new InvalidArgumentException();
+				throw new UnknownNotificationException();
 		}
 	}
 }
