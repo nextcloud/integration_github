@@ -42,7 +42,7 @@ class GitHubNotifier implements INotifier {
 			case 'new-github-notification':
 				$p = $notification->getSubjectParameters();
 				$newNotifications = (int)($p['newNotifications'] ?? 0);
-				$content = $l->n('You have %s new unread notification with recent activity on GitHub.', 'You have %s new unread notifications with recent activity on GitHub.', $newNotifications, [$newNotifications]);
+				$content = $l->n('You have %n new unread notification with recent activity on GitHub.', 'You have %n new unread notifications with recent activity on GitHub.', $newNotifications);
 
 				$notification->setParsedSubject($content)
 					->setLink('https://github.com/notifications')
