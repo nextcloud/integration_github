@@ -8,6 +8,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 3.2.6 - 2026-05-22
+
+### Fixed
+
+- Fix `ValueError` from `vsprintf()` that broke notifications for non-English users (#197).
+
 ## 3.2.5 - 2026-05-16
 
 ### Fixed
