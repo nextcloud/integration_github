@@ -4,7 +4,6 @@
     "Error during OAuth exchanges" : "Chyba při výměnách informací v rámci OAuth",
     "GitHub notifications" : "Upozornění z GitHub",
     "More notifications" : "Další upozornění",
-    "_You have %s new unread notification with recent activity on GitHub._::_You have %s new unread notifications with recent activity on GitHub._" : ["Na GitHub máte %s nepřečtené upozornění s nedávnou aktivitou.","Na GitHub máte %s nepřečtená upozornění s nedávnou aktivitou.","Na GitHub máte %s nepřečtených upozornění s nedávnou aktivitou.","Na GitHub máte %s nepřečtená upozornění s nedávnou aktivitou."],
     "GitHub code permalink" : "Trvalý odkaz na kód na GitHub",
     "GitHub issues, pull requests and comments" : "Hlášení chyb, žádosti začlenění a komentáře",
     "Comment" : "Komentář",

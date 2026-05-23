@@ -6,7 +6,6 @@ OC.L10N.register(
     "Error during OAuth exchanges" : "OAuth 交換時發生錯誤",
     "GitHub notifications" : "GitHub 通知",
     "More notifications" : "更多通知",
-    "_You have %s new unread notification with recent activity on GitHub._::_You have %s new unread notifications with recent activity on GitHub._" : ["您在 GitHub 的近期活動中有 %s 則新的未讀通知。"],
     "GitHub code permalink" : "GitHub 程式碼永久連結",
     "GitHub issues, pull requests and comments" : "GitHub 議題、拉取請求與評論",
     "Comment" : "留言",

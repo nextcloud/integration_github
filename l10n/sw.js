@@ -6,7 +6,6 @@ OC.L10N.register(
     "Error during OAuth exchanges" : "Hitilafu wakati wa kubadilishana OAuth",
     "GitHub notifications" : "Arifa za GitHub",
     "More notifications" : "Arifa zaidi",
-    "_You have %s new unread notification with recent activity on GitHub._::_You have %s new unread notifications with recent activity on GitHub._" : ["You have %s new unread notification with recent activity on GitHub.","Una arifa %s mpya ambazo hazijasomwa na shughuli za hivi karibuni kwenye GitHub."],
     "GitHub code permalink" : "Kiungo wa kudumu wa msimbo wa GitHub",
     "GitHub issues, pull requests and comments" : "Masuala ya GitHub, maombi ya kuvuta na maoni",
     "Comment" : "Maoni",

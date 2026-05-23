@@ -4,7 +4,6 @@
     "Error during OAuth exchanges" : "Σφάλμα κατά την ανταλλαγή OAuth",
     "GitHub notifications" : "Ειδοποιήσεις GitHub",
     "More notifications" : "Περισσότερες ειδοποιήσεις",
-    "_You have %s new unread notification with recent activity on GitHub._::_You have %s new unread notifications with recent activity on GitHub._" : ["Έχετε %s νέα μη αναγνωσμένη ειδοποίηση με πρόσφατη δραστηριότητα στο GitHub.","Έχετε %s νέες μη αναγνωσμένες ειδοποιήσεις με πρόσφατη δραστηριότητα στο GitHub."],
     "GitHub code permalink" : "Μόνιμος σύνδεσμος κώδικα GitHub",
     "GitHub issues, pull requests and comments" : "Ζητήματα GitHub, αιτήματα λήψης και σχόλια",
     "Comment" : "Σχόλιο",

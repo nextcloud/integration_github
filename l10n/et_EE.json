@@ -4,7 +4,6 @@
     "Error during OAuth exchanges" : "Viga OAuth andmevahetusel",
     "GitHub notifications" : "GitHubi teavitused",
     "More notifications" : "Täiendavad teavitused",
-    "_You have %s new unread notification with recent activity on GitHub._::_You have %s new unread notifications with recent activity on GitHub._" : ["Sul on %s lugemata GitHubi teavitu viimaste tegevuste kohta.","Sul on %s lugemata GitHubi teavitust viimaste tegevuste kohta."],
     "GitHub code permalink" : "GitHubi koodi püsilink",
     "Comment" : "Kommentaar",
     "GitHub issues and pull requests" : "GitHubi veahaldus ja sissekandetaotlused",

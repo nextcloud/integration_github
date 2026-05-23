@@ -6,7 +6,6 @@ OC.L10N.register(
     "Error during OAuth exchanges" : "OAuth ئالماشتۇرۇش جەريانىدا خاتالىق",
     "GitHub notifications" : "GitHub ئۇقتۇرۇشى",
     "More notifications" : "تېخىمۇ كۆپ ئۇقتۇرۇش",
-    "_You have %s new unread notification with recent activity on GitHub._::_You have %s new unread notifications with recent activity on GitHub._" : ["گىتخابدىكى يېقىنقى پائالىيتىڭىز ھەققىدە %s يېڭى ئوقۇلمىغان ئۇقتۇرۇشلىرىڭىز بار","گىتخابدىكى يېقىنقى پائالىيتىڭىز ھەققىدە %s يېڭى ئوقۇلمىغان ئۇقتۇرۇشلىرىڭىز بار"],
     "GitHub code permalink" : "GitHub كودى permalink",
     "GitHub issues, pull requests and comments" : "GitHub مەسىلىسى ، تەلەپ ۋە ئىنكاسلارنى تارتىش",
     "Comment" : "باھا",

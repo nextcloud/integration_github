@@ -4,7 +4,6 @@
     "Error during OAuth exchanges" : "Erro ao obter o token de acesso OAuth",
     "GitHub notifications" : "Notificações GitHub",
     "More notifications" : "Mais notificações",
-    "_You have %s new unread notification with recent activity on GitHub._::_You have %s new unread notifications with recent activity on GitHub._" : ["Você tem %s nova notificação não lida com atividade recente no GitHub.","Você tem %s de novas notificações não lidas com atividade recente no GitHub.","Você tem %s novas notificações não lidas com atividade recente no GitHub."],
     "GitHub code permalink" : "Permalink ao Código no GitHub",
     "GitHub issues, pull requests and comments" : "Problemas no GitHub, solicitações de pull e comentários",
     "Comment" : "Comentário",

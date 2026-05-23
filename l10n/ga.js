@@ -6,7 +6,6 @@ OC.L10N.register(
     "Error during OAuth exchanges" : "Earráid le linn malartuithe OAuth",
     "GitHub notifications" : "Fógraí GitHub",
     "More notifications" : "Tuilleadh fógraí",
-    "_You have %s new unread notification with recent activity on GitHub._::_You have %s new unread notifications with recent activity on GitHub._" : ["Tá %s fógra neamhléite nua agat le gníomhaíocht le déanaí ar GitHub.","Tá %s fógra neamhléite nua agat le gníomhaíocht le déanaí ar GitHub.","Tá %s fógra neamhléite nua agat le gníomhaíocht le déanaí ar GitHub.","Tá %s fógra neamhléite nua agat le gníomhaíocht le déanaí ar GitHub.","Tá %s fógra neamhléite nua agat le gníomhaíocht le déanaí ar GitHub."],
     "GitHub code permalink" : "Permalink cód GitHub",
     "GitHub issues, pull requests and comments" : "Eisíonn GitHub, tarraing iarratais agus tuairimí",
     "Comment" : "Trácht",

@@ -6,7 +6,6 @@ OC.L10N.register(
     "Error during OAuth exchanges" : "Hiba történt az OAuth üzenetváltás során",
     "GitHub notifications" : "GitHub értesítések",
     "More notifications" : "További értesítések",
-    "_You have %s new unread notification with recent activity on GitHub._::_You have %s new unread notifications with recent activity on GitHub._" : ["%s új olvasatlan értesítése van a GitHubon, amelynél tevékenység volt a közelmúltban.","%s új olvasatlan értesítése van a GitHubon, amelynél tevékenység volt a közelmúltban."],
     "GitHub code permalink" : "GitHub forráskód állandó hivatkozása",
     "GitHub issues, pull requests and comments" : "GitHub jegyek, beolvasztási kérések és megjegyzések",
     "Comment" : "Megjegyzés",

@@ -6,7 +6,6 @@ OC.L10N.register(
     "Error during OAuth exchanges" : "ເກີດຂໍ້ຜິດພາດໃນລະຫວ່າງການແລກປ່ຽນ OAuth",
     "GitHub notifications" : "ການແຈ້ງເຕືອນ GitHub",
     "More notifications" : "ການແຈ້ງເຕືອນເພີ່ມເຕີມ",
-    "_You have %s new unread notification with recent activity on GitHub._::_You have %s new unread notifications with recent activity on GitHub._" : ["ທ່ານມີ %s ການແຈ້ງເຕືອນໃໝ່ທີ່ຍັງບໍ່ໄດ້ອ່ານກ່ຽວກັບການເຄື່ອນໄຫວຫຼ້າສຸດໃນ GitHub."],
     "GitHub code permalink" : "ລິ້ງຖາວອນຂອງລະຫັດ GitHub",
     "GitHub issues, pull requests and comments" : "ບັນຫາ, pull requests ແລະຄຳເຫັນຂອງ GitHub",
     "Comment" : "ຄຳເຫັນ",
