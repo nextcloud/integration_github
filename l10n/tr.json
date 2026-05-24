@@ -4,6 +4,7 @@
     "Error during OAuth exchanges" : "OAuth alışverişinde sorun çıktı",
     "GitHub notifications" : "GitHub bildirimleri",
     "More notifications" : "Diğer bildirimler",
+    "_You have %n new unread notification with recent activity on GitHub._::_You have %n new unread notifications with recent activity on GitHub._" : ["GitHub üzerinde okunmamış yeni %n bildiriminiz var.","GitHub üzerinde okunmamış yeni %n bildiriminiz var."],
     "GitHub code permalink" : "GitHub kod kalıcı bağlantısı",
     "GitHub issues, pull requests and comments" : "GitHub sorunları, çekme istekleri ve yorumları",
     "Comment" : "Yorum",

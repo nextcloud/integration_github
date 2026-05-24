@@ -6,6 +6,7 @@ OC.L10N.register(
     "Error during OAuth exchanges" : "Fehler beim OAuth-Austausch",
     "GitHub notifications" : "GitHub Benachrichtigungen",
     "More notifications" : "Weitere Benachrichtigungen",
+    "_You have %n new unread notification with recent activity on GitHub._::_You have %n new unread notifications with recent activity on GitHub._" : ["Du hast %n neue ungelesene Benachrichtigung mit aktuellen Aktivitäten auf GitHub.","Du hast %n neue ungelesene Benachrichtigungen mit aktuellen Aktivitäten auf GitHub."],
     "GitHub code permalink" : "GitHub Code-Permalink",
     "GitHub issues, pull requests and comments" : "GitHub-Issues, Pull Requests und Kommentare",
     "Comment" : "Kommentar",
