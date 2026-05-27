@@ -12,7 +12,7 @@
     "Connected accounts" : "Prijungtos paskyros",
     "GitHub integration" : "„GitHub“ integracija",
     "Client ID" : "Kliento ID",
-    "Client secret" : "Trečiųjų šalių programinės įrangos kliento identifikacijos raktas",
+    "Client secret" : "Kliento paslaptis",
     "The default access token will be used for link previews and unified search by users who didn't connect to GitHub." : "Numatytasis prieigos raktas bus naudojamas nuorodų peržiūroms ir vieningai paieškai, kurią atliks vartotojai, kurie neprisijungė prie „GitHub“.",
     "Default access token" : "Numatytasis prieigos raktas",
     "personal access token" : "asmeninis prieigos raktas",
