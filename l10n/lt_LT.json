@@ -22,7 +22,7 @@
     "If you want to allow your Nextcloud users to use OAuth to authenticate to {githubUrl}, create an OAuth application in your GitHub settings." : "Jei norite leisti „Nextcloud“ naudotojams naudoti „OAuth“ autentifikavimui į {githubUrl}, sukurkite „OAuth“ programėlę „GitHub“ nustatymuose.",
     "GitHub OAuth settings" : "„GitHub OAuth“ nustatymai",
     "Set \"Application name\", \"Homepage URL\" and \"Application description\" to values that will make sense to your Nextcloud users as they will see them when connecting to GitHub using your OAuth app." : "Nustatykite „Programėlės pavadinimas“, „Pagrindinio puslapio URL“ ir „Programėlės aprašymas“ į reikšmes, kurios bus prasmingos jūsų „Nextcloud“ vartotojams, kai jie jas matys jungdamiesi prie „GitHub“ naudodami jūsų „OAuth“ programėlę.",
-    "Make sure you set the \"Authorization callback URL\" to" : "Būtinai nustatykite „Autorizacijos atgalinio skambučio URL“ į",
+    "Make sure you set the \"Authorization callback URL\" to" : "Įsitikinkite, kad „Autorizacijos atgalinio skambučio URL“ nustatėte kaip",
     "Put the OAuth app \"Client ID\" and \"Client secret\" below." : "Žemiau įrašykite „OAuth“ programėlės „Kliento ID“ ir „Kliento paslaptis“.",
     "Your Nextcloud users will then see a \"Connect to GitHub\" button in their personal settings." : "Tada jūsų „Nextcloud“ vartotojai savo asmeniniuose nustatymuose matys mygtuką „Prisijungti prie „GitHub“.",
     "Client ID" : "Kliento ID",
