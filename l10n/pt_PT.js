@@ -9,6 +9,7 @@ OC.L10N.register(
     "Client secret" : "Segredo do cliente\\\\",
     "Unknown error" : "Erro desconhecido",
     "Draft" : "Rascunho",
+    "by {creator}" : "por {creator}",
     "Author" : "Autor",
     "Owner" : "Proprietário"
 },
