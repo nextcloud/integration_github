@@ -7,6 +7,7 @@ OC.L10N.register(
     "Bad credentials" : "Credenciais inválidas",
     "Client ID" : "Id. do Cliente",
     "Client secret" : "Segredo do cliente\\\\",
+    "Mark as read" : "Marcar como lido",
     "Unknown error" : "Erro desconhecido",
     "Draft" : "Rascunho",
     "by {creator}" : "por {creator}",
