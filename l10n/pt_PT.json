@@ -1,4 +1,5 @@
 { "translations": {
+    "GitHub" : "GitHub",
     "Error getting OAuth access token" : "Erro ao obter o token de acesso OAuth",
     "Error during OAuth exchanges" : "Erro durante trocas com o OAuth",
     "GitHub notifications" : "Notificações GitHub",
@@ -14,6 +15,7 @@
     "Enable GitHub link previews" : "Ativar visualizações de links do GitHub",
     "GitHub OAuth error:" : "Erro GitHub OAuth:",
     "Invalid access token" : "Token de acesso inválido",
+    "Enable navigation link" : "Ativar link de navegação",
     "Mark as read" : "Marcar como lido",
     "Error connecting to GitHub" : "Erro ao conectar ao GitHub",
     "Loading..." : "Carregando…",
