@@ -30,6 +30,7 @@ OC.L10N.register(
     "GitHub options saved" : "GitHub-opties bewaard",
     "Failed to save GitHub options" : "Kon GitHub-opties niet opslaan",
     "Enable navigation link" : "Inschakelen navigatielink",
+    "Disabled by administrator" : "Uitgeschakeld door beheerder",
     "GitHub personal access tokens" : "GitHub persoonlijk access tokens",
     "Personal access token" : "Persoonlijk access token",
     "Connected as {user}" : "Verbonden als {user}",
