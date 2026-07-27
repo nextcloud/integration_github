@@ -37,7 +37,7 @@
 				@focus="readonly = false"
 				@update:model-value="onInput">
 				<template #icon>
-					<KeyIcon :size="20" />
+					<KeyOutlineIcon :size="20" />
 				</template>
 			</NcTextField>
 			<NcTextField
@@ -52,7 +52,7 @@
 				@focus="readonly = false"
 				@update:model-value="onInput">
 				<template #icon>
-					<KeyIcon :size="20" />
+					<KeyOutlineIcon :size="20" />
 				</template>
 			</NcTextField>
 			<br>
@@ -71,7 +71,7 @@
 				@focus="readonly = false"
 				@update:model-value="onInput">
 				<template #icon>
-					<KeyIcon :size="20" />
+					<KeyOutlineIcon :size="20" />
 				</template>
 			</NcTextField>
 			<div v-if="defaultTokenConnected" class="line">
@@ -119,7 +119,7 @@
 </template>
 
 <script>
-import KeyIcon from 'vue-material-design-icons/Key.vue'
+import KeyOutlineIcon from 'vue-material-design-icons/KeyOutline.vue'
 import CheckIcon from 'vue-material-design-icons/Check.vue'
 
 import GithubIcon from './icons/GithubIcon.vue'
@@ -146,7 +146,7 @@ export default {
 		NcNoteCard,
 		NcFormBox,
 		NcFormBoxSwitch,
-		KeyIcon,
+		KeyOutlineIcon,
 		CheckIcon,
 	},
 

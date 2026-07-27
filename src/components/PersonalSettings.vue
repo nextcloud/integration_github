@@ -52,7 +52,7 @@
 					@keyup.enter="connectWithToken"
 					@trailing-button-click="state.token = ''">
 					<template #icon>
-						<KeyIcon :size="20" />
+						<KeyOutlineIcon :size="20" />
 					</template>
 				</NcTextField>
 				<NcButton v-if="!connected"
@@ -112,7 +112,7 @@
 
 <script>
 import OpenInNewIcon from 'vue-material-design-icons/OpenInNew.vue'
-import KeyIcon from 'vue-material-design-icons/Key.vue'
+import KeyOutlineIcon from 'vue-material-design-icons/KeyOutline.vue'
 import CheckIcon from 'vue-material-design-icons/Check.vue'
 import CloseIcon from 'vue-material-design-icons/Close.vue'
 
@@ -140,7 +140,7 @@ export default {
 		NcTextField,
 		NcFormBox,
 		NcFormBoxSwitch,
-		KeyIcon,
+		KeyOutlineIcon,
 		CheckIcon,
 		CloseIcon,
 		OpenInNewIcon,
