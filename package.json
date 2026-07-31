@@ -13,8 +13,8 @@
     "watch": "NODE_ENV=development vite --mode development build --watch",
     "lint": "eslint --ext .js,.vue src",
     "lint:fix": "eslint --ext .js,.vue src --fix",
-    "stylelint": "stylelint src/**/*.vue src/**/*.scss src/**/*.css",
-    "stylelint:fix": "stylelint src/**/*.vue src/**/*.scss src/**/*.css --fix"
+    "stylelint": "stylelint \"src/**/*.vue\" \"src/**/*.scss\" \"src/**/*.css\"",
+    "stylelint:fix": "stylelint \"src/**/*.vue\" \"src/**/*.scss\" \"src/**/*.css\" --fix"
   },
   "repository": {
     "type": "git",
