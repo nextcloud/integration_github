@@ -13,6 +13,7 @@ use OCP\IConfig;
 use OCP\IUserManager;
 use OCP\PreConditionNotMetException;
 use OCP\Security\ICrypto;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service to make requests to GitHub v3 (JSON) API
@@ -23,6 +24,7 @@ class SecretService {
 		private IConfig $config,
 		private IUserManager $userManager,
 		private ICrypto $crypto,
+		private LoggerInterface $logger,
 	) {
 	}
 
@@ -45,15 +47,11 @@ class SecretService {
 	/**
 	 * @param string $userId
 	 * @param string $key
-	 * @return string
-	 * @throws Exception
+	 * @return string the decrypted value, or an empty string if it cannot be decrypted
 	 */
 	public function getEncryptedUserValue(string $userId, string $key): string {
 		$storedValue = $this->config->getUserValue($userId, Application::APP_ID, $key);
-		if ($storedValue === '') {
-			return '';
-		}
-		return $this->crypto->decrypt($storedValue);
+		return $this->decryptOrDiscard($storedValue, $key, $userId);
 	}
 
 	/**
@@ -72,15 +70,37 @@ class SecretService {
 
 	/**
 	 * @param string $key
-	 * @return string
-	 * @throws Exception
+	 * @return string the decrypted value, or an empty string if it cannot be decrypted
 	 */
 	public function getEncryptedAppValue(string $key): string {
 		$storedValue = $this->config->getAppValue(Application::APP_ID, $key);
+		return $this->decryptOrDiscard($storedValue, $key, null);
+	}
+
+	/**
+	 * Decrypt a stored secret, treating one that cannot be decrypted as unset.
+	 *
+	 * A value that is not valid ciphertext — stored as plaintext, or encrypted under
+	 * a secret that has since changed — makes ICrypto::decrypt() throw. Both settings
+	 * classes read secrets in getForm(), and the settings controller renders every
+	 * app's section, so letting that escape returns 500 for the whole "Connected
+	 * accounts" page: not just ours, but every installed integration's.
+	 */
+	private function decryptOrDiscard(string $storedValue, string $key, ?string $userId): string {
 		if ($storedValue === '') {
 			return '';
 		}
-		return $this->crypto->decrypt($storedValue);
+
+		try {
+			return $this->crypto->decrypt($storedValue);
+		} catch (Exception $e) {
+			$this->logger->warning('Could not decrypt the stored "' . $key . '" value, treating it as unset', [
+				'exception' => $e,
+				'userId' => $userId,
+				'app' => Application::APP_ID,
+			]);
+			return '';
+		}
 	}
 
 	/**
@@ -92,8 +112,7 @@ class SecretService {
 	 *
 	 * @param string|null $userId
 	 * @param bool $endpointUsesDefaultToken
-	 * @return string
-	 * @throws Exception
+	 * @return string the access token, or an empty string if there is none usable
 	 */
 	public function getAccessToken(?string $userId, bool $endpointUsesDefaultToken = false): string {
 		// use user access token in priority
