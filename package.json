@@ -36,6 +36,11 @@
     "node": "^24.0.0",
     "npm": "^11.3.0"
   },
+  "overrides": {
+    "dompurify": "^3.4.13",
+    "js-yaml": "^4.3.1",
+    "nanoid": "^3.3.18"
+  },
   "dependencies": {
     "@alchemyalcove/rgb-to-hsl": "^1.0.5",
     "@highlightjs/vue-plugin": "^2.1.0",
