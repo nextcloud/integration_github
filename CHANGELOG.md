@@ -8,6 +8,23 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 3.2.7 - 2026-08-18
+
+### Added
+
+- Added support for Nextcloud 35.
+
+### Fixed
+
+- Keep the settings pages working when a stored secret cannot be decrypted.
+- Update bundled JavaScript dependencies (vite, js-yaml, brace-expansion, `@babel/core`,
+  esbuild, fast-xml-parser, webdav) to close several security advisories.
+
+### Changed
+
+- Use the outline style for the key icons.
+- Updated dependencies & translations.
+
 ## 3.2.6 - 2026-05-22
 
 ### Fixed
