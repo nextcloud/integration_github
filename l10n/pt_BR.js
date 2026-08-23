@@ -36,7 +36,7 @@ OC.L10N.register(
     "personal access token" : "token de acesso pessoal",
     "Connected with the default access token as {user}" : "Conectado com o token de acesso padrão como {user}",
     "Use default access token for anonymous users" : "Usar token de acesso padrão para usuários anônimos.",
-    "Use default access token for guest users" : "Usar token de acesso padrão para usuários convidados.",
+    "Use default access token for guest users" : "Usar token de acesso padrão para usuários visitantes.",
     "Use a pop-up for OAuth authentication" : "Usar um pop-up para autenticação OAuth",
     "Enable GitHub link previews" : "Ativar visualizações de links do GitHub",
     "Enable GitHub dashboard widget" : "Ativar widget do painel do GitHub",
