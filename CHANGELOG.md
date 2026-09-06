@@ -8,6 +8,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 3.2.8
+
+### Fixed
+
+- Update `league/commonmark` to 2.10.0, closing four high-severity denial-of-service
+  advisories and an `AttributesExtension` unsafe-link filter bypass on the converter
+  used to render issue and pull request bodies.
+- Update bundled JavaScript dependencies to close the remaining high-severity
+  advisories (dompurify, js-yaml, nanoid).
+
 ## 3.2.7 - 2026-08-18
 
 ### Added
