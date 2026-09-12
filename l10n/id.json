@@ -42,6 +42,7 @@
     "Invalid access token" : "Token akses tidak valid",
     "Failed to save GitHub options" : "Gagal menyimpan opsi GitHub",
     "Enable navigation link" : "Aktifkan tautan navigasi",
+    "Disabled by administrator" : "Dinonaktifkan oleh administrator",
     "GitHub personal access tokens" : "Token akses pribadi GitHub",
     "Personal access token" : "Token akses pribadi",
     "Connected as {user}" : "Terhubung sebagai {user}",
