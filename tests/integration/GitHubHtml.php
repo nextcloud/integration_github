@@ -64,6 +64,27 @@ final class GitHubHtml {
 		]);
 	}
 
+	/**
+	 * Whether this is GitHub's "Verify your two-factor authentication (2FA) settings"
+	 * checkup page, regardless of whether a dismissable delay form is present.
+	 *
+	 * The page is sometimes served with only a client-rendered
+	 * `/settings/two_factor_checkup` form carrying no named inputs, which cannot be
+	 * posted back. Detecting it separately from the delay form lets the caller report
+	 * that specifically instead of failing with a generic "no form found".
+	 */
+	public static function isTwoFactorCheckupPage(DOMXPath $selector, string $url = ''): bool {
+		if (str_contains($url, 'two_factor_checkup')) {
+			return true;
+		}
+
+		$checkupForm = self::findForm($selector, [
+			'//form[contains(@action, "two_factor_checkup")]',
+		]);
+
+		return $checkupForm !== null;
+	}
+
 	public static function findTotpAlternativeUrl(DOMXPath $selector): ?string {
 		$linkSelectors = [
 			'//a[contains(@href, "two-factor/app")]',

@@ -249,6 +249,18 @@ class GithubOauthIntegrationTest extends TestCase {
 			];
 		}
 
+		// The same checkup, but served with only a client-rendered form carrying no
+		// named inputs. There is nothing to post back, so it cannot be dismissed from
+		// here; report it distinctly so the caller can skip rather than fail on what is
+		// account state rather than a regression.
+		if (GitHubHtml::isTwoFactorCheckupPage($selector, $finalUrl)) {
+			return [
+				'status' => 'two_factor_checkup_blocked',
+				'checkup_url' => $finalUrl,
+				'body' => $body,
+			];
+		}
+
 		$isTwoFactorPage = GitHubHtml::findTwoFactorForm($selector) !== null
 			|| str_contains($finalUrl, 'two-factor')
 			|| str_contains($title, 'Two-factor authentication');
@@ -504,6 +516,14 @@ class GithubOauthIntegrationTest extends TestCase {
 
 		if ($loginResult['status'] === 'two_factor_checkup') {
 			$loginResult = $this->dismissTwoFactorCheckup($loginResult['body'], $loginResult['checkup_url'] ?? $authorizeUrl);
+		}
+
+		if ($loginResult['status'] === 'two_factor_checkup_blocked') {
+			$this->markTestSkipped(
+				'GitHub is showing the two-factor authentication checkup page for the CI account at '
+				. ($loginResult['checkup_url'] ?? $authorizeUrl) . ' and served no dismissable delay form. '
+				. 'Sign in as the CI account once and complete or postpone the checkup to re-enable this test.'
+			);
 		}
 
 		if ($loginResult['status'] === 'invalid_credentials') {

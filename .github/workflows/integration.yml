@@ -35,9 +35,16 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        php-versions: ['8.2']
-        databases: ['sqlite']
-        server-versions: ['master', 'stable33']
+        # Pair each server branch with a PHP version it actually supports. A plain
+        # cross-product put PHP 8.2 against master, which requires 8.3 or newer, so
+        # `occ maintenance:install` aborted before any test ran.
+        include:
+          - php-versions: '8.2'
+            databases: 'sqlite'
+            server-versions: 'stable33'
+          - php-versions: '8.3'
+            databases: 'sqlite'
+            server-versions: 'master'
 
     name: php${{ matrix.php-versions }}-${{ matrix.databases }}-${{ matrix.server-versions }}
 
