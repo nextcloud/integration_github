@@ -25,6 +25,9 @@ on:
       - templates/**
       - tests/**
 
+permissions:
+  contents: read
+
 env:
   APP_NAME: integration_github
 
@@ -86,6 +89,7 @@ jobs:
           CI_USER_LOGIN: ${{ secrets.CI_USER_LOGIN }}
           CI_USER_PASSWORD: ${{ secrets.CI_USER_PASSWORD }}
           CI_TOTP_SECRET: ${{ secrets.CI_TOTP_SECRET }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: composer run test:integration
 
       - name: Upload Nextcloud log on failure

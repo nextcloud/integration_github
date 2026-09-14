@@ -9,33 +9,39 @@ declare(strict_types=1);
 
 namespace OCA\Github\Tests\Integration;
 
+require_once __DIR__ . '/WorkflowTokenTrait.php';
+
 use OCA\Github\Service\GithubAPIService;
 use OCA\Github\Service\SecretService;
 use OCP\Server;
-use PHPUnit\Framework\Attributes\DependsExternal;
 use PHPUnit\Framework\Attributes\Group;
 use Test\TestCase;
 
 #[Group('DB')]
 class GitHubSearchIntegrationTest extends TestCase {
+	use WorkflowTokenTrait;
+
 	private GithubAPIService $githubAPIService;
 	private SecretService $secretService;
 
 	protected function setUp(): void {
 		parent::setUp();
 
+		$this->useWorkflowToken();
 		$this->githubAPIService = Server::get(GithubAPIService::class);
 		$this->secretService = Server::get(SecretService::class);
 	}
 
-	#[DependsExternal(GithubOauthIntegrationTest::class, 'testOAuthLogin')]
-	public function testSearchRepositoriesStructure(array $oauthData): void {
-		$this->assertIsArray($oauthData, 'oauthData should be an array from OAuth test, got: ' . gettype($oauthData));
-		$this->assertArrayHasKey('userId', $oauthData, 'oauthData must contain userId');
-		$userId = $oauthData['userId'];
+	protected function tearDown(): void {
+		$this->restorePreviousToken();
+		parent::tearDown();
+	}
+
+	public function testSearchRepositoriesStructure(): void {
+		$userId = $this->userId;
 
 		$token = $this->secretService->getEncryptedUserValue($userId, 'token');
-		$this->assertNotSame('', $token, 'Token should be stored after OAuth flow');
+		$this->assertNotSame('', $token, 'The workflow token should be stored for the test user');
 
 		$result = $this->githubAPIService->searchRepositories($userId, 'nextcloud', 0, 5);
 		$this->assertArrayNotHasKey('error', $result, 'GitHub API returned error: ' . ($result['error'] ?? 'unknown'));
@@ -62,11 +68,8 @@ class GitHubSearchIntegrationTest extends TestCase {
 		$this->assertStringContainsString('github.com', $repo['html_url'], 'html_url should point to github.com');
 	}
 
-	#[DependsExternal(GithubOauthIntegrationTest::class, 'testOAuthLogin')]
-	public function testSearchRepositoriesPagination(array $oauthData): void {
-		$this->assertIsArray($oauthData, 'oauthData should be an array from OAuth test');
-		$this->assertArrayHasKey('userId', $oauthData, 'oauthData must contain userId');
-		$userId = $oauthData['userId'];
+	public function testSearchRepositoriesPagination(): void {
+		$userId = $this->userId;
 
 		$result1 = $this->githubAPIService->searchRepositories($userId, 'nextcloud', 0, 3);
 		$this->assertArrayNotHasKey('error', $result1, 'GitHub API returned error');
@@ -83,14 +86,11 @@ class GitHubSearchIntegrationTest extends TestCase {
 		}
 	}
 
-	#[DependsExternal(GithubOauthIntegrationTest::class, 'testOAuthLogin')]
-	public function testSearchIssuesStructure(array $oauthData): void {
-		$this->assertIsArray($oauthData, 'oauthData should be an array from OAuth test, got: ' . gettype($oauthData));
-		$this->assertArrayHasKey('userId', $oauthData, 'oauthData must contain userId');
-		$userId = $oauthData['userId'];
+	public function testSearchIssuesStructure(): void {
+		$userId = $this->userId;
 
 		$token = $this->secretService->getEncryptedUserValue($userId, 'token');
-		$this->assertNotSame('', $token, 'Token should be stored after OAuth flow');
+		$this->assertNotSame('', $token, 'The workflow token should be stored for the test user');
 
 		$result = $this->githubAPIService->searchIssues($userId, 'nextcloud is:open', 0, 5);
 		$this->assertArrayNotHasKey('error', $result, 'GitHub API returned error: ' . ($result['error'] ?? 'unknown'));
@@ -130,11 +130,8 @@ class GitHubSearchIntegrationTest extends TestCase {
 		$this->assertCount(2, $parts, 'Repository path should have owner/repo format');
 	}
 
-	#[DependsExternal(GithubOauthIntegrationTest::class, 'testOAuthLogin')]
-	public function testSearchIssuesPullRequestDetection(array $oauthData): void {
-		$this->assertIsArray($oauthData, 'oauthData should be an array from OAuth test');
-		$this->assertArrayHasKey('userId', $oauthData, 'oauthData must contain userId');
-		$userId = $oauthData['userId'];
+	public function testSearchIssuesPullRequestDetection(): void {
+		$userId = $this->userId;
 
 		$result = $this->githubAPIService->searchIssues($userId, 'nextcloud is:pr is:open', 0, 10);
 		$this->assertArrayNotHasKey('error', $result, 'GitHub API returned error');
@@ -148,11 +145,8 @@ class GitHubSearchIntegrationTest extends TestCase {
 		}
 	}
 
-	#[DependsExternal(GithubOauthIntegrationTest::class, 'testOAuthLogin')]
-	public function testSearchIssuesIssuesOnly(array $oauthData): void {
-		$this->assertIsArray($oauthData, 'oauthData should be an array from OAuth test');
-		$this->assertArrayHasKey('userId', $oauthData, 'oauthData must contain userId');
-		$userId = $oauthData['userId'];
+	public function testSearchIssuesIssuesOnly(): void {
+		$userId = $this->userId;
 
 		$result = $this->githubAPIService->searchIssues($userId, 'nextcloud is:issue is:open', 0, 10);
 		$this->assertArrayNotHasKey('error', $result, 'GitHub API returned error');
