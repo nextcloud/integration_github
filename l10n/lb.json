@@ -1,0 +1,9 @@
+{ "translations": {
+    "GitHub" : "GitHub",
+    "Comment" : "Kommentar",
+    "Client ID" : "Client ID",
+    "Unsubscribe" : "Ofbestellen",
+    "Unknown error" : "Et ass en onbekannte Fehler opgetrueden",
+    "Owner" : "Owner"
+},"pluralForm" :"nplurals=2; plural=(n != 1);"
+}
