@@ -9,34 +9,40 @@ declare(strict_types=1);
 
 namespace OCA\Github\Tests\Integration;
 
+require_once __DIR__ . '/WorkflowTokenTrait.php';
+
 use OCA\Github\Reference\GithubCodeReferenceProvider;
 use OCA\Github\Service\SecretService;
 use OCP\Collaboration\Reference\IReference;
 use OCP\Server;
-use PHPUnit\Framework\Attributes\DependsExternal;
 use PHPUnit\Framework\Attributes\Group;
 use Test\TestCase;
 
 #[Group('DB')]
 class GitHubCodeReferenceIntegrationTest extends TestCase {
+	use WorkflowTokenTrait;
+
 	private GithubCodeReferenceProvider $referenceProvider;
 	private SecretService $secretService;
 
 	protected function setUp(): void {
 		parent::setUp();
 
+		$this->useWorkflowToken();
 		$this->referenceProvider = Server::get(GithubCodeReferenceProvider::class);
 		$this->secretService = Server::get(SecretService::class);
 	}
 
-	#[DependsExternal(GithubOauthIntegrationTest::class, 'testOAuthLogin')]
-	public function testResolveSingleLineCodeReference(array $oauthData): void {
-		$this->assertIsArray($oauthData, 'oauthData should be an array from OAuth test');
-		$this->assertArrayHasKey('userId', $oauthData, 'oauthData must contain userId');
-		$userId = $oauthData['userId'];
+	protected function tearDown(): void {
+		$this->restorePreviousToken();
+		parent::tearDown();
+	}
+
+	public function testResolveSingleLineCodeReference(): void {
+		$userId = $this->userId;
 
 		$token = $this->secretService->getEncryptedUserValue($userId, 'token');
-		$this->assertNotSame('', $token, 'Token should be stored after OAuth flow');
+		$this->assertNotSame('', $token, 'The workflow token should be stored for the test user');
 
 		$referenceUrl = 'https://github.com/nextcloud/server/blob/master/lib/base.php#L1';
 		$reference = $this->referenceProvider->resolveReference($referenceUrl);
@@ -79,11 +85,7 @@ class GitHubCodeReferenceIntegrationTest extends TestCase {
 		$this->assertStringContainsString('github.com', $richObject['link'], 'link should contain github.com');
 	}
 
-	#[DependsExternal(GithubOauthIntegrationTest::class, 'testOAuthLogin')]
-	public function testResolveMultiLineCodeReference(array $oauthData): void {
-		$this->assertIsArray($oauthData, 'oauthData should be an array from OAuth test');
-		$this->assertArrayHasKey('userId', $oauthData, 'oauthData must contain userId');
-
+	public function testResolveMultiLineCodeReference(): void {
 		$referenceUrl = 'https://github.com/nextcloud/server/blob/master/lib/base.php#L1-L5';
 		$reference = $this->referenceProvider->resolveReference($referenceUrl);
 
@@ -103,10 +105,7 @@ class GitHubCodeReferenceIntegrationTest extends TestCase {
 		$this->assertCount($expectedLineCount, $richObject['lines'], 'lines array should have correct count');
 	}
 
-	#[DependsExternal(GithubOauthIntegrationTest::class, 'testOAuthLogin')]
-	public function testMatchReference(array $oauthData): void {
-		$this->assertIsArray($oauthData, 'oauthData should be an array from OAuth test');
-
+	public function testMatchReference(): void {
 		$validSingleLine = 'https://github.com/nextcloud/server/blob/master/lib/base.php#L1';
 		$validMultiLine = 'https://github.com/nextcloud/server/blob/abc123/lib/base.php#L1-L10';
 		$invalidNoLine = 'https://github.com/nextcloud/server/blob/master/lib/base.php';
@@ -118,11 +117,7 @@ class GitHubCodeReferenceIntegrationTest extends TestCase {
 		$this->assertFalse($this->referenceProvider->matchReference($invalidWrongUrl), 'Should not match non-blob URL');
 	}
 
-	#[DependsExternal(GithubOauthIntegrationTest::class, 'testOAuthLogin')]
-	public function testReferenceTitle(array $oauthData): void {
-		$this->assertIsArray($oauthData, 'oauthData should be an array from OAuth test');
-		$this->assertArrayHasKey('userId', $oauthData, 'oauthData must contain userId');
-
+	public function testReferenceTitle(): void {
 		$referenceUrl = 'https://github.com/nextcloud/server/blob/master/lib/base.php#L1';
 		$reference = $this->referenceProvider->resolveReference($referenceUrl);
 
@@ -133,11 +128,7 @@ class GitHubCodeReferenceIntegrationTest extends TestCase {
 		$this->assertStringContainsString('permalink', strtolower($title), 'Title should mention permalink');
 	}
 
-	#[DependsExternal(GithubOauthIntegrationTest::class, 'testOAuthLogin')]
-	public function testReferenceDescription(array $oauthData): void {
-		$this->assertIsArray($oauthData, 'oauthData should be an array from OAuth test');
-		$this->assertArrayHasKey('userId', $oauthData, 'oauthData must contain userId');
-
+	public function testReferenceDescription(): void {
 		$referenceUrl = 'https://github.com/nextcloud/server/blob/master/lib/base.php#L1';
 		$reference = $this->referenceProvider->resolveReference($referenceUrl);
 
@@ -151,11 +142,7 @@ class GitHubCodeReferenceIntegrationTest extends TestCase {
 		}
 	}
 
-	#[DependsExternal(GithubOauthIntegrationTest::class, 'testOAuthLogin')]
-	public function testShortRefFormat(array $oauthData): void {
-		$this->assertIsArray($oauthData, 'oauthData should be an array from OAuth test');
-		$this->assertArrayHasKey('userId', $oauthData, 'oauthData must contain userId');
-
+	public function testShortRefFormat(): void {
 		$referenceUrl = 'https://github.com/nextcloud/server/blob/master/lib/base.php#L1';
 		$reference = $this->referenceProvider->resolveReference($referenceUrl);
 
@@ -174,11 +161,7 @@ class GitHubCodeReferenceIntegrationTest extends TestCase {
 		}
 	}
 
-	#[DependsExternal(GithubOauthIntegrationTest::class, 'testOAuthLogin')]
-	public function testVcsCodePermalinkStructure(array $oauthData): void {
-		$this->assertIsArray($oauthData, 'oauthData should be an array from OAuth test');
-		$this->assertArrayHasKey('userId', $oauthData, 'oauthData must contain userId');
-
+	public function testVcsCodePermalinkStructure(): void {
 		$referenceUrl = 'https://github.com/nextcloud/server/blob/master/lib/base.php#L1';
 		$reference = $this->referenceProvider->resolveReference($referenceUrl);
 
@@ -204,11 +187,7 @@ class GitHubCodeReferenceIntegrationTest extends TestCase {
 		}
 	}
 
-	#[DependsExternal(GithubOauthIntegrationTest::class, 'testOAuthLogin')]
-	public function testCodeLinesContent(array $oauthData): void {
-		$this->assertIsArray($oauthData, 'oauthData should be an array from OAuth test');
-		$this->assertArrayHasKey('userId', $oauthData, 'oauthData must contain userId');
-
+	public function testCodeLinesContent(): void {
 		$referenceUrl = 'https://github.com/nextcloud/server/blob/master/lib/base.php#L1-L3';
 		$reference = $this->referenceProvider->resolveReference($referenceUrl);
 
@@ -226,11 +205,7 @@ class GitHubCodeReferenceIntegrationTest extends TestCase {
 		}
 	}
 
-	#[DependsExternal(GithubOauthIntegrationTest::class, 'testOAuthLogin')]
-	public function testFilePathExtraction(array $oauthData): void {
-		$this->assertIsArray($oauthData, 'oauthData should be an array from OAuth test');
-		$this->assertArrayHasKey('userId', $oauthData, 'oauthData must contain userId');
-
+	public function testFilePathExtraction(): void {
 		$referenceUrl = 'https://github.com/nextcloud/server/blob/master/lib/base.php#L1';
 		$reference = $this->referenceProvider->resolveReference($referenceUrl);
 

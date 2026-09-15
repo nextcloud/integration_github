@@ -9,34 +9,40 @@ declare(strict_types=1);
 
 namespace OCA\Github\Tests\Integration;
 
+require_once __DIR__ . '/WorkflowTokenTrait.php';
+
 use OCA\Github\Reference\GithubIssuePrReferenceProvider;
 use OCA\Github\Service\SecretService;
 use OCP\Collaboration\Reference\IReference;
 use OCP\Server;
-use PHPUnit\Framework\Attributes\DependsExternal;
 use PHPUnit\Framework\Attributes\Group;
 use Test\TestCase;
 
 #[Group('DB')]
 class GitHubIssuePrReferenceIntegrationTest extends TestCase {
+	use WorkflowTokenTrait;
+
 	private GithubIssuePrReferenceProvider $referenceProvider;
 	private SecretService $secretService;
 
 	protected function setUp(): void {
 		parent::setUp();
 
+		$this->useWorkflowToken();
 		$this->referenceProvider = Server::get(GithubIssuePrReferenceProvider::class);
 		$this->secretService = Server::get(SecretService::class);
 	}
 
-	#[DependsExternal(GithubOauthIntegrationTest::class, 'testOAuthLogin')]
-	public function testResolveIssueReference(array $oauthData): void {
-		$this->assertIsArray($oauthData, 'oauthData should be an array from OAuth test');
-		$this->assertArrayHasKey('userId', $oauthData, 'oauthData must contain userId');
-		$userId = $oauthData['userId'];
+	protected function tearDown(): void {
+		$this->restorePreviousToken();
+		parent::tearDown();
+	}
+
+	public function testResolveIssueReference(): void {
+		$userId = $this->userId;
 
 		$token = $this->secretService->getEncryptedUserValue($userId, 'token');
-		$this->assertNotSame('', $token, 'Token should be stored after OAuth flow');
+		$this->assertNotSame('', $token, 'The workflow token should be stored for the test user');
 
 		$referenceUrl = 'https://github.com/nextcloud/server/issues/1';
 		$reference = $this->referenceProvider->resolveReference($referenceUrl);
@@ -96,14 +102,11 @@ class GitHubIssuePrReferenceIntegrationTest extends TestCase {
 		}
 	}
 
-	#[DependsExternal(GithubOauthIntegrationTest::class, 'testOAuthLogin')]
-	public function testResolvePullRequestReference(array $oauthData): void {
-		$this->assertIsArray($oauthData, 'oauthData should be an array from OAuth test');
-		$this->assertArrayHasKey('userId', $oauthData, 'oauthData must contain userId');
-		$userId = $oauthData['userId'];
+	public function testResolvePullRequestReference(): void {
+		$userId = $this->userId;
 
 		$token = $this->secretService->getEncryptedUserValue($userId, 'token');
-		$this->assertNotSame('', $token, 'Token should be stored after OAuth flow');
+		$this->assertNotSame('', $token, 'The workflow token should be stored for the test user');
 
 		$referenceUrl = 'https://github.com/nextcloud/server/pull/1';
 		$reference = $this->referenceProvider->resolveReference($referenceUrl);
@@ -156,14 +159,11 @@ class GitHubIssuePrReferenceIntegrationTest extends TestCase {
 		$this->assertValidDateString($richObject['created_at'], 'created_at should be a valid date string');
 	}
 
-	#[DependsExternal(GithubOauthIntegrationTest::class, 'testOAuthLogin')]
-	public function testResolveIssueWithCommentReference(array $oauthData): void {
-		$this->assertIsArray($oauthData, 'oauthData should be an array from OAuth test');
-		$this->assertArrayHasKey('userId', $oauthData, 'oauthData must contain userId');
-		$userId = $oauthData['userId'];
+	public function testResolveIssueWithCommentReference(): void {
+		$userId = $this->userId;
 
 		$token = $this->secretService->getEncryptedUserValue($userId, 'token');
-		$this->assertNotSame('', $token, 'Token should be stored after OAuth flow');
+		$this->assertNotSame('', $token, 'The workflow token should be stored for the test user');
 
 		$referenceUrl = 'https://github.com/nextcloud/server/issues/1#issuecomment-223229268';
 		$reference = $this->referenceProvider->resolveReference($referenceUrl);
@@ -193,10 +193,7 @@ class GitHubIssuePrReferenceIntegrationTest extends TestCase {
 		$this->assertValidDateString($comment['updated_at'], 'Comment updated_at should be a valid date string');
 	}
 
-	#[DependsExternal(GithubOauthIntegrationTest::class, 'testOAuthLogin')]
-	public function testMatchReference(array $oauthData): void {
-		$this->assertIsArray($oauthData, 'oauthData should be an array from OAuth test');
-
+	public function testMatchReference(): void {
 		$validIssueUrl = 'https://github.com/nextcloud/server/issues/123';
 		$validPrUrl = 'https://github.com/nextcloud/server/pull/456';
 		$invalidUrl = 'https://github.com/nextcloud/server';
@@ -206,11 +203,7 @@ class GitHubIssuePrReferenceIntegrationTest extends TestCase {
 		$this->assertFalse($this->referenceProvider->matchReference($invalidUrl), 'Should not match repo URL');
 	}
 
-	#[DependsExternal(GithubOauthIntegrationTest::class, 'testOAuthLogin')]
-	public function testReferenceTitle(array $oauthData): void {
-		$this->assertIsArray($oauthData, 'oauthData should be an array from OAuth test');
-		$this->assertArrayHasKey('userId', $oauthData, 'oauthData must contain userId');
-
+	public function testReferenceTitle(): void {
 		$referenceUrl = 'https://github.com/nextcloud/server/issues/1';
 		$reference = $this->referenceProvider->resolveReference($referenceUrl);
 
@@ -222,11 +215,7 @@ class GitHubIssuePrReferenceIntegrationTest extends TestCase {
 		$this->assertStringContainsString('nextcloud/server', $title, 'Title should contain repo name');
 	}
 
-	#[DependsExternal(GithubOauthIntegrationTest::class, 'testOAuthLogin')]
-	public function testReferenceMilestone(array $oauthData): void {
-		$this->assertIsArray($oauthData, 'oauthData should be an array from OAuth test');
-		$this->assertArrayHasKey('userId', $oauthData, 'oauthData must contain userId');
-
+	public function testReferenceMilestone(): void {
 		$referenceUrl = 'https://github.com/nextcloud/server/issues/1';
 		$reference = $this->referenceProvider->resolveReference($referenceUrl);
 
@@ -240,11 +229,7 @@ class GitHubIssuePrReferenceIntegrationTest extends TestCase {
 		}
 	}
 
-	#[DependsExternal(GithubOauthIntegrationTest::class, 'testOAuthLogin')]
-	public function testReferenceReactions(array $oauthData): void {
-		$this->assertIsArray($oauthData, 'oauthData should be an array from OAuth test');
-		$this->assertArrayHasKey('userId', $oauthData, 'oauthData must contain userId');
-
+	public function testReferenceReactions(): void {
 		$referenceUrl = 'https://github.com/nextcloud/server/issues/1';
 		$reference = $this->referenceProvider->resolveReference($referenceUrl);
 
