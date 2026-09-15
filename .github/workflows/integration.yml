@@ -84,11 +84,6 @@ jobs:
       - name: PHPUnit integration
         working-directory: apps/${{ env.APP_NAME }}
         env:
-          CI_CLIENT_ID: ${{ secrets.CI_CLIENT_ID }}
-          CI_CLIENT_SECRET: ${{ secrets.CI_CLIENT_SECRET }}
-          CI_USER_LOGIN: ${{ secrets.CI_USER_LOGIN }}
-          CI_USER_PASSWORD: ${{ secrets.CI_USER_PASSWORD }}
-          CI_TOTP_SECRET: ${{ secrets.CI_TOTP_SECRET }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: composer run test:integration
 

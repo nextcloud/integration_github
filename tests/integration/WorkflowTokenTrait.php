@@ -20,10 +20,9 @@ use OCP\Server;
  * every workflow run, stored as the test user's personal token, instead of a token
  * obtained by logging in to a GitHub account.
  *
- * It is the same Nextcloud user as in GithubOauthIntegrationTest, because the reference
- * providers get their user injected when they are constructed. The user's previous token
- * is restored afterwards, so the tests that depend on the OAuth flow keep the token that
- * flow stored, whatever order the tests run in.
+ * It is the same Nextcloud user as in MockedGithubApiTrait, because the reference providers
+ * get their user injected when they are constructed. The user's previous token is restored
+ * afterwards, so each test leaves the user as it found it, whatever order the tests run in.
  */
 trait WorkflowTokenTrait {
 	private const WORKFLOW_TOKEN_USER_ID = 'github_test_user';
