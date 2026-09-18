@@ -1,0 +1,121 @@
+# SPDX-FileCopyrightText: 2026 Nextcloud GmbH and Nextcloud contributors
+# SPDX-License-Identifier: MIT
+
+name: Playwright
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+concurrency:
+  group: playwright-${{ github.head_ref || github.run_id }}
+  cancel-in-progress: true
+
+jobs:
+  matrix:
+    runs-on: ubuntu-latest-low
+    outputs:
+      server-min: ${{ steps.versions.outputs.branches-min }}
+      server-max: ${{ steps.versions.outputs.branches-max }}
+      php-min: ${{ steps.versions.outputs.php-min }}
+    steps:
+      - name: Checkout app
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Get version matrix
+        id: versions
+        uses: icewind1991/nextcloud-version-matrix@8a7bac6300b2f0f3100088b297995a229558ddba # v1.3.2
+
+  playwright:
+    runs-on: ubuntu-latest
+    needs: matrix
+
+    strategy:
+      fail-fast: false
+      matrix:
+        # the oldest and the newest server the app supports
+        server-versions: ['${{ needs.matrix.outputs.server-min }}', '${{ needs.matrix.outputs.server-max }}']
+
+    name: Playwright Nextcloud ${{ matrix.server-versions }}
+
+    steps:
+      - name: Checkout app
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Read package.json node and npm engines version
+        uses: skjnldsv/read-package-engines-version-actions@06d6baf7d8f41934ab630e97d9e6c0bc9c9ac5e4 # v3
+        id: versions
+        with:
+          fallbackNode: '^24'
+          fallbackNpm: '^11'
+
+      - name: Set up node ${{ steps.versions.outputs.nodeVersion }}
+        uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6.4.0
+        with:
+          node-version: ${{ steps.versions.outputs.nodeVersion }}
+
+      - name: Set up npm ${{ steps.versions.outputs.npmVersion }}
+        run: npm i -g 'npm@${{ steps.versions.outputs.npmVersion }}'
+
+      - name: Install dependencies and build
+        run: |
+          npm ci
+          npm run build --if-present
+
+      - name: Set up php ${{ needs.matrix.outputs.php-min }}
+        uses: shivammathur/setup-php@44454db4f0199b8b9685a5d763dc37cbf79108e1 # v2.36.0
+        with:
+          php-version: ${{ needs.matrix.outputs.php-min }}
+          coverage: none
+          ini-file: development
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # the app loads league/commonmark from vendor/
+      - name: Install composer dependencies
+        run: composer install --no-dev
+
+      - name: Install Playwright browsers
+        run: npx playwright install chromium --with-deps
+
+      - name: Run Playwright tests
+        run: npx playwright test
+        env:
+          BRANCH: ${{ matrix.server-versions }}
+
+      - name: Show Nextcloud log on failure
+        if: failure()
+        run: docker ps -q --filter name=nextcloud-e2e-test-server | xargs -r -I{} docker exec {} cat data/nextcloud.log || true
+
+      - name: Upload Playwright report
+        if: failure()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: playwright-report-${{ matrix.server-versions }}
+          path: |
+            playwright-report/
+            test-results/
+          retention-days: 7
+
+  summary:
+    permissions:
+      contents: none
+    runs-on: ubuntu-latest-low
+    needs: [matrix, playwright]
+
+    if: always()
+
+    name: playwright-summary
+
+    steps:
+      - name: Summary status
+        run: if ${{ needs.playwright.result != 'success' }}; then exit 1; fi
