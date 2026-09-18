@@ -105,6 +105,15 @@ class GithubAPIControllerTest extends TestCase {
 		$this->assertEquals($correctResult, $result->getData());
 	}
 
+	public function testGetNotificationsWithoutAGithubAccount(): void {
+		\OC::$server->get(IConfig::class)->deleteUserValue(self::TEST_USER1, self::APP_NAME, 'token');
+		$this->iClient->expects($this->never())->method('get');
+
+		$result = $this->githubApiController->getNotifications();
+
+		$this->assertEquals(400, $result->getStatus());
+	}
+
 	public function testUnsubscribeNotification(): void {
 		$id = 12345;
 

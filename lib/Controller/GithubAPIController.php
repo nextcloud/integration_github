@@ -36,6 +36,10 @@ class GithubAPIController extends Controller {
 	 */
 	#[NoAdminRequired]
 	public function getNotifications(?string $since = null): DataResponse {
+		if (!$this->githubAPIService->isUserConnected($this->userId)) {
+			// the dashboard widget shows its "connect" prompt on 400
+			return new DataResponse([], Http::STATUS_BAD_REQUEST);
+		}
 		$result = $this->githubAPIService->getNotifications($this->userId, false, $since);
 		if (isset($result['error'])) {
 			$response = new DataResponse($result['error'], 401);

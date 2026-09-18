@@ -17,6 +17,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
   used to render issue and pull request bodies.
 - Update bundled JavaScript dependencies to close the remaining high-severity
   advisories (dompurify, js-yaml, nanoid).
+- Show the message of the dashboard widget again, `NcEmptyContent` no longer has the
+  `title` prop it was passed in.
+- Ask users who did not connect a GitHub account to connect one in the dashboard widget,
+  instead of reporting an error and requesting the GitHub API without a token.
 
 ## 3.2.7 - 2026-08-18
 
