@@ -46,6 +46,13 @@ class GithubAPIService {
 	}
 
 	/**
+	 * Whether the user connected a GitHub account, with OAuth or with a personal access token
+	 */
+	public function isUserConnected(string $userId): bool {
+		return $this->secretService->getEncryptedUserValue($userId, 'token') !== '';
+	}
+
+	/**
 	 * Request an avatar image
 	 * @param string $userId
 	 * @param string $githubUserName

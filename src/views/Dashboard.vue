@@ -13,7 +13,7 @@
 		@markRead="onMarkRead">
 		<template #empty-content>
 			<NcEmptyContent v-if="emptyContentMessage"
-				:title="emptyContentMessage">
+				:name="emptyContentMessage">
 				<template #icon>
 					<component :is="emptyContentIcon" />
 				</template>
@@ -89,7 +89,6 @@ export default {
 			loop: null,
 			state: 'loading',
 			settingsUrl: generateUrl('/settings/user/connected-accounts'),
-			darkThemeColor: OCA.Accessibility?.theme === 'dark' ? '181818' : 'ffffff',
 			itemMenu: {
 				markRead: {
 					text: t('integration_github', 'Mark as read'),
