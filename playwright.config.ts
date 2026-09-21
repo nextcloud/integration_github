@@ -49,6 +49,7 @@ export default defineConfig({
 			reuseExistingServer: !process.env.CI,
 			stdout: 'pipe',
 			stderr: 'pipe',
-			timeout: 5 * 60 * 1000,
+			// the shallow server image sometimes needs several minutes to boot on a slow runner
+			timeout: 10 * 60 * 1000,
 		},
 })
