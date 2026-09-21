@@ -10,3 +10,5 @@ node_modules
 /tests/.phpunit.result.cache
 .php-cs-fixer.cache
 /vendor-bin/**/vendor/
+/test-results/
+/playwright-report/

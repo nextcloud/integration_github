@@ -14,7 +14,9 @@
     "lint": "eslint --ext .js,.vue src",
     "lint:fix": "eslint --ext .js,.vue src --fix",
     "stylelint": "stylelint \"src/**/*.vue\" \"src/**/*.scss\" \"src/**/*.css\"",
-    "stylelint:fix": "stylelint \"src/**/*.vue\" \"src/**/*.scss\" \"src/**/*.css\" --fix"
+    "stylelint:fix": "stylelint \"src/**/*.vue\" \"src/**/*.scss\" \"src/**/*.css\" --fix",
+    "playwright": "playwright test",
+    "playwright:ui": "playwright test --ui"
   },
   "repository": {
     "type": "git",
@@ -62,9 +64,11 @@
   "devDependencies": {
     "@nextcloud/babel-config": "^1.2.0",
     "@nextcloud/browserslist-config": "^3.0.1",
+    "@nextcloud/e2e-test-server": "^0.6.0",
     "@nextcloud/eslint-config": "^8.4.2",
     "@nextcloud/stylelint-config": "^3.0.1",
     "@nextcloud/vite-config": "^2.5.2",
+    "@playwright/test": "^1.63.0",
     "vite-plugin-eslint": "^1.8.1",
     "vite-plugin-stylelint": "^6.0.2"
   }
