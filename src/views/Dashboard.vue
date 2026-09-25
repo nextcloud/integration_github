@@ -4,11 +4,11 @@
 -->
 <template>
 	<NcDashboardWidget :items="items"
-		:show-more-url="showMoreUrl"
-		:show-more-text="title"
-		:empty-content-message="t('integration_github', 'OMG! No GitHub notifications!')"
+		:showMoreUrl="showMoreUrl"
+		:showMoreText="title"
+		:emptyContentMessage="t('integration_github', 'OMG! No GitHub notifications!')"
 		:loading="state === 'loading'"
-		:item-menu="itemMenu"
+		:itemMenu="itemMenu"
 		@unsubscribe="onUnsubscribe"
 		@markRead="onMarkRead">
 		<template #empty-content>
@@ -43,26 +43,22 @@
 </template>
 
 <script>
-import LoginVariantIcon from 'vue-material-design-icons/LoginVariant.vue'
-import CheckIcon from 'vue-material-design-icons/Check.vue'
-import CloseIcon from 'vue-material-design-icons/Close.vue'
-
-import GithubIcon from '../components/icons/GithubIcon.vue'
-import { oauthConnect } from '../utils.js'
-
 import axios from '@nextcloud/axios'
-import { generateUrl, imagePath } from '@nextcloud/router'
 import { showError, showSuccess } from '@nextcloud/dialogs'
 import { loadState } from '@nextcloud/initial-state'
 import moment from '@nextcloud/moment'
-
-import NcEmptyContent from '@nextcloud/vue/components/NcEmptyContent'
-import NcDashboardWidget from '@nextcloud/vue/components/NcDashboardWidget'
-
+import { generateUrl, imagePath } from '@nextcloud/router'
 import NcButton from '@nextcloud/vue/components/NcButton'
+import NcDashboardWidget from '@nextcloud/vue/components/NcDashboardWidget'
+import NcEmptyContent from '@nextcloud/vue/components/NcEmptyContent'
+import CheckIcon from 'vue-material-design-icons/Check.vue'
+import CloseIcon from 'vue-material-design-icons/Close.vue'
+import LoginVariantIcon from 'vue-material-design-icons/LoginVariant.vue'
+import GithubIcon from '../components/icons/GithubIcon.vue'
+import { oauthConnect } from '../utils.js'
 
 export default {
-	name: 'Dashboard',
+	name: 'GithubDashboard',
 
 	components: {
 		NcDashboardWidget,
@@ -94,11 +90,13 @@ export default {
 					text: t('integration_github', 'Mark as read'),
 					icon: 'icon-checkmark',
 				},
+
 				unsubscribe: {
 					text: t('integration_github', 'Unsubscribe'),
 					icon: 'icon-github-unsubscribe',
 				},
 			},
+
 			initialState: loadState('integration_github', 'user-config'),
 			windowVisibility: true,
 		}
@@ -118,9 +116,11 @@ export default {
 				}
 			})
 		},
+
 		lastMoment() {
 			return moment(this.lastDate)
 		},
+
 		emptyContentMessage() {
 			if (this.state === 'no-token') {
 				return t('integration_github', 'No GitHub account connected')
@@ -129,10 +129,11 @@ export default {
 			} else if (this.state === 'ok') {
 				return t('integration_github', 'No GitHub notifications!')
 			} else if (this.state === 'loading') {
-				return t('integration_github', 'Loading...')
+				return t('integration_github', 'Loading…')
 			}
 			return ' '
 		},
+
 		emptyContentIcon() {
 			if (this.state === 'no-token') {
 				return GithubIcon
@@ -170,7 +171,7 @@ export default {
 			if (this.initialState.use_popup) {
 				this.state = 'loading'
 				oauthConnect(this.initialState.client_id, null, true)
-					.then((data) => {
+					.then(() => {
 						this.stopLoop()
 						this.launchLoop()
 					})
@@ -178,16 +179,20 @@ export default {
 				oauthConnect(this.initialState.client_id, 'dashboard')
 			}
 		},
+
 		changeWindowVisibility() {
 			this.windowVisibility = !document.hidden
 		},
+
 		stopLoop() {
 			clearInterval(this.loop)
 		},
+
 		launchLoop() {
 			this.fetchNotifications()
 			this.loop = setInterval(this.fetchNotifications, 60000)
 		},
+
 		fetchNotifications() {
 			const req = {}
 			if (this.lastDate) {
@@ -211,6 +216,7 @@ export default {
 				}
 			})
 		},
+
 		processNotifications(newNotifications) {
 			if (this.lastDate) {
 				// just add those which are more recent than our most recent one
@@ -230,6 +236,7 @@ export default {
 			const nbNotif = this.notifications.length
 			this.lastDate = (nbNotif > 0) ? this.notifications[0].updated_at : null
 		},
+
 		filter(notifications) {
 			// only keep the unread ones with specific reasons
 			return notifications.filter((n) => {
@@ -242,6 +249,7 @@ export default {
 				)
 			})
 		},
+
 		onUnsubscribe(item) {
 			// TODO adapt vue-dashboard to put the ID in returned item
 			// const i = this.notifications.findIndex((n) => n.id === item.id)
@@ -251,6 +259,7 @@ export default {
 				this.editNotification(id, 'unsubscribe')
 			}
 		},
+
 		onMarkRead(item) {
 			// TODO adapt vue-dashboard to put the ID in returned item
 			// const i = this.notifications.findIndex((n) => n.id === item.id)
@@ -261,8 +270,9 @@ export default {
 				this.editNotification(id, 'mark-read')
 			}
 		},
+
 		editNotification(id, action) {
-			axios.put(generateUrl('/apps/integration_github/notifications/' + id + '/' + action)).then((response) => {
+			axios.put(generateUrl('/apps/integration_github/notifications/' + id + '/' + action)).then(() => {
 				if (action === 'unsubscribe') {
 					showSuccess(t('integration_github', 'Successfully unsubscribed'))
 				}
@@ -271,16 +281,19 @@ export default {
 				console.error(error)
 			})
 		},
+
 		getRepositoryAvatarUrl(n) {
 			return n.repository?.owner?.login
 				? generateUrl('/apps/integration_github/avatar/{login}', { login: n.repository.owner.login })
 				: ''
 		},
+
 		getRepositoryOwnerName(n) {
 			return n.repository?.owner?.login
 				? n.repository.owner.login
 				: ''
 		},
+
 		getNotificationTarget(n) {
 			if (n.subject?.type === 'Release') {
 				return n.subject.url
@@ -299,6 +312,7 @@ export default {
 				return 'https://github.com/' + n.repository?.full_name + '/discussions'
 			}
 		},
+
 		getNotificationActionChar(n) {
 			if (['review_requested', 'assign'].includes(n.reason)) {
 				return '👁'
@@ -307,9 +321,11 @@ export default {
 			}
 			return ''
 		},
+
 		getSubline(n) {
 			return this.getNotificationActionChar(n) + ' ' + n.repository.name + this.getTargetIdentifier(n)
 		},
+
 		getNotificationTypeImage(n) {
 			if (n.subject.type === 'PullRequest') {
 				return imagePath('integration_github', 'pull_request.svg')
@@ -320,6 +336,7 @@ export default {
 			}
 			return ''
 		},
+
 		getTargetIdentifier(n) {
 			if (['PullRequest', 'Issue'].includes(n.subject?.type) && n.subject?.url) {
 				const parts = n.subject.url.split('/')
@@ -327,6 +344,7 @@ export default {
 			}
 			return ''
 		},
+
 		getFormattedDate(n) {
 			return moment(n.updated_at).format('LLL')
 		},

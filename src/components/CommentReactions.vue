@@ -30,6 +30,7 @@ export default {
 			type: Object,
 			required: true,
 		},
+
 		reactionData: {
 			type: Array,
 			default: () => null,
@@ -54,7 +55,7 @@ export default {
 	computed: {
 		displayedReactions() {
 			const result = {}
-			Object.keys(this.availableReactions).forEach(rKey => {
+			Object.keys(this.availableReactions).forEach((rKey) => {
 				if (this.reactions[rKey] > 0) {
 					result[rKey] = {
 						url: this.availableReactions[rKey],
@@ -64,18 +65,19 @@ export default {
 			})
 			return result
 		},
+
 		reactionDetailsByType() {
 			if (this.reactionData === null) {
 				return {}
 			}
 			const byType = {}
-			this.reactionData.forEach(reaction => {
+			this.reactionData.forEach((reaction) => {
 				if (!byType[reaction.content]) {
 					byType[reaction.content] = []
 				}
 				byType[reaction.content].push(reaction.user.login)
 			})
-			Object.keys(byType).forEach(rKey => {
+			Object.keys(byType).forEach((rKey) => {
 				// TRANSLATORS this text is shown on the emoji icon hover tooltip, it is a list of users who reacted with this emoji (e.g. "user1, user2, user3 reacted with eyes emoji")
 				byType[rKey] = t('integration_github', '{logins} reacted with {emoji} emoji', { logins: byType[rKey].join(', '), emoji: rKey })
 			})

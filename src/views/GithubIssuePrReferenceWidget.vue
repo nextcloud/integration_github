@@ -30,7 +30,7 @@
 						:title="stateTooltip"
 						:size="16"
 						class="icon main-icon"
-						:fill-color="iconColor" />
+						:fillColor="iconColor" />
 					<div class="main-info">
 						<div class="title-labels">
 							<a :href="richObject.html_url" class="issue-pr-link" target="_blank">
@@ -49,8 +49,8 @@
 						<div class="assignee-comment-count">
 							<NcAvatar v-for="assignee in richObject.assignees"
 								:key="assignee.login"
-								:tooltip-message="getAssigneeTooltip(assignee)"
-								:is-no-user="true"
+								:tooltipMessage="getAssigneeTooltip(assignee)"
+								:isNoUser="true"
 								:size="20"
 								:url="getAssigneeAvatarUrl(assignee)" />
 							<div v-if="richObject.comments > 0" class="comments-count">
@@ -68,10 +68,10 @@
 						#{{ githubId }}
 					</span>
 					&nbsp;
-					<UserPopover :user-login="richObject.user?.login"
+					<UserPopover :userLogin="richObject.user?.login"
 						:shown="showObjectAuthorPopover"
-						:subject-type="richObject.github_type"
-						:subject-id="richObject.id">
+						:subjectType="richObject.github_type"
+						:subjectId="richObject.id">
 						<template #trigger="{ attrs }">
 							<a v-bind="attrs"
 								:href="'https://github.com/' + richObject.user.login"
@@ -107,30 +107,30 @@
 		<CommentReactions v-if="richObject?.reactions?.total_count > 0"
 			class="issue-pr--reactions item-reactions"
 			:reactions="richObject.reactions"
-			:reaction-data="issueReactionData"
+			:reactionData="issueReactionData"
 			@mouseenter="getIssueReactions" />
 		<div v-if="!isError && richObject.github_comment" class="comment">
 			<div class="comment--content">
-				<UserPopover :user-login="richObject.github_comment.user?.login"
+				<UserPopover :userLogin="richObject.github_comment.user?.login"
 					:shown="showCommentAvatarPopover"
-					:subject-type="richObject.github_type"
-					:subject-id="richObject.id">
+					:subjectType="richObject.github_type"
+					:subjectId="richObject.id">
 					<template #trigger="{ attrs }">
 						<NcAvatar v-bind="attrs"
 							class="author-avatar"
-							:is-no-user="true"
+							:isNoUser="true"
 							:url="commentAuthorAvatarUrl"
-							@mouseenter.native="showCommentAvatarPopover = true"
-							@mouseleave.native="showCommentAvatarPopover = false" />
+							@mouseenter="showCommentAvatarPopover = true"
+							@mouseleave="showCommentAvatarPopover = false" />
 					</template>
 				</UserPopover>
 				<span class="comment--content--bubble-tip" />
 				<span class="comment--content--bubble">
 					<div class="comment--content--bubble--header">
-						<UserPopover :user-login="richObject.github_comment.user?.login"
+						<UserPopover :userLogin="richObject.github_comment.user?.login"
 							:shown="showCommentAuthorPopover"
-							:subject-type="richObject.github_type"
-							:subject-id="richObject.id">
+							:subjectType="richObject.github_type"
+							:subjectId="richObject.id">
 							<template #trigger="{ attrs }">
 								<strong v-bind="attrs"
 									@mouseenter="showCommentAuthorPopover = true"
@@ -162,21 +162,21 @@
 							{{ t('integration_github', 'Owner') }}
 						</div>
 					</div>
-					<div :class="{
-						'comment--content--bubble--content': true,
-						'short-comment': shortComment,
-					}">
+					<div class="comment--content--bubble--content"
+						:class="{
+							'short-comment': shortComment,
+						}">
 						<NcRichText
 							:title="shortComment ? t('integration_github', 'Click to unfold comment') : t('integration_github', 'Click to fold comment')"
 							class="comment-richtext"
 							:text="richObject.github_comment.body"
-							:use-markdown="true"
-							@click.native="shortComment = !shortComment" />
+							:useMarkdown="true"
+							@click="shortComment = !shortComment" />
 					</div>
 					<CommentReactions v-if="richObject.github_comment?.reactions?.total_count > 0"
 						class="comment--reactions item-reactions"
 						:reactions="richObject.github_comment.reactions"
-						:reaction-data="commentReactionData"
+						:reactionData="commentReactionData"
 						@mouseenter="getCommentReactions" />
 				</span>
 			</div>
@@ -185,30 +185,26 @@
 </template>
 
 <script>
-import OpenInNewIcon from 'vue-material-design-icons/OpenInNew.vue'
-
-import GithubIcon from '../components/icons/GithubIcon.vue'
-import IssueOpenIcon from '../components/icons/IssueOpenIcon.vue'
-import IssueClosedIcon from '../components/icons/IssueClosedIcon.vue'
-import IssueClosedNotPlannedIcon from '../components/icons/IssueClosedNotPlannedIcon.vue'
-import PrOpenIcon from '../components/icons/PrOpenIcon.vue'
-import PrOpenDraftIcon from '../components/icons/PrOpenDraftIcon.vue'
-import PrMergedIcon from '../components/icons/PrMergedIcon.vue'
-import PrClosedIcon from '../components/icons/PrClosedIcon.vue'
-import CommentIcon from '../components/icons/CommentIcon.vue'
-import MilestoneIcon from '../components/icons/MilestoneIcon.vue'
-
-import CommentReactions from '../components/CommentReactions.vue'
-import UserPopover from '../components/UserPopover.vue'
-
-import { generateUrl } from '@nextcloud/router'
+import rgbToHsl from '@alchemyalcove/rgb-to-hsl'
 import axios from '@nextcloud/axios'
 import moment from '@nextcloud/moment'
-import { hexToRgb, isDarkMode } from '../utils.js'
-import rgbToHsl from '@alchemyalcove/rgb-to-hsl'
-
-import { NcRichText } from '@nextcloud/vue/components/NcRichText'
+import { generateUrl } from '@nextcloud/router'
 import NcAvatar from '@nextcloud/vue/components/NcAvatar'
+import { NcRichText } from '@nextcloud/vue/components/NcRichText'
+import OpenInNewIcon from 'vue-material-design-icons/OpenInNew.vue'
+import CommentReactions from '../components/CommentReactions.vue'
+import CommentIcon from '../components/icons/CommentIcon.vue'
+import GithubIcon from '../components/icons/GithubIcon.vue'
+import IssueClosedIcon from '../components/icons/IssueClosedIcon.vue'
+import IssueClosedNotPlannedIcon from '../components/icons/IssueClosedNotPlannedIcon.vue'
+import IssueOpenIcon from '../components/icons/IssueOpenIcon.vue'
+import MilestoneIcon from '../components/icons/MilestoneIcon.vue'
+import PrClosedIcon from '../components/icons/PrClosedIcon.vue'
+import PrMergedIcon from '../components/icons/PrMergedIcon.vue'
+import PrOpenDraftIcon from '../components/icons/PrOpenDraftIcon.vue'
+import PrOpenIcon from '../components/icons/PrOpenIcon.vue'
+import UserPopover from '../components/UserPopover.vue'
+import { hexToRgb, isDarkMode } from '../utils.js'
 
 export default {
 	name: 'GithubIssuePrReferenceWidget',
@@ -229,10 +225,12 @@ export default {
 			type: String,
 			default: '',
 		},
+
 		richObject: {
 			type: Object,
 			default: null,
 		},
+
 		accessible: {
 			type: Boolean,
 			default: true,
@@ -255,24 +253,31 @@ export default {
 		isError() {
 			return ['issue-error', 'pr-error'].includes(this.richObject.github_type)
 		},
+
 		isIssue() {
 			return this.richObject.github_type === 'issue'
 		},
+
 		isPr() {
 			return this.richObject.github_type === 'pull_request'
 		},
+
 		isDarkMode() {
 			return isDarkMode()
 		},
+
 		cleanTitle() {
 			return this.richObject.title
 		},
+
 		slug() {
 			return this.richObject.github_repo_owner + '/' + this.richObject.github_repo
 		},
+
 		repoUrl() {
 			return 'https://github.com/' + this.slug
 		},
+
 		githubId() {
 			if (this.isIssue) {
 				return this.richObject.github_issue_id
@@ -281,6 +286,7 @@ export default {
 			}
 			return ''
 		},
+
 		iconComponent() {
 			if (this.isIssue) {
 				if (this.richObject.state === 'open') {
@@ -311,6 +317,7 @@ export default {
 			}
 			return IssueOpenIcon
 		},
+
 		iconColor() {
 			if (this.isIssue) {
 				if (this.richObject.state === 'open') {
@@ -339,6 +346,7 @@ export default {
 			}
 			return '#8b949e'
 		},
+
 		stateTooltip() {
 			if (this.isIssue) {
 				if (this.richObject.state === 'open') {
@@ -367,10 +375,12 @@ export default {
 			}
 			return t('integration_github', 'Unknown state')
 		},
+
 		prSubText() {
 			return (this.richObject.draft ? ' • ' + t('integration_github', 'Draft') : '')
 				+ (this.richObject.requested_reviewers?.length > 0 ? ' • ' + t('integration_github', 'Review requested') : '')
 		},
+
 		dateSubText() {
 			if (this.richObject.state === 'open') {
 				return this.createdAtSubText
@@ -383,6 +393,7 @@ export default {
 			}
 			return ''
 		},
+
 		subTextTooltip() {
 			if (this.richObject.state === 'open') {
 				return this.createdAtFormatted
@@ -391,40 +402,52 @@ export default {
 			}
 			return ''
 		},
+
 		createdAtFormatted() {
 			return moment(this.richObject.created_at).format('LLL')
 		},
+
 		closedAtFormatted() {
 			return moment(this.richObject.closed_at).format('LLL')
 		},
+
 		createdAtSubText() {
 			return t('integration_github', 'opened {relativeDate}', { relativeDate: moment(this.richObject.created_at).fromNow() })
 		},
+
 		closedAtSubText() {
 			return t('integration_github', 'was closed {relativeDate}', { relativeDate: moment(this.richObject.closed_at).fromNow() })
 		},
+
 		mergedAtSubText() {
 			return t('integration_github', 'was merged {relativeDate}', { relativeDate: moment(this.richObject.closed_at).fromNow() })
 		},
+
 		commentAuthorUrl() {
 			return 'https://github.com/' + this.richObject.github_comment?.user?.login
 		},
+
 		commentAuthorAvatarUrl() {
 			const login = this.richObject.github_comment.user?.login ?? ''
 			return generateUrl('/apps/integration_github/avatar/{login}', { login })
 		},
+
 		commentAuthorTooltip() {
 			return t('integration_github', 'Comment from {login}', { login: this.richObject.github_comment.user?.login ?? '' })
 		},
+
 		commentedAtTooltip() {
 			return moment(this.richObject.github_comment.created_at).format('LLL')
 		},
+
 		commentedAtText() {
 			return t('integration_github', 'commented {date}', { date: moment(this.richObject.github_comment.created_at).fromNow() })
 		},
+
 		commentUpdatedAtTooltip() {
 			return moment(this.richObject.github_comment.updated_at).format('LLL')
 		},
+
 		commentUpdatedAtText() {
 			return t('integration_github', 'edited {date}', { date: moment(this.richObject.github_comment.updated_at).fromNow() })
 		},
@@ -435,25 +458,28 @@ export default {
 			const login = assignee.login ?? ''
 			return generateUrl('/apps/integration_github/avatar/{login}', { login })
 		},
+
 		getAssigneeTooltip(assignee) {
 			return t('integration_github', 'Assigned to {login}', { login: assignee.login })
 		},
+
 		getLabelStyle(label) {
 			const rgb = hexToRgb('#' + label.color)
 			const hsl = rgbToHsl([rgb.r, rgb.g, rgb.b])
 			return this.isDarkMode
 				? {
 					// like github dark mode
-					background: 'rgba(' + rgb.r + ', ' + rgb.g + ', ' + rgb.b + ', 0.18)',
-					color: `hsl(${Math.round(hsl[0])}, 100%, 75%)`,
-					border: `1px solid hsl(${Math.round(hsl[0])}, 60%, 75%)`,
-				}
+						background: 'rgba(' + rgb.r + ', ' + rgb.g + ', ' + rgb.b + ', 0.18)',
+						color: `hsl(${Math.round(hsl[0])}, 100%, 75%)`,
+						border: `1px solid hsl(${Math.round(hsl[0])}, 60%, 75%)`,
+					}
 				: {
 					// like github light mode
-					background: `rgb(${rgb.r}, ${rgb.g}, ${rgb.b})`,
-					color: Math.round(hsl[2]) > 70 ? 'black' : 'white',
-				}
+						background: `rgb(${rgb.r}, ${rgb.g}, ${rgb.b})`,
+						color: Math.round(hsl[2]) > 70 ? 'black' : 'white',
+					}
 		},
+
 		getIssueReactions() {
 			if (this.issueReactionData) {
 				return
@@ -470,6 +496,7 @@ export default {
 				console.error(error)
 			})
 		},
+
 		getCommentReactions() {
 			if (this.commentReactionData) {
 				return

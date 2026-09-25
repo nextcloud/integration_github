@@ -3,14 +3,14 @@
   - SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 <template>
-	<NcPopover :focus-trap="false"
+	<NcPopover noFocusTrap
 		placement="top"
 		:shown="shown">
 		<div class="user-popover-content">
 			<div class="header">
 				<NcAvatar
 					class="tooltip-avatar"
-					:is-no-user="true"
+					:isNoUser="true"
 					:url="avatarUrl" />
 				{{ userLogin }}
 			</div>
@@ -42,19 +42,17 @@
 </template>
 
 <script>
-import LocationIcon from './icons/LocationIcon.vue'
-import IssueOpenIcon from './icons/IssueOpenIcon.vue'
-import PrOpenIcon from './icons/PrOpenIcon.vue'
-import RepositoryIcon from './icons/RepositoryIcon.vue'
-import CommitIcon from './icons/CommitIcon.vue'
-import RocketIcon from './icons/RocketIcon.vue'
-
-import NcPopover from '@nextcloud/vue/components/NcPopover'
+import axios from '@nextcloud/axios'
+import { generateUrl } from '@nextcloud/router'
 import NcAvatar from '@nextcloud/vue/components/NcAvatar'
 import NcLoadingIcon from '@nextcloud/vue/components/NcLoadingIcon'
-
-import { generateUrl } from '@nextcloud/router'
-import axios from '@nextcloud/axios'
+import NcPopover from '@nextcloud/vue/components/NcPopover'
+import CommitIcon from './icons/CommitIcon.vue'
+import IssueOpenIcon from './icons/IssueOpenIcon.vue'
+import LocationIcon from './icons/LocationIcon.vue'
+import PrOpenIcon from './icons/PrOpenIcon.vue'
+import RepositoryIcon from './icons/RepositoryIcon.vue'
+import RocketIcon from './icons/RocketIcon.vue'
 
 const octicons = {
 	rocket: RocketIcon,
@@ -79,14 +77,17 @@ export default {
 			type: String,
 			required: true,
 		},
+
 		shown: {
 			type: Boolean,
 			default: false,
 		},
+
 		subjectType: {
 			type: String,
 			required: true,
 		},
+
 		subjectId: {
 			type: Number,
 			required: true,
@@ -113,7 +114,7 @@ export default {
 			if (newValue === true && this.data === null) {
 				this.loading = true
 				Promise.all([this.getUserData(), this.getUserContextualData()])
-					.catch(err => {
+					.catch((err) => {
 						console.error(err)
 					})
 					.then(() => {
@@ -133,6 +134,7 @@ export default {
 				this.data = response.data
 			})
 		},
+
 		async getUserContextualData() {
 			const url = generateUrl('/apps/integration_github/users/{login}/hovercard/{subjectType}/{subjectId}', {
 				login: this.userLogin,
