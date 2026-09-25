@@ -8,7 +8,7 @@
 .vscode
 .php-cs-fixer.*
 /.codecov.yml
-/.eslintrc.js
+/eslint.config.js
 /.gitattributes
 /.gitignore
 /.l10nignore
@@ -34,8 +34,6 @@
 /pyproject.toml
 /renovate.json
 /stylelint.config.js
-/webpack.config.js
-/webpack.js
 /vite.config.ts
 tests
 /playwright

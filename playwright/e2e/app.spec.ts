@@ -133,6 +133,19 @@ test.describe('Dashboard widget', () => {
 		await expect(widget.getByRole('button', { name: 'Connect to GitHub' })).toBeVisible()
 	})
 
+	test('link to GitHub under a full widget', async ({ page }) => {
+		// with more than it shows, the widget keeps six and links to GitHub for the rest
+		const many = Array.from({ length: 8 }, (_, index) => ({ ...notification, id: `probe-${index}` }))
+		await page.route('**/apps/integration_github/notifications**', (route) => route.fulfill({ json: many }))
+		await page.route('**/apps/integration_github/avatar/**', (route) => route.fulfill({ contentType: 'image/png', body: png }))
+		await page.goto('apps/dashboard/')
+
+		const widget = page.locator('.panel').filter({ hasText: 'GitHub notifications' })
+		const more = widget.getByRole('link', { name: 'GitHub notifications' }).last()
+		await expect(more).toBeVisible()
+		await expect(more).toHaveAttribute('href', 'https://github.com/notifications')
+	})
+
 	test('list the notifications of a connected account', async ({ page }) => {
 		// answer the way the app does for a connected account, the test container cannot reach GitHub
 		await page.route('**/apps/integration_github/notifications**', (route) => route.fulfill({ json: [notification] }))
