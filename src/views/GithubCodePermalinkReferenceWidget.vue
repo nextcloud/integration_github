@@ -43,10 +43,10 @@
 				 :autodetect="false"
 				 https://github.com/highlightjs/vue-plugin/issues/49
 				 -->
-				<highlightjs
+				<Highlightjs
+					class="highlight"
 					:class="{
 						'short-content': showShortContent,
-						'highlight': true,
 					}"
 					:language="codeClass"
 					:code="textContent" />
@@ -56,14 +56,11 @@
 </template>
 
 <script>
-import OpenInNewIcon from 'vue-material-design-icons/OpenInNew.vue'
-
-import GithubIcon from '../components/icons/GithubIcon.vue'
-
-import { generateUrl } from '@nextcloud/router'
-
-import hljs from 'highlight.js/lib/common'
 import hljsVuePlugin from '@highlightjs/vue-plugin'
+import { generateUrl } from '@nextcloud/router'
+import hljs from 'highlight.js/lib/common'
+import OpenInNewIcon from 'vue-material-design-icons/OpenInNew.vue'
+import GithubIcon from '../components/icons/GithubIcon.vue'
 
 const extensionToClass = {
 	js: 'javascript',
@@ -83,7 +80,7 @@ export default {
 	components: {
 		GithubIcon,
 		OpenInNewIcon,
-		highlightjs: hljsVuePlugin.component,
+		Highlightjs: hljsVuePlugin.component,
 	},
 
 	props: {
@@ -91,10 +88,12 @@ export default {
 			type: String,
 			default: '',
 		},
+
 		richObject: {
 			type: Object,
 			default: null,
 		},
+
 		accessible: {
 			type: Boolean,
 			default: true,
@@ -112,26 +111,32 @@ export default {
 		isError() {
 			return this.richObject.github_type === 'code-error'
 		},
+
 		isCode() {
 			return this.richObject.github_type === 'code'
 		},
+
 		title() {
 			return this.richObject.owner + '/' + this.richObject.repo + '/' + this.richObject.filePath
 		},
+
 		titleLink() {
 			return this.richObject.link
 		},
+
 		subtitle() {
 			return this.richObject.lineEnd
 				? t('integration_github', 'Line {begin} to {end}', { begin: this.richObject.lineBegin, end: this.richObject.lineEnd })
 				: t('integration_github', 'Line {line}', { line: this.richObject.lineBegin })
 		},
+
 		shortRef() {
 			if (this.richObject.ref.original_ref === this.richObject.ref.sha) {
 				return this.richObject.ref.sha.slice(0, 7)
 			}
 			return this.richObject.ref.original_ref + ' ' + this.richObject.ref.sha.slice(0, 7)
 		},
+
 		textContent() {
 			let content = ''
 			for (let i = 0; i < this.richObject.lines.length; i++) {
@@ -139,6 +144,7 @@ export default {
 			}
 			return content.replace(/^\s+|\s+$/g, '')
 		},
+
 		codeClass() {
 			const extension = this.richObject.filePath.match(/\.([a-zA-Z0-9]+)$/)
 			if (extension && extension.length > 1) {

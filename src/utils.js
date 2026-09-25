@@ -1,10 +1,10 @@
+import axios from '@nextcloud/axios'
+import { showError } from '@nextcloud/dialogs'
 /**
  * SPDX-FileCopyrightText: 2020 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 import { generateUrl } from '@nextcloud/router'
-import axios from '@nextcloud/axios'
-import { showError } from '@nextcloud/dialogs'
 
 let mytimer = 0
 export function delay(callback, ms) {
@@ -36,13 +36,14 @@ export function oauthConnect(clientId, oauthOrigin, usePopup = false) {
 		},
 	}
 	const url = generateUrl('/apps/integration_github/config')
-	return new Promise((resolve, reject) => {
-		axios.put(url, req).then((response) => {
+	return new Promise((resolve) => {
+		axios.put(url, req).then(() => {
 			if (usePopup) {
 				const ssoWindow = window.open(
 					requestUrl,
 					t('integration_github', 'Connect to GitHub'),
-					'toolbar=no, menubar=no, width=600, height=700')
+					'toolbar=no, menubar=no, width=600, height=700',
+				)
 				ssoWindow.focus()
 				window.addEventListener('message', (event) => {
 					console.debug('Child window message received', event)
@@ -52,10 +53,8 @@ export function oauthConnect(clientId, oauthOrigin, usePopup = false) {
 				window.location.replace(requestUrl)
 			}
 		}).catch((error) => {
-			showError(
-				t('integration_github', 'Failed to save GitHub OAuth state')
-				+ ': ' + (error.response?.request?.responseText ?? ''),
-			)
+			showError(t('integration_github', 'Failed to save GitHub OAuth state')
+				+ ': ' + (error.response?.request?.responseText ?? ''))
 			console.error(error)
 		})
 	})
@@ -65,10 +64,10 @@ export function hexToRgb(hex) {
 	const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex)
 	return result
 		? {
-			r: parseInt(result[1], 16),
-			g: parseInt(result[2], 16),
-			b: parseInt(result[3], 16),
-		}
+				r: parseInt(result[1], 16),
+				g: parseInt(result[2], 16),
+				b: parseInt(result[3], 16),
+			}
 		: null
 }
 

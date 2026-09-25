@@ -11,19 +11,19 @@
 		<div id="github-content">
 			<NcFormBox>
 				<NcFormBoxSwitch
-					:model-value="state.navigation_enabled"
-					@update:model-value="onCheckboxChanged($event, 'navigation_enabled')">
+					:modelValue="state.navigation_enabled"
+					@update:modelValue="onCheckboxChanged($event, 'navigation_enabled')">
 					{{ t('integration_github', 'Enable navigation link') }}
 				</NcFormBoxSwitch>
 				<NcFormBoxSwitch
-					:model-value="state.link_preview_enabled"
-					@update:model-value="onCheckboxChanged($event, 'link_preview_enabled')">
+					:modelValue="state.link_preview_enabled"
+					@update:modelValue="onCheckboxChanged($event, 'link_preview_enabled')">
 					{{ t('integration_github', 'Enable GitHub link previews') }}
 				</NcFormBoxSwitch>
 				<NcFormBoxSwitch
 					:disabled="!state.admin_issue_notifications_enabled"
-					:model-value="state.issue_notifications_enabled"
-					@update:model-value="onCheckboxChanged($event, 'issue_notifications_enabled')">
+					:modelValue="state.issue_notifications_enabled"
+					@update:modelValue="onCheckboxChanged($event, 'issue_notifications_enabled')">
 					{{ t('integration_github', 'Enable notifications for new unread GitHub notifications') }}
 					<span v-if="!state.admin_issue_notifications_enabled" style="font-style: italic;">
 						&nbsp;({{ t('integration_github', 'Disabled by administrator') }})
@@ -48,9 +48,9 @@
 					type="password"
 					:label="t('integration_github', 'Personal access token')"
 					placeholder="..."
-					:show-trailing-button="!!state.token"
+					:showTrailingButton="!!state.token"
 					@keyup.enter="connectWithToken"
-					@trailing-button-click="state.token = ''">
+					@trailingButtonClick="state.token = ''">
 					<template #icon>
 						<KeyOutlineIcon :size="20" />
 					</template>
@@ -67,7 +67,8 @@
 			</div>
 			<NcButton v-if="showOAuth && !connected"
 				:disabled="loading || state.token !== ''"
-				:class="{ loading, connectButton: true }"
+				class="connectButton"
+				:class="{ loading }"
 				@click="connectWithOauth">
 				<template #icon>
 					<OpenInNewIcon :size="20" />
@@ -91,13 +92,13 @@
 			<div v-if="connected" id="github-search-block">
 				<NcFormBox>
 					<NcFormBoxSwitch
-						:model-value="state.search_repos_enabled"
-						@update:model-value="onCheckboxChanged($event, 'search_repos_enabled')">
+						:modelValue="state.search_repos_enabled"
+						@update:modelValue="onCheckboxChanged($event, 'search_repos_enabled')">
 						{{ t('integration_github', 'Enable searching for repositories') }}
 					</NcFormBoxSwitch>
 					<NcFormBoxSwitch
-						:model-value="state.search_issues_enabled"
-						@update:model-value="onCheckboxChanged($event, 'search_issues_enabled')">
+						:modelValue="state.search_issues_enabled"
+						@update:modelValue="onCheckboxChanged($event, 'search_issues_enabled')">
 						{{ t('integration_github', 'Enable searching for issues and pull requests') }}
 					</NcFormBoxSwitch>
 				</NcFormBox>
@@ -111,23 +112,20 @@
 </template>
 
 <script>
-import OpenInNewIcon from 'vue-material-design-icons/OpenInNew.vue'
-import KeyOutlineIcon from 'vue-material-design-icons/KeyOutline.vue'
-import CheckIcon from 'vue-material-design-icons/Check.vue'
-import CloseIcon from 'vue-material-design-icons/Close.vue'
-
-import GithubIcon from './icons/GithubIcon.vue'
-
-import NcButton from '@nextcloud/vue/components/NcButton'
-import NcNoteCard from '@nextcloud/vue/components/NcNoteCard'
-import NcTextField from '@nextcloud/vue/components/NcTextField'
-import NcFormBox from '@nextcloud/vue/components/NcFormBox'
-import NcFormBoxSwitch from '@nextcloud/vue/components/NcFormBoxSwitch'
-
+import axios from '@nextcloud/axios'
+import { showError, showSuccess } from '@nextcloud/dialogs'
 import { loadState } from '@nextcloud/initial-state'
 import { generateUrl } from '@nextcloud/router'
-import axios from '@nextcloud/axios'
-import { showSuccess, showError } from '@nextcloud/dialogs'
+import NcButton from '@nextcloud/vue/components/NcButton'
+import NcFormBox from '@nextcloud/vue/components/NcFormBox'
+import NcFormBoxSwitch from '@nextcloud/vue/components/NcFormBoxSwitch'
+import NcNoteCard from '@nextcloud/vue/components/NcNoteCard'
+import NcTextField from '@nextcloud/vue/components/NcTextField'
+import CheckIcon from 'vue-material-design-icons/Check.vue'
+import CloseIcon from 'vue-material-design-icons/Close.vue'
+import KeyOutlineIcon from 'vue-material-design-icons/KeyOutline.vue'
+import OpenInNewIcon from 'vue-material-design-icons/OpenInNew.vue'
+import GithubIcon from './icons/GithubIcon.vue'
 import { oauthConnect } from '../utils.js'
 
 export default {
@@ -160,9 +158,11 @@ export default {
 		showOAuth() {
 			return this.state.client_id && this.state.client_secret
 		},
+
 		connected() {
 			return this.state.token && this.state.token !== '' && this.state.user_name && this.state.user_name !== ''
 		},
+
 		connectedAs() {
 			return this.state.user_displayname
 				? this.state.user_displayname + ' (@' + this.state.user_name + ')'
@@ -175,7 +175,7 @@ export default {
 
 	mounted() {
 		const paramString = window.location.search.slice(1)
-		// eslint-disable-next-line
+
 		const urlParams = new URLSearchParams(paramString)
 		const ghToken = urlParams.get('githubToken')
 		if (ghToken === 'success') {
@@ -190,10 +190,12 @@ export default {
 			this.state.token = ''
 			this.saveOptions({ token: this.state.token })
 		},
+
 		onCheckboxChanged(newValue, key) {
 			this.state[key] = newValue
 			this.saveOptions({ [key]: this.state[key] ? '1' : '0' })
 		},
+
 		saveOptions(values) {
 			const req = {
 				values,
@@ -209,20 +211,20 @@ export default {
 					}
 				}
 			}).catch((error) => {
-				showError(
-					t('integration_github', 'Failed to save GitHub options')
-					+ ': ' + error.response?.request?.responseText,
-				)
+				showError(t('integration_github', 'Failed to save GitHub options')
+					+ ': ' + error.response?.request?.responseText)
 			}).then(() => {
 				this.loading = false
 			})
 		},
+
 		connectWithToken() {
 			this.loading = true
 			this.saveOptions({
 				token: this.state.token,
 			})
 		},
+
 		connectWithOauth() {
 			if (this.state.use_popup) {
 				oauthConnect(this.state.client_id, null, true)
