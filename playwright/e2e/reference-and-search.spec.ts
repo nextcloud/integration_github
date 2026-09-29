@@ -36,6 +36,20 @@ const issue = {
 	reactions: { total_count: 0 },
 }
 
+// the same issue, with the comment a link to a comment carries
+const issueComment = {
+	...issue,
+	github_comment: {
+		id: 99,
+		user: { login: 'commenter' },
+		body: 'First line of the comment.\n\nA second paragraph, long enough that folding it matters.',
+		created_at: '2026-09-18T12:00:00Z',
+		updated_at: '2026-09-18T12:00:00Z',
+		html_url: 'https://github.com/nextcloud/integration_github/issues/243#issuecomment-99',
+		reactions: { total_count: 0 },
+	},
+}
+
 // a code permalink as the app puts it into the rich object of a link preview
 const permalink = {
 	github_type: 'code',
@@ -86,6 +100,8 @@ async function renderReferenceWidget(page: Page, type: string, richObject: objec
 		await import(/* @vite-ignore */ `${globals.OC.appswebroots.integration_github}/js/integration_github-reference.mjs`)
 		const element = document.createElement('div')
 		element.id = 'reference-widget'
+		// above the page it is mounted on, so that clicks reach the widget
+		element.style.cssText = 'position:fixed;inset:0 auto auto 0;z-index:100000;width:640px;background:var(--color-main-background)'
 		document.body.appendChild(element)
 		globals._vue_richtext_widgets[widgetType as string].callback(element, {
 			richObjectType: widgetType,
@@ -129,6 +145,55 @@ test.describe('Link previews', () => {
 		await expect(widget.getByText('nextcloud/integration_github #243')).toBeVisible()
 		await expect(widget.getByText('by janedoe')).toBeVisible()
 		await expect(widget.getByText('bug', { exact: true })).toBeVisible()
+	})
+
+	test('fold and unfold the comment of an issue', async ({ page }) => {
+		const widget = await renderReferenceWidget(page, 'integration_github_issue_pr', issueComment)
+
+		const comment = widget.locator('.comment--content--bubble--content')
+		const richText = widget.locator('.comment-richtext')
+		await expect(comment).toBeVisible()
+		// a comment arrives folded, and each click on it switches
+		await expect(comment).toHaveClass(/short-comment/)
+		await expect(richText).toHaveAttribute('title', 'Click to unfold comment')
+		await richText.click()
+		await expect(comment).not.toHaveClass(/short-comment/)
+		await expect(richText).toHaveAttribute('title', 'Click to fold comment')
+		await richText.click()
+		await expect(comment).toHaveClass(/short-comment/)
+	})
+
+	test('show the author of a comment when their avatar is hovered', async ({ page }) => {
+		// the popover holds a name and nothing tabbable, so a focus trap around it cannot be built
+		const trapErrors: string[] = []
+		page.on('console', (message) => {
+			if (message.type() === 'error' && message.text().includes('focus-trap')) {
+				trapErrors.push(message.text().split('\n')[0])
+			}
+		})
+		const widget = await renderReferenceWidget(page, 'integration_github_issue_pr', issueComment)
+
+		await expect(page.locator('.user-popover-content')).toHaveCount(0)
+		await widget.locator('.comment .author-avatar').first().hover()
+		await expect(page.locator('.user-popover-content').first()).toBeVisible()
+		expect(trapErrors).toEqual([])
+	})
+
+	test('name the spinner while the author of a comment loads', async ({ page }) => {
+		// hold the answers back, so the spinner stays on screen long enough to read
+		await page.route('**/apps/integration_github/users/**', async (route) => {
+			await new Promise((resolve) => setTimeout(resolve, 2000))
+			const hovercard = route.request().url().includes('/hovercard/')
+			await route.fulfill({ json: hovercard ? { contexts: [] } : { name: 'Jane Doe' } })
+		})
+		const widget = await renderReferenceWidget(page, 'integration_github_issue_pr', issueComment)
+
+		await widget.locator('.comment .author-avatar').first().hover()
+		const spinner = page.locator('.user-popover-content .loading-icon').first()
+		await expect(spinner).toBeVisible()
+		// the spinner is an image to assistive technology, so it needs a name
+		await expect(spinner).toHaveAttribute('aria-label', 'Loading data')
+		await expect(page.locator('.user-popover-content').first().getByText('Jane Doe')).toBeVisible()
 	})
 
 	test('render a code permalink in the reference widget', async ({ page }) => {

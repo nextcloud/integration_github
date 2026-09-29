@@ -32,10 +32,10 @@
 				:label="t('integration_github', 'Client ID')"
 				:placeholder="t('integration_github', 'Client ID of your GitHub application')"
 				:readonly="readonly"
-				:show-trailing-button="!!state.client_id"
-				@trailing-button-click="state.client_id = ''"
+				:showTrailingButton="!!state.client_id"
+				@trailingButtonClick="state.client_id = ''"
 				@focus="readonly = false"
-				@update:model-value="onInput">
+				@update:modelValue="onInput">
 				<template #icon>
 					<KeyOutlineIcon :size="20" />
 				</template>
@@ -47,10 +47,10 @@
 				:label="t('integration_github', 'Client secret')"
 				:placeholder="t('integration_github', 'Client secret of your GitHub application')"
 				:readonly="readonly"
-				:show-trailing-button="!!state.client_secret"
-				@trailing-button-click="state.client_secret = ''"
+				:showTrailingButton="!!state.client_secret"
+				@trailingButtonClick="state.client_secret = ''"
 				@focus="readonly = false"
-				@update:model-value="onInput">
+				@update:modelValue="onInput">
 				<template #icon>
 					<KeyOutlineIcon :size="20" />
 				</template>
@@ -66,10 +66,10 @@
 				:label="t('integration_github', 'Default access token')"
 				:placeholder="t('integration_github', 'personal access token')"
 				:readonly="readonly"
-				:show-trailing-button="!!state.default_link_token"
-				@trailing-button-click="state.default_link_token = ''"
+				:showTrailingButton="!!state.default_link_token"
+				@trailingButtonClick="state.default_link_token = ''"
 				@focus="readonly = false"
-				@update:model-value="onInput">
+				@update:modelValue="onInput">
 				<template #icon>
 					<KeyOutlineIcon :size="20" />
 				</template>
@@ -82,35 +82,35 @@
 			</div>
 			<br>
 			<NcFormBox>
-				<NcFormBoxSwitch :model-value="state.allow_default_link_token_to_anonymous"
+				<NcFormBoxSwitch :modelValue="state.allow_default_link_token_to_anonymous"
 					:disabled="!state.default_link_token"
-					@update:model-value="onCheckboxChanged($event, 'allow_default_link_token_to_anonymous')">
+					@update:modelValue="onCheckboxChanged($event, 'allow_default_link_token_to_anonymous')">
 					{{ t('integration_github', 'Use default access token for anonymous users') }}
 				</NcFormBoxSwitch>
 				<NcFormBoxSwitch
-					:model-value="state.allow_default_link_token_to_guests"
+					:modelValue="state.allow_default_link_token_to_guests"
 					:disabled="!state.default_link_token"
-					@update:model-value="onCheckboxChanged($event, 'allow_default_link_token_to_guests')">
+					@update:modelValue="onCheckboxChanged($event, 'allow_default_link_token_to_guests')">
 					{{ t('integration_github', 'Use default access token for guest users') }}
 				</NcFormBoxSwitch>
 				<NcFormBoxSwitch
-					:model-value="state.use_popup"
-					@update:model-value="onCheckboxChanged($event, 'use_popup')">
+					:modelValue="state.use_popup"
+					@update:modelValue="onCheckboxChanged($event, 'use_popup')">
 					{{ t('integration_github', 'Use a pop-up for OAuth authentication') }}
 				</NcFormBoxSwitch>
 				<NcFormBoxSwitch
-					:model-value="state.link_preview_enabled"
-					@update:model-value="onCheckboxChanged($event, 'link_preview_enabled')">
+					:modelValue="state.link_preview_enabled"
+					@update:modelValue="onCheckboxChanged($event, 'link_preview_enabled')">
 					{{ t('integration_github', 'Enable GitHub link previews') }}
 				</NcFormBoxSwitch>
 				<NcFormBoxSwitch
-					:model-value="state.dashboard_enabled"
-					@update:model-value="onCheckboxChanged($event, 'dashboard_enabled')">
+					:modelValue="state.dashboard_enabled"
+					@update:modelValue="onCheckboxChanged($event, 'dashboard_enabled')">
 					{{ t('integration_github', 'Enable GitHub dashboard widget') }}
 				</NcFormBoxSwitch>
 				<NcFormBoxSwitch
-					:model-value="state.issue_notifications_enabled"
-					@update:model-value="onCheckboxChanged($event, 'issue_notifications_enabled')">
+					:modelValue="state.issue_notifications_enabled"
+					@update:modelValue="onCheckboxChanged($event, 'issue_notifications_enabled')">
 					{{ t('integration_github', 'Enable notifications for new unread GitHub notifications') }}
 				</NcFormBoxSwitch>
 			</NcFormBox>
@@ -119,22 +119,18 @@
 </template>
 
 <script>
-import KeyOutlineIcon from 'vue-material-design-icons/KeyOutline.vue'
-import CheckIcon from 'vue-material-design-icons/Check.vue'
-
-import GithubIcon from './icons/GithubIcon.vue'
-
-import NcTextField from '@nextcloud/vue/components/NcTextField'
-import NcNoteCard from '@nextcloud/vue/components/NcNoteCard'
+import axios from '@nextcloud/axios'
+import { showError, showSuccess } from '@nextcloud/dialogs'
+import { loadState } from '@nextcloud/initial-state'
+import { confirmPassword } from '@nextcloud/password-confirmation'
+import { generateUrl } from '@nextcloud/router'
 import NcFormBox from '@nextcloud/vue/components/NcFormBox'
 import NcFormBoxSwitch from '@nextcloud/vue/components/NcFormBoxSwitch'
-
-import { loadState } from '@nextcloud/initial-state'
-import { generateUrl } from '@nextcloud/router'
-import axios from '@nextcloud/axios'
-import { showSuccess, showError } from '@nextcloud/dialogs'
-import { confirmPassword } from '@nextcloud/password-confirmation'
-
+import NcNoteCard from '@nextcloud/vue/components/NcNoteCard'
+import NcTextField from '@nextcloud/vue/components/NcTextField'
+import CheckIcon from 'vue-material-design-icons/Check.vue'
+import KeyOutlineIcon from 'vue-material-design-icons/KeyOutline.vue'
+import GithubIcon from './icons/GithubIcon.vue'
 import { delay } from '../utils.js'
 
 export default {
@@ -165,6 +161,7 @@ export default {
 		defaultTokenConnected() {
 			return this.state.default_link_token && this.state.default_link_token !== '' && this.state.user_name && this.state.user_name !== ''
 		},
+
 		connectedAs() {
 			return this.state.user_displayname
 				? this.state.user_displayname + ' (@' + this.state.user_name + ')'
@@ -183,6 +180,7 @@ export default {
 			this.state[key] = newValue
 			this.saveOptions({ [key]: this.state[key] ? '1' : '0' }, false)
 		},
+
 		onInput() {
 			delay(() => {
 				const values = {
@@ -197,6 +195,7 @@ export default {
 				this.saveOptions(values, true)
 			}, 2000)()
 		},
+
 		async saveOptions(values, sensitive = false) {
 			if (sensitive) {
 				await confirmPassword()
@@ -216,10 +215,8 @@ export default {
 					}
 				})
 				.catch((error) => {
-					showError(
-						t('integration_github', 'Failed to save GitHub admin options')
-						+ ': ' + error.response?.request?.responseText,
-					)
+					showError(t('integration_github', 'Failed to save GitHub admin options')
+						+ ': ' + error.response?.request?.responseText)
 				})
 				.then(() => {
 				})
