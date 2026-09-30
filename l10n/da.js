@@ -18,7 +18,6 @@ OC.L10N.register(
     "Connected as {user}" : "Forbundet som {user}",
     "Loading data" : "Indlæser data",
     "Mark as read" : "Marker som læst",
-    "Loading..." : "Indlæser...",
     "Line {line}" : "Linje {line}",
     "Unknown error" : "Ukendt fejl",
     "Draft" : "Kladde",

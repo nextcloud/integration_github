@@ -25,7 +25,6 @@ OC.L10N.register(
     "No GitHub account connected" : "연결된 GitHub 계정 없음",
     "Error connecting to GitHub" : "GitHub와 연결하는 중 오류 발생",
     "No GitHub notifications!" : "GitHub 알림 없음!",
-    "Loading..." : "불러오는 중...",
     "Successfully unsubscribed" : "성공적으로 구독 취소되었습니다.",
     "Connect to GitHub" : "GitHub에 연결",
     "Unknown error" : "알 수 없는 오류",

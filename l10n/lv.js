@@ -9,7 +9,6 @@ OC.L10N.register(
     "{logins} reacted with {emoji} emoji" : "{logins} atsaucās ar emocijzīmi {emoji}",
     "Connected as {user}" : "Savienojies kā {user}",
     "No GitHub account connected" : "Nav sasaistītu GitHub kontu",
-    "Loading..." : "Notiek ielāde...",
     "Unknown error" : "Nezināma kļūda",
     "GitHub connected accounts settings" : "Sasaistīto GitHub kontu iestatījumi",
     "Draft" : "Melnraksts",

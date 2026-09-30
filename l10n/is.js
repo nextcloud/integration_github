@@ -14,7 +14,6 @@ OC.L10N.register(
     "Connected as {user}" : "Tengt sem {user}",
     "Mark as read" : "Merkja sem lesið",
     "Unsubscribe" : "Hætta í áskrift",
-    "Loading..." : "Hleð...",
     "Line {line}" : "Lína {line}",
     "Unknown error" : "Óþekkt villa",
     "Draft" : "Drög",
