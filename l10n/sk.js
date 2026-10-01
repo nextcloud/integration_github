@@ -82,7 +82,7 @@ OC.L10N.register(
     "Open draft pull request" : "Otvoriť prázdnu žiadosť o zaradenie",
     "Open pull request" : "Otvoriť žiadosť o zaradenie",
     "Merged pull request" : "Žiadosť o zaradenie bola zlúčená",
-    "Closed pull request" : "Zatvorená žiadosť o pull",
+    "Closed pull request" : "Uzatvorená žiadosť o pull",
     "Unknown state" : "Neznámy stav",
     "Draft" : "Koncept",
     "Review requested" : "Vyžadovaná revízia",
