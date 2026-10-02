@@ -8,19 +8,38 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
-## 3.2.8
+## [Unreleased]
+
+## 3.3.0 - 2026-10-02
+
+### Added
+
+- Added support for Nextcloud 36
+
+### Changed
+
+- Update @nextcloud/eslint-config to 9 and sync the lint workflows
+- Update dependencies & translations
 
 ### Fixed
 
+- Show the message of the dashboard widget again, `NcEmptyContent` no longer has the
+  `title` prop it was passed in
+- Ask users who did not connect a GitHub account to connect one in the dashboard widget,
+  instead of reporting an error and requesting the GitHub API without a token
+- Name the link under a full dashboard widget after the widget again, it read *More items …*
+- Name the loading spinner of a comment author's popover for screen readers, it carried an
+  empty `aria-label`
+- Stop the error that `focus-trap` threw whenever the popover of a comment author opened,
+  `NcPopover` reads `no-focus-trap` and the `focus-trap` it was given was ignored
+
+### Security
+
 - Update `league/commonmark` to 2.10.0, closing four high-severity denial-of-service
   advisories and an `AttributesExtension` unsafe-link filter bypass on the converter
-  used to render issue and pull request bodies.
+  used to render issue and pull request bodies
 - Update bundled JavaScript dependencies to close the remaining high-severity
-  advisories (dompurify, js-yaml, nanoid).
-- Show the message of the dashboard widget again, `NcEmptyContent` no longer has the
-  `title` prop it was passed in.
-- Ask users who did not connect a GitHub account to connect one in the dashboard widget,
-  instead of reporting an error and requesting the GitHub API without a token.
+  advisories (dompurify, js-yaml, nanoid)
 
 ## 3.2.7 - 2026-08-18
 
