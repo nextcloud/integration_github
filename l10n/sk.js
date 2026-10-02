@@ -35,7 +35,7 @@ OC.L10N.register(
     "Default access token" : "Predvolený prístupový token",
     "personal access token" : "osobný prístupový token",
     "Connected with the default access token as {user}" : "Pripojené s predvoleným prístupovým tokenom ako {user}",
-    "Use default access token for anonymous users" : "Použiť predvolený prístupový token pre anonymných užívateľov",
+    "Use default access token for anonymous users" : "Použiť predvolený prístupový token pre anonymných používateľov",
     "Use default access token for guest users" : "Použiť predvolený prístupový token pre návštevníkov",
     "Use a pop-up for OAuth authentication" : "Použiť vyskakovacie okno pre overenie cez OAuth",
     "Enable GitHub link previews" : "Povoliť ukážky odkazov GitHub",
