@@ -16,6 +16,7 @@ OC.L10N.register(
     "Unsubscribe" : "Desubscrie",
     "Unknown error" : "Eroare necunoscută",
     "Draft" : "Schiță",
+    "by {creator}" : "de {creator}",
     "Author" : "Autor",
     "Owner" : "Proprietar"
 },
