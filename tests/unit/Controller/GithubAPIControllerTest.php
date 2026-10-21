@@ -4,6 +4,7 @@ namespace OCA\Github\Tests;
 
 use OCA\Github\Service\GithubAPIService;
 use OCA\Github\Service\SecretService;
+use OCP\AppFramework\Services\IAppConfig;
 use OCP\Http\Client\IClient;
 use OCP\Http\Client\IClientService;
 use OCP\Http\Client\IResponse;
@@ -60,6 +61,7 @@ class GithubAPIControllerTest extends TestCase {
 			\OC::$server->get(\Psr\Log\LoggerInterface::class),
 			$this->createMock(IL10N::class),
 			\OC::$server->get(IConfig::class),
+			$this->createMock(IAppConfig::class),
 			\OC::$server->get(IURLGenerator::class),
 			\OC::$server->get(IUserManager::class),
 			\OC::$server->get(IManager::class),

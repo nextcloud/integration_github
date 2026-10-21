@@ -19,6 +19,7 @@ use OCP\AppFramework\App;
 use OCP\AppFramework\Bootstrap\IBootContext;
 use OCP\AppFramework\Bootstrap\IBootstrap;
 use OCP\AppFramework\Bootstrap\IRegistrationContext;
+use OCP\AppFramework\Services\IAppConfig;
 
 use OCP\Collaboration\Reference\RenderReferenceEvent;
 
@@ -37,20 +38,22 @@ class Application extends App implements IBootstrap {
 
 	private ContainerInterface $container;
 	private IConfig $config;
+	private IAppConfig $appConfig;
 
 	public function __construct(array $urlParams = []) {
 		parent::__construct(self::APP_ID, $urlParams);
 
 		$this->container = $this->getContainer();
 		$this->config = $this->container->get(IConfig::class);
+		$this->appConfig = $this->container->get(IAppConfig::class);
 	}
 
 	public function register(IRegistrationContext $context): void {
-		if ($this->config->getAppValue(self::APP_ID, 'dashboard_enabled', '1') === '1') {
+		if ($this->appConfig->getAppValueString('dashboard_enabled', '1') === '1') {
 			$context->registerDashboardWidget(GithubWidget::class);
 		}
 
-		if ($this->config->getAppValue(self::APP_ID, 'issue_notifications_enabled', '1') === '1') {
+		if ($this->appConfig->getAppValueString('issue_notifications_enabled', '1') === '1') {
 			$context->registerNotifierService(GitHubNotifier::class);
 		}
 

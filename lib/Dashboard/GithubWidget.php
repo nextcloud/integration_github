@@ -9,6 +9,7 @@ namespace OCA\Github\Dashboard;
 
 use OCA\Github\AppInfo\Application;
 use OCA\Github\Service\GithubAPIService;
+use OCP\AppFramework\Services\IAppConfig;
 use OCP\AppFramework\Services\IInitialState;
 use OCP\Dashboard\IAPIWidget;
 use OCP\Dashboard\IButtonWidget;
@@ -16,7 +17,6 @@ use OCP\Dashboard\IIconWidget;
 use OCP\Dashboard\IOptionWidget;
 use OCP\Dashboard\Model\WidgetButton;
 use OCP\Dashboard\Model\WidgetOptions;
-use OCP\IConfig;
 use OCP\IL10N;
 use OCP\IURLGenerator;
 
@@ -26,7 +26,7 @@ class GithubWidget implements IAPIWidget, IButtonWidget, IIconWidget, IOptionWid
 
 	public function __construct(
 		private IL10N $l10n,
-		private IConfig $config,
+		private IAppConfig $appConfig,
 		private IURLGenerator $urlGenerator,
 		private IInitialState $initialStateService,
 		private GithubAPIService $githubAPIService,
@@ -82,10 +82,10 @@ class GithubWidget implements IAPIWidget, IButtonWidget, IIconWidget, IOptionWid
 	 * @inheritDoc
 	 */
 	public function load(): void {
-		$clientID = $this->config->getAppValue(Application::APP_ID, 'client_id');
-		$clientSecret = $this->config->getAppValue(Application::APP_ID, 'client_secret');
+		$clientID = $this->appConfig->getAppValueString('client_id', lazy: true);
+		$clientSecret = $this->appConfig->getAppValueString('client_secret', lazy: true);
 		$oauthPossible = $clientID !== '' && $clientSecret !== '';
-		$usePopup = $this->config->getAppValue(Application::APP_ID, 'use_popup', '0');
+		$usePopup = $this->appConfig->getAppValueString('use_popup', '0', lazy: true);
 
 		$userConfig = [
 			'oauth_is_possible' => $oauthPossible,

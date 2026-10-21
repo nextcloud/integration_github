@@ -10,6 +10,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+### Changed
+
+- Stop loading most of the app's settings on every request
+
 ## 3.3.0 - 2026-10-02
 
 ### Added

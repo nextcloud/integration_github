@@ -13,6 +13,7 @@ use Exception;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Exception\ServerException;
 use OCA\Github\AppInfo\Application;
+use OCP\AppFramework\Services\IAppConfig;
 use OCP\Dashboard\Model\WidgetItem;
 use OCP\Http\Client\IClient;
 use OCP\Http\Client\IClientService;
@@ -37,6 +38,7 @@ class GithubAPIService {
 		private LoggerInterface $logger,
 		private IL10N $l10n,
 		private IConfig $config,
+		private IAppConfig $appConfig,
 		private IURLGenerator $urlGenerator,
 		private IUserManager $userManager,
 		private IManager $notificationManager,
@@ -377,15 +379,15 @@ class GithubAPIService {
 	public function updateLinkTokenUserInfo(string $defaultLinkToken): array {
 		$info = $this->request(null, 'user', [], 'GET', true, 30, $defaultLinkToken);
 		if (isset($info['login'], $info['name'])) {
-			$this->config->setAppValue(Application::APP_ID, 'user_name', $info['login']);
-			$this->config->setAppValue(Application::APP_ID, 'user_displayname', $info['name']);
+			$this->appConfig->setAppValueString('user_name', $info['login'], lazy: true);
+			$this->appConfig->setAppValueString('user_displayname', $info['name'], lazy: true);
 			return [
 				'user_name' => $info['login'],
 				'user_displayname' => $info['name'],
 			];
 		} else {
-			$this->config->deleteAppValue(Application::APP_ID, 'user_name');
-			$this->config->deleteAppValue(Application::APP_ID, 'user_displayname');
+			$this->appConfig->deleteAppValue('user_name');
+			$this->appConfig->deleteAppValue('user_displayname');
 			return [
 				'user_name' => '',
 				'user_displayname' => '',
@@ -394,7 +396,7 @@ class GithubAPIService {
 	}
 
 	public function checkNewNotifications() {
-		$notificationEnabled = $this->config->getAppValue(Application::APP_ID, 'issue_notifications_enabled', '1') === '1';
+		$notificationEnabled = $this->appConfig->getAppValueString('issue_notifications_enabled', '1') === '1';
 		if (!$notificationEnabled) {
 			return;
 		}

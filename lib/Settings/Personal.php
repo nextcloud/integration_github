@@ -9,6 +9,7 @@ namespace OCA\Github\Settings;
 use OCA\Github\AppInfo\Application;
 use OCA\Github\Service\SecretService;
 use OCP\AppFramework\Http\TemplateResponse;
+use OCP\AppFramework\Services\IAppConfig;
 use OCP\AppFramework\Services\IInitialState;
 use OCP\IConfig;
 use OCP\Settings\ISettings;
@@ -18,6 +19,7 @@ class Personal implements ISettings {
 	public function __construct(
 		private SecretService $secretService,
 		private IConfig $config,
+		private IAppConfig $appConfig,
 		private IInitialState $initialStateService,
 		private ?string $userId,
 	) {
@@ -35,12 +37,12 @@ class Personal implements ISettings {
 		$userName = $this->config->getUserValue($this->userId, Application::APP_ID, 'user_name');
 		$userDisplayName = $this->config->getUserValue($this->userId, Application::APP_ID, 'user_displayname');
 		$notificationsEnabled = $this->config->getUserValue($this->userId, Application::APP_ID, 'issue_notifications_enabled', '0');
-		$adminNotificationsEnabled = $this->config->getAppValue(Application::APP_ID, 'issue_notifications_enabled', '1');
+		$adminNotificationsEnabled = $this->appConfig->getAppValueString('issue_notifications_enabled', '1');
 
 		// for OAuth
 		$clientID = $this->secretService->getEncryptedAppValue('client_id');
 		$clientSecret = $this->secretService->getEncryptedAppValue('client_secret');
-		$usePopup = $this->config->getAppValue(Application::APP_ID, 'use_popup', '0');
+		$usePopup = $this->appConfig->getAppValueString('use_popup', '0', lazy: true);
 
 		$userConfig = [
 			'token' => $token === '' ? '' : 'dummyToken',

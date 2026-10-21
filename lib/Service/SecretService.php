@@ -9,6 +9,7 @@ namespace OCA\Github\Service;
 
 use Exception;
 use OCA\Github\AppInfo\Application;
+use OCP\AppFramework\Services\IAppConfig;
 use OCP\IConfig;
 use OCP\IUserManager;
 use OCP\PreConditionNotMetException;
@@ -22,6 +23,7 @@ class SecretService {
 
 	public function __construct(
 		private IConfig $config,
+		private IAppConfig $appConfig,
 		private IUserManager $userManager,
 		private ICrypto $crypto,
 		private LoggerInterface $logger,
@@ -61,11 +63,11 @@ class SecretService {
 	 */
 	public function setEncryptedAppValue(string $key, string $value): void {
 		if ($value === '') {
-			$this->config->setAppValue(Application::APP_ID, $key, '');
+			$this->appConfig->setAppValueString($key, '', lazy: true);
 			return;
 		}
 		$encryptedValue = $this->crypto->encrypt($value);
-		$this->config->setAppValue(Application::APP_ID, $key, $encryptedValue);
+		$this->appConfig->setAppValueString($key, $encryptedValue, lazy: true);
 	}
 
 	/**
@@ -73,7 +75,7 @@ class SecretService {
 	 * @return string the decrypted value, or an empty string if it cannot be decrypted
 	 */
 	public function getEncryptedAppValue(string $key): string {
-		$storedValue = $this->config->getAppValue(Application::APP_ID, $key);
+		$storedValue = $this->appConfig->getAppValueString($key, lazy: true);
 		return $this->decryptOrDiscard($storedValue, $key, null);
 	}
 
@@ -124,7 +126,7 @@ class SecretService {
 			if ($accessToken === '' && $endpointUsesDefaultToken) {
 				$user = $this->userManager->get($userId);
 				$isGuestUser = $user->getBackendClassName() === 'Guests';
-				$allowDefaultTokenToGuests = $this->config->getAppValue(Application::APP_ID, 'allow_default_link_token_to_guests', '0') === '1';
+				$allowDefaultTokenToGuests = $this->appConfig->getAppValueString('allow_default_link_token_to_guests', '0', lazy: true) === '1';
 
 				if ((!$isGuestUser) || $allowDefaultTokenToGuests) {
 					$accessToken = $this->getEncryptedAppValue('default_link_token');
@@ -132,7 +134,7 @@ class SecretService {
 			}
 		} elseif ($endpointUsesDefaultToken) {
 			// anonymous users
-			$allowDefaultTokenToAnonymous = $this->config->getAppValue(Application::APP_ID, 'allow_default_link_token_to_anonymous', '0') === '1';
+			$allowDefaultTokenToAnonymous = $this->appConfig->getAppValueString('allow_default_link_token_to_anonymous', '0', lazy: true) === '1';
 			if ($allowDefaultTokenToAnonymous) {
 				$accessToken = $this->getEncryptedAppValue('default_link_token');
 			}
