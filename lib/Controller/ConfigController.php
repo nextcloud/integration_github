@@ -21,6 +21,7 @@ use OCP\AppFramework\Http\Attribute\PasswordConfirmationRequired;
 use OCP\AppFramework\Http\DataResponse;
 use OCP\AppFramework\Http\RedirectResponse;
 use OCP\AppFramework\Http\TemplateResponse;
+use OCP\AppFramework\Services\IAppConfig;
 use OCP\AppFramework\Services\IInitialState;
 use OCP\IConfig;
 use OCP\IL10N;
@@ -32,10 +33,27 @@ use Psr\Log\LoggerInterface;
 
 class ConfigController extends Controller {
 
+	/**
+	 * The switches of the admin settings, and whether each one is stored lazily.
+	 * dashboard_enabled and issue_notifications_enabled are read in Application::register(),
+	 * which runs on every request, so they stay non-lazy.
+	 */
+	private const ADMIN_SWITCHES = [
+		'use_popup' => true,
+		'link_preview_enabled' => true,
+		'allow_default_link_token_to_anonymous' => true,
+		'allow_default_link_token_to_guests' => true,
+		'dashboard_enabled' => false,
+		'issue_notifications_enabled' => false,
+	];
+
+	private const SECRET_KEYS = ['client_id', 'client_secret', 'default_link_token'];
+
 	public function __construct(
 		string $appName,
 		IRequest $request,
 		private IConfig $config,
+		private IAppConfig $appConfig,
 		private IURLGenerator $urlGenerator,
 		private IL10N $l,
 		private IInitialState $initialStateService,
@@ -108,12 +126,14 @@ class ConfigController extends Controller {
 	 * @return DataResponse
 	 */
 	public function setAdminConfig(array $values): DataResponse {
+		// only the switches, so that a request cannot write a key the server owns, such as "enabled"
 		foreach ($values as $key => $value) {
-			if (in_array($key, ['client_id', 'client_secret', 'default_link_token'], true)) {
+			if (!array_key_exists($key, self::ADMIN_SWITCHES) || !is_string($value)) {
 				return new DataResponse([], Http::STATUS_BAD_REQUEST);
-			} else {
-				$this->config->setAppValue(Application::APP_ID, $key, $value);
 			}
+		}
+		foreach ($values as $key => $value) {
+			$this->appConfig->setAppValueString($key, $value, lazy: self::ADMIN_SWITCHES[$key]);
 		}
 		return new DataResponse([]);
 	}
@@ -127,14 +147,15 @@ class ConfigController extends Controller {
 	#[PasswordConfirmationRequired]
 	public function setSensitiveAdminConfig(array $values): DataResponse {
 		foreach ($values as $key => $value) {
-			if (in_array($key, ['client_id', 'client_secret', 'default_link_token'], true)) {
-				$this->secretService->setEncryptedAppValue($key, $value);
-				if ($key === 'default_link_token') {
-					$info = $this->githubAPIService->updateLinkTokenUserInfo($value);
-					return new DataResponse($info);
-				}
-			} else {
-				$this->config->setAppValue(Application::APP_ID, $key, $value);
+			if (!in_array($key, self::SECRET_KEYS, true) || !is_string($value)) {
+				return new DataResponse([], Http::STATUS_BAD_REQUEST);
+			}
+		}
+		foreach ($values as $key => $value) {
+			$this->secretService->setEncryptedAppValue($key, $value);
+			if ($key === 'default_link_token') {
+				$info = $this->githubAPIService->updateLinkTokenUserInfo($value);
+				return new DataResponse($info);
 			}
 		}
 		return new DataResponse([]);
@@ -184,7 +205,7 @@ class ConfigController extends Controller {
 				$this->config->setUserValue($this->userId, Application::APP_ID, 'token_type', 'oauth');
 				$userInfo = $this->storeUserInfo();
 
-				$usePopup = $this->config->getAppValue(Application::APP_ID, 'use_popup', '0') === '1';
+				$usePopup = $this->appConfig->getAppValueString('use_popup', '0', lazy: true) === '1';
 				if ($usePopup) {
 					return new RedirectResponse(
 						$this->urlGenerator->linkToRoute('integration_github.config.popupSuccessPage', [

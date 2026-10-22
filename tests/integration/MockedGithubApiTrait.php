@@ -14,6 +14,7 @@ use OCA\Github\Controller\ConfigController;
 use OCA\Github\Reference\GithubIssuePrReferenceProvider;
 use OCA\Github\Service\GithubAPIService;
 use OCA\Github\Service\SecretService;
+use OCP\AppFramework\Services\IAppConfig;
 use OCP\AppFramework\Services\IInitialState;
 use OCP\Http\Client\IClient;
 use OCP\Http\Client\IClientService;
@@ -79,6 +80,7 @@ trait MockedGithubApiTrait {
 			Server::get(LoggerInterface::class),
 			$this->l10n,
 			Server::get(IConfig::class),
+			$this->getAppConfig(),
 			Server::get(IURLGenerator::class),
 			Server::get(IUserManager::class),
 			Server::get(INotificationManager::class),
@@ -93,6 +95,7 @@ trait MockedGithubApiTrait {
 			Application::APP_ID,
 			$this->createMock(IRequest::class),
 			Server::get(IConfig::class),
+			$this->getAppConfig(),
 			Server::get(IURLGenerator::class),
 			$this->l10n,
 			$this->createMock(IInitialState::class),
@@ -102,6 +105,13 @@ trait MockedGithubApiTrait {
 			Server::get(GithubIssuePrReferenceProvider::class),
 			self::TEST_USER_ID,
 		);
+	}
+
+	/**
+	 * The app-scoped app config, which only the app's own container provides
+	 */
+	private function getAppConfig(): IAppConfig {
+		return Server::get(Application::class)->getContainer()->get(IAppConfig::class);
 	}
 
 	private function mockResponse(int $statusCode, string $body): IResponse&MockObject {
@@ -117,26 +127,26 @@ trait MockedGithubApiTrait {
 	 */
 	private function useOAuthApp(string $clientId, string $clientSecret): void {
 		$secretService = Server::get(SecretService::class);
-		$config = Server::get(IConfig::class);
+		$appConfig = $this->getAppConfig();
 		$this->previousAppValues = [
 			'client_id' => $secretService->getEncryptedAppValue('client_id'),
 			'client_secret' => $secretService->getEncryptedAppValue('client_secret'),
-			'use_popup' => $config->getAppValue(Application::APP_ID, 'use_popup'),
+			'use_popup' => $appConfig->getAppValueString('use_popup', lazy: true),
 		];
 
 		$secretService->setEncryptedAppValue('client_id', $clientId);
 		$secretService->setEncryptedAppValue('client_secret', $clientSecret);
-		$config->setAppValue(Application::APP_ID, 'use_popup', '0');
+		$appConfig->setAppValueString('use_popup', '0', lazy: true);
 	}
 
 	private function restoreOAuthApp(): void {
 		$secretService = Server::get(SecretService::class);
-		$config = Server::get(IConfig::class);
+		$appConfig = $this->getAppConfig();
 		foreach ($this->previousAppValues as $key => $value) {
 			if ($value === '') {
-				$config->deleteAppValue(Application::APP_ID, $key);
+				$appConfig->deleteAppValue($key);
 			} elseif ($key === 'use_popup') {
-				$config->setAppValue(Application::APP_ID, $key, $value);
+				$appConfig->setAppValueString($key, $value, lazy: true);
 			} else {
 				$secretService->setEncryptedAppValue($key, $value);
 			}

@@ -10,15 +10,15 @@ use OCA\Github\AppInfo\Application;
 use OCA\Github\Service\GithubAPIService;
 use OCA\Github\Service\SecretService;
 use OCP\AppFramework\Http\TemplateResponse;
+use OCP\AppFramework\Services\IAppConfig;
 use OCP\AppFramework\Services\IInitialState;
-use OCP\IConfig;
 use OCP\Settings\ISettings;
 
 class Admin implements ISettings {
 
 	public function __construct(
 		private SecretService $secretService,
-		private IConfig $config,
+		private IAppConfig $appConfig,
 		private IInitialState $initialStateService,
 		private GitHubAPIService $githubAPIService,
 	) {
@@ -30,15 +30,15 @@ class Admin implements ISettings {
 	public function getForm(): TemplateResponse {
 		$clientID = $this->secretService->getEncryptedAppValue('client_id');
 		$clientSecret = $this->secretService->getEncryptedAppValue('client_secret');
-		$usePopup = $this->config->getAppValue(Application::APP_ID, 'use_popup', '0');
-		$adminDashboardEnabled = $this->config->getAppValue(Application::APP_ID, 'dashboard_enabled', '1') === '1';
-		$adminLinkPreviewEnabled = $this->config->getAppValue(Application::APP_ID, 'link_preview_enabled', '1') === '1';
+		$usePopup = $this->appConfig->getAppValueString('use_popup', '0', lazy: true);
+		$adminDashboardEnabled = $this->appConfig->getAppValueString('dashboard_enabled', '1') === '1';
+		$adminLinkPreviewEnabled = $this->appConfig->getAppValueString('link_preview_enabled', '1', lazy: true) === '1';
 		$defaultLinkToken = $this->secretService->getEncryptedAppValue('default_link_token');
-		$userName = $this->config->getAppValue(Application::APP_ID, 'user_name');
-		$userDisplayName = $this->config->getAppValue(Application::APP_ID, 'user_displayname');
-		$allowDefaultTokenToAnonymous = $this->config->getAppValue(Application::APP_ID, 'allow_default_link_token_to_anonymous', '0') === '1';
-		$allowDefaultTokenToGuests = $this->config->getAppValue(Application::APP_ID, 'allow_default_link_token_to_guests', '0') === '1';
-		$issueNotificationsEnabled = $this->config->getAppValue(Application::APP_ID, 'issue_notifications_enabled', '1') === '1';
+		$userName = $this->appConfig->getAppValueString('user_name', lazy: true);
+		$userDisplayName = $this->appConfig->getAppValueString('user_displayname', lazy: true);
+		$allowDefaultTokenToAnonymous = $this->appConfig->getAppValueString('allow_default_link_token_to_anonymous', '0', lazy: true) === '1';
+		$allowDefaultTokenToGuests = $this->appConfig->getAppValueString('allow_default_link_token_to_guests', '0', lazy: true) === '1';
+		$issueNotificationsEnabled = $this->appConfig->getAppValueString('issue_notifications_enabled', '1') === '1';
 
 		if ($defaultLinkToken !== '' && ($userName === '' || $userDisplayName === '')) {
 			$userInfo = $this->githubAPIService->updateLinkTokenUserInfo($defaultLinkToken);
