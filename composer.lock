@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c7083f1461bd67ef44ce5c9f3c3baecf",
+    "content-hash": "54f32437c2483153a891730ecb788a9e",
     "packages": [
         {
             "name": "bamarni/composer-bin-plugin",
@@ -907,7 +907,7 @@
         "ext-mbstring": "*"
     },
     "platform-overrides": {
-        "php": "8.2"
+        "php": "8.2.35"
     },
     "plugin-api-version": "2.9.0"
 }

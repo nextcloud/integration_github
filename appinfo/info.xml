@@ -23,6 +23,7 @@
     <bugs>https://github.com/nextcloud/integration_github/issues</bugs>
     <screenshot>https://github.com/nextcloud/integration_github/raw/main/img/screenshot1.jpg</screenshot>
     <dependencies>
+        <php min-version="8.2"/>
         <nextcloud min-version="33" max-version="36"/>
     </dependencies>
     <background-jobs>
