@@ -41,7 +41,7 @@
 	},
 	"require-dev": {
 		"ext-mbstring": "*",
-		"nextcloud/ocp": "dev-master"
+		"nextcloud/ocp": "dev-stable33"
 	},
 	"extra": {
 		"bamarni-bin": {
