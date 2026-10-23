@@ -6,7 +6,7 @@
 # SPDX-FileCopyrightText: 2021-2024 Nextcloud GmbH and Nextcloud contributors
 # SPDX-License-Identifier: MIT
 
-name: Node
+name: Build Javascript
 
 on: pull_request
 
@@ -59,19 +59,22 @@ jobs:
           persist-credentials: false
 
       - name: Read package.json node and npm engines version
-        uses: skjnldsv/read-package-engines-version-actions@06d6db44aa62f4609ba070f556ec24bc99fb85cb # v4
+        uses: nextcloud-libraries/parse-package-engines-action@39fcc545a815c353dd0a3fd8fd2ef6e59fd02b92 # v0.2.0
         id: versions
-        with:
-          fallbackNode: '^20'
-          fallbackNpm: '^10'
 
-      - name: Set up node ${{ steps.versions.outputs.nodeVersion }}
+      - name: Set up node ${{ steps.versions.outputs.node-version }}
         uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
-          node-version: ${{ steps.versions.outputs.nodeVersion }}
+          node-version: ${{ steps.versions.outputs.node-version }}
 
-      - name: Set up npm ${{ steps.versions.outputs.npmVersion }}
-        run: npm i -g 'npm@${{ steps.versions.outputs.npmVersion }}'
+      - name: Set up npm ${{ steps.versions.outputs.package-manager-version }}
+        run: npm i -g 'npm@${{ steps.versions.outputs.package-manager-version }}'
+
+      - name: Validate package-lock.json # See https://github.com/npm/cli/issues/4460
+        run: |
+          npm i -g npm-package-lock-add-resolved@1.1.4
+          npm-package-lock-add-resolved
+          git --no-pager diff --exit-code
 
       - name: Install dependencies & build
         env:
@@ -81,7 +84,7 @@ jobs:
           npm ci
           npm run build --if-present
 
-      - name: Check webpack build changes
+      - name: Check build changes
         run: |
           bash -c "[[ ! \"`git status --porcelain `\" ]] || (echo 'Please recompile and commit the assets, see the section \"Show changes on failure\" for details' && exit 1)"
 
