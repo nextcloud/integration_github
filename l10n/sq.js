@@ -4,6 +4,7 @@ OC.L10N.register(
     "Comment" : "Koment",
     "Client ID" : "ID klienti",
     "Client secret" : "E fshehtë klienti",
+    "Personal access token" : "Token personal hyrjeje",
     "Mark as read" : "Shënoje si të lexuar",
     "Unknown error" : "Gabim i panjohur",
     "Owner" : "Zotëruesi"

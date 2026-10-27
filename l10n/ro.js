@@ -13,6 +13,7 @@ OC.L10N.register(
     "Client ID" : "ID client",
     "Client secret" : "Secret client",
     "Enable navigation link" : "Pornește link-ul de navifare",
+    "Personal access token" : "Token de acces personal",
     "Connected as {user}" : "Conectat ca {user}",
     "Mark as read" : "Marchează ca citit",
     "Unsubscribe" : "Desubscrie",

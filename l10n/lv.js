@@ -7,6 +7,7 @@ OC.L10N.register(
     "Connected accounts" : "Sasaistītie konti",
     "Client ID" : "Klienta ID",
     "{logins} reacted with {emoji} emoji" : "{logins} atsaucās ar emocijzīmi {emoji}",
+    "Personal access token" : "Personīgā piekļuves pilnvara",
     "Connected as {user}" : "Savienojies kā {user}",
     "No GitHub account connected" : "Nav sasaistītu GitHub kontu",
     "Unknown error" : "Nezināma kļūda",

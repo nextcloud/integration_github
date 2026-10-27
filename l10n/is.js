@@ -11,6 +11,7 @@ OC.L10N.register(
     "Client ID" : "Biðlaraauðkenni",
     "Client secret" : "Leynilykill biðlara",
     "Enable navigation link" : "Virkja flakktengil",
+    "Personal access token" : "Persónulegt aðgangsteikn",
     "Connected as {user}" : "Tengt sem {user}",
     "Mark as read" : "Merkja sem lesið",
     "Unsubscribe" : "Hætta í áskrift",

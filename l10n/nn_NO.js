@@ -5,6 +5,7 @@ OC.L10N.register(
     "Comment" : "Kommentér",
     "Connected accounts" : "Tilkopla kontoar",
     "Client ID" : "Klient-ID",
+    "Personal access token" : "Personleg tilgangstoken",
     "Unknown error" : "Ukjend feil",
     "Owner" : "Owner"
 },

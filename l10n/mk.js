@@ -12,6 +12,7 @@ OC.L10N.register(
     "Client ID" : "Клиент ИД",
     "Client secret" : "Тајна на клиент",
     "Enable navigation link" : "Овозможи линк за навигација",
+    "Personal access token" : "Личен токен за пристап",
     "Connected as {user}" : "Поврзан како {user}",
     "Mark as read" : "Означи како прочитано",
     "Unknown error" : "Непозната грешка",

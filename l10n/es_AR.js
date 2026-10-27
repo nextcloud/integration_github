@@ -5,6 +5,7 @@ OC.L10N.register(
     "Comment" : "Comentario",
     "Client ID" : "ID del cliente",
     "Client secret" : "Secreto del cliente",
+    "Personal access token" : "Token de acceso personal",
     "Unknown error" : "Error desconocido",
     "Owner" : "Dueño"
 },
