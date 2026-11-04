@@ -15,6 +15,7 @@ OC.L10N.register(
     "Personal access token" : "Личен токен за пристап",
     "Connected as {user}" : "Поврзан како {user}",
     "Mark as read" : "Означи како прочитано",
+    "Line {line}" : "Линија {line}",
     "Unknown error" : "Непозната грешка",
     "Draft" : "Шаблон",
     "Author" : "Автор",
