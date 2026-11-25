@@ -91,10 +91,16 @@ jobs:
         run: npx playwright test
         env:
           BRANCH: ${{ matrix.server-versions }}
+          # stopNextcloud() saves the Nextcloud log here, if there is one, before it removes the container
+          NEXTCLOUD_E2E_LOG_FILE: test-results/nextcloud.log
 
       - name: Show Nextcloud log on failure
         if: failure()
-        run: docker ps -q --filter name=nextcloud-e2e-test-server | xargs -r -I{} docker exec {} cat data/nextcloud.log || true
+        # print the saved log, or else the log of a test server container that is still running
+        run: |
+          cat test-results/nextcloud.log 2>/dev/null \
+            || docker ps -q --filter name=nextcloud-e2e-test-server | xargs -r -I{} docker exec {} cat data/nextcloud.log \
+            || true
 
       - name: Upload Playwright report
         if: failure()
