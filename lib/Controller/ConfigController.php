@@ -10,6 +10,8 @@ declare(strict_types=1);
 namespace OCA\Github\Controller;
 
 use OCA\Github\AppInfo\Application;
+use OCA\Github\AuditLog\AuditLogger;
+use OCA\Github\AuditLog\Operation;
 use OCA\Github\Reference\GithubIssuePrReferenceProvider;
 use OCA\Github\Service\GithubAPIService;
 use OCA\Github\Service\SecretService;
@@ -61,6 +63,7 @@ class ConfigController extends Controller {
 		private GithubAPIService $githubAPIService,
 		private SecretService $secretService,
 		private GithubIssuePrReferenceProvider $githubIssuePrReferenceProvider,
+		private readonly AuditLogger $auditLogger,
 		private ?string $userId,
 	) {
 		parent::__construct($appName, $request);
@@ -81,12 +84,20 @@ class ConfigController extends Controller {
 			if ($tokenType === 'oauth') {
 				$this->githubAPIService->revokeOauthToken($this->userId);
 			}
+			$this->auditLogger->log(Operation::AccountConnected, 'User disconnected a Gitlab account', [
+				'token_type' => $tokenType,
+			]);
+
 		}
 
 		// save values
 		foreach ($values as $key => $value) {
 			if ($key === 'token') {
 				$this->secretService->setEncryptedUserValue($this->userId, $key, $value);
+				$this->auditLogger->log(Operation::AccountConnected, 'User connected a Gitlab account', [
+					'token_type' => $this->config->getUserValue($this->userId, Application::APP_ID, 'token_type'),
+				]);
+
 			} else {
 				$this->config->setUserValue($this->userId, Application::APP_ID, $key, $value);
 			}
@@ -134,6 +145,10 @@ class ConfigController extends Controller {
 		}
 		foreach ($values as $key => $value) {
 			$this->appConfig->setAppValueString($key, $value, lazy: self::ADMIN_SWITCHES[$key]);
+			$this->auditLogger->log(Operation::AdminConfigUpdated, 'Admin setting %s was changed to %s', [
+				'config_key' => $key,
+				'config_value' => $value,
+			]);
 		}
 		return new DataResponse([]);
 	}
@@ -153,6 +168,9 @@ class ConfigController extends Controller {
 		}
 		foreach ($values as $key => $value) {
 			$this->secretService->setEncryptedAppValue($key, $value);
+			$this->auditLogger->log(Operation::AdminConfigUpdated, 'Admin setting %s was changed', [
+				'config_key' => $key,
+			]);
 			if ($key === 'default_link_token') {
 				$info = $this->githubAPIService->updateLinkTokenUserInfo($value);
 				return new DataResponse($info);
@@ -204,6 +222,12 @@ class ConfigController extends Controller {
 				$this->secretService->setEncryptedUserValue($this->userId, 'token', $accessToken);
 				$this->config->setUserValue($this->userId, Application::APP_ID, 'token_type', 'oauth');
 				$userInfo = $this->storeUserInfo();
+
+				$this->auditLogger->log(Operation::AccountConnected, 'User connected a Github account', [
+					'client' => $clientID,
+					'token_type' => 'oauth',
+				]);
+
 
 				$usePopup = $this->appConfig->getAppValueString('use_popup', '0', lazy: true) === '1';
 				if ($usePopup) {
