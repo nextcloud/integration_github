@@ -10,6 +10,7 @@ declare(strict_types=1);
 namespace OCA\Github\Tests\Integration;
 
 use OCA\Github\AppInfo\Application;
+use OCA\Github\AuditLog\AuditLogger;
 use OCA\Github\Controller\ConfigController;
 use OCA\Github\Reference\GithubIssuePrReferenceProvider;
 use OCA\Github\Service\GithubAPIService;
@@ -103,6 +104,7 @@ trait MockedGithubApiTrait {
 			$githubAPIService,
 			Server::get(SecretService::class),
 			Server::get(GithubIssuePrReferenceProvider::class),
+			Server::get(AuditLogger::class),
 			self::TEST_USER_ID,
 		);
 	}
