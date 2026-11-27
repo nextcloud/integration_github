@@ -11,6 +11,7 @@ namespace OCA\Github\Tests\Unit;
 
 use OC\Collaboration\Reference\ReferenceManager;
 use OCA\Github\AppInfo\Application;
+use OCA\Github\AuditLog\AuditLogger;
 use OCA\Github\Controller\ConfigController;
 use OCA\Github\Dashboard\GithubWidget;
 use OCA\Github\Notification\GitHubNotifier;
@@ -608,6 +609,7 @@ class LazyAppConfigTest extends TestCase {
 			$githubAPIService,
 			$this->secretService,
 			$this->createMock(GithubIssuePrReferenceProvider::class),
+			$this->createMock(AuditLogger::class),
 			'alice',
 		);
 	}
